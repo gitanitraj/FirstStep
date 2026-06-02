@@ -1,0 +1,43 @@
+# React Native / Expo
+node_modules/
+.expo/
+.expo-shared/
+dist/
+web-build/
+android/
+ios/
+build/
+
+# Metro / Bundler
+.expo/
+.expo-shared/
+.expo/web/
+.expo/packager-info.json
+.expo/settings.json
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+expo-debug.log
+*.log
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE / Editor
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# TypeScript
+*.tsbuildinfo
+
+# Temporary
