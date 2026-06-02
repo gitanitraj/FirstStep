@@ -1,4 +1,4 @@
-# React Native / Expo
+# --- React Native / Expo ---
 node_modules/
 .expo/
 .expo-shared/
@@ -8,9 +8,8 @@ android/
 ios/
 build/
 
-# Metro / Bundler
+# Metro bundler
 .expo/
-.expo-shared/
 .expo/web/
 .expo/packager-info.json
 .expo/settings.json
@@ -40,4 +39,29 @@ Thumbs.db
 # TypeScript
 *.tsbuildinfo
 
-# Temporary
+# Temporary files
+.tmp/
+temp/
+*.tmp
+
+# Jest / Testing
+coverage/
+jest-cache/
+jest-temp/
+
+# Cache
+.cache/
+
+# --- Python / Jupyter ---
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.ipynb_checkpoints/
+.env/
+.venv/
+venv/
+ENV/
+env/
+*.egg-info/
+pip-wheel-metadata/
