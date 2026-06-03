@@ -1,0 +1,55 @@
+{
+  "id": "string",
+  "category": "string",
+  "subcategory": "string | null",
+
+  "organization": "string",
+  "parent_organization": "string | null",
+
+  "summary": "string",
+  "description": "string | null",
+
+  "population": "string",
+  "eligibility": "string",
+  "eligibility_age_min": "number | null",
+  "eligibility_age_max": "number | null",
+  "eligibility_gender": "any | female | male | other",
+
+  "locations": [
+    {
+      "label": "string",
+      "address": "string | null",
+      "city": "string | null",
+      "state": "string | null",
+      "zip": "string | null",
+      "confidential": "boolean"
+    }
+  ],
+
+  "phones": [
+    {
+      "number": "string",
+      "label": "string"
+    }
+  ],
+
+  "websites": [
+    {
+      "url": "string",
+      "label": "string"
+    }
+  ],
+
+  "county": "string",
+  "access_mode": ["in-person", "online"],
+  "cost": "free | low-cost | varies",
+
+  "urgency": "emergency | time-limited | standard",
+
+  "tags": ["string"],
+
+  "source": "string",
+  "retrieved": "YYYY-MM-DD",
+  "verified": "boolean",
+  "notes": "string | null"
+}
