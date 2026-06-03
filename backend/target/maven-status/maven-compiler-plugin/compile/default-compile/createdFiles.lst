@@ -1,0 +1,9 @@
+org/firststep/backend/service/ResourceService$1.class
+org/firststep/backend/service/ResourceService.class
+org/firststep/backend/model/Resource$Website.class
+org/firststep/backend/model/Resource$Phone.class
+org/firststep/backend/FirstStepApplication.class
+org/firststep/backend/service/ResourceService$2.class
+org/firststep/backend/controller/ResourceController.class
+org/firststep/backend/model/Resource$Location.class
+org/firststep/backend/model/Resource.class
