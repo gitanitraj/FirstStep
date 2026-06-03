@@ -14,3 +14,15 @@ Building civic tools for low-resource communities requires more than technical s
 
 "Messy public data can become usable decisions. This prototype shows how." 
 
+1. Validate data:
+   python data-cleaning/validate_schema.py
+
+2. Build backend:
+   cd backend
+   mvn -U clean package
+
+3. Run backend:
+   mvn spring-boot:run
+
+4. Open demo:
+   http://localhost:8080
