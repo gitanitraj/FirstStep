@@ -2,101 +2,178 @@ import csv
 import json
 import uuid
 from pathlib import Path
+from datetime import date
 
-INPUT_FILE = Path("../raw/original.csv")
+INPUT_FILE = Path("../raw/revised_wilmington_cache.csv")
 OUTPUT_FILE = Path("../clean/resources.json")
 
+# -----------------------------
+# Utility helpers
+# -----------------------------
+
 def split_multi(value):
-    """Split semicolon or comma-separated fields into clean lists."""
+    """Split comma or slash separated fields into clean lists."""
     if not value or value.strip() == "":
         return []
-    parts = [v.strip() for v in value.replace(";", ",").split(",")]
+    parts = [v.strip() for v in value.replace(";", ",").replace("/", ",").split(",")]
     return [p for p in parts if p]
 
 def parse_locations(address_str):
-    """Convert address string into a structured location object."""
+    """Convert address string into structured location objects."""
     if not address_str or address_str.strip() == "":
         return []
 
-    # Detect confidential addresses
-    confidential = "confidential" in address_str.lower()
+    # Multiple addresses separated by commas but containing full addresses
+    # We detect multiple addresses by looking for multiple ZIP codes.
+    raw = address_str.split(",")
+    chunks = []
+    current = []
 
-    return [{
-        "address_line1": address_str if not confidential else None,
-        "address_line2": None,
-        "city": "Wilmington",
-        "state": "DE",
-        "zip": None,
-        "confidential": confidential
-    }]
+    for piece in raw:
+        current.append(piece.strip())
+        if any(zipcode in piece for zipcode in ["198", "197"]):
+            chunks.append(", ".join(current))
+            current = []
+
+    if current:
+        chunks.append(", ".join(current))
+
+    locations = []
+    for idx, loc in enumerate(chunks):
+        confidential = "confidential" in loc.lower()
+
+        # Basic parsing
+        address = None if confidential else loc.split(",")[0].strip()
+        city = None
+        state = None
+        zip_code = None
+
+        if not confidential:
+            try:
+                parts = [p.strip() for p in loc.split(",")]
+                if len(parts) >= 3:
+                    address = parts[0]
+                    city = parts[1]
+                    state_zip = parts[2].split()
+                    state = state_zip[0]
+                    zip_code = state_zip[1] if len(state_zip) > 1 else None
+            except:
+                pass
+
+        locations.append({
+            "label": "Primary" if idx == 0 else f"Location {idx+1}",
+            "address": address,
+            "city": city,
+            "state": state,
+            "zip": zip_code,
+            "confidential": confidential
+        })
+
+    return locations
 
 def parse_phones(phone_str):
-    """Convert phone numbers into labeled objects."""
     if not phone_str:
         return []
-
     phones = split_multi(phone_str)
-    result = []
-    for p in phones:
-        result.append({
-            "label": "Main",
-            "number": p
-        })
-    return result
+    return [{"number": p, "label": "Main"} for p in phones]
 
 def parse_websites(site_str):
-    """Convert website URLs into labeled objects."""
     if not site_str:
         return []
-
     sites = split_multi(site_str)
-    return [{"label": "Website", "url": s} for s in sites]
+    return [{"url": s, "label": "Program page"} for s in sites]
 
-def determine_urgency(description):
-    """Basic rule-based urgency classification."""
-    if not description:
-        return "ongoing"
+def extract_gender(text):
+    if not text:
+        return "any"
+    t = text.lower()
+    if "women" in t or "female" in t:
+        return "female"
+    if "men" in t or "male" in t:
+        return "male"
+    return "any"
 
-    text = description.lower()
+def extract_age(text):
+    if not text:
+        return (None, None)
+    t = text.lower()
 
-    if "deadline" in text or "until" in text or "limited" in text:
-        return "time_limited"
-    if "emergency" in text or "crisis" in text:
-        return "crisis"
+    # Age 18 and older
+    if "age" in t and "older" in t:
+        try:
+            num = int(t.split("age")[1].split("and")[0].strip())
+            return (num, None)
+        except:
+            pass
 
-    return "ongoing"
+    # Ages 16–23
+    if "ages" in t and "–" in t:
+        try:
+            rng = t.split("ages")[1].strip()
+            low, high = rng.split("–")
+            return (int(low), int(high))
+        except:
+            pass
+
+    return (None, None)
+
+def determine_urgency(urgency_str):
+    if not urgency_str:
+        return "standard"
+    u = urgency_str.lower()
+    if "urgent" in u or "emergency" in u:
+        return "emergency"
+    if "time" in u or "limited" in u:
+        return "time-limited"
+    return "standard"
+
+# -----------------------------
+# Main record transformer
+# -----------------------------
 
 def clean_record(row):
-    """Transform a CSV row into the final JSON schema."""
-    description = row.get("Services Description", "")
+    eligibility_raw = row.get("eligibility", "")
+    age_min, age_max = extract_age(eligibility_raw)
+    gender = extract_gender(eligibility_raw)
 
     return {
-        "id": str(uuid.uuid4()),
-        "type_of_service": row.get("Type of Service", "").strip(),
-        "subcategory": None,  # You will fill this manually or infer later
-        "organization_name": row.get("Organization Name", "").strip(),
-        "parent_organization": None,
+        "id": row.get("id"),
+        "category": row.get("category"),
+        "subcategory": None,  # You will fill or infer later
 
-        "services_description": description,
-        "population_served": split_multi(row.get("Population Served", "")),
+        "organization": row.get("organization"),
+        "parent_organization": None,  # You will fill manually
 
-        "urgency_level": determine_urgency(description),
+        "summary": row.get("summary"),
+        "description": None,
 
-        "locations": parse_locations(row.get("Full Address", "")),
-        "phones": parse_phones(row.get("Phone", "")),
-        "websites": parse_websites(row.get("Website", "")),
+        "population": row.get("population"),
+        "eligibility": eligibility_raw,
+        "eligibility_age_min": age_min,
+        "eligibility_age_max": age_max,
+        "eligibility_gender": gender,
 
-        "eligibility_age_min": None,
-        "eligibility_age_max": None,
-        "eligibility_gender": "any",
+        "locations": parse_locations(row.get("address")),
+        "phones": parse_phones(row.get("phone")),
+        "websites": parse_websites(row.get("website")),
 
-        "neighborhoods_served": split_multi(row.get("County Served", "")),
+        "county": row.get("county"),
+        "access_mode": split_multi(row.get("access_mode")),
+        "cost": row.get("cost"),
+
+        "urgency": determine_urgency(row.get("urgency")),
 
         "tags": [],
 
-        "title_es": None,
-        "summary_es": None
+        "source": "FIRST Community Services Directory — Delaware DSCYF",
+        "retrieved": str(date.today()),
+        "verified": False,
+        "notes": ""
     }
+
+# -----------------------------
+# Main script
+# -----------------------------
 
 def main():
     cleaned = []
