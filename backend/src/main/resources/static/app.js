@@ -1,8 +1,33 @@
-const housingButton = document.getElementById("housing-help-button");
-const resultsContainer = document.getElementById("results");
+const housingButton =
+    document.getElementById("housing-help-button");
+
+const resultsContainer =
+    document.getElementById("results");
 
 const filterScreen =
     document.getElementById("filter-screen");
+
+const continueButton =
+    document.getElementById("continue-button");
+
+const weeklyUpdatesButton =
+    document.getElementById("weekly-updates-button");
+
+const newsResultsContainer =
+    document.getElementById("news-results");
+
+const seasonalButton =
+    document.getElementById("seasonal-resources-button");
+
+const seasonalResultsContainer =
+    document.getElementById("seasonal-results");
+
+const essentialsButton =
+    document.getElementById("essentials-button");
+
+const essentialsResultsContainer =
+    document.getElementById("essentials-results");
+
 
 housingButton.addEventListener("click", () => {
 
@@ -11,36 +36,26 @@ housingButton.addEventListener("click", () => {
     resultsContainer.innerHTML = "";
 });
 
-const continueButton =
-    document.getElementById("continue-button");
-
-continueButton.addEventListener("click", () => {
+    continueButton.addEventListener("click", () => {
 
     filterScreen.style.display = "none";
 
     loadHousingResources();
 });
 
-const weeklyUpdatesButton =
-    document.getElementById("weekly-updates-button");
-
-const newsResultsContainer =
-    document.getElementById("news-results");
-
-weeklyUpdatesButton.addEventListener(
+    weeklyUpdatesButton.addEventListener(
     "click",
     loadNewsUpdates
 );
 
-const seasonalButton =
-    document.getElementById("seasonal-resources-button");
-
-const seasonalResultsContainer =
-    document.getElementById("seasonal-results");
-
 seasonalButton.addEventListener(
     "click",
     showSeasonalResources
+);
+
+essentialsButton.addEventListener(
+    "click",
+    loadEssentialsResources
 );
 
 async function loadHousingResources() {
