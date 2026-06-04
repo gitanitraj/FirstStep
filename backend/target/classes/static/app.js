@@ -83,27 +83,36 @@ async function loadHousingResources() {
     }
 }
 
-function displayResources(resources) {
+async function loadEssentialsResources() {
 
-    resultsContainer.innerHTML = "";
+    essentialsResultsContainer.innerHTML =
+        "<p>Loading...</p>";
 
-    resources.forEach(resource => {
+    try {
 
-        const card = document.createElement("div");
+        const response =
+            await fetch("/api/resources");
 
-        card.className = "resource-card";
+        const resources =
+            await response.json();
 
-        card.innerHTML = `
-            <h3>${resource.organization}</h3>
+        const essentialsResources =
+            resources.filter(resource =>
+                resource.cost &&
+                resource.cost.toLowerCase() === "free"
+            );
 
-            <p>${resource.summary || ""}</p>
+        displayEssentials(essentialsResources);
 
-            <p><strong>Urgency:</strong> ${resource.urgency || "Standard"}</p>
-        `;
+    } catch (error) {
 
-        resultsContainer.appendChild(card);
-    });
+        console.error(error);
+
+        essentialsResultsContainer.innerHTML =
+            "<p>Unable to load resources.</p>";
+    }
 }
+
 async function loadNewsUpdates() {
 
     newsResultsContainer.innerHTML =
@@ -126,6 +135,28 @@ async function loadNewsUpdates() {
         newsResultsContainer.innerHTML =
             "<p>Unable to load updates.</p>";
     }
+}
+
+function displayResources(resources) {
+
+    resultsContainer.innerHTML = "";
+
+    resources.forEach(resource => {
+
+        const card = document.createElement("div");
+
+        card.className = "resource-card";
+
+        card.innerHTML = `
+            <h3>${resource.organization}</h3>
+
+            <p>${resource.summary || ""}</p>
+
+            <p><strong>Urgency:</strong> ${resource.urgency || "Standard"}</p>
+        `;
+
+        resultsContainer.appendChild(card);
+    });
 }
 
 function displayNews(newsItems) {
@@ -158,6 +189,33 @@ function displayNews(newsItems) {
         newsResultsContainer.appendChild(card);
     });
 
+    function displayEssentials(resources) {
+
+    essentialsResultsContainer.innerHTML = "";
+
+    resources.forEach(resource => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "resource-card";
+
+        card.innerHTML = `
+            <h3>${resource.organization}</h3>
+
+            <p>${resource.summary || ""}</p>
+
+            <p>
+                <strong>Category:</strong>
+                ${resource.category || ""}
+            </p>
+        `;
+
+        essentialsResultsContainer
+            .appendChild(card);
+    });
+}
+
 function showSeasonalResources() {
 
     seasonalResultsContainer.innerHTML = `
@@ -169,10 +227,8 @@ function showSeasonalResources() {
             </p>
 
             <p>
-                Future versions will display
-                seasonal programs, events,
-                community resources, and
-                organization flyers.
+                Information about seasonal programs, events, community resources and
+                organization flyers will be posted here.
             </p>
         </div>
     `;
