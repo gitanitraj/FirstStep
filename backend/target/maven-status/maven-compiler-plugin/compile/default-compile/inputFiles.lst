@@ -3,4 +3,5 @@
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/NewsService.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/FirstStepApplication.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/ResourceController.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/NewsController.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/model/NewsItem.java

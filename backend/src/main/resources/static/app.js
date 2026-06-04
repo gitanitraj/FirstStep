@@ -21,6 +21,17 @@ continueButton.addEventListener("click", () => {
     loadHousingResources();
 });
 
+const weeklyUpdatesButton =
+    document.getElementById("weekly-updates-button");
+
+const newsResultsContainer =
+    document.getElementById("news-results");
+
+weeklyUpdatesButton.addEventListener(
+    "click",
+    loadNewsUpdates
+);
+
 async function loadHousingResources() {
 
     resultsContainer.innerHTML = "<p>Loading...</p>";
@@ -65,5 +76,59 @@ function displayResources(resources) {
         `;
 
         resultsContainer.appendChild(card);
+    });
+}
+async function loadNewsUpdates() {
+
+    newsResultsContainer.innerHTML =
+        "<p>Loading updates...</p>";
+
+    try {
+
+        const response =
+            await fetch("/api/news");
+
+        const newsItems =
+            await response.json();
+
+        displayNews(newsItems);
+
+    } catch (error) {
+
+        console.error(error);
+
+        newsResultsContainer.innerHTML =
+            "<p>Unable to load updates.</p>";
+    }
+}
+
+function displayNews(newsItems) {
+
+    newsResultsContainer.innerHTML = "";
+
+    newsItems.forEach(item => {
+
+        const card =
+            document.createElement("div");
+
+        card.className = "resource-card";
+
+        card.innerHTML = `
+            <h3>${item.headline}</h3>
+
+            <p>${item.summary}</p>
+
+            <p>
+                <strong>Why This Matters:</strong>
+                ${item.whyItMatters}
+            </p>
+
+            <p>
+                <strong>Urgency:</strong>
+                ${item.urgency}
+            </p>
+        `;
+
+        newsResultsContainer.appendChild(card);
     });
 }
