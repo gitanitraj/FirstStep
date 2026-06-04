@@ -1,7 +1,25 @@
 const housingButton = document.getElementById("housing-help-button");
 const resultsContainer = document.getElementById("results");
 
-housingButton.addEventListener("click", loadHousingResources);
+const filterScreen =
+    document.getElementById("filter-screen");
+
+housingButton.addEventListener("click", () => {
+
+    filterScreen.style.display = "block";
+
+    resultsContainer.innerHTML = "";
+});
+
+const continueButton =
+    document.getElementById("continue-button");
+
+continueButton.addEventListener("click", () => {
+
+    filterScreen.style.display = "none";
+
+    loadHousingResources();
+});
 
 async function loadHousingResources() {
 
