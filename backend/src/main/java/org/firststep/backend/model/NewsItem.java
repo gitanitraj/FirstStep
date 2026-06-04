@@ -1,6 +1,7 @@
 package org.firststep.backend.model;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class NewsItem {
@@ -8,9 +9,18 @@ public class NewsItem {
     public String id;
     public String headline;
     public String summary;
-    public String why_it_matters;
+
+    @JsonProperty("why_it_matters")
+    public String whyItMatters;
+
     public String urgency;
     public String published;
-    public String source_name;
-    public String source_url;
+
+    @JsonProperty("source_name")
+    public String sourceName;
+
+    @JsonProperty("source_url")
+    public String sourceUrl;
+
+    public Boolean active;
 }
