@@ -32,6 +32,17 @@ weeklyUpdatesButton.addEventListener(
     loadNewsUpdates
 );
 
+const seasonalButton =
+    document.getElementById("seasonal-resources-button");
+
+const seasonalResultsContainer =
+    document.getElementById("seasonal-results");
+
+seasonalButton.addEventListener(
+    "click",
+    showSeasonalResources
+);
+
 async function loadHousingResources() {
 
     resultsContainer.innerHTML = "<p>Loading...</p>";
@@ -131,4 +142,24 @@ function displayNews(newsItems) {
 
         newsResultsContainer.appendChild(card);
     });
+
+function showSeasonalResources() {
+
+    seasonalResultsContainer.innerHTML = `
+        <div class="resource-card">
+            <h3>Seasonal Resources</h3>
+
+            <p>
+                Coming Soon
+            </p>
+
+            <p>
+                Future versions will display
+                seasonal programs, events,
+                community resources, and
+                organization flyers.
+            </p>
+        </div>
+    `;
+}
 }
