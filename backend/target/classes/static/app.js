@@ -188,8 +188,9 @@ function displayNews(newsItems) {
 
         newsResultsContainer.appendChild(card);
     });
+}
 
-    function displayEssentials(resources) {
+function displayEssentials(resources) {
 
     essentialsResultsContainer.innerHTML = "";
 
@@ -211,8 +212,7 @@ function displayNews(newsItems) {
             </p>
         `;
 
-        essentialsResultsContainer
-            .appendChild(card);
+        essentialsResultsContainer.appendChild(card);
     });
 }
 
@@ -220,17 +220,17 @@ function showSeasonalResources() {
 
     seasonalResultsContainer.innerHTML = `
         <div class="resource-card">
+
             <h3>Seasonal Resources</h3>
 
-            <p>
-                Coming Soon
-            </p>
+            <p>Coming Soon</p>
 
             <p>
-                Information about seasonal programs, events, community resources and
-                organization flyers will be posted here.
+                Information about seasonal programs,
+                events, community resources, announcements,
+                and organization flyers will be posted here.
             </p>
+
         </div>
     `;
-}
 }
