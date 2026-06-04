@@ -28,6 +28,15 @@ const essentialsButton =
 const essentialsResultsContainer =
     document.getElementById("essentials-results");
 
+const homeScreen =
+    document.getElementById("home-screen");
+
+const resultsScreen =
+    document.getElementById("results-screen");
+
+const backHomeButton =
+    document.getElementById("back-home-button");
+
 
 housingButton.addEventListener("click", () => {
 
@@ -58,6 +67,11 @@ essentialsButton.addEventListener(
     loadEssentialsResources
 );
 
+backHomeButton.addEventListener(
+    "click",
+    showHomeScreen
+);
+
 async function loadHousingResources() {
 
     resultsContainer.innerHTML = "<p>Loading...</p>";
@@ -73,6 +87,7 @@ async function loadHousingResources() {
         );
 
         displayResources(housingResources);
+        showResultsScreen();
 
     } catch (error) {
 
@@ -103,6 +118,7 @@ async function loadEssentialsResources() {
             );
 
         displayEssentials(essentialsResources);
+        showResultsScreen();
 
     } catch (error) {
 
@@ -127,6 +143,7 @@ async function loadNewsUpdates() {
             await response.json();
 
         displayNews(newsItems);
+        showResultsScreen();
 
     } catch (error) {
 
@@ -135,6 +152,24 @@ async function loadNewsUpdates() {
         newsResultsContainer.innerHTML =
             "<p>Unable to load updates.</p>";
     }
+}
+
+function showHomeScreen() {
+
+    homeScreen.style.display = "block";
+
+    filterScreen.style.display = "none";
+
+    resultsScreen.style.display = "none";
+}
+
+function showResultsScreen() {
+
+    homeScreen.style.display = "none";
+
+    filterScreen.style.display = "none";
+
+    resultsScreen.style.display = "block";
 }
 
 function displayResources(resources) {
@@ -233,4 +268,5 @@ function showSeasonalResources() {
 
         </div>
     `;
+    showResultsScreen();
 }
