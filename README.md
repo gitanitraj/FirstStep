@@ -26,3 +26,9 @@ Building civic tools for low-resource communities requires more than technical s
 
 4. Open demo:
    http://localhost:8080
+
+Before running the backend:
+
+python data-cleaning/scripts/validate_schema.py
+
+Only validated resources.json files should be served.

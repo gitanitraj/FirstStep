@@ -94,4 +94,26 @@ private List<Resource> parseJsonNodeToList(JsonNode root) throws JsonProcessingE
     public Optional<Resource> getById(String id) {
         return resources.stream().filter(r -> id.equals(r.id)).findFirst();
     }
+
+    private void validateResources(List<Resource> resources) {
+    int missingIds = 0;
+    int missingCategories = 0;
+
+    for (Resource r : resources) {
+
+        if (r.id == null || r.id.isBlank()) {
+            missingIds++;
+        }
+
+        if (r.category == null || r.category.isBlank()) {
+            missingCategories++;
+        }
+    }
+
+    System.out.println(
+        "Validation summary: "
+        + missingIds + " missing ids, "
+        + missingCategories + " missing categories"
+    );
+    }
 }
