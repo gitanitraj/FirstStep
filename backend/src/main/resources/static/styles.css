@@ -53,3 +53,19 @@ body {
     margin: 0;
     color: #555;
 }
+
+#results {
+    margin-top: 30px;
+}
+
+.resource-card {
+    background: white;
+    border: 1px solid #d0d0d0;
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+}
+
+.resource-card h3 {
+    margin-top: 0;
+}
