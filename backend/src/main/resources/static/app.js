@@ -7,6 +7,11 @@ const resultsContainer =
 const filterScreen =
     document.getElementById("filter-screen");
 
+const urgentFilterButton =
+    document.getElementById("urgent-filter");
+
+let urgentFilterSelected = false;
+
 const continueButton =
     document.getElementById("continue-button");
 
@@ -52,6 +57,16 @@ housingButton.addEventListener("click", () => {
     loadHousingResources();
 });
 
+urgentFilterButton.addEventListener("click",() => {
+        urgentFilterSelected =
+            !urgentFilterSelected;
+
+        urgentFilterButton.classList.toggle(
+            "selected"
+        );
+    }
+);
+
     weeklyUpdatesButton.addEventListener(
     "click",
     loadNewsUpdates
@@ -81,10 +96,22 @@ async function loadHousingResources() {
         const response = await fetch("/api/resources");
         const resources = await response.json();
 
-        const housingResources = resources.filter(resource =>
+        let housingResources = resources.filter(resource =>
             resource.category &&
             resource.category.toLowerCase().includes("housing")
         );
+
+        if (urgentFilterSelected) {
+
+            housingResources =
+                housingResources.filter(resource =>
+                    resource.urgency &&
+                    (
+                        resource.urgency.toLowerCase() === "emergency" ||
+                        resource.urgency.toLowerCase() === "time-limited"
+                    )
+                );
+        }
 
         displayResources(housingResources);
         showResultsScreen();
