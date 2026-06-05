@@ -39,6 +39,9 @@ const homeScreen =
 const resultsScreen =
     document.getElementById("results-screen");
 
+const detailView =
+    document.getElementById("detail-view");
+
 const backHomeButton =
     document.getElementById("back-home-button");
 
@@ -218,6 +221,9 @@ function displayResources(resources) {
         `;
 
         resultsContainer.appendChild(card);
+        card.addEventListener(
+            "click",() => showResourceDetails(resource)
+        );
     });
 }
 
@@ -296,4 +302,36 @@ function showSeasonalResources() {
         </div>
     `;
     showResultsScreen();
+
+function showResourceDetails(resource) {
+
+    detailView.innerHTML = `
+
+        <div class="resource-card">
+
+            <h2>${resource.organization}</h2>
+
+            <p>
+                <strong>Summary:</strong>
+                ${resource.summary || ""}
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                ${resource.eligibility || "Not listed"}
+            </p>
+
+            <p>
+                <strong>Description:</strong>
+                ${resource.description || ""}
+            </p>
+
+            <p>
+                <strong>Urgency:</strong>
+                ${resource.urgency || "Standard"}
+            </p>
+
+        </div>
+    `;
+}
 }
