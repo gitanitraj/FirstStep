@@ -10,61 +10,46 @@
 <body>
 
     <main class="container">
-
-    <section id="home-screen"> 
-        
+    
         <div class="accessibility-toolbar"
             aria-label="Accessibility controls">
-
             <button id="increase-text-button"
-                    aria-label="Increase text size">
-                A+
-            </button>
-
+                    aria-label="Increase text size">A+</button>
             <button id="decrease-text-button"
-                    aria-label="Decrease text size">
-                A-
-            </button>
-
+                    aria-label="Decrease text size">A-</button>
             <button id="contrast-button"
-                    aria-label="Toggle high contrast mode">
-                Contrast
-            </button>
-
+                    aria-label="Toggle high contrast mode">Contrast</button>
         </div>
-
-        <header class="hero">
-            <h1>First Step</h1>
-
-            <p class="tagline">
+        <section id="home-screen"> 
+            <header class="hero">
+                <h1>First Step</h1>
+                <p class="tagline">
                 Your trusted local guidance for Wilmington, Delaware
-            </p>
-        </header>
+                </p>
+            </header>
 
-    <section class="welcome">
+        <section class="welcome">
         <h2>What do you need help with today?</h2>
-    </section>
+        </section>
 
-    <section class="category-list">
-
-        <button 
+        <section class="category-list">
+            <button 
             id="housing-help-button"
             class="category-card"
             aria-label="Housing Help. Home and rental assistance, shelters and home repairs">
 
-        <span class="category-icon" aria-hidden="true">🏠</span>
+            <span class="category-icon" aria-hidden="true">🏠</span>
 
-        <div class="category-text">
-            <h3>Housing Help</h3>
-            <p>Home and Rental Assistance, Shelters, Home Repairs</p>
-        </div>
+            <div class="category-text">
+                <h3>Housing Help</h3>
+                <p>Home and Rental Assistance, Shelters, Home Repairs</p>
+            </div>
+            </button>
 
-        </button>
-
-        <button
-            id="essentials-button"
-            class="category-card"
-            aria-label="Free and low cost essentials including food, furniture and clothing">
+            <button
+                id="essentials-button"
+                class="category-card"
+                aria-label="Free and low cost essentials including food, furniture and clothing">
 
             <span class="category-icon" aria-hidden="true">🛒</span>
 
@@ -72,13 +57,12 @@
                 <h3>Free / Low-Cost Essentials</h3>
                 <p>Food, Furniture, Clothing</p>
             </div>
+            </button>
 
-        </button>
-
-        <button
-            id="seasonal-resources-button"
-            class="category-card"
-            aria-label="Seasonal resources including programs, events, and community opportunities">
+            <button
+                id="seasonal-resources-button"
+                class="category-card"
+                aria-label="Seasonal resources including programs, events, and community opportunities">
 
             <span class="category-icon" aria-hidden="true">🍂</span>
 
@@ -86,13 +70,12 @@
                 <h3>Seasonal Resources</h3>
                 <p>Programs, Events and Community Opportunities</p>
             </div>
+            </button>
 
-        </button>
-
-        <button
-            id="weekly-updates-button"
-            class="category-card"
-            aria-label="Weekly updates including news and changes impacting you">
+            <button
+                id="weekly-updates-button"
+                class="category-card"
+                aria-label="Weekly updates including news and changes impacting you">
 
             <span class="category-icon" aria-hidden="true">📰</span>
 
@@ -100,13 +83,15 @@
                 <h3>Weekly Updates</h3>
                 <p>News and Changes Impacting You</p>
             </div>
+            </button>
+        </section>
 
-        </button>
-
-    </section>
-    </section>
+        </section>
 
     <section id="filter-screen" style="display:none;">
+    <button id="back-from-filter-button" class="back-button">
+        ← Back to Home
+    </button>
 
         <h2>Housing Help</h2>
 
@@ -148,10 +133,10 @@
     <section id="news-results"></section>
     <section id="essentials-results"></section>
     <section id="seasonal-results">
-        <h2>🍂 Seasonal Resources</h2>
-        <p style="color:#555; margin-bottom:12px;">
-            Programs, events, and community opportunities near you.
-        </p>
+        <div class="page-header">
+            <h2>Seasonal Resources</h2>
+            <p class="page-description">Learn what's happening in your community. From legal clinics and job fairs to free family activities, you'll find event flyers and notices from local organizations offering support or seeking volunteers. Community events run year-round, so check back often for dates, locations and contact details to help you get involved or get help.</p>
+        </div>
         <div class="carousel" id="seasonal-carousel"></div>
     </section>
 
