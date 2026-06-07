@@ -247,32 +247,27 @@ function displayResources(resources) {
 }
 
 function displayNews(newsItems) {
-
-    newsResultsContainer.innerHTML = "";
+    newsResultsContainer.innerHTML = `
+        <div class="ai-banner">
+            <strong>✨ How AI will power this section</strong>
+            Each week, an AI prompt will read new policy updates and community announcements, then rewrite them summarizing what changed, who it affects, and why it matters to Wilmington residents.
+            The cards below show how the output will appear.
+        </div>
+    `;
 
     newsItems.forEach(item => {
-
-        const card =
-            document.createElement("div");
-
+        const tag = item.urgency || "standard";
+        const card = document.createElement("div");
         card.className = "resource-card";
-
         card.innerHTML = `
+            <span class="urgency-tag urgency-${tag}">${tag}</span>
             <h3>${item.headline}</h3>
-
             <p>${item.summary}</p>
-
-            <p>
-                <strong>Why This Matters:</strong>
-                ${item.whyItMatters}
-            </p>
-
-            <p>
-                <strong>Urgency:</strong>
-                ${item.urgency}
+            <p><strong>Why this matters:</strong> ${item.why_it_matters}</p>
+            <p style="font-size:0.8rem; color:#888;">
+                ${item.source_name} · ${item.published}
             </p>
         `;
-
         newsResultsContainer.appendChild(card);
     });
 }
@@ -304,22 +299,34 @@ function displayEssentials(resources) {
 }
 
 function showSeasonalResources() {
+    resultsContainer.style.display = "none";
+    newsResultsContainer.style.display = "none";
+    essentialsResultsContainer.style.display = "none";
+    detailScreen.style.display = "none";
 
-    seasonalResultsContainer.innerHTML = `
-        <div class="resource-card">
+    const flyers = [
+        { src: "images/seasonal/1985.jpg", caption: "Community Event" },
+        { src: "images/seasonal/1987.jpg", caption: "Volunteer Opportunity" },
+        { src: "images/seasonal/1989.jpg", caption: "Health Care Event" },
+        { src: "images/seasonal/1991.jpg", caption: "Fundraiser" },
+        { src: "images/seasonal/1993.jpg", caption: "Community Event" },
+        { src: "images/seasonal/1995.jpg", caption: "Volunteer Opportunity" },
+        { src: "images/seasonal/1997.jpg", caption: "Health Care Event" },
+    ];
 
-            <h3>Seasonal Resources</h3>
+    const carousel = document.getElementById("seasonal-carousel");
+    carousel.innerHTML = "";
 
-            <p>Coming Soon</p>
+    flyers.forEach(flyer => {
+        carousel.innerHTML += `
+            <div class="carousel-card">
+                <img src="${flyer.src}" alt="${flyer.caption}">
+                <div class="carousel-caption">${flyer.caption}</div>
+            </div>
+        `;
+    });
 
-            <p>
-                Information about seasonal programs,
-                events, community resources, announcements,
-                and organization flyers will be posted here.
-            </p>
-
-        </div>
-    `;
+    seasonalResultsContainer.style.display = "block";
     showResultsScreen();
 }
 
