@@ -13,7 +13,8 @@
 
     <section id="home-screen"> 
         
-        <div class="accessibility-toolbar">
+        <div class="accessibility-toolbar"
+            aria-label="Accessibility controls">
 
             <button id="increase-text-button"
                     aria-label="Increase text size">
@@ -46,36 +47,60 @@
 
     <section class="category-list">
 
-        <button id="housing-help-button" class="category-card">
-            <span class="category-icon">🏠</span>
-            <div class="category-text">
-                <h3>Housing Help</h3>
-                <p>Home and Rental Assistance, Shelters, Home Repairs</p>
-            </div>
+        <button 
+            id="housing-help-button"
+            class="category-card"
+            aria-label="Housing Help. Home and rental assistance, shelters and home repairs">
+
+        <span class="category-icon" aria-hidden="true">🏠</span>
+
+        <div class="category-text">
+            <h3>Housing Help</h3>
+            <p>Home and Rental Assistance, Shelters, Home Repairs</p>
+        </div>
+
         </button>
 
-        <button id="essentials-button" class="category-card">
-            <span class="category-icon">🛒</span>
+        <button
+            id="essentials-button"
+            class="category-card"
+            aria-label="Free and low cost essentials including food, furniture and clothing">
+
+            <span class="category-icon" aria-hidden="true">🛒</span>
+
             <div class="category-text">
                 <h3>Free / Low-Cost Essentials</h3>
                 <p>Food, Furniture, Clothing</p>
             </div>
+
         </button>
 
-        <button id="seasonal-resources-button" class="category-card">
-            <span class="category-icon">🍂</span>
+        <button
+            id="seasonal-resources-button"
+            class="category-card"
+            aria-label="Seasonal resources including programs, events, and community opportunities">
+
+            <span class="category-icon" aria-hidden="true">🍂</span>
+
             <div class="category-text">
                 <h3>Seasonal Resources</h3>
                 <p>Programs, Events and Community Opportunities</p>
             </div>
+
         </button>
 
-        <button id="weekly-updates-button" class="category-card">
-            <span class="category-icon">📰</span>
+        <button
+            id="weekly-updates-button"
+            class="category-card"
+            aria-label="Weekly updates including news and changes impacting you">
+
+            <span class="category-icon" aria-hidden="true">📰</span>
+
             <div class="category-text">
                 <h3>Weekly Updates</h3>
                 <p>News and Changes Impacting You</p>
             </div>
+
         </button>
 
     </section>
