@@ -27,28 +27,32 @@
     <section class="category-list">
 
         <button id="housing-help-button" class="category-card">
-            <div>
+            <span class="category-icon">🏠</span>
+            <div class="category-text">
                 <h3>Housing Help</h3>
                 <p>Home and Rental Assistance, Shelters, Home Repairs</p>
             </div>
         </button>
 
         <button id="essentials-button" class="category-card">
-            <div>
+            <span class="category-icon">🛒</span>
+            <div class="category-text">
                 <h3>Free / Low-Cost Essentials</h3>
                 <p>Food, Furniture, Clothing</p>
             </div>
         </button>
 
         <button id="seasonal-resources-button" class="category-card">
-            <div>
+            <span class="category-icon">🍂</span>
+            <div class="category-text">
                 <h3>Seasonal Resources</h3>
                 <p>Programs, Events and Community Opportunities</p>
             </div>
         </button>
 
         <button id="weekly-updates-button" class="category-card">
-            <div>
+            <span class="category-icon">📰</span>
+            <div class="category-text">
                 <h3>Weekly Updates</h3>
                 <p>News and Changes Impacting You</p>
             </div>
@@ -81,15 +85,30 @@
 
     <section id="results-screen" style="display:none;">
 
-    <button id="back-home-button">
-        ← Back
+    <button id="back-home-button" class="back-button">
+        ← Back to Home
     </button>
 
     <section id="results"></section>
+    
+    <section id="detail-screen" style="display:none;">
+    
+    <button id="back-results-button" class="back-button">
+        ← Back to Results
+    </button>
+    
     <section id="detail-view"></section>
+    </section>
+
     <section id="news-results"></section>
     <section id="essentials-results"></section>
-    <section id="seasonal-results"></section>
+    <section id="seasonal-results">
+        <h2>🍂 Seasonal Resources</h2>
+        <p style="color:#555; margin-bottom:12px;">
+            Programs, events, and community opportunities near you.
+        </p>
+        <div class="carousel" id="seasonal-carousel"></div>
+    </section>
 
     </section>
 
