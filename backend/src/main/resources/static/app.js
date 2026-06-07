@@ -256,7 +256,7 @@ function displayNews(newsItems) {
     `;
 
     newsItems.forEach(item => {
-        const cats = (item.categoryTags || []).join(" · ");
+        const cats = (item.category_tags || []).join(" · ");
         const card = document.createElement("div");
         card.className = "resource-card";
         card.innerHTML = `
