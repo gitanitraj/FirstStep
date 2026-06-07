@@ -279,9 +279,30 @@ function hideDetailScreen() {
     resultsContainer.style.display = "block";
 }
 
+//function renderPageHeader(emoji, title, description) {
+    //return `
+        //<div class="page-header">
+            //<h2>${emoji} ${title}</h2>
+            //<p class="page-description">${description}</p>
+        //</div>
+    //`;
+//}
+function renderPageHeader(emoji, title, description) {
+    return `
+        <div class="page-header">
+            <h2>${title}</h2>
+            <p class="page-description">${description}</p>
+        </div>
+    `;
+}
+
 function displayResources(resources) {
 
-    resultsContainer.innerHTML = "";
+    resultsContainer.innerHTML = renderPageHeader(
+        "",
+        "Housing Help",
+        "Find programs and local organizations that can help you find, buy or rent a place to live. Browse emergency shelter options, rental assistance programs and homeownership or mortgage resources. Listings include contact details and eligibility information so you can act quickly."
+    );
 
     resources.forEach(resource => {
 
@@ -304,11 +325,16 @@ function displayResources(resources) {
 }
 
 function displayNews(newsItems) {
-    newsResultsContainer.innerHTML = `
+    newsResultsContainer.innerHTML =
+        renderPageHeader(
+            "",
+            "Weekly News and Updates",
+            "Stay up to date on the rules, public meetings and changes that affect housing, benefits and community services. Read the highlights and learn about important deadlines, new requirements and policy updates so you can participate and plan ahead. Use the source links to join discussions or get more information."
+        ) + `
         <div class="ai-banner">
             <strong>✨ How AI will power this section</strong>
-            Each week, an AI prompt will read new policy updates and community announcements, then rewrite them summarizing what changed, who it affects, and why it matters to Wilmington residents.
-            The cards below show how the output will appear.
+            Each week, AI will read new policy updates and community announcements, then rewrite them summarizing what changed, who it affects and why it matters to Wilmington residents.
+            The cards below show how the output may appear.
         </div>
     `;
 
@@ -331,27 +357,33 @@ function displayNews(newsItems) {
 
 function displayEssentials(resources) {
 
-    essentialsResultsContainer.innerHTML = "";
+    essentialsResultsContainer.innerHTML = renderPageHeader(
+        "",
+        "Free / Low-Cost Essentials",
+        "Check out these local programs and nonprofits offering furniture, utilities, repairs for free or at a low cost. Make your home more comfortable and safe with a few simple steps."
+    );
 
+    const grouped = {};
     resources.forEach(resource => {
+        const cat = resource.category || "Other";
+        if (!grouped[cat]) grouped[cat] = [];
+        grouped[cat].push(resource);
+    });
 
-        const card =
-            document.createElement("div");
-
-        card.className = "resource-card";
-
-        card.innerHTML = `
-            <h3>${resource.organization}</h3>
-
-            <p>${resource.summary || ""}</p>
-
-            <p>
-                <strong>Category:</strong>
-                ${resource.category || ""}
-            </p>
+    Object.entries(grouped).forEach(([category, items]) => {
+        essentialsResultsContainer.innerHTML += `
+            <h3 class="category-group-header">${category}</h3>
         `;
-
-        essentialsResultsContainer.appendChild(card);
+        items.forEach(resource => {
+            const card = document.createElement("div");
+            card.className = "resource-card";
+            card.innerHTML = `
+                <h3>${resource.organization}</h3>
+                <p>${resource.summary || ""}</p>
+                <p><strong>Category:</strong> ${resource.category || ""}</p>
+            `;
+            essentialsResultsContainer.appendChild(card);
+        });
     });
 }
 
@@ -362,13 +394,13 @@ function showSeasonalResources() {
     detailScreen.style.display = "none";
 
     const flyers = [
-        { src: "images/seasonal/1985.jpg", caption: "Community Event" },
-        { src: "images/seasonal/1987.jpg", caption: "Volunteer Opportunity" },
-        { src: "images/seasonal/1989.jpg", caption: "Health Care Event" },
+        { src: "images/seasonal/1985.jpg", caption: "Community Opportunity" },
+        { src: "images/seasonal/1987.jpg", caption: "Community Opportunity" },
+        { src: "images/seasonal/1989.jpg", caption: "Volunteer Opportunity" },
         { src: "images/seasonal/1991.jpg", caption: "Fundraiser" },
-        { src: "images/seasonal/1993.jpg", caption: "Community Event" },
-        { src: "images/seasonal/1995.jpg", caption: "Volunteer Opportunity" },
-        { src: "images/seasonal/1997.jpg", caption: "Health Care Event" },
+        { src: "images/seasonal/1993.jpg", caption: "Community Opportunity" },
+        { src: "images/seasonal/1995.jpg", caption: "Community Event" },
+        { src: "images/seasonal/1997.jpg", caption: "Public Notice" },
     ];
 
     const carousel = document.getElementById("seasonal-carousel");

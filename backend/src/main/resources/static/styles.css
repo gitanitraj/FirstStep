@@ -262,3 +262,27 @@ body.high-contrast a {
     display: block;
     margin-bottom: 4px;
 }
+.page-header {
+    margin-bottom: 20px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #d0d0d0;
+}
+
+.page-header h2 {
+    margin: 0 0 8px 0;
+}
+
+.page-description {
+    color: #555;
+    font-size: 0.95rem;
+    line-height: 1.5;
+    margin: 0;
+}
+
+.category-group-header {
+    margin: 24px 0 10px;
+    font-size: 1rem;
+    color: #17375e;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 6px;
+}
