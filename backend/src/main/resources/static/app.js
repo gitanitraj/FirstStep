@@ -15,9 +15,6 @@ let urgentFilterSelected = false;
 const continueButton =
     document.getElementById("continue-button");
 
-const detailView =
-    document.getElementById("detail-view");
-
 const weeklyUpdatesButton =
     document.getElementById("weekly-updates-button");
 
@@ -38,6 +35,15 @@ const essentialsResultsContainer =
 
 const homeScreen =
     document.getElementById("home-screen");
+
+const detailScreen =
+    document.getElementById("detail-screen");
+
+const detailView =
+    document.getElementById("detail-view");
+
+const backResultsButton =
+    document.getElementById("back-results-button");
 
 const resultsScreen =
     document.getElementById("results-screen");
@@ -90,12 +96,22 @@ backHomeButton.addEventListener(
     showHomeScreen
 );
 
-async function loadHousingResources() {
+backResultsButton.addEventListener(
+    "click",
+    hideDetailScreen
+);
 
+async function loadHousingResources() {
+    // hide other result panes
+    newsResultsContainer.style.display = "none";
+    essentialsResultsContainer.style.display = "none";
+    seasonalResultsContainer.style.display = "none";
+    detailScreen.style.display = "none";
+
+    resultsContainer.style.display = "block";
     resultsContainer.innerHTML = "<p>Loading...</p>";
 
     try {
-
         const response = await fetch("/api/resources");
         const resources = await response.json();
 
@@ -105,82 +121,71 @@ async function loadHousingResources() {
         );
 
         if (urgentFilterSelected) {
-
-            housingResources =
-                housingResources.filter(resource =>
-                    resource.urgency &&
-                    (
-                        resource.urgency.toLowerCase() === "emergency" ||
-                        resource.urgency.toLowerCase() === "time-limited"
-                    )
-                );
+            housingResources = housingResources.filter(resource =>
+                resource.urgency &&
+                (
+                    resource.urgency.toLowerCase() === "emergency" ||
+                    resource.urgency.toLowerCase() === "time-limited"
+                )
+            );
         }
 
         displayResources(housingResources);
         showResultsScreen();
 
     } catch (error) {
-
         console.error(error);
-
-        resultsContainer.innerHTML =
-            "<p>Unable to load resources.</p>";
+        resultsContainer.innerHTML = "<p>Unable to load resources.</p>";
     }
 }
 
 async function loadEssentialsResources() {
+    // hide other panes and show essentials
+    resultsContainer.style.display = "none";
+    newsResultsContainer.style.display = "none";
+    seasonalResultsContainer.style.display = "none";
+    detailScreen.style.display = "none";
 
-    essentialsResultsContainer.innerHTML =
-        "<p>Loading...</p>";
+    essentialsResultsContainer.style.display = "block";
+    essentialsResultsContainer.innerHTML = "<p>Loading...</p>";
 
     try {
+        const response = await fetch("/api/resources");
+        const resources = await response.json();
 
-        const response =
-            await fetch("/api/resources");
-
-        const resources =
-            await response.json();
-
-        const essentialsResources =
-            resources.filter(resource =>
-                resource.cost &&
-                resource.cost.toLowerCase() === "free"
-            );
+        const essentialsResources = resources.filter(resource =>
+            resource.cost && resource.cost.toLowerCase() === "free"
+        );
 
         displayEssentials(essentialsResources);
         showResultsScreen();
 
     } catch (error) {
-
         console.error(error);
-
-        essentialsResultsContainer.innerHTML =
-            "<p>Unable to load resources.</p>";
+        essentialsResultsContainer.innerHTML = "<p>Unable to load resources.</p>";
     }
 }
 
 async function loadNewsUpdates() {
+    // hide other panes and show news
+    resultsContainer.style.display = "none";
+    essentialsResultsContainer.style.display = "none";
+    seasonalResultsContainer.style.display = "none";
+    detailScreen.style.display = "none";
 
-    newsResultsContainer.innerHTML =
-        "<p>Loading updates...</p>";
+    newsResultsContainer.style.display = "block";
+    newsResultsContainer.innerHTML = "<p>Loading updates...</p>";
 
     try {
-
-        const response =
-            await fetch("/api/news");
-
-        const newsItems =
-            await response.json();
+        const response = await fetch("/api/news");
+        const newsItems = await response.json();
 
         displayNews(newsItems);
         showResultsScreen();
 
     } catch (error) {
-
         console.error(error);
-
-        newsResultsContainer.innerHTML =
-            "<p>Unable to load updates.</p>";
+        newsResultsContainer.innerHTML = "<p>Unable to load updates.</p>";
     }
 }
 
@@ -191,6 +196,8 @@ function showHomeScreen() {
     filterScreen.style.display = "none";
 
     resultsScreen.style.display = "none";
+
+    detailScreen.style.display = "none";
 }
 
 function showResultsScreen() {
@@ -199,7 +206,23 @@ function showResultsScreen() {
 
     filterScreen.style.display = "none";
 
+    detailScreen.style.display = "none";
+    
     resultsScreen.style.display = "block";
+}
+
+function showDetailScreen() {
+
+    resultsContainer.style.display = "none";
+
+    detailScreen.style.display = "block";
+}
+
+function hideDetailScreen() {
+
+    detailScreen.style.display = "none";
+
+    resultsContainer.style.display = "block";
 }
 
 function displayResources(resources) {
@@ -305,12 +328,79 @@ function showSeasonalResources() {
 
 function showResourceDetails(resource) {
 
-    console.log("DETAIL CLICKED");
-    console.log(resource);
+    const phone =
+        resource.phones?.[0]?.number || "Not listed";
+
+    const website =
+        resource.websites?.[0]?.url || "";
+
+    const location =
+        resource.locations?.[0];
 
     detailView.innerHTML = `
+
         <div class="resource-card">
+
             <h2>${resource.organization}</h2>
+
+            <p>
+                <strong>Summary:</strong>
+                ${resource.summary || ""}
+            </p>
+
+            <p>
+                <strong>Description:</strong>
+                ${resource.description || ""}
+            </p>
+
+            <p>
+                <strong>Eligibility:</strong>
+                ${resource.eligibility || "Not listed"}
+            </p>
+
+            <p>
+                <strong>Category:</strong>
+                ${resource.category || ""}
+            </p>
+
+            <p>
+                <strong>Urgency:</strong>
+                ${resource.urgency || "Standard"}
+            </p>
+
+            <p>
+                <strong>Phone:</strong>
+                ${phone}
+            </p>
+
+            ${
+                location
+                    ? `
+                    <p>
+                        <strong>Address:</strong>
+                        ${location.address},
+                        ${location.city},
+                        ${location.state}
+                    </p>
+                    `
+                    : ""
+            }
+
+            ${
+                website
+                    ? `
+                    <p>
+                        <strong>Website:</strong>
+                        <a href="${website}" target="_blank">
+                            Visit Website
+                        </a>
+                    </p>
+                    `
+                    : ""
+            }
+
         </div>
     `;
+
+    showDetailScreen();
 }
