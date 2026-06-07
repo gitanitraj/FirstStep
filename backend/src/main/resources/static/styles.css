@@ -110,6 +110,7 @@ body {
     background: #17375e;
     color: white;
     cursor: pointer;
+}
 
 .category-icon {
     font-size: 2rem;
@@ -209,5 +210,4 @@ body {
 .ai-banner strong {
     display: block;
     margin-bottom: 4px;
-}
 }
