@@ -61,6 +61,21 @@ const decreaseTextButton =
         "decrease-text-button"
     );
 
+const contrastButton =
+    document.getElementById(
+        "contrast-button"
+    );
+
+contrastButton.addEventListener(
+    "click",
+    () => {
+
+        document.body.classList.toggle(
+            "high-contrast"
+        );
+    }
+);
+
 increaseTextButton.addEventListener(
     "click",
     () => {
