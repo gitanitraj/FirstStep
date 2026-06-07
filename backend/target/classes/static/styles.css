@@ -124,14 +124,18 @@ body {
 
 /* Back buttons */
 .back-button {
-    display: inline-block;
-    margin-bottom: 16px;
+    display: block;
+    margin-bottom: 12px;
     padding: 8px 14px;
     border: 1px solid #d0d0d0;
     border-radius: 8px;
     background: white;
     cursor: pointer;
     font-size: 0.9rem;
+}
+
+#detail-screen {
+    padding-top: 8px;
 }
 
 /* Seasonal carousel */
