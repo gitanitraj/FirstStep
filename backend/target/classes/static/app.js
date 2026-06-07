@@ -51,6 +51,45 @@ const resultsScreen =
 const backHomeButton =
     document.getElementById("back-home-button");
 
+const increaseTextButton =
+    document.getElementById(
+        "increase-text-button"
+    );
+
+const decreaseTextButton =
+    document.getElementById(
+        "decrease-text-button"
+    );
+
+increaseTextButton.addEventListener(
+    "click",
+    () => {
+
+        const current =
+            parseFloat(
+                getComputedStyle(document.body)
+                    .fontSize
+            );
+
+        document.body.style.fontSize =
+            (current + 2) + "px";
+    }
+);
+
+decreaseTextButton.addEventListener(
+    "click",
+    () => {
+
+        const current =
+            parseFloat(
+                getComputedStyle(document.body)
+                    .fontSize
+            );
+
+        document.body.style.fontSize =
+            Math.max(current - 2, 12) + "px";
+    }
+);
 
 housingButton.addEventListener("click", () => {
     homeScreen.style.display = "none";
