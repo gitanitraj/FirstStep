@@ -53,16 +53,13 @@ const backHomeButton =
 
 
 housingButton.addEventListener("click", () => {
-
+    homeScreen.style.display = "none";
     filterScreen.style.display = "block";
-
     resultsContainer.innerHTML = "";
 });
 
     continueButton.addEventListener("click", () => {
-
     filterScreen.style.display = "none";
-
     loadHousingResources();
 });
 

@@ -105,4 +105,106 @@ body {
     background: #17375e;
     color: white;
     cursor: pointer;
+
+/* Category card icon layout */
+.category-card {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.category-icon {
+    font-size: 2rem;
+    flex-shrink: 0;
+    width: 40px;
+    text-align: center;
+}
+
+.category-text {
+    flex: 1;
+}
+
+/* Back buttons */
+.back-button {
+    display: inline-block;
+    margin-bottom: 16px;
+    padding: 8px 14px;
+    border: 1px solid #d0d0d0;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    font-size: 0.9rem;
+}
+
+/* Seasonal carousel */
+.carousel {
+    display: flex;
+    overflow-x: auto;
+    gap: 16px;
+    padding: 12px 0;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.carousel::-webkit-scrollbar {
+    height: 6px;
+}
+
+.carousel::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 4px;
+}
+
+.carousel-card {
+    flex-shrink: 0;
+    width: 260px;
+    scroll-snap-align: start;
+    border-radius: 12px;
+    overflow: hidden;
+    border: 1px solid #d0d0d0;
+    background: white;
+}
+
+.carousel-card img {
+    width: 100%;
+    height: 320px;
+    object-fit: cover;
+    display: block;
+}
+
+.carousel-card .carousel-caption {
+    padding: 10px 12px;
+    font-size: 0.85rem;
+    color: #444;
+}
+
+/* News card urgency tag */
+.urgency-tag {
+    display: inline-block;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    margin-bottom: 8px;
+}
+
+.urgency-emergency { background: #fce8e8; color: #8b2020; }
+.urgency-time-limited { background: #fef3cd; color: #7c5e0a; }
+.urgency-standard { background: #e4f3e4; color: #1e5e1e; }
+
+/* AI prompt banner */
+.ai-banner {
+    background: #f0f4ff;
+    border: 1px solid #c0cff0;
+    border-radius: 10px;
+    padding: 14px 16px;
+    margin-bottom: 20px;
+    font-size: 0.875rem;
+    color: #1a3a5c;
+}
+
+.ai-banner strong {
+    display: block;
+    margin-bottom: 4px;
+}
 }
