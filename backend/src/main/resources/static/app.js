@@ -152,6 +152,9 @@ backResultsButton.addEventListener(
     hideDetailScreen
 );
 
+document.getElementById("back-from-filter-button")
+    .addEventListener("click", showHomeScreen);
+
 async function loadHousingResources() {
     // hide other result panes
     newsResultsContainer.style.display = "none";
