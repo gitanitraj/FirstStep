@@ -106,13 +106,6 @@ body {
     color: white;
     cursor: pointer;
 
-/* Category card icon layout */
-.category-card {
-    display: flex;
-    align-items: center;
-    gap: 16px;
-}
-
 .category-icon {
     font-size: 2rem;
     flex-shrink: 0;
