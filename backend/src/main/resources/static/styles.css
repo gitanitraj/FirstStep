@@ -46,6 +46,18 @@ body {
     cursor: pointer;
 }
 
+.high-contrast {
+
+    background-color: black;
+    color: white;
+}
+
+.high-contrast .category-card {
+
+    background-color: #222;
+    color: white;
+}
+
 .welcome {
     margin: 30px 0 20px;
 }
