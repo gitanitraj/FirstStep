@@ -256,11 +256,11 @@ function displayNews(newsItems) {
     `;
 
     newsItems.forEach(item => {
-        const tag = item.urgency || "standard";
+        const cats = (item.category_tags || []).join(" · ");
         const card = document.createElement("div");
         card.className = "resource-card";
         card.innerHTML = `
-            <span class="urgency-tag urgency-${tag}">${tag}</span>
+            <span class="urgency-tag urgency-standard">${cats || "General"}</span>
             <h3>${item.headline}</h3>
             <p>${item.summary}</p>
             <p><strong>Why this matters:</strong> ${item.why_it_matters}</p>
