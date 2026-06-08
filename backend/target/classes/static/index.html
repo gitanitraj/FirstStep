@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>First Step</title>
+
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <main class="container">
+    
+        <div class="accessibility-toolbar"
+            aria-label="Accessibility controls">
+            <button id="increase-text-button"
+                    aria-label="Increase text size">A+</button>
+            <button id="decrease-text-button"
+                    aria-label="Decrease text size">A-</button>
+            <button id="contrast-button"
+                    aria-label="Toggle high contrast mode">Contrast</button>
+        </div>
+        <section id="home-screen"> 
+            <header class="hero">
+                <h1>First Step</h1>
+                <p class="tagline">
+                Your trusted local guidance for Wilmington, Delaware
+                </p>
+            </header>
+
+        <section class="welcome">
+        <h2>What do you need help with today?</h2>
+        </section>
+
+        <section class="category-list">
+            <button 
+            id="housing-help-button"
+            class="category-card"
+            aria-label="Housing Help. Home and rental assistance, shelters and home repairs">
+
+            <span class="category-icon" aria-hidden="true">🏠</span>
+
+            <div class="category-text">
+                <h3>Housing Help</h3>
+                <p>Home and Rental Assistance, Shelters, Home Repairs</p>
+            </div>
+            </button>
+
+            <button
+                id="essentials-button"
+                class="category-card"
+                aria-label="Free and low cost essentials including food, furniture and clothing">
+
+            <span class="category-icon" aria-hidden="true">🛒</span>
+
+            <div class="category-text">
+                <h3>Free / Low-Cost Essentials</h3>
+                <p>Food, Furniture, Clothing</p>
+            </div>
+            </button>
+
+            <button
+                id="seasonal-resources-button"
+                class="category-card"
+                aria-label="Seasonal resources including programs, events, and community opportunities">
+
+            <span class="category-icon" aria-hidden="true">🍂</span>
+
+            <div class="category-text">
+                <h3>Seasonal Resources</h3>
+                <p>Programs, Events and Community Opportunities</p>
+            </div>
+            </button>
+
+            <button
+                id="weekly-updates-button"
+                class="category-card"
+                aria-label="Weekly updates including news and changes impacting you">
+
+            <span class="category-icon" aria-hidden="true">📰</span>
+
+            <div class="category-text">
+                <h3>Weekly Updates</h3>
+                <p>News and Changes Impacting You</p>
+            </div>
+            </button>
+        </section>
+
+        </section>
+
+    <section id="filter-screen" style="display:none;">
+    <button id="back-from-filter-button" class="back-button">
+        ← Back to Home
+    </button>
+
+        <h2>Housing Help</h2>
+
+        <p>What matters most right now?</p>
+
+        <div class="filter-options">
+
+            <button id="urgent-filter" class="filter-chip">Urgent</button>
+
+            <button class="filter-chip">Easy to Access</button>
+
+            <button class="filter-chip">Free / Low-Cost</button>
+
+        </div>
+
+        <button id="continue-button">
+            Continue
+        </button>
+
+    </section>
+
+    <section id="results-screen" style="display:none;">
+
+    <button id="back-home-button" class="back-button">
+        ← Back to Home
+    </button>
+
+    <section id="results"></section>
+    
+    <section id="detail-screen" style="display:none;">
+    
+    <button id="back-results-button" class="back-button">
+        ← Back to Results
+    </button>
+    
+    <section id="detail-view"></section>
+    </section>
+
+    <section id="news-results"></section>
+    <section id="essentials-results"></section>
+    <section id="seasonal-results">
+        <div class="page-header">
+            <h2>Seasonal Resources</h2>
+            <p class="page-description">Learn what's happening in your community. From legal clinics and job fairs to free family activities, you'll find event flyers and notices from local organizations offering support or seeking volunteers. Community events run year-round, so check back often for dates, locations and contact details to help you get involved or get help.</p>
+        </div>
+        <div class="carousel" id="seasonal-carousel"></div>
+    </section>
+
+    </section>
+
+</main>
+
+    <script src="app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,3107 @@
+{
+  "meta": {
+    "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+    "retrieved": "2026-06-01",
+    "coverage": "Wilmington, DE (New Castle County)",
+    "version": "2.0",
+    "total_records": 58
+  },
+  "records": [
+    {
+      "id": "CI-001",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Beautiful Gate Outreach Center",
+      "parent_organization": null,
+      "summary": "Clothing closet for those affected by HIV/AIDS.",
+      "description": "Clothing closet for those affected by HIV/AIDS.",
+      "population": "All",
+      "eligibility": "Individuals affected by HIV/AIDS",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "604 N Walnut Street",
+          "city": "Bear",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-472-3002",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.bgate.org/hiv-support",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "HIV",
+        "AIDS"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-002",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Belvedere State Service Center",
+      "parent_organization": null,
+      "summary": "Free clothing closet open every 1st and 3rd Thursday. No appointment necessary.",
+      "description": "A clothing closet is open every 1st and 3rd Thursday. No appointment is necessary.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "310 Kiamensi Road",
+          "city": "Newport",
+          "state": "DE",
+          "zip": "19804",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-892-5972",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/belveder.htm",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "state-service-center",
+        "no-appointment"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Open 1st and 3rd Thursday only."
+    },
+    {
+      "id": "CI-003",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Brandywine Counseling & Community Services, Inc. (BCCS)",
+      "parent_organization": null,
+      "summary": "Drop-in center with a clothing closet for adults and children. No appointment needed.",
+      "description": "Drop-in center available for those in need that includes a clothing closet for adults and children.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "2713 Lancaster Ave",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-656-2348",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.brandywinecounseling.com/wilmington-drop-in-center/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "drop-in",
+        "children",
+        "adults"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-004",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Vouchers",
+      "organization": "Catholic Charities - Diocese of Wilmington - Thrift Services Vouchers",
+      "parent_organization": "Catholic Charities - Diocese of Wilmington",
+      "summary": "Payment credits for clothing, household goods, and furniture available through Thrift Services.",
+      "description": "Payment credits for clothing, household goods, and furniture are available through Thrift Services.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "2601 W 4th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-9624",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ccwilm.org/basic-needs/food-assistance/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "vouchers",
+        "household-goods",
+        "furniture",
+        "catholic-charities"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-005",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Central YMCA - Y Mission Market",
+      "parent_organization": "Central YMCA",
+      "summary": "Clothing closet available at the Central YMCA.",
+      "description": "Clothing closet.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "501 W 11th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-254-9622 ext. 0222",
+          "label": "Main"
+        },
+        {
+          "number": "302-778-9010",
+          "label": "Secondary"
+        },
+        {
+          "number": "302-778-9009",
+          "label": "Secondary"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ymcade.org/mission-market/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "YMCA"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-006",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Hanover Presbyterian Church",
+      "parent_organization": null,
+      "summary": "Free clothing closet with children's and adult clothing, shoes, and outerwear. Open Wednesdays 10am\u201312:30pm. Closed in July.",
+      "description": "Free clothing closet with a variety of children and adult clothing, shoes and outerwear. Open Wednesdays from 10am\u201312:30pm. Closed during month of July.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1801 N Jefferson Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-658-5114",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.hanoverchurch.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "children",
+        "shoes",
+        "outerwear",
+        "church"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Closed during July. Wednesdays only 10am\u201312:30pm."
+    },
+    {
+      "id": "CI-007",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Kingswood Community Center",
+      "parent_organization": null,
+      "summary": "Assistance with clothing, financial aid, and household needs for Riverside area residents affected by disasters.",
+      "description": "Offers assistance with clothing, financial assistance and household needs following disasters that impact the area of Riverside.",
+      "population": "All",
+      "eligibility": "Riverside area residents affected by disasters",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "2300 Bowers Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-764-9022",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://kgwcc.org/community-services/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "disaster-relief",
+        "financial-assistance",
+        "household-goods",
+        "Riverside"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Serves Riverside neighborhood specifically."
+    },
+    {
+      "id": "CI-008",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Latin American Community Center (LACC)",
+      "parent_organization": null,
+      "summary": "Clothing closet with clothes and shoes for the Latino community. Requests can be made every three months with an intake form from a program coordinator.",
+      "description": "Clothing closet provides clothes and shoes. A request can be made every three months if needed, but requires intake form from program coordinator. Serves the Latino community.",
+      "population": "All",
+      "eligibility": "Latino community; intake form required from program coordinator",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "403 N Van Buren Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-7338 ext. 7707",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.thelatincenter.org/family-support-services",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "shoes",
+        "Latino",
+        "Spanish-speaking",
+        "intake-required"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Intake form required. Requests limited to once every three months."
+    },
+    {
+      "id": "CI-009",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Network Connect - RACE (Reverse the ACES)",
+      "parent_organization": null,
+      "summary": "Monthly wellness kits and RACE distribution days providing clothing, food, and resources to teens, children, and teenage girls.",
+      "description": "Network Connect delivers RACE kits and monthly wellness packages (one for teens, one for children and one for teenage girls). Kits include items such as stress balls, journals, pens, and toiletries. There are also RACE days to distribute kits and other resources, such as clothing or food.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1211 N King Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-513-9428",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.networkconnect.org/race",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "wellness-kits",
+        "youth",
+        "teens",
+        "food",
+        "toiletries"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-010",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "Rosehill Community Center",
+      "parent_organization": null,
+      "summary": "Free clothing closet (Bacon's Boutique) by appointment only. Items updated weekly. Gently used clothing donations welcomed.",
+      "description": "Bacon's Boutique \u2014 Due to COVID-19, the closet is by appointment only. FREE clothes are provided for anyone in need. The items are updated weekly. Donations are always welcomed, but we ask that contributions are gently used and clean.",
+      "population": "All",
+      "eligibility": "Open to all; appointment required",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "19 Lambson Lane",
+          "city": "New Castle",
+          "state": "DE",
+          "zip": "19720",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-656-8513",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.rosehillcommunitycenter.org/programs",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "appointment-required",
+        "Bacons-Boutique"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Appointment required. Call ahead."
+    },
+    {
+      "id": "CI-011",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Thrift Store",
+      "organization": "Salvation Army",
+      "parent_organization": null,
+      "summary": "Thrift store offering clothes and furniture at low cost.",
+      "description": "Thrift store that includes clothes and furniture.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "610 S. Walnut Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-472-0700",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "http://pa.salvationarmy.org/delaware-command",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "furniture",
+        "thrift-store"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-012",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "St. Patricks Center",
+      "parent_organization": null,
+      "summary": "Weekday clothing bank for east Wilmington families. Also helps with medication co-pays for those who cannot afford them.",
+      "description": "Clothing bank available during weekdays (Monday\u2013Friday). The Center also assists people with co-pays for medication if they are unable to afford it. Serves families residing on the east side of Wilmington.",
+      "population": "Families",
+      "eligibility": "Families on the east side of Wilmington",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "107 E 14th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-6219",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.stpatrickscenter.org/services",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "families",
+        "medication",
+        "east-Wilmington",
+        "weekdays"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Monday\u2013Friday only. East Wilmington families prioritized."
+    },
+    {
+      "id": "CI-013",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Thrift Store",
+      "organization": "Sunday Breakfast Mission - Urban Vintage",
+      "parent_organization": "Sunday Breakfast Mission",
+      "summary": "Thrift shop with clothing, household items, and furniture. Open Tuesday\u2013Saturday 12\u20136pm. Delaware residents only.",
+      "description": "Urban Vintage thrift shop includes items like clothing, household items and furniture. Store operates Tuesday\u2013Saturday 12\u20136pm. Must be Delaware resident.",
+      "population": "All",
+      "eligibility": "Delaware residents only",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "500 W 2nd Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-477-7495",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://sundaybreakfastmission.org/urban-vintage",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "furniture",
+        "household-goods",
+        "thrift-store",
+        "Delaware-residents"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Tuesday\u2013Saturday 12\u20136pm. Delaware resident ID required."
+    },
+    {
+      "id": "CI-014",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "The Friendship House Clothing Bank",
+      "parent_organization": "Friendship House",
+      "summary": "Free clothing available to the Wilmington community.",
+      "description": "Provides free clothing to the community.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1603 Jessup Street Suite 3",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-654-1390",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.friendshiphousede.org/delaware-homeless/our-programs/clothing",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "community"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "CI-015",
+      "category": "Clothing & Incidentals",
+      "subcategory": "Clothing Closet",
+      "organization": "William Hicks Anderson Community Center",
+      "parent_organization": null,
+      "summary": "Community center offering a clothes closet to residents.",
+      "description": "The Center provides a clothes closet.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "501 N Madison Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-571-4266",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.wilmingtonde.gov/government/city-departments/department-of-parks-and-recreation/william-hicks-anderson-community-center",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "community-center"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "FH-001",
+      "category": "Furniture & Household Items",
+      "subcategory": "Thrift Store",
+      "organization": "Barlow's Upholstery Inc.",
+      "parent_organization": null,
+      "summary": "Furniture repair shop that also sells upholstered furniture at low cost.",
+      "description": "Furniture repair shop that also sells upholstered furniture.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1002 W 28th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-3955",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "http://www.barlowupholstery.com",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "furniture",
+        "upholstery",
+        "repair"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "FH-002",
+      "category": "Furniture & Household Items",
+      "subcategory": "Vouchers",
+      "organization": "Catholic Charities - Diocese of Wilmington - Thrift Services Vouchers",
+      "parent_organization": "Catholic Charities - Diocese of Wilmington",
+      "summary": "Payment credits for clothing, household goods, and furniture through Thrift Services.",
+      "description": "Payment credits for clothing, household goods, and furniture are available through Thrift Services.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "2601 W 4th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-9624",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ccwilm.org/basic-needs/food-assistance/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "furniture",
+        "household-goods",
+        "vouchers",
+        "clothing",
+        "catholic-charities"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "FH-003",
+      "category": "Furniture & Household Items",
+      "subcategory": "Appliances",
+      "organization": "H and N Appliances",
+      "parent_organization": null,
+      "summary": "Appliance repair and resale of used appliances at low cost.",
+      "description": "Appliance repair and resale of used appliances.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1919 W 4th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-658-2529",
+          "label": "Main"
+        }
+      ],
+      "websites": [],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "appliances",
+        "repair",
+        "resale"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "No website listed in source directory."
+    },
+    {
+      "id": "FH-004",
+      "category": "Furniture & Household Items",
+      "subcategory": "Thrift Store",
+      "organization": "Habitat for Humanity - Restore",
+      "parent_organization": "Habitat for Humanity",
+      "summary": "Thrift store selling new and gently used furniture, appliances, and building supplies. Refrigerator replacement program available for qualifying families.",
+      "description": "A thrift store that sells new and gently used furniture, appliances, home d\u00e9cor and building supplies. Also offered is a refrigerator replacement program for qualifying families. All items are donated by businesses, building contractors, suppliers, and individuals, and are available for sale to the public.",
+      "population": "All",
+      "eligibility": "Open to all; refrigerator replacement program has qualifying criteria",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Wilmington",
+          "address": "3312 Seminole Avenue",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19808",
+          "confidential": false
+        },
+        {
+          "label": "Middletown",
+          "address": "600 North Broad Street",
+          "city": "Middletown",
+          "state": "DE",
+          "zip": "19709",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-5181",
+          "label": "Wilmington"
+        },
+        {
+          "number": "302-449-1414",
+          "label": "Middletown"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.habitatncc.org/restore/",
+          "label": "ReStore program"
+        },
+        {
+          "url": "https://www.habitatncc.org/restore/refrigerator-replacement-program/",
+          "label": "Refrigerator replacement program"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "furniture",
+        "appliances",
+        "building-supplies",
+        "thrift-store",
+        "refrigerator-replacement"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Two locations. Refrigerator replacement program for qualifying families."
+    },
+    {
+      "id": "FH-005",
+      "category": "Furniture & Household Items",
+      "subcategory": "Starter Kits",
+      "organization": "ServiceSource - Warrier Bridge",
+      "parent_organization": null,
+      "summary": "Home starter kits with cookware and kitchen appliances for veterans with intellectual or physical disabilities transitioning to permanent housing.",
+      "description": "Offers home starter kits for veterans with intellectual or physical disabilities and their families as they transition to permanent housing. Kits include items such as cookware and kitchen appliances.",
+      "population": "Age 18 and older",
+      "eligibility": "Veterans with intellectual or physical disabilities transitioning to permanent housing",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "13 Reads Way Suite 101",
+          "city": "New Castle",
+          "state": "DE",
+          "zip": "19720",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-762-0300",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.servicesource.org/warrior-bridge/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "veterans",
+        "starter-kit",
+        "cookware",
+        "appliances",
+        "disability",
+        "transitional-housing"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "FH-006",
+      "category": "Furniture & Household Items",
+      "subcategory": "Thrift Store",
+      "organization": "Sunday Breakfast Mission - Urban Vintage",
+      "parent_organization": "Sunday Breakfast Mission",
+      "summary": "Thrift shop with clothing, household items, and furniture. Open Tuesday\u2013Saturday 12\u20136pm. Delaware residents only.",
+      "description": "Urban Vintage thrift shop includes items like clothing, household items and furniture. Store operates Tuesday\u2013Saturday 12\u20136pm. Must be Delaware resident.",
+      "population": "All",
+      "eligibility": "Delaware residents only",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "500 W 2nd Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-477-7495",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://sundaybreakfastmission.org/urban-vintage",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "clothing",
+        "furniture",
+        "household-goods",
+        "thrift-store",
+        "Delaware-residents"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Tuesday\u2013Saturday 12\u20136pm. Delaware resident ID required."
+    },
+    {
+      "id": "HA-001",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "American Red Cross",
+      "parent_organization": null,
+      "summary": "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+      "description": "Within the shelter, multiple services are provided including food, emotional support/mental health services, health services related to disaster conditions, spiritual care and information about other disaster-related resources to individuals impacted by natural or man-made disasters.",
+      "population": "All",
+      "eligibility": "Individuals impacted by natural or man-made disasters",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "100 W 10th Street Suite 401",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-656-6620",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+          "label": "Find a shelter"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "shelter",
+        "disaster-relief",
+        "food",
+        "mental-health",
+        "health-services"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-002",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Be Ready CDC - Esther's Place",
+      "parent_organization": "Be Ready CDC (Community Development Center)",
+      "summary": "Long-term transitional housing for women and their children on Wilmington's west side to support recovery and stability.",
+      "description": "Long term transitional housing program for women and their children within the proximity of Wilmington's west side to assist in recovery.",
+      "population": "Women and children",
+      "eligibility": "Women and children; west side of Wilmington",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1411 West 4th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-2700",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.bereadycdc.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "women",
+        "children",
+        "west-Wilmington"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-003",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Be Ready CDC - Lazarus House",
+      "parent_organization": "Be Ready CDC (Community Development Center)",
+      "summary": "Long-term transitional housing for men recently released from prison on Wilmington's west side.",
+      "description": "Long term transitional housing program for men after release from prison living in the surrounding area of Wilmington's west side.",
+      "population": "Age 18 and older (male)",
+      "eligibility": "Men 18+ released from prison; west side of Wilmington",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "male",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1411 W 4th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-2700",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.bereadycdc.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "men",
+        "reentry",
+        "formerly-incarcerated",
+        "west-Wilmington"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-004",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "organization": "Belvedere State Service Center",
+      "parent_organization": null,
+      "summary": "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+      "description": "Emergency Assistance funds for rent, utilities and emergency shelter are provided for eligible low-income persons to maintain self-sufficiency and prevent homelessness. Emergency must result from an unforeseen circumstance. Applicant must receive or be eligible for TANF, GA, SSI, or certain Medicaid programs. For eligibility questions, email DHSS_DSSC@delaware.gov.",
+      "population": "Age 18 and older",
+      "eligibility": "Low-income; must receive or be eligible for TANF, GA, SSI, or certain Medicaid programs",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "310 Kiamensi Road",
+          "city": "Newport",
+          "state": "DE",
+          "zip": "19804",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-892-5972",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://dhss.delaware.gov/dhss/main/maps/dsscmap/belveder.htm",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "rental-assistance",
+        "utilities",
+        "emergency-shelter",
+        "low-income",
+        "TANF",
+        "SSI"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Email DHSS_DSSC@delaware.gov for eligibility questions."
+    },
+    {
+      "id": "HA-005",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Catholic Charities - Bayard House",
+      "parent_organization": "Catholic Charities - Diocese of Wilmington",
+      "summary": "Residential program with housing, case management, healthcare access, and life skills support for at-risk, homeless, or pregnant and parenting teens.",
+      "description": "Residential program that provides housing, case management services, access to healthcare, birthing classes, parenting and independent living workshops and information/referral services to individuals at risk, homeless, pregnant and/or newly parenting adolescents and their babies.",
+      "population": "Age 13 and older",
+      "eligibility": "At-risk, homeless, pregnant, or newly parenting adolescents",
+      "eligibility_age_min": 13,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "300 Bayard Ave",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-654-1184",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ccwilm.org/bayard-house/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "teens",
+        "adolescents",
+        "pregnancy",
+        "parenting",
+        "case-management"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-006",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "Child Inc - Domestic Violence Shelters",
+      "parent_organization": "Child Inc",
+      "summary": "Confidential emergency shelter for domestic violence survivors. Includes safety planning, advocacy, and case management. Emergency hotel placement may be available.",
+      "description": "Shelters for women or men that are victims of domestic violence. Children are also allowed. Emergency hotel placements may be an option based on funding and safety needs. Locations are secure and confidential. Safety planning, advocacy, case management and supportive services are provided.",
+      "population": "All",
+      "eligibility": "Victims of domestic violence",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": true
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-762-6110",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.childinc.com/domestic-violence-services/shelters/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "domestic-violence",
+        "emergency-shelter",
+        "confidential",
+        "safety-planning",
+        "advocacy",
+        "children"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Location is confidential. Call for placement."
+    },
+    {
+      "id": "HA-007",
+      "category": "Housing Assistance",
+      "subcategory": "Youth Housing",
+      "organization": "Child Inc. - Runaway and Homeless Youth Program",
+      "parent_organization": "Child Inc",
+      "summary": "24-hour hotline plus free counseling, temporary emergency shelter, and support services for runaway and homeless youth and their families.",
+      "description": "24 hour hotline in addition to free individual and family counseling, temporary emergency home and related services for runaway/homeless youth and their families.",
+      "population": "All",
+      "eligibility": "Runaway and homeless youth and their families",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "507 Philadelphia Pike",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19809",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-762-6373",
+          "label": "24-hour hotline"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.childinc.com/services/services-for-children/#24",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "youth",
+        "runaway",
+        "homeless-youth",
+        "hotline",
+        "counseling",
+        "emergency-shelter"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "24-hour hotline available."
+    },
+    {
+      "id": "HA-008",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "organization": "Delaware State Housing Authority - SRAP",
+      "parent_organization": "Delaware State Housing Authority",
+      "summary": "State-funded rental voucher program covering a portion of rent for eligible Delaware residents. Applications must go through a partnering agency.",
+      "description": "State Rental Assistance Program (SRAP) is a state funded voucher-based rental assistance program that allows participants to rent a unit in the community with a voucher that pays a portion of the rent. Must meet income guidelines. Applications must be completed through a partnering agency including DHSS, DSCYF, and other select agencies. Eligibility varies by agency. Must be a Delaware resident.",
+      "population": "Age 18 and older",
+      "eligibility": "Delaware residents meeting income guidelines; must apply through a partnering agency",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "820 N French Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-577-5001",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "http://www.destatehousing.com",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person",
+        "online"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "rental-assistance",
+        "vouchers",
+        "low-income",
+        "state-program",
+        "Delaware-residents"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Must apply through a partnering agency. Eligibility varies."
+    },
+    {
+      "id": "HA-009",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "Family Promise of Northern New Castle County",
+      "parent_organization": null,
+      "summary": "Comprehensive homeless family support including temporary shelter, rapid rehousing, and intensive case management across multiple programs to help families achieve housing independence.",
+      "description": "Family Promise assists families dealing with homelessness through multiple programs: The Hospitality Center provides temporary shelter for up to six families (20 people). The Hospitality Network rotates congregations for lodging and case management. Pathway to Diversion houses families 7\u201314 days. Pathway to Housing provides rapid rehousing with case management and financial assistance. Pathway to Independence connects families with community supports. The Hope Center provides shelter and case management.",
+      "population": "Families",
+      "eligibility": "Families experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19808",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-998-2222",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.familypromisede.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "families",
+        "homelessness",
+        "emergency-shelter",
+        "rapid-rehousing",
+        "case-management"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Call for street address. Multiple program tracks available."
+    },
+    {
+      "id": "HA-010",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Friendship House",
+      "parent_organization": null,
+      "summary": "Transitional housing combining subsidized housing with holistic programming for adults recovering from substance abuse, domestic violence, or incarceration. Multiple houses across Wilmington for men and women.",
+      "description": "A Transitional Housing Program for people recovering from substance abuse, domestic violence, or incarceration who need additional time to achieve self-sufficient housing. Combines subsidized housing with holistic programming. Women's houses: Epiphany, Jane Ashford, Patterson, Palmer I & II, and Elizabeth House. Men's houses: Clark, Criswell, Corner, Daughtry, and Burton House. Residents move to a new house as they progress through stages.",
+      "population": "Age 18 and older",
+      "eligibility": "Adults recovering from substance abuse, domestic violence, or incarceration",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Administrative",
+          "address": "722 N Union Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-428-0151",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.friendshiphousede.org/delaware-homeless/our-programs/transitional-housing/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "substance-abuse",
+        "domestic-violence",
+        "reentry",
+        "men",
+        "women"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Multiple house locations across Wilmington. Call for placement."
+    },
+    {
+      "id": "HA-011",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "organization": "Habitat for Humanity",
+      "parent_organization": null,
+      "summary": "Homeownership preparation and education program for income-eligible individuals, helping residents achieve homeownership through Habitat's program.",
+      "description": "Habitat for Humanity offers a homeownership program to prepare, educate and assist individuals in homeownership through Habitat. Must meet HUD household income guidelines.",
+      "population": "Age 18 and older",
+      "eligibility": "Must meet HUD household income guidelines",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1920 Hutton St",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-0365",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.habitatncc.org/our-programs/homeownership/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "homeownership",
+        "education",
+        "income-eligible",
+        "HUD"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-012",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Hilda Davis Residence",
+      "parent_organization": "YWCA Delaware",
+      "summary": "Permanent housing for low-income women experiencing homelessness who are employable. Operated by YWCA Delaware.",
+      "description": "Recovery House run by YWCA provides permanent housing for low-income women who are experiencing homelessness and are employable.",
+      "population": "Age 18 and older (female)",
+      "eligibility": "Low-income women experiencing homelessness who are employable",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "225 King Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-658-7161",
+          "label": "Main"
+        }
+      ],
+      "websites": [],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "women",
+        "permanent-housing",
+        "low-income",
+        "homelessness",
+        "YWCA"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "No website listed in source directory."
+    },
+    {
+      "id": "HA-013",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "organization": "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+      "parent_organization": null,
+      "summary": "Fair housing advocacy, credit counseling, homebuyer education, and foreclosure prevention counseling for northern Delaware residents.",
+      "description": "HOND advocates for fair housing practices, offers credit counseling, homebuyer education courses and workshops as well as housing counseling. HOND offers counseling to help resolve mortgage delinquency and/or prevent foreclosure.",
+      "population": "Age 18 and older",
+      "eligibility": "Open to all",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "100 W. 10th Street Suite 1001",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-429-0794",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.hond.org/home/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "fair-housing",
+        "credit-counseling",
+        "homeownership",
+        "foreclosure-prevention",
+        "education"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-014",
+      "category": "Housing Assistance",
+      "subcategory": "Sober Living",
+      "organization": "Limen Recovery and Wellness",
+      "parent_organization": null,
+      "summary": "Sober living for adults recovering from drug or alcohol addiction using a 12-step recovery model.",
+      "description": "Provides sober living for adults who are addicted to drugs or alcohol. Includes a 12 step recovery model.",
+      "population": "Age 18 and older",
+      "eligibility": "Adults recovering from drug or alcohol addiction",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "600 W 10th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-1153",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.limende.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "sober-living",
+        "substance-abuse",
+        "recovery",
+        "12-step",
+        "alcohol",
+        "drugs"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-015",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Maria Lorenza Longo House",
+      "parent_organization": "Ministry of Caring Inc",
+      "summary": "Long-term housing for women who need ongoing support to avoid becoming homeless.",
+      "description": "Long term housing for women who need ongoing support to avoid becoming homeless.",
+      "population": "Age 18 and older (female)",
+      "eligibility": "Women 18+ at risk of homelessness",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "822 Jefferson Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-1758",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "women",
+        "long-term-housing",
+        "homelessness-prevention",
+        "ministry-of-caring"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-016",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "Ministry of Caring Inc",
+      "parent_organization": null,
+      "summary": "Comprehensive nonprofit serving Wilmington's most vulnerable through meals, shelter, transitional housing, job assistance, dental care, early childhood education, and senior housing.",
+      "description": "Ministry of Caring serves the poor and vulnerable in Wilmington through nutritious meals at Emmanuel Dining Room, dignified shelter and transitional residences, employment assistance, affordable dental care and mobile medical services, early education for children of the homeless and working poor, and affordable apartment villages for seniors at risk of homelessness.",
+      "population": "All",
+      "eligibility": "Open to all; individual programs may have specific eligibility requirements",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "115 East 14th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-5523",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "meals",
+        "shelter",
+        "transitional-housing",
+        "employment",
+        "dental",
+        "seniors",
+        "early-education"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Parent organization. See individual Ministry of Caring programs for specific services."
+    },
+    {
+      "id": "HA-017",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "Mother Mary of Hope House II",
+      "parent_organization": "Ministry of Caring Inc",
+      "summary": "Emergency shelter for homeless women with children. Stays of 30\u201345 days with case management included.",
+      "description": "Emergency housing for 30\u201345 days for homeless women with children. Case management included with stay.",
+      "population": "Women and children",
+      "eligibility": "Homeless women with children",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "121 N Jackson Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-1935",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org/services/emergency-shelters/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "emergency-shelter",
+        "women",
+        "children",
+        "case-management",
+        "ministry-of-caring"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "30\u201345 day stays. Case management included."
+    },
+    {
+      "id": "HA-018",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "Mother Mary of Hope House III",
+      "parent_organization": "Ministry of Caring Inc",
+      "summary": "Emergency shelter for homeless women with children. Stays of 30\u201345 days with case management included.",
+      "description": "Emergency housing for 30\u201345 days for homeless women with children. Case management included with stay.",
+      "population": "Women and children",
+      "eligibility": "Homeless women with children",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "515 North Broom Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-0970",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org/services/emergency-shelters/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "emergency-shelter",
+        "women",
+        "children",
+        "case-management",
+        "ministry-of-caring"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "30\u201345 day stays. Case management included."
+    },
+    {
+      "id": "HA-019",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Nazareth House Holistic Housing I",
+      "parent_organization": "Ministry of Caring Inc",
+      "summary": "Transitional family housing with case management to help families address challenges, build skills, and prepare for independent living.",
+      "description": "While in Nazareth House, families work with a case manager to gain support to address challenges, build skills and prepare for the future.",
+      "population": "Families",
+      "eligibility": "Families experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "106 North Broom Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-5523",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org/services/housing-options/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "families",
+        "case-management",
+        "ministry-of-caring"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-020",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "Nazareth House Holistic Housing II",
+      "parent_organization": "Ministry of Caring Inc",
+      "summary": "Transitional family housing with case management to help families address challenges, build skills, and prepare for independent living.",
+      "description": "While in Nazareth House, families work with a case manager to gain support to address challenges, build skills and prepare for the future.",
+      "population": "Families",
+      "eligibility": "Families experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "898 Linden Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-5523",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org/services/housing-options/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "families",
+        "case-management",
+        "ministry-of-caring"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-021",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "organization": "NeighborGood Partners: Wilmington",
+      "parent_organization": null,
+      "summary": "Homeownership education, foreclosure prevention, DEHAP rental assistance, and one-on-one financial coaching to strengthen housing stability.",
+      "description": "Offers homeownership education, foreclosure prevention, DEHAP Rental Application Assistance, and one-on-one financial coaching with $tand by ME to support the mission of strengthening communities through housing, lending, and education.",
+      "population": "Age 18 and older",
+      "eligibility": "Open to all",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-351-2575",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.neighborgoodpartners.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person",
+        "online"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "homeownership",
+        "foreclosure-prevention",
+        "rental-assistance",
+        "financial-coaching",
+        "DEHAP"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Call for office address."
+    },
+    {
+      "id": "HA-022",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "organization": "Neighborhood House",
+      "parent_organization": null,
+      "summary": "Housing advice, rental and homebuying assistance, and homebuyer education workshops in English and Spanish. Two locations serving Wilmington.",
+      "description": "Offers a range of services and advice by assisting individuals with renting, buying, or maintaining affordable housing. Also offered are homebuyer education workshops available in English and Spanish.",
+      "population": "All",
+      "eligibility": "Open to all",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Wilmington",
+          "address": "1218 B St",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        },
+        {
+          "label": "Middletown",
+          "address": "811 North Broad Street Suite 219",
+          "city": "Middletown",
+          "state": "DE",
+          "zip": "19709",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-658-5404",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.neighborhoodhse.org/post/what-we-do-housing-1",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "homeownership",
+        "rental-assistance",
+        "education",
+        "Spanish-speaking",
+        "bilingual"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Workshops available in English and Spanish."
+    },
+    {
+      "id": "HA-023",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "organization": "Northeast State Service Center",
+      "parent_organization": null,
+      "summary": "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+      "description": "Emergency Assistance funds for rent, utilities and emergency shelter are provided for eligible low-income persons to maintain self-sufficiency and prevent homelessness.",
+      "population": "Age 18 and older",
+      "eligibility": "Low-income individuals and families facing an unforeseen emergency",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1624 Jessup Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-552-3500",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "rental-assistance",
+        "utilities",
+        "emergency-shelter",
+        "low-income",
+        "state-service-center"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-024",
+      "category": "Housing Assistance",
+      "subcategory": "Sober Living",
+      "organization": "Oxford House - Browntown",
+      "parent_organization": "Oxford Houses of Delaware",
+      "summary": "Self-run recovery house for men recovering from alcoholism or drug addiction. Residents share rent and expenses. Multiple Oxford House locations exist in Wilmington.",
+      "description": "Self-run recovery house for men who are recovering alcoholics or drug addicts. Individuals pay rent and share expenses in group home setting. There are several Oxford House locations in Wilmington.",
+      "population": "Age 18 and older (male)",
+      "eligibility": "Men 18+ recovering from alcoholism or drug addiction",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "male",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "611 N Jackson Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-984-1191",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.oxfordvacancies.com/",
+          "label": "Check vacancies"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "sober-living",
+        "men",
+        "recovery",
+        "substance-abuse",
+        "group-home"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Residents pay rent. Check oxfordvacancies.com for current openings."
+    },
+    {
+      "id": "HA-025",
+      "category": "Housing Assistance",
+      "subcategory": "Sober Living",
+      "organization": "Oxford Houses of Delaware",
+      "parent_organization": null,
+      "summary": "Self-run sober living homes for individuals in recovery. Residents share rent and expenses. Women with children are eligible.",
+      "description": "Self-run sober living home for individuals in recovery. Individuals pay rent and share expenses. Women with children eligible.",
+      "population": "All",
+      "eligibility": "Individuals in recovery; women with children eligible",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "301-587-2916",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://oxfordhouse.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "sober-living",
+        "recovery",
+        "women",
+        "children",
+        "group-home"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Call for current locations and vacancies."
+    },
+    {
+      "id": "HA-026",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "organization": "Porter State Service Center",
+      "parent_organization": null,
+      "summary": "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+      "description": "Emergency Assistance funds for rent, utilities and emergency shelter are provided for eligible low-income persons to maintain self-sufficiency and prevent homelessness.",
+      "population": "Age 18 and older",
+      "eligibility": "Low-income individuals and families facing an unforeseen emergency",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "509 W. 8th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-777-2800",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "rental-assistance",
+        "utilities",
+        "emergency-shelter",
+        "low-income",
+        "state-service-center"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-027",
+      "category": "Housing Assistance",
+      "subcategory": "Senior Housing",
+      "organization": "Sacred Heart Village",
+      "parent_organization": null,
+      "summary": "77 affordable apartments for income-eligible seniors age 62 and older.",
+      "description": "Non-profit that provides 77 affordable apartments to seniors. Must meet income limit to be eligible.",
+      "population": "Age 62 and older",
+      "eligibility": "Seniors 62+ meeting income requirements",
+      "eligibility_age_min": 62,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "920 N Monroe Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-654-5407",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.sacredheartvillage.org",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "seniors",
+        "affordable-housing",
+        "apartments",
+        "income-eligible"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Income limits apply. Call for current availability."
+    },
+    {
+      "id": "HA-028",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "St. Francis Holistic Housing",
+      "parent_organization": "Ministry of Caring Inc",
+      "summary": "Up to two years of transitional family housing with a private unit and case management to address root causes of homelessness and build toward independent living.",
+      "description": "This program provides families with a private unit for up to two years while working with a case manager to address the causes of homelessness, learn life skills and find resources to obtain independent living.",
+      "population": "Families",
+      "eligibility": "Families experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Location I",
+          "address": "103-107 N Jackson Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        },
+        {
+          "label": "Location II",
+          "address": "830 Spruce Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-652-1935",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ministryofcaring.org/services/housing-options/#",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "families",
+        "case-management",
+        "life-skills",
+        "ministry-of-caring"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Up to two years. Two locations."
+    },
+    {
+      "id": "HA-029",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "Sunday Breakfast Mission",
+      "parent_organization": null,
+      "summary": "Shelter for men experiencing homelessness and substance abuse, plus women and women with children. Clothing vouchers provided for the Urban Vintage thrift store.",
+      "description": "Provides a shelter for men struggling with homelessness and substance abuse, as well as for women and women with children who are homeless. Individuals also receive a clothing voucher for their thrift store.",
+      "population": "All",
+      "eligibility": "Open to all experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "110 Poplar Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "877-306-4663",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://sundaybreakfastmission.org/programs-and-services",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "emergency-shelter",
+        "men",
+        "women",
+        "children",
+        "substance-abuse",
+        "homelessness",
+        "clothing-voucher"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Clothing voucher included for Urban Vintage thrift store."
+    },
+    {
+      "id": "HA-030",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "STEHM - Martha House I & II",
+      "parent_organization": "Supportive Transitional & Emergency Housing Ministry (STEHM)",
+      "summary": "Long-term transitional housing for women and their children with counseling and life skills training to prevent recurring homelessness.",
+      "description": "Provides long-term transitional housing for women and their children, fostering independent living through counseling and life skills training in a safe, supportive environment. Addresses root causes of homelessness, poverty, and joblessness.",
+      "population": "Women and children",
+      "eligibility": "Women and children experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-5568",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://stehm.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "transitional-housing",
+        "women",
+        "children",
+        "counseling",
+        "life-skills",
+        "STEHM"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "No fixed public address. Call for placement."
+    },
+    {
+      "id": "HA-031",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "STEHM - Motel Ministry",
+      "parent_organization": "Supportive Transitional & Emergency Housing Ministry (STEHM)",
+      "summary": "Short-term emergency motel placement for displaced individuals. Referrals accepted from social service agencies, schools, and hospitals. One-week stay, once per calendar year.",
+      "description": "Provides short-term emergency housing for individuals in need or displaced persons. Referrals accepted from social service agencies, schools, hospitals, prison outreach, and churches for placement in approved motels. Duration is usually one week. Clients can qualify for a one-week stay only once per calendar year.",
+      "population": "All",
+      "eligibility": "Individuals in need or displaced; referral from agency required",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-655-5568",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://stehm.org/newsite/2021/motel-ministry/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "emergency-shelter",
+        "motel",
+        "displaced",
+        "referral-required",
+        "STEHM"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Referral from a social service agency required. One-week stay limit per calendar year."
+    },
+    {
+      "id": "HA-032",
+      "category": "Housing Assistance",
+      "subcategory": "Youth Housing",
+      "organization": "West End Neighborhood House - Life Lines Program",
+      "parent_organization": "West End Neighborhood House",
+      "summary": "Comprehensive support for foster care and unaccompanied youth ages 16\u201323, including LGBTQ+ youth, covering housing, education, employment, mental health, and life skills.",
+      "description": "Serves current and former foster care youth, unaccompanied youth, and those who identify as LGBTQ+. Youth benefit from intensive case management and assistance with educational programs, housing support, financial education, medication management, employment placement, mental health services, and life skills instruction.",
+      "population": "Ages 16\u201323",
+      "eligibility": "Foster care and unaccompanied youth ages 16\u201323, including LGBTQ+ youth",
+      "eligibility_age_min": 16,
+      "eligibility_age_max": 23,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "710 N Lincoln Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-658-4171",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://westendnh.org/programs/life-lines/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "youth",
+        "foster-care",
+        "LGBTQ",
+        "housing",
+        "case-management",
+        "employment",
+        "mental-health"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Ages 16\u201323 only."
+    },
+    {
+      "id": "HA-033",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "organization": "William Booth Emergency Housing Residence",
+      "parent_organization": null,
+      "summary": "90-day emergency shelter for women and children focused on preventing recurring homelessness through workshops and support groups.",
+      "description": "90 day emergency shelter for women and children aimed at preventing recurrence of homeless episodes through workshops and groups.",
+      "population": "Women and children",
+      "eligibility": "Women and children experiencing homelessness",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "104 W 5th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-472-0753",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.homelessshelterdirectory.org/cgi-bin/id/shelter.cgi?shelter=13820",
+          "label": "Shelter directory listing"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "emergency-shelter",
+        "women",
+        "children",
+        "90-days",
+        "workshops"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "90-day maximum stay."
+    },
+    {
+      "id": "HA-034",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "organization": "Wilmington Housing Authority - Housing Choice Vouchers",
+      "parent_organization": "Wilmington Housing Authority",
+      "summary": "Federal housing vouchers helping eligible low-income residents pay rent in the community. Waitlist opens periodically \u2014 keep contact information current. WHA manages 1,976 vouchers.",
+      "description": "Housing Choice Vouchers can be used in public housing units or toward rental assistance in the community. Eligible households include those with disabilities and elderly persons with income not exceeding 80% of local median income. The voucher pays a portion of rent; the resident pays the remainder. Vouchers are transferrable to other jurisdictions. Waitlists are only open during certain times of the year.",
+      "population": "Age 18 and older",
+      "eligibility": "Income at or below 80% of local median income; includes elderly and disabled persons",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "400 North Walnut Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-429-6701",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://whadelaware.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person",
+        "online"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "vouchers",
+        "rental-assistance",
+        "low-income",
+        "elderly",
+        "disability",
+        "waitlist"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Waitlist opens periodically. Keep contact information current. 1,976 total vouchers managed."
+    },
+    {
+      "id": "HA-035",
+      "category": "Housing Assistance",
+      "subcategory": "Public Housing",
+      "organization": "Wilmington Housing Authority - Public Housing Units",
+      "parent_organization": "Wilmington Housing Authority",
+      "summary": "Affordable public housing units for low-income residents including seniors and people with disabilities. Income must not exceed 80% of local median income. Apply directly through WHA.",
+      "description": "Public housing units operated and maintained by the Wilmington Housing Authority, available to low-income households including those with disabilities and elderly persons. Income must not exceed 80% of local median income. Waitlists are only open during certain times of the year.",
+      "population": "Age 18 and older",
+      "eligibility": "Income at or below 80% of local median income; includes elderly and disabled persons",
+      "eligibility_age_min": 18,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "400 North Walnut Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-429-6701",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://whadelaware.org/",
+          "label": "Organization website"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person",
+        "online"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "tags": [
+        "public-housing",
+        "low-income",
+        "elderly",
+        "disability",
+        "waitlist"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Waitlist opens periodically. Keep contact information current."
+    },
+    {
+      "id": "HA-036",
+      "category": "Housing Assistance",
+      "subcategory": "Senior Housing",
+      "organization": "Wilmington Senior Center - Lafayette Court Apartments",
+      "parent_organization": "Wilmington Senior Center",
+      "summary": "Affordable efficiency and one-bedroom apartments for residents age 55 and older, located next to the Wilmington Senior Center.",
+      "description": "Efficiency and one-bedroom apartments located next to the Senior Center.",
+      "population": "Age 55 and older",
+      "eligibility": "Residents age 55 and older",
+      "eligibility_age_min": 55,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "1803/1805 N Market Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-651-3400 option 1",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://wilmingtonseniorcenter.org/lafayette-court-apartments/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "tags": [
+        "seniors",
+        "apartments",
+        "affordable-housing",
+        "55-plus"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": ""
+    },
+    {
+      "id": "HA-037",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "organization": "YWCA Delaware - SCHE Joint Transitional Housing and Rapid Re-housing",
+      "parent_organization": "YWCA Delaware",
+      "summary": "Transitional and rapid re-housing for survivors of domestic violence, sexual assault, stalking, and dating violence, with wraparound case management and financial assistance toward stable permanent housing.",
+      "description": "YWCA Delaware's SCHE (Safe, Compassion, Heal, Empower) program offers survivors of domestic violence, sexual assault, stalking, and dating violence personalized service plans to achieve housing stability. Services include community housing, case management, food access, wellness workshops, clothing, workforce readiness, medical/legal accompaniment, financial assistance, financial coaching, therapeutic services, and transportation.",
+      "population": "Women",
+      "eligibility": "Survivors of domestic violence, sexual assault, stalking, or dating violence",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "female",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": null,
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-658-7110",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.ywcade.org/what-we-do/housing/",
+          "label": "Program page"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "tags": [
+        "domestic-violence",
+        "transitional-housing",
+        "rapid-rehousing",
+        "women",
+        "case-management",
+        "YWCA"
+      ],
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01",
+      "verified": false,
+      "notes": "Call for intake. No fixed public address."
+    }
+  ]
+}
