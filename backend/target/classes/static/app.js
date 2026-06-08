@@ -466,18 +466,20 @@ function showResourceDetails(resource) {
                 ${phone}
             </p>
 
-            ${
-                location
-                    ? `
-                    <p>
-                        <strong>Address:</strong>
-                        ${location.address},
-                        ${location.city},
-                        ${location.state}
-                    </p>
-                    `
-                    : ""
-            }
+                ${location && !location.confidential && location.address
+            ? `<p><strong>Address:</strong>
+                ${location.address},
+                ${location.city},
+                ${location.state}
+                ${location.zip || ""}
+            </p>`
+            : location && !location.confidential && location.city
+            ? `<p><strong>Location:</strong>
+                ${location.city},
+                ${location.state}
+            </p>`
+            : ""
+                }
 
             ${
                 website
