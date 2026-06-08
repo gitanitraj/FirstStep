@@ -1,6 +1,6 @@
 body {
     font-family: Arial, sans-serif;
-    background: #f4f4f4;
+    background: #A0C4E0;
     margin: 0;
     padding: 0;
 }
@@ -273,7 +273,7 @@ body.high-contrast a {
 }
 
 .page-description {
-    color: #555;
+    color: #1d1c1c;
     font-size: 0.95rem;
     line-height: 1.5;
     margin: 0;
