@@ -81,6 +81,13 @@ body.high-contrast a {
     margin: 30px 0 20px;
 }
 
+.welcome-message {
+    color: #b2c3f7;
+    font-size: 0.95rem;
+    margin-top: 10px;
+    line-height: 1.4;
+}
+
 .category-list {
     display: flex;
     flex-direction: column;
@@ -117,6 +124,7 @@ body.high-contrast a {
 .resource-card {
     background: white;
     border: 1px solid #d0d0d0;
+    border-left: 5px solid #3c5f8a;
     border-radius: 12px;
     padding: 16px;
     margin-bottom: 12px;
@@ -124,6 +132,20 @@ body.high-contrast a {
 
 .resource-card h3 {
     margin-top: 0;
+}
+
+.resource-card {
+    cursor: pointer;
+    transition:
+        transform 0.15s ease,
+        box-shadow 0.15s ease;
+}
+
+.resource-card:hover {
+    transform: translateY(-6px) scale(1.01);
+
+    box-shadow:
+        0 8px 20px rgba(0,0,0,0.35);
 }
 
 #filter-screen {
