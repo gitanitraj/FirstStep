@@ -18,7 +18,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 @Service
-public class ResourceService {
+public class ResourceService implements DecisionAgentService.ResourceServiceLike {
 
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Resource> resources = Collections.emptyList();
@@ -87,8 +87,14 @@ private List<Resource> parseJsonNodeToList(JsonNode root) throws JsonProcessingE
     return Collections.emptyList();
 }
 
-    public List<Resource> getAll() {
+    @Override
+    public List<Resource> getAllResources() {
         return resources;
+    }
+
+    // existing endpoint uses getAllResources
+    public List<Resource> getAll() {
+        return getAllResources();
     }
 
     public Optional<Resource> getById(String id) {

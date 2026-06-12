@@ -14,7 +14,7 @@ import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Service
-public class NewsService {
+public class NewsService implements DecisionAgentService.NewsServiceLike {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -50,7 +50,13 @@ public class NewsService {
         }
     }
 
-    public List<NewsItem> getAll() {
+    @Override
+    public List<NewsItem> getAllNews() {
         return newsItems;
     }
+
+    public List<NewsItem> getAll() {
+        return getAllNews();
+    }
+
 }
