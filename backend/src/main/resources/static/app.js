@@ -14,7 +14,7 @@ const STRINGS = {
         essentials: "Free / Low-Cost Essentials",
         essentialsSub: "Food, Furniture, Clothing",
         essentialsDesc: "Check out these local programs and nonprofits offering furniture, utilities, repairs for free or at a low cost. Make your home more comfortable and safe with a few simple steps.",
-        seasonal: "Seasonal Resources",
+        seasonal: "Community Resources",
         seasonalSub: "Programs, Events and Community Opportunities",
         weeklyUpdates: "Weekly Updates",
         weeklyUpdatesSub: "News and Changes Impacting You",
@@ -63,7 +63,7 @@ const STRINGS = {
         essentials: "Artículos Esenciales Gratis / Económicos",
         essentialsSub: "Comida, Muebles, Ropa",
         essentialsDesc: "Consulta estos programas locales y organizaciones sin fines de lucro que ofrecen muebles, servicios y reparaciones de forma gratuita o a bajo costo.",
-        seasonal: "Recursos de Temporada",
+        seasonal: "Recursos Comunitarios",
         seasonalSub: "Programas, Eventos y Oportunidades Comunitarias",
         weeklyUpdates: "Actualizaciones Semanales",
         weeklyUpdatesSub: "Noticias y Cambios que te Afectan",
@@ -137,6 +137,16 @@ function goHome() {
 
 homeLogoLink.addEventListener("click", (e) => { e.preventDefault(); goHome(); });
 
+const aiBannerHeader = document.getElementById("ai-banner-header");
+aiBannerHeader.addEventListener("click", () => {
+    goHome();
+    setTimeout(() => {
+        document.getElementById("ai-guidance-home").scrollIntoView({ behavior: "smooth" });
+        document.getElementById("ai-question").focus();
+    }, 50);
+});
+aiBannerHeader.addEventListener("keydown", (e) => { if (e.key === "Enter" || e.key === " ") aiBannerHeader.click(); });
+
 navGetHelp.addEventListener("click", (e) => {
     e.preventDefault();
     goHome();
@@ -150,7 +160,7 @@ navCommunityInfo.addEventListener("click", (e) => {
     navGetHelp.classList.remove("active");
     navCommunityInfo.classList.add("active");
     navAnnouncements.classList.remove("active");
-    alert(t("communityInfoSoon"));
+    showSeasonalResources();
 });
 
 navAnnouncements.addEventListener("click", (e) => {
@@ -158,7 +168,7 @@ navAnnouncements.addEventListener("click", (e) => {
     navGetHelp.classList.remove("active");
     navCommunityInfo.classList.remove("active");
     navAnnouncements.classList.add("active");
-    alert(t("announcementsSoon"));
+    loadNewsUpdates();
 });
 
 // ===== Language Toggle =====
@@ -174,16 +184,16 @@ document.getElementById("contrast-button").addEventListener("click", () => {
 });
 
 document.getElementById("increase-text-button").addEventListener("click", () => {
-    const current = parseFloat(document.body.style.fontSize || getComputedStyle(document.body).fontSize);
+    const current = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const next = Math.min(current + 2, 24);
-    document.body.style.fontSize = next + "px";
+    document.documentElement.style.fontSize = next + "px";
     localStorage.setItem("font-size", next + "px");
 });
 
 document.getElementById("decrease-text-button").addEventListener("click", () => {
-    const current = parseFloat(document.body.style.fontSize || getComputedStyle(document.body).fontSize);
+    const current = parseFloat(getComputedStyle(document.documentElement).fontSize);
     const next = Math.max(current - 2, 12);
-    document.body.style.fontSize = next + "px";
+    document.documentElement.style.fontSize = next + "px";
     localStorage.setItem("font-size", next + "px");
 });
 
@@ -192,7 +202,7 @@ window.addEventListener("DOMContentLoaded", () => {
         document.body.classList.add("high-contrast");
     }
     const savedFontSize = localStorage.getItem("font-size");
-    if (savedFontSize) document.body.style.fontSize = savedFontSize;
+    if (savedFontSize) document.documentElement.style.fontSize = savedFontSize;
     loadSidebarNews();
     applyLanguage();
 });
@@ -274,6 +284,17 @@ document.getElementById("ai-essentials").addEventListener("click", () => {
 
 aiSubmitBtn.addEventListener("click", submitDecision);
 aiQuestionEl.addEventListener("keydown", (e) => { if (e.key === "Enter") submitDecision(); });
+
+document.getElementById("ai-reset").addEventListener("click", () => {
+    aiQuestionEl.value = "";
+    aiOutputEl.innerHTML = "";
+    aiUrgent = false;
+    aiPreferredCategories = [];
+    setAiChipSelected(document.getElementById("ai-urgent"), false);
+    setAiChipSelected(document.getElementById("ai-housing"), false);
+    setAiChipSelected(document.getElementById("ai-essentials"), false);
+    aiQuestionEl.focus();
+});
 
 async function submitDecision() {
     const userQuery = (aiQuestionEl.value || "").trim();
@@ -426,6 +447,7 @@ async function loadNewsUpdates() {
         console.error(error);
         newsResultsContainer.innerHTML = "<p>Unable to load updates.</p>";
     }
+    return Promise.resolve();
 }
 
 async function loadSidebarNews() {
@@ -442,7 +464,9 @@ async function loadSidebarNews() {
                 <h4>${item.headline}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
-            card.addEventListener("click", () => loadNewsUpdates());
+            card.addEventListener("click", () => {
+                loadNewsUpdates().then(() => showNewsDetail(item));
+            });
             newsResults.appendChild(card);
         });
     } catch (error) {
@@ -453,6 +477,8 @@ async function loadSidebarNews() {
 }
 
 // ===== Screen Management =====
+let activeResultsContainer = null;
+
 function showResultsScreen() {
     homeScreen.style.display = "none";
     filterScreen.style.display = "none";
@@ -462,14 +488,24 @@ function showResultsScreen() {
 }
 
 function showDetailScreen() {
-    resultsContainer.style.display = "none";
+    // Hide whichever results container is currently visible
+    [resultsContainer, newsResultsContainer, essentialsResultsContainer, seasonalResultsContainer].forEach(el => {
+        if (el.style.display !== "none") {
+            activeResultsContainer = el;
+            el.style.display = "none";
+        }
+    });
     detailScreen.style.display = "block";
     window.scrollTo(0, 0);
 }
 
 function hideDetailScreen() {
     detailScreen.style.display = "none";
-    resultsContainer.style.display = "block";
+    if (activeResultsContainer) {
+        activeResultsContainer.style.display = "block";
+    } else {
+        resultsContainer.style.display = "block";
+    }
     window.scrollTo(0, 0);
 }
 
@@ -533,8 +569,23 @@ function displayEssentials(resources) {
         grouped[cat].push(r);
     });
 
+    const categories = Object.keys(grouped);
+
+    // Category anchor nav at the top
+    const anchorSlug = cat => cat.toLowerCase().replace(/[^a-z0-9]+/g, "-");
+    const navHtml = `
+        <div class="essentials-category-nav">
+            <span class="essentials-nav-label">Jump to:</span>
+            ${categories.map(cat => `
+                <a class="essentials-nav-link" href="#cat-${anchorSlug(cat)}">${cat}</a>
+            `).join("")}
+        </div>
+    `;
+    essentialsResultsContainer.innerHTML += navHtml;
+
     Object.entries(grouped).forEach(([category, items]) => {
-        essentialsResultsContainer.innerHTML += `<h3 class="category-group-header">${category}</h3>`;
+        const slug = anchorSlug(category);
+        essentialsResultsContainer.innerHTML += `<h3 class="category-group-header" id="cat-${slug}">${category}</h3>`;
         items.forEach(resource => {
             const phone = resource.phones?.[0]?.number;
             const card = document.createElement("div");
@@ -559,6 +610,11 @@ function displayNews(newsItems) {
 
     newsItems.forEach(item => {
         const cats = (item.category_tags || []).join(" · ");
+        const sourceLink = item.source_url
+            ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
+                   ${item.source_name} ↗
+               </a>`
+            : item.source_name;
         const card = document.createElement("div");
         card.className = "resource-card";
         card.innerHTML = `
@@ -566,41 +622,86 @@ function displayNews(newsItems) {
             <h3 class="card-title" style="margin-top:10px;">${item.headline}</h3>
             <p class="card-summary">${item.summary}</p>
             <p class="card-why"><strong>Why this matters:</strong> ${item.why_it_matters}</p>
-            <p class="card-source">${item.source_name} · ${item.published}</p>
+            <p class="card-source">${sourceLink} · ${item.published}</p>
+            <p class="card-cta">${t("viewDetails")}</p>
         `;
+        card.addEventListener("click", () => showNewsDetail(item));
         newsResultsContainer.appendChild(card);
     });
 }
 
-function showSeasonalResources() {
+function showNewsDetail(item) {
+    const cats = (item.category_tags || []).join(" · ");
+    const sourceLink = item.source_url
+        ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="detail-source-link">Read More →</a>`
+        : "";
+
+    detailView.innerHTML = `
+        <div class="detail-header">
+            <h2 class="detail-org">${item.headline}</h2>
+            <span class="urgency-tag urgency-standard">${cats || "General"}</span>
+        </div>
+
+        ${item.body ? `
+        <div class="detail-section">
+            <div class="detail-label">${t("about")}</div>
+            <div class="detail-value">${item.body}</div>
+        </div>` : item.summary ? `
+        <div class="detail-section">
+            <div class="detail-label">${t("about")}</div>
+            <div class="detail-value">${item.summary}</div>
+        </div>` : ""}
+
+        ${item.why_it_matters ? `
+        <div class="detail-section">
+            <div class="detail-label">Why This Matters</div>
+            <div class="detail-value">${item.why_it_matters}</div>
+        </div>` : ""}
+
+        <div class="detail-section">
+            <div class="detail-label">Source</div>
+            <div class="detail-value">
+                ${item.source_name}${item.published ? " · " + item.published : ""}
+                ${sourceLink ? `<br>${sourceLink}` : ""}
+            </div>
+        </div>
+    `;
+
+    showDetailScreen();
+}
+
+async function showSeasonalResources() {
     resultsContainer.style.display = "none";
     newsResultsContainer.style.display = "none";
     essentialsResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
 
-    const flyers = [
-        { src: "images/seasonal/1985.jpg", caption: "Community Opportunity" },
-        { src: "images/seasonal/1987.jpg", caption: "Community Opportunity" },
-        { src: "images/seasonal/1989.jpg", caption: "Volunteer Opportunity" },
-        { src: "images/seasonal/1991.jpg", caption: "Fundraiser" },
-        { src: "images/seasonal/1993.jpg", caption: "Community Opportunity" },
-        { src: "images/seasonal/1995.jpg", caption: "Community Event" },
-        { src: "images/seasonal/1997.jpg", caption: "Public Notice" },
-    ];
-
     const carousel = document.getElementById("seasonal-carousel");
-    carousel.innerHTML = "";
-    flyers.forEach(flyer => {
-        carousel.innerHTML += `
-            <div class="carousel-card">
-                <img src="${flyer.src}" alt="${flyer.caption}" loading="lazy">
-                <div class="carousel-caption">${flyer.caption}</div>
-            </div>
-        `;
-    });
-
+    carousel.innerHTML = `<p style="padding:16px;color:var(--text-secondary)">Loading...</p>`;
     seasonalResultsContainer.style.display = "block";
     showResultsScreen();
+
+    try {
+        const response = await fetch("/api/seasonal-images");
+        const paths = await response.json();
+        carousel.innerHTML = "";
+        if (paths.length === 0) {
+            carousel.innerHTML = `<p style="padding:16px;color:var(--text-secondary)">No community resources available.</p>`;
+        } else {
+            paths.forEach(src => {
+                const filename = src.split("/").pop().replace(/\.[^.]+$/, "");
+                carousel.innerHTML += `
+                    <div class="carousel-card">
+                        <img src="${src}" alt="${filename}" loading="lazy">
+                        <div class="carousel-caption">${filename}</div>
+                    </div>
+                `;
+            });
+        }
+    } catch (error) {
+        console.error("Failed to load seasonal images:", error);
+        carousel.innerHTML = `<p style="padding:16px;color:var(--text-secondary)">Unable to load resources.</p>`;
+    }
 }
 
 function showResourceDetails(resource) {
@@ -663,3 +764,85 @@ function showResourceDetails(resource) {
 
     showDetailScreen();
 }
+
+// ===== Results Page AI Widget =====
+const resultsAiQuestion = document.getElementById("results-ai-question");
+const resultsAiSubmit = document.getElementById("results-ai-submit");
+const resultsAiOutput = document.getElementById("results-ai-output");
+
+async function submitResultsAi(query) {
+    const userQuery = (query || resultsAiQuestion.value || "").trim();
+    if (!userQuery) return;
+    resultsAiQuestion.value = userQuery;
+    resultsAiOutput.innerHTML = `
+        <div class="ai-loading">
+            <div class="spinner"></div>
+            <span>${t("loadingAI")}</span>
+        </div>`;
+
+    try {
+        const res = await fetch("/api/decide", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ userQuery, urgent: false, preferredCategories: [] })
+        });
+        if (!res.ok) throw new Error("HTTP " + res.status);
+        const data = await res.json();
+        renderResultsAiResponse(data);
+    } catch (err) {
+        resultsAiOutput.innerHTML = `<p class="ai-error">Unable to get AI guidance: ${err.message}</p>`;
+    }
+}
+
+function renderResultsAiResponse(data) {
+    const title = data?.answerTitle || "Guidance";
+    const steps = data?.steps || [];
+    const notes = data?.notes || "";
+
+    let stepsHtml = "";
+    if (steps.length > 0) {
+        stepsHtml = steps
+            .sort((a, b) => (a.order || 0) - (b.order || 0))
+            .map((s, i) => `
+                <div class="ai-step">
+                    <div class="ai-step-number">${i + 1}</div>
+                    <div class="ai-step-body">
+                        <div class="ai-step-title">${s.title || "Step"}: ${s.action || ""}</div>
+                        ${s.why ? `<div class="ai-step-why"><strong>Why:</strong> ${s.why}</div>` : ""}
+                    </div>
+                </div>
+            `).join("");
+    } else {
+        stepsHtml = `<p class="ai-no-steps">${notes || "No specific steps available for this query."}</p>`;
+    }
+
+    resultsAiOutput.innerHTML = `
+        <div class="ai-response-card">
+            <div class="ai-response-header">
+                <span class="ai-response-icon">🤖</span>
+                <h4 class="ai-response-title">${title}</h4>
+            </div>
+            ${notes && steps.length > 0 ? `<p class="ai-response-notes">${notes}</p>` : ""}
+            <div class="ai-steps">${stepsHtml}</div>
+        </div>
+    `;
+}
+
+resultsAiSubmit.addEventListener("click", () => submitResultsAi());
+resultsAiQuestion.addEventListener("keydown", (e) => { if (e.key === "Enter") submitResultsAi(); });
+
+document.querySelectorAll(".results-ai-chip").forEach(chip => {
+    chip.addEventListener("click", () => {
+        const query = chip.getAttribute("data-query");
+        submitResultsAi(query);
+        chip.closest(".results-ai-chips").querySelectorAll(".results-ai-chip").forEach(c => c.classList.remove("selected"));
+        chip.classList.add("selected");
+    });
+});
+
+document.getElementById("results-ai-reset").addEventListener("click", () => {
+    resultsAiQuestion.value = "";
+    resultsAiOutput.innerHTML = "";
+    document.querySelectorAll(".results-ai-chip").forEach(c => c.classList.remove("selected"));
+    resultsAiQuestion.focus();
+});

@@ -1,10 +1,12 @@
 package org.firststep.backend.service;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
 import org.firststep.backend.model.NewsItem;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -18,45 +20,35 @@ public class NewsService implements DecisionAgentService.NewsServiceLike {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private List<NewsItem> newsItems =
-            Collections.emptyList();
+    @Autowired
+    private RssFeedService rssFeedService;
+
+    private List<NewsItem> staticItems = Collections.emptyList();
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
-
         try {
-
-            Path file =
-                    Path.of("app", "data", "news.json");
-
-            JsonNode root =
-                    mapper.readTree(file.toFile());
-
-            newsItems =
-                    mapper.convertValue(
-                            root.get("records"),
-                            new TypeReference<List<NewsItem>>() {});
-
-            System.out.println(
-                    "Loaded news items ("
-                    + newsItems.size()
-                    + " records)");
-
+            Path file = Path.of("app", "data", "news.json");
+            JsonNode root = mapper.readTree(file.toFile());
+            staticItems = mapper.convertValue(
+                    root.get("records"),
+                    new TypeReference<List<NewsItem>>() {});
+            System.out.println("Loaded news items (" + staticItems.size() + " records)");
         } catch (Exception e) {
-
-            System.err.println(
-                    "Failed to load news.json: "
-                    + e.getMessage());
+            System.err.println("Failed to load news.json: " + e.getMessage());
         }
     }
 
     @Override
     public List<NewsItem> getAllNews() {
-        return newsItems;
+        return getAll();
     }
 
     public List<NewsItem> getAll() {
-        return getAllNews();
+        List<NewsItem> merged = new ArrayList<>();
+        merged.addAll(rssFeedService.getRssItems());
+        merged.addAll(staticItems);
+        return Collections.unmodifiableList(merged);
     }
 
 }

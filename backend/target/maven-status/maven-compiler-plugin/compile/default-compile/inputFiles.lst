@@ -12,3 +12,4 @@
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/ResourceController.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/DecisionAgentService.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/model/NewsItem.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/RssFeedService.java

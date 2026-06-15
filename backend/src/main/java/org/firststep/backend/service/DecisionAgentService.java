@@ -15,13 +15,19 @@ import org.firststep.backend.model.NewsItem;
 import org.firststep.backend.model.Resource;
 import org.springframework.stereotype.Service;
 
+import com.fasterxml.jackson.core.json.JsonReadFeature;
 import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.MapperFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.json.JsonMapper;
 
 @Service
 public class DecisionAgentService {
 
-    private final ObjectMapper mapper = new ObjectMapper();
+    private final ObjectMapper mapper = JsonMapper.builder()
+            .enable(MapperFeature.ALLOW_COERCION_OF_SCALARS)
+            .enable(JsonReadFeature.ALLOW_TRAILING_COMMA)
+            .build();
 
     private final boolean aiEnabled;
     private final ResourceServiceLike resourceService;
@@ -237,7 +243,7 @@ public class DecisionAgentService {
                 "answerTitle, steps, citations, notes. " +
                 "Steps is an array of objects with keys: order, title, action, why. " +
                 "Citations is an array of objects with keys: sourceType, id, label. " +
-                "No markdown. No extra text.\n\n" +
+                "No markdown. No extra text. No trailing commas.\n\n" +
                 ctx;
     }
 
@@ -301,6 +307,9 @@ public class DecisionAgentService {
         if (firstBrace >= 0 && lastBrace > firstBrace) {
             trimmed = trimmed.substring(firstBrace, lastBrace + 1);
         }
+
+        // Strip trailing commas before } or ] — common LLM JSON generation mistake
+        trimmed = trimmed.replaceAll(",\\s*([}\\]])", "$1");
 
         JsonNode root = mapper.readTree(trimmed);
         DecisionResponse resp = mapper.treeToValue(root, DecisionResponse.class);

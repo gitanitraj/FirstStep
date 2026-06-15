@@ -18,7 +18,7 @@
                 </a>
             </div>
 
-            <div class="ai-banner-header">
+            <div class="ai-banner-header" id="ai-banner-header" role="button" tabindex="0" aria-label="Go to AI Guidance">
                 <span class="ai-icon">🤖</span>
                 <span class="ai-text">Have questions? Get answers with AI.</span>
             </div>
@@ -40,13 +40,6 @@
             <a href="#" id="nav-announcements" class="nav-link" data-i18n="announcements">Announcements</a>
         </div>
     </nav>
-
-    <!-- Search Bar -->
-    <div class="utility-bar">
-        <div class="utility-left">
-            <input id="site-search" type="search" placeholder="Search resources or topics" aria-label="Search resources" />
-        </div>
-    </div>
 
     <main class="container">
 
@@ -82,7 +75,7 @@
                         <button id="seasonal-resources-button" class="category-card">
                             <div class="category-icon">📅</div>
                             <div>
-                                <h3 data-i18n="seasonal">Seasonal Resources</h3>
+                                <h3 data-i18n="seasonal">Community Resources</h3>
                                 <p data-i18n="seasonalSub">Programs, Events and Community Opportunities</p>
                             </div>
                         </button>
@@ -104,6 +97,7 @@
                         <div class="ai-input-group">
                             <input id="ai-question" type="text" data-i18n="aiPlaceholder" placeholder="E.g., I need rental help near Wilmington for seniors" class="ai-input" />
                             <button id="ai-submit" class="ai-submit-btn" data-i18n="aiButton">Get Help</button>
+                            <button id="ai-reset" class="ai-reset-btn" aria-label="Reset AI Guidance">Reset</button>
                         </div>
                         <div class="ai-chips">
                             <button id="ai-urgent" class="ai-chip" data-i18n="aiUrgent">🚨 Urgent</button>
@@ -154,10 +148,31 @@
                 <section id="news-results"></section>
                 <section id="essentials-results"></section>
                 <section id="seasonal-results">
-                    <h2 data-i18n="seasonal">Seasonal Resources</h2>
+                    <h2 data-i18n="seasonal">Community Resources</h2>
                     <p class="screen-subtitle" data-i18n="seasonalSub">Programs, Events and Community Opportunities</p>
                     <div id="seasonal-carousel"></div>
                 </section>
+            </section>
+
+            <!-- Inline AI Guidance on Results Page -->
+            <section id="results-ai-section" class="results-ai-section">
+                <div class="results-ai-header">
+                    <span class="ai-response-icon">🤖</span>
+                    <h4>Not finding what you need?</h4>
+                </div>
+                <p class="results-ai-subtitle">Ask a question or pick a topic below:</p>
+                <div class="results-ai-chips">
+                    <button class="results-ai-chip" data-query="What resources do you need?">What resources do you need?</button>
+                    <button class="results-ai-chip" data-query="Do you need clothes or clothing assistance?">Do you need clothes?</button>
+                    <button class="results-ai-chip" data-query="Do you need furniture or household items?">Do you need furniture?</button>
+                    <button class="results-ai-chip" data-query="Do you need food or groceries?">Do you need food?</button>
+                </div>
+                <div class="results-ai-input-row">
+                    <input id="results-ai-question" type="text" class="ai-input" placeholder="Ask a question…" aria-label="Ask AI a question" />
+                    <button id="results-ai-submit" class="ai-submit-btn">Ask</button>
+                    <button id="results-ai-reset" class="ai-reset-btn" aria-label="Reset">Reset</button>
+                </div>
+                <div id="results-ai-output" class="ai-output"></div>
             </section>
 
             <!-- Detail Screen (nested in results) -->
