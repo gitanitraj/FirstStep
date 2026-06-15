@@ -6,7 +6,6 @@ import java.util.Collections;
 import java.util.List;
 
 import org.firststep.backend.model.NewsItem;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -20,10 +19,13 @@ public class NewsService implements DecisionAgentService.NewsServiceLike {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    @Autowired
-    private RssFeedService rssFeedService;
+    private final RssFeedSource rssFeedService;
 
     private List<NewsItem> staticItems = Collections.emptyList();
+
+    public NewsService(RssFeedSource rssFeedService) {
+        this.rssFeedService = rssFeedService;
+    }
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
