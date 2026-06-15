@@ -3,149 +3,189 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>First Step</title>
-
+    <title>First Step - Trusted local guidance for Wilmington</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+    <!-- Persistent Header -->
+    <header class="site-header">
+        <div class="header-content">
+            <div class="header-branding">
+                <a href="#" id="home-logo-link" class="logo-link">
+                    <h1 class="logo">First Step</h1>
+                    <p class="logo-tagline">Trusted local guidance for Wilmington</p>
+                </a>
+            </div>
+
+            <div class="ai-banner-header" id="ai-banner-header" role="button" tabindex="0" aria-label="Go to AI Guidance">
+                <span class="ai-icon">🤖</span>
+                <span class="ai-text">Have questions? Get answers with AI.</span>
+            </div>
+
+            <div class="header-utilities">
+                <button id="language-toggle" class="utility-button" title="Toggle Spanish" aria-label="Toggle Spanish">ES</button>
+                <button id="contrast-button" class="utility-button" title="High Contrast" aria-label="High Contrast Mode">⊕</button>
+                <button id="increase-text-button" class="utility-button" title="Increase Text" aria-label="Increase Text Size">A+</button>
+                <button id="decrease-text-button" class="utility-button" title="Decrease Text" aria-label="Decrease Text Size">A−</button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav">
+        <div class="nav-content">
+            <a href="#" id="nav-get-help" class="nav-link active" data-i18n="getHelp">Get Help</a>
+            <a href="#" id="nav-community-info" class="nav-link" data-i18n="communityInfo">Community Info</a>
+            <a href="#" id="nav-announcements" class="nav-link" data-i18n="announcements">Announcements</a>
+        </div>
+    </nav>
+
     <main class="container">
-    
-        <div class="accessibility-toolbar"
-            aria-label="Accessibility controls">
-            <button id="increase-text-button"
-                    aria-label="Increase text size">A+</button>
-            <button id="decrease-text-button"
-                    aria-label="Decrease text size">A-</button>
-            <button id="contrast-button"
-                    aria-label="Toggle high contrast mode">Contrast</button>
-        </div>
-        <section id="home-screen"> 
-            <header class="hero">
-                <h1>First Step</h1>
-                <p class="tagline">
-                Your trusted local guidance for Wilmington, Delaware
-                </p>
-                <p class="welcome-message">
-                Find housing, essentials, community programs and local updates in one trusted place.
-                </p>
-            </header>
 
-        <section class="welcome">
-        <h2>What do you need help with today?</h2>
-        </section>
+        <!-- Home Screen -->
+        <section id="home-screen">
 
-        <section class="category-list">
-            <button 
-            id="housing-help-button"
-            class="category-card"
-            aria-label="Housing Help. Home and rental assistance, shelters and home repairs">
-
-            <span class="category-icon" aria-hidden="true">🏠</span>
-
-            <div class="category-text">
-                <h3>Housing Help</h3>
-                <p>Home and Rental Assistance, Shelters, Home Repairs</p>
+            <div class="hero-section">
+                <h2 class="hero-title" data-i18n="heroTitle">What do you need help with today?</h2>
+                <p class="hero-subtitle" data-i18n="heroSubtitle">Find housing, essentials, community programs and local updates in one trusted place.</p>
             </div>
-            </button>
 
-            <button
-                id="essentials-button"
-                class="category-card"
-                aria-label="Free and low cost essentials including food, furniture and clothing">
+            <div class="home-grid">
 
-            <span class="category-icon" aria-hidden="true">🛒</span>
+                <div class="home-main">
+                    <section class="category-list">
 
-            <div class="category-text">
-                <h3>Free / Low-Cost Essentials</h3>
-                <p>Food, Furniture, Clothing</p>
+                        <button id="housing-help-button" class="category-card">
+                            <div class="category-icon">🏠</div>
+                            <div>
+                                <h3 data-i18n="housingHelp">Housing Help</h3>
+                                <p data-i18n="housingHelpSub">Home and Rental Assistance, Shelters, Home Repairs</p>
+                            </div>
+                        </button>
+
+                        <button id="essentials-button" class="category-card">
+                            <div class="category-icon">🛒</div>
+                            <div>
+                                <h3 data-i18n="essentials">Free / Low-Cost Essentials</h3>
+                                <p data-i18n="essentialsSub">Food, Furniture, Clothing</p>
+                            </div>
+                        </button>
+
+                        <button id="seasonal-resources-button" class="category-card">
+                            <div class="category-icon">📅</div>
+                            <div>
+                                <h3 data-i18n="seasonal">Community Resources</h3>
+                                <p data-i18n="seasonalSub">Programs, Events and Community Opportunities</p>
+                            </div>
+                        </button>
+
+                        <button id="weekly-updates-button-home" class="category-card">
+                            <div class="category-icon">📰</div>
+                            <div>
+                                <h3 data-i18n="weeklyUpdates">Weekly Updates</h3>
+                                <p data-i18n="weeklyUpdatesSub">News and Changes Impacting You</p>
+                            </div>
+                        </button>
+
+                    </section>
+
+                    <!-- AI Guidance -->
+                    <section id="ai-guidance-home" class="ai-guidance-section">
+                        <h3 data-i18n="aiTitle">AI Guidance</h3>
+                        <p class="ai-guidance-subtitle" data-i18n="aiSubtitle">Ask a question in natural language to find resources</p>
+                        <div class="ai-input-group">
+                            <input id="ai-question" type="text" data-i18n="aiPlaceholder" placeholder="E.g., I need rental help near Wilmington for seniors" class="ai-input" />
+                            <button id="ai-submit" class="ai-submit-btn" data-i18n="aiButton">Get Help</button>
+                            <button id="ai-reset" class="ai-reset-btn" aria-label="Reset AI Guidance">Reset</button>
+                        </div>
+                        <div class="ai-chips">
+                            <button id="ai-urgent" class="ai-chip" data-i18n="aiUrgent">🚨 Urgent</button>
+                            <button id="ai-housing" class="ai-chip" data-i18n="aiHousing">🏠 Housing</button>
+                            <button id="ai-essentials" class="ai-chip" data-i18n="aiEssentials">🛒 Essentials</button>
+                        </div>
+                        <div id="ai-output" class="ai-output"></div>
+                    </section>
+                </div>
+
+                <!-- Latest Updates Sidebar -->
+                <aside class="home-side">
+                    <section id="latest-updates" class="resource-panel">
+                        <h3 data-i18n="latestUpdates">Latest Updates</h3>
+                        <div id="sidebar-news" class="news-list"></div>
+                    </section>
+                </aside>
+
             </div>
-            </button>
-
-            <button
-                id="seasonal-resources-button"
-                class="category-card"
-                aria-label="Seasonal resources including programs, events, and community opportunities">
-
-            <span class="category-icon" aria-hidden="true">🍂</span>
-
-            <div class="category-text">
-                <h3>Seasonal Resources</h3>
-                <p>Programs, Events and Community Opportunities</p>
-            </div>
-            </button>
-
-            <button
-                id="weekly-updates-button"
-                class="category-card"
-                aria-label="Weekly updates including news and changes impacting you">
-
-            <span class="category-icon" aria-hidden="true">📰</span>
-
-            <div class="category-text">
-                <h3>Weekly Updates</h3>
-                <p>News and Changes Impacting You</p>
-            </div>
-            </button>
-        </section>
 
         </section>
 
-    <section id="filter-screen" style="display:none;">
-    <button id="back-from-filter-button" class="back-button">
-        ← Back to Home
-    </button>
+        <!-- Filter Screen -->
+        <section id="filter-screen" style="display:none;">
+            <div class="screen-header">
+                <button id="back-from-filter-button" class="back-button" data-i18n="back">← Back</button>
+                <h2 data-i18n="refineSearch">Refine Your Search</h2>
+            </div>
+            <p class="screen-subtitle" data-i18n="filterSubtitle">Choose filters to narrow results.</p>
+            <div class="filter-options">
+                <button id="urgent-filter" class="filter-chip" data-i18n="aiUrgent">🚨 Urgent</button>
+                <button class="filter-chip">📍 Rental Help</button>
+                <button class="filter-chip">💰 Mortgage Programs</button>
+                <button class="filter-chip">🛏 Shelter</button>
+            </div>
+            <button id="continue-button" class="primary-button" data-i18n="viewResults">View Results</button>
+        </section>
 
-        <h2>Housing Help</h2>
+        <!-- Results Screen -->
+        <section id="results-screen" style="display:none;">
+            <div class="results-header">
+                <button id="back-home-button-results" class="back-button" data-i18n="backHome">← Back to Home</button>
+            </div>
 
-        <p>What matters most right now?</p>
+            <!-- Results List -->
+            <section id="results-list" class="results-list">
+                <section id="results"></section>
+                <section id="news-results"></section>
+                <section id="essentials-results"></section>
+                <section id="seasonal-results">
+                    <h2 data-i18n="seasonal">Community Resources</h2>
+                    <p class="screen-subtitle" data-i18n="seasonalSub">Programs, Events and Community Opportunities</p>
+                    <div id="seasonal-carousel"></div>
+                </section>
+            </section>
 
-        <div class="filter-options">
+            <!-- Inline AI Guidance on Results Page -->
+            <section id="results-ai-section" class="results-ai-section">
+                <div class="results-ai-header">
+                    <span class="ai-response-icon">🤖</span>
+                    <h4>Not finding what you need?</h4>
+                </div>
+                <p class="results-ai-subtitle">Ask a question or pick a topic below:</p>
+                <div class="results-ai-chips">
+                    <button class="results-ai-chip" data-query="What resources do you need?">What resources do you need?</button>
+                    <button class="results-ai-chip" data-query="Do you need clothes or clothing assistance?">Do you need clothes?</button>
+                    <button class="results-ai-chip" data-query="Do you need furniture or household items?">Do you need furniture?</button>
+                    <button class="results-ai-chip" data-query="Do you need food or groceries?">Do you need food?</button>
+                </div>
+                <div class="results-ai-input-row">
+                    <input id="results-ai-question" type="text" class="ai-input" placeholder="Ask a question…" aria-label="Ask AI a question" />
+                    <button id="results-ai-submit" class="ai-submit-btn">Ask</button>
+                    <button id="results-ai-reset" class="ai-reset-btn" aria-label="Reset">Reset</button>
+                </div>
+                <div id="results-ai-output" class="ai-output"></div>
+            </section>
 
-            <button id="urgent-filter" class="filter-chip">Urgent</button>
+            <!-- Detail Screen (nested in results) -->
+            <section id="detail-screen" style="display:none;">
+                <button id="back-results-button" class="back-button" data-i18n="backResults">← Back to Results</button>
+                <section id="detail-view"></section>
+            </section>
+        </section>
 
-            <button class="filter-chip">Easy to Access</button>
+        <!-- Hidden back button (kept for JS compatibility) -->
+        <button id="back-home-button" style="display:none;"></button>
 
-            <button class="filter-chip">Free / Low-Cost</button>
-
-        </div>
-
-        <button id="continue-button">
-            Continue
-        </button>
-
-    </section>
-
-    <section id="results-screen" style="display:none;">
-
-    <button id="back-home-button" class="back-button">
-        ← Back to Home
-    </button>
-
-    <section id="results"></section>
-    
-    <section id="detail-screen" style="display:none;">
-    
-    <button id="back-results-button" class="back-button">
-        ← Back to Results
-    </button>
-    
-    <section id="detail-view"></section>
-    </section>
-
-    <section id="news-results"></section>
-    <section id="essentials-results"></section>
-    <section id="seasonal-results">
-        <div class="page-header">
-            <h2>Seasonal Resources</h2>
-            <p class="page-description">Learn what's happening in your community. From legal clinics and job fairs to free family activities, you'll find event flyers and notices from local organizations offering support or seeking volunteers. Community events run year-round, so check back often for dates, locations and contact details to help you get involved or get help.</p>
-        </div>
-        <div class="carousel" id="seasonal-carousel"></div>
-    </section>
-
-    </section>
-
-</main>
+    </main>
 
     <script src="app.js"></script>
 

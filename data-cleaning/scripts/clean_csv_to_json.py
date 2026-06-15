@@ -4,8 +4,9 @@ import uuid
 from pathlib import Path
 from datetime import date
 
-INPUT_FILE = Path("../raw/revised_wilmington_cache.csv")
-OUTPUT_FILE = Path("../clean/resources.json")
+SCRIPT_DIR = Path(__file__).resolve().parent
+INPUT_FILE = (SCRIPT_DIR / "../raw/Service Directory.csv").resolve()
+OUTPUT_FILE = (SCRIPT_DIR / "../clean/resources.json").resolve()
 
 # -----------------------------
 # Utility helpers
@@ -178,7 +179,7 @@ def clean_record(row):
 def main():
     cleaned = []
 
-    with open(INPUT_FILE, newline="", encoding="utf-8") as f:
+    with open(INPUT_FILE, newline="", encoding="utf-16") as f:
         reader = csv.DictReader(f)
         for row in reader:
             cleaned.append(clean_record(row))

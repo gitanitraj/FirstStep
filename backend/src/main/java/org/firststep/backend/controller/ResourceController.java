@@ -1,6 +1,10 @@
 package org.firststep.backend.controller;
 
+import java.io.File;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import org.firststep.backend.model.Resource;
 import org.firststep.backend.service.ResourceService;
@@ -35,5 +39,19 @@ public class ResourceController {
         return service.getById(id)
                 .map(ResponseEntity::ok)
                 .orElse(ResponseEntity.notFound().build());
+    }
+
+    @GetMapping("/seasonal-images")
+    public ResponseEntity<List<String>> getSeasonalImages() {
+        File dir = new File("backend/src/main/resources/static/images/seasonal");
+        if (!dir.exists() || !dir.isDirectory()) {
+            return ResponseEntity.ok(Collections.emptyList());
+        }
+        List<String> files = Arrays.stream(dir.listFiles())
+                .filter(f -> f.isFile() && f.getName().matches("(?i).*\\.(jpg|jpeg|png|gif|webp)"))
+                .map(f -> "images/seasonal/" + f.getName())
+                .sorted()
+                .collect(Collectors.toList());
+        return ResponseEntity.ok(files);
     }
 }

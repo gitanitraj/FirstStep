@@ -1,0 +1,10 @@
+{
+  "name": "first-step",
+  "private": true,
+  "scripts": {
+    "ollama": "OLLAMA_HOST=http://localhost:11434 ollama",
+    "ollama:list": "npm run ollama -- list",
+    "ollama:run": "npm run ollama -- run",
+    "ollama:run:gemma4": "npm run ollama -- run gemma4:e4b"
+  }
+}

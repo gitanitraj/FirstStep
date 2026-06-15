@@ -1,7 +1,16 @@
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/DecisionController.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/ResourceService.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/OllamaService.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/dto/DecisionResponse.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/NewsController.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/dto/DecisionRequest.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/model/Resource.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/dto/DecisionStep.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/NewsService.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/dto/Citation.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/RssFeedSource.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/FirstStepApplication.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/ResourceController.java
-/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/controller/NewsController.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/DecisionAgentService.java
 /Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/model/NewsItem.java
+/Users/anitra/Projects/FirstStep/backend/src/main/java/org/firststep/backend/service/RssFeedService.java
