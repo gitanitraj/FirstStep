@@ -182,6 +182,33 @@ public class DecisionAgentService {
         return s == null ? "" : s.toLowerCase(Locale.ROOT).trim();
     }
 
+    private String formatFirstLocation(Resource.Location loc) {
+        if (loc == null) return null;
+        if (Boolean.TRUE.equals(loc.confidential)) return null;
+
+        String address = loc.address;
+        String city = loc.city;
+        String state = loc.state;
+        String zip = loc.zip;
+
+        StringBuilder sb = new StringBuilder();
+        if (address != null && !address.isBlank()) sb.append(address);
+
+        if (city != null && !city.isBlank()) {
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(city);
+        }
+        if (state != null && !state.isBlank()) {
+            if (sb.length() > 0) sb.append(", ");
+            sb.append(state);
+        }
+        if (zip != null && !zip.isBlank()) {
+            sb.append(" ").append(zip);
+        }
+
+        return sb.length() == 0 ? null : sb.toString().trim();
+    }
+
     private String buildPrompt(
             String q,
             boolean urgent,
@@ -205,7 +232,7 @@ public class DecisionAgentService {
         // Strict schema-first output
         return "You are a Decision Aid assistant for Wilmington residents. " +
                 "You MUST ONLY use the provided LOCAL_RESOURCES and LOCAL_NEWS context. " +
-                "If the context does not contain enough information, return an empty steps list and explain in notes. " +
+                "If the context is missing some user-specific details, do NOT ask for external contact unless necessary. Instead, provide best-effort next actions using the closest matching resources from LOCAL_RESOURCES/LOCAL_NEWS. " +
                 "Return STRICT JSON with exactly these keys: " +
                 "answerTitle, steps, citations, notes. " +
                 "Steps is an array of objects with keys: order, title, action, why. " +
@@ -216,17 +243,23 @@ public class DecisionAgentService {
 
     private String mapperToTrimmedResourcesJson(List<Resource> resources) {
         if (resources == null) return "[]";
-        List<java.util.Map<String, String>> trimmed = resources.stream().map(r -> {
-            return java.util.Map.of(
-                    "id", r.id,
-                    "organization", r.organization,
-                    "category", r.category,
-                    "urgency", r.urgency,
-                    "summary", r.summary,
-                    "eligibility", r.eligibility,
-                    "phone", (r.phones != null && !r.phones.isEmpty()) ? r.phones.get(0).number : null,
-                    "website", (r.websites != null && !r.websites.isEmpty()) ? r.websites.get(0).url : null
-            );
+        List<java.util.Map<String, Object>> trimmed = resources.stream().map(r -> {
+            java.util.Map<String, Object> m = new java.util.HashMap<>();
+            m.put("id", r.id);
+            m.put("organization", r.organization);
+            m.put("category", r.category);
+            m.put("urgency", r.urgency);
+            m.put("summary", r.summary);
+            m.put("description", r.description);
+            m.put("eligibility", r.eligibility);
+            m.put("eligibilityAgeMin", r.eligibilityAgeMin);
+            m.put("eligibilityAgeMax", r.eligibilityAgeMax);
+            m.put("eligibilityGender", r.eligibilityGender);
+            m.put("tags", r.tags);
+            m.put("location", (r.locations != null && !r.locations.isEmpty()) ? formatFirstLocation(r.locations.get(0)) : null);
+            m.put("phone", (r.phones != null && !r.phones.isEmpty()) ? r.phones.get(0).number : null);
+            m.put("website", (r.websites != null && !r.websites.isEmpty()) ? r.websites.get(0).url : null);
+            return m;
         }).toList();
 
 
