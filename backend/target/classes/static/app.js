@@ -20,7 +20,7 @@ const STRINGS = {
         weeklyUpdatesSub: "News and Changes Impacting You",
         weeklyUpdatesDesc: "Stay up to date on the rules, public meetings and changes that affect housing, benefits and community services. Read the highlights and learn about important deadlines, new requirements and policy updates so you can participate and plan ahead.",
         aiTitle: "AI Guidance",
-        aiSubtitle: "Ask a question in natural language to find resources",
+        aiSubtitle: "Tell me what you need with and I'll find community solutions!",
         aiPlaceholder: "E.g., I need rental help near Wilmington for seniors",
         aiButton: "Get Help",
         aiUrgent: "🚨 Urgent",
