@@ -81,6 +81,7 @@ public class RssFeedService implements RssFeedSource {
             conn.setReadTimeout(8000);
 
             SyndFeedInput input = new SyndFeedInput();
+            input.setAllowDoctypes(true);
             return input.build(new XmlReader(conn));
 
         } catch (Exception e) {
