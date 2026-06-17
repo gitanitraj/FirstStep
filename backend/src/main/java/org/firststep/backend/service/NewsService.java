@@ -1,7 +1,6 @@
 package org.firststep.backend.service;
 
 import java.nio.file.Path;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -19,13 +18,7 @@ public class NewsService implements DecisionAgentService.NewsServiceLike {
 
     private final ObjectMapper mapper = new ObjectMapper();
 
-    private final RssFeedSource rssFeedService;
-
     private List<NewsItem> staticItems = Collections.emptyList();
-
-    public NewsService(RssFeedSource rssFeedService) {
-        this.rssFeedService = rssFeedService;
-    }
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
@@ -47,10 +40,7 @@ public class NewsService implements DecisionAgentService.NewsServiceLike {
     }
 
     public List<NewsItem> getAll() {
-        List<NewsItem> merged = new ArrayList<>();
-        merged.addAll(rssFeedService.getRssItems());
-        merged.addAll(staticItems);
-        return Collections.unmodifiableList(merged);
+        return Collections.unmodifiableList(staticItems);
     }
 
 }

@@ -204,6 +204,7 @@ window.addEventListener("DOMContentLoaded", () => {
     const savedFontSize = localStorage.getItem("font-size");
     if (savedFontSize) document.documentElement.style.fontSize = savedFontSize;
     loadSidebarNews();
+    loadSidebarLaws();
     applyLanguage();
 });
 
@@ -213,7 +214,8 @@ const resultsScreen = document.getElementById("results-screen");
 const filterScreen = document.getElementById("filter-screen");
 const urgentFilterButton = document.getElementById("urgent-filter");
 const continueButton = document.getElementById("continue-button");
-const newsResultsContainer = document.getElementById("news-results");
+const newsOuterContainer = document.getElementById("news-results");
+const newsResultsContainer = document.getElementById("news-results-main");
 const seasonalResultsContainer = document.getElementById("seasonal-results");
 const essentialsResultsContainer = document.getElementById("essentials-results");
 const homeScreen = document.getElementById("home-screen");
@@ -223,6 +225,8 @@ const backResultsButton = document.getElementById("back-results-button");
 const backHomeButton = document.getElementById("back-home-button");
 
 let urgentFilterSelected = false;
+let allNewsItems = [];
+let activeNewsTag = null;
 
 // ===== Category Navigation =====
 document.getElementById("housing-help-button").addEventListener("click", () => {
@@ -379,7 +383,7 @@ function renderDecisionResponse(data) {
 
 // ===== Resource Loading =====
 async function loadHousingResources() {
-    newsResultsContainer.style.display = "none";
+    newsOuterContainer.style.display = "none";
     essentialsResultsContainer.style.display = "none";
     seasonalResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
@@ -412,7 +416,7 @@ async function loadHousingResources() {
 
 async function loadEssentialsResources() {
     resultsContainer.style.display = "none";
-    newsResultsContainer.style.display = "none";
+    newsOuterContainer.style.display = "none";
     seasonalResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
     essentialsResultsContainer.style.display = "block";
@@ -435,19 +439,122 @@ async function loadNewsUpdates() {
     essentialsResultsContainer.style.display = "none";
     seasonalResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
-    newsResultsContainer.style.display = "block";
+    newsOuterContainer.style.display = "grid";
     newsResultsContainer.innerHTML = `<p>${t("loading")}</p>`;
+
+    renderLawsColumn();
 
     try {
         const response = await fetch("/api/news");
-        const newsItems = await response.json();
-        displayNews(newsItems);
+        allNewsItems = await response.json();
+        activeNewsTag = null;
+        renderNewsFilter(allNewsItems);
+        renderNewsItems();
         showResultsScreen();
     } catch (error) {
         console.error(error);
         newsResultsContainer.innerHTML = "<p>Unable to load updates.</p>";
     }
     return Promise.resolve();
+}
+
+async function renderLawsColumn() {
+    const col = document.getElementById("news-results-laws");
+    col.innerHTML = `<div class="resource-panel">
+        <h3>Delaware's Newest Laws</h3>
+        <div id="laws-list"><p>${t("loading")}</p></div>
+    </div>`;
+    try {
+        const response = await fetch("/api/news/rss");
+        const items = await response.json();
+        const list = document.getElementById("laws-list");
+        list.innerHTML = "";
+        items.forEach(item => {
+            const card = document.createElement("div");
+            card.className = "news-item";
+            card.innerHTML = `
+                <h4>${item.why_it_matters || item.headline}</h4>
+                <div class="news-date">${item.published || "Latest"}</div>
+            `;
+            card.addEventListener("click", () => showNewsDetail(item));
+            list.appendChild(card);
+        });
+    } catch (err) {
+        const list = document.getElementById("laws-list");
+        if (list) list.innerHTML =
+            '<p style="color:var(--text-secondary);font-size:13px;">Unable to load laws</p>';
+    }
+}
+
+function renderNewsFilter(items) {
+    const existingFilter = document.getElementById("news-tag-filter");
+    if (existingFilter) existingFilter.remove();
+
+    const uniqueTags = [...new Set(items.flatMap(i => i.category_tags || []))].sort();
+    if (uniqueTags.length === 0) return;
+
+    const bar = document.createElement("div");
+    bar.className = "filter-options";
+    bar.id = "news-tag-filter";
+
+    const allChip = document.createElement("button");
+    allChip.className = "filter-chip selected";
+    allChip.textContent = "All";
+    allChip.addEventListener("click", () => {
+        activeNewsTag = null;
+        bar.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("selected"));
+        allChip.classList.add("selected");
+        renderNewsItems();
+    });
+    bar.appendChild(allChip);
+
+    uniqueTags.forEach(tag => {
+        const chip = document.createElement("button");
+        chip.className = "filter-chip";
+        chip.textContent = tag;
+        chip.addEventListener("click", () => {
+            activeNewsTag = tag;
+            bar.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("selected"));
+            chip.classList.add("selected");
+            renderNewsItems();
+        });
+        bar.appendChild(chip);
+    });
+
+    newsResultsContainer.prepend(bar);
+}
+
+function renderNewsItems() {
+    const filtered = activeNewsTag
+        ? allNewsItems.filter(i => (i.category_tags || []).includes(activeNewsTag))
+        : allNewsItems;
+
+    const filterBar = document.getElementById("news-tag-filter");
+
+    newsResultsContainer.innerHTML = renderPageHeader(t("weeklyUpdates"), t("weeklyUpdatesDesc"));
+
+    if (filterBar) newsResultsContainer.prepend(filterBar);
+
+    filtered.forEach(item => {
+        const cats = (item.category_tags || []).join(" · ");
+        const sourceLink = item.source_url
+            ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
+                   ${item.source_name} ↗
+               </a>`
+            : item.source_name;
+        const card = document.createElement("div");
+        card.className = "resource-card";
+        card.innerHTML = `
+            <span class="urgency-tag urgency-standard">${cats || "General"}</span>
+            <h3 class="card-title" style="margin-top:10px;">${item.headline}</h3>
+            <p class="card-summary">${item.summary}</p>
+            <p class="card-why"><strong>Why this matters:</strong> ${item.why_it_matters}</p>
+            <p class="card-source">${sourceLink} · ${item.published}</p>
+            <p class="card-cta">${t("viewDetails")}</p>
+        `;
+        card.addEventListener("click", () => showNewsDetail(item));
+        newsResultsContainer.appendChild(card);
+    });
 }
 
 async function loadSidebarNews() {
@@ -461,7 +568,7 @@ async function loadSidebarNews() {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
-                <h4>${item.why_it_matters || item.headline}</h4>
+                <h4>${item.headline}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
             card.addEventListener("click", () => {
@@ -472,6 +579,32 @@ async function loadSidebarNews() {
     } catch (error) {
         console.error("Sidebar news failed to load:", error);
         document.getElementById("sidebar-news").innerHTML =
+            '<p style="color: var(--text-secondary); font-size: 13px;">Unable to load updates</p>';
+    }
+}
+
+async function loadSidebarLaws() {
+    try {
+        const response = await fetch("/api/news/rss");
+        const items = await response.json();
+        const container = document.getElementById("sidebar-laws");
+        container.innerHTML = "";
+
+        items.slice(0, 3).forEach(item => {
+            const card = document.createElement("div");
+            card.className = "news-item";
+            card.innerHTML = `
+                <h4>${item.why_it_matters || item.headline}</h4>
+                <div class="news-date">${item.published || "Latest"}</div>
+            `;
+            card.addEventListener("click", () => {
+                loadNewsUpdates().then(() => showNewsDetail(item));
+            });
+            container.appendChild(card);
+        });
+    } catch (error) {
+        console.error("Laws sidebar failed to load:", error);
+        document.getElementById("sidebar-laws").innerHTML =
             '<p style="color: var(--text-secondary); font-size: 13px;">Unable to load updates</p>';
     }
 }
@@ -489,12 +622,16 @@ function showResultsScreen() {
 
 function showDetailScreen() {
     // Hide whichever results container is currently visible
-    [resultsContainer, newsResultsContainer, essentialsResultsContainer, seasonalResultsContainer].forEach(el => {
+    [resultsContainer, essentialsResultsContainer, seasonalResultsContainer].forEach(el => {
         if (el.style.display !== "none") {
             activeResultsContainer = el;
             el.style.display = "none";
         }
     });
+    if (newsOuterContainer.style.display !== "none") {
+        activeResultsContainer = newsOuterContainer;
+        newsOuterContainer.style.display = "none";
+    }
     detailScreen.style.display = "block";
     window.scrollTo(0, 0);
 }
@@ -502,7 +639,8 @@ function showDetailScreen() {
 function hideDetailScreen() {
     detailScreen.style.display = "none";
     if (activeResultsContainer) {
-        activeResultsContainer.style.display = "block";
+        activeResultsContainer.style.display =
+            activeResultsContainer === newsOuterContainer ? "grid" : "block";
     } else {
         resultsContainer.style.display = "block";
     }
@@ -606,28 +744,10 @@ function displayEssentials(resources) {
 }
 
 function displayNews(newsItems) {
-    newsResultsContainer.innerHTML = renderPageHeader(t("weeklyUpdates"), t("weeklyUpdatesDesc"));
-
-    newsItems.forEach(item => {
-        const cats = (item.category_tags || []).join(" · ");
-        const sourceLink = item.source_url
-            ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
-                   ${item.source_name} ↗
-               </a>`
-            : item.source_name;
-        const card = document.createElement("div");
-        card.className = "resource-card";
-        card.innerHTML = `
-            <span class="urgency-tag urgency-standard">${cats || "General"}</span>
-            <h3 class="card-title" style="margin-top:10px;">${item.headline}</h3>
-            <p class="card-summary">${item.summary}</p>
-            <p class="card-why"><strong>Why this matters:</strong> ${item.why_it_matters}</p>
-            <p class="card-source">${sourceLink} · ${item.published}</p>
-            <p class="card-cta">${t("viewDetails")}</p>
-        `;
-        card.addEventListener("click", () => showNewsDetail(item));
-        newsResultsContainer.appendChild(card);
-    });
+    allNewsItems = newsItems;
+    activeNewsTag = null;
+    renderNewsFilter(newsItems);
+    renderNewsItems();
 }
 
 function showNewsDetail(item) {
@@ -672,7 +792,7 @@ function showNewsDetail(item) {
 
 async function showSeasonalResources() {
     resultsContainer.style.display = "none";
-    newsResultsContainer.style.display = "none";
+    newsOuterContainer.style.display = "none";
     essentialsResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
 

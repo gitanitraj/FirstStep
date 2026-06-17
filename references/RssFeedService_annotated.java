@@ -1,5 +1,17 @@
 package org.firststep.backend.service;
 
+// =============================================================================
+// WHAT THIS CLASS DOES
+// =============================================================================
+// RssFeedService fetches one or more RSS feeds on a schedule, converts each
+// entry into a NewsItem, classifies it by civic topic (housing, healthcare,
+// food, etc.), and holds the result in memory for the NewsController to serve
+// at GET /api/news/rss.
+//
+// It implements RssFeedSource so it can be swapped with a fake in tests
+// without needing Mockito on concrete classes.
+// =============================================================================
+
 import com.rometools.rome.feed.synd.*;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
@@ -21,15 +33,28 @@ public class RssFeedService implements RssFeedSource {
 
     private static final Logger log = LoggerFactory.getLogger(RssFeedService.class);
 
+    // WHY: Comma-separated URL list from application.properties so URLs can be
+    // changed or added without recompiling.
+    // Configured as: news.rss.urls=https://legis.delaware.gov/rss/RssFeeds/GovernorSignedLegislation
     @Value("${news.rss.urls:}")
     private String rssFeedUrls;
 
+    // WHY: volatile ensures the list is visible across threads when @Scheduled
+    // writes it and the request thread reads it concurrently.
     private volatile List<NewsItem> rssItems = List.of();
 
     private static final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyy-MM-dd");
 
+    // =============================================================================
+    // SCHEDULED FETCH
+    // =============================================================================
+    // WHY initialDelayString vs initialDelay: The property-driven form allows the
+    // delay to be tuned in tests and deployment without recompiling. Default 500ms
+    // is fast enough that items appear before the user first loads the page.
+    // WHY fixedDelay (not fixedRate): fixedDelay waits after the previous run
+    // completes, avoiding overlap if a fetch takes longer than the interval.
     @Scheduled(
-            fixedDelayString = "${news.rss.refresh-interval:3600000}",
+            fixedDelayString  = "${news.rss.refresh-interval:3600000}",
             initialDelayString = "${news.rss.initial-delay:500}"
     )
     public void fetchFeeds() {
@@ -60,6 +85,8 @@ public class RssFeedService implements RssFeedSource {
             }
         }
 
+        // WHY only replace when non-empty: a transient network failure during a
+        // refresh should not wipe out the last good result.
         if (!collected.isEmpty()) {
             rssItems = List.copyOf(collected);
         }
@@ -73,6 +100,9 @@ public class RssFeedService implements RssFeedSource {
     // Helpers
     // ------------------------------------------------------------
 
+    // WHY setAllowDoctypes(true): Delaware's feed includes a DOCTYPE declaration
+    // which JAXP blocks by default as a security measure. We allow it here
+    // because this is a trusted government feed.
     private SyndFeed loadFeed(String url) {
         try {
             URL u = new URL(url);
@@ -91,16 +121,29 @@ public class RssFeedService implements RssFeedSource {
         }
     }
 
+    // =============================================================================
+    // ENTRY → NewsItem CONVERSION
+    // =============================================================================
+    // HOW IT WORKS:
+    // 1. Map raw RSS fields (title, description, link, date) to NewsItem fields.
+    // 2. Run keyword classification to assign civic category tags and a generic
+    //    "why it matters" sentence.
+    // 3. Try to extract a "RELATING TO …" clause from the description. Delaware
+    //    legislation descriptions always begin with the full act title in ALL CAPS,
+    //    e.g. "AN ACT TO AMEND TITLE 1 … RELATING TO PUERTO RICO DAY." If found,
+    //    this clause (converted to Sentence Case) replaces both the bill-number
+    //    headline and the generic why-it-matters text, giving users a readable,
+    //    specific description of the law.
     private NewsItem convertEntry(SyndFeed feed, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
-        item.id = "rss-" + UUID.randomUUID();
-        item.headline = safe(entry.getTitle());
-        item.summary = extractSummary(entry);
-        item.body = item.summary;
+        item.id        = "rss-" + UUID.randomUUID();
+        item.headline  = safe(entry.getTitle());   // bill number e.g. "HB 311" — overridden below if RELATING TO found
+        item.summary   = extractSummary(entry);
+        item.body      = item.summary;
 
         item.sourceName = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
-        item.sourceUrl = entry.getLink();
+        item.sourceUrl  = entry.getLink();
 
         Date published = entry.getPublishedDate() != null
                 ? entry.getPublishedDate()
@@ -110,25 +153,43 @@ public class RssFeedService implements RssFeedSource {
 
         item.published = DATE_FMT.format(published);
 
-        item.active = true;
-        item.type = "legislation";
+        item.active  = true;
+        item.type    = "legislation";
         item.urgency = "standard";
 
+        // Step 2: keyword classification
         String text = (item.headline + " " + item.summary).toLowerCase();
         Classification cls = classifyLegislation(text);
-        item.categoryTags = cls.categoryTags;
-        item.resourceTags = cls.resourceTags;
-        item.whyItMatters = cls.whyItMatters;
+        item.categoryTags  = cls.categoryTags;
+        item.resourceTags  = cls.resourceTags;
+        item.whyItMatters  = cls.whyItMatters;
 
+        // Step 3: extract "RELATING TO …" clause for a more readable headline/why
         String relatingTo = extractRelatingTo(item.summary);
         if (relatingTo != null) {
-            item.headline = relatingTo;
+            item.headline     = relatingTo;
             item.whyItMatters = relatingTo;
         }
 
         return item;
     }
 
+    // =============================================================================
+    // RELATING TO EXTRACTION
+    // =============================================================================
+    // WHY: Delaware legislation descriptions always contain a formal title in ALL
+    // CAPS like "AN ACT TO AMEND … RELATING TO PAID LEAVE." The "RELATING TO"
+    // clause is the most human-readable part. We extract it and convert to
+    // Sentence Case so the UI can show "Relating to paid leave." instead of a
+    // bill number or a generic category sentence.
+    //
+    // ALGORITHM — three terminators, earliest wins:
+    //   1. First "." after "RELATING TO" — normal case where act title ends with a period.
+    //   2. "This <Word>" boundary — Delaware descriptions follow the act title with
+    //      "This Act…", "This Senate…", etc. When there is no period before this
+    //      phrase, stop just before it and append a period.
+    //   3. 120-character cap — hard safety net, truncates at last word boundary.
+    //   Returns null if "RELATING TO" is not found or nothing remains after trimming.
     private static final int RELATING_TO_MAX_CHARS = 120;
 
     private static String extractRelatingTo(String summary) {
@@ -144,7 +205,6 @@ public class RssFeedService implements RssFeedSource {
         if (periodIdx >= 0) end = Math.min(end, periodIdx + 1);
 
         // Rule 2: "This <Word>" boundary — stop before it
-        // Delaware descriptions always follow the act title with "This Act…", "This Senate…", etc.
         java.util.regex.Matcher m = java.util.regex.Pattern
                 .compile("\\bThis\\s+[A-Z]", java.util.regex.Pattern.CASE_INSENSITIVE)
                 .matcher(summary);
@@ -177,6 +237,16 @@ public class RssFeedService implements RssFeedSource {
         return Character.toUpperCase(raw.charAt(0)) + raw.substring(1).toLowerCase();
     }
 
+    // =============================================================================
+    // CLASSIFICATION
+    // =============================================================================
+    // WHY LinkedHashMap: insertion order matters — the first matched tag determines
+    // which "why it matters" sentence is used when multiple tags match.
+    //
+    // HOW IT WORKS: Each entry's lowercase headline+summary is tested against
+    // keyword arrays. Any matching bucket adds its display tag to the result list.
+    // If no bucket matches, a generic "Delaware Legislation" tag and fallback
+    // sentence are returned.
     private static final class Classification {
         List<String> categoryTags;
         List<String> resourceTags;
@@ -250,20 +320,23 @@ public class RssFeedService implements RssFeedSource {
             );
         }
 
-        // Display tags: title-cased category names
         List<String> categoryTags = matched.stream()
                 .map(t -> Character.toUpperCase(t.charAt(0)) + t.substring(1))
                 .collect(Collectors.toList());
 
-        // Resource tags: used for search filtering in the app
         List<String> resourceTags = new ArrayList<>(matched);
 
-        // Use the why-it-matters for the highest-priority matched tag
         String why = TAG_WHY.get(matched.get(0));
 
         return new Classification(categoryTags, resourceTags, why);
     }
 
+    // =============================================================================
+    // SUMMARY EXTRACTION
+    // =============================================================================
+    // WHY three sources: RSS feeds vary — most use <description>, some use
+    // <content:encoded>, and older feeds may use media extensions. Trying in order
+    // handles all three without configuration.
     private String extractSummary(SyndEntry entry) {
         // 1. Standard <description>
         if (entry.getDescription() != null && entry.getDescription().getValue() != null) {
@@ -278,7 +351,7 @@ public class RssFeedService implements RssFeedSource {
             }
         }
 
-        // 3. Media module fallback (WITN22 sometimes uses this)
+        // 3. Media module fallback
         for (SyndContent c : entry.getContents()) {
             if (c != null && c.getValue() != null) {
                 return stripHtml(c.getValue());
