@@ -461,7 +461,7 @@ async function loadSidebarNews() {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
-                <h4>${item.headline}</h4>
+                <h4>${item.why_it_matters || item.headline}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
             card.addEventListener("click", () => {
