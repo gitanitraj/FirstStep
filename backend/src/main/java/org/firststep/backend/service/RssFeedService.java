@@ -14,6 +14,7 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import java.util.stream.Collectors;
 
 @Service
 public class RssFeedService implements RssFeedSource {
@@ -29,7 +30,7 @@ public class RssFeedService implements RssFeedSource {
 
     @Scheduled(
             fixedDelayString = "${news.rss.refresh-interval:3600000}",
-            initialDelay = 5000
+            initialDelayString = "${news.rss.initial-delay:500}"
     )
     public void fetchFeeds() {
         if (rssFeedUrls == null || rssFeedUrls.isBlank()) {
@@ -110,12 +111,103 @@ public class RssFeedService implements RssFeedSource {
         item.published = DATE_FMT.format(published);
 
         item.active = true;
-        item.type = "general-news";
+        item.type = "legislation";
         item.urgency = "standard";
-        item.categoryTags = List.of("Community", "Updates");
-        item.whyItMatters = "Stay informed about news and updates in your community.";
+
+        String text = (item.headline + " " + item.summary).toLowerCase();
+        Classification cls = classifyLegislation(text);
+        item.categoryTags = cls.categoryTags;
+        item.resourceTags = cls.resourceTags;
+        item.whyItMatters = cls.whyItMatters;
 
         return item;
+    }
+
+    private static final class Classification {
+        List<String> categoryTags;
+        List<String> resourceTags;
+        String whyItMatters;
+        Classification(List<String> categoryTags, List<String> resourceTags, String whyItMatters) {
+            this.categoryTags = categoryTags;
+            this.resourceTags = resourceTags;
+            this.whyItMatters = whyItMatters;
+        }
+    }
+
+    private static final Map<String, String[]> TAG_KEYWORDS = new LinkedHashMap<>();
+    static {
+        TAG_KEYWORDS.put("housing",    new String[]{"housing", "rent", "landlord", "tenant", "evict",
+                                                    "mortgage", "residential", "manufactured home",
+                                                    "affordable rental", "shelter"});
+        TAG_KEYWORDS.put("healthcare", new String[]{"health", "medical", "medicaid", "medicare",
+                                                    "hospital", "clinic", "mental health", "prescription",
+                                                    "nursing", "patient", "wellness", "behavioral health",
+                                                    "opioid", "drug", "therapy", "physician", "care",
+                                                    "insurance", "vaccination", "public health",
+                                                    "drinking water", "long-term care", "school-based health"});
+        TAG_KEYWORDS.put("food",       new String[]{"food", "nutrition", "snap", "hunger", "grocery",
+                                                    "meal", "wic", "restaurant meals", "dietitian",
+                                                    "farm", "agriculture"});
+        TAG_KEYWORDS.put("employment", new String[]{"employ", "worker", "wage", "labor", "job",
+                                                    "workplace", "paid leave", "unemployment",
+                                                    "workforce", "occupational", "salary", "licensure"});
+        TAG_KEYWORDS.put("utilities",  new String[]{"utility", "utilities", "electric", "energy",
+                                                    "net meter", "solar", "water system"});
+        TAG_KEYWORDS.put("disability", new String[]{"disability", "disabilities", "accessible", "accessibility",
+                                                    "accommodation", "developmental disability",
+                                                    "rehabilitation", "hearing", "blue envelope"});
+        TAG_KEYWORDS.put("benefits",   new String[]{"benefit", "assistance", "subsidy", "aid",
+                                                    "social service", "low-income", "poverty",
+                                                    "state employee benefit", "child care",
+                                                    "school-based", "voucher"});
+        TAG_KEYWORDS.put("legal",      new String[]{"court", "justice", "civil right", "equal accommodation",
+                                                    "protection", "eviction", "trafficking",
+                                                    "stalking", "criminal", "juvenile"});
+    }
+
+    private static final Map<String, String> TAG_WHY = new LinkedHashMap<>();
+    static {
+        TAG_WHY.put("housing",    "This new law may affect your rights as a renter, homeowner, or manufactured-home resident in Delaware.");
+        TAG_WHY.put("healthcare", "This new law may change what health services or coverage are available to you or your family.");
+        TAG_WHY.put("food",       "This new law may affect food assistance programs or nutrition services in your community.");
+        TAG_WHY.put("employment", "This new law may change your rights or benefits at work, including wages, leave, or licensing.");
+        TAG_WHY.put("utilities",  "This new law may affect your electric, water, or energy bills.");
+        TAG_WHY.put("disability", "This new law may expand services or protections for people with disabilities.");
+        TAG_WHY.put("benefits",   "This new law may change assistance programs or benefits available to low-income Delawareans.");
+        TAG_WHY.put("legal",      "This new law may affect your legal rights or access to the courts.");
+    }
+
+    private static Classification classifyLegislation(String text) {
+        List<String> matched = new ArrayList<>();
+        for (Map.Entry<String, String[]> entry : TAG_KEYWORDS.entrySet()) {
+            for (String kw : entry.getValue()) {
+                if (text.contains(kw)) {
+                    matched.add(entry.getKey());
+                    break;
+                }
+            }
+        }
+
+        if (matched.isEmpty()) {
+            return new Classification(
+                List.of("Delaware Legislation"),
+                List.of(),
+                "Stay informed about new laws signed by the Governor of Delaware."
+            );
+        }
+
+        // Display tags: title-cased category names
+        List<String> categoryTags = matched.stream()
+                .map(t -> Character.toUpperCase(t.charAt(0)) + t.substring(1))
+                .collect(Collectors.toList());
+
+        // Resource tags: used for search filtering in the app
+        List<String> resourceTags = new ArrayList<>(matched);
+
+        // Use the why-it-matters for the highest-priority matched tag
+        String why = TAG_WHY.get(matched.get(0));
+
+        return new Classification(categoryTags, resourceTags, why);
     }
 
     private String extractSummary(SyndEntry entry) {
