@@ -52,6 +52,14 @@ jest-temp/
 # Cache
 .cache/
 
+# --- Java 17 / Maven ---
+target/
+*.class
+*.jar
+*.war
+*.ear
+hs_err_pid*
+
 # --- Python / Jupyter ---
 __pycache__/
 *.pyc
