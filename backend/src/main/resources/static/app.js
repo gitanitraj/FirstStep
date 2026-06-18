@@ -20,7 +20,7 @@ const STRINGS = {
         weeklyUpdatesSub: "News and Changes Impacting You",
         weeklyUpdatesDesc: "Stay up to date on the rules, public meetings and changes that affect housing, benefits and community services. Read the highlights and learn about important deadlines, new requirements and policy updates so you can participate and plan ahead.",
         aiTitle: "AI Guidance",
-        aiSubtitle: "Tell me what you need with and I'll find community solutions!",
+        aiSubtitle: "Tell me what you need help with!",
         aiPlaceholder: "E.g., I need rental help near Wilmington for seniors",
         aiButton: "Get Help",
         aiUrgent: "🚨 Urgent",
@@ -469,7 +469,7 @@ async function renderLawsColumn() {
         const items = await response.json();
         const list = document.getElementById("laws-list");
         list.innerHTML = "";
-        items.forEach(item => {
+        items.slice(0, 35).forEach(item => {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
