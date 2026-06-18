@@ -126,7 +126,7 @@ public class DecisionAgentService {
 
         scored.sort(Comparator.comparingInt(ResourceScore::score).reversed());
 
-        int limit = 10;
+        int limit = 5;
         return scored.stream().limit(limit).map(ResourceScore::resource).toList();
     }
 
@@ -156,7 +156,7 @@ public class DecisionAgentService {
 
         scored.sort(Comparator.comparingInt(NewsScore::score).reversed());
 
-        int limit = 6;
+        int limit = 3;
         return scored.stream().limit(limit).map(NewsScore::news).toList();
     }
 
@@ -186,33 +186,6 @@ public class DecisionAgentService {
 
     private String safeLower(String s) {
         return s == null ? "" : s.toLowerCase(Locale.ROOT).trim();
-    }
-
-    private String formatFirstLocation(Resource.Location loc) {
-        if (loc == null) return null;
-        if (Boolean.TRUE.equals(loc.confidential)) return null;
-
-        String address = loc.address;
-        String city = loc.city;
-        String state = loc.state;
-        String zip = loc.zip;
-
-        StringBuilder sb = new StringBuilder();
-        if (address != null && !address.isBlank()) sb.append(address);
-
-        if (city != null && !city.isBlank()) {
-            if (sb.length() > 0) sb.append(", ");
-            sb.append(city);
-        }
-        if (state != null && !state.isBlank()) {
-            if (sb.length() > 0) sb.append(", ");
-            sb.append(state);
-        }
-        if (zip != null && !zip.isBlank()) {
-            sb.append(" ").append(zip);
-        }
-
-        return sb.length() == 0 ? null : sb.toString().trim();
     }
 
     private String buildPrompt(
@@ -256,15 +229,7 @@ public class DecisionAgentService {
             m.put("category", r.category);
             m.put("urgency", r.urgency);
             m.put("summary", r.summary);
-            m.put("description", r.description);
-            m.put("eligibility", r.eligibility);
-            m.put("eligibilityAgeMin", r.eligibilityAgeMin);
-            m.put("eligibilityAgeMax", r.eligibilityAgeMax);
-            m.put("eligibilityGender", r.eligibilityGender);
-            m.put("tags", r.tags);
-            m.put("location", (r.locations != null && !r.locations.isEmpty()) ? formatFirstLocation(r.locations.get(0)) : null);
             m.put("phone", (r.phones != null && !r.phones.isEmpty()) ? r.phones.get(0).number : null);
-            m.put("website", (r.websites != null && !r.websites.isEmpty()) ? r.websites.get(0).url : null);
             return m;
         }).toList();
 

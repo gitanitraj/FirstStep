@@ -43,7 +43,8 @@ public class OllamaService {
                 "model", model,
                 "prompt", prompt,
                 "stream", false,
-                "temperature", temperature
+                "temperature", temperature,
+                "options", Map.of("num_predict", 1000)
         );
 
         String json = mapper.writeValueAsString(body);
