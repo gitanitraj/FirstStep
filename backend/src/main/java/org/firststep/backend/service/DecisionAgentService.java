@@ -2,15 +2,11 @@ package org.firststep.backend.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
-import java.util.HashSet;
 import java.util.List;
 import java.util.Locale;
-import java.util.Set;
 
-import org.firststep.backend.dto.Citation;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
-import org.firststep.backend.dto.DecisionStep;
 import org.firststep.backend.model.NewsItem;
 import org.firststep.backend.model.Resource;
 import org.springframework.stereotype.Service;
@@ -61,8 +57,6 @@ public class DecisionAgentService {
             resp.notes = "AI guidance is not configured on this server.";
             return resp;
         }
-
-
 
         List<Resource> resources = resourceService.getAllResources();
         List<NewsItem> news = newsService.getAllNews();
