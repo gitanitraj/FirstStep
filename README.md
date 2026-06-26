@@ -30,6 +30,28 @@ Building civic tools for low-resource communities requires more than technical s
    Java model classes aligned with a defined schema
    Startup validation logging
    
+   # Building the Backend
+
+   The backend targets **Java 17**. The build uses a Maven toolchain to compile
+   and test on JDK 17 regardless of the JVM Maven itself runs under (e.g.
+   Homebrew's Maven bundles a newer JDK). This requires a one-time, machine-local
+   `~/.m2/toolchains.xml` registering a JDK 17 install, for example:
+
+   ```xml
+   <toolchains xmlns="http://maven.apache.org/TOOLCHAINS/1.1.0">
+     <toolchain>
+       <type>jdk</type>
+       <provides><version>17</version></provides>
+       <configuration>
+         <jdkHome>/path/to/your/jdk-17</jdkHome>
+       </configuration>
+     </toolchain>
+   </toolchains>
+   ```
+
+   Find your JDK 17 path with `/usr/libexec/java_home -v 17` (macOS). Without a
+   matching toolchain entry, the build fails with "No toolchain found".
+
    # Frontend
    Lightweight static frontend
    Mobile-first interface

@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 
 import org.firststep.backend.model.Resource;
 import org.firststep.backend.service.ResourceService;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,9 @@ import org.springframework.web.bind.annotation.RestController;
 public class ResourceController {
 
     private final ResourceService service;
+
+    @Value("${app.seasonal.images.dir:backend/src/main/resources/static/images/seasonal}")
+    private String seasonalImagesDir;
 
     public ResourceController(ResourceService service) {
         this.service = service;
@@ -43,7 +47,7 @@ public class ResourceController {
 
     @GetMapping("/seasonal-images")
     public ResponseEntity<List<String>> getSeasonalImages() {
-        File dir = new File("backend/src/main/resources/static/images/seasonal");
+        File dir = new File(seasonalImagesDir);
         if (!dir.exists() || !dir.isDirectory()) {
             return ResponseEntity.ok(Collections.emptyList());
         }

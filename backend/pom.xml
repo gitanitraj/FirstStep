@@ -66,6 +66,28 @@
           <workingDirectory>${maven.multiModuleProjectDirectory}</workingDirectory>
         </configuration>
       </plugin>
+
+      <!-- Enforce JDK 17 for compile/test regardless of the JVM Maven runs under.
+           Requires a matching <jdk> toolchain in ~/.m2/toolchains.xml. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-toolchains-plugin</artifactId>
+        <version>3.1.0</version>
+        <configuration>
+          <toolchains>
+            <jdk>
+              <version>17</version>
+            </jdk>
+          </toolchains>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>toolchain</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 </project>
