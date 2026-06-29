@@ -7,6 +7,7 @@ import java.util.Optional;
 import java.nio.file.Path;
 
 import org.firststep.backend.model.Resource;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Service;
@@ -23,6 +24,9 @@ public class ResourceService implements DecisionAgentService.ResourceServiceLike
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Resource> resources = Collections.emptyList();
 
+    @Value("${app.data.dir:app/data}")
+    private String dataDir;
+
     /**
      * Loads resources after the Spring application is ready.
      * Tries external canonical file app/data/resources.json first,
@@ -31,16 +35,16 @@ public class ResourceService implements DecisionAgentService.ResourceServiceLike
 @EventListener(ApplicationReadyEvent.class)
 public void init() {
     // Try external canonical file first
+    Path external = Path.of(dataDir, "resources.json");
     try {
-        Path external = Path.of("app", "data", "resources.json");
         if (external.toFile().exists()) {
             JsonNode root = mapper.readTree(external.toFile());
             resources = parseJsonNodeToList(root);
-            System.out.println("Loaded resources from app/data/resources.json (" + resources.size() + " records)");
+            System.out.println("Loaded resources from " + external + " (" + resources.size() + " records)");
             return;
         }
     } catch (Exception e) {
-        System.err.println("Failed to load app/data/resources.json: " + e.getMessage());
+        System.err.println("Failed to load " + external + ": " + e.getMessage());
     }
 
     // Fallback: classpath resources.json

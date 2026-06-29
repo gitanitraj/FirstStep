@@ -49,8 +49,8 @@ class NewsControllerTest {
         }
 
         @Bean
-        NewsService newsService(RssFeedSource rssFeedSource) {
-            return new NewsService(rssFeedSource);
+        NewsService newsService() {
+            return new NewsService();
         }
     }
 
