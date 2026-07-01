@@ -52,6 +52,29 @@ Building civic tools for low-resource communities requires more than technical s
    Find your JDK 17 path with `/usr/libexec/java_home -v 17` (macOS). Without a
    matching toolchain entry, the build fails with "No toolchain found".
 
+   # Running with Docker
+
+   The whole app runs as a self-contained Docker Compose stack — the Spring
+   backend plus a local Ollama AI service — so you don't need Java, Maven, or a
+   toolchain installed. From the repo root:
+
+   ```
+   docker compose up --build
+   ```
+
+   Then open http://localhost:8080.
+
+   Two services start together:
+   * **app** — the Spring backend and static UI on port 8080.
+   * **ollama** — a local Ollama server. On first run it pulls the `gemma2:2b`
+     model (a few minutes); the model is cached in a named volume, so later
+     starts are fast. While the model is still downloading, the AI decision
+     endpoint returns a graceful fallback instead of erroring.
+
+   Runtime data (`app/data/` and the seasonal images) is baked into the image, so
+   updating that data means rebuilding (`docker compose up --build`). The stack
+   needs roughly 4 GB of RAM available for the AI model.
+
    # Frontend
    Lightweight static frontend
    Mobile-first interface

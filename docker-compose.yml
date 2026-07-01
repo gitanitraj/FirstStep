@@ -1,0 +1,22 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      OLLAMA_API_URL: http://ollama:11434/api/generate
+      AI_ENABLED: "true"
+    depends_on:
+      - ollama
+
+  ollama:
+    image: ollama/ollama:latest
+    entrypoint: ["/bin/sh", "/ollama-entrypoint.sh"]
+    volumes:
+      - ollama-models:/root/.ollama
+      - ./backend/docker/ollama-entrypoint.sh:/ollama-entrypoint.sh:ro
+
+volumes:
+  ollama-models:
