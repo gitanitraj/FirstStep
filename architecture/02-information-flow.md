@@ -1,0 +1,49 @@
+# 02 — Information Flow
+
+*How information moves through First Step, from source to community.*
+
+See the diagrams: [uml/information-flow.md](uml/information-flow.md) and
+[uml/information-sources.md](uml/information-sources.md).
+
+## Sources
+
+Information originates from two format classes and several actor types.
+
+- **Structured sources** — > TODO: resource directories, RSS feeds, government
+  websites, government APIs (future), partner organization data, databases.
+- **Unstructured sources** — > TODO: community flyers, PDFs, images, event
+  announcements, meeting notices, expert answers, community submissions.
+- **Source actor types** (see Information Sources diagram) — > TODO: Government,
+  Nonprofit, Community Organization, Grassroots Organizer, Resident (future),
+  Expert.
+
+## Stage 1 — Collect
+
+> TODO: Inputs (which sources), outputs, and where provenance (`ContentSource`) is
+> first attached.
+
+## Stage 2 — Generate metadata
+
+> TODO: How unstructured artifacts are turned into metadata *while preserving the
+> original* (linked as `Media`).
+
+## Stage 3 — Normalize
+
+> TODO: Mapping heterogeneous inputs onto the one consistent knowledge model.
+
+## Stage 4 — Enrich
+
+> TODO: Categories, tags, summaries, citations, relationships, translations,
+> AI-generated context. (v1's RSS classifier is a concrete example of enrichment.)
+
+## Stage 5 — Deliver
+
+The same knowledge, many channels.
+
+> TODO: Web, Mobile, Search, AI assistant, Newsletter, Social media, APIs — each a
+> consumer of one knowledge model.
+
+## Provenance through the flow
+
+> TODO: Where provenance is *attached* (Collect / Normalize) and where it is
+> *surfaced* to the community (Deliver, via `Citation` → `ContentSource`).

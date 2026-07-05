@@ -17,6 +17,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Service
 public class OllamaService {
 
+    // Generation budget and request timeout are coupled: the timeout must comfortably
+    // exceed the worst-case time to generate MAX_TOKENS, and MAX_TOKENS must be large
+    // enough for the model to CLOSE the JSON (an undersized budget truncates the
+    // response into invalid JSON). With the app's full context prompt the answer
+    // needs ~350 tokens to complete; on CPU here (~3 tok/s) that's ~115s, so allow 150s.
+    private static final int MAX_TOKENS = 350;
+    private static final Duration REQUEST_TIMEOUT = Duration.ofSeconds(150);
+
     private final ObjectMapper mapper = new ObjectMapper();
 
     private final String apiUrl;
@@ -44,14 +52,14 @@ public class OllamaService {
                 "prompt", prompt,
                 "stream", false,
                 "temperature", temperature,
-                "options", Map.of("num_predict", 1000)
+                "options", Map.of("num_predict", MAX_TOKENS)
         );
 
         String json = mapper.writeValueAsString(body);
 
         HttpRequest request = HttpRequest.newBuilder()
                 .uri(URI.create(apiUrl))
-                .timeout(Duration.ofSeconds(120))
+                .timeout(REQUEST_TIMEOUT)
                 .header("Content-Type", "application/json")
                 .POST(HttpRequest.BodyPublishers.ofString(json))
                 .build();

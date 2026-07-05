@@ -208,9 +208,9 @@ public class DecisionAgentService {
                 "If the context is missing some user-specific details, do NOT ask for external contact unless necessary. Instead, provide best-effort next actions using the closest matching resources from LOCAL_RESOURCES/LOCAL_NEWS. " +
                 "Return STRICT JSON with exactly these keys: " +
                 "answerTitle, steps, citations, notes. " +
-                "Steps is an array of objects with keys: order, title, action, why. " +
-                "Citations is an array of objects with keys: sourceType, id, label. " +
-                "No markdown. No extra text. No trailing commas.\n\n" +
+                "Steps is an array of AT MOST 3 objects with keys: order, title, action, why; keep each value to one short sentence. " +
+                "Citations is an array of AT MOST 2 objects with keys: sourceType, id, label. " +
+                "Be concise so the JSON is complete. No markdown. No extra text. No trailing commas.\n\n" +
                 ctx;
     }
 
@@ -270,7 +270,16 @@ public class DecisionAgentService {
         // Strip trailing commas before } or ] — common LLM JSON generation mistake
         trimmed = trimmed.replaceAll(",\\s*([}\\]])", "$1");
 
-        JsonNode root = mapper.readTree(trimmed);
+        // On a token-limited backend the model may be cut off mid-JSON, leaving
+        // unclosed arrays/objects. If strict parsing fails, salvage the response by
+        // truncating to the last complete top-level element and re-balancing brackets,
+        // so fully-formed steps are still returned instead of falling back to an error.
+        JsonNode root;
+        try {
+            root = mapper.readTree(trimmed);
+        } catch (Exception e) {
+            root = mapper.readTree(repairTruncatedJson(trimmed));
+        }
         DecisionResponse resp = mapper.treeToValue(root, DecisionResponse.class);
 
         if (resp.steps == null) resp.steps = List.of();
@@ -281,6 +290,43 @@ public class DecisionAgentService {
         // Ensure step ordering
         resp.steps = resp.steps.stream().sorted(Comparator.comparingInt(s -> s.order)).toList();
         return resp;
+    }
+
+    /**
+     * Best-effort repair of JSON that was cut off mid-generation. Cuts back to the
+     * last completed element (a '}' or a quoted string), removes any trailing comma,
+     * then appends the ']' and '}' needed to close still-open arrays/objects. Brackets
+     * inside string values are ignored. Returns a balanced string; if nothing usable
+     * remains, returns the input unchanged (the caller's readTree will then throw).
+     */
+    private String repairTruncatedJson(String s) {
+        // Find the last structurally "safe" end point: a closing brace or a closed string.
+        int lastObj = s.lastIndexOf('}');
+        if (lastObj < 0) return s;
+        String cut = s.substring(0, lastObj + 1);
+
+        // Walk the salvaged prefix tracking unclosed { and [ (ignoring braces in strings).
+        int curly = 0, square = 0;
+        boolean inString = false, escaped = false;
+        for (int i = 0; i < cut.length(); i++) {
+            char c = cut.charAt(i);
+            if (inString) {
+                if (escaped) escaped = false;
+                else if (c == '\\') escaped = true;
+                else if (c == '"') inString = false;
+                continue;
+            }
+            if (c == '"') inString = true;
+            else if (c == '{') curly++;
+            else if (c == '}') curly--;
+            else if (c == '[') square++;
+            else if (c == ']') square--;
+        }
+
+        StringBuilder sb = new StringBuilder(cut);
+        while (square-- > 0) sb.append(']');
+        while (curly-- > 0) sb.append('}');
+        return sb.toString();
     }
 
     private record ResourceScore(Resource resource, int score) {}
