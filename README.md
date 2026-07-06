@@ -32,24 +32,25 @@ Building civic tools for low-resource communities requires more than technical s
    
    # Building the Backend
 
-   The backend targets **Java 17**. The build uses a Maven toolchain to compile
-   and test on JDK 17 regardless of the JVM Maven itself runs under (e.g.
-   Homebrew's Maven bundles a newer JDK). This requires a one-time, machine-local
-   `~/.m2/toolchains.xml` registering a JDK 17 install, for example:
+   The backend is configured to compile to **Java 17 bytecode** while using a
+   **JDK 25** Maven toolchain for compilation and tests. This keeps the app on
+   a conservative language level while allowing builds to run on a newer JDK.
+   This requires a one-time, machine-local `~/.m2/toolchains.xml` registering a
+   JDK 25 install, for example:
 
    ```xml
    <toolchains xmlns="http://maven.apache.org/TOOLCHAINS/1.1.0">
      <toolchain>
        <type>jdk</type>
-       <provides><version>17</version></provides>
+       <provides><version>25</version></provides>
        <configuration>
-         <jdkHome>/path/to/your/jdk-17</jdkHome>
+         <jdkHome>/path/to/your/jdk-25</jdkHome>
        </configuration>
      </toolchain>
    </toolchains>
    ```
 
-   Find your JDK 17 path with `/usr/libexec/java_home -v 17` (macOS). Without a
+   Find your JDK 25 path with `/usr/libexec/java_home -v 25` (macOS). Without a
    matching toolchain entry, the build fails with "No toolchain found".
 
    # Running with Docker

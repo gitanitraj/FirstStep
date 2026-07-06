@@ -18,6 +18,7 @@
 
   <properties>
     <java.version>17</java.version>
+    <maven.compiler.release>${java.version}</maven.compiler.release>
   </properties>
 
   <dependencies>
@@ -67,7 +68,16 @@
         </configuration>
       </plugin>
 
-      <!-- Enforce JDK 17 for compile/test regardless of the JVM Maven runs under.
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <version>3.13.0</version>
+        <configuration>
+          <release>${maven.compiler.release}</release>
+        </configuration>
+      </plugin>
+
+      <!-- Use a JDK 25 toolchain for compile/test regardless of the JVM Maven runs under.
            Requires a matching <jdk> toolchain in ~/.m2/toolchains.xml. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -76,7 +86,7 @@
         <configuration>
           <toolchains>
             <jdk>
-              <version>17</version>
+              <version>25</version>
             </jdk>
           </toolchains>
         </configuration>
