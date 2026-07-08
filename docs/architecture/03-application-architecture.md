@@ -1,4 +1,4 @@
-# 03 — Platform Architecture
+# 03 — Application Architecture
 
 *How the software implements the information flow.*
 
