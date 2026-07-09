@@ -20,7 +20,6 @@ Data (JSON / RSS / Flyers  →  SQLite / Postgres)
 CivicAssistantService
 ```
 
-> TODO: Describe each layer's responsibility and boundaries.
 
 ## Repository — a *pattern*, not a committed generic class
 

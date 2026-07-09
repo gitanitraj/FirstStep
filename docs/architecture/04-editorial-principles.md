@@ -1,3 +1,5 @@
+First Step is an editorial and technical platform.
+
 # 04 — Editorial Principles
 
 *The content and governance rules for what enters and leaves the knowledge base.*
@@ -5,20 +7,31 @@
 These principles govern the human and AI judgment applied across the pipeline —
 especially the **Enrich** and **Deliver** stages.
 
-## Traceability to source
+## Editorial Standards
 
-> TODO: Every delivered claim must trace to a `ContentSource`. State the rule and
-> its non-negotiables.
+-   Make civic information easier to understand without changing it.
+-   Never advocate for a political position.
+-   Attribute information to its source.
+-   Distinguish facts from AI-generated summaries.
+-   Preserve provenance through ContentSource and Citation.
+-   Present context without changing underlying facts.
+-   Encourage residents to connect with the originating organization
+    rather than replacing it.
+-   Accuracy before speed.
+-   Build trust through transparency and traceability.
 
-## Verification
+## Civic Content
 
-> TODO: What "verified" means, who/what can set it, and how unverified content is
-> handled.
+Every piece of CivicContent should answer:
 
-## Community-neutral voice
+-   What is available?
+-   Who is eligible?
+-   Where can someone learn more?
+-   Who should they contact?
 
-> TODO: No Wilmington-specific assumptions unless intentionally scoped. State how
-> content stays portable across communities.
+Every piece of NewsItem should have a headline and summary. Everypiece of NewsItem should answer:
+
+-   Why does it matter?
 
 ## Translations & multi-language
 
@@ -26,7 +39,7 @@ especially the **Enrich** and **Deliver** stages.
 > version is preserved.
 
 ## AI-generated context
-
+AI summarizes but never invents.
 > TODO: How AI-generated enrichment is labeled, bounded, and kept distinguishable
 > from source content.
 
