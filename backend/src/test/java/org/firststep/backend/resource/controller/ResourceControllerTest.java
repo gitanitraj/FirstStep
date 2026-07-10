@@ -1,6 +1,11 @@
-package org.firststep.backend.controller;
+package org.firststep.backend.resource.controller;
 
-import org.firststep.backend.service.ResourceService;
+import java.util.List;
+import java.util.Optional;
+
+import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.resource.repository.ResourceRepository;
+import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,8 +30,23 @@ class ResourceControllerTest {
     @Configuration
     static class TestConfig {
         @Bean
-        ResourceService resourceService() {
-            return new ResourceService();
+        ResourceRepository resourceRepository() {
+            return new ResourceRepository() {
+                @Override
+                public List<Resource> findAll() {
+                    return List.of();
+                }
+
+                @Override
+                public Optional<Resource> findById(String id) {
+                    return Optional.empty();
+                }
+            };
+        }
+
+        @Bean
+        ResourceService resourceService(ResourceRepository resourceRepository) {
+            return new ResourceService(resourceRepository);
         }
     }
 

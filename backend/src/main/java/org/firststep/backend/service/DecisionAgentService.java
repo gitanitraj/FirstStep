@@ -9,7 +9,7 @@ import org.firststep.backend.ai.service.AiAssistant;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
 import org.firststep.backend.model.NewsItem;
-import org.firststep.backend.model.Resource;
+import org.firststep.backend.resource.model.Resource;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.json.JsonReadFeature;

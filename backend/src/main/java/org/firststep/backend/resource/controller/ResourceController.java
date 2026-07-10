@@ -1,4 +1,4 @@
-package org.firststep.backend.controller;
+package org.firststep.backend.resource.controller;
 
 import java.io.File;
 import java.util.Arrays;
@@ -6,8 +6,8 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import org.firststep.backend.model.Resource;
-import org.firststep.backend.service.ResourceService;
+import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.dto.ApiResponse;
 import org.firststep.backend.shared.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;

@@ -29,15 +29,18 @@ Errors are centralized through `shared/web/GlobalExceptionHandler`
 same `ApiResponse` envelope shape as a successful response.
 
 
-## Repository — a *pattern*, not a committed generic class
+## Repository — per-slice interfaces, not one generic class
 
-> **NOTE — decision intentionally deferred.** The persistence layer is described
-> as a **pattern**. Whether all knowledge lives in a single generic repository, or
-> in several purpose-specific repositories, is **left open** until decided. Do not
-> commit to a `Repository<T>` or any one structure here.
-
-> TODO: Describe the repository pattern and the open question of single-vs-multiple
-> repositories.
+**Decided** (resolves the previously-open question): each vertical slice owns
+its own repository interface — `resource/repository/ResourceRepository`,
+`news/repository/NewsRepository` — rather than a single generic
+`Repository<T>`. Each interface has only the methods its slice's
+service/controller actually call (e.g. `ResourceRepository` has no
+save/update/delete, since storage is still read-only JSON loaded at
+startup). Storage stays JSON-file-backed for this pass
+(`JsonResourceRepository`, `JsonNewsRepository`) — a future SQLite/Postgres
+swap only requires a new implementation of the same interface; services and
+controllers don't change.
 
 ## AiAssistant (the AI seam)
 

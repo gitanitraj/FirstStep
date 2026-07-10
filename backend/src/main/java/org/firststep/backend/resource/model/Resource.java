@@ -1,19 +1,22 @@
-package org.firststep.backend.model;
+package org.firststep.backend.resource.model;
 
 import java.util.List;
+
+import org.firststep.backend.shared.model.CivicContent;
+import org.firststep.backend.shared.model.Location;
+import org.firststep.backend.shared.model.Phone;
+import org.firststep.backend.shared.model.Website;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Resource {
-    public String id;
+public class Resource extends CivicContent {
     public String category;
     public String subcategory;
     public String organization;
     @JsonProperty("parent_organization")
     public String parentOrganization;
-    public String summary;
     public String description;
     public String population;
     public String eligibility;
@@ -31,32 +34,5 @@ public class Resource {
     public List<String> accessMode;
     public String cost;
     public String urgency;
-    public List<String> tags;
-    public String source;
-    public String retrieved;
-    public Boolean verified;
     public String notes;
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Location {
-        public String label;
-        public String address;
-        public String city;
-        public String state;
-        public String zip;
-        public Boolean confidential;
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Phone {
-        public String number;
-        public String label;
-    }
-
-    @JsonIgnoreProperties(ignoreUnknown = true)
-    public static class Website {
-        public String url;
-        public String label;
-    }
 }
-

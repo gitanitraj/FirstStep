@@ -8,7 +8,17 @@ See the diagram: [uml/domain-model.md](uml/domain-model.md).
 
 The primary things the community cares about.
 
-- **Resource** — > TODO: define (evolves from v1 `Resource`).
+- **Resource** — `org.firststep.backend.resource.model.Resource`, extends
+  `CivicContent`. Resource-specific fields: `category, subcategory,
+  organization, parentOrganization, description, population, eligibility,
+  eligibilityAgeMin, eligibilityAgeMax, eligibilityGender, locations:
+  List<Location>, phones: List<Phone>, websites: List<Website>, county,
+  accessMode: List<String>, cost, urgency, notes`. `title` (inherited from
+  `CivicContent`) is populated from `organization` at load time — `app.js`
+  has always rendered `organization` as the display title, and `organization`
+  itself is kept (not renamed) since it's used throughout
+  `DecisionAgentService`'s scoring logic. Backed by `JsonResourceRepository`
+  (JSON-file storage, unchanged from v1's loading mechanism).
 - **NewsItem** — > TODO: define (evolves from v1 `NewsItem`).
 - **Flyer** — > TODO: define (unstructured artifact + generated metadata).
 - **FAQ** — > TODO: define.
@@ -84,9 +94,12 @@ How today's model seeds v2 (this is an *evolution*, not a throwaway).
 
 | v1 | v2 |
 | --- | --- |
-| `Resource` (flat `source`/`retrieved`/`verified`) | `Resource` + `ContentSource` |
+| `Resource.source`/`.retrieved` (flat Strings) | `Resource.contentSource.name`/`.retrieved` (inherited `ContentSource`) |
+| `Resource.organization` | `Resource.organization` (unchanged) + `Resource.title` (inherited, populated from it) |
+| `Resource.verified` | inherited from `CivicContent`, unchanged |
+| *(none)* | `Resource.communityId`, `.createdDate`, `.updatedDate` — new, defaulted at load time |
 | `NewsItem` (`sourceName`/`sourceUrl`) | `NewsItem` + `ContentSource` |
 | `dto/Citation` (`sourceType`/`id`/`label`) | `Citation` linked to `ContentSource` |
-| `Resource.Location/Phone/Website` | `Location` / `Contact` |
+| `Resource.Location/Phone/Website` (nested statics) | `shared.model.Location/Phone/Website` (top-level, same fields) |
 
 > TODO: Extend the mapping and note migration implications.
