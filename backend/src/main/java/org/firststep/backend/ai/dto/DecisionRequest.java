@@ -1,4 +1,4 @@
-package org.firststep.backend.dto;
+package org.firststep.backend.ai.dto;
 
 import java.util.List;
 
@@ -21,4 +21,3 @@ public class DecisionRequest {
      */
     public List<String> preferredCategories;
 }
-

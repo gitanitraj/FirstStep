@@ -3,9 +3,9 @@ package org.firststep.backend.resource.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.firststep.backend.ai.service.DecisionAgentService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.repository.ResourceRepository;
-import org.firststep.backend.service.DecisionAgentService;
 import org.springframework.stereotype.Service;
 
 @Service

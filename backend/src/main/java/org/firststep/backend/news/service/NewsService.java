@@ -2,9 +2,9 @@ package org.firststep.backend.news.service;
 
 import java.util.List;
 
+import org.firststep.backend.ai.service.DecisionAgentService;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.repository.NewsRepository;
-import org.firststep.backend.service.DecisionAgentService;
 import org.springframework.stereotype.Service;
 
 @Service

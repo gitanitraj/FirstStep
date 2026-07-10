@@ -93,7 +93,14 @@ specific Resource ids, not a category classification) stays a
 
 ## Provenance depth
 
-Level 1 (source attribution) for v2.
+Level 1 (source attribution) for v2. Concrete example, now implemented:
+`DecisionAgentService.resolveCitationSources` matches each AI-generated
+`Citation.id` against the `Resource`/`NewsItem` actually retrieved for that
+answer and copies its `contentSource` onto the citation — so a delivered
+answer's citation traces back to a real `ContentSource` (or stays
+unresolved, logged at DEBUG, if the model cited an id that was never
+retrieved). This is item-level provenance (which source backs this citation),
+not field-level (which source backs this specific claim within the item).
 
 > TODO: Note the seam to deeper lineage (field-level / event-sourced) as a future
 > option, without building it now.

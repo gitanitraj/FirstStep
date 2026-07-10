@@ -1,15 +1,18 @@
-package org.firststep.backend.service;
+package org.firststep.backend.ai.service;
 
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
-import org.firststep.backend.ai.service.AiAssistant;
-import org.firststep.backend.dto.DecisionRequest;
-import org.firststep.backend.dto.DecisionResponse;
+import org.firststep.backend.ai.dto.DecisionRequest;
+import org.firststep.backend.ai.dto.DecisionResponse;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.shared.model.Citation;
+import org.firststep.backend.shared.model.ContentSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.fasterxml.jackson.core.json.JsonReadFeature;
@@ -20,6 +23,8 @@ import com.fasterxml.jackson.databind.json.JsonMapper;
 
 @Service
 public class DecisionAgentService {
+
+    private static final Logger log = LoggerFactory.getLogger(DecisionAgentService.class);
 
     private final ObjectMapper mapper = JsonMapper.builder()
             .enable(MapperFeature.ALLOW_COERCION_OF_SCALARS)
@@ -43,7 +48,7 @@ public class DecisionAgentService {
     }
 
     /**
-     * Main entry: retrieve relevant local items, then ask Ollama to return STRICT JSON.
+     * Main entry: retrieve relevant local items, then ask the AI to return STRICT JSON.
      */
     public DecisionResponse decide(DecisionRequest request) {
         String q = safeLower(request == null ? null : request.userQuery);
@@ -70,7 +75,9 @@ public class DecisionAgentService {
 
         try {
             String raw = aiAssistant.generate(prompt, 0.2);
-            return parseDecisionResponse(raw);
+            DecisionResponse response = parseDecisionResponse(raw);
+            resolveCitationSources(response.citations, topResources, topNews);
+            return response;
         } catch (Exception e) {
             DecisionResponse fallback = new DecisionResponse();
             fallback.answerTitle = "Unable to generate guidance";
@@ -330,15 +337,48 @@ public class DecisionAgentService {
         return sb.toString();
     }
 
+    /**
+     * Links each citation the model produced back to the real ContentSource of
+     * the Resource/NewsItem it claims to cite, by matching Citation.id against
+     * the same topResources/topNews lists that were fed into the prompt. Logs
+     * at DEBUG which citation ids matched vs. didn't — over time this signal
+     * shows whether the model consistently hallucinates ids, or whether
+     * certain source types never get cited, which is useful input for how
+     * Flyer/Expert/Search content gets cited once those slices exist.
+     */
+    private void resolveCitationSources(List<Citation> citations, List<Resource> topResources, List<NewsItem> topNews) {
+        if (citations == null) return;
+
+        for (Citation citation : citations) {
+            ContentSource matched = null;
+
+            for (Resource r : topResources) {
+                if (r.id != null && r.id.equals(citation.id)) {
+                    matched = r.contentSource;
+                    break;
+                }
+            }
+            if (matched == null) {
+                for (NewsItem n : topNews) {
+                    if (n.id != null && n.id.equals(citation.id)) {
+                        matched = n.contentSource;
+                        break;
+                    }
+                }
+            }
+
+            citation.contentSource = matched;
+            if (matched != null) {
+                log.debug("Citation {} matched a real source: {}", citation.id, matched.name);
+            } else {
+                log.debug("Citation {} did not match any retrieved resource/news item (possible hallucination)", citation.id);
+            }
+        }
+    }
+
     private record ResourceScore(Resource resource, int score) {}
 
     private record NewsScore(NewsItem news, int score) {}
-
-
-
-
-
-
 
     /**
      * Tiny adapters so we don't have to depend on concrete services in signatures.
@@ -352,4 +392,3 @@ public class DecisionAgentService {
     }
 
 }
-

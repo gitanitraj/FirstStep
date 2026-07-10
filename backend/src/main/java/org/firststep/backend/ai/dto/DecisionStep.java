@@ -1,4 +1,4 @@
-package org.firststep.backend.dto;
+package org.firststep.backend.ai.dto;
 
 public class DecisionStep {
     public int order;
@@ -10,4 +10,3 @@ public class DecisionStep {
      */
     public String why;
 }
-

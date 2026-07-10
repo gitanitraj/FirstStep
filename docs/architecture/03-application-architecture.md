@@ -20,7 +20,7 @@ Repository pattern
   ↓
 Data (JSON / RSS / Flyers  →  SQLite / Postgres)
   ↓
-CivicAssistantService
+AiAssistant / SpringAiAssistant
 ```
 
 Errors are centralized through `shared/web/GlobalExceptionHandler`
@@ -87,8 +87,11 @@ not hard-wired.
 Small, demonstrable increments. **Every milestone leaves First Step in a working,
 demoable state** and satisfies the [Definition of Done](00-philosophy.md#definition-of-done).
 
-- **Milestone 1** — Introduce `Community`; introduce `ContentSource`; keep JSON
-  storage. → **Demo.**
+- [x] **Milestone 1** — Introduce `Community`; introduce `ContentSource`; keep JSON
+  storage. → **Demo.** *(Completed — Steps 1-6 of the vertical-slice migration:
+  shared domain kernel, `ApiResponse<T>`, `AiAssistant` seam, Resource/News/AI
+  slices, real `Citation` → `ContentSource` resolution. Verified via a live
+  Docker deployment and headless-browser walkthrough, not just `mvn test`.)*
 - **Milestone 2** — Add flyer metadata extraction (unstructured → metadata while
   preserving the original artifact). → **Demo.**
 
