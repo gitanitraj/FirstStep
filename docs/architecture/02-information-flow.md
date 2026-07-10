@@ -2,8 +2,7 @@
 
 *How information moves through First Step, from source to community.*
 
-See the diagrams: [uml/information-flow.md](uml/information-flow.md) and
-[uml/information-sources.md](uml/information-sources.md).
+See the diagram: [uml/information-flow-uml.md](uml/information-flow-uml.md).
 
 ## Sources
 

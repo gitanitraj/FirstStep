@@ -2,7 +2,7 @@
 
 *The knowledge model: what First Step knows about, and how those things relate.*
 
-See the diagram: [uml/domain-model.md](uml/domain-model.md).
+See the diagram: [uml/domain-model-uml.md](uml/domain-model-uml.md).
 
 ## Core Knowledge
 

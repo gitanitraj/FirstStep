@@ -12,9 +12,9 @@ package org.firststep.backend.resource.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.firststep.backend.ai.service.DecisionAgentService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.repository.ResourceRepository;
-import org.firststep.backend.service.DecisionAgentService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,12 +51,12 @@ public class ResourceService implements DecisionAgentService.ResourceServiceLike
 // changes here.
 //
 // Still implements DecisionAgentService.ResourceServiceLike (a marker
-// interface nested inside DecisionAgentService, in the ai slice) — this is a
-// pre-existing coupling direction (resource slice implements a type owned by
-// the ai slice) carried over unchanged from v1, not something this pass
-// restructures. It's a known smell worth a future look once the ai slice's
-// own consolidation (Step 6) settles, but "move code as-is" took priority
-// over fixing unrelated design issues encountered along the way.
+// interface nested inside DecisionAgentService, now in the ai slice as of
+// Step 6's consolidation) — this is a pre-existing coupling direction
+// (resource slice implements a type owned by the ai slice) carried over
+// unchanged from v1, not something this pass restructures. It's a known
+// smell — worth a future look — but "move code as-is" took priority over
+// fixing unrelated design issues encountered along the way.
 // =============================================================================
 
 // =============================================================================
