@@ -93,7 +93,14 @@ demoable state** and satisfies the [Definition of Done](00-philosophy.md#definit
   slices, real `Citation` → `ContentSource` resolution. Verified via a live
   Docker deployment and headless-browser walkthrough, not just `mvn test`.)*
 - **Milestone 2** — Add flyer metadata extraction (unstructured → metadata while
-  preserving the original artifact). → **Demo.**
+  preserving the original artifact). → **Demo.** *(Not started. Empty package
+  scaffolding for `flyer`, `expert`, `search`, and a `pipeline` package with
+  minimal per-stage marker interfaces — `Collector`, `MetadataExtractor`,
+  `Normalizer`, `Enricher`, `Deliverer` — now exist as a landing point, per
+  the vertical-slice migration's Step 7. No real logic, and Resource/News
+  ingestion is deliberately NOT refactored to implement these interfaces
+  yet — that refactor is future work once a second real case (e.g. Flyer)
+  exists to validate the shape against.)*
 
 > TODO: Add further milestones (e.g. repository pattern, SQLite, Spring AI swap,
 > first non-Wilmington community). Each must end in a working demo.
