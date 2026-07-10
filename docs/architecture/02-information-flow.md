@@ -43,6 +43,13 @@ The same knowledge, many channels.
 > TODO: Web, Mobile, Search, AI assistant, Newsletter, Social media, APIs — each a
 > consumer of one knowledge model.
 
+The AI-assistant channel is named `AiAssistant` (interface) /
+`SpringAiAssistant` (implementation) in code — see
+`03-application-architecture.md`'s "AiAssistant (the AI seam)" section. The
+diagram in [uml/information-flow-uml.md](uml/information-flow-uml.md) used
+the placeholder name `CivicAssistantService`; that's reconciled to
+`AiAssistant` there rather than keeping two names for the same seam.
+
 ## Provenance through the flow
 
 > TODO: Where provenance is *attached* (Collect / Normalize) and where it is

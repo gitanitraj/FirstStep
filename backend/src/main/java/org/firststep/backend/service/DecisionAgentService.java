@@ -5,6 +5,7 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Locale;
 
+import org.firststep.backend.ai.service.AiAssistant;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
 import org.firststep.backend.model.NewsItem;
@@ -28,17 +29,17 @@ public class DecisionAgentService {
     private final boolean aiEnabled;
     private final ResourceServiceLike resourceService;
     private final NewsServiceLike newsService;
-    private final OllamaService ollamaService;
+    private final AiAssistant aiAssistant;
 
     public DecisionAgentService(
             @org.springframework.beans.factory.annotation.Value("${ai.enabled:false}") boolean aiEnabled,
             ResourceServiceLike resourceService,
             NewsServiceLike newsService,
-            OllamaService ollamaService) {
+            AiAssistant aiAssistant) {
         this.aiEnabled = aiEnabled;
         this.resourceService = resourceService;
         this.newsService = newsService;
-        this.ollamaService = ollamaService;
+        this.aiAssistant = aiAssistant;
     }
 
     /**
@@ -68,7 +69,7 @@ public class DecisionAgentService {
         String prompt = buildPrompt(q, urgent, preferredCategories, topResources, topNews);
 
         try {
-            String raw = ollamaService.generate(prompt, 0.2);
+            String raw = aiAssistant.generate(prompt, 0.2);
             return parseDecisionResponse(raw);
         } catch (Exception e) {
             DecisionResponse fallback = new DecisionResponse();

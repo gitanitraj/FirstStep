@@ -23,7 +23,7 @@ Civic Knowledge Base
             +----------------------------+
             |                            |
             v                            v
-REST API                    CivicAssistantService
+REST API                    AiAssistant (SpringAiAssistant)
             |
             v
 Web • Mobile • Search • Newsletter • Social

@@ -39,12 +39,28 @@ same `ApiResponse` envelope shape as a successful response.
 > TODO: Describe the repository pattern and the open question of single-vs-multiple
 > repositories.
 
-## CivicAssistantService (the AI seam)
+## AiAssistant (the AI seam)
 
-> TODO: `CivicAssistantService` is the abstraction for AI assistance. Today it is
-> backed by direct Ollama HTTP calls (v1 `OllamaService`); the intended v2
-> implementation is **Spring AI**. Describe the seam and what stays stable across
-> the swap.
+`AiAssistant` (interface, `ai/service/AiAssistant.java`) is the abstraction for
+AI assistance — one method, `generate(String prompt, double temperature)`.
+`SpringAiAssistant` (`ai/service/SpringAiAssistant.java`) is its implementation,
+using Spring AI's provider-agnostic `ChatClient` API. This replaces v1's direct
+Ollama HTTP calls (`OllamaService`, deleted in this pass).
+
+As of this pass, **no AI provider is configured** — no Spring AI model-provider
+starter (e.g. `spring-ai-starter-model-ollama`) is on the classpath, since none
+is available or subscribed to yet. `SpringAiAssistant` stays bootable by taking
+an `ObjectProvider<ChatClient.Builder>` rather than a hard dependency; it
+throws `AiProviderNotConfiguredException` only if actually called, which
+`DecisionAgentService`'s existing fallback handling absorbs — the same
+"AI guidance unavailable" behavior v1 had when Ollama was unreachable.
+
+What stays stable across a future provider swap: `DecisionAgentService` and
+every other caller depend only on the `AiAssistant` interface. Adding a
+provider (e.g. `spring-ai-starter-model-ollama`) to `backend/pom.xml` should be
+the only change needed to make `SpringAiAssistant` actually call out — its
+internal logic already uses Spring AI's generic `ChatOptions`, not any
+provider-specific options class.
 
 ## Technical stack
 
@@ -53,12 +69,12 @@ not hard-wired.
 
 | Concern | Intended implementation |
 | --- | --- |
-| Backend | Spring Boot |
+| Backend | Spring Boot 3.5.16 |
 | API | REST |
 | Frontend | React |
 | Storage (now) | JSON |
 | Storage (next) | SQLite → PostgreSQL |
-| AI | Spring AI (via `CivicAssistantService`) |
+| AI | Spring AI 1.1.8 (via `AiAssistant`/`SpringAiAssistant`) — no model provider configured yet |
 | Mobile | Future |
 
 > TODO: Confirm/adjust; note anything explicitly rejected.

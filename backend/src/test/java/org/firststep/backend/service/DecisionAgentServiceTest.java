@@ -1,5 +1,6 @@
 package org.firststep.backend.service;
 
+import org.firststep.backend.ai.service.AiAssistant;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
 import org.firststep.backend.model.NewsItem;
@@ -12,11 +13,10 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class DecisionAgentServiceTest {
 
-    /** Fake Ollama that returns a canned raw response, bypassing the network. */
-    static class FakeOllama extends OllamaService {
+    /** Fake AiAssistant that returns a canned raw response, bypassing any real provider. */
+    static class FakeAiAssistant implements AiAssistant {
         private final String raw;
-        FakeOllama(String raw) {
-            super("http://unused", "fake-model");
+        FakeAiAssistant(String raw) {
             this.raw = raw;
         }
         @Override
@@ -30,7 +30,7 @@ class DecisionAgentServiceTest {
                 true,                                  // aiEnabled
                 () -> List.<Resource>of(),             // ResourceServiceLike
                 () -> List.<NewsItem>of(),             // NewsServiceLike
-                new FakeOllama(rawModelOutput));
+                new FakeAiAssistant(rawModelOutput));
     }
 
     @Test
