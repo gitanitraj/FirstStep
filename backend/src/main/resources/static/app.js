@@ -183,26 +183,10 @@ document.getElementById("contrast-button").addEventListener("click", () => {
     localStorage.setItem("high-contrast", document.body.classList.contains("high-contrast"));
 });
 
-document.getElementById("increase-text-button").addEventListener("click", () => {
-    const current = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const next = Math.min(current + 2, 24);
-    document.documentElement.style.fontSize = next + "px";
-    localStorage.setItem("font-size", next + "px");
-});
-
-document.getElementById("decrease-text-button").addEventListener("click", () => {
-    const current = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const next = Math.max(current - 2, 12);
-    document.documentElement.style.fontSize = next + "px";
-    localStorage.setItem("font-size", next + "px");
-});
-
 window.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("high-contrast") === "true") {
         document.body.classList.add("high-contrast");
     }
-    const savedFontSize = localStorage.getItem("font-size");
-    if (savedFontSize) document.documentElement.style.fontSize = savedFontSize;
     loadSidebarNews();
     loadSidebarLaws();
     applyLanguage();
