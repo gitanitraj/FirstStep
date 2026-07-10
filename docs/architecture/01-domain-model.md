@@ -19,7 +19,17 @@ The primary things the community cares about.
   itself is kept (not renamed) since it's used throughout
   `DecisionAgentService`'s scoring logic. Backed by `JsonResourceRepository`
   (JSON-file storage, unchanged from v1's loading mechanism).
-- **NewsItem** — > TODO: define (evolves from v1 `NewsItem`).
+- **NewsItem** — `org.firststep.backend.news.model.NewsItem`, extends
+  `CivicContent`. News-specific fields: `type, body, urgency, published,
+  expires, geography, active, author, whyItMatters, resourceTags:
+  List<String>`. `title` (inherited) is populated from `headline` (a direct
+  rename); `tags` (inherited) is populated from `categoryTags`.
+  `resourceTags` (cross-references to specific `Resource` ids — a different
+  concept from a category classification) deliberately stays NewsItem-only,
+  not folded into the shared `tags`. Two independent data paths both produce
+  `NewsItem`: `JsonNewsRepository` (static `app/data/news.json`) and
+  `RssFeedService` (live Delaware legislature RSS feed), served via
+  `GET /api/news` and `GET /api/news/rss` respectively.
 - **Flyer** — > TODO: define (unstructured artifact + generated metadata).
 - **FAQ** — > TODO: define.
 - **ExpertAnswer** — > TODO: define.
@@ -98,7 +108,10 @@ How today's model seeds v2 (this is an *evolution*, not a throwaway).
 | `Resource.organization` | `Resource.organization` (unchanged) + `Resource.title` (inherited, populated from it) |
 | `Resource.verified` | inherited from `CivicContent`, unchanged |
 | *(none)* | `Resource.communityId`, `.createdDate`, `.updatedDate` — new, defaulted at load time |
-| `NewsItem` (`sourceName`/`sourceUrl`) | `NewsItem` + `ContentSource` |
+| `NewsItem.sourceName`/`.sourceUrl` (flat Strings) | `NewsItem.contentSource.name`/`.url` (inherited `ContentSource`) |
+| `NewsItem.headline` | `NewsItem.title` (inherited, direct rename) |
+| `NewsItem.categoryTags` | `NewsItem.tags` (inherited, direct rename) |
+| `NewsItem.resourceTags` | unchanged, stays News-specific (not a shared field) |
 | `dto/Citation` (`sourceType`/`id`/`label`) | `Citation` linked to `ContentSource` |
 | `Resource.Location/Phone/Website` (nested statics) | `shared.model.Location/Phone/Website` (top-level, same fields) |
 

@@ -1,6 +1,6 @@
-package org.firststep.backend.service;
+package org.firststep.backend.news.service;
 
-import org.firststep.backend.model.NewsItem;
+import org.firststep.backend.news.model.NewsItem;
 
 import java.util.List;
 

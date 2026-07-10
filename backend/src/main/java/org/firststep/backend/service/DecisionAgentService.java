@@ -8,7 +8,7 @@ import java.util.Locale;
 import org.firststep.backend.ai.service.AiAssistant;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
-import org.firststep.backend.model.NewsItem;
+import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.resource.model.Resource;
 import org.springframework.stereotype.Service;
 
@@ -135,13 +135,13 @@ public class DecisionAgentService {
             if (n == null) continue;
 
             int score = 0;
-            score += scoreMatch(q, n.headline);
+            score += scoreMatch(q, n.title);
             score += scoreMatch(q, n.summary);
             score += scoreMatch(q, n.whyItMatters);
-            score += scoreMatch(q, n.categoryTags);
+            score += scoreMatch(q, n.tags);
 
             if (catNeed != null) {
-                score += scoreMatch(catNeed, n.categoryTags);
+                score += scoreMatch(catNeed, n.tags);
             }
 
             if (score > 0) {
@@ -241,12 +241,12 @@ public class DecisionAgentService {
         List<java.util.Map<String, String>> trimmed = news.stream().map(n -> {
             return java.util.Map.of(
                     "id", n.id,
-                    "headline", n.headline,
+                    "headline", n.title,
                     "summary", n.summary,
                     "whyItMatters", n.whyItMatters,
                     "urgency", n.urgency,
                     "published", n.published,
-                    "sourceName", n.sourceName
+                    "sourceName", n.contentSource != null ? n.contentSource.name : ""
             );
         }).toList();
 

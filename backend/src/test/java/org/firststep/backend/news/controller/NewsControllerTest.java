@@ -1,8 +1,10 @@
-package org.firststep.backend.controller;
+package org.firststep.backend.news.controller;
 
-import org.firststep.backend.model.NewsItem;
-import org.firststep.backend.service.NewsService;
-import org.firststep.backend.service.RssFeedSource;
+import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.news.repository.NewsRepository;
+import org.firststep.backend.news.service.NewsService;
+import org.firststep.backend.news.service.RssFeedSource;
+import org.firststep.backend.shared.model.ContentSource;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -27,16 +29,20 @@ class NewsControllerTest {
     static NewsItem testItem() {
         NewsItem item = new NewsItem();
         item.id = "rss-123";
-        item.headline = "Test Headline";
+        item.title = "Test Headline";
         item.summary = "Test Summary";
         item.body = "Test Summary";
-        item.sourceName = "Test Source";
-        item.sourceUrl = "http://example.com";
+
+        ContentSource contentSource = new ContentSource();
+        contentSource.name = "Test Source";
+        contentSource.url = "http://example.com";
+        item.contentSource = contentSource;
+
         item.published = "2024-01-01";
         item.active = true;
         item.type = "general-news";
         item.urgency = "standard";
-        item.categoryTags = List.of("Community", "Updates");
+        item.tags = List.of("Community", "Updates");
         item.whyItMatters = "Testing";
         return item;
     }
@@ -49,8 +55,13 @@ class NewsControllerTest {
         }
 
         @Bean
-        NewsService newsService() {
-            return new NewsService();
+        NewsRepository newsRepository() {
+            return List::of;
+        }
+
+        @Bean
+        NewsService newsService(NewsRepository newsRepository) {
+            return new NewsService(newsRepository);
         }
     }
 
@@ -61,16 +72,16 @@ class NewsControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
                 .andExpect(jsonPath("$.data[0].id").value("rss-123"))
-                .andExpect(jsonPath("$.data[0].headline").value("Test Headline"))
+                .andExpect(jsonPath("$.data[0].title").value("Test Headline"))
                 .andExpect(jsonPath("$.data[0].summary").value("Test Summary"))
-                .andExpect(jsonPath("$.data[0].source_name").value("Test Source"))
-                .andExpect(jsonPath("$.data[0].source_url").value("http://example.com"))
+                .andExpect(jsonPath("$.data[0].contentSource.name").value("Test Source"))
+                .andExpect(jsonPath("$.data[0].contentSource.url").value("http://example.com"))
                 .andExpect(jsonPath("$.data[0].published").value("2024-01-01"))
                 .andExpect(jsonPath("$.data[0].active").value(true))
                 .andExpect(jsonPath("$.data[0].type").value("general-news"))
                 .andExpect(jsonPath("$.data[0].urgency").value("standard"))
-                .andExpect(jsonPath("$.data[0].category_tags[0]").value("Community"))
-                .andExpect(jsonPath("$.data[0].category_tags[1]").value("Updates"))
+                .andExpect(jsonPath("$.data[0].tags[0]").value("Community"))
+                .andExpect(jsonPath("$.data[0].tags[1]").value("Updates"))
                 .andExpect(jsonPath("$.data[0].why_it_matters").value("Testing"));
     }
 }

@@ -1,10 +1,10 @@
-package org.firststep.backend.controller;
+package org.firststep.backend.news.controller;
 
 import java.util.List;
 
-import org.firststep.backend.model.NewsItem;
-import org.firststep.backend.service.NewsService;
-import org.firststep.backend.service.RssFeedSource;
+import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.news.service.NewsService;
+import org.firststep.backend.news.service.RssFeedSource;
 import org.firststep.backend.shared.dto.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;

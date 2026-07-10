@@ -3,7 +3,7 @@ package org.firststep.backend.service;
 import org.firststep.backend.ai.service.AiAssistant;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
-import org.firststep.backend.model.NewsItem;
+import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.resource.model.Resource;
 import org.junit.jupiter.api.Test;
 

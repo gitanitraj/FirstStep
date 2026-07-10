@@ -1,4 +1,4 @@
-package org.firststep.backend.service;
+package org.firststep.backend.news.service;
 
 // =============================================================================
 // WHAT THIS CLASS DOES
@@ -15,7 +15,8 @@ package org.firststep.backend.service;
 import com.rometools.rome.feed.synd.*;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
-import org.firststep.backend.model.NewsItem;
+import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.shared.model.ContentSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -38,6 +39,9 @@ public class RssFeedService implements RssFeedSource {
     // Configured as: news.rss.urls=https://legis.delaware.gov/rss/RssFeeds/GovernorSignedLegislation
     @Value("${news.rss.urls:}")
     private String rssFeedUrls;
+
+    @Value("${app.default-community-id:wilmington-de}")
+    private String defaultCommunityId;
 
     // WHY: volatile ensures the list is visible across threads when @Scheduled
     // writes it and the request thread reads it concurrently.
@@ -125,25 +129,33 @@ public class RssFeedService implements RssFeedSource {
     // ENTRY → NewsItem CONVERSION
     // =============================================================================
     // HOW IT WORKS:
-    // 1. Map raw RSS fields (title, description, link, date) to NewsItem fields.
-    // 2. Run keyword classification to assign civic category tags and a generic
+    // 1. Map raw RSS fields (title, description, link, date) onto NewsItem fields
+    //    — title (inherited from CivicContent) and contentSource (built from the
+    //    feed's title/entry's link) instead of v1's flat headline/sourceName/
+    //    sourceUrl fields.
+    // 2. Run keyword classification to assign civic category tags (now the
+    //    inherited `tags` field, not a NewsItem-only categoryTags) and a generic
     //    "why it matters" sentence.
     // 3. Try to extract a "RELATING TO …" clause from the description. Delaware
     //    legislation descriptions always begin with the full act title in ALL CAPS,
     //    e.g. "AN ACT TO AMEND TITLE 1 … RELATING TO PUERTO RICO DAY." If found,
     //    this clause (converted to Sentence Case) replaces both the bill-number
-    //    headline and the generic why-it-matters text, giving users a readable,
+    //    title and the generic why-it-matters text, giving users a readable,
     //    specific description of the law.
     private NewsItem convertEntry(SyndFeed feed, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
         item.id        = "rss-" + UUID.randomUUID();
-        item.headline  = safe(entry.getTitle());   // bill number e.g. "HB 311" — overridden below if RELATING TO found
+        item.title     = safe(entry.getTitle());   // bill number e.g. "HB 311" — overridden below if RELATING TO found
         item.summary   = extractSummary(entry);
         item.body      = item.summary;
 
-        item.sourceName = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
-        item.sourceUrl  = entry.getLink();
+        ContentSource contentSource = new ContentSource();
+        contentSource.name = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
+        contentSource.url  = entry.getLink();
+        item.contentSource = contentSource;
+
+        item.communityId = defaultCommunityId;
 
         Date published = entry.getPublishedDate() != null
                 ? entry.getPublishedDate()
@@ -152,23 +164,25 @@ public class RssFeedService implements RssFeedSource {
                     : new Date();
 
         item.published = DATE_FMT.format(published);
+        item.createdDate = item.published;
+        item.updatedDate = item.published;
 
         item.active  = true;
         item.type    = "legislation";
         item.urgency = "standard";
 
         // Step 2: keyword classification
-        String text = (item.headline + " " + item.summary).toLowerCase();
+        String text = (item.title + " " + item.summary).toLowerCase();
         Classification cls = classifyLegislation(text);
-        item.categoryTags  = cls.categoryTags;
+        item.tags          = cls.categoryTags;
         item.resourceTags  = cls.resourceTags;
         item.whyItMatters  = cls.whyItMatters;
 
-        // Step 3: extract "RELATING TO …" clause for a more readable headline/why
+        // Step 3: extract "RELATING TO …" clause for a more readable title/why
         String relatingTo = extractRelatingTo(item.summary);
         if (relatingTo != null) {
-            item.headline     = relatingTo;
-            item.whyItMatters = relatingTo;
+            item.title         = relatingTo;
+            item.whyItMatters  = relatingTo;
         }
 
         return item;
@@ -189,7 +203,12 @@ public class RssFeedService implements RssFeedSource {
     //      "This Act…", "This Senate…", etc. When there is no period before this
     //      phrase, stop just before it and append a period.
     //   3. 120-character cap — hard safety net, truncates at last word boundary.
-    //   Returns null if "RELATING TO" is not found or nothing remains after trimming.
+    //   Returns null if "RELATING TO" is not found, or if NEITHER terminator (1) nor
+    //   (2) is found at all — the character cap (3) only trims an already-found
+    //   match, it does not by itself create an end point. (Confirmed by test:
+    //   RssFeedServiceTest.shouldTruncateRelatingToClauseAtCharacterCap needed a
+    //   trailing period in its fixture; a fixture with no period and no "This X"
+    //   phrase returns null, not a capped string.)
     private static final int RELATING_TO_MAX_CHARS = 120;
 
     private static String extractRelatingTo(String summary) {
@@ -243,7 +262,7 @@ public class RssFeedService implements RssFeedSource {
     // WHY LinkedHashMap: insertion order matters — the first matched tag determines
     // which "why it matters" sentence is used when multiple tags match.
     //
-    // HOW IT WORKS: Each entry's lowercase headline+summary is tested against
+    // HOW IT WORKS: Each entry's lowercase title+summary is tested against
     // keyword arrays. Any matching bucket adds its display tag to the result list.
     // If no bucket matches, a generic "Delaware Legislation" tag and fallback
     // sentence are returned.
@@ -377,3 +396,30 @@ public class RssFeedService implements RssFeedSource {
                 .trim();
     }
 }
+
+// =============================================================================
+// WHY THIS IMPLEMENTATION WAS CHOSEN (migration-specific additions)
+// =============================================================================
+// Package moved from org.firststep.backend.service to
+// org.firststep.backend.news.service. Field-level changes, all mechanical
+// consequences of NewsItem's migration onto CivicContent (see
+// NewsItem_annotated.java) — no classification/extraction LOGIC changed:
+// - item.headline assignments -> item.title (inherited field).
+// - item.sourceName/item.sourceUrl -> a constructed ContentSource, assigned
+//   to item.contentSource.
+// - item.categoryTags -> item.tags (inherited field); item.resourceTags
+//   stays unchanged (still NewsItem-specific).
+// - Added item.communityId = defaultCommunityId (new @Value-injected field,
+//   matching JsonResourceRepository/JsonNewsRepository's default-stamping)
+//   and item.createdDate/updatedDate = item.published, so RSS-sourced items
+//   satisfy the same "every CivicContent object carries a communityId"
+//   invariant as JSON-loaded items, not just the static-file path.
+// =============================================================================
+
+// =============================================================================
+// HOW IT INTERACTS WITH OTHER CLASSES (migration-specific additions)
+// =============================================================================
+// - Independent of JsonNewsRepository — RSS-sourced news and static
+//   JSON-sourced news are two separate paths, both producing NewsItem
+//   objects that satisfy the same CivicContent contract.
+// =============================================================================
