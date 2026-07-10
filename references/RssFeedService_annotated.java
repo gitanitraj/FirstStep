@@ -133,15 +133,14 @@ public class RssFeedService implements RssFeedSource {
     //    — title (inherited from CivicContent) and contentSource (built from the
     //    feed's title/entry's link) instead of v1's flat headline/sourceName/
     //    sourceUrl fields.
-    // 2. Run keyword classification to assign civic category tags (now the
-    //    inherited `tags` field, not a NewsItem-only categoryTags) and a generic
-    //    "why it matters" sentence.
+    // 2. Run keyword classification to assign civic category tags (the inherited
+    //    `tags` field) and a generic "why it matters" sentence.
     // 3. Try to extract a "RELATING TO …" clause from the description. Delaware
     //    legislation descriptions always begin with the full act title in ALL CAPS,
     //    e.g. "AN ACT TO AMEND TITLE 1 … RELATING TO PUERTO RICO DAY." If found,
-    //    this clause (converted to Sentence Case) replaces both the bill-number
-    //    title and the generic why-it-matters text, giving users a readable,
-    //    specific description of the law.
+    //    this clause (converted to Title Case, with "Delaware" force-capitalized)
+    //    replaces both the bill-number title and the generic why-it-matters text,
+    //    giving users a readable, specific description of the law.
     private NewsItem convertEntry(SyndFeed feed, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
@@ -194,8 +193,9 @@ public class RssFeedService implements RssFeedSource {
     // WHY: Delaware legislation descriptions always contain a formal title in ALL
     // CAPS like "AN ACT TO AMEND … RELATING TO PAID LEAVE." The "RELATING TO"
     // clause is the most human-readable part. We extract it and convert to
-    // Sentence Case so the UI can show "Relating to paid leave." instead of a
-    // bill number or a generic category sentence.
+    // Title Case (with "Delaware" always forced capitalized as a proper noun)
+    // so the UI can show "Relating to Paid Leave." instead of a bill number or
+    // a generic category sentence.
     //
     // ALGORITHM — three terminators, earliest wins:
     //   1. First "." after "RELATING TO" — normal case where act title ends with a period.
@@ -205,10 +205,7 @@ public class RssFeedService implements RssFeedSource {
     //   3. 120-character cap — hard safety net, truncates at last word boundary.
     //   Returns null if "RELATING TO" is not found, or if NEITHER terminator (1) nor
     //   (2) is found at all — the character cap (3) only trims an already-found
-    //   match, it does not by itself create an end point. (Confirmed by test:
-    //   RssFeedServiceTest.shouldTruncateRelatingToClauseAtCharacterCap needed a
-    //   trailing period in its fixture; a fixture with no period and no "This X"
-    //   phrase returns null, not a capped string.)
+    //   match, it does not by itself create an end point.
     private static final int RELATING_TO_MAX_CHARS = 120;
 
     private static String extractRelatingTo(String summary) {
@@ -253,7 +250,43 @@ public class RssFeedService implements RssFeedSource {
 
         if (!raw.endsWith(".")) raw = raw + ".";
 
-        return Character.toUpperCase(raw.charAt(0)) + raw.substring(1).toLowerCase();
+        return toTitleCase(raw);
+    }
+
+    // WHY: minor connector words stay lowercase in the middle of a title
+    // (standard title-case convention) but are still capitalized as the
+    // first or last word.
+    private static final Set<String> TITLE_CASE_MINOR_WORDS = Set.of(
+            "a", "an", "and", "as", "at", "but", "by", "for", "in", "nor",
+            "of", "on", "or", "the", "to", "with");
+
+    private static String toTitleCase(String sentence) {
+        String[] words = sentence.toLowerCase(Locale.ROOT).split(" ");
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.isEmpty()) continue;
+            String alphaOnly = word.replaceAll("[^a-zA-Z]", "");
+            boolean keepLowercase = TITLE_CASE_MINOR_WORDS.contains(alphaOnly) && i != 0 && i != words.length - 1;
+            if (!keepLowercase) {
+                words[i] = capitalizeFirstLetter(word);
+            }
+        }
+        String result = String.join(" ", words);
+
+        // "Delaware" is a proper noun the general lowercasing above would
+        // otherwise miss (e.g. mid-word inside "delaware's" or after a minor
+        // word) — force it capitalized wherever it appears, as a safety net
+        // on top of title case rather than relying on it alone.
+        return result.replaceAll("(?i)\\bdelaware\\b", "Delaware");
+    }
+
+    private static String capitalizeFirstLetter(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            if (Character.isLetter(word.charAt(i))) {
+                return word.substring(0, i) + Character.toUpperCase(word.charAt(i)) + word.substring(i + 1);
+            }
+        }
+        return word;
     }
 
     // =============================================================================
@@ -398,22 +431,31 @@ public class RssFeedService implements RssFeedSource {
 }
 
 // =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN (migration-specific additions)
+// WHY THIS IMPLEMENTATION WAS CHOSEN (post-migration bug-fix pass)
 // =============================================================================
-// Package moved from org.firststep.backend.service to
-// org.firststep.backend.news.service. Field-level changes, all mechanical
-// consequences of NewsItem's migration onto CivicContent (see
-// NewsItem_annotated.java) — no classification/extraction LOGIC changed:
-// - item.headline assignments -> item.title (inherited field).
-// - item.sourceName/item.sourceUrl -> a constructed ContentSource, assigned
-//   to item.contentSource.
-// - item.categoryTags -> item.tags (inherited field); item.resourceTags
-//   stays unchanged (still NewsItem-specific).
-// - Added item.communityId = defaultCommunityId (new @Value-injected field,
-//   matching JsonResourceRepository/JsonNewsRepository's default-stamping)
-//   and item.createdDate/updatedDate = item.published, so RSS-sourced items
-//   satisfy the same "every CivicContent object carries a communityId"
-//   invariant as JSON-loaded items, not just the static-file path.
+// Found via a real browser walkthrough of the deployed container after Steps
+// 1-5 of the vertical-slice migration: the "Delaware's Newest Laws" and
+// "Weekly Updates" views showed generic stock messages instead of extracted
+// titles, and the extracted titles themselves lowercased proper nouns
+// (e.g. "Relating to delaware banks..."). Root cause was NOT in this class —
+// it was in app.js still reading item.headline/item.why_it_matters instead
+// of item.title in a few rendering spots (see app.js's WHY notes and
+// references/decisions.md Decision 008) — but while investigating, two real
+// content-quality issues in THIS class were also confirmed against live feed
+// data and fixed here:
+//
+// 1. toTitleCase(...) replaces the old "capitalize only the very first
+//    letter, lowercase everything else" approach. That old approach broke
+//    embedded proper nouns mid-sentence (e.g. "RELATING TO DELAWARE BANKS"
+//    became "Relating to delaware banks" — only the leading R stayed
+//    capitalized). True title case capitalizes every major word's first
+//    letter, keeping a small set of connector words (a, the, of, to, and,
+//    etc.) lowercase in the middle — the conventional rule for titles.
+// 2. The Delaware-specific regex safety net exists because "Delaware" isn't
+//    reliably distinguishable from a "minor word" by the general algorithm
+//    in every position, and it's the one proper noun this feed's content
+//    guarantees will appear constantly — worth hard-coding a guarantee for,
+//    rather than trusting general-purpose title casing alone.
 // =============================================================================
 
 // =============================================================================
@@ -422,4 +464,12 @@ public class RssFeedService implements RssFeedSource {
 // - Independent of JsonNewsRepository — RSS-sourced news and static
 //   JSON-sourced news are two separate paths, both producing NewsItem
 //   objects that satisfy the same CivicContent contract.
+// - app.js's rendering functions (renderLawsColumn, loadSidebarLaws,
+//   renderNewsItems, showNewsDetail) all now read item.title directly
+//   rather than item.why_it_matters || item.headline — see
+//   references/decisions.md Decision 008 for why that display-layer change
+//   was necessary alongside this class's extraction fix: even a perfectly
+//   extracted title was being ignored in favor of why_it_matters (which
+//   holds the generic stock message when extraction fails) at the display
+//   layer.
 // =============================================================================

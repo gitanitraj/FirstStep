@@ -68,8 +68,20 @@ class RssFeedServiceTest {
         service.fetchFeeds();
 
         NewsItem item = service.getRssItems().get(0);
-        assertEquals("Relating to money transmission.", item.title);
-        assertEquals("Relating to money transmission.", item.whyItMatters);
+        assertEquals("Relating to Money Transmission.", item.title);
+        assertEquals("Relating to Money Transmission.", item.whyItMatters);
+    }
+
+    @Test
+    void shouldCapitalizeDelawareAndUseTitleCaseInExtractedClause(@TempDir Path tempDir) throws IOException {
+        String feedUrl = writeFeed(tempDir, "delaware.xml", "HB 42",
+                "AN ACT TO AMEND TITLE 5 RELATING TO DELAWARE BANKS AND TRUST COMPANIES.");
+
+        RssFeedService service = serviceFor(feedUrl);
+        service.fetchFeeds();
+
+        NewsItem item = service.getRssItems().get(0);
+        assertEquals("Relating to Delaware Banks and Trust Companies.", item.title);
     }
 
     @Test
@@ -114,6 +126,6 @@ class RssFeedServiceTest {
         service.fetchFeeds();
 
         assertEquals(1, service.getRssItems().size());
-        assertEquals("Relating to food assistance.", service.getRssItems().get(0).title);
+        assertEquals("Relating to Food Assistance.", service.getRssItems().get(0).title);
     }
 }

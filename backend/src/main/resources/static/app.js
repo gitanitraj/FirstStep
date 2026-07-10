@@ -477,7 +477,7 @@ async function renderLawsColumn() {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
-                <h4>${item.why_it_matters || item.headline}</h4>
+                <h4>${item.title}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
             card.addEventListener("click", () => showNewsDetail(item));
@@ -494,7 +494,7 @@ function renderNewsFilter(items) {
     const existingFilter = document.getElementById("news-tag-filter");
     if (existingFilter) existingFilter.remove();
 
-    const uniqueTags = [...new Set(items.flatMap(i => i.category_tags || []))].sort();
+    const uniqueTags = [...new Set(items.flatMap(i => i.tags || []))].sort();
     if (uniqueTags.length === 0) return;
 
     const bar = document.createElement("div");
@@ -530,7 +530,7 @@ function renderNewsFilter(items) {
 
 function renderNewsItems() {
     const filtered = activeNewsTag
-        ? allNewsItems.filter(i => (i.category_tags || []).includes(activeNewsTag))
+        ? allNewsItems.filter(i => (i.tags || []).includes(activeNewsTag))
         : allNewsItems;
 
     const filterBar = document.getElementById("news-tag-filter");
@@ -540,17 +540,19 @@ function renderNewsItems() {
     if (filterBar) newsResultsContainer.prepend(filterBar);
 
     filtered.forEach(item => {
-        const cats = (item.category_tags || []).join(" · ");
-        const sourceLink = item.source_url
-            ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
-                   ${item.source_name} ↗
+        const cats = (item.tags || []).join(" · ");
+        const sourceUrl = item.contentSource?.url;
+        const sourceName = item.contentSource?.name;
+        const sourceLink = sourceUrl
+            ? `<a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
+                   ${sourceName} ↗
                </a>`
-            : item.source_name;
+            : sourceName;
         const card = document.createElement("div");
         card.className = "resource-card";
         card.innerHTML = `
             <span class="urgency-tag urgency-standard">${cats || "General"}</span>
-            <h3 class="card-title" style="margin-top:10px;">${item.headline}</h3>
+            <h3 class="card-title" style="margin-top:10px;">${item.title}</h3>
             <p class="card-summary">${item.summary}</p>
             <p class="card-why"><strong>Why this matters:</strong> ${item.why_it_matters}</p>
             <p class="card-source">${sourceLink} · ${item.published}</p>
@@ -573,7 +575,7 @@ async function loadSidebarNews() {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
-                <h4>${item.headline}</h4>
+                <h4>${item.title}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
             card.addEventListener("click", () => {
@@ -600,7 +602,7 @@ async function loadSidebarLaws() {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
-                <h4>${item.why_it_matters || item.headline}</h4>
+                <h4>${item.title}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
             card.addEventListener("click", () => {
@@ -757,14 +759,16 @@ function displayNews(newsItems) {
 }
 
 function showNewsDetail(item) {
-    const cats = (item.category_tags || []).join(" · ");
-    const sourceLink = item.source_url
-        ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="detail-source-link">Read More →</a>`
+    const cats = (item.tags || []).join(" · ");
+    const sourceUrl = item.contentSource?.url;
+    const sourceName = item.contentSource?.name;
+    const sourceLink = sourceUrl
+        ? `<a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" class="detail-source-link">Read More →</a>`
         : "";
 
     detailView.innerHTML = `
         <div class="detail-header">
-            <h2 class="detail-org">${item.headline}</h2>
+            <h2 class="detail-org">${item.title}</h2>
             <span class="urgency-tag urgency-standard">${cats || "General"}</span>
         </div>
 
@@ -787,7 +791,7 @@ function showNewsDetail(item) {
         <div class="detail-section">
             <div class="detail-label">Source</div>
             <div class="detail-value">
-                ${item.source_name}${item.published ? " · " + item.published : ""}
+                ${sourceName}${item.published ? " · " + item.published : ""}
                 ${sourceLink ? `<br>${sourceLink}` : ""}
             </div>
         </div>

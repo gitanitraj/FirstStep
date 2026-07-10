@@ -123,3 +123,53 @@ data-loading logic is being touched anyway. Recorded here so a future reader
 doesn't mistake "the RSS feed is broken" (the original, imprecise report) for
 what's actually true ("the static news list is broken; the live RSS feed
 works fine").
+
+# Decision 008
+
+A real browser walkthrough of the deployed container (after Steps 1-5)
+surfaced regressions this plan's curl-only verification had missed:
+`app.js` still referenced `NewsItem`'s pre-migration flat field names
+(`item.headline`, `item.sourceName`/`item.sourceUrl`/`item.source_name`/
+`item.source_url`, `item.categoryTags`/`item.category_tags`) in every news
+rendering function — `renderLawsColumn`, `renderNewsFilter`,
+`renderNewsItems`, `loadSidebarNews`, `loadSidebarLaws`, and
+`showNewsDetail`. These fields were renamed onto `CivicContent`
+(`title`, `contentSource.name`/`.url`, `tags`) in Step 5, but Step 5's own
+scope was backend-only per the plan — nobody went back through `app.js`'s
+news-rendering code specifically for the *field renames* (Step 2's `app.js`
+pass only handled the `ApiResponse` envelope unwrapping, which predated
+Step 5's `NewsItem` field renames entirely). Symptom: "Latest Updates" and
+"Delaware's Newest Laws" on the home page, the full "Weekly Updates" page,
+and the single-story detail view all showed the literal text "undefined"
+for titles and/or sources.
+
+Fixed all six functions in `app.js` to read `item.title`,
+`item.contentSource?.name`, `item.contentSource?.url`, and `item.tags`.
+
+While investigating, also found: `renderLawsColumn`/`loadSidebarLaws`
+displayed `item.why_it_matters || item.headline` — since `why_it_matters`
+is *always* truthy (it's either the extracted "Relating to X" sentence or a
+generic/keyword-based fallback sentence from `RssFeedService.classifyLegislation`),
+the `|| item.headline` fallback never mattered, and the generic stock
+message ("Stay informed about new laws signed by the Governor of
+Delaware.") was being shown as if it were a headline whenever RELATING TO
+extraction failed (confirmed against live feed data: 19 of 349 items).
+Changed both to display `item.title` directly — it already holds the
+extracted "Relating to X" sentence when available, or a sensible raw
+fallback (the bill number, e.g. "HB 500") otherwise — never the generic
+sentence.
+
+Also fixed a real content-quality bug in `RssFeedService.extractRelatingTo`
+(confirmed against live data, e.g. "Relating to delaware banks and trust
+companies."): the old capitalization only capitalized the string's very
+first letter and lowercased everything else, breaking embedded proper
+nouns. Replaced with real title-case conversion (`toTitleCase`) plus a
+`Delaware`-specific regex safety net, since the feed's content guarantees
+that word appears constantly. See `references/RssFeedService_annotated.java`
+for the full before/after.
+
+**Explicitly deferred to after the full reconfiguration plan (Steps 6-8) is
+complete**, per direct instruction: the resource-size ARIA filter buttons
+don't work and should be *removed* (no fix has worked); there's no detail
+view for Free/Low-Cost Essentials records. Neither is pre-existing-migration
+fallout — both are separate, longer-standing product gaps.

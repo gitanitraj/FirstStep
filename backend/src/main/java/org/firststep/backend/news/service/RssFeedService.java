@@ -190,8 +190,9 @@ public class RssFeedService implements RssFeedSource {
     // WHY: Delaware legislation descriptions always contain a formal title in ALL
     // CAPS like "AN ACT TO AMEND … RELATING TO PAID LEAVE." The "RELATING TO"
     // clause is the most human-readable part. We extract it and convert to
-    // Sentence Case so the UI can show "Relating to paid leave." instead of a
-    // bill number or a generic category sentence.
+    // Title Case (with "Delaware" always forced capitalized as a proper noun)
+    // so the UI can show "Relating to Paid Leave." instead of a bill number or
+    // a generic category sentence.
     //
     // ALGORITHM — three terminators, earliest wins:
     //   1. First "." after "RELATING TO" — normal case where act title ends with a period.
@@ -244,7 +245,43 @@ public class RssFeedService implements RssFeedSource {
 
         if (!raw.endsWith(".")) raw = raw + ".";
 
-        return Character.toUpperCase(raw.charAt(0)) + raw.substring(1).toLowerCase();
+        return toTitleCase(raw);
+    }
+
+    // WHY: minor connector words stay lowercase in the middle of a title
+    // (standard title-case convention) but are still capitalized as the
+    // first or last word.
+    private static final Set<String> TITLE_CASE_MINOR_WORDS = Set.of(
+            "a", "an", "and", "as", "at", "but", "by", "for", "in", "nor",
+            "of", "on", "or", "the", "to", "with");
+
+    private static String toTitleCase(String sentence) {
+        String[] words = sentence.toLowerCase(Locale.ROOT).split(" ");
+        for (int i = 0; i < words.length; i++) {
+            String word = words[i];
+            if (word.isEmpty()) continue;
+            String alphaOnly = word.replaceAll("[^a-zA-Z]", "");
+            boolean keepLowercase = TITLE_CASE_MINOR_WORDS.contains(alphaOnly) && i != 0 && i != words.length - 1;
+            if (!keepLowercase) {
+                words[i] = capitalizeFirstLetter(word);
+            }
+        }
+        String result = String.join(" ", words);
+
+        // "Delaware" is a proper noun the general lowercasing above would
+        // otherwise miss (e.g. mid-word inside "delaware's" or after a minor
+        // word) — force it capitalized wherever it appears, as a safety net
+        // on top of title case rather than relying on it alone.
+        return result.replaceAll("(?i)\\bdelaware\\b", "Delaware");
+    }
+
+    private static String capitalizeFirstLetter(String word) {
+        for (int i = 0; i < word.length(); i++) {
+            if (Character.isLetter(word.charAt(i))) {
+                return word.substring(0, i) + Character.toUpperCase(word.charAt(i)) + word.substring(i + 1);
+            }
+        }
+        return word;
     }
 
     // =============================================================================
