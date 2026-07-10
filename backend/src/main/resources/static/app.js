@@ -329,8 +329,8 @@ async function submitDecision() {
             throw new Error("HTTP " + res.status + ": " + text);
         }
 
-        const data = await res.json();
-        renderDecisionResponse(data);
+        const envelope = await res.json();
+        renderDecisionResponse(envelope.data);
 
     } catch (err) {
         console.error(err);
@@ -392,7 +392,8 @@ async function loadHousingResources() {
 
     try {
         const response = await fetch("/api/resources");
-        const resources = await response.json();
+        const envelope = await response.json();
+        const resources = envelope.data;
 
         let housingResources = resources.filter(r =>
             r.category && r.category.toLowerCase().includes("housing")
@@ -424,7 +425,8 @@ async function loadEssentialsResources() {
 
     try {
         const response = await fetch("/api/resources");
-        const resources = await response.json();
+        const envelope = await response.json();
+        const resources = envelope.data;
         const free = resources.filter(r => r.cost && r.cost.toLowerCase() === "free");
         displayEssentials(free);
         showResultsScreen();
@@ -446,7 +448,8 @@ async function loadNewsUpdates() {
 
     try {
         const response = await fetch("/api/news");
-        allNewsItems = await response.json();
+        const newsEnvelope = await response.json();
+        allNewsItems = newsEnvelope.data;
         activeNewsTag = null;
         renderNewsFilter(allNewsItems);
         renderNewsItems();
@@ -466,7 +469,8 @@ async function renderLawsColumn() {
     </div>`;
     try {
         const response = await fetch("/api/news/rss");
-        const items = await response.json();
+        const rssEnvelope = await response.json();
+        const items = rssEnvelope.data;
         const list = document.getElementById("laws-list");
         list.innerHTML = "";
         items.slice(0, 35).forEach(item => {
@@ -560,7 +564,8 @@ function renderNewsItems() {
 async function loadSidebarNews() {
     try {
         const response = await fetch("/api/news");
-        const items = await response.json();
+        const newsEnvelope = await response.json();
+        const items = newsEnvelope.data;
         const newsResults = document.getElementById("sidebar-news");
         newsResults.innerHTML = "";
 
@@ -586,7 +591,8 @@ async function loadSidebarNews() {
 async function loadSidebarLaws() {
     try {
         const response = await fetch("/api/news/rss");
-        const items = await response.json();
+        const rssEnvelope = await response.json();
+        const items = rssEnvelope.data;
         const container = document.getElementById("sidebar-laws");
         container.innerHTML = "";
 
@@ -907,8 +913,8 @@ async function submitResultsAi(query) {
             body: JSON.stringify({ userQuery, urgent: false, preferredCategories: [] })
         });
         if (!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-        renderResultsAiResponse(data);
+        const envelope = await res.json();
+        renderResultsAiResponse(envelope.data);
     } catch (err) {
         resultsAiOutput.innerHTML = `<p class="ai-error">Unable to get AI guidance: ${err.message}</p>`;
     }

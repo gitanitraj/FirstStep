@@ -8,6 +8,8 @@ import java.util.stream.Collectors;
 
 import org.firststep.backend.model.Resource;
 import org.firststep.backend.service.ResourceService;
+import org.firststep.backend.shared.dto.ApiResponse;
+import org.firststep.backend.shared.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,15 +36,15 @@ public class ResourceController {
     }
 
     @GetMapping("/resources")
-    public ResponseEntity<List<Resource>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<ApiResponse<List<Resource>>> getAll() {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll()));
     }
 
     @GetMapping("/resources/{id}")
-    public ResponseEntity<Resource> getById(@PathVariable String id) {
-        return service.getById(id)
-                .map(ResponseEntity::ok)
-                .orElse(ResponseEntity.notFound().build());
+    public ResponseEntity<ApiResponse<Resource>> getById(@PathVariable String id) {
+        Resource resource = service.getById(id)
+                .orElseThrow(() -> new NotFoundException("Resource not found: " + id));
+        return ResponseEntity.ok(ApiResponse.success(resource));
     }
 
     @GetMapping("/seasonal-images")

@@ -2,6 +2,8 @@ package org.firststep.backend.dto;
 
 import java.util.List;
 
+import org.firststep.backend.shared.model.Citation;
+
 public class DecisionResponse {
 
     public String answerTitle;

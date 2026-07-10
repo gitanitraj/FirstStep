@@ -3,6 +3,8 @@ package org.firststep.backend.controller;
 import org.firststep.backend.dto.DecisionRequest;
 import org.firststep.backend.dto.DecisionResponse;
 import org.firststep.backend.service.DecisionAgentService;
+import org.firststep.backend.shared.dto.ApiResponse;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,10 +23,10 @@ public class DecisionController {
 
     @CrossOrigin(origins = "*")
     @PostMapping("/decide")
-    public DecisionResponse decide(@RequestBody DecisionRequest request) {
+    public ResponseEntity<ApiResponse<DecisionResponse>> decide(@RequestBody DecisionRequest request) {
         // Feature flag: if AI is disabled (e.g., Ollama runtime unavailable), return graceful structured response.
         // This prevents the endpoint from hard-failing and keeps the UI polished.
-        return agentService.decide(request);
+        return ResponseEntity.ok(ApiResponse.success(agentService.decide(request)));
     }
 }
 

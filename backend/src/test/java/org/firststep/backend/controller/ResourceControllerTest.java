@@ -1,6 +1,7 @@
 package org.firststep.backend.controller;
 
 import org.firststep.backend.service.ResourceService;
+import org.firststep.backend.shared.web.GlobalExceptionHandler;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -14,7 +15,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @WebMvcTest(ResourceController.class)
-@ContextConfiguration(classes = {ResourceController.class, ResourceControllerTest.TestConfig.class})
+@ContextConfiguration(classes = {ResourceController.class, GlobalExceptionHandler.class, ResourceControllerTest.TestConfig.class})
 @TestPropertySource(properties = "app.seasonal.images.dir=src/test/resources/seasonal-test")
 class ResourceControllerTest {
 
@@ -34,5 +35,21 @@ class ResourceControllerTest {
         mockMvc.perform(get("/api/seasonal-images"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$[0]").value("images/seasonal/Sample.png"));
+    }
+
+    @Test
+    void shouldReturn200WithApiResponseEnvelopeWhenResourcesRequested() throws Exception {
+        mockMvc.perform(get("/api/resources"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data").isArray());
+    }
+
+    @Test
+    void shouldReturn404WithApiResponseEnvelopeWhenResourceIdNotFound() throws Exception {
+        mockMvc.perform(get("/api/resources/does-not-exist"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.errorCode").value("NOT_FOUND"));
     }
 }

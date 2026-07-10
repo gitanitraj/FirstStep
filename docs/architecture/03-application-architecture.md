@@ -9,7 +9,10 @@ React SPA
   ↓
 REST Controllers
   ↓
-DTOs
+ApiResponse<T> / PageResponse<T>  (shared/dto — the generic response envelope
+                                    every controller wraps its payload in;
+                                    PageResponse<T> is scaffolded, not yet
+                                    wired into any endpoint)
   ↓
 Services
   ↓
@@ -19,6 +22,11 @@ Data (JSON / RSS / Flyers  →  SQLite / Postgres)
   ↓
 CivicAssistantService
 ```
+
+Errors are centralized through `shared/web/GlobalExceptionHandler`
+(`@RestControllerAdvice`), which maps thrown exceptions
+(`shared/exception/NotFoundException` → 404; anything else → 500) onto the
+same `ApiResponse` envelope shape as a successful response.
 
 
 ## Repository — a *pattern*, not a committed generic class

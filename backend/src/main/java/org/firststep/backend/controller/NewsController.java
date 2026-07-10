@@ -5,6 +5,7 @@ import java.util.List;
 import org.firststep.backend.model.NewsItem;
 import org.firststep.backend.service.NewsService;
 import org.firststep.backend.service.RssFeedSource;
+import org.firststep.backend.shared.dto.ApiResponse;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,12 +24,12 @@ public class NewsController {
     }
 
     @GetMapping("/news")
-    public ResponseEntity<List<NewsItem>> getAll() {
-        return ResponseEntity.ok(service.getAll());
+    public ResponseEntity<ApiResponse<List<NewsItem>>> getAll() {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll()));
     }
 
     @GetMapping("/news/rss")
-    public ResponseEntity<List<NewsItem>> getRssNews() {
-        return ResponseEntity.ok(rssFeedService.getRssItems());
+    public ResponseEntity<ApiResponse<List<NewsItem>>> getRssNews() {
+        return ResponseEntity.ok(ApiResponse.success(rssFeedService.getRssItems()));
     }
 }
