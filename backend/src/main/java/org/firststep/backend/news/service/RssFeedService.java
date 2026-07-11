@@ -179,6 +179,16 @@ public class RssFeedService implements RssFeedSource {
         if (relatingTo != null) {
             item.title         = relatingTo;
             item.whyItMatters  = relatingTo;
+        } else {
+            // Step 3b: no "RELATING TO" clause (typically Resolutions, appropriations
+            // Acts, and other bills whose formal title doesn't follow that phrasing) —
+            // fall back to the bill's own "This Bill/Act/Resolution/Joint Resolution …"
+            // self-description instead of leaving the raw bill number as the title.
+            String fallbackTitle = extractFallbackTitle(item.title, item.summary);
+            if (fallbackTitle != null) {
+                item.title         = fallbackTitle;
+                item.whyItMatters  = fallbackTitle;
+            }
         }
 
         return item;
@@ -246,6 +256,77 @@ public class RssFeedService implements RssFeedSource {
         if (!raw.endsWith(".")) raw = raw + ".";
 
         return toTitleCase(raw);
+    }
+
+    // =============================================================================
+    // FALLBACK TITLE EXTRACTION (no "RELATING TO" clause)
+    // =============================================================================
+    // WHY: Resolutions (SJR/HJR) and some Acts (appropriations, bond bills, one-off
+    // naming/designation bills) never contain "RELATING TO" — that phrasing is
+    // specific to Acts amending a Title of the Delaware Code. These bills instead
+    // self-describe with a "This Bill …"/"This Act …"/"This Resolution …"/"This
+    // Joint Resolution …" sentence. Without this fallback, extractRelatingTo
+    // returns null and the raw bill number (e.g. "HB 500") was the only title —
+    // unhelpful compared to what's actually available in the same summary text.
+    //
+    // TWO DIFFERENT RULES, because the two source shapes are different:
+    // - Bills/Acts ("This Bill …" / "This Act …"): this sentence is ALREADY
+    //   well-formed, normally-cased English (not shouted caps) — e.g. "This Bill
+    //   is the Fiscal Year 2027 Bond and Capital Improvements Act." So the fix
+    //   just swaps the lead-in for "The bill" and keeps everything through the
+    //   next period verbatim — no case conversion, which would only mangle text
+    //   that's already correct.
+    // - Resolutions ("This Resolution …" / "This Joint Resolution …", optionally
+    //   with "House"/"Senate" inserted — e.g. "This House Joint Resolution …"):
+    //   the FORMAL LONG TITLE precedes this sentence, in ALL CAPS (like the
+    //   RELATING TO case) — e.g. "THE OFFICIAL GENERAL FUND REVENUE ESTIMATE FOR
+    //   FISCAL YEAR 2027." That portion genuinely needs toTitleCase, and gets
+    //   prefixed with "Senate Joint Resolution: " / "House Joint Resolution: "
+    //   (based on the bill number's own SJR/HJR prefix, not the matched phrase —
+    //   a bill numbered SJR could in principle say just "This Resolution", not
+    //   "This Joint Resolution", and should still be labeled Senate Joint
+    //   Resolution).
+    //
+    //   The formal title ends at whichever comes first: the summary's own first
+    //   period (the normal case — the heading is its own sentence), or the start
+    //   of the matched "This …" phrase itself (for the rare case where no period
+    //   separates them at all). Just using "before the matched phrase" is NOT
+    //   enough on its own: some resolutions have several sentences of narrative
+    //   background between the heading and their self-description, and some
+    //   summaries mention "This Joint Resolution" a SECOND time later in the
+    //   text (e.g. "This Joint Resolution also requires …") — matching that
+    //   later occurrence instead of the real one would sweep all of that
+    //   background into the "title". Confirmed against real feed data that had
+    //   exactly this problem before the earliest-terminator-wins fix.
+    private static String extractFallbackTitle(String billNumber, String summary) {
+        if (summary == null) return null;
+
+        java.util.regex.Matcher m = java.util.regex.Pattern
+                .compile("\\bThis\\s+(?:House\\s+|Senate\\s+)?(Joint\\s+Resolution|Resolution|Bill|Act)\\b", java.util.regex.Pattern.CASE_INSENSITIVE)
+                .matcher(summary);
+        if (!m.find()) return null;
+
+        boolean isResolution = m.group(1).toLowerCase(Locale.ROOT).contains("resolution");
+
+        if (isResolution) {
+            int periodIdx = summary.indexOf('.');
+            int end = (periodIdx >= 0) ? Math.min(periodIdx, m.start()) : m.start();
+
+            String formalTitle = summary.substring(0, end).trim();
+            if (formalTitle.isEmpty()) return null;
+
+            String prefix = billNumber != null && billNumber.trim().toUpperCase(Locale.ROOT).startsWith("SJR")
+                    ? "Senate Joint Resolution: "
+                    : "House Joint Resolution: ";
+            return prefix + toTitleCase(formalTitle + ".");
+        } else {
+            String afterPhrase = summary.substring(m.end()).trim();
+            int periodIdx = afterPhrase.indexOf('.');
+            if (periodIdx < 0) return null;
+            String tail = afterPhrase.substring(0, periodIdx + 1);
+            if (tail.isEmpty()) return null;
+            return "The bill " + tail;
+        }
     }
 
     // WHY: minor connector words stay lowercase in the middle of a title

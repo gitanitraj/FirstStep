@@ -135,12 +135,10 @@ public class RssFeedService implements RssFeedSource {
     //    sourceUrl fields.
     // 2. Run keyword classification to assign civic category tags (the inherited
     //    `tags` field) and a generic "why it matters" sentence.
-    // 3. Try to extract a "RELATING TO …" clause from the description. Delaware
-    //    legislation descriptions always begin with the full act title in ALL CAPS,
-    //    e.g. "AN ACT TO AMEND TITLE 1 … RELATING TO PUERTO RICO DAY." If found,
-    //    this clause (converted to Title Case, with "Delaware" force-capitalized)
-    //    replaces both the bill-number title and the generic why-it-matters text,
-    //    giving users a readable, specific description of the law.
+    // 3. Try to extract a "RELATING TO …" clause from the description. If not
+    //    found (Resolutions and some Acts never use that phrasing), fall back to
+    //    the bill's own "This Bill/Act/Resolution/Joint Resolution …"
+    //    self-description instead of leaving the raw bill number as the title.
     private NewsItem convertEntry(SyndFeed feed, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
@@ -182,6 +180,16 @@ public class RssFeedService implements RssFeedSource {
         if (relatingTo != null) {
             item.title         = relatingTo;
             item.whyItMatters  = relatingTo;
+        } else {
+            // Step 3b: no "RELATING TO" clause (typically Resolutions, appropriations
+            // Acts, and other bills whose formal title doesn't follow that phrasing) —
+            // fall back to the bill's own "This Bill/Act/Resolution/Joint Resolution …"
+            // self-description instead of leaving the raw bill number as the title.
+            String fallbackTitle = extractFallbackTitle(item.title, item.summary);
+            if (fallbackTitle != null) {
+                item.title         = fallbackTitle;
+                item.whyItMatters  = fallbackTitle;
+            }
         }
 
         return item;
@@ -251,6 +259,77 @@ public class RssFeedService implements RssFeedSource {
         if (!raw.endsWith(".")) raw = raw + ".";
 
         return toTitleCase(raw);
+    }
+
+    // =============================================================================
+    // FALLBACK TITLE EXTRACTION (no "RELATING TO" clause)
+    // =============================================================================
+    // WHY: Resolutions (SJR/HJR) and some Acts (appropriations, bond bills, one-off
+    // naming/designation bills) never contain "RELATING TO" — that phrasing is
+    // specific to Acts amending a Title of the Delaware Code. These bills instead
+    // self-describe with a "This Bill …"/"This Act …"/"This Resolution …"/"This
+    // Joint Resolution …" sentence. Without this fallback, extractRelatingTo
+    // returns null and the raw bill number (e.g. "HB 500") was the only title —
+    // unhelpful compared to what's actually available in the same summary text.
+    //
+    // TWO DIFFERENT RULES, because the two source shapes are different:
+    // - Bills/Acts ("This Bill …" / "This Act …"): this sentence is ALREADY
+    //   well-formed, normally-cased English (not shouted caps) — e.g. "This Bill
+    //   is the Fiscal Year 2027 Bond and Capital Improvements Act." So the fix
+    //   just swaps the lead-in for "The bill" and keeps everything through the
+    //   next period verbatim — no case conversion, which would only mangle text
+    //   that's already correct.
+    // - Resolutions ("This Resolution …" / "This Joint Resolution …", optionally
+    //   with "House"/"Senate" inserted — e.g. "This House Joint Resolution …"):
+    //   the FORMAL LONG TITLE precedes this sentence, in ALL CAPS (like the
+    //   RELATING TO case) — e.g. "THE OFFICIAL GENERAL FUND REVENUE ESTIMATE FOR
+    //   FISCAL YEAR 2027." That portion genuinely needs toTitleCase, and gets
+    //   prefixed with "Senate Joint Resolution: " / "House Joint Resolution: "
+    //   (based on the bill number's own SJR/HJR prefix, not the matched phrase —
+    //   a bill numbered SJR could in principle say just "This Resolution", not
+    //   "This Joint Resolution", and should still be labeled Senate Joint
+    //   Resolution).
+    //
+    //   The formal title ends at whichever comes first: the summary's own first
+    //   period (the normal case — the heading is its own sentence), or the start
+    //   of the matched "This …" phrase itself (for the rare case where no period
+    //   separates them at all). Just using "before the matched phrase" is NOT
+    //   enough on its own: some resolutions have several sentences of narrative
+    //   background between the heading and their self-description, and some
+    //   summaries mention "This Joint Resolution" a SECOND time later in the
+    //   text (e.g. "This Joint Resolution also requires …") — matching that
+    //   later occurrence instead of the real one would sweep all of that
+    //   background into the "title". Confirmed against real feed data that had
+    //   exactly this problem before the earliest-terminator-wins fix.
+    private static String extractFallbackTitle(String billNumber, String summary) {
+        if (summary == null) return null;
+
+        java.util.regex.Matcher m = java.util.regex.Pattern
+                .compile("\\bThis\\s+(?:House\\s+|Senate\\s+)?(Joint\\s+Resolution|Resolution|Bill|Act)\\b", java.util.regex.Pattern.CASE_INSENSITIVE)
+                .matcher(summary);
+        if (!m.find()) return null;
+
+        boolean isResolution = m.group(1).toLowerCase(Locale.ROOT).contains("resolution");
+
+        if (isResolution) {
+            int periodIdx = summary.indexOf('.');
+            int end = (periodIdx >= 0) ? Math.min(periodIdx, m.start()) : m.start();
+
+            String formalTitle = summary.substring(0, end).trim();
+            if (formalTitle.isEmpty()) return null;
+
+            String prefix = billNumber != null && billNumber.trim().toUpperCase(Locale.ROOT).startsWith("SJR")
+                    ? "Senate Joint Resolution: "
+                    : "House Joint Resolution: ";
+            return prefix + toTitleCase(formalTitle + ".");
+        } else {
+            String afterPhrase = summary.substring(m.end()).trim();
+            int periodIdx = afterPhrase.indexOf('.');
+            if (periodIdx < 0) return null;
+            String tail = afterPhrase.substring(0, periodIdx + 1);
+            if (tail.isEmpty()) return null;
+            return "The bill " + tail;
+        }
     }
 
     // WHY: minor connector words stay lowercase in the middle of a title
@@ -431,45 +510,63 @@ public class RssFeedService implements RssFeedSource {
 }
 
 // =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN (post-migration bug-fix pass)
+// WHY THIS IMPLEMENTATION WAS CHOSEN (fallback-title addition)
 // =============================================================================
-// Found via a real browser walkthrough of the deployed container after Steps
-// 1-5 of the vertical-slice migration: the "Delaware's Newest Laws" and
-// "Weekly Updates" views showed generic stock messages instead of extracted
-// titles, and the extracted titles themselves lowercased proper nouns
-// (e.g. "Relating to delaware banks..."). Root cause was NOT in this class —
-// it was in app.js still reading item.headline/item.why_it_matters instead
-// of item.title in a few rendering spots (see app.js's WHY notes and
-// references/decisions.md Decision 008) — but while investigating, two real
-// content-quality issues in THIS class were also confirmed against live feed
-// data and fixed here:
+// Added in response to real user feedback on the deployed "Delaware's Newest
+// Laws" feature: some titles were showing the bare bill number (e.g. "HB 14",
+// "SB 45") because their descriptions never contain "RELATING TO" — that
+// phrasing is specific to Acts that amend a Title of the Delaware Code.
+// Resolutions and several Act types (appropriations, bond/capital
+// improvements, one-off naming bills) use different formal structures
+// entirely. Investigated by pulling real live-feed data (19 items were
+// showing the generic fallback) and confirming every single one contained a
+// "This Bill/Act/Resolution/Joint Resolution …" self-description — see
+// references/decisions.md for the full investigation and the exact rules
+// confirmed with the user.
 //
-// 1. toTitleCase(...) replaces the old "capitalize only the very first
-//    letter, lowercase everything else" approach. That old approach broke
-//    embedded proper nouns mid-sentence (e.g. "RELATING TO DELAWARE BANKS"
-//    became "Relating to delaware banks" — only the leading R stayed
-//    capitalized). True title case capitalizes every major word's first
-//    letter, keeping a small set of connector words (a, the, of, to, and,
-//    etc.) lowercase in the middle — the conventional rule for titles.
-// 2. The Delaware-specific regex safety net exists because "Delaware" isn't
-//    reliably distinguishable from a "minor word" by the general algorithm
-//    in every position, and it's the one proper noun this feed's content
-//    guarantees will appear constantly — worth hard-coding a guarantee for,
-//    rather than trusting general-purpose title casing alone.
+// The two branches (bill/act vs. resolution) are NOT symmetric on purpose:
+// the bill/act sentence is already normal-cased English lifted verbatim
+// (case-preserved), while the resolution branch extracts and title-cases the
+// ALL-CAPS formal title that precedes the "This Resolution" sentence — because
+// that's what the two source shapes actually look like in the raw feed data,
+// confirmed against real examples, not assumed.
 // =============================================================================
 
 // =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES (migration-specific additions)
+// HOW IT INTERACTS WITH OTHER CLASSES (fallback-title addition)
 // =============================================================================
-// - Independent of JsonNewsRepository — RSS-sourced news and static
-//   JSON-sourced news are two separate paths, both producing NewsItem
-//   objects that satisfy the same CivicContent contract.
-// - app.js's rendering functions (renderLawsColumn, loadSidebarLaws,
-//   renderNewsItems, showNewsDetail) all now read item.title directly
-//   rather than item.why_it_matters || item.headline — see
-//   references/decisions.md Decision 008 for why that display-layer change
-//   was necessary alongside this class's extraction fix: even a perfectly
-//   extracted title was being ignored in favor of why_it_matters (which
-//   holds the generic stock message when extraction fails) at the display
-//   layer.
+// - Called from convertEntry only when extractRelatingTo returns null — the
+//   two extraction strategies are mutually exclusive per item, never both.
+// - Shares toTitleCase with extractRelatingTo (including the Delaware
+//   capitalization safety net) for the resolution branch only — the bill/act
+//   branch deliberately does NOT call toTitleCase, since that text is already
+//   correctly cased and running it through would incorrectly capitalize
+//   ordinary sentence words.
+// =============================================================================
+
+// =============================================================================
+// ALTERNATIVES CONSIDERED (fallback-title addition)
+// =============================================================================
+// - Keying the Resolution-vs-Bill branch off the bill NUMBER prefix (SJR/HJR
+//   vs SB/HB) instead of the matched "This X" phrase: rejected for detecting
+//   WHICH branch to use (the phrase itself is a more direct, robust signal —
+//   confirmed it correctly handles an irregular bill number like "SS 1 for SB
+//   119", which doesn't fit any clean prefix pattern but does contain "This
+//   Act"). The bill number IS still used, but only for the narrower job of
+//   choosing "Senate" vs "House" wording in the Resolution branch's prefix,
+//   per the user's explicit instruction.
+// - Leaving the "Purpose" AI-synopsis idea (reviewing a bill's full text and
+//   summarizing it once an AI provider exists) unbuilt: confirmed with the
+//   user as an intentional future item, not scaffolded here — no AI provider
+//   is configured yet (see ai/service/SpringAiAssistant.java), and building
+//   UI/data plumbing for it now would be speculative.
+// - Using "everything before the matched This-phrase" as the formal title,
+//   with no period check: this was the FIRST implementation, and it shipped
+//   a real bug — confirmed against live feed data (not a hypothetical): some
+//   resolutions have narrative background between the heading and their
+//   self-description, and some mention "This Joint Resolution" a second time
+//   later in the text, so the naive version matched the wrong occurrence and
+//   swept multiple sentences into the title. Fixed by taking whichever
+//   terminator (period or phrase start) comes first — see decisions.md
+//   Decision 010 for the two real examples that exposed this.
 // =============================================================================

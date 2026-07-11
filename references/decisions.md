@@ -173,3 +173,64 @@ complete**, per direct instruction: the resource-size ARIA filter buttons
 don't work and should be *removed* (no fix has worked); there's no detail
 view for Free/Low-Cost Essentials records. Neither is pre-existing-migration
 fallout — both are separate, longer-standing product gaps.
+
+# Decision 009
+
+Removed the resource-size ARIA filter buttons (`#increase-text-button` "A+",
+`#decrease-text-button` "A−") from `index.html`, along with their click
+handlers and the `localStorage` font-size restore call in `app.js` — per
+direct instruction, since no fix had gotten the feature to work and the
+user chose removal over further debugging. Verified in a live browser: both
+elements are gone from the DOM, no console errors, `.utility-button` CSS
+class (still used by the remaining ES/contrast buttons) untouched.
+
+# Decision 010
+
+Extended `RssFeedService`'s title extraction to cover bills/resolutions with
+no "RELATING TO" clause (previously falling back to the bare bill number,
+e.g. "HB 500", "SJR 22"). Investigated by pulling all 19 real live-feed items
+that were showing the generic classification fallback and confirming every
+one contains a "This Bill/Act/Resolution/Joint Resolution …" self-description
+— see `references/RssFeedService_annotated.java` for the full rule and code.
+
+Two rules, confirmed with the user against real examples:
+- **Bills/Acts** ("This Bill …"/"This Act …"): replace the lead-in with "The
+  bill" and keep the sentence verbatim through the next period — this text
+  is already normally-cased English in the source feed, not shouted caps, so
+  no title-casing is applied (would incorrectly capitalize ordinary words).
+- **Resolutions** ("This Resolution …"/"This Joint Resolution …"): the
+  formal long title precedes this sentence in ALL CAPS (like the RELATING TO
+  case) — extract it, title-case it, and prefix with "Senate Joint
+  Resolution: " or "House Joint Resolution: " based on the bill number's own
+  SJR/HJR prefix (HJR confirmed to get the same treatment as SJR, extending
+  the user's explicit SJR instruction by direct parallel).
+
+`why_it_matters` is synced to the new title in both cases, matching the
+existing "Relating to X" behavior (confirmed with the user rather than
+assumed).
+
+**Deferred, confirmed with the user, not built in this pass**: an
+AI-generated "Purpose" section synthesizing a bill's full text once an AI
+provider is configured (none is, per Decision 006). No scaffolding added —
+would be speculative without a provider to populate it.
+
+**Follow-up bug found during live verification** (same session, deployed
+container, real feed data): the first implementation matched "before the
+matched This-phrase" too naively and produced two classes of bad titles:
+1. `"This House Joint Resolution directs…"` — an infix word ("House"/
+   "Senate") between "This" and "Joint Resolution" that the regex didn't
+   handle, so it skipped past the real phrase to a coincidental SECOND
+   mention later in the text (e.g. "This Joint Resolution also requires…"),
+   sweeping the entire first paragraph into the title.
+2. A resolution with several sentences of narrative background between its
+   ALL-CAPS heading and its (correctly-matched, no infix) self-description —
+   "before the matched phrase" swept all of that background in too.
+
+Fixed both: the regex now optionally matches a "House "/"Senate " infix, and
+the formal-title boundary is whichever comes first — the summary's own first
+period, or the matched phrase's start (mirroring `extractRelatingTo`'s
+existing "earliest terminator wins" design). Re-verified against the full
+live 349-item feed: 0 items showing the generic fallback, and the remaining
+long titles are all genuinely long single sentences from real Delaware
+legislative text — not extraction artifacts. Two regression tests added
+using the real bill text that exposed each bug.
