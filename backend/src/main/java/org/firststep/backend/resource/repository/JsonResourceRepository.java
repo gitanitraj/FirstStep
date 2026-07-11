@@ -1,6 +1,7 @@
 package org.firststep.backend.resource.repository;
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -8,6 +9,7 @@ import java.nio.file.Path;
 
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.util.CommunitySlug;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -33,36 +35,55 @@ public class JsonResourceRepository implements ResourceRepository {
 
     /**
      * Loads resources after the Spring application is ready.
-     * Tries external canonical file app/data/resources.json first,
-     * then falls back to classpath /resources.json.
+     * Loads the curated app/data/resources.json plus the structurally-mapped
+     * app/data/resources.communities.json (see decisions.md Decision 013),
+     * concatenating both into one in-memory list.
      */
 @EventListener(ApplicationReadyEvent.class)
 public void init() {
-    // Try external canonical file first
-    Path external = Path.of(dataDir, "resources.json");
+    List<Resource> curated = loadFile("resources.json");
+    List<Resource> communities = loadFile("resources.communities.json");
+
+    List<Resource> combined = new ArrayList<>(curated);
+    combined.addAll(communities);
+    resources = combined;
+
+    System.out.println("Loaded " + resources.size() + " total resources ("
+            + curated.size() + " from resources.json, "
+            + communities.size() + " from resources.communities.json)");
+}
+
+/**
+ * Loads and parses a single resource JSON file: external file at
+ * dataDir/filename first, then classpath /filename as a fallback. Returns
+ * an empty list (not an exception) if neither is found.
+ */
+private List<Resource> loadFile(String filename) {
+    Path external = Path.of(dataDir, filename);
     try {
         if (external.toFile().exists()) {
             JsonNode root = mapper.readTree(external.toFile());
-            resources = parseJsonNodeToList(root);
-            System.out.println("Loaded resources from " + external + " (" + resources.size() + " records)");
-            return;
+            List<Resource> loaded = parseJsonNodeToList(root);
+            System.out.println("Loaded resources from " + external + " (" + loaded.size() + " records)");
+            return loaded;
         }
     } catch (Exception e) {
         System.err.println("Failed to load " + external + ": " + e.getMessage());
     }
 
-    // Fallback: classpath resources.json
-    try (InputStream is = getClass().getResourceAsStream("/resources.json")) {
+    try (InputStream is = getClass().getResourceAsStream("/" + filename)) {
         if (is != null) {
             JsonNode root = mapper.readTree(is);
-            resources = parseJsonNodeToList(root);
-            System.out.println("Loaded resources from classpath resources.json (" + resources.size() + " records)");
+            List<Resource> loaded = parseJsonNodeToList(root);
+            System.out.println("Loaded resources from classpath " + filename + " (" + loaded.size() + " records)");
+            return loaded;
         } else {
-            System.out.println("No resources.json found on classpath.");
+            System.out.println("No " + filename + " found on classpath.");
         }
     } catch (Exception e) {
-        System.err.println("Failed to load classpath resources.json: " + e.getMessage());
+        System.err.println("Failed to load classpath " + filename + ": " + e.getMessage());
     }
+    return Collections.emptyList();
 }
 
 /**
@@ -132,9 +153,22 @@ private void applyContentSourceAndDefaults(Resource resource, JsonNode node) {
     resource.createdDate = contentSource.retrieved;
     resource.updatedDate = contentSource.retrieved;
 
-    if (resource.communityId == null) {
-        resource.communityId = defaultCommunityId;
+    resource.communityId = communityIdFor(resource);
+}
+
+/**
+ * Derives communityId from the resource's primary location city (e.g.
+ * "Newark" -> "newark-de"), falling back to app.default-community-id only
+ * when no location/city is available.
+ */
+private String communityIdFor(Resource resource) {
+    if (resource.locations != null && !resource.locations.isEmpty()) {
+        String slug = CommunitySlug.forCity(resource.locations.get(0).city);
+        if (slug != null) {
+            return slug;
+        }
     }
+    return defaultCommunityId;
 }
 
     @Override

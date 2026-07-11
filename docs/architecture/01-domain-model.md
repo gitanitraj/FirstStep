@@ -46,14 +46,20 @@ The primary things the community cares about.
 
 ## Organizing entities
 
-- **Community** — First-class partition key. Fields: `id, name, city, state,
-  zipCodes: List<String>, active`. Every `CivicContent` object carries a
-  `communityId` from day one (even with only Wilmington today). Ships in this
-  pass as a model class plus a default-stamping mechanism (every existing
-  Resource/NewsItem gets `communityId = "wilmington-de"` from a config
-  property, since none of today's data has one); no `CommunityController`/
-  service with real query behavior yet — see `references/decisions.md`
-  Decision 005.
+- **Community** — First-class partition key, at **city/town granularity, not
+  county** (every record in both Service Directory data sources shares the
+  same county, New Castle County — county has zero variance and is not a
+  useful partition; incorporated towns like Wilmington/Newark/Middletown, or
+  unincorporated areas like Claymont, are the real unit). Fields: `id, name,
+  city, state, zipCodes: List<String>, active`. Every `CivicContent` object
+  carries a `communityId`, derived from its own location's city via
+  `shared.util.CommunitySlug.forCity(...)` (e.g. `"Newark"` →
+  `"newark-de"`) with `app.default-community-id` (`"wilmington-de"`) as the
+  fallback when no location exists — see `references/decisions.md`
+  Decision 013. `Community.java` itself remains an inert model class with
+  no `CommunityRepository`/`Service`/`Controller` and no discovery
+  endpoint — communityId values are real and derived, but nothing yet lets
+  a client enumerate which communities exist.
 - **Category** — > TODO: define.
 - **Tag** — Realized as `CivicContent.tags: List<String>` (see below).
 

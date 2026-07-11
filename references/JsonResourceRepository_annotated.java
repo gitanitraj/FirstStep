@@ -4,14 +4,17 @@ package org.firststep.backend.resource.repository;
 // WHAT THIS CLASS DOES
 // =============================================================================
 // JsonResourceRepository is the JSON-file-backed implementation of
-// ResourceRepository. It loads app/data/resources.json (or falls back to a
-// classpath copy) at startup and holds the parsed Resource list in memory —
-// the exact loading mechanism v1's ResourceService used, moved here
-// unchanged, plus new logic to populate the CivicContent fields the v1 JSON
-// shape doesn't carry directly.
+// ResourceRepository. It loads app/data/resources.json AND
+// app/data/resources.communities.json (each with a classpath fallback) at
+// startup, concatenates both into one in-memory Resource list, and derives
+// each record's communityId from its actual location city — the exact
+// loading mechanism v1's ResourceService used for the first file, extended
+// to a second file plus real per-record communityId logic in the Community
+// multi-tenancy pass (decisions.md Decision 013).
 // =============================================================================
 
 import java.io.InputStream;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +22,7 @@ import java.nio.file.Path;
 
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.util.CommunitySlug;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -44,29 +48,44 @@ public class JsonResourceRepository implements ResourceRepository {
 
     @EventListener(ApplicationReadyEvent.class)
     public void init() {
-        Path external = Path.of(dataDir, "resources.json");
+        List<Resource> curated = loadFile("resources.json");
+        List<Resource> communities = loadFile("resources.communities.json");
+
+        List<Resource> combined = new ArrayList<>(curated);
+        combined.addAll(communities);
+        resources = combined;
+
+        System.out.println("Loaded " + resources.size() + " total resources ("
+                + curated.size() + " from resources.json, "
+                + communities.size() + " from resources.communities.json)");
+    }
+
+    private List<Resource> loadFile(String filename) {
+        Path external = Path.of(dataDir, filename);
         try {
             if (external.toFile().exists()) {
                 JsonNode root = mapper.readTree(external.toFile());
-                resources = parseJsonNodeToList(root);
-                System.out.println("Loaded resources from " + external + " (" + resources.size() + " records)");
-                return;
+                List<Resource> loaded = parseJsonNodeToList(root);
+                System.out.println("Loaded resources from " + external + " (" + loaded.size() + " records)");
+                return loaded;
             }
         } catch (Exception e) {
             System.err.println("Failed to load " + external + ": " + e.getMessage());
         }
 
-        try (InputStream is = getClass().getResourceAsStream("/resources.json")) {
+        try (InputStream is = getClass().getResourceAsStream("/" + filename)) {
             if (is != null) {
                 JsonNode root = mapper.readTree(is);
-                resources = parseJsonNodeToList(root);
-                System.out.println("Loaded resources from classpath resources.json (" + resources.size() + " records)");
+                List<Resource> loaded = parseJsonNodeToList(root);
+                System.out.println("Loaded resources from classpath " + filename + " (" + loaded.size() + " records)");
+                return loaded;
             } else {
-                System.out.println("No resources.json found on classpath.");
+                System.out.println("No " + filename + " found on classpath.");
             }
         } catch (Exception e) {
-            System.err.println("Failed to load classpath resources.json: " + e.getMessage());
+            System.err.println("Failed to load classpath " + filename + ": " + e.getMessage());
         }
+        return Collections.emptyList();
     }
 
     private List<Resource> parseJsonNodeToList(JsonNode root) throws JsonProcessingException {
@@ -108,9 +127,17 @@ public class JsonResourceRepository implements ResourceRepository {
         resource.createdDate = contentSource.retrieved;
         resource.updatedDate = contentSource.retrieved;
 
-        if (resource.communityId == null) {
-            resource.communityId = defaultCommunityId;
+        resource.communityId = communityIdFor(resource);
+    }
+
+    private String communityIdFor(Resource resource) {
+        if (resource.locations != null && !resource.locations.isEmpty()) {
+            String slug = CommunitySlug.forCity(resource.locations.get(0).city);
+            if (slug != null) {
+                return slug;
+            }
         }
+        return defaultCommunityId;
     }
 
     @Override
@@ -148,10 +175,31 @@ public class JsonResourceRepository implements ResourceRepository {
 // freshly-deserialized Resource list (Jackson's list conversion preserves
 // order), rather than parsing each object twice.
 //
-// communityId defaults from app.default-community-id (new property) only
-// when the JSON doesn't already have one — true for 100% of today's data,
-// but written to not silently override a communityId if a future data file
-// does carry one.
+// DUAL-FILE LOADING (Community multi-tenancy pass, decisions.md Decision
+// 013): init() now loads BOTH resources.json (the 58 hand-curated records)
+// and resources.communities.json (a new, structurally-mapped file covering
+// 6 additional towns from the real DSCYF directory), concatenating both
+// into one in-memory list. The existing external-then-classpath-fallback
+// body was extracted into loadFile(String filename) and called twice
+// rather than duplicated — a direct, minimal refactor required to support
+// two files, not a speculative one. resources.communities.json missing is
+// tolerated (log and continue, same pattern JsonFlyerRepository already
+// uses for its own file) since it has no classpath fallback expectation —
+// only resources.json needs one, matching production/test parity.
+//
+// communityId DERIVATION (the actual bugfix): previously
+// "if (resource.communityId == null) { resource.communityId =
+// defaultCommunityId; }" stamped app.default-community-id onto every
+// record unconditionally, since no source JSON has ever set communityId
+// itself. This silently mislabeled every non-Wilmington resource
+// (including 5 of the original 58 curated records — 2 New Castle, 2
+// Middletown, 1 Bear) as "wilmington-de". Fixed by deriving communityId
+// from the resource's own locations[0].city via CommunitySlug.forCity(...)
+// — see that class's annotated reference — falling back to
+// defaultCommunityId only when no location/city exists at all. This is
+// the change that makes /api/search's communityId filter meaningful for
+// the first time; previously every record shared one community value, so
+// filtering by it was a no-op no matter what data existed.
 //
 // validateResources(...) is carried over verbatim but left uncalled — it was
 // dead code in v1 too (nothing invoked it there either). Not deleted, not
@@ -167,6 +215,11 @@ public class JsonResourceRepository implements ResourceRepository {
 // - Populates Resource.contentSource/title/createdDate/updatedDate/communityId
 //   — fields defined on the shared CivicContent base class (see
 //   CivicContent_annotated.java).
+// - Depends on shared/util/CommunitySlug for the city -> communityId
+//   derivation (see that class's annotated reference).
+// - resources.communities.json is generated by a one-time script (not
+//   shipped as app code — see references/decisions.md Decision 013 for
+//   the full field-mapping rules); this class only ever reads the output.
 // =============================================================================
 
 // =============================================================================
@@ -180,4 +233,13 @@ public class JsonResourceRepository implements ResourceRepository {
 //   this sibling class: explicitly NOT done here — see the News slice's own
 //   annotated reference and references/decisions.md Decision 007 for why
 //   that's deliberately preserved as-is until the News slice migration.
+// - Routing the raw-DSCYF-to-Resource transform through the pipeline/
+//   package's Collector/Normalizer interfaces, or doing it at runtime
+//   inside this repository: rejected — this is a static, infrequently-
+//   changing snapshot (the DSCYF directory doesn't update in real time),
+//   so a one-time offline transform producing a committed JSON file keeps
+//   this class's hot-path logic simple (just "load these known files"),
+//   consistent with how resources.json/Service_Directory_cleaned.json
+//   themselves already arrived as static snapshots with no runtime
+//   generation step.
 // =============================================================================

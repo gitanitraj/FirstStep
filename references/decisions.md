@@ -358,3 +358,93 @@ other endpoint — current dataset sizes don't need it); any fuzzy/TF-IDF
 relevance scoring beyond `TextScore`'s existing flat substring-match
 convention; search-by-category or other structured filters beyond `q`/
 `communityId`.
+
+# Decision 013
+
+Community multi-tenancy, third item on the confirmed backlog. First pass
+concluded (wrongly) that no multi-tenancy data existed, because it checked
+`countyServed`/`county`, which is `"NCC"` for literally every record in
+both `Service_Directory_cleaned.json` (603 records) and `resources.json`
+(58 records) — zero variance. **User correction: Community means
+incorporated city/town (Wilmington, Middletown) or unincorporated area
+(Claymont, Belvedere), not county.** Re-pulling the distribution at
+city/town level (parsed from `fullAddress`) showed real, substantial
+variance the county-level check had completely hidden:
+
+- Full DSCYF directory (603 records): Wilmington 364, **Newark 79, New
+  Castle 45, Middletown 33, Bear 14, Claymont 8, Hockessin 7**, Greenville 4,
+  Newport 4, Townsend 2, St. Georges 2, Smyrna 2, plus singletons and 33
+  unparseable/missing addresses.
+- Curated `resources.json` (58 records, what the app actually serves
+  today): Wilmington 54, Newport 2, New Castle 2, Middletown 2, Bear 1 —
+  almost entirely Wilmington, confirming this file really is the thin,
+  Wilmington-focused curation `references/firststep_resource_data_lineage`
+  (session memory) already flagged it as.
+
+Three scope questions were confirmed with the user before building anything:
+
+**1. Field uniformity: structural mapping only, narrowed to the 6
+high-volume towns** (Newark, New Castle, Middletown, Bear, Claymont,
+Hockessin — the bolded list above), not all 603 raw records and not full
+manual curation of eligibility/cost/urgency/tags/verified (a separate,
+larger project the raw DSCYF export simply doesn't have the source data
+for). Executed as a one-time Python transform (not committed — see below)
+producing `app/data/resources.communities.json`: 171 final records after
+skipping 15 exact-organization-name duplicates of existing `resources.json`
+entries (case-insensitive match — bounded, deterministic, not fuzzy).
+Per-town: Newark 79, New Castle 39, Middletown 29, Bear 9, Claymont 8,
+Hockessin 7. Field mapping — `organizationName`→`organization`,
+`servicesDescription`→both `summary` and `description` (mirrors
+`resources.json`'s own convention of duplicating that text),
+`typeOfService`→`category` (Title-Cased, cosmetic only, not a real
+taxonomy), `populationServed`→`population`, `fullAddress`→parsed
+`locations[0]` (address/city/state/zip), `phone`/`website`→`phones[0]`/
+`websites[0]` when non-blank, `countyServed`→`county`. Deliberately left
+null (no source data, not invented): `subcategory`, `parentOrganization`,
+`eligibility*`, `cost`, `urgency`, `notes`, `accessMode`, `tags`.
+`verified: false` for all (honestly true — none of this is
+human-reviewed). `source: "Delaware DSCYF Service Directory (raw,
+structurally mapped)"` — deliberately distinct from the curated set's
+source string so the two are never confused for the same provenance.
+`retrieved: null` — no real per-record timestamp exists in the raw file;
+not fabricated. Synthetic sequential ids `SD-001`..`SD-171`.
+
+**The generation script itself is not committed** — same precedent as
+`Service_Directory_cleaned.json`/`resources.json`, neither of which has a
+committed regeneration script either. Only the output JSON is in the repo;
+the mapping rules above are recorded here precisely enough to reproduce or
+re-run the transform later if the source directory updates.
+
+**Explicitly deferred, not silently dropped:** Greenville, Newport,
+Townsend, St. Georges, Smyrna, and the singleton towns (all ≤4 records) —
+real but low-volume, can be added the same way later. Full curation of
+eligibility/cost/urgency/tags/verified for the 6 included towns also stays
+deferred.
+
+**2. Fixed a real, pre-existing bug:** `JsonResourceRepository`'s
+`applyContentSourceAndDefaults` only ever guarded `if (resource.communityId
+== null)` before stamping `app.default-community-id` — a guard that was
+always true, since no source JSON has ever set `communityId` itself. This
+silently mislabeled every non-Wilmington resource as `"wilmington-de"`,
+including 5 of the original 58 curated records (2 New Castle, 2 Middletown,
+1 Bear). Fixed by deriving `communityId` from `resource.locations[0].city`
+via the new `shared/util/CommunitySlug.forCity(...)` (a general slugifier,
+not a hardcoded town list — `"Wilmington"` → `"wilmington-de"`, matching
+today's default exactly, so no existing Wilmington record's value changes),
+falling back to `defaultCommunityId` only when no location/city exists at
+all. This is the change that makes `/api/search`'s `communityId` filter
+actually do something — previously every record shared one community
+value, so filtering by it was a no-op regardless of what data existed.
+`JsonResourceRepository.init()` was also extended to load
+`resources.communities.json` alongside `resources.json` (extracted the
+existing external-then-classpath-fallback body into a shared `loadFile`
+helper, called twice — a direct refactor required to support two files,
+not speculative).
+
+**3. No new Community CRUD API.** `Community.java` stays the inert struct
+it's been since Milestone 1 — no `CommunityRepository`/`Service`/
+`Controller`, no `communities.json` listing file, no `GET /api/communities`
+discovery endpoint. Just accurate `communityId` values flowing through so
+`/api/search?communityId=newark-de` (etc.) is now meaningful. A real
+Community API is a separate, later decision if/when a client actually
+needs to discover available communities rather than already knowing one.

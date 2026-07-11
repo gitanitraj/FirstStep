@@ -110,9 +110,19 @@ demoable state** and satisfies the [Definition of Done](00-philosophy.md#definit
   `SearchController`, scoring via the newly-extracted `shared/util/
   TextScore` (also adopted by `DecisionAgentService`). Backend only, no
   `app.js` UI yet. See `references/decisions.md` Decision 012.)*
+- [x] **First non-Wilmington communities** — real `communityId` values
+  derived from actual location data, `/api/search?communityId=...`
+  meaningful across multiple towns. → **Demo.** *(Completed —
+  `shared/util/CommunitySlug` derives `communityId` from each resource's
+  location city; `resources.communities.json` (171 records, structurally
+  mapped from the real DSCYF directory) adds real data for Newark, New
+  Castle, Middletown, Bear, Claymont, and Hockessin alongside the existing
+  Wilmington-curated set. No new Community CRUD API — see
+  `references/decisions.md` Decision 013.)*
 
 > TODO: Add further milestones (e.g. repository pattern, SQLite, Spring AI swap,
-> first non-Wilmington community). Each must end in a working demo.
+> a real Community discovery API, full curation of the community-directory
+> resources' eligibility/cost/urgency/tags). Each must end in a working demo.
 
 ## Future capabilities (backlog)
 

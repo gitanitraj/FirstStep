@@ -87,4 +87,54 @@ class JsonResourceRepositoryTest {
         Optional<Resource> found = repository.findById("CI-004");
         assertTrue(found.isPresent());
     }
+
+    @Test
+    void shouldDeriveCommunityIdFromLocationCityWhenPresent(@TempDir Path tempDir) throws IOException {
+        String json = "{\"records\":[{\"id\":\"SD-001\",\"organization\":\"Org\",\"category\":\"Cat\"," +
+                "\"locations\":[{\"label\":\"Primary\",\"city\":\"Newark\",\"state\":\"DE\"}]}]}";
+        Files.writeString(tempDir.resolve("resources.json"), json);
+
+        JsonResourceRepository repository = repositoryFor(tempDir.toString());
+        repository.init();
+
+        assertEquals("newark-de", repository.findAll().get(0).communityId);
+    }
+
+    @Test
+    void shouldFallBackToDefaultCommunityIdWhenNoLocationPresent(@TempDir Path tempDir) throws IOException {
+        String json = "{\"records\":[{\"id\":\"CI-005\",\"organization\":\"Org\",\"category\":\"Cat\"}]}";
+        Files.writeString(tempDir.resolve("resources.json"), json);
+
+        JsonResourceRepository repository = repositoryFor(tempDir.toString());
+        repository.init();
+
+        assertEquals("wilmington-de", repository.findAll().get(0).communityId);
+    }
+
+    @Test
+    void shouldMergeResourcesJsonAndResourcesCommunitiesJson(@TempDir Path tempDir) throws IOException {
+        Files.writeString(tempDir.resolve("resources.json"),
+                "{\"records\":[{\"id\":\"CI-001\",\"organization\":\"Curated Org\",\"category\":\"Cat\"}]}");
+        Files.writeString(tempDir.resolve("resources.communities.json"),
+                "{\"records\":[{\"id\":\"SD-001\",\"organization\":\"Directory Org\",\"category\":\"Cat\"}]}");
+
+        JsonResourceRepository repository = repositoryFor(tempDir.toString());
+        repository.init();
+
+        List<Resource> resources = repository.findAll();
+        assertEquals(2, resources.size());
+        assertTrue(resources.stream().anyMatch(r -> "CI-001".equals(r.id)));
+        assertTrue(resources.stream().anyMatch(r -> "SD-001".equals(r.id)));
+    }
+
+    @Test
+    void shouldLoadNormallyWhenResourcesCommunitiesJsonIsAbsent(@TempDir Path tempDir) throws IOException {
+        Files.writeString(tempDir.resolve("resources.json"),
+                "{\"records\":[{\"id\":\"CI-001\",\"organization\":\"Curated Org\",\"category\":\"Cat\"}]}");
+
+        JsonResourceRepository repository = repositoryFor(tempDir.toString());
+        repository.init();
+
+        assertEquals(1, repository.findAll().size());
+    }
 }
