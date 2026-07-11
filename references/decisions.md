@@ -234,3 +234,53 @@ live 349-item feed: 0 items showing the generic fallback, and the remaining
 long titles are all genuinely long single sentences from real Delaware
 legislative text — not extraction artifacts. Two regression tests added
 using the real bill text that exposed each bug.
+
+# Decision 011
+
+Built the Flyer vertical slice's backend (`flyer/{model,repository,service,
+controller}`), per direct instruction: "static flyers.json + static images,
+no OCR/AI, no real pipeline/ package wiring — just mirroring
+ResourceService." First backlog item from the roadmap the user laid out
+(Flyers → Search → Community multi-tenancy → Expert stubs → React frontend →
+Mobile → Persistence) — chosen first because it's small, fully self-scoped,
+and mirrors a pattern already proven three times (Resource/News/AI), giving
+later work (layout redesign, React frontend) real data to build against
+instead of placeholders.
+
+Two deliberate deviations from the user's original class sketch (`private
+String organization; private LocalDate eventDate; private Location
+location; private String image;`):
+- Public fields, not private+getters — matches every other domain class in
+  this codebase (zero exceptions).
+- `eventDate` is `String`, not `LocalDate` — every other date-shaped field
+  in the codebase (`NewsItem.published/.expires`, `ContentSource.retrieved`,
+  `CivicContent.createdDate/.updatedDate`) is a plain String, and the
+  repositories' hand-built `ObjectMapper` instances don't have
+  `JavaTimeModule` registered (Spring's autoconfigured one does, but these
+  repositories deliberately don't use it, matching Resource/News). Using
+  `LocalDate` would have been the first `java.time` usage in the domain
+  model and required a new dependency/registration for one field.
+
+`JsonFlyerRepository` mirrors `JsonResourceRepository`'s file-discovery
+mechanism (external file at `app.data.dir`, classpath fallback, multi-shape
+JSON support) but deliberately has NO field-mapping adapter — Resource/News
+needed one to bridge v1's legacy flat JSON shape onto the new CivicContent
+shape; Flyer has no legacy shape to bridge (it's brand new), so
+`app/data/flyers.json` was authored to already match the Java class
+directly. Only `communityId` defaulting was kept, since none of today's
+data specifies one.
+
+`app/data/flyers.json` has 7 records, one per the real flyer image already
+at `backend/src/main/resources/static/images/seasonal/`. **The metadata
+(organization, event date, location, summary) is manually authored for this
+pass, not extracted from the images** — confirmed earlier (see
+`references/Media_annotated.java`) that those images carry only standard
+EXIF, no descriptive content. Flagging this explicitly so it isn't mistaken
+for real extracted data later, when OCR/AI extraction is eventually built.
+
+Not done, explicitly out of scope for this pass: wiring Flyer into
+`DecisionAgentService`'s AI retrieval; rewiring the existing seasonal-images
+carousel (`app.js`) to consume the new `/api/flyers` endpoint instead of the
+old `/api/seasonal-images`; routing loading through the `pipeline/` package's
+Collector/Normalizer interfaces (conceptually a natural fit, but that
+package stays scaffolding-only until a case actually needs it, per Step 7).

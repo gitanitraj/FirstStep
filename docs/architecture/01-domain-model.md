@@ -30,7 +30,17 @@ The primary things the community cares about.
   `NewsItem`: `JsonNewsRepository` (static `app/data/news.json`) and
   `RssFeedService` (live Delaware legislature RSS feed), served via
   `GET /api/news` and `GET /api/news/rss` respectively.
-- **Flyer** — > TODO: define (unstructured artifact + generated metadata).
+- **Flyer** — extends `CivicContent`. Adds `organization: String, eventDate:
+  String, location: Location, image: String` (bare filename, e.g.
+  "Youth.jpg" — the frontend combines it with the known static image path
+  to render it). Backed by `JsonFlyerRepository` reading a static
+  `app/data/flyers.json` authored directly in the Flyer JSON shape (no
+  legacy-format adapter needed, unlike Resource/News). Served via
+  `GET /api/flyers` and `GET /api/flyers/{id}`. Current data (7 records) is
+  manually authored metadata for the 7 existing images at
+  `backend/src/main/resources/static/images/seasonal/` — not extracted via
+  OCR/AI, which remains a future milestone (see "Milestone 2" in
+  `03-application-architecture.md`).
 - **FAQ** — > TODO: define.
 - **ExpertAnswer** — > TODO: define.
 
