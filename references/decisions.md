@@ -448,3 +448,84 @@ discovery endpoint. Just accurate `communityId` values flowing through so
 `/api/search?communityId=newark-de` (etc.) is now meaningful. A real
 Community API is a separate, later decision if/when a client actually
 needs to discover available communities rather than already knowing one.
+
+# Decision 014
+
+Category taxonomy + `GET /api/categories` — Step 1 of the 8-step homepage
+redesign roadmap (see `docs/architecture/03-application-architecture.md`'s
+Milestone Roadmap; the full 8-step sequence is recorded there). The
+redesign brief (`references/CSSforNewDesign.md`) calls for a persistent
+sidebar organized around 7 categories (Housing, Food, Clothing, Health,
+Employment, Utilities, Legal), each showing a resource count and "latest"
+items, plus a category-to-policy-update link.
+
+**Same shape of lesson as Decision 013's county-vs-community finding,
+repeated at the category level**: `Resource.category` is uncontrolled free
+text, and the two live data files use two disjoint vocabularies with zero
+overlap (`resources.json`: 3 category strings; `resources.communities.json`:
+~21 strings). Mapping everything onto the requested 7 categories left ~117
+of 229 resources (about half) unmapped — "Recreational" alone is 53
+records, the single largest category in the entire directory, second only
+to "Housing Assistance." A field that looks like it should carry real
+structure needed direct investigation before any sidebar could be built on
+top of it — checking real data distribution before building UI on an
+assumed taxonomy is now a repeated, confirmed lesson in this project.
+
+**Resolution, by direct instruction — 10 categories, 100% resource
+coverage:**
+
+| key | label | matches `Resource.category` | matches News tags | includes |
+|---|---|---|---|---|
+| `housing` | Housing | Housing Assistance, Housing | housing | |
+| `food` | Food | Food Program | food | |
+| `clothing` | Clothing | Clothing & Incidentals | — | |
+| `health` | Health | Healthcare/Medical, Mental Health, Substance Use | healthcare | |
+| `employment` | Employment | Employment | employment | |
+| `utilities` | Utilities | — | utilities | 0 resources today (accepted) |
+| `legal` | Legal | Advocacy | legal | |
+| `community-events` | Community Events | Recreational | — | all `Flyer` records |
+| `furniture-household` | Furniture & Household | Furniture & Household Items | — | |
+| `community-support` | Community Support | Resource Information, Education/Training, Parenting Education, Financial Support, Support Group, Early Childhood/Pre-K, Volunteer, Mentor, Life Skills, Transportation, Child Care, Before/After School Care, Entertainment | — | catch-all; frontend uses `tags`/`subcategory` for finer filtering within it |
+
+Two categories added beyond the original 7: **Community Events** absorbs
+the 53-record "Recreational" bucket and — deliberately, by direct
+instruction — is also the first time `Flyer` content joins the category
+taxonomy at all (Flyers were previously only reachable via `/api/flyers`
+or `/api/search`, never through category browsing). **Furniture &
+Household** got its own category rather than being folded into the
+catch-all, since "Furniture & Household Items" was already a single, clean
+category string (6 records) with no reason to blend it into a bucket it
+didn't need. **Community Support** is the deliberate catch-all for the
+remaining 13 leftover category strings (~64 records).
+
+**Design**: `category/model/CategoryDefinition` is a static registry (not
+a DB table — 10 entries, rarely changes), same pattern as
+`RssFeedService`'s existing `TAG_KEYWORDS` constant map.
+`category/service/CategoryService` composes `ResourceService`/
+`NewsService`/`FlyerService` (same discipline as `SearchService`) and
+returns `category/dto/CategorySummary`, whose `latestItems` field reuses
+`search/dto/SearchResult` rather than inventing a duplicate
+polymorphic-list wrapper. Policy-update matching uses
+`NewsItem.resourceTags` (lowercase, machine-matching field) rather than
+`.tags` (Capitalized, display field) — both are produced from the same
+matched-bucket list in `RssFeedService.classifyLegislation()`, differing
+only in casing.
+
+**UI guideline logged for later frontend steps, not a backend change**:
+`Resource.updatedDate` is set from the JSON load/retrieved date, not real
+edit-history tracking. `CategoryService` sorts by it internally for
+"latest items" (a reasonable recency proxy), but per direct instruction
+**the frontend must not display it to users as "last updated"** — that
+would imply a freshness guarantee the data doesn't have. Applies when
+Step 6/8 of the redesign roadmap builds the actual resource cards.
+
+**"Important Updates," not "Trending Now"** — by direct instruction, this
+is the name to use for the redesign's recency/urgency civic-content
+section (Step 5 of the roadmap), correcting the working name used in the
+initial critique of the redesign brief.
+
+**Explicitly logged as a separate, deferred idea, not part of this
+roadmap**: real Exiftool/AI-based metadata extraction for `Flyer` records,
+suggested as a way to eventually auto-populate Community Events content
+from flyer images. Ties back to Decision 011's original OCR/AI deferral —
+still a good idea, still not built.

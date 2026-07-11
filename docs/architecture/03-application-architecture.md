@@ -120,6 +120,43 @@ demoable state** and satisfies the [Definition of Done](00-philosophy.md#definit
   Wilmington-curated set. No new Community CRUD API — see
   `references/decisions.md` Decision 013.)*
 
+### Homepage redesign — 8-step roadmap
+
+Redesigning the homepage/results pages into a trusted-civic-guide
+experience (`references/CSSforNewDesign.md`), built as a real React
+frontend. Each step gets its own dedicated design pass before being built,
+mirroring how the original vertical-slice migration was planned.
+
+- [x] **Step 1 — Category taxonomy + `GET /api/categories`.** → **Demo.**
+  *(Completed — 10-category taxonomy in `category/model/CategoryDefinition`
+  (100% resource coverage — see `references/decisions.md` Decision 014 for
+  why 2 categories were added beyond the original 7). `category/service/
+  CategoryService` aggregates counts, latest items (reusing `search/dto/
+  SearchResult`), and policy-update linkage per category, community-aware.)*
+- **Step 2 — Expert stubs.** Feeds `CivicContent` and is the basis for FAQ
+  answers — part of the same information pipeline as Step 1, not a
+  separate concern to defer.
+- **Step 3 — React frontend project scaffold.** Tooling choice (React +
+  Vite vs. Next.js), build pipeline, how the built output is served
+  (leaning toward the existing single-container Docker model).
+- **Step 4 — `AppLayout` + `Sidebar`.** Category filters wired to
+  `/api/categories`, `CommunitySelector` wired to real communities, mobile
+  drawer.
+- **Step 5 — `MainContent`: Hero + AI widget merge, Important Updates,
+  `CategoryPreviewList`.** ("Important Updates," not "Trending Now" — see
+  Decision 014.)
+- **Step 6 — Results pages + progressively-detailed cards.** Three
+  density tiers; no backend gap, every field already exists.
+- **Step 7 — Shared filter context wiring** across AI guidance, Important
+  Updates, category previews, and search results.
+- **Step 8 — Interaction polish + full verification.** Existing warm
+  green/orange/cream palette throughout (not `CSSforNewDesign.md`'s
+  blue/purple), responsive behavior, full live verification.
+
+Also logged, explicitly deferred, not part of this sequence: real
+Exiftool/AI-based metadata extraction for Flyers (ties back to Decision
+011's original OCR/AI deferral).
+
 > TODO: Add further milestones (e.g. repository pattern, SQLite, Spring AI swap,
 > a real Community discovery API, full curation of the community-directory
 > resources' eligibility/cost/urgency/tags). Each must end in a working demo.

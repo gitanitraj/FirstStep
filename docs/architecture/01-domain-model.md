@@ -60,7 +60,18 @@ The primary things the community cares about.
   no `CommunityRepository`/`Service`/`Controller` and no discovery
   endpoint — communityId values are real and derived, but nothing yet lets
   a client enumerate which communities exist.
-- **Category** — > TODO: define.
+- **Category** — a fixed, 10-entry taxonomy (`category.model.
+  CategoryDefinition.ALL`: Housing, Food, Clothing, Health, Employment,
+  Utilities, Legal, Community Events, Furniture & Household, Community
+  Support), not a stored/CRUD entity — a static registry mapping each
+  canonical category to the real `Resource.category` strings and News
+  `resourceTags` that belong to it, since `Resource.category` itself is
+  uncontrolled free text with no enforced taxonomy. `GET /api/categories`
+  (`category/service/CategoryService`) aggregates counts, latest items,
+  and linked policy updates per category, reusing `search.dto.SearchResult`
+  for the polymorphic Resource/Flyer item list. See
+  `references/decisions.md` Decision 014 for why the taxonomy has 10
+  entries, not the originally-proposed 7.
 - **Tag** — Realized as `CivicContent.tags: List<String>` (see below).
 
 ## Supporting objects
