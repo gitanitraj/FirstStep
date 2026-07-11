@@ -17,7 +17,6 @@ package org.firststep.backend.ai.service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import org.firststep.backend.ai.dto.DecisionRequest;
 import org.firststep.backend.ai.dto.DecisionResponse;
@@ -25,6 +24,7 @@ import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.model.Citation;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.util.TextScore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -62,10 +62,18 @@ public class DecisionAgentService {
     }
 
     // See DecisionAgentService.java for the full method bodies (decide,
-    // selectTopResources, selectTopNews, scoreMatch, buildPrompt,
+    // selectTopResources, selectTopNews, buildPrompt,
     // mapperToTrimmedResourcesJson/NewsJson, parseDecisionResponse,
-    // repairTruncatedJson) — unchanged by this migration except for
-    // resolveCitationSources, documented in detail below. This reference
+    // repairTruncatedJson) — unchanged by the Search-slice pass except that
+    // selectTopResources/selectTopNews now call TextScore.match(...)/
+    // TextScore.lower(...) instead of this class's own private scoreMatch
+    // (3 overloads) and safeLower, which were EXTRACTED (not duplicated) to
+    // shared/util/TextScore.java when the new search/ slice needed the same
+    // substring-scoring logic — see TextScore_annotated.java. This is a
+    // behavior-preserving move: same substring-containment, flat-5-points-
+    // per-field, first-match-wins-for-lists semantics, just relocated so a
+    // second consumer (SearchService) doesn't have to reimplement it.
+    // resolveCitationSources is documented in detail below. This reference
     // focuses on WHY each piece exists and HOW they interact, per governance;
     // it does not re-paste every line (see the production file for that).
 
@@ -124,6 +132,16 @@ public class DecisionAgentService {
 // =============================================================================
 // WHY THIS IMPLEMENTATION WAS CHOSEN
 // =============================================================================
+// TEXTSCORE EXTRACTION (Search-slice pass, decisions.md Decision 012): this
+// class's private scoreMatch/safeLower were the only substring-scoring logic
+// in the codebase until search/service/SearchService needed the identical
+// behavior for its own cross-CivicContent matching. Rather than copy-paste
+// a second implementation, the logic moved to shared/util/TextScore.java —
+// this file's only change is calling that utility instead of its own
+// removed private methods. This is the one place the Search-slice work
+// touched pre-existing, already-tested code; DecisionAgentServiceTest was
+// re-run and confirmed unchanged in behavior after the move.
+//
 // PACKAGE MOVE: org.firststep.backend.service -> org.firststep.backend.ai.service,
 // alongside DecisionController and the DecisionRequest/Response/Step DTOs
 // (now ai/dto/, no longer dto/ — that package is deleted entirely, it had

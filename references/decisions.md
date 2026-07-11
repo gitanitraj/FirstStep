@@ -284,3 +284,77 @@ carousel (`app.js`) to consume the new `/api/flyers` endpoint instead of the
 old `/api/seasonal-images`; routing loading through the `pipeline/` package's
 Collector/Normalizer interfaces (conceptually a natural fit, but that
 package stays scaffolding-only until a case actually needs it, per Step 7).
+
+# Decision 012
+
+Built the Search vertical slice: `GET /api/search?q=...&communityId=...`,
+searching across Resource/NewsItem/Flyer in one community-aware, ranked
+list. Second item on the confirmed backlog (Community Flyers → **Search** →
+Community multi-tenancy → Expert stubs → React frontend → Mobile →
+Persistence). Unlike Flyer, this wasn't a copy of an established
+single-slice pattern — it's the first genuinely new cross-cutting feature
+since the v2 migration, so three real design forks were surfaced and
+confirmed with the user before implementation, rather than picked silently:
+
+**1. Result shape: unified ranked list, not grouped-by-type.**
+`SearchResult{type, score, content}` in one list sorted by score, mixing
+all three types — considered and rejected the alternative
+(`{resources:[...], news:[...], flyers:[...]}`) because the entire point of
+cross-type search is a real ranking (a highly-relevant Flyer should be able
+to outrank a weakly-relevant Resource); grouping by type would just push
+the interleaving work onto every future client instead of doing it once.
+`content` is typed as the abstract `CivicContent`, not `Object` — Jackson
+serializes a field's runtime type by default in this codebase (no
+`MapperFeature.USE_STATIC_TYPING` is set anywhere), so every subtype's
+extra fields (`Resource.organization`, `Flyer.image`, etc.) still serialize
+correctly with no `@JsonTypeInfo` needed.
+
+**2. Scoring logic: extracted to `shared/util/TextScore.java`, and
+`DecisionAgentService` was refactored to use it too.** `DecisionAgentService`
+already had a private `scoreMatch`/`safeLower` substring-scoring helper for
+its own AI-prompt retrieval. The alternative — giving `SearchService` its
+own independent copy, leaving `DecisionAgentService` completely untouched —
+was presented as the lower-risk option (zero chance of destabilizing
+tested, working code) but the user explicitly chose extraction instead, to
+avoid long-term drift between two copies of the same logic. This is the
+one place this pass touched pre-existing working code; the move was
+byte-for-byte behavior-equivalent (same flat-5-points-per-field,
+substring-containment, first-match-wins-for-lists semantics), and
+`DecisionAgentServiceTest`'s full existing suite was re-run and confirmed
+unchanged afterward. See `references/TextScore_annotated.java` and the
+updated `references/DecisionAgentService_annotated.java`.
+
+**3. Backend only this pass — no `app.js` wiring.** Matches how the Flyer
+slice was done (endpoint + tests first, frontend later); a real search UI
+is better built once in the upcoming React frontend (backlog item #5) than
+built twice.
+
+**Community-aware filtering is genuinely new to this codebase.** Every
+repository (`JsonResourceRepository`, `JsonNewsRepository`,
+`JsonFlyerRepository`) stamps the same default `communityId`
+(`wilmington-de`) onto every record at load time, but until this slice,
+nothing ever read it back — `communityId` was write-only metadata. Search
+is the first place it's actually used as a filter, establishing the
+community-aware plumbing ahead of the later multi-tenancy backlog item —
+though it's inert today (single community, so every record always
+matches). A missing `communityId` on a search request falls back to
+`app.default-community-id` (same default used everywhere else), not "no
+filter" — a search is always scoped to some community context by default.
+
+**Incidental bug found and fixed via test failure, not anticipated in
+advance:** `SearchController`'s `q` is this app's first required
+`@RequestParam` (every other endpoint's parameters are path variables).
+Spring's normal 400 for a missing required param was being swallowed by
+`GlobalExceptionHandler`'s catch-all `Exception → 500` handler, since no
+more specific handler existed for
+`MissingServletRequestParameterException`. Added a dedicated handler for
+it (400, `MISSING_PARAMETER`) — additive only, doesn't change the
+catch-all's behavior for anything else. See
+`references/GlobalExceptionHandler_annotated.java`.
+
+Not done, explicitly out of scope for this pass: `app.js` search UI (see
+above); result pagination (`PageResponse<T>` stays unwired, matching every
+other endpoint — current dataset sizes don't need it); any fuzzy/TF-IDF
+relevance scoring beyond `TextScore`'s existing flat substring-match
+convention; search-by-category or other structured filters beyond `q`/
+`communityId`.

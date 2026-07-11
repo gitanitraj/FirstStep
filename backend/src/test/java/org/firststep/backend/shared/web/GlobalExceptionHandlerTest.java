@@ -7,6 +7,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -31,6 +32,11 @@ class GlobalExceptionHandlerTest {
         public String boom() {
             throw new RuntimeException("something went wrong");
         }
+
+        @GetMapping("/test/requires-param")
+        public String requiresParam(@RequestParam String q) {
+            return q;
+        }
     }
 
     @Test
@@ -48,5 +54,13 @@ class GlobalExceptionHandlerTest {
                 .andExpect(status().isInternalServerError())
                 .andExpect(jsonPath("$.success").value(false))
                 .andExpect(jsonPath("$.errorCode").value("INTERNAL_ERROR"));
+    }
+
+    @Test
+    void shouldReturn400WhenRequiredRequestParamMissing() throws Exception {
+        mockMvc.perform(get("/test/requires-param"))
+                .andExpect(status().isBadRequest())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.errorCode").value("MISSING_PARAMETER"));
     }
 }

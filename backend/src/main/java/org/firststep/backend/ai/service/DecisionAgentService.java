@@ -3,7 +3,6 @@ package org.firststep.backend.ai.service;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
-import java.util.Locale;
 
 import org.firststep.backend.ai.dto.DecisionRequest;
 import org.firststep.backend.ai.dto.DecisionResponse;
@@ -11,6 +10,7 @@ import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.model.Citation;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.util.TextScore;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -51,7 +51,7 @@ public class DecisionAgentService {
      * Main entry: retrieve relevant local items, then ask the AI to return STRICT JSON.
      */
     public DecisionResponse decide(DecisionRequest request) {
-        String q = safeLower(request == null ? null : request.userQuery);
+        String q = TextScore.lower(request == null ? null : request.userQuery);
         boolean urgent = request != null && Boolean.TRUE.equals(request.urgent);
         List<String> preferredCategories = request == null ? List.of() : request.preferredCategories;
 
@@ -98,16 +98,16 @@ public class DecisionAgentService {
             if (r == null) continue;
 
             int score = 0;
-            score += scoreMatch(q, r.organization);
-            score += scoreMatch(q, r.summary);
-            score += scoreMatch(q, r.description);
-            score += scoreMatch(q, r.category);
-            score += scoreMatch(q, r.subcategory);
-            score += scoreMatch(q, r.tags);
+            score += TextScore.match(q, r.organization);
+            score += TextScore.match(q, r.summary);
+            score += TextScore.match(q, r.description);
+            score += TextScore.match(q, r.category);
+            score += TextScore.match(q, r.subcategory);
+            score += TextScore.match(q, r.tags);
 
             if (urgent) {
                 if (r.urgency != null) {
-                    String u = safeLower(r.urgency);
+                    String u = TextScore.lower(r.urgency);
                     if (u.equals("emergency") || u.equals("time-limited")) {
                         score += 8;
                     }
@@ -115,8 +115,8 @@ public class DecisionAgentService {
             }
 
             if (categoryNeed != null && r.category != null) {
-                String cat = safeLower(r.category);
-                if (cat.contains(safeLower(categoryNeed))) {
+                String cat = TextScore.lower(r.category);
+                if (cat.contains(TextScore.lower(categoryNeed))) {
                     score += 5;
                 }
             }
@@ -142,13 +142,13 @@ public class DecisionAgentService {
             if (n == null) continue;
 
             int score = 0;
-            score += scoreMatch(q, n.title);
-            score += scoreMatch(q, n.summary);
-            score += scoreMatch(q, n.whyItMatters);
-            score += scoreMatch(q, n.tags);
+            score += TextScore.match(q, n.title);
+            score += TextScore.match(q, n.summary);
+            score += TextScore.match(q, n.whyItMatters);
+            score += TextScore.match(q, n.tags);
 
             if (catNeed != null) {
-                score += scoreMatch(catNeed, n.tags);
+                score += TextScore.match(catNeed, n.tags);
             }
 
             if (score > 0) {
@@ -160,34 +160,6 @@ public class DecisionAgentService {
 
         int limit = 3;
         return scored.stream().limit(limit).map(NewsScore::news).toList();
-    }
-
-    private int scoreMatch(String q, String field) {
-        if (q == null || q.isBlank() || field == null || field.isBlank()) return 0;
-        String f = safeLower(field);
-        return f.contains(q) ? 5 : 0;
-    }
-
-    private int scoreMatch(String q, List<String> fields) {
-        if (q == null || q.isBlank() || fields == null) return 0;
-        for (String f : fields) {
-            int s = scoreMatch(q, f);
-            if (s > 0) return s;
-        }
-        return 0;
-    }
-
-    private int scoreMatch(String q, String[] fields) {
-        if (q == null || q.isBlank() || fields == null) return 0;
-        for (String f : fields) {
-            int s = scoreMatch(q, f);
-            if (s > 0) return s;
-        }
-        return 0;
-    }
-
-    private String safeLower(String s) {
-        return s == null ? "" : s.toLowerCase(Locale.ROOT).trim();
     }
 
     private String buildPrompt(

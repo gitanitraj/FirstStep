@@ -39,8 +39,13 @@ Information originates from two format classes and several actor types.
 
 The same knowledge, many channels.
 
-> TODO: Web, Mobile, Search, AI assistant, Newsletter, Social media, APIs — each a
+> TODO: Web, Mobile, AI assistant, Newsletter, Social media, APIs — each a
 > consumer of one knowledge model.
+
+The Search channel is implemented: `GET /api/search?q=...&communityId=...`
+(`search/service/SearchService`, `search/controller/SearchController`)
+searches across Resource/NewsItem/Flyer and returns one community-aware,
+ranked list. See `references/decisions.md` Decision 012.
 
 The AI-assistant channel is named `AiAssistant` (interface) /
 `SpringAiAssistant` (implementation) in code — see

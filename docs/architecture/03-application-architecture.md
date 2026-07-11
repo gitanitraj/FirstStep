@@ -93,14 +93,23 @@ demoable state** and satisfies the [Definition of Done](00-philosophy.md#definit
   slices, real `Citation` → `ContentSource` resolution. Verified via a live
   Docker deployment and headless-browser walkthrough, not just `mvn test`.)*
 - **Milestone 2** — Add flyer metadata extraction (unstructured → metadata while
-  preserving the original artifact). → **Demo.** *(Not started. Empty package
-  scaffolding for `flyer`, `expert`, `search`, and a `pipeline` package with
-  minimal per-stage marker interfaces — `Collector`, `MetadataExtractor`,
-  `Normalizer`, `Enricher`, `Deliverer` — now exist as a landing point, per
-  the vertical-slice migration's Step 7. No real logic, and Resource/News
-  ingestion is deliberately NOT refactored to implement these interfaces
-  yet — that refactor is future work once a second real case (e.g. Flyer)
-  exists to validate the shape against.)*
+  preserving the original artifact). → **Demo.** *(Not started — this specific
+  milestone is about OCR/AI-driven extraction, still deferred. What DID land:
+  a Flyer backend slice (`flyer/` — model/repository/service/controller)
+  serving 7 real flyer images via `GET /api/flyers`, but with manually
+  AUTHORED metadata (`app/data/flyers.json`), not extracted — see
+  `references/decisions.md` Decision 011. `expert` and a `pipeline` package
+  with minimal per-stage marker interfaces — `Collector`, `MetadataExtractor`,
+  `Normalizer`, `Enricher`, `Deliverer` — remain scaffolding only, per the
+  vertical-slice migration's Step 7. Resource/News/Flyer ingestion is
+  deliberately NOT refactored to implement these interfaces yet — that
+  refactor is future work once a real case demands it.)*
+- [x] **Search MVP** — `GET /api/search?q=...&communityId=...` searching
+  across Resource/NewsItem/Flyer in one community-aware, ranked list. →
+  **Demo.** *(Completed — `search/` slice: `SearchService`/
+  `SearchController`, scoring via the newly-extracted `shared/util/
+  TextScore` (also adopted by `DecisionAgentService`). Backend only, no
+  `app.js` UI yet. See `references/decisions.md` Decision 012.)*
 
 > TODO: Add further milestones (e.g. repository pattern, SQLite, Spring AI swap,
 > first non-Wilmington community). Each must end in a working demo.

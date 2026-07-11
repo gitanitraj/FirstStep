@@ -14,6 +14,7 @@ import org.firststep.backend.shared.dto.ApiResponse;
 import org.firststep.backend.shared.exception.NotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
@@ -24,6 +25,12 @@ public class GlobalExceptionHandler {
     public ResponseEntity<ApiResponse<Void>> handleNotFound(NotFoundException ex) {
         return ResponseEntity.status(HttpStatus.NOT_FOUND)
                 .body(ApiResponse.error("NOT_FOUND", ex.getMessage()));
+    }
+
+    @ExceptionHandler(MissingServletRequestParameterException.class)
+    public ResponseEntity<ApiResponse<Void>> handleMissingParameter(MissingServletRequestParameterException ex) {
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponse.error("MISSING_PARAMETER", ex.getMessage()));
     }
 
     @ExceptionHandler(Exception.class)
@@ -37,11 +44,22 @@ public class GlobalExceptionHandler {
 // WHY THIS IMPLEMENTATION WAS CHOSEN
 // =============================================================================
 // @RestControllerAdvice applies across every @RestController in the
-// application automatically — no per-controller try/catch needed. Two
-// handlers only: NotFoundException -> 404, and a catch-all Exception -> 500.
-// Nothing more elaborate (e.g. Bean Validation error handling) was added,
-// since no @Valid/Bean Validation exists anywhere in this codebase today —
-// building that handling now would be speculative.
+// application automatically — no per-controller try/catch needed. Three
+// handlers: NotFoundException -> 404, MissingServletRequestParameterException
+// -> 400, and a catch-all Exception -> 500. Nothing more elaborate (e.g.
+// Bean Validation error handling) was added, since no @Valid/Bean Validation
+// exists anywhere in this codebase today — building that handling now would
+// be speculative.
+//
+// MissingServletRequestParameterException handler added when
+// search/controller/SearchController introduced this app's first required
+// @RequestParam (?q=...) — before that, every endpoint's parameters were
+// path variables, so a missing-required-query-param request had never been
+// exercised. Without a specific handler, Spring's normally-automatic 400 for
+// this exception was getting swallowed by the catch-all Exception -> 500
+// handler below (confirmed by a failing SearchControllerTest case, not
+// guessed) — this handler restores the correct 400 without touching the
+// catch-all's behavior for anything else.
 // =============================================================================
 
 // =============================================================================

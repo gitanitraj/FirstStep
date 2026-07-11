@@ -1,11 +1,12 @@
 /**
- * Search vertical slice — scaffolding only, no implementation yet.
+ * Search vertical slice — GET /api/search?q=...&communityId=... searching
+ * across Resource, NewsItem, and Flyer in one community-aware, ranked list.
  *
- * No dedicated search functionality exists today; the closest analogue is
- * the naive in-memory keyword scoring inside
- * ai/service/DecisionAgentService (selectTopResources/selectTopNews), which
- * is retrieval-for-the-AI-prompt, not a user-facing search feature. See
- * "Search" as a planned Deliver-stage channel in
- * docs/architecture/02-information-flow.md.
+ * SearchService composes the existing ResourceService/NewsService/
+ * FlyerService (not their repositories directly) and scores matches using
+ * shared.util.TextScore — the same substring-scoring primitive
+ * ai/service/DecisionAgentService uses for its own AI-prompt retrieval,
+ * extracted so both slices share one implementation. See
+ * references/decisions.md's Decision 012.
  */
 package org.firststep.backend.search;
