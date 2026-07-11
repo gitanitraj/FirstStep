@@ -1,0 +1,27 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      AI_ENABLED: "true"
+
+  # NOTE: no AI provider is currently wired in (see
+  # backend/src/main/java/org/firststep/backend/ai/service/SpringAiAssistant.java)
+  # — the app service no longer reads OLLAMA_API_URL and has no depends_on
+  # this container, since app startup doesn't need Ollama to be running or
+  # healthy. This container is left running (not removed) since restoring
+  # Ollama as the chosen provider is a plausible future follow-up, not a
+  # decision made in this pass; removing the sidecar entirely is a separate
+  # infrastructure decision, out of scope here.
+  ollama:
+    image: ollama/ollama:latest
+    entrypoint: ["/bin/sh", "/ollama-entrypoint.sh"]
+    volumes:
+      - ollama-models:/root/.ollama
+      - ./backend/docker/ollama-entrypoint.sh:/ollama-entrypoint.sh:ro
+
+volumes:
+  ollama-models:

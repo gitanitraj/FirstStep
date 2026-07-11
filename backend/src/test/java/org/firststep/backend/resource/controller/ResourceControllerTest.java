@@ -1,0 +1,75 @@
+package org.firststep.backend.resource.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.resource.repository.ResourceRepository;
+import org.firststep.backend.resource.service.ResourceService;
+import org.firststep.backend.shared.web.GlobalExceptionHandler;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestPropertySource;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+@WebMvcTest(ResourceController.class)
+@ContextConfiguration(classes = {ResourceController.class, GlobalExceptionHandler.class, ResourceControllerTest.TestConfig.class})
+@TestPropertySource(properties = "app.seasonal.images.dir=src/test/resources/seasonal-test")
+class ResourceControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Configuration
+    static class TestConfig {
+        @Bean
+        ResourceRepository resourceRepository() {
+            return new ResourceRepository() {
+                @Override
+                public List<Resource> findAll() {
+                    return List.of();
+                }
+
+                @Override
+                public Optional<Resource> findById(String id) {
+                    return Optional.empty();
+                }
+            };
+        }
+
+        @Bean
+        ResourceService resourceService(ResourceRepository resourceRepository) {
+            return new ResourceService(resourceRepository);
+        }
+    }
+
+    @Test
+    void shouldReturnSeasonalImagesFromConfiguredDirectory() throws Exception {
+        mockMvc.perform(get("/api/seasonal-images"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$[0]").value("images/seasonal/Sample.png"));
+    }
+
+    @Test
+    void shouldReturn200WithApiResponseEnvelopeWhenResourcesRequested() throws Exception {
+        mockMvc.perform(get("/api/resources"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data").isArray());
+    }
+
+    @Test
+    void shouldReturn404WithApiResponseEnvelopeWhenResourceIdNotFound() throws Exception {
+        mockMvc.perform(get("/api/resources/does-not-exist"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.errorCode").value("NOT_FOUND"));
+    }
+}

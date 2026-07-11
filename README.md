@@ -30,6 +30,52 @@ Building civic tools for low-resource communities requires more than technical s
    Java model classes aligned with a defined schema
    Startup validation logging
    
+   # Building the Backend
+
+   The backend is configured to compile to **Java 17 bytecode** while using a
+   **JDK 25** Maven toolchain for compilation and tests. This keeps the app on
+   a conservative language level while allowing builds to run on a newer JDK.
+   This requires a one-time, machine-local `~/.m2/toolchains.xml` registering a
+   JDK 25 install, for example:
+
+   ```xml
+   <toolchains xmlns="http://maven.apache.org/TOOLCHAINS/1.1.0">
+     <toolchain>
+       <type>jdk</type>
+       <provides><version>25</version></provides>
+       <configuration>
+         <jdkHome>/path/to/your/jdk-25</jdkHome>
+       </configuration>
+     </toolchain>
+   </toolchains>
+   ```
+
+   Find your JDK 25 path with `/usr/libexec/java_home -v 25` (macOS). Without a
+   matching toolchain entry, the build fails with "No toolchain found".
+
+   # Running with Docker
+
+   The whole app runs as a self-contained Docker Compose stack — the Spring
+   backend plus a local Ollama AI service — so you don't need Java, Maven, or a
+   toolchain installed. From the repo root:
+
+   ```
+   docker compose up --build
+   ```
+
+   Then open http://localhost:8080.
+
+   Two services start together:
+   * **app** — the Spring backend and static UI on port 8080.
+   * **ollama** — a local Ollama server. On first run it pulls the `gemma2:2b`
+     model (a few minutes); the model is cached in a named volume, so later
+     starts are fast. While the model is still downloading, the AI decision
+     endpoint returns a graceful fallback instead of erroring.
+
+   Runtime data (`app/data/` and the seasonal images) is baked into the image, so
+   updating that data means rebuilding (`docker compose up --build`). The stack
+   needs roughly 4 GB of RAM available for the AI model.
+
    # Frontend
    Lightweight static frontend
    Mobile-first interface

@@ -20,7 +20,7 @@ const STRINGS = {
         weeklyUpdatesSub: "News and Changes Impacting You",
         weeklyUpdatesDesc: "Stay up to date on the rules, public meetings and changes that affect housing, benefits and community services. Read the highlights and learn about important deadlines, new requirements and policy updates so you can participate and plan ahead.",
         aiTitle: "AI Guidance",
-        aiSubtitle: "Ask a question in natural language to find resources",
+        aiSubtitle: "Tell me what you need help with!",
         aiPlaceholder: "E.g., I need rental help near Wilmington for seniors",
         aiButton: "Get Help",
         aiUrgent: "🚨 Urgent",
@@ -183,27 +183,12 @@ document.getElementById("contrast-button").addEventListener("click", () => {
     localStorage.setItem("high-contrast", document.body.classList.contains("high-contrast"));
 });
 
-document.getElementById("increase-text-button").addEventListener("click", () => {
-    const current = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const next = Math.min(current + 2, 24);
-    document.documentElement.style.fontSize = next + "px";
-    localStorage.setItem("font-size", next + "px");
-});
-
-document.getElementById("decrease-text-button").addEventListener("click", () => {
-    const current = parseFloat(getComputedStyle(document.documentElement).fontSize);
-    const next = Math.max(current - 2, 12);
-    document.documentElement.style.fontSize = next + "px";
-    localStorage.setItem("font-size", next + "px");
-});
-
 window.addEventListener("DOMContentLoaded", () => {
     if (localStorage.getItem("high-contrast") === "true") {
         document.body.classList.add("high-contrast");
     }
-    const savedFontSize = localStorage.getItem("font-size");
-    if (savedFontSize) document.documentElement.style.fontSize = savedFontSize;
     loadSidebarNews();
+    loadSidebarLaws();
     applyLanguage();
 });
 
@@ -213,7 +198,8 @@ const resultsScreen = document.getElementById("results-screen");
 const filterScreen = document.getElementById("filter-screen");
 const urgentFilterButton = document.getElementById("urgent-filter");
 const continueButton = document.getElementById("continue-button");
-const newsResultsContainer = document.getElementById("news-results");
+const newsOuterContainer = document.getElementById("news-results");
+const newsResultsContainer = document.getElementById("news-results-main");
 const seasonalResultsContainer = document.getElementById("seasonal-results");
 const essentialsResultsContainer = document.getElementById("essentials-results");
 const homeScreen = document.getElementById("home-screen");
@@ -223,6 +209,8 @@ const backResultsButton = document.getElementById("back-results-button");
 const backHomeButton = document.getElementById("back-home-button");
 
 let urgentFilterSelected = false;
+let allNewsItems = [];
+let activeNewsTag = null;
 
 // ===== Category Navigation =====
 document.getElementById("housing-help-button").addEventListener("click", () => {
@@ -325,8 +313,8 @@ async function submitDecision() {
             throw new Error("HTTP " + res.status + ": " + text);
         }
 
-        const data = await res.json();
-        renderDecisionResponse(data);
+        const envelope = await res.json();
+        renderDecisionResponse(envelope.data);
 
     } catch (err) {
         console.error(err);
@@ -379,7 +367,7 @@ function renderDecisionResponse(data) {
 
 // ===== Resource Loading =====
 async function loadHousingResources() {
-    newsResultsContainer.style.display = "none";
+    newsOuterContainer.style.display = "none";
     essentialsResultsContainer.style.display = "none";
     seasonalResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
@@ -388,7 +376,8 @@ async function loadHousingResources() {
 
     try {
         const response = await fetch("/api/resources");
-        const resources = await response.json();
+        const envelope = await response.json();
+        const resources = envelope.data;
 
         let housingResources = resources.filter(r =>
             r.category && r.category.toLowerCase().includes("housing")
@@ -412,7 +401,7 @@ async function loadHousingResources() {
 
 async function loadEssentialsResources() {
     resultsContainer.style.display = "none";
-    newsResultsContainer.style.display = "none";
+    newsOuterContainer.style.display = "none";
     seasonalResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
     essentialsResultsContainer.style.display = "block";
@@ -420,7 +409,8 @@ async function loadEssentialsResources() {
 
     try {
         const response = await fetch("/api/resources");
-        const resources = await response.json();
+        const envelope = await response.json();
+        const resources = envelope.data;
         const free = resources.filter(r => r.cost && r.cost.toLowerCase() === "free");
         displayEssentials(free);
         showResultsScreen();
@@ -435,13 +425,18 @@ async function loadNewsUpdates() {
     essentialsResultsContainer.style.display = "none";
     seasonalResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
-    newsResultsContainer.style.display = "block";
+    newsOuterContainer.style.display = "grid";
     newsResultsContainer.innerHTML = `<p>${t("loading")}</p>`;
+
+    renderLawsColumn();
 
     try {
         const response = await fetch("/api/news");
-        const newsItems = await response.json();
-        displayNews(newsItems);
+        const newsEnvelope = await response.json();
+        allNewsItems = newsEnvelope.data;
+        activeNewsTag = null;
+        renderNewsFilter(allNewsItems);
+        renderNewsItems();
         showResultsScreen();
     } catch (error) {
         console.error(error);
@@ -450,10 +445,113 @@ async function loadNewsUpdates() {
     return Promise.resolve();
 }
 
+async function renderLawsColumn() {
+    const col = document.getElementById("news-results-laws");
+    col.innerHTML = `<div class="resource-panel">
+        <h3>Delaware's Newest Laws</h3>
+        <div id="laws-list"><p>${t("loading")}</p></div>
+    </div>`;
+    try {
+        const response = await fetch("/api/news/rss");
+        const rssEnvelope = await response.json();
+        const items = rssEnvelope.data;
+        const list = document.getElementById("laws-list");
+        list.innerHTML = "";
+        items.slice(0, 35).forEach(item => {
+            const card = document.createElement("div");
+            card.className = "news-item";
+            card.innerHTML = `
+                <h4>${item.title}</h4>
+                <div class="news-date">${item.published || "Latest"}</div>
+            `;
+            card.addEventListener("click", () => showNewsDetail(item));
+            list.appendChild(card);
+        });
+    } catch (err) {
+        const list = document.getElementById("laws-list");
+        if (list) list.innerHTML =
+            '<p style="color:var(--text-secondary);font-size:13px;">Unable to load laws</p>';
+    }
+}
+
+function renderNewsFilter(items) {
+    const existingFilter = document.getElementById("news-tag-filter");
+    if (existingFilter) existingFilter.remove();
+
+    const uniqueTags = [...new Set(items.flatMap(i => i.tags || []))].sort();
+    if (uniqueTags.length === 0) return;
+
+    const bar = document.createElement("div");
+    bar.className = "filter-options";
+    bar.id = "news-tag-filter";
+
+    const allChip = document.createElement("button");
+    allChip.className = "filter-chip selected";
+    allChip.textContent = "All";
+    allChip.addEventListener("click", () => {
+        activeNewsTag = null;
+        bar.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("selected"));
+        allChip.classList.add("selected");
+        renderNewsItems();
+    });
+    bar.appendChild(allChip);
+
+    uniqueTags.forEach(tag => {
+        const chip = document.createElement("button");
+        chip.className = "filter-chip";
+        chip.textContent = tag;
+        chip.addEventListener("click", () => {
+            activeNewsTag = tag;
+            bar.querySelectorAll(".filter-chip").forEach(c => c.classList.remove("selected"));
+            chip.classList.add("selected");
+            renderNewsItems();
+        });
+        bar.appendChild(chip);
+    });
+
+    newsResultsContainer.prepend(bar);
+}
+
+function renderNewsItems() {
+    const filtered = activeNewsTag
+        ? allNewsItems.filter(i => (i.tags || []).includes(activeNewsTag))
+        : allNewsItems;
+
+    const filterBar = document.getElementById("news-tag-filter");
+
+    newsResultsContainer.innerHTML = renderPageHeader(t("weeklyUpdates"), t("weeklyUpdatesDesc"));
+
+    if (filterBar) newsResultsContainer.prepend(filterBar);
+
+    filtered.forEach(item => {
+        const cats = (item.tags || []).join(" · ");
+        const sourceUrl = item.contentSource?.url;
+        const sourceName = item.contentSource?.name;
+        const sourceLink = sourceUrl
+            ? `<a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
+                   ${sourceName} ↗
+               </a>`
+            : sourceName;
+        const card = document.createElement("div");
+        card.className = "resource-card";
+        card.innerHTML = `
+            <span class="urgency-tag urgency-standard">${cats || "General"}</span>
+            <h3 class="card-title" style="margin-top:10px;">${item.title}</h3>
+            <p class="card-summary">${item.summary}</p>
+            <p class="card-why"><strong>Why this matters:</strong> ${item.why_it_matters}</p>
+            <p class="card-source">${sourceLink} · ${item.published}</p>
+            <p class="card-cta">${t("viewDetails")}</p>
+        `;
+        card.addEventListener("click", () => showNewsDetail(item));
+        newsResultsContainer.appendChild(card);
+    });
+}
+
 async function loadSidebarNews() {
     try {
         const response = await fetch("/api/news");
-        const items = await response.json();
+        const newsEnvelope = await response.json();
+        const items = newsEnvelope.data;
         const newsResults = document.getElementById("sidebar-news");
         newsResults.innerHTML = "";
 
@@ -461,7 +559,7 @@ async function loadSidebarNews() {
             const card = document.createElement("div");
             card.className = "news-item";
             card.innerHTML = `
-                <h4>${item.headline}</h4>
+                <h4>${item.title}</h4>
                 <div class="news-date">${item.published || "Latest"}</div>
             `;
             card.addEventListener("click", () => {
@@ -472,6 +570,33 @@ async function loadSidebarNews() {
     } catch (error) {
         console.error("Sidebar news failed to load:", error);
         document.getElementById("sidebar-news").innerHTML =
+            '<p style="color: var(--text-secondary); font-size: 13px;">Unable to load updates</p>';
+    }
+}
+
+async function loadSidebarLaws() {
+    try {
+        const response = await fetch("/api/news/rss");
+        const rssEnvelope = await response.json();
+        const items = rssEnvelope.data;
+        const container = document.getElementById("sidebar-laws");
+        container.innerHTML = "";
+
+        items.slice(0, 3).forEach(item => {
+            const card = document.createElement("div");
+            card.className = "news-item";
+            card.innerHTML = `
+                <h4>${item.title}</h4>
+                <div class="news-date">${item.published || "Latest"}</div>
+            `;
+            card.addEventListener("click", () => {
+                loadNewsUpdates().then(() => showNewsDetail(item));
+            });
+            container.appendChild(card);
+        });
+    } catch (error) {
+        console.error("Laws sidebar failed to load:", error);
+        document.getElementById("sidebar-laws").innerHTML =
             '<p style="color: var(--text-secondary); font-size: 13px;">Unable to load updates</p>';
     }
 }
@@ -489,12 +614,16 @@ function showResultsScreen() {
 
 function showDetailScreen() {
     // Hide whichever results container is currently visible
-    [resultsContainer, newsResultsContainer, essentialsResultsContainer, seasonalResultsContainer].forEach(el => {
+    [resultsContainer, essentialsResultsContainer, seasonalResultsContainer].forEach(el => {
         if (el.style.display !== "none") {
             activeResultsContainer = el;
             el.style.display = "none";
         }
     });
+    if (newsOuterContainer.style.display !== "none") {
+        activeResultsContainer = newsOuterContainer;
+        newsOuterContainer.style.display = "none";
+    }
     detailScreen.style.display = "block";
     window.scrollTo(0, 0);
 }
@@ -502,7 +631,8 @@ function showDetailScreen() {
 function hideDetailScreen() {
     detailScreen.style.display = "none";
     if (activeResultsContainer) {
-        activeResultsContainer.style.display = "block";
+        activeResultsContainer.style.display =
+            activeResultsContainer === newsOuterContainer ? "grid" : "block";
     } else {
         resultsContainer.style.display = "block";
     }
@@ -606,39 +736,23 @@ function displayEssentials(resources) {
 }
 
 function displayNews(newsItems) {
-    newsResultsContainer.innerHTML = renderPageHeader(t("weeklyUpdates"), t("weeklyUpdatesDesc"));
-
-    newsItems.forEach(item => {
-        const cats = (item.category_tags || []).join(" · ");
-        const sourceLink = item.source_url
-            ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="card-source-link" onclick="event.stopPropagation()">
-                   ${item.source_name} ↗
-               </a>`
-            : item.source_name;
-        const card = document.createElement("div");
-        card.className = "resource-card";
-        card.innerHTML = `
-            <span class="urgency-tag urgency-standard">${cats || "General"}</span>
-            <h3 class="card-title" style="margin-top:10px;">${item.headline}</h3>
-            <p class="card-summary">${item.summary}</p>
-            <p class="card-why"><strong>Why this matters:</strong> ${item.why_it_matters}</p>
-            <p class="card-source">${sourceLink} · ${item.published}</p>
-            <p class="card-cta">${t("viewDetails")}</p>
-        `;
-        card.addEventListener("click", () => showNewsDetail(item));
-        newsResultsContainer.appendChild(card);
-    });
+    allNewsItems = newsItems;
+    activeNewsTag = null;
+    renderNewsFilter(newsItems);
+    renderNewsItems();
 }
 
 function showNewsDetail(item) {
-    const cats = (item.category_tags || []).join(" · ");
-    const sourceLink = item.source_url
-        ? `<a href="${item.source_url}" target="_blank" rel="noopener noreferrer" class="detail-source-link">Read More →</a>`
+    const cats = (item.tags || []).join(" · ");
+    const sourceUrl = item.contentSource?.url;
+    const sourceName = item.contentSource?.name;
+    const sourceLink = sourceUrl
+        ? `<a href="${sourceUrl}" target="_blank" rel="noopener noreferrer" class="detail-source-link">Read More →</a>`
         : "";
 
     detailView.innerHTML = `
         <div class="detail-header">
-            <h2 class="detail-org">${item.headline}</h2>
+            <h2 class="detail-org">${item.title}</h2>
             <span class="urgency-tag urgency-standard">${cats || "General"}</span>
         </div>
 
@@ -661,7 +775,7 @@ function showNewsDetail(item) {
         <div class="detail-section">
             <div class="detail-label">Source</div>
             <div class="detail-value">
-                ${item.source_name}${item.published ? " · " + item.published : ""}
+                ${sourceName}${item.published ? " · " + item.published : ""}
                 ${sourceLink ? `<br>${sourceLink}` : ""}
             </div>
         </div>
@@ -672,7 +786,7 @@ function showNewsDetail(item) {
 
 async function showSeasonalResources() {
     resultsContainer.style.display = "none";
-    newsResultsContainer.style.display = "none";
+    newsOuterContainer.style.display = "none";
     essentialsResultsContainer.style.display = "none";
     detailScreen.style.display = "none";
 
@@ -787,8 +901,8 @@ async function submitResultsAi(query) {
             body: JSON.stringify({ userQuery, urgent: false, preferredCategories: [] })
         });
         if (!res.ok) throw new Error("HTTP " + res.status);
-        const data = await res.json();
-        renderResultsAiResponse(data);
+        const envelope = await res.json();
+        renderResultsAiResponse(envelope.data);
     } catch (err) {
         resultsAiOutput.innerHTML = `<p class="ai-error">Unable to get AI guidance: ${err.message}</p>`;
     }
