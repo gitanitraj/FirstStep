@@ -1,0 +1,131 @@
+{
+  "meta": {
+    "source": "First Step Curated FAQ",
+    "retrieved": "2026-07-11",
+    "coverage": "Wilmington, DE (New Castle County)",
+    "version": "1.0",
+    "total_records": 6
+  },
+  "records": [
+    {
+      "id": "FAQ-001",
+      "communityId": "wilmington-de",
+      "title": "How do I apply for SNAP benefits?",
+      "summary": "Apply online through Delaware ASSIST, by mail, or in person at a State Service Center.",
+      "verified": true,
+      "tags": ["benefits", "food"],
+      "contentSource": {
+        "id": null,
+        "name": "First Step Curated FAQ",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "question": "How do I apply for SNAP benefits?",
+      "answer": "Apply online at Delaware ASSIST (assist.dhss.delaware.gov), by mail, or in person at any Division of Social Services State Service Center. You'll need proof of identity, income, and household expenses.",
+      "source_expert_answer_id": "EA-002"
+    },
+    {
+      "id": "FAQ-002",
+      "communityId": "wilmington-de",
+      "title": "What is the eviction notice period in Delaware?",
+      "summary": "5 days for nonpayment of rent, 7 days for lease violations, 60 days for no-cause termination.",
+      "verified": true,
+      "tags": ["housing", "tenant-rights"],
+      "contentSource": {
+        "id": null,
+        "name": "First Step Curated FAQ",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "question": "What is the eviction notice period in Delaware?",
+      "answer": "It depends on the reason: 5 days' notice for nonpayment of rent, 7 days for lease violations, and 60 days to end a month-to-month or year-to-year tenancy without cause. Only a court can actually order you to leave.",
+      "source_expert_answer_id": "EA-005"
+    },
+    {
+      "id": "FAQ-003",
+      "communityId": "wilmington-de",
+      "title": "Where can I get free legal help in Wilmington?",
+      "summary": "Delaware Volunteer Legal Services and Community Legal Aid Society both offer free civil legal help.",
+      "verified": true,
+      "tags": ["legal"],
+      "contentSource": {
+        "id": null,
+        "name": "First Step Curated FAQ",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "question": "Where can I get free legal help in Wilmington?",
+      "answer": "Delaware Volunteer Legal Services (302-478-8850) and Community Legal Aid Society (302-575-0660) both provide free civil legal assistance to income-eligible Delaware residents, including housing, employment, and family law matters.",
+      "source_expert_answer_id": null
+    },
+    {
+      "id": "FAQ-004",
+      "communityId": "wilmington-de",
+      "title": "Am I eligible for LIHEAP heating assistance?",
+      "summary": "Eligibility is based on household size and income, generally up to 200% of the federal poverty level.",
+      "verified": true,
+      "tags": ["utilities", "benefits"],
+      "contentSource": {
+        "id": null,
+        "name": "First Step Curated FAQ",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "question": "Am I eligible for LIHEAP heating assistance?",
+      "answer": "Eligibility is based on household size and income, generally up to 200% of the federal poverty level. Applications open each fall through your local State Service Center — apply early, as funds are limited.",
+      "source_expert_answer_id": "EA-006"
+    },
+    {
+      "id": "FAQ-005",
+      "communityId": "wilmington-de",
+      "title": "What documents do I need to apply for Medicaid?",
+      "summary": "Proof of identity, income, residency, and household size.",
+      "verified": true,
+      "tags": ["health", "benefits"],
+      "contentSource": {
+        "id": null,
+        "name": "First Step Curated FAQ",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "question": "What documents do I need to apply for Medicaid?",
+      "answer": "You'll typically need proof of identity (ID or driver's license), proof of income (pay stubs or a benefits letter), proof of Delaware residency, and information about everyone in your household. You can apply anytime through Delaware ASSIST.",
+      "source_expert_answer_id": null
+    },
+    {
+      "id": "FAQ-006",
+      "communityId": "wilmington-de",
+      "title": "How do I file an unemployment claim in Delaware?",
+      "summary": "File online through the Delaware Division of Unemployment Insurance as soon as you lose your job.",
+      "verified": true,
+      "tags": ["employment", "benefits"],
+      "contentSource": {
+        "id": null,
+        "name": "First Step Curated FAQ",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "question": "How do I file an unemployment claim in Delaware?",
+      "answer": "File online at the Delaware Division of Unemployment Insurance website as soon as possible after losing your job — benefits are not retroactive before your claim date. You'll need your employment history for the past 18 months and your Social Security number.",
+      "source_expert_answer_id": null
+    }
+  ]
+}

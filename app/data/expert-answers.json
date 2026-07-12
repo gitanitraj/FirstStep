@@ -1,0 +1,179 @@
+{
+  "meta": {
+    "source": "First Step Expert Sessions (curated)",
+    "retrieved": "2026-07-11",
+    "coverage": "Wilmington, DE (New Castle County)",
+    "version": "1.0",
+    "total_records": 6
+  },
+  "records": [
+    {
+      "id": "EA-001",
+      "communityId": "wilmington-de",
+      "title": "What can I do if my landlord won't return my security deposit?",
+      "summary": "Delaware law gives landlords 20 days to return a deposit or provide an itemized list of deductions.",
+      "verified": true,
+      "tags": ["housing", "tenant-rights"],
+      "contentSource": {
+        "id": null,
+        "name": "Delaware Volunteer Legal Services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "question": "What can I do if my landlord won't return my security deposit?",
+      "answer": "Under Delaware's Landlord-Tenant Code, your landlord has 20 days after you move out to either return your full deposit or send you an itemized list of deductions. If they miss that deadline or the deductions aren't justified, you can send a written demand letter and, if that doesn't work, file a claim in Justice of the Peace Court for double the wrongfully withheld amount.",
+      "expert_name": "Maria Alvarez",
+      "expert_credentials": "Staff Attorney, Housing Unit",
+      "expert_organization": "Delaware Volunteer Legal Services",
+      "expert_contact": {
+        "phones": [{"number": "302-478-8850", "label": "Main"}],
+        "websites": [{"url": "https://www.dvls.org", "label": "DVLS"}],
+        "email": "housing@dvls.org"
+      },
+      "session_date": "2026-06-15"
+    },
+    {
+      "id": "EA-002",
+      "communityId": "wilmington-de",
+      "title": "How do I apply for SNAP benefits in Delaware?",
+      "summary": "You can apply online through Delaware ASSIST, by mail, or in person at a State Service Center.",
+      "verified": true,
+      "tags": ["benefits", "food"],
+      "contentSource": {
+        "id": null,
+        "name": "Delaware Health and Social Services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "question": "How do I apply for SNAP benefits in Delaware?",
+      "answer": "You can apply for SNAP (food stamps) online at Delaware ASSIST (assist.dhss.delaware.gov), by downloading a paper application, or in person at any Division of Social Services State Service Center. You'll need proof of identity, income, and household expenses. Most applications are processed within 30 days, and households in urgent need may qualify for expedited service within 7 days.",
+      "expert_name": "Denise Coleman",
+      "expert_credentials": "Case Worker, Division of Social Services",
+      "expert_organization": "Delaware Health and Social Services",
+      "expert_contact": {
+        "phones": [{"number": "302-571-4900", "label": "New Castle County Service Center"}],
+        "websites": [{"url": "https://assist.dhss.delaware.gov", "label": "Delaware ASSIST"}],
+        "email": null
+      },
+      "session_date": "2026-06-15"
+    },
+    {
+      "id": "EA-003",
+      "communityId": "wilmington-de",
+      "title": "What are my rights if I'm fired without notice in Delaware?",
+      "summary": "Delaware is an at-will employment state, but there are important exceptions worth knowing.",
+      "verified": true,
+      "tags": ["employment"],
+      "contentSource": {
+        "id": null,
+        "name": "Community Legal Aid Society",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "question": "What are my rights if I'm fired without notice in Delaware?",
+      "answer": "Delaware is an at-will employment state, meaning an employer generally doesn't need a reason or advance notice to end your job. However, you can't be fired for an illegal reason — discrimination based on race, sex, age, disability, or religion; retaliation for filing a workers' comp claim; or retaliation for whistleblowing are all unlawful. If your final paycheck is late, Delaware law requires it within the next regular pay period. If you believe your termination was unlawful, you can file a charge with the Delaware Department of Labor.",
+      "expert_name": "Thomas Reyes",
+      "expert_credentials": "Employment Law Attorney",
+      "expert_organization": "Community Legal Aid Society",
+      "expert_contact": {
+        "phones": [{"number": "302-575-0660", "label": "Main"}],
+        "websites": [{"url": "https://www.declasi.org", "label": "CLASI"}],
+        "email": null
+      },
+      "session_date": "2026-05-20"
+    },
+    {
+      "id": "EA-004",
+      "communityId": "wilmington-de",
+      "title": "Do I qualify for Medicaid if I'm unemployed?",
+      "summary": "Delaware expanded Medicaid — eligibility is based on household income, not employment status.",
+      "verified": true,
+      "tags": ["health", "benefits"],
+      "contentSource": {
+        "id": null,
+        "name": "Westside Family Healthcare",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "question": "Do I qualify for Medicaid if I'm unemployed?",
+      "answer": "Being unemployed doesn't disqualify you — Delaware expanded Medicaid under the Affordable Care Act, so eligibility is based on household income relative to the Federal Poverty Level, not employment status. A single adult can generally qualify with income up to about 138% of the federal poverty line. You can apply anytime through Delaware ASSIST; there's no separate open-enrollment period for Medicaid.",
+      "expert_name": "Angela Ruiz",
+      "expert_credentials": "Certified Healthcare Navigator",
+      "expert_organization": "Westside Family Healthcare",
+      "expert_contact": {
+        "phones": [{"number": "302-655-5500", "label": "Main"}],
+        "websites": [{"url": "https://www.westsidehealth.org", "label": "Westside Family Healthcare"}],
+        "email": null
+      },
+      "session_date": "2026-06-15"
+    },
+    {
+      "id": "EA-005",
+      "communityId": "wilmington-de",
+      "title": "How much notice does my landlord have to give before eviction?",
+      "summary": "Notice periods depend on the reason for eviction — from 5 days for nonpayment up to 60 days for no-cause termination of a year-to-year lease.",
+      "verified": true,
+      "tags": ["housing", "tenant-rights"],
+      "contentSource": {
+        "id": null,
+        "name": "Delaware Volunteer Legal Services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "question": "How much notice does my landlord have to give before eviction?",
+      "answer": "It depends on the reason. For nonpayment of rent, a landlord must give 5 days' written notice to pay or quit. For lease violations, it's typically 7 days. To end a month-to-month tenancy without cause, the landlord must give 60 days' notice; for a year-to-year lease, also 60 days before the lease renewal date. In all cases, only a court (Justice of the Peace Court) can actually order you to leave — a landlord cannot lock you out or remove your belongings without a court order.",
+      "expert_name": "Maria Alvarez",
+      "expert_credentials": "Staff Attorney, Housing Unit",
+      "expert_organization": "Delaware Volunteer Legal Services",
+      "expert_contact": {
+        "phones": [{"number": "302-478-8850", "label": "Main"}],
+        "websites": [{"url": "https://www.dvls.org", "label": "DVLS"}],
+        "email": "housing@dvls.org"
+      },
+      "session_date": "2026-06-15"
+    },
+    {
+      "id": "EA-006",
+      "communityId": "wilmington-de",
+      "title": "Is there help paying my winter heating bill?",
+      "summary": "LIHEAP provides one-time heating assistance grants to income-eligible Delaware households.",
+      "verified": true,
+      "tags": ["utilities", "benefits"],
+      "contentSource": {
+        "id": null,
+        "name": "Delaware Health and Social Services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "question": "Is there help paying my winter heating bill?",
+      "answer": "Yes — the Low Income Home Energy Assistance Program (LIHEAP) provides a one-time grant paid directly to your utility company to help with heating costs. Eligibility is based on household size and income (generally up to 200% of the federal poverty level). Applications open each fall and funds are limited, so it's best to apply as early in the season as possible through your local State Service Center.",
+      "expert_name": "Denise Coleman",
+      "expert_credentials": "Case Worker, Division of Social Services",
+      "expert_organization": "Delaware Health and Social Services",
+      "expert_contact": {
+        "phones": [{"number": "302-571-4900", "label": "New Castle County Service Center"}],
+        "websites": [{"url": "https://dhss.delaware.gov/dhss/dss/liheap.html", "label": "LIHEAP Information"}],
+        "email": null
+      },
+      "session_date": "2026-06-15"
+    }
+  ]
+}

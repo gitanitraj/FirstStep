@@ -133,9 +133,14 @@ mirroring how the original vertical-slice migration was planned.
   why 2 categories were added beyond the original 7). `category/service/
   CategoryService` aggregates counts, latest items (reusing `search/dto/
   SearchResult`), and policy-update linkage per category, community-aware.)*
-- **Step 2 — Expert stubs.** Feeds `CivicContent` and is the basis for FAQ
-  answers — part of the same information pipeline as Step 1, not a
-  separate concern to defer.
+- [x] **Step 2 — Expert stubs.** → **Demo.** *(Completed — two new
+  `CivicContent` subtypes, `expert/model/{ExpertAnswer,FAQ}`, backed by
+  hand-authored `app/data/{expert-answers,faq}.json`. `ExpertAnswer` is the
+  first real adopter of the shared `Contact` composite. `FAQ.
+  sourceExpertAnswerId` links back to the expert answer it was curated
+  from. `GET /api/expert-answers` and `GET /api/faqs` (+ `/{id}`). Not yet
+  wired into `Search`/`Category` — see `references/decisions.md`
+  Decision 015.)*
 - **Step 3 — React frontend project scaffold.** Tooling choice (React +
   Vite vs. Next.js), build pipeline, how the built output is served
   (leaning toward the existing single-container Docker model).

@@ -41,8 +41,24 @@ The primary things the community cares about.
   `backend/src/main/resources/static/images/seasonal/` — not extracted via
   OCR/AI, which remains a future milestone (see "Milestone 2" in
   `03-application-architecture.md`).
-- **FAQ** — > TODO: define.
-- **ExpertAnswer** — > TODO: define.
+- **FAQ** — extends `CivicContent`. Adds `question: String, answer: String,
+  sourceExpertAnswerId: String` (nullable — a plain id reference to the
+  `ExpertAnswer` it was curated from, if any; not auto-resolved). Deliberately
+  simpler than `ExpertAnswer` — no individual expert attribution. Backed by
+  `JsonFaqRepository` reading static `app/data/faq.json`. Served via
+  `GET /api/faqs` and `GET /api/faqs/{id}`. Not yet wired into `Search` or
+  the category taxonomy — see `references/decisions.md` Decision 015.
+- **ExpertAnswer** — extends `CivicContent`. Adds `question: String,
+  answer: String, expertName: String, expertCredentials: String,
+  expertOrganization: String, expertContact: Contact, sessionDate: String`
+  — the first real adopter of the shared `Contact` composite
+  (phones/websites/email), anticipated for this purpose since the original
+  migration. Backed by `JsonExpertAnswerRepository` reading static
+  `app/data/expert-answers.json`. Served via `GET /api/expert-answers` and
+  `GET /api/expert-answers/{id}`. Current data (6 records) is hand-authored
+  Delaware civic-info Q&A, not from a real "monthly session" intake
+  process. Not yet wired into `Search` or the category taxonomy — see
+  `references/decisions.md` Decision 015.
 
 ## Organizing entities
 

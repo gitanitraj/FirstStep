@@ -529,3 +529,77 @@ roadmap**: real Exiftool/AI-based metadata extraction for `Flyer` records,
 suggested as a way to eventually auto-populate Community Events content
 from flyer images. Ties back to Decision 011's original OCR/AI deferral —
 still a good idea, still not built.
+
+# Decision 015
+
+Expert stubs — Step 2 of the homepage redesign roadmap. Per direct
+instruction, Expert content "feeds `CivicContent` and is the basis for FAQ
+answers," so it was built immediately after the category taxonomy, not
+deferred behind the frontend steps.
+
+Investigation before designing anything confirmed **nothing about this
+feature was defined anywhere beyond the name** — `expert/package-info.java`
+was scaffolding-only, and `docs/architecture/01-domain-model.md` listed
+`FAQ` and `ExpertAnswer` as two separate, still-`> TODO: define.`
+`CivicContent` subtypes, positioned right after `Flyer`. No field-list
+sketch existed in any doc, decision, or reference file. Three things were
+confirmed with the user before building:
+
+**1. Build both `FAQ` and `ExpertAnswer`, not one.** The domain model doc
+already committed to two separate subtypes; this pass defines both rather
+than picking one and leaving the other's TODO unresolved.
+
+**2. `ExpertAnswer` fields**: `question, answer, expertName,
+expertCredentials, expertOrganization, expertContact (shared.model.Contact),
+sessionDate`. `expertContact` reuses the existing `Contact` composite
+(phones/websites/email) rather than flat fields — the shared-kernel docs
+(`references/Contact_annotated.java`) explicitly anticipated Expert as
+Contact's first real adopter since the original migration; this is that
+adoption completing, not a new design decision. `FAQ` was left deliberately
+simpler by design (see below) — no individual expert attribution.
+
+**`FAQ` fields (proposed, not separately specified by the user, confirmed
+at plan review)**: `question, answer, sourceExpertAnswerId` (nullable,
+references an `ExpertAnswer.id`). `sourceExpertAnswerId` directly reflects
+the stated "ExpertAnswer is the basis for FAQ answers" relationship as a
+plain id reference — not a resolved/embedded object (nothing auto-resolves
+it in this pass; a client wanting the full `ExpertAnswer` calls
+`/api/expert-answers/{id}` itself), and not a JPA relationship (there's no
+database, everything is JSON-file-backed).
+
+**Both models use inherited `tags`, not a new `category`/topic field**:
+Decision 014 just spent real effort discovering that `Resource.category`
+was uncontrolled free text needing a whole mapping layer to become useful.
+Introducing a second free-text category field on `ExpertAnswer`/`FAQ`
+would repeat that exact problem from scratch. `tags` is already the
+established free-form topic-labeling field on `CivicContent`.
+
+**3. Standalone slice only — no `Search`/`Category` wiring.** Matches the
+"backend slice first" precedent from Flyer (Decision 011) and Search
+(Decision 012). `ExpertAnswer`/`FAQ` are not yet searchable via
+`/api/search` and don't appear in `/api/categories` counts — becomes its
+own small follow-up once real content volume exists.
+
+**Implementation**: both models are direct, confirmed file-for-file
+mirrors of the `Flyer` slice's shape (public fields, no field-mapping
+adapter since data is authored directly in the target shape including a
+full `contentSource` object per record, `communityId`-defaults-only-if-null,
+external-file-then-classpath-fallback loading) — `expert/model/
+{ExpertAnswer,FAQ}`, `expert/repository/{ExpertAnswerRepository,
+JsonExpertAnswerRepository,FaqRepository,JsonFaqRepository}`,
+`expert/service/{ExpertAnswerService,FaqService}`,
+`expert/controller/{ExpertAnswerController,FaqController}`. Data:
+`app/data/expert-answers.json` (6 hand-authored Delaware civic-info Q&A
+entries — housing/tenant rights, SNAP benefits, employment rights,
+Medicaid, eviction notice periods, LIHEAP heating assistance) and
+`app/data/faq.json` (6 entries, 3 carrying a real `sourceExpertAnswerId`
+back to a matching `expert-answers.json` entry to demonstrate the link,
+3 standalone). `GET /api/expert-answers`, `/api/expert-answers/{id}`,
+`GET /api/faqs`, `/api/faqs/{id}` — same `ApiResponse<T>`/
+`NotFoundException` conventions as every other endpoint.
+
+Not done, explicitly out of scope for this pass: `Search`/`Category`
+wiring (see above); resolving/validating `sourceExpertAnswerId` at load
+time; any real "monthly session" intake workflow (this is static,
+hand-authored stub content, matching how Flyer's data was hand-authored,
+not a live ingestion pipeline).
