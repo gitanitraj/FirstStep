@@ -141,9 +141,16 @@ mirroring how the original vertical-slice migration was planned.
   from. `GET /api/expert-answers` and `GET /api/faqs` (+ `/{id}`). Not yet
   wired into `Search`/`Category` — see `references/decisions.md`
   Decision 015.)*
-- **Step 3 — React frontend project scaffold.** Tooling choice (React +
-  Vite vs. Next.js), build pipeline, how the built output is served
-  (leaning toward the existing single-container Docker model).
+- [x] **Step 3 — React frontend project scaffold.** → **Demo.**
+  *(Completed — `frontend/` (React + Vite + TypeScript, not Next.js —
+  Spring Boot already is the API). `backend/Dockerfile` gained a
+  `node:24-alpine` build stage; the React `dist/` output rides into the
+  jar at `static/app-next/` exactly like the existing hand-written static
+  files do — no runtime-stage or `docker-compose.yml` changes needed.
+  Served at `/app-next/`, NOT replacing the root demo yet (that flip is a
+  later step, once the new app is functionally ready). `App.tsx` is a
+  bare proof fetching real `/api/categories` data — no real UI yet, that's
+  Steps 4-6. See `references/decisions.md` Decision 016.)*
 - **Step 4 — `AppLayout` + `Sidebar`.** Category filters wired to
   `/api/categories`, `CommunitySelector` wired to real communities, mobile
   drawer.

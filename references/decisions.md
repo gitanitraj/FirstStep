@@ -603,3 +603,65 @@ wiring (see above); resolving/validating `sourceExpertAnswerId` at load
 time; any real "monthly session" intake workflow (this is static,
 hand-authored stub content, matching how Flyer's data was hand-authored,
 not a live ingestion pipeline).
+
+# Decision 016
+
+Step 3 of the homepage redesign roadmap — React frontend project
+scaffold. Pure tooling/pipeline this pass, no real UI (Sidebar/Hero/
+Important Updates are Steps 4-5).
+
+**React + Vite + TypeScript, not Next.js.** Confirmed with the user: a
+client-side SPA is the right fit since Spring Boot already is the API —
+Next.js's SSR/file-routing/API-routes would add real config surface for
+no benefit today (would only be justified if SEO for public resource
+pages becomes an explicit future goal). Vite produces a pure static
+`dist/` folder, which is the deciding factor for fitting the existing
+deploy model with zero changes to it.
+
+**Served at a new path, `/app-next/`, not replacing the root demo.** The
+existing `index.html`/`app.js` (resource browsing, AI widget, news)
+keeps serving unchanged at `/`. The new app has no real UI yet, so
+serving it separately preserves "every milestone leaves First Step in a
+working, demoable state" (the project's Definition of Done) rather than
+taking the live demo offline mid-rebuild. **A later step (likely part of
+Step 8, or its own small follow-up) must flip the routing** once the new
+app is functionally equivalent-or-better — flagging this now so it isn't
+forgotten; `/app-next/` is explicitly a temporary path, not a permanent
+second app.
+
+**Docker integration — new Stage 0, one new `COPY` line, everything else
+unchanged**: `backend/Dockerfile` gained a `node:24-alpine` stage that
+runs `npm ci && npm run build` against the new `frontend/` project, then
+the existing Maven stage does
+`COPY --from=frontend-build /frontend/dist src/main/resources/static/app-next`
+right before `COPY backend/src src` → `mvn package` — the React build
+output rides into the jar exactly like the hand-written static files
+already do, via Maven's standard `src/main/resources` → classpath
+bundling. No changes needed to the runtime stage or `docker-compose.yml`
+— confirmed via investigation that neither treats `static/` as a distinct
+serving concern (it was never singled out before this pass either). Node
+version (`24`) matches what's already installed on the dev machine
+([[firststep_build_toolchain]]).
+
+**`frontend/api/client.ts`** is the one piece of real reusable
+infrastructure this scaffold produces — a small typed wrapper unwrapping
+the backend's `ApiResponse<T>` envelope (`success`/`data`/`errorMessage`),
+directly mirroring `shared/dto/ApiResponse.java`. Every later step's
+components need exactly this, so it's built now rather than being
+premature abstraction.
+
+**`App.tsx` is deliberately a bare proof, not a real page**: fetches
+`GET /api/categories` and renders the raw list, unstyled. This is the
+actual verification goal of a "scaffold" step — proving React build →
+Docker → Spring Boot serving → real API call succeeds end-to-end, not
+building anything Steps 4-8 will just replace.
+
+**`react-router-dom` is installed but unused** — no real routes exist
+yet, but every later step needs real client-side routing (category pages,
+resource detail), so it's added now rather than as a churny mid-roadmap
+dependency addition.
+
+Not done, explicitly out of scope for this pass: any real Sidebar/Hero/
+Important Updates/card UI (Steps 4-6); flipping `/app-next/` to be the
+served-at-`/` app; CSS/styling of any kind (the placeholder page is
+intentionally unstyled).

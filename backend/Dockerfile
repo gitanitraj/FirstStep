@@ -1,5 +1,13 @@
 # syntax=docker/dockerfile:1
 
+# --- Stage 0: build the React frontend (Step 3 of the homepage redesign) ---
+FROM node:24-alpine AS frontend-build
+WORKDIR /frontend
+COPY frontend/package*.json ./
+RUN npm ci
+COPY frontend/ ./
+RUN npm run build
+
 # --- Stage 1: build the executable jar ---
 FROM maven:3.9-eclipse-temurin-25 AS build
 WORKDIR /build
@@ -20,8 +28,11 @@ RUN mkdir -p /root/.m2 && printf '%s\n' \
   '  </toolchain>' \
   '</toolchains>' > /root/.m2/toolchains.xml
 
-# Build the jar
+# Build the jar — the React build lands in static/app-next/ before Maven
+# bundles the whole static/ tree onto the classpath, so it rides into the
+# jar exactly like the hand-written static/index.html/app.js already do.
 COPY backend/src src
+COPY --from=frontend-build /frontend/dist src/main/resources/static/app-next
 RUN mvn -q -DskipTests package
 
 # --- Stage 2: slim runtime ---
