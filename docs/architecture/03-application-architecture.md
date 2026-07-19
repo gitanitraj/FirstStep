@@ -156,7 +156,13 @@ mirroring how the original vertical-slice migration was planned.
   drawer.
 - **Step 5 — `MainContent`: Hero + AI widget merge, Important Updates,
   `CategoryPreviewList`.** ("Important Updates," not "Trending Now" — see
-  Decision 014.)
+  Decision 014.) **Important Updates must refresh live, without a manual
+  page reload, when new RSS items or Flyers arrive** — client-side
+  polling (mirroring `RssFeedService`'s own hourly-poll design) is the
+  recommended mechanism, not WebSockets/SSE, since no push infrastructure
+  exists on the backend and isn't justified by an hourly-or-slower update
+  cadence. Confirmed by direct instruction after Step 3 — see
+  `references/decisions.md` Decision 016.
 - **Step 6 — Results pages + progressively-detailed cards.** Three
   density tiers; no backend gap, every field already exists.
 - **Step 7 — Shared filter context wiring** across AI guidance, Important

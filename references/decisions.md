@@ -665,3 +665,18 @@ Not done, explicitly out of scope for this pass: any real Sidebar/Hero/
 Important Updates/card UI (Steps 4-6); flipping `/app-next/` to be the
 served-at-`/` app; CSS/styling of any kind (the placeholder page is
 intentionally unstyled).
+
+**Follow-up (same day, post-Step-3 design review):** confirmed the
+React+Vite+TS choice remains sound given the project updates regularly
+(flyers, policy updates, RSS) — the frontend fetches live via `fetch()`
+with nothing baked into the JS bundle at build time, so content-update
+frequency is fully decoupled from frontend build/deploy frequency (this
+is precisely why Next.js SSG/ISR was rejected above). **By direct
+instruction, live-update-without-manual-reload for new RSS
+items/Flyers is now an explicit requirement of Step 5 (Important
+Updates)**, not a deferred nice-to-have — client-side polling
+(mirroring `RssFeedService`'s own hourly-poll design) is the recommended
+mechanism over WebSockets/SSE, since no backend push infrastructure
+exists and isn't justified by an hourly-or-slower update cadence. Final
+polling interval/diffing mechanism to be settled in Step 5's own
+dedicated design pass, not here.
