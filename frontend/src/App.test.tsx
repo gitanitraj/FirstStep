@@ -20,9 +20,12 @@ describe('App', () => {
     vi.unstubAllGlobals();
   });
 
-  it('fetches and renders category data from the API', async () => {
+  it('renders the layout shell (header brand and sidebar)', async () => {
     render(<App />);
 
-    expect(await screen.findByText(/Housing — 44 resources/)).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'First Step' })).toBeInTheDocument();
+    expect(screen.getByText('Categories')).toBeInTheDocument();
+    // Sidebar's live category fetch resolves into the shell.
+    expect(await screen.findByText('Housing')).toBeInTheDocument();
   });
 });

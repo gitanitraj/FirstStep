@@ -680,3 +680,131 @@ mechanism over WebSockets/SSE, since no backend push infrastructure
 exists and isn't justified by an hourly-or-slower update cadence. Final
 polling interval/diffing mechanism to be settled in Step 5's own
 dedicated design pass, not here.
+
+# Decision 017
+
+Step 4 of the homepage redesign roadmap — `AppLayout` + `Sidebar`. This is
+the frontend's **first CSS** and its first real component structure; before
+this pass `App.tsx` was the unstyled Step-3 proof (Decision 016). Three new
+files (`frontend/src/index.css`, `components/AppLayout.tsx`,
+`components/Sidebar.tsx`); `App.tsx` collapses to `return <AppLayout />`,
+`main.tsx` imports the CSS.
+
+**Palette:** `index.css` mirrors the warm-green/orange/cream vars from
+`backend/src/main/resources/static/styles.css` (`--primary-color:#1a5c38`,
+etc.). The layout classes (`.home-layout`, `.home-sidebar`,
+`.category-checkbox`, …) are adapted from `references/CSSforNewDesign.md`
+but **recolored** — that doc's blue/purple (`#0066cc`) was explicitly
+rejected in favor of the existing civic identity (Decision 014's visual
+direction).
+
+**Sidebar owns its own fetch**, reusing `api/client.ts`'s `apiGet<T>`
+(Decision 016's one piece of reusable infra) against `GET /api/categories`
+and the existing `CategorySummary` type — no raw `fetch`, no new types.
+
+**Two scope decisions confirmed with the user before building:**
+1. **Checkboxes are local-toggle only** — a `useState<Set<string>>`
+   toggles visibly, but drives nothing downstream. There is no content to
+   filter yet (Steps 5–6) and the shared filter context is explicitly
+   Step 7, so building the context now would be premature abstraction with
+   no consumer.
+2. **No router / no `SpaWebConfig` change this step** — `AppLayout` renders
+   directly from `App.tsx`. Real client routes (result pages) belong to
+   Step 6; `SpaWebConfig`'s catch-all widening (flagged in Decision 016)
+   travels with them, not before. `react-router-dom` stays installed-but-
+   unused.
+
+**Deliberately NOT built this step, though the roadmap's original Step 4
+line listed them** (flagged so it isn't mistaken for done): the
+`CommunitySelector` (the `communityId` query param on `/api/categories` is
+untouched — every community's categories show) and a toggle-driven **mobile
+drawer** — the responsive `@media (max-width:768px)` block collapses the
+sidebar to a horizontal wrap, but there is no open/close drawer control.
+Both are reasonable follow-ups; neither was in scope for this pass.
+
+**Verification:** `npm run build` (strict `tsc` + `vite build`) passes
+clean — the real gate, since `noUnusedLocals` catches any import orphaned by
+moving the category fetch out of `App.tsx`. `npm test` green (3 tests: the
+retargeted `App.test.tsx` asserts the shell renders; new `Sidebar.test.tsx`
+covers category rendering + checkbox toggle). **Live browser verification
+DONE** — full Docker build (`docker compose up --build -d app`) served the
+Step-4 build at `http://localhost:8080/app-next/`; headless-Chrome
+screenshots at 1200px and 390px confirmed the sticky green header, all 10
+live category counts, the warm-palette shell, and the mobile single-column
+collapse (sidebar stacks above main — no drawer, as expected). NB: an
+earlier claim in this session that live verification was "environment-
+blocked (no JDK/Maven/Docker)" was WRONG — the toolchain was installed all
+along, just off the default PATH; see [[firststep_build_toolchain]]'s
+2026-07-19 note.
+
+Main content area is a Step-5 placeholder.
+
+# Decision 018
+
+Step 5 of the homepage redesign — `MainContent` (Hero+AI, Important Updates,
+CategoryPreviewList). **Split into 5a / 5b / 5c** at the user's direction
+(their CLAUDE.md prefers small sequential prompts), each planned + built +
+verified independently. **This decision covers 5a only** — the merged Hero +
+AI guidance widget. Decisions banked with the user for the later slices:
+
+- **5b Important Updates** — build a NEW backend `GET /api/updates` endpoint
+  (controller+service+DTO+tests) that server-side merges News (`/api/news/rss`
+  + `/api/news`) and Flyers sorted by date, so the client polls ONE URL.
+  **Live-refresh = client polls every 5 min with change-diffing** (only
+  setState when content actually changed). This will be the app's first
+  `setInterval` + `useEffect` cleanup / `AbortController` pattern (none exists
+  today). "Important Updates," never "Trending Now."
+- **5c CategoryPreviewList** — consume `/api/categories` `latestItems`
+  (`List<SearchResult>`, cap 3) + `latestPolicyUpdate` (a full `NewsItem`,
+  not a summary DTO). Browse button inert until Step 6 routes exist. **CSS
+  naming caution:** the reference doc's `.category-group-header` (flex row)
+  collides with an existing `.category-group-header` (uppercase section
+  heading) in `backend/styles.css` — use a distinct frontend class name.
+
+**5a — what was built.** The old static demo had TWO separate blocks: a
+text-only `.hero-section` and a lower `.ai-guidance-section` (question box +
+chips). 5a MERGES them into one green→orange gradient hero
+(`frontend/src/components/HeroGuidance.tsx`) carrying the AI flow inline:
+a `<textarea>`, three toggle chips (🚨 Urgent → `urgent`; 🏠 Housing / 🛒
+Essentials → `preferredCategories` Set), and a Get Help button (submit on
+click or Enter). A thin `MainContent.tsx` composes the `.home-main` column
+(HeroGuidance now; Important Updates 5b + previews 5c later) and replaced
+Step 4's placeholder `<p>` in `AppLayout.tsx`.
+
+**Reuse / new infra:** added `apiPost<TReq,TRes>` to `api/client.ts`
+(mirrors `apiGet`'s envelope unwrap — first POST in the app), and AI DTO
+types (`DecisionRequest/Response`, `DecisionStep`, `Citation`,
+`ContentSource`) to `types/api.ts`. `POST /api/decide` already existed — no
+backend change in 5a. Hero/widget CSS adapted from the WARM-palette
+analogues in `backend/styles.css` (`.hero-section` gradient etc.), not the
+reference doc's blue.
+
+**The AI is a stub (known, deferred):** no Spring AI model-provider starter
+is on the classpath, so `DecisionAgentService`'s `aiAssistant.generate()`
+throws and the endpoint returns a graceful 200 fallback — `answerTitle:
+"Unable to generate guidance"`, empty `steps`/`citations`, and `notes`
+prefixed `"AI call failed: ..."`. 5a wires the full input→POST→render flow
+anyway (the old demo did too) and renders the degraded state honestly.
+
+**Deliberate deviation from the approved plan (UX fix, flagged to user):**
+the plan said render the degraded `notes` directly. Live verification showed
+that leaks a developer-facing string ("No ChatClient.Builder bean available.
+Add a Spring AI model-provider starter…") to residents. Fixed by
+distinguishing the provider-unavailable stub (notes starts with "AI call
+failed") — which now shows a friendly "AI guidance is temporarily
+unavailable — try browsing categories below." — from a LEGITIMATE "no
+matches" answer whose `notes` is genuinely user-facing and IS shown. This
+keeps the copy clean now AND correct once a real provider is wired.
+
+**Verification:** `npm run build` (strict tsc) + `npm test` green (8 tests;
+new `HeroGuidance.test.tsx` covers render, good-response render, the
+provider-unavailable friendly notice + no-raw-error-leak, the legit no-match
+notes path, and urgent:true in the POST body). Live: `docker compose up
+--build -d app`, then the `run-firststep-app` Playwright driver pointed at
+`APP_URL=/app-next/` filled the question, toggled Urgent, clicked Get Help,
+and `wait-text "temporarily unavailable"` succeeded (it timed out against the
+pre-fix build) — screenshot confirms the warm-palette hero + friendly
+degraded card, no console errors.
+
+Out of scope for 5a: Important Updates, CategoryPreviewList, `/api/updates`,
+any polling, routing, filter context, wiring a real AI provider.

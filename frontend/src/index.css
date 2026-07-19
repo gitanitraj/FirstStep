@@ -1,0 +1,298 @@
+/* First Step — React frontend global styles (Step 4: AppLayout + Sidebar).
+   Palette mirrors backend/src/main/resources/static/styles.css (warm civic
+   identity). Layout classes adapted from references/CSSforNewDesign.md, recolored
+   from that doc's blue/purple to the existing green/orange/cream vars. */
+
+:root {
+  --primary-color: #1a5c38;
+  --primary-light: #2d7d4a;
+  --accent-color: #e07b39;
+  --bg-light: #f7eadc;
+  --bg-lighter: #fbecd6;
+  --border-color: #e5ddd5;
+  --text-primary: #1c1917;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --transition: all 0.2s ease;
+  --radius: 12px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  background-color: var(--bg-lighter);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+/* ===== Header ===== */
+.site-header {
+  background: white;
+  border-bottom: 1px solid var(--border-color);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: var(--shadow-sm);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 14px 24px;
+}
+
+.logo {
+  margin: 0;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1.2;
+}
+
+/* ===== Layout: Sidebar + Main ===== */
+.home-layout {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  gap: 32px;
+  padding: 32px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ===== Sidebar ===== */
+.home-sidebar {
+  position: sticky;
+  top: 80px; /* Below header */
+  height: fit-content;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.sidebar-section {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-title {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  margin: 0;
+}
+
+.category-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.category-checkbox input {
+  cursor: pointer;
+  accent-color: var(--primary-color);
+}
+
+.category-count {
+  color: var(--text-light);
+  font-size: 13px;
+  margin-left: auto;
+}
+
+/* ===== Main Content ===== */
+.home-main {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.section-placeholder {
+  color: var(--text-light);
+  font-size: 14px;
+  font-style: italic;
+  margin: 0;
+}
+
+/* ===== Hero + AI guidance widget (Step 5a) ===== */
+.hero-section {
+  background: linear-gradient(135deg, #1a5c38 0%, #2d7d4a 60%, #e07b39 100%);
+  color: white;
+  padding: 32px;
+  border-radius: var(--radius);
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.hero-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.hero-subtitle {
+  margin: 0;
+  font-size: 17px;
+  opacity: 0.92;
+  line-height: 1.5;
+}
+
+.hero-ai-form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.hero-ai-input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  border-radius: 8px;
+  font-size: 15px;
+  font-family: inherit;
+  line-height: 1.4;
+  resize: vertical;
+}
+
+.hero-ai-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+}
+
+.hero-chip {
+  padding: 8px 14px;
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  color: white;
+  font-size: 14px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hero-chip:hover {
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.hero-chip.active {
+  background: white;
+  color: var(--primary-color);
+  border-color: white;
+  font-weight: 600;
+}
+
+.hero-ai-submit {
+  margin-left: auto;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent-color);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.hero-ai-submit:hover:not(:disabled) {
+  filter: brightness(1.06);
+}
+
+.hero-ai-submit:disabled {
+  opacity: 0.7;
+  cursor: default;
+}
+
+.hero-ai-result {
+  background: white;
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 18px 20px;
+}
+
+.hero-ai-answer-title {
+  margin: 0 0 12px 0;
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--primary-color);
+}
+
+.hero-ai-steps {
+  margin: 0;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 15px;
+}
+
+.hero-ai-why {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+.hero-ai-citations {
+  margin: 14px 0 0 0;
+  font-size: 13px;
+  color: var(--text-light);
+}
+
+.hero-ai-unavailable {
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-secondary);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ===== Mobile ===== */
+@media (max-width: 768px) {
+  .home-layout {
+    grid-template-columns: 1fr;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .home-sidebar {
+    position: static;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .sidebar-section {
+    flex: 1;
+    min-width: 150px;
+  }
+}

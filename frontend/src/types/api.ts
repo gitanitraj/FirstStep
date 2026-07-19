@@ -20,3 +20,40 @@ export interface CategorySummary {
   latestItems: SearchResult[];
   latestPolicyUpdate: CivicContentSummary | null;
 }
+
+// ===== AI guidance (POST /api/decide) — mirrors the backend ai/dto records =====
+
+export interface ContentSource {
+  id: string;
+  name: string;
+  type: string;
+  url: string;
+  retrieved: string;
+}
+
+export interface DecisionRequest {
+  userQuery: string;
+  urgent: boolean;
+  preferredCategories: string[];
+}
+
+export interface DecisionStep {
+  order: number;
+  title: string;
+  action: string;
+  why: string;
+}
+
+export interface Citation {
+  sourceType: string;
+  id: string;
+  label: string;
+  contentSource: ContentSource | null;
+}
+
+export interface DecisionResponse {
+  answerTitle: string;
+  steps: DecisionStep[];
+  citations: Citation[];
+  notes: string;
+}

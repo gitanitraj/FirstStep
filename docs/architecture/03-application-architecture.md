@@ -151,18 +151,46 @@ mirroring how the original vertical-slice migration was planned.
   later step, once the new app is functionally ready). `App.tsx` is a
   bare proof fetching real `/api/categories` data — no real UI yet, that's
   Steps 4-6. See `references/decisions.md` Decision 016.)*
-- **Step 4 — `AppLayout` + `Sidebar`.** Category filters wired to
-  `/api/categories`, `CommunitySelector` wired to real communities, mobile
-  drawer.
+- [x] **Step 4 — `AppLayout` + `Sidebar`.** → **Demo.**
+  *(Completed — the frontend's first CSS + visual shell: sticky header,
+  two-column (sidebar + main) grid, and a `Sidebar` of category-filter
+  checkboxes fed live from `/api/categories` (reusing the `apiGet` wrapper
+  and `CategorySummary` type). Existing warm green/orange/cream palette
+  (`frontend/src/index.css`, mirroring `static/styles.css`), NOT
+  `CSSforNewDesign.md`'s blue/purple. **Scope (confirmed with user):**
+  checkboxes are **local-toggle only** — they visibly toggle but drive
+  nothing downstream; real filtering is Step 7's shared filter context.
+  Routing + `SpaWebConfig` widening **deferred to Step 6** (no real routes
+  exist yet). `main` area is a Step-5 placeholder. **Deferred from this
+  step, not built:** `CommunitySelector` wiring (the `communityId` param on
+  `/api/categories`) and a toggle-driven mobile drawer — the responsive CSS
+  collapses the sidebar to a horizontal wrap, but there's no drawer control.
+  See `references/decisions.md` Decision 017.)*
 - **Step 5 — `MainContent`: Hero + AI widget merge, Important Updates,
   `CategoryPreviewList`.** ("Important Updates," not "Trending Now" — see
-  Decision 014.) **Important Updates must refresh live, without a manual
-  page reload, when new RSS items or Flyers arrive** — client-side
-  polling (mirroring `RssFeedService`'s own hourly-poll design) is the
-  recommended mechanism, not WebSockets/SSE, since no push infrastructure
-  exists on the backend and isn't justified by an hourly-or-slower update
-  cadence. Confirmed by direct instruction after Step 3 — see
-  `references/decisions.md` Decision 016.
+  Decision 014.) **Split into 5a / 5b / 5c** (per the small-sequential-prompts
+  preference — each planned/built/verified on its own):
+  - [x] **Step 5a — Hero + AI guidance widget (merged).** → **Demo.**
+    *(Completed — the old demo's text-only hero + separate AI section merged
+    into one green→orange gradient hero carrying the AI question flow inline:
+    question box, 🚨 Urgent / 🏠 Housing / 🛒 Essentials chips, Get Help →
+    `POST /api/decide`, result rendered below. New `frontend/src/components/
+    {HeroGuidance,MainContent}.tsx`, `apiPost` added to `api/client.ts`, AI DTO
+    types added to `types/api.ts`. The AI provider is a stub — `/api/decide`
+    returns a graceful degraded body — so the widget shows a friendly "AI
+    guidance is temporarily unavailable" notice (the raw provider error is
+    detected via its "AI call failed" prefix and suppressed; a legitimate
+    "no matches" `notes` is still shown). Verified live via Docker + a driven
+    submit. See `references/decisions.md` Decision 018.)*
+  - **Step 5b — Important Updates.** Build a **new backend `GET /api/updates`**
+    endpoint that server-side merges News + Flyers sorted by date; client polls
+    it **every 5 minutes with change-diffing** (only re-render on real change).
+    **Must refresh live without a manual page reload** — client-side polling,
+    not WebSockets/SSE (no push infra; hourly-or-slower cadence). Confirmed by
+    direct instruction after Step 3 — see Decisions 016 & 018.
+  - **Step 5c — `CategoryPreviewList`.** Consume `/api/categories`
+    `latestItems` + `latestPolicyUpdate`; Browse button inert until Step 6
+    routes exist.
 - **Step 6 — Results pages + progressively-detailed cards.** Three
   density tiers; no backend gap, every field already exists.
 - **Step 7 — Shared filter context wiring** across AI guidance, Important
