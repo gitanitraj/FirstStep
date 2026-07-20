@@ -182,15 +182,26 @@ mirroring how the original vertical-slice migration was planned.
     detected via its "AI call failed" prefix and suppressed; a legitimate
     "no matches" `notes` is still shown). Verified live via Docker + a driven
     submit. See `references/decisions.md` Decision 018.)*
-  - **Step 5b — Important Updates.** Build a **new backend `GET /api/updates`**
-    endpoint that server-side merges News + Flyers sorted by date; client polls
-    it **every 5 minutes with change-diffing** (only re-render on real change).
-    **Must refresh live without a manual page reload** — client-side polling,
-    not WebSockets/SSE (no push infra; hourly-or-slower cadence). Confirmed by
-    direct instruction after Step 3 — see Decisions 016 & 018.
-  - **Step 5c — `CategoryPreviewList`.** Consume `/api/categories`
-    `latestItems` + `latestPolicyUpdate`; Browse button inert until Step 6
-    routes exist.
+  - [x] **Step 5b — Important Updates.** → **Demo.**
+    *(Completed — new backend `updates/` package: `GET /api/updates` merges
+    curated News + live RSS + Flyers server-side into normalized `UpdateItem`s
+    (deduped by id, sorted date-desc nulls-last, capped 8). New
+    `ImportantUpdates.tsx` renders the feed and **live-refreshes via a 5-minute
+    poll with change-diffing** (a `useRef` serialized snapshot suppresses no-op
+    re-renders; effect cleanup `clearInterval`s — the app's first polling
+    pattern). Client-side polling, not WebSockets/SSE. Establishes the
+    **backend-aggregates / frontend-displays** principle (Decision 019) that
+    also governs Step 6+. Summary line-clamped after a long RSS body was found
+    to blow out a card in live verification. 7 backend + 10 frontend tests
+    green; verified live via Docker + Playwright driver. See Decision 019.)*
+  - **Step 5c — `GET /api/home` consolidation + `CategoryPreviewList`.** Build
+    `home/` package (`GET /api/home` = `{ aiConfig, updates, categories }`,
+    composing `UpdatesService` + `CategoryService` + static `aiConfig`).
+    `MainContent` fetches `/api/home` **once** and distributes: `aiConfig` →
+    `HeroGuidance` (refactor 5a to take chips/prompts as props), `updates` →
+    `ImportantUpdates` (seed for first paint; keep polling `/api/updates`),
+    `categories` → new `CategoryPreviewList` (Browse inert until Step 6 routes).
+    Sidebar consolidation deferred to Step 7. See Decision 019.
 - **Step 6 — Results pages + progressively-detailed cards.** Three
   density tiers; no backend gap, every field already exists.
 - **Step 7 — Shared filter context wiring** across AI guidance, Important

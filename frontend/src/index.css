@@ -7,6 +7,7 @@
   --primary-color: #1a5c38;
   --primary-light: #2d7d4a;
   --accent-color: #e07b39;
+  --warning-color: #d97706;
   --bg-light: #f7eadc;
   --bg-lighter: #fbecd6;
   --border-color: #e5ddd5;
@@ -274,6 +275,91 @@ body {
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
   border: 0;
+}
+
+/* ===== Important Updates (Step 5b) ===== */
+.updates-panel {
+  background: white;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 18px 20px;
+  box-shadow: var(--shadow-sm);
+}
+
+.updates-title {
+  margin: 0 0 14px 0;
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text-primary);
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.updates-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.update-item {
+  padding: 12px 14px;
+  background: var(--bg-lighter);
+  border-radius: 8px;
+  border-left: 3px solid var(--accent-color);
+  transition: var(--transition);
+}
+
+.update-item:hover {
+  background: var(--bg-light);
+  transform: translateX(3px);
+}
+
+.update-item-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.update-item-title {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--text-primary);
+  line-height: 1.3;
+}
+
+.update-urgency {
+  flex-shrink: 0;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: white;
+  background: var(--warning-color);
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+
+.update-item-summary {
+  margin: 4px 0 0 0;
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-secondary);
+  /* Some sources (e.g. RSS legislative items) carry very long bodies as their
+     summary — clamp to two lines so one item can't dominate the feed. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.update-item-meta {
+  margin: 6px 0 0 0;
+  font-size: 12px;
+  color: var(--text-light);
 }
 
 /* ===== Mobile ===== */

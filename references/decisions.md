@@ -808,3 +808,75 @@ degraded card, no console errors.
 
 Out of scope for 5a: Important Updates, CategoryPreviewList, `/api/updates`,
 any polling, routing, filter context, wiring a real AI provider.
+
+# Decision 019
+
+**Governing architectural principle (set by the user during 5a review):
+the backend aggregates & normalizes data; the frontend only displays it.**
+This SUPERSEDES the banked-in-Decision-018 plan where the *client* was going
+to merge `/api/news/rss` + `/api/flyers` and call `/api/categories` directly.
+Cross-type aggregation, date selection, and source/url resolution now live
+server-side. The principle governs Step 6+ too (results pages get
+server-shaped data), not just Step 5.
+
+Two endpoints embody it:
+- **`GET /api/updates`** — the combined, normalized **Important Updates** feed
+  (built in 5b, below). The *polled* endpoint for live-refresh.
+- **`GET /api/home`** — the single initial-load aggregate for the homepage
+  main column: `{ aiConfig, updates, categories }` (built in **5c**). SPA
+  fetches once; browser stitches nothing. **`aiConfig` = static backend-owned
+  config only** (suggested prompts, chip list, placeholder) — actual guidance
+  stays the interactive `POST /api/decide`, which can't be pre-computed on
+  load. **Scope:** `/api/home` feeds the main column now; the **Sidebar keeps
+  its own `/api/categories` call until Step 7** (which lifts the fetch to a
+  shared parent) — accepted minor cost: categories fetched twice on load until
+  then.
+
+**5b — Important Updates (DONE).** New backend `updates/` package:
+`dto/UpdateItem` (a record: `type,id,title,summary,date,source,url,urgency` —
+display-ready, camelCase, no `@JsonProperty` since these are new display
+fields not domain models), `service/UpdatesService`, `controller/
+UpdatesController` (`GET /api/updates`, mirrors `NewsController`). Aggregation:
+merge curated News (`NewsService.getAll()`) + live RSS
+(`RssFeedSource.getRssItems()`) + Flyers (`FlyerService.getAll()`); **dedupe
+news by id** across curated+RSS (curated wins by insertion order via
+`LinkedHashMap.putIfAbsent`); normalize each to `UpdateItem` (news date =
+`published`, source/url = `contentSource.name`/`.url`, urgency = `urgency`;
+flyer date = `eventDate` else `updatedDate`, source = `organization`, url/
+urgency null); sort by `date` **descending, nulls last**
+(`Comparator.nullsLast(reverseOrder())` — dates are `yyyy-MM-dd`, lexically
+sortable); cap at **8** (`MAX_ITEMS`).
+
+Frontend: `types/api.ts` gains `UpdateItem`; new `components/
+ImportantUpdates.tsx` fetches `/api/updates` via `apiGet` on mount and renders
+the feed (title, clamped summary, source · date, urgency badge for non-
+"standard" news). **Live-refresh:** a `useEffect` `setInterval` polls every
+**5 min** with **change-diffing** — a `useRef` holds the last serialized feed
+(`JSON.stringify`) and `setUpdates` fires ONLY when it differs, so unchanged
+polls cause no re-render/flicker. The effect returns a cleanup that
+`clearInterval`s and flips a `cancelled` flag (the app's first interval
+teardown / first polling pattern). Rendered under `<HeroGuidance />` in
+`MainContent`. CSS adapted from the warm-palette `.resource-panel`/`.news-item`
+in `backend/styles.css` (accent left-border rows, accent-underlined heading).
+
+**Live-verification UX fix (discovered via the driven screenshot, not
+predictable from data shape):** the RSS legislative item carries the ENTIRE
+bill body as its `summary`, which blew one card to full-page height. Fixed
+display-only with a 2-line `-webkit-line-clamp` on `.update-item-summary`
+(keeps full data, just clamps the render) — consistent with "frontend
+displays," rather than truncating server-side.
+
+**Verification:** backend `mvn -Dtest=UpdatesServiceTest,UpdatesControllerTest`
+green (7 tests: merge/sort, news+flyer normalization, event-date fallback,
+id-dedupe, cap-at-8, null-dates-last, + `@WebMvcTest` endpoint shape).
+Frontend `npm run build` + `npm test` green (10 total; new
+`ImportantUpdates.test.tsx` proves the change-diffing via a `React.Profiler`
+commit-count: an identical poll adds NO commit, a changed poll does + updates
+the DOM — using `vi.useFakeTimers()` + `act(async () =>
+advanceTimersByTimeAsync)`). Live: Docker rebuild → `run-firststep-app`
+Playwright driver at `APP_URL=/app-next/` confirmed 8 real News+Flyer items in
+date order, no console errors. (Polling live-change is hard to observe since
+RSS only refreshes hourly — verified by the fake-timer unit test instead.)
+
+Out of scope for 5b: `/api/home` + CategoryPreviewList (5c), Sidebar
+consolidation (Step 7), routing (Step 6), real AI provider.

@@ -1,15 +1,17 @@
 import HeroGuidance from './HeroGuidance';
+import ImportantUpdates from './ImportantUpdates';
 
 /**
  * The main content column of the homepage (the roadmap's "MainContent").
- * Step 5a fills the top with the merged Hero + AI guidance widget. The
- * Important Updates feed (5b) and CategoryPreviewList (5c) drop in below.
+ * Step 5a: the merged Hero + AI guidance widget. Step 5b: the Important Updates
+ * feed. The CategoryPreviewList (5c) drops in below.
  */
 export default function MainContent() {
   return (
     <>
       <HeroGuidance />
-      <p className="section-placeholder">Important Updates & category previews — coming next</p>
+      <ImportantUpdates />
+      <p className="section-placeholder">Category previews — coming next</p>
     </>
   );
 }

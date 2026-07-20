@@ -57,3 +57,16 @@ export interface DecisionResponse {
   citations: Citation[];
   notes: string;
 }
+
+// ===== Important Updates (GET /api/updates) — mirrors updates/dto/UpdateItem =====
+
+export interface UpdateItem {
+  type: string; // "news" | "flyer"
+  id: string;
+  title: string;
+  summary: string;
+  date: string | null;
+  source: string | null;
+  url: string | null;
+  urgency: string | null;
+}
