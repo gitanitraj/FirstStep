@@ -15,11 +15,15 @@ const POLL_INTERVAL_MS = 5 * 60 * 1000;
  * the payload actually changed (change-diffing on the serialized list), so
  * unchanged polls cause no re-render or flicker.
  */
-export default function ImportantUpdates() {
-  const [updates, setUpdates] = useState<UpdateItem[] | null>(null);
+export default function ImportantUpdates({ initialUpdates }: { initialUpdates?: UpdateItem[] }) {
+  // Seed from /api/home when provided (first paint with no extra request);
+  // otherwise start empty and fetch /api/updates on mount (standalone use).
+  const [updates, setUpdates] = useState<UpdateItem[] | null>(initialUpdates ?? null);
   const [error, setError] = useState<string | null>(null);
   // Serialized snapshot of the last applied feed, used to skip no-op updates.
-  const lastSerialized = useRef<string | null>(null);
+  const lastSerialized = useRef<string | null>(
+    initialUpdates !== undefined ? JSON.stringify(initialUpdates) : null,
+  );
 
   useEffect(() => {
     let cancelled = false;
@@ -42,12 +46,19 @@ export default function ImportantUpdates() {
       }
     }
 
-    load();
+    // If seeded, skip the immediate fetch (the seed already covers first paint)
+    // and let the interval poll for refreshes. If not seeded, fetch now.
+    // Mount-once: the seed is a first-paint concern, so we don't re-run when the
+    // prop reference changes (which would needlessly reset the poll timer).
+    if (initialUpdates === undefined) {
+      load();
+    }
     const id = setInterval(load, POLL_INTERVAL_MS);
     return () => {
       cancelled = true;
       clearInterval(id);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

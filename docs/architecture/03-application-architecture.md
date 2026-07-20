@@ -194,14 +194,18 @@ mirroring how the original vertical-slice migration was planned.
     also governs Step 6+. Summary line-clamped after a long RSS body was found
     to blow out a card in live verification. 7 backend + 10 frontend tests
     green; verified live via Docker + Playwright driver. See Decision 019.)*
-  - **Step 5c — `GET /api/home` consolidation + `CategoryPreviewList`.** Build
-    `home/` package (`GET /api/home` = `{ aiConfig, updates, categories }`,
-    composing `UpdatesService` + `CategoryService` + static `aiConfig`).
-    `MainContent` fetches `/api/home` **once** and distributes: `aiConfig` →
-    `HeroGuidance` (refactor 5a to take chips/prompts as props), `updates` →
-    `ImportantUpdates` (seed for first paint; keep polling `/api/updates`),
-    `categories` → new `CategoryPreviewList` (Browse inert until Step 6 routes).
-    Sidebar consolidation deferred to Step 7. See Decision 019.
+  - [x] **Step 5c — `GET /api/home` consolidation + `CategoryPreviewList`.**
+    → **Demo. (Step 5 COMPLETE.)** *(Completed — new backend `home/` package:
+    `GET /api/home` = `{ aiConfig, updates, categories }`, composing
+    `UpdatesService` + `CategoryService` + static backend-owned `aiConfig`.
+    `MainContent` now fetches `/api/home` **once** and distributes: `aiConfig`
+    → `HeroGuidance` (refactored to backend-driven chips/prompts, default
+    fallback), `updates` → `ImportantUpdates` (seeded, no double-fetch; keeps
+    polling `/api/updates`), `categories` → new `CategoryPreviewList` (📢 policy
+    line + latest items; Browse inert until Step 6). Hero renders instantly with
+    defaults; data sections mount when `/api/home` resolves. 116 backend + 13
+    frontend tests green; verified live. Sidebar still fetches `/api/categories`
+    separately — consolidation deferred to Step 7. See Decision 020.)*
 - **Step 6 — Results pages + progressively-detailed cards.** Three
   density tiers; no backend gap, every field already exists.
 - **Step 7 — Shared filter context wiring** across AI guidance, Important

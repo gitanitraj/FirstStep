@@ -1,0 +1,102 @@
+package org.firststep.backend.home.controller;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.flyer.model.Flyer;
+import org.firststep.backend.flyer.repository.FlyerRepository;
+import org.firststep.backend.flyer.service.FlyerService;
+import org.firststep.backend.home.service.HomeService;
+import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.news.service.NewsService;
+import org.firststep.backend.news.service.RssFeedSource;
+import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.resource.repository.ResourceRepository;
+import org.firststep.backend.resource.service.ResourceService;
+import org.firststep.backend.shared.web.GlobalExceptionHandler;
+import org.firststep.backend.updates.service.UpdatesService;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.web.servlet.MockMvc;
+
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+
+@WebMvcTest(HomeController.class)
+@ContextConfiguration(classes = {HomeController.class, GlobalExceptionHandler.class, HomeControllerTest.TestConfig.class})
+class HomeControllerTest {
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Configuration
+    static class TestConfig {
+        @Bean
+        HomeService homeService() {
+            // Wire the REAL aggregators with fake repositories so the endpoint
+            // exercises actual composition (aiConfig + updates + categories).
+            NewsItem news = new NewsItem();
+            news.id = "N1";
+            news.title = "A new law";
+            news.summary = "Summary";
+            news.published = "2026-05-01";
+
+            Resource resource = new Resource();
+            resource.id = "CI-001";
+            resource.communityId = "wilmington-de";
+            resource.category = "Housing Assistance";
+
+            ResourceRepository resourceRepo = new ResourceRepository() {
+                @Override
+                public List<Resource> findAll() {
+                    return List.of(resource);
+                }
+
+                @Override
+                public Optional<Resource> findById(String id) {
+                    return Optional.empty();
+                }
+            };
+            FlyerRepository flyerRepo = new FlyerRepository() {
+                @Override
+                public List<Flyer> findAll() {
+                    return List.of();
+                }
+
+                @Override
+                public Optional<Flyer> findById(String id) {
+                    return Optional.empty();
+                }
+            };
+
+            NewsService newsService = new NewsService(() -> List.of(news));
+            RssFeedSource rssSource = List::of;
+            FlyerService flyerService = new FlyerService(flyerRepo);
+            ResourceService resourceService = new ResourceService(resourceRepo);
+
+            UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService);
+            CategoryService categoryService = new CategoryService(resourceService, newsService, flyerService);
+            return new HomeService(updatesService, categoryService);
+        }
+    }
+
+    @Test
+    void shouldReturnAggregatedHomePayload() throws Exception {
+        mockMvc.perform(get("/api/home"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                // Static AI config, backend-owned.
+                .andExpect(jsonPath("$.data.aiConfig.placeholder").exists())
+                .andExpect(jsonPath("$.data.aiConfig.chips[0].value").value("urgent"))
+                .andExpect(jsonPath("$.data.aiConfig.chips[0].urgent").value(true))
+                // Composed feeds.
+                .andExpect(jsonPath("$.data.updates[0].id").value("N1"))
+                .andExpect(jsonPath("$.data.categories").isArray());
+    }
+}

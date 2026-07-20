@@ -1,27 +1,38 @@
 import { useState } from 'react';
 import { apiPost } from '../api/client';
-import type { DecisionRequest, DecisionResponse } from '../types/api';
+import type { AiConfig, DecisionRequest, DecisionResponse } from '../types/api';
 
 type Status = 'idle' | 'loading' | 'done' | 'error';
 
-// The bias chips beneath the question box. `value` is what gets sent in
-// DecisionRequest.preferredCategories; `urgent` is handled separately.
-const CATEGORY_CHIPS: { value: string; label: string }[] = [
-  { value: 'housing', label: '🏠 Housing' },
-  { value: 'essentials', label: '🛒 Essentials' },
-];
+// Fallback config so the hero works standalone (and in tests) before /api/home
+// resolves. Once MainContent passes the backend's aiConfig, that takes over.
+const DEFAULT_AI_CONFIG: AiConfig = {
+  placeholder: 'E.g., I need rental help near Wilmington for seniors',
+  suggestedPrompts: [],
+  chips: [
+    { value: 'urgent', label: '🚨 Urgent', urgent: true },
+    { value: 'housing', label: '🏠 Housing', urgent: false },
+    { value: 'essentials', label: '🛒 Essentials', urgent: false },
+  ],
+};
 
 /**
- * Step 5a — the merged Hero + AI guidance widget. A single hero card carrying
- * the AI question flow inline (question box + urgency/category chips + submit),
+ * Step 5a/5c — the merged Hero + AI guidance widget. A single hero card carrying
+ * the AI question flow inline (question box + backend-driven chips + submit),
  * with the decision result rendered below.
+ *
+ * The chips/prompts/placeholder come from `aiConfig` (served by GET /api/home in
+ * 5c); when absent (standalone / pre-load) DEFAULT_AI_CONFIG applies. Each chip
+ * carries an `urgent` flag: an urgent chip toggles the DecisionRequest `urgent`
+ * flag, the rest toggle membership in `preferredCategories`.
  *
  * NOTE: POST /api/decide is a stub until a model provider is wired in — it
  * returns 200 with a graceful degraded body (empty steps/citations). We detect
  * that and show an honest "temporarily unavailable" notice rather than a blank
  * card.
  */
-export default function HeroGuidance() {
+export default function HeroGuidance({ aiConfig }: { aiConfig?: AiConfig | null }) {
+  const config = aiConfig ?? DEFAULT_AI_CONFIG;
   const [query, setQuery] = useState('');
   const [urgent, setUrgent] = useState(false);
   const [preferred, setPreferred] = useState<Set<string>>(new Set());
@@ -92,7 +103,7 @@ export default function HeroGuidance() {
           id="ai-question"
           className="hero-ai-input"
           rows={2}
-          placeholder="E.g., I need rental help near Wilmington for seniors"
+          placeholder={config.placeholder}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           onKeyDown={(e) => {
@@ -103,26 +114,38 @@ export default function HeroGuidance() {
           }}
         />
 
+        {config.suggestedPrompts.length > 0 && (
+          <div className="hero-ai-prompts">
+            {config.suggestedPrompts.map((prompt) => (
+              <button
+                key={prompt}
+                type="button"
+                className="hero-prompt"
+                onClick={() => setQuery(prompt)}
+              >
+                {prompt}
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="hero-ai-chips">
-          <button
-            type="button"
-            className={`hero-chip${urgent ? ' active' : ''}`}
-            aria-pressed={urgent}
-            onClick={() => setUrgent((u) => !u)}
-          >
-            🚨 Urgent
-          </button>
-          {CATEGORY_CHIPS.map((chip) => (
-            <button
-              key={chip.value}
-              type="button"
-              className={`hero-chip${preferred.has(chip.value) ? ' active' : ''}`}
-              aria-pressed={preferred.has(chip.value)}
-              onClick={() => togglePreferred(chip.value)}
-            >
-              {chip.label}
-            </button>
-          ))}
+          {config.chips.map((chip) => {
+            const active = chip.urgent ? urgent : preferred.has(chip.value);
+            return (
+              <button
+                key={chip.value}
+                type="button"
+                className={`hero-chip${active ? ' active' : ''}`}
+                aria-pressed={active}
+                onClick={() =>
+                  chip.urgent ? setUrgent((u) => !u) : togglePreferred(chip.value)
+                }
+              >
+                {chip.label}
+              </button>
+            );
+          })}
           <button
             type="button"
             className="hero-ai-submit"

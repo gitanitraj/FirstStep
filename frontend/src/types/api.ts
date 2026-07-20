@@ -70,3 +70,23 @@ export interface UpdateItem {
   url: string | null;
   urgency: string | null;
 }
+
+// ===== Homepage aggregate (GET /api/home) — mirrors home/dto records =====
+
+export interface AiChip {
+  value: string;
+  label: string;
+  urgent: boolean;
+}
+
+export interface AiConfig {
+  placeholder: string;
+  suggestedPrompts: string[];
+  chips: AiChip[];
+}
+
+export interface HomePayload {
+  aiConfig: AiConfig;
+  updates: UpdateItem[];
+  categories: CategorySummary[];
+}

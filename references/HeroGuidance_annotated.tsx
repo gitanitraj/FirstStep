@@ -28,22 +28,33 @@ import { useState } from 'react';
 // envelope and throws on !success. First (and only 5a) POST consumer.
 import { apiPost } from '../api/client';
 
-// DTO types mirroring the backend ai/dto records (added to types/api.ts in 5a).
-import type { DecisionRequest, DecisionResponse } from '../types/api';
+// DTO types mirroring the backend records (added to types/api.ts). AiConfig added
+// in 5c — the backend-owned hero config (placeholder, prompts, chips).
+import type { AiConfig, DecisionRequest, DecisionResponse } from '../types/api';
 
 // A tiny state machine for the request lifecycle — clearer than juggling separate
 // isLoading/hasError booleans.
 type Status = 'idle' | 'loading' | 'done' | 'error';
 
-// The two category-bias chips. `value` is exactly what the backend expects in
-// DecisionRequest.preferredCategories (["housing","essentials"]). "Urgent" is a
-// separate boolean flag, not a preferredCategory, so it is NOT in this list.
-const CATEGORY_CHIPS: { value: string; label: string }[] = [
-  { value: 'housing', label: '🏠 Housing' },
-  { value: 'essentials', label: '🛒 Essentials' },
-];
+// UPDATED IN 5c: chips/prompts/placeholder are no longer hardcoded — they come
+// from `aiConfig` (served by GET /api/home). This DEFAULT is the fallback used
+// when the component renders before /api/home resolves, or standalone/in tests.
+// Each chip carries an `urgent` flag: the urgent chip toggles DecisionRequest.urgent,
+// the others toggle membership in preferredCategories (["housing","essentials"]).
+const DEFAULT_AI_CONFIG: AiConfig = {
+  placeholder: 'E.g., I need rental help near Wilmington for seniors',
+  suggestedPrompts: [],
+  chips: [
+    { value: 'urgent', label: '🚨 Urgent', urgent: true },
+    { value: 'housing', label: '🏠 Housing', urgent: false },
+    { value: 'essentials', label: '🛒 Essentials', urgent: false },
+  ],
+};
 
-export default function HeroGuidance() {
+// aiConfig is optional: MainContent passes the backend config once /api/home
+// loads; until then (or standalone) `config` falls back to DEFAULT_AI_CONFIG.
+export default function HeroGuidance({ aiConfig }: { aiConfig?: AiConfig | null }) {
+  const config = aiConfig ?? DEFAULT_AI_CONFIG;
   // Form state
   const [query, setQuery] = useState('');
   const [urgent, setUrgent] = useState(false);
@@ -130,7 +141,7 @@ export default function HeroGuidance() {
           id="ai-question"
           className="hero-ai-input"
           rows={2}
-          placeholder="E.g., I need rental help near Wilmington for seniors"
+          placeholder={config.placeholder} {/* 5c: backend-driven */}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           // Enter submits; Shift+Enter inserts a newline (textarea, so multi-line
@@ -143,29 +154,36 @@ export default function HeroGuidance() {
           }}
         />
 
+        {/* 5c: optional backend-driven suggested prompts. Clicking one fills the
+            input. Rendered only when aiConfig supplies them (default has none). */}
+        {config.suggestedPrompts.length > 0 && (
+          <div className="hero-ai-prompts">
+            {config.suggestedPrompts.map((prompt) => (
+              <button key={prompt} type="button" className="hero-prompt" onClick={() => setQuery(prompt)}>
+                {prompt}
+              </button>
+            ))}
+          </div>
+        )}
+
         <div className="hero-ai-chips">
-          {/* Urgent is a standalone boolean toggle. aria-pressed exposes the
-              on/off state to assistive tech; the `.active` class styles it. */}
-          <button
-            type="button"
-            className={`hero-chip${urgent ? ' active' : ''}`}
-            aria-pressed={urgent}
-            onClick={() => setUrgent((u) => !u)}
-          >
-            🚨 Urgent
-          </button>
-          {/* Category chips toggle membership in the `preferred` Set. */}
-          {CATEGORY_CHIPS.map((chip) => (
-            <button
-              key={chip.value}
-              type="button"
-              className={`hero-chip${preferred.has(chip.value) ? ' active' : ''}`}
-              aria-pressed={preferred.has(chip.value)}
-              onClick={() => togglePreferred(chip.value)}
-            >
-              {chip.label}
-            </button>
-          ))}
+          {/* 5c: chips come from config and render uniformly. Each chip's `urgent`
+              flag decides its behavior: the urgent chip toggles the `urgent` state;
+              every other chip toggles membership in the `preferred` Set. */}
+          {config.chips.map((chip) => {
+            const active = chip.urgent ? urgent : preferred.has(chip.value);
+            return (
+              <button
+                key={chip.value}
+                type="button"
+                className={`hero-chip${active ? ' active' : ''}`}
+                aria-pressed={active}
+                onClick={() => (chip.urgent ? setUrgent((u) => !u) : togglePreferred(chip.value))}
+              >
+                {chip.label}
+              </button>
+            );
+          })}
           {/* Submit. Disabled + relabeled while loading to prevent double-submit
               and signal progress. margin-left:auto (CSS) pushes it to the right. */}
           <button

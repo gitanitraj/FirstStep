@@ -880,3 +880,70 @@ RSS only refreshes hourly — verified by the fake-timer unit test instead.)
 
 Out of scope for 5b: `/api/home` + CategoryPreviewList (5c), Sidebar
 consolidation (Step 7), routing (Step 6), real AI provider.
+
+# Decision 020
+
+Step **5c — `GET /api/home` consolidation + `CategoryPreviewList`** (DONE).
+Completes Step 5 and realizes the single-request homepage architecture from
+Decision 019: the SPA main column now loads from ONE `GET /api/home` call
+instead of the client fetching several endpoints.
+
+**Backend — new `home/` package** (composition only, no duplicated logic):
+- `dto/AiChip` (record `value,label,urgent`), `dto/AiConfig` (record
+  `placeholder, suggestedPrompts, chips`), `dto/HomePayload` (record
+  `aiConfig, updates, categories`).
+- `service/HomeService` — holds the **static, backend-owned `AiConfig`**
+  (placeholder + 3 suggested prompts + the 3 chips; chip `value`s match what
+  `HeroGuidance` sends to `/api/decide`) and composes the EXISTING
+  `UpdatesService.getUpdates()` (Decision 019) + `CategoryService.getAll()`.
+- `controller/HomeController` — `GET /api/home?communityId=` (optional param,
+  mirrors `CategoryController`).
+
+**Frontend:**
+- `types/api.ts` gains `AiChip/AiConfig/HomePayload`.
+- `MainContent` becomes the orchestrator: fetches `/api/home` **once** on mount
+  and distributes — `aiConfig` → `HeroGuidance`, `updates` → `ImportantUpdates`
+  (seed), `categories` → `CategoryPreviewList`.
+- `HeroGuidance` refactored to take `aiConfig?` and render backend-driven
+  chips/prompts/placeholder; chip rendering unified (each chip's `urgent` flag
+  decides whether it toggles `urgent` or `preferredCategories`). Keeps a
+  `DEFAULT_AI_CONFIG` fallback so it still works standalone/in tests.
+- `ImportantUpdates` refactored to accept optional `initialUpdates` — when
+  seeded it skips the mount fetch (no double request) and just polls
+  `/api/updates` for refresh; unseeded it self-fetches (standalone use).
+- New `CategoryPreviewList` — one card per category (icon, count, 📢 latest
+  policy update, latest item titles, inert **Browse** button).
+
+**Design decisions worth recording:**
+1. **Hero renders immediately; data sections wait for `/api/home`.**
+   `MainContent` always renders `<HeroGuidance>` (with its default config) so
+   the primary call-to-action never blocks on the network; when `/api/home`
+   resolves, the real `aiConfig` takes over and Updates + Previews mount seeded.
+   On error, the hero still works (default config) and a message covers the
+   data sections.
+2. **No double-fetch.** Because `ImportantUpdates` mounts only after
+   `/api/home` resolves, it's always seeded and never also hits `/api/updates`
+   on mount — it only polls thereafter.
+3. **Browse is inert (`disabled`, `title="Full listings coming soon"`)** — real
+   result pages/routes are Step 6. Consistent with the Step-4 "visible but not
+   yet wired" precedent (sidebar checkboxes).
+4. **Distinct CSS class names** (`.category-preview*`, `.previews-*`) to avoid
+   the known `.category-group-header` collision with `backend/styles.css`
+   (flagged in Decisions 018/019).
+5. **Sidebar STILL calls `/api/categories` separately** — full consolidation
+   (Sidebar reading from `/api/home` too) is deferred to **Step 7** (shared
+   context), so categories are fetched twice on load until then. Accepted.
+
+**Verification:** full backend suite **116 tests** green (new `HomeControllerTest`
+wires the real `UpdatesService`+`CategoryService` with fake repos and asserts
+the `{aiConfig, updates, categories}` shape); frontend **13 tests** green (new
+`CategoryPreviewList.test` + `MainContent.test` asserting the single `/api/home`
+call distributes to all three sections; `App.test` made path-aware since the
+tree now fires both `/api/categories` and `/api/home`). Live: Docker rebuild →
+`/api/home` returns aiConfig(3 chips/3 prompts)+8 updates+10 categories in one
+call; `run-firststep-app` driver at `/app-next/` confirmed the full homepage
+(hero w/ backend prompts, Important Updates, 10-card Browse-by-category grid
+with policy lines) — no console errors. **Step 5 COMPLETE.**
+
+Out of scope: routing/result pages (Step 6), Sidebar→/api/home consolidation
+and shared filter context (Step 7), real AI provider.

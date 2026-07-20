@@ -20,6 +20,13 @@
  *      payload SERIALIZED in a ref and only setState when the new payload differs.
  *      Proven by a React.Profiler commit-count unit test: an identical poll adds
  *      no commit; a changed poll does.
+ *
+ * UPDATED IN 5c — OPTIONAL SEED (`initialUpdates`)
+ *   When MainContent already has the feed from GET /api/home, it passes it as
+ *   `initialUpdates`. In that case the component starts already-populated and
+ *   SKIPS the mount fetch (no duplicate /api/updates request on load) — it only
+ *   polls thereafter. Used standalone with no prop, it self-fetches on mount as
+ *   before. The seed is a first-paint concern, so the effect stays mount-once.
  * ============================================================================= */
 
 import { useEffect, useRef, useState } from 'react';
@@ -30,12 +37,17 @@ import type { UpdateItem } from '../types/api';
 // this is frequent enough to surface changes promptly without wasteful polling.
 const POLL_INTERVAL_MS = 5 * 60 * 1000;
 
-export default function ImportantUpdates() {
-  const [updates, setUpdates] = useState<UpdateItem[] | null>(null);
+export default function ImportantUpdates({ initialUpdates }: { initialUpdates?: UpdateItem[] }) {
+  // Seed from the prop when provided (first paint via /api/home, no extra
+  // request); otherwise null → loading until the mount fetch resolves.
+  const [updates, setUpdates] = useState<UpdateItem[] | null>(initialUpdates ?? null);
   const [error, setError] = useState<string | null>(null);
   // The last feed we actually applied, serialized. A ref (not state) because
   // changing it must NOT itself trigger a render — it's bookkeeping for the diff.
-  const lastSerialized = useRef<string | null>(null);
+  // Pre-seeded so the first poll diffs against the seed, not against null.
+  const lastSerialized = useRef<string | null>(
+    initialUpdates !== undefined ? JSON.stringify(initialUpdates) : null,
+  );
 
   useEffect(() => {
     // Guards a slow fetch that resolves after the component unmounts (or the
@@ -62,14 +74,21 @@ export default function ImportantUpdates() {
       }
     }
 
-    load(); // initial fetch on mount
+    // Seeded → skip the mount fetch (seed already covers first paint); unseeded
+    // → fetch now. Either way, start polling.
+    if (initialUpdates === undefined) {
+      load();
+    }
     const id = setInterval(load, POLL_INTERVAL_MS); // then poll
     // Cleanup: stop the timer and ignore any in-flight response.
     return () => {
       cancelled = true;
       clearInterval(id);
     };
-  }, []); // empty deps — set up once, tear down on unmount
+    // Mount-once: the seed only matters at mount, so we intentionally do not
+    // re-run on prop-reference changes (which would reset the poll timer).
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <section className="updates-panel" aria-labelledby="updates-title">
