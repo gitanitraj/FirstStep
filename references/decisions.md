@@ -888,6 +888,22 @@ Completes Step 5 and realizes the single-request homepage architecture from
 Decision 019: the SPA main column now loads from ONE `GET /api/home` call
 instead of the client fetching several endpoints.
 
+**Architectural framing (confirmed by user): `/api/home` is a
+Backend-for-Frontend (BFF) endpoint, NOT a generic REST resource.** It is
+shaped to serve exactly one view — the homepage — assembling precisely that
+page's data in a single round trip. As the homepage grows, this endpoint grows
+with it; the client never fans out or stitches data. This is deliberately
+different from the granular resource endpoints (`/api/resources`,
+`/api/flyers`, `/api/news`, …), which stay reusable and page-agnostic. Rationale
+the user gave: a page-shaped BFF endpoint scales cleanly to BOTH the React web
+app and a future mobile client (each view/client can have its own BFF
+endpoint), while keeping every client intentionally **thin and display-only**.
+This complements Decision 019's "backend aggregates, frontend displays" — the
+BFF pattern is *how* that principle is applied per page. **Implication for Step
+6+:** results/detail pages should get their own page-shaped aggregates rather
+than having the client compose granular endpoints (`/api/updates` remains the
+one carve-out: a lightweight polled SUBSET of `/api/home`, not a separate page).
+
 **Backend — new `home/` package** (composition only, no duplicated logic):
 - `dto/AiChip` (record `value,label,urgent`), `dto/AiConfig` (record
   `placeholder, suggestedPrompts, chips`), `dto/HomePayload` (record
