@@ -206,13 +206,36 @@ mirroring how the original vertical-slice migration was planned.
     defaults; data sections mount when `/api/home` resolves. 116 backend + 13
     frontend tests green; verified live. Sidebar still fetches `/api/categories`
     separately — consolidation deferred to Step 7. See Decision 020.)*
-- **Step 6 — Results pages + progressively-detailed cards.** Three
-  density tiers; no backend gap, every field already exists.
-- **Step 7 — Shared filter context wiring** across AI guidance, Important
-  Updates, category previews, and search results.
-- **Step 8 — Interaction polish + full verification.** Existing warm
-  green/orange/cream palette throughout (not `CSSforNewDesign.md`'s
-  blue/purple), responsive behavior, full live verification.
+**Steps 6–8 REPLACED by a civic-portal homepage rebuild (Decision 021).** The
+homepage was redesigned into a 5-section trusted-information portal (Utility Bar,
+Hero + primary nav, New Delaware Laws rotator, Resource Discovery
+[Organizations | Categories], Community Information carousel) feeding a multi-page
+app with a four-level nav hierarchy (Category → topic-groups → topic →
+CivicContent) and Organization landing pages. The Step-5 endpoints
+(`/api/home`, `/api/updates`, `/api/decide`, `/api/categories`) and the BFF
+principle carry forward; only the homepage presentation + forward roadmap changed.
+Decomposed **frame-first** into slices A–I:
+- [x] **A — Homepage frame + routing foundation.** → **Demo.** *(New `pages/
+  {HomePage,StubPage}` + `components/{UtilityBar,SiteHero,PrimaryNav,
+  DelawareLawsFeature,ResourceDiscovery,CommunityInformation}`; sections are
+  scaffolds. **React Router introduced** (`BrowserRouter basename="/app-next"`);
+  **`SpaWebConfig` widened** to a depth-agnostic `PathResourceResolver` SPA
+  fallback. Retired the superseded Step-4/5 homepage components; kept
+  `HeroGuidance`/`ImportantUpdates` to repurpose. 10 frontend tests + live
+  deep-link verification green. See Decision 021.)*
+- **B — AI-search wiring** (Utility Bar → `/api/decide`; canned responses OK).
+- **C — New Delaware Laws rotator** (7 most recent signed bills; RSS already pulled).
+- **D0 — Data normalization** — enrich `resources.communities.json` (171 recs) to
+  `resources.json`'s schema (`subcategory` + curated fields). Prereq for D/F.
+- **D — Resource Discovery** — curated-org BFF shortlist | categories; reconcile
+  the category taxonomy.
+- **E — Community Information** flyer carousel.
+- **F — Category → topic-group → topic → CivicContent pages** (Housing full;
+  others skip the topic level until D0 lands).
+- **G — Organization landing pages** (aggregate all content by `organization`).
+- **H — Important Notices page** (renamed from Weekly Updates; Delaware-Laws RSS
+  column + Community Updates cards) + Community Info carousel page.
+- **I — Accessibility features, mobile adaptation, polish.**
 
 Also logged, explicitly deferred, not part of this sequence: real
 Exiftool/AI-based metadata extraction for Flyers (ties back to Decision

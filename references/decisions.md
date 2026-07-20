@@ -963,3 +963,184 @@ with policy lines) — no console errors. **Step 5 COMPLETE.**
 
 Out of scope: routing/result pages (Step 6), Sidebar→/api/home consolidation
 and shared filter context (Step 7), real AI provider.
+
+# Decision 021
+
+**MAJOR PIVOT — the homepage design was replaced completely by a new
+civic-portal specification.** This supersedes the Step-5 homepage LAYOUT
+(hero+AI / Important Updates / CategoryPreviewList) and the old Step 6–8
+roadmap. The backend groundwork stands: `/api/categories`, `/api/updates`,
+`/api/home`, `/api/decide`, the category taxonomy, and Decisions 014–020's
+endpoint/architecture work all remain valid — only the homepage *presentation*
+and the forward roadmap changed. The BFF principle (Decision 019/020,
+[[firststep-bff-architecture]]) is unchanged and still governs.
+
+**New homepage = 5 vertical sections** (trusted civic-information portal; avoid
+excessive scrolling; key content above the fold; no oversized imagery/carousels
+in the hero):
+1. **Utility Bar** — narrow top strip: left = future social icons; center =
+   always-available AI search ("Tell me what you need today…"); right = ARIA /
+   accessibility controls.
+2. **Hero** — logo (upper-left, links home from anywhere) + app name + tagline
+   ("Your trusted guide to community resources, program updates and local
+   information."); on the app-name row, **primary nav**: Housing Assistance,
+   Community Info, Important Notices, Life Assistance (catchall).
+3. **New Delaware Laws** — rotates ONE bill title at a time, 7 most recent
+   signed bills.
+4. **Resource Discovery** — two columns w/ subtle divider: **Organizations**
+   (left, each → an Organization landing page aggregating all its content) |
+   **Categories** (right, each → a Category page of topic-groups → topics →
+   CivicContent).
+5. **Community Information** — the flyer carousel.
+
+**Four-level nav hierarchy:** Category → topic-groups → topic → CivicContent
+(resources, news, policy, expert content — one consistent card design that
+labels content type + source).
+
+**Copy rules:** no Oxford commas; the Weekly Updates page is renamed
+**"Important Notices"** (NOT "Important Notices Updates").
+
+**Data reality (verified this session — governs later slices):** 229 resources
+loaded (58 curated `resources.json` + 171 `resources.communities.json`). **178
+distinct organizations, highly fragmented** (top has 6). **`subcategory` (the
+"topic" level) exists ONLY on the 58 curated Housing/Clothing/Furniture
+records; the other 171 have none.** Topic-group headers exist nowhere. Category
+examples in the spec (Food Assistance, Transportation…) diverge from the 10-cat
+taxonomy — reconcile in Discovery.
+
+**Confirmed decisions (user):**
+- **Frame-first** decomposition (this = Slice A).
+- **Organizations = curated shortlist, NO "see all"** (First Step is a curated
+  selection). Ranking metric TBD (likely policy/news-driven); **seed by resource
+  count for now**.
+- **Topic hierarchy full only where subcategory data exists** (Housing); other
+  categories skip the topic level (→ content directly) until data lands.
+- **Required data task (D0):** enrich `resources.communities.json` (171 records)
+  to `resources.json`'s schema (add `subcategory` + curated fields) so topics
+  generalize. Prereq for D/F.
+- **AI need not be fully functional** — canned/sample responses acceptable
+  (Utility Bar search wired in Slice B; `/api/decide` already returns canned
+  text).
+
+**New roadmap (supersedes old Step 6–8):** A. homepage frame + routing (DONE
+below) · B. AI-search wiring · C. Delaware-Laws rotator · D0. data normalization
+· D. Resource Discovery · E. Community carousel · F. Category/topic/content pages
+· G. Organization pages · H. Important Notices page + Community Info page · I.
+accessibility + mobile + polish.
+
+## Slice A — homepage frame + routing foundation (DONE)
+New `pages/{HomePage,StubPage}.tsx` + `components/{UtilityBar,SiteHero,PrimaryNav,
+DelawareLawsFeature,ResourceDiscovery,CommunityInformation}.tsx`. Sections are
+presentational scaffolds (real content in B–E). **React Router introduced at
+last** (`react-router-dom` v6, installed since Step 3): `App.tsx` wraps
+`<BrowserRouter basename="/app-next">` with `/` → HomePage and the four nav
+destinations → `StubPage` ("Coming soon"). **`SpaWebConfig` widened** from two
+exact `/app-next` forwards to the canonical depth-agnostic SPA fallback: a
+`/app-next/**` resource handler with a `PathResourceResolver` that serves the
+real file when it exists (JS/CSS/assets) else returns `index.html` — so client
+routes and hard refreshes on them load at any depth. (Chosen over per-depth view
+controllers because the coming Category→topic→content routes go 3–4 segments
+deep.)
+
+**Clean cut (per "replaces completely"):** removed
+`components/{AppLayout,Sidebar,MainContent,CategoryPreviewList}.tsx` + their tests
+(directly superseded). **Kept** `HeroGuidance.tsx` (AI → Slice B) and
+`ImportantUpdates.tsx` (→ C/H) to repurpose — unrendered for now, so tree-shaken
+from the bundle but still type-checked. `/api/home` temporarily has no consumer
+until sections fill (fine). The old CSS for removed components remains in
+`index.css` (dead, low-risk) alongside the new frame styles — flagged for later
+cleanup.
+
+**Verification:** frontend `npm run build` + `npm test` green (10 tests: frame
+render via MemoryRouter+HomePage, PrimaryNav route targets, App routing under the
+basename). Backend `mvn compile` clean. Live (Docker): `/app-next/` + deep-link
+hard refreshes `/app-next/important-notices` (1-seg) and
+`/app-next/category/housing-assistance` (2-seg) all return 200 + the SPA index,
+while JS assets still serve as `text/javascript` (proves the resolver serves real
+files, falls back only for routes). Playwright: home → click Important Notices →
+stub "Coming soon" → click logo → home; no console errors. Screenshot
+`step6a-frame-home.png`.
+
+**Real brand assets wired (Slice A follow-up):** the placeholder compass emoji
+was replaced with the actual logo — the green+orange **feet** at
+`backend/.../static/images/First step logo feet.png`, copied into
+`frontend/src/assets/logo-feet.png` and `import`ed (Vite bundles it +
+rewrites the URL under the `/app-next/` base). Added `src/vite-env.d.ts`
+(`/// <reference types="vite/client" />`) so `*.png` imports typecheck given the
+explicit tsconfig `types` array. NB: the PNG has a WHITE background (renders as a
+small white chip on the cream page) — a transparent version would sit cleaner.
+
+**Reference from the OLD static demo (`static/index.html` + `styles.css`), for
+upcoming slices:**
+- **Accessibility/ARIA controls** the Utility Bar's right slot should hold (Slice
+  I, or pull forward): a **Language toggle** (ES/EN — the demo has full Spanish
+  i18n via `app.js`'s `t()`) and a **High Contrast** button that toggles a full
+  `body.high-contrast` black/yellow theme (the CSS exists in `styles.css` to
+  port). The Slice-A right slot is currently a disabled ♿ placeholder.
+- **Flyer images** for the Community carousel (Slice E) live in
+  `static/images/seasonal/` (7: Disability Info, Eviction Help, Fundraiser,
+  Furniture, Health Fair, Volunteer, Youth) — pair with `flyers.json`.
+- The old header's 🤖 "Get answers with AI" banner is the ancestor of the Utility
+  Bar search (Slice B).
+
+Out of scope for Slice A: AI wiring (B), Delaware-Laws data (C), Orgs/Categories
+data + taxonomy reconcile (D0/D), carousel (E), deep pages (F–H), `/api/home`
+reshape, accessibility/mobile (I).
+
+# Decision 022
+
+**Accessibility controls pulled forward from Slice I** (user asked to build them
+now, after reviewing the old static demo which had them). Two controls live in
+the Utility Bar's right slot, ported from the old `static/index.html` + `styles.css`:
+
+- **Language toggle (EN/ES).** Lightweight i18n (user chose this over
+  react-i18next — no new dependency, mirrors the old `app.js` `t()` approach):
+  `i18n/dictionary.ts` (EN/ES key→string maps) + `i18n/I18nProvider.tsx`
+  (context + `useI18n()` → `{lang, setLang, t}`; persists to `localStorage`;
+  syncs `document.documentElement.lang`). **The context default is a working
+  English `t()` so components render without a provider** (keeps the frame/nav
+  unit tests provider-free and green). `App` is wrapped in `<I18nProvider>`.
+  Frame components (`SiteHero` tagline/aria, `PrimaryNav` labels, `UtilityBar`
+  placeholder, the three section titles + a generic `common.comingSoon`,
+  `StubPage`) call `t()`. **Scope: UI-CHROME only** — a display concern, so it
+  lives in the frontend. Translating CONTENT (resource data) would be a backend
+  responsibility and is NOT done here (the old app didn't either).
+- **High Contrast.** `hooks/useHighContrast.ts` toggles a `high-contrast` class
+  on `document.body` (+ `localStorage`). The old `body.high-contrast` theme
+  (black + `#ff0`) was REWRITTEN for the new frame classes (`index.css`) — the
+  old rules targeted removed components, so they couldn't be copied verbatim.
+
+**Verification gotcha worth remembering:** the first high-contrast screenshot
+showed nav pills still white while cards went black. This was NOT a CSS bug —
+`.primary-nav-item` has `transition: all 0.2s` (cards don't), so on toggle the
+pills ANIMATE white→black and the screenshot/`getComputedStyle` caught them at
+t≈0. Proven via CSSOM enumeration (rule present, top-level, matches, correct
+specificity) + a delayed `getComputedStyle` returning `rgb(0,0,0)` after 600ms.
+**Lesson: let CSS transitions settle before asserting visuals.** Minor polish
+noted for later: theme toggles ideally shouldn't animate (suppress transitions
+during a theme switch) — deferred to Slice I.
+
+**Real brand logo** also wired this pass (see Decision 021 addendum): the
+green+orange feet PNG replaced the compass emoji.
+
+**`app.js` data-loading review (user directive: "frontend is for display,
+backend is for business logic and aggregation").** The OLD static frontend did
+substantial CLIENT-SIDE business logic that violates this — recorded so later
+slices don't repeat it: Housing screen fetched ALL `/api/resources` then
+`filter(category includes "housing")` + urgency filter (app.js:382); Essentials
+`filter(cost === "free")` (app.js:414); News fetched `/api/news` + `/api/news/rss`
+separately, merged, derived `[...new Set(flatMap(tags))]` and filtered by tag
+(app.js:481,517); carousel parsed captions from filenames (app.js:806). The NEW
+architecture already corrected most (`/api/categories`, `/api/updates`,
+`/api/home` BFF). **Forward rule (reaffirmed, [[firststep-bff-architecture]]):**
+Category pages (F) get a BFF returning the category's topics/content — not
+fetch-all-and-filter; Important Notices (H) does tag grouping/filtering
+server-side; the carousel (E) gets a BFF returning `{image, caption}` objects.
+
+**Verification:** 12 frontend tests green (new `Accessibility.test.tsx`:
+EN→ES toggle changes tagline + nav labels; high-contrast toggle sets the body
+class + `aria-pressed`). Live (Docker): Spanish renders across the frame
+(placeholder, tagline, nav, section titles, "Próximamente."); high contrast
+renders black/`#ff0` throughout (nav confirmed black after transition). Both
+persist via `localStorage`. Screenshots `step6a-spanish.png`,
+`step6a-highcontrast.png`, `step6a-frame-logo.png`.
