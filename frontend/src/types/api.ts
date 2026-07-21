@@ -91,9 +91,16 @@ export interface OrgSummary {
   resourceCount: number;
 }
 
+export interface LawItem {
+  title: string;
+  url: string | null;
+  date: string | null;
+}
+
 export interface HomePayload {
   aiConfig: AiConfig;
   updates: UpdateItem[];
   categories: CategorySummary[];
   organizations: OrgSummary[];
+  delawareLaws: LawItem[];
 }

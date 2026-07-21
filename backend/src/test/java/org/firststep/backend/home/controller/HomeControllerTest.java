@@ -8,6 +8,7 @@ import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
 import org.firststep.backend.home.service.HomeService;
+import org.firststep.backend.legislation.service.LegislationService;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.service.NewsService;
 import org.firststep.backend.news.service.RssFeedSource;
@@ -77,15 +78,21 @@ class HomeControllerTest {
                 }
             };
 
+            NewsItem bill = new NewsItem();
+            bill.id = "B1";
+            bill.title = "Relating to Housing Supply and Housing Affordability.";
+            bill.published = "2026-07-13";
+
             NewsService newsService = new NewsService(() -> List.of(news));
-            RssFeedSource rssSource = List::of;
+            RssFeedSource rssSource = () -> List.of(bill);
             FlyerService flyerService = new FlyerService(flyerRepo);
             ResourceService resourceService = new ResourceService(resourceRepo);
 
             UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService);
             CategoryService categoryService = new CategoryService(resourceService, newsService, flyerService);
             OrganizationService organizationService = new OrganizationService(resourceService);
-            return new HomeService(updatesService, categoryService, organizationService);
+            LegislationService legislationService = new LegislationService(rssSource);
+            return new HomeService(updatesService, categoryService, organizationService, legislationService);
         }
     }
 
@@ -101,8 +108,11 @@ class HomeControllerTest {
                 // Curated organization shortlist (the fake resource's org).
                 .andExpect(jsonPath("$.data.organizations[0].name").exists())
                 .andExpect(jsonPath("$.data.organizations[0].slug").exists())
-                // Composed feeds.
-                .andExpect(jsonPath("$.data.updates[0].id").value("N1"))
+                // Recent signed bills (from the fake RSS source).
+                .andExpect(jsonPath("$.data.delawareLaws[0].title").value("Relating to Housing Supply and Housing Affordability."))
+                // Composed feeds. The curated news is present (order-independent:
+                // the RSS bill also merges into updates and may sort ahead by date).
+                .andExpect(jsonPath("$.data.updates[?(@.id=='N1')]").exists())
                 .andExpect(jsonPath("$.data.categories").isArray());
     }
 }

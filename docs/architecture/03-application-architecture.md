@@ -224,7 +224,13 @@ Decomposed **frame-first** into slices A–I:
   `HeroGuidance`/`ImportantUpdates` to repurpose. 10 frontend tests + live
   deep-link verification green. See Decision 021.)*
 - **B — AI-search wiring** (Utility Bar → `/api/decide`; canned responses OK).
-- **C — New Delaware Laws rotator** (7 most recent signed bills; RSS already pulled).
+- [x] **C — New Delaware Laws rotator.** → **Demo.** *(New `legislation/`
+  package: `LegislationService.getRecentSignedBills()` → top 7 from the
+  GovernorSignedLegislation RSS feed as `LawItem`s, added to `/api/home`
+  (`delawareLaws`). `DelawareLawsFeature` rotates one bill at a time (5s
+  auto-advance, subtle fade, reduced-motion respected, dot nav, title links out);
+  reusable by the Important Notices page (H). 3 backend + 19 frontend tests;
+  verified live. See Decision 024.)*
 - **D0 — Data normalization** — enrich `resources.communities.json` (171 recs) to
   `resources.json`'s schema (`subcategory` + curated fields). Prereq for D/F.
 - [x] **D — Resource Discovery.** → **Demo.** *(New `organization/` package:

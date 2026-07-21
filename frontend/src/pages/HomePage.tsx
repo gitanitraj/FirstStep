@@ -32,7 +32,7 @@ export default function HomePage() {
       <UtilityBar />
       <SiteHero />
       <main className="home-body">
-        <DelawareLawsFeature />
+        <DelawareLawsFeature laws={home?.delawareLaws ?? null} />
         <ResourceDiscovery
           organizations={home?.organizations ?? null}
           categories={home?.categories ?? null}

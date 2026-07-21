@@ -12,6 +12,7 @@ const home: HomePayload = {
     { key: 'housing', label: 'Housing', icon: '🏠', resourceCount: 44, latestItems: [], latestPolicyUpdate: null },
   ],
   organizations: [{ name: 'American Red Cross', slug: 'american-red-cross', resourceCount: 6 }],
+  delawareLaws: [],
 };
 
 describe('Homepage frame', () => {

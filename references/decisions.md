@@ -1190,3 +1190,44 @@ Easter Seals routed to the Organization stub; no console errors. Screenshot
 Out of scope: D0 (categorize the broader dataset), real Organization (G) +
 Category (F) pages, Laws rotator (C), carousel (E), AI wiring (B), taxonomy
 refinement, non-count org ranking.
+
+# Decision 024
+
+Slice **C — New Delaware Laws rotator** (DONE). Directly below the Hero, rotates
+ONE recently signed bill title at a time (7 most recent), reinforcing First Step
+as a central news point.
+
+**Backend (new `legislation/` package, BFF-aggregated):** `dto/LawItem` (record
+`title, url, date`); `service/LegislationService.getRecentSignedBills()` reads
+`RssFeedSource.getRssItems()` (the RSS feed IS the GovernorSignedLegislation
+feed — 355 bills live), sorts newest-first (nulls last), caps at **7**
+(`MAX_BILLS`), maps to `LawItem` (url from `contentSource.url`). A dedicated
+service (not folded into HomeService) so the **Important Notices page (H)** can
+reuse it for its legislation column. `HomePayload` gained
+`delawareLaws: List<LawItem>`; `HomeService` composes it (4th aggregator).
+
+**Frontend:** `types/api.ts` gains `LawItem` + `delawareLaws`. `HomePage` passes
+`home.delawareLaws` to `DelawareLawsFeature`, now a **rotator**: `useState` index,
+a `setInterval` auto-advancing every **5s** (`ROTATE_MS`) — **skipped when the
+user prefers reduced motion** (`matchMedia('(prefers-reduced-motion: reduce)')`)
+or there's <2 bills — subtle CSS fade (`@keyframes laws-fade`, keyed on index;
+also disabled under the reduced-motion media query), and **dot buttons** for
+manual navigation (accessible `aria-label`/`aria-current`). Each bill title links
+to the bill (`target=_blank rel=noopener`). High-contrast overrides for the dots.
+
+**Design choices (defaults, flagged to user):** 5s interval; fade animation;
+reduced-motion respected; dot navigation; title links out.
+
+**Verification:** backend `mvn -Dtest=LegislationServiceTest,HomeControllerTest`
+green (3 legislation: newest-first+map, cap-7, missing-url; endpoint now asserts
+`delawareLaws[0].title`; the `updates` assertion was made order-independent since
+the fake RSS bill also merges into `updates` and can sort ahead by date).
+Frontend `npm run build` + `npm test` green (19; new `DelawareLawsFeature.test`:
+render+link+dots, auto-rotate via fake timers, dot-click jump, empty placeholder;
+`App.test`'s HomePayload mock gained `delawareLaws: []` — tsc build enforced it).
+Live (Docker): `/api/home` returns 7 bills newest-first (after the async RSS load
+settles ~a few seconds post-boot); the rotator renders, dot-4 jumped to "Relating
+to Family Trust Companies"; no console errors. Screenshots `step6c-laws-1/2.png`.
+
+Out of scope: carousel (E), AI wiring (B), D0/deep pages (F–H), the Important
+Notices page (H) that will reuse LegislationService.
