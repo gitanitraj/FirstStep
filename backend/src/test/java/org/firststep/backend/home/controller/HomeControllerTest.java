@@ -11,6 +11,7 @@ import org.firststep.backend.home.service.HomeService;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.service.NewsService;
 import org.firststep.backend.news.service.RssFeedSource;
+import org.firststep.backend.organization.service.OrganizationService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.repository.ResourceRepository;
 import org.firststep.backend.resource.service.ResourceService;
@@ -51,6 +52,7 @@ class HomeControllerTest {
             resource.id = "CI-001";
             resource.communityId = "wilmington-de";
             resource.category = "Housing Assistance";
+            resource.organization = "American Red Cross";
 
             ResourceRepository resourceRepo = new ResourceRepository() {
                 @Override
@@ -82,7 +84,8 @@ class HomeControllerTest {
 
             UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService);
             CategoryService categoryService = new CategoryService(resourceService, newsService, flyerService);
-            return new HomeService(updatesService, categoryService);
+            OrganizationService organizationService = new OrganizationService(resourceService);
+            return new HomeService(updatesService, categoryService, organizationService);
         }
     }
 
@@ -95,6 +98,9 @@ class HomeControllerTest {
                 .andExpect(jsonPath("$.data.aiConfig.placeholder").exists())
                 .andExpect(jsonPath("$.data.aiConfig.chips[0].value").value("urgent"))
                 .andExpect(jsonPath("$.data.aiConfig.chips[0].urgent").value(true))
+                // Curated organization shortlist (the fake resource's org).
+                .andExpect(jsonPath("$.data.organizations[0].name").exists())
+                .andExpect(jsonPath("$.data.organizations[0].slug").exists())
                 // Composed feeds.
                 .andExpect(jsonPath("$.data.updates[0].id").value("N1"))
                 .andExpect(jsonPath("$.data.categories").isArray());

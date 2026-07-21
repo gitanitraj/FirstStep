@@ -664,6 +664,46 @@ body {
   background: var(--border-color);
 }
 
+.discovery-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.discovery-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 10px;
+  border-radius: 8px;
+  text-decoration: none;
+  color: var(--text-primary);
+  font-size: 15px;
+  transition: var(--transition);
+}
+
+.discovery-item:hover {
+  background: var(--bg-light);
+  color: var(--primary-color);
+}
+
+.discovery-item-icon {
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+.discovery-item-name {
+  flex: 1;
+}
+
+.discovery-item-count {
+  font-size: 13px;
+  color: var(--text-light);
+}
+
 .stub-page {
   background: white;
   border: 1px solid var(--border-color);
@@ -814,6 +854,15 @@ body.high-contrast .stub-page h2 {
 
 body.high-contrast .discovery-divider {
   background: #ff0;
+}
+
+body.high-contrast .discovery-item:hover {
+  background: #222;
+  color: #ff0;
+}
+
+body.high-contrast .discovery-item-count {
+  color: #fff;
 }
 
 body.high-contrast a,

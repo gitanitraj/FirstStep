@@ -1,37 +1,56 @@
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
-import { describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
 import HomePage from './pages/HomePage';
+import type { HomePayload } from './types/api';
+
+const home: HomePayload = {
+  aiConfig: { placeholder: 'Ask here', suggestedPrompts: [], chips: [] },
+  updates: [],
+  categories: [
+    { key: 'housing', label: 'Housing', icon: '🏠', resourceCount: 44, latestItems: [], latestPolicyUpdate: null },
+  ],
+  organizations: [{ name: 'American Red Cross', slug: 'american-red-cross', resourceCount: 6 }],
+};
 
 describe('Homepage frame', () => {
-  it('renders the civic-portal frame: tagline, primary nav, search, section shells', () => {
+  beforeEach(() => {
+    vi.stubGlobal(
+      'fetch',
+      vi.fn().mockResolvedValue({
+        json: () => Promise.resolve({ success: true, data: home, errorCode: null, errorMessage: null }),
+      }),
+    );
+  });
+
+  afterEach(() => {
+    vi.unstubAllGlobals();
+  });
+
+  it('renders the civic-portal frame and the Resource Discovery data', async () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
+    // Frame (renders immediately).
     expect(screen.getByText('First Step')).toBeInTheDocument();
     expect(
       screen.getByText(/Your trusted guide to community resources, program updates and local information\./),
     ).toBeInTheDocument();
-
-    // Logo links home.
     expect(screen.getByRole('link', { name: /First Step home/i })).toHaveAttribute('href', '/');
-
-    // Primary nav.
     for (const label of ['Housing Assistance', 'Community Info', 'Important Notices', 'Life Assistance']) {
       expect(screen.getByRole('link', { name: new RegExp(label) })).toBeInTheDocument();
     }
-
-    // Utility Bar AI search.
     expect(screen.getByPlaceholderText(/Tell me what you need today/)).toBeInTheDocument();
-
-    // Section shells.
     expect(screen.getByRole('heading', { name: 'New Delaware Laws' })).toBeInTheDocument();
     expect(screen.getByRole('heading', { name: 'Community Information' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Organizations' })).toBeInTheDocument();
+
+    // Resource Discovery data arrives from the /api/home fetch (category href
+    // detail is covered in ResourceDiscovery.test).
+    expect(await screen.findByRole('link', { name: /American Red Cross/ })).toBeInTheDocument();
   });
 });
 

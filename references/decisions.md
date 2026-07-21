@@ -1144,3 +1144,49 @@ class + `aria-pressed`). Live (Docker): Spanish renders across the frame
 renders black/`#ff0` throughout (nav confirmed black after transition). Both
 persist via `localStorage`. Screenshots `step6a-spanish.png`,
 `step6a-highcontrast.png`, `step6a-frame-logo.png`.
+
+# Decision 023
+
+Slice **D — Resource Discovery** (DONE). Fills the Slice-A two-column shell:
+LEFT = curated **Organizations**, RIGHT = resource **Categories**, each a
+navigation entry to a landing page (Organization pages = Slice G, Category pages
+= Slice F; both stubs for now). Built on the **currently-loaded 229 records** —
+data normalization **D0 deferred** to before F.
+
+**Confirmed decisions:** reuse the **existing 10-category taxonomy** already in
+`/api/home` (real counts) — refinement (Transportation/renames) tied to D0;
+Organizations = a **curated shortlist, NO "see all"**, ranked by **resource
+count as a PLACEHOLDER metric** (the eventual metric is expected to be
+policy/news-driven — documented, not built).
+
+**Backend (new `organization/` package, BFF-aggregated):** `dto/OrgSummary`
+(record `name, slug, resourceCount`); `service/OrganizationService.
+getCuratedShortlist()` groups `resourceService.getAll()` by `organization`
+(skips null/blank), counts, ranks by count desc then name asc (stable), caps at
+**8** (`MAX_ORGS`), and `slugify`s the name (lowercase, non-alphanumerics→hyphen)
+for `/organization/{slug}` routing. `home/dto/HomePayload` gained
+`organizations: List<OrgSummary>`; `HomeService` composes
+`organizationService.getCuratedShortlist()` (its 3rd injected aggregator).
+
+**Frontend:** `types/api.ts` gains `OrgSummary` + `organizations`. **`HomePage`
+re-introduces the single `/api/home` fetch** (Slice A had removed `MainContent`
+which used to do it) and distributes `organizations` + `categories` (+ `error`)
+to `<ResourceDiscovery>`; the frame (Utility Bar + Hero) still renders instantly
+while the payload loads. This restores the one-request BFF load and sets up C/E
+(they'll consume `home.updates` etc.). `ResourceDiscovery` renders two `<Link>`
+lists (org → `/organization/{slug}`, category → `/category/{key}`, with counts).
+New `/organization/:slug` → `StubPage`. Discovery list CSS + high-contrast
+overrides added.
+
+**Verification:** backend `mvn -Dtest=OrganizationServiceTest,HomeControllerTest`
+green (6: group/count, rank+tie-break, skip-blank, cap-8, slugify, + the endpoint
+now asserts `organizations[0].name/slug`). Frontend `npm run build` + `npm test`
+green (15; new `ResourceDiscovery.test`; the frame test now mocks `/api/home`
+since HomePage fetches). Live (Docker): `/api/home` returns 8 ranked orgs with
+slugs; the Discovery section shows orgs left + 10 categories right; clicking
+Easter Seals routed to the Organization stub; no console errors. Screenshot
+`step6d-discovery.png`.
+
+Out of scope: D0 (categorize the broader dataset), real Organization (G) +
+Category (F) pages, Laws rotator (C), carousel (E), AI wiring (B), taxonomy
+refinement, non-count org ranking.

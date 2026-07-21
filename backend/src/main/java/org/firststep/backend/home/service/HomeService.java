@@ -6,6 +6,7 @@ import org.firststep.backend.category.service.CategoryService;
 import org.firststep.backend.home.dto.AiChip;
 import org.firststep.backend.home.dto.AiConfig;
 import org.firststep.backend.home.dto.HomePayload;
+import org.firststep.backend.organization.service.OrganizationService;
 import org.firststep.backend.updates.service.UpdatesService;
 import org.springframework.stereotype.Service;
 
@@ -33,16 +34,20 @@ public class HomeService {
 
     private final UpdatesService updatesService;
     private final CategoryService categoryService;
+    private final OrganizationService organizationService;
 
-    public HomeService(UpdatesService updatesService, CategoryService categoryService) {
+    public HomeService(UpdatesService updatesService, CategoryService categoryService,
+            OrganizationService organizationService) {
         this.updatesService = updatesService;
         this.categoryService = categoryService;
+        this.organizationService = organizationService;
     }
 
     public HomePayload getHome(String communityId) {
         return new HomePayload(
                 AI_CONFIG,
                 updatesService.getUpdates(),
-                categoryService.getAll(communityId));
+                categoryService.getAll(communityId),
+                organizationService.getCuratedShortlist());
     }
 }

@@ -16,6 +16,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:key" element={<StubPage name="Category" />} />
+          <Route path="/organization/:slug" element={<StubPage name="Organization" />} />
           <Route path="/community-info" element={<StubPage name="Community Info" />} />
           <Route path="/important-notices" element={<StubPage name="Important Notices" />} />
           <Route path="/life-assistance" element={<StubPage name="Life Assistance" />} />

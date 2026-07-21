@@ -227,8 +227,13 @@ Decomposed **frame-first** into slices A–I:
 - **C — New Delaware Laws rotator** (7 most recent signed bills; RSS already pulled).
 - **D0 — Data normalization** — enrich `resources.communities.json` (171 recs) to
   `resources.json`'s schema (`subcategory` + curated fields). Prereq for D/F.
-- **D — Resource Discovery** — curated-org BFF shortlist | categories; reconcile
-  the category taxonomy.
+- [x] **D — Resource Discovery.** → **Demo.** *(New `organization/` package:
+  `OrganizationService.getCuratedShortlist()` (group by org, rank by count
+  placeholder, cap 8, slugify) added to the `/api/home` BFF. `HomePage`
+  re-introduces the single `/api/home` fetch, distributing to `ResourceDiscovery`
+  (two-column Orgs | Categories nav, reusing the existing 10-category taxonomy).
+  On the current 229 records; D0 deferred. 6 backend + 15 frontend tests; verified
+  live. See Decision 023.)*
 - **E — Community Information** flyer carousel.
 - **F — Category → topic-group → topic → CivicContent pages** (Housing full;
   others skip the topic level until D0 lands).

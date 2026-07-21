@@ -85,8 +85,15 @@ export interface AiConfig {
   chips: AiChip[];
 }
 
+export interface OrgSummary {
+  name: string;
+  slug: string;
+  resourceCount: number;
+}
+
 export interface HomePayload {
   aiConfig: AiConfig;
   updates: UpdateItem[];
   categories: CategorySummary[];
+  organizations: OrgSummary[];
 }
