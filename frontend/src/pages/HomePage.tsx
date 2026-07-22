@@ -38,7 +38,7 @@ export default function HomePage() {
           categories={home?.categories ?? null}
           error={error}
         />
-        <CommunityInformation />
+        <CommunityInformation flyers={home?.communityFlyers ?? null} />
       </main>
     </>
   );

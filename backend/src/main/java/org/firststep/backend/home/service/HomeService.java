@@ -3,6 +3,7 @@ package org.firststep.backend.home.service;
 import java.util.List;
 
 import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.flyer.service.FlyerService;
 import org.firststep.backend.home.dto.AiChip;
 import org.firststep.backend.home.dto.AiConfig;
 import org.firststep.backend.home.dto.HomePayload;
@@ -37,13 +38,16 @@ public class HomeService {
     private final CategoryService categoryService;
     private final OrganizationService organizationService;
     private final LegislationService legislationService;
+    private final FlyerService flyerService;
 
     public HomeService(UpdatesService updatesService, CategoryService categoryService,
-            OrganizationService organizationService, LegislationService legislationService) {
+            OrganizationService organizationService, LegislationService legislationService,
+            FlyerService flyerService) {
         this.updatesService = updatesService;
         this.categoryService = categoryService;
         this.organizationService = organizationService;
         this.legislationService = legislationService;
+        this.flyerService = flyerService;
     }
 
     public HomePayload getHome(String communityId) {
@@ -52,6 +56,7 @@ public class HomeService {
                 updatesService.getUpdates(),
                 categoryService.getAll(communityId),
                 organizationService.getCuratedShortlist(),
-                legislationService.getRecentSignedBills());
+                legislationService.getRecentSignedBills(),
+                flyerService.getCarouselCards());
     }
 }

@@ -97,10 +97,18 @@ export interface LawItem {
   date: string | null;
 }
 
+export interface FlyerCard {
+  imageUrl: string;
+  title: string;
+  organization: string | null;
+  eventDate: string | null;
+}
+
 export interface HomePayload {
   aiConfig: AiConfig;
   updates: UpdateItem[];
   categories: CategorySummary[];
   organizations: OrgSummary[];
   delawareLaws: LawItem[];
+  communityFlyers: FlyerCard[];
 }

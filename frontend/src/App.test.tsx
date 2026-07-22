@@ -13,6 +13,7 @@ const home: HomePayload = {
   ],
   organizations: [{ name: 'American Red Cross', slug: 'american-red-cross', resourceCount: 6 }],
   delawareLaws: [],
+  communityFlyers: [],
 };
 
 describe('Homepage frame', () => {

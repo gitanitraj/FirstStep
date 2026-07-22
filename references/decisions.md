@@ -1231,3 +1231,46 @@ to Family Trust Companies"; no console errors. Screenshots `step6c-laws-1/2.png`
 
 Out of scope: carousel (E), AI wiring (B), D0/deep pages (F–H), the Important
 Notices page (H) that will reuse LegislationService.
+
+# Decision 025
+
+Slice **E — Community Information flyer carousel** (DONE). The homepage's bottom
+section: a horizontal scroll-snap strip of flyer cards (image + caption).
+Completes the visible civic-portal homepage (only AI-search wiring, B, remains).
+
+**Backend (extends the flyer domain, BFF-aggregated):** `flyer/dto/FlyerCard`
+(record `imageUrl, title, organization, eventDate`); `FlyerService.
+getCarouselCards()` maps the loaded flyers → cards, filtering those without an
+image, sorting by `eventDate` soonest-first (nulls last). **The imageUrl is
+resolved AND URL-encoded server-side** — `"/images/seasonal/" +
+UriUtils.encodePathSegment(image, UTF_8)` — because the seasonal images (bare
+filenames like `Health Fair.jpg`, some with spaces) serve at that static path
+only when encoded (`%20`). This keeps the frontend from knowing the path
+convention or doing encoding (backend aggregates + shapes, frontend displays).
+`HomePayload` gained `communityFlyers`; `HomeService` injects `FlyerService`
+(5th aggregator) and composes it.
+
+**Frontend:** `types/api.ts` gains `FlyerCard` + `communityFlyers`. `HomePage`
+passes `home.communityFlyers` to `CommunityInformation`, now a **carousel**: a
+horizontal `overflow-x: auto` + `scroll-snap` `<ul>` of fixed-width flyer cards
+(240px, so the next card peeks and signals scrollability), each an `<img>` (alt =
+title, `loading="lazy"`) + caption (title, org · date). **No auto-advance** — the
+user explores by scrolling ("without overwhelming"). High-contrast overrides for
+the cards.
+
+**Data note:** the 7 flyers' `image` fields are bare filenames matching the 7
+files in `static/images/seasonal/`, served at `/images/seasonal/<file>` by the
+default Spring static handler (confirmed 200; spaces must be `%20`). The old
+demo's `/api/seasonal-images` directory-listing endpoint + client-side
+filename→caption parsing is NOT used — the flyer data already carries titles/orgs.
+
+**Verification:** backend `mvn -Dtest=FlyerServiceTest,HomeControllerTest` green
+(3 new carousel tests: URL-encode imageUrl, sort soonest-first, skip image-less;
+endpoint asserts `communityFlyers[0].imageUrl == /images/seasonal/Health%20Fair.jpg`).
+Frontend `npm run build` + `npm test` green (21; new `CommunityInformation.test`
+asserts image src + caption; `App.test` mock gained `communityFlyers: []`). Live
+(Docker): `/api/home` returns 7 encoded flyer cards event-date-sorted; the
+carousel renders the real flyer images with a peeking next card; no console
+errors. Screenshot `step6e-carousel.png`.
+
+Out of scope: AI-search wiring (B), D0/deep pages (F–H).

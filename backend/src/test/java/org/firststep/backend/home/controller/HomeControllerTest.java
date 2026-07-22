@@ -66,10 +66,16 @@ class HomeControllerTest {
                     return Optional.empty();
                 }
             };
+            Flyer flyer = new Flyer();
+            flyer.id = "FL-1";
+            flyer.title = "Free Community Health Fair";
+            flyer.organization = "Westside Family Healthcare";
+            flyer.image = "Health Fair.jpg";
+            flyer.eventDate = "2026-08-05";
             FlyerRepository flyerRepo = new FlyerRepository() {
                 @Override
                 public List<Flyer> findAll() {
-                    return List.of();
+                    return List.of(flyer);
                 }
 
                 @Override
@@ -92,7 +98,7 @@ class HomeControllerTest {
             CategoryService categoryService = new CategoryService(resourceService, newsService, flyerService);
             OrganizationService organizationService = new OrganizationService(resourceService);
             LegislationService legislationService = new LegislationService(rssSource);
-            return new HomeService(updatesService, categoryService, organizationService, legislationService);
+            return new HomeService(updatesService, categoryService, organizationService, legislationService, flyerService);
         }
     }
 
@@ -110,6 +116,8 @@ class HomeControllerTest {
                 .andExpect(jsonPath("$.data.organizations[0].slug").exists())
                 // Recent signed bills (from the fake RSS source).
                 .andExpect(jsonPath("$.data.delawareLaws[0].title").value("Relating to Housing Supply and Housing Affordability."))
+                // Community flyer carousel — imageUrl resolved + encoded server-side.
+                .andExpect(jsonPath("$.data.communityFlyers[0].imageUrl").value("/images/seasonal/Health%20Fair.jpg"))
                 // Composed feeds. The curated news is present (order-independent:
                 // the RSS bill also merges into updates and may sort ahead by date).
                 .andExpect(jsonPath("$.data.updates[?(@.id=='N1')]").exists())

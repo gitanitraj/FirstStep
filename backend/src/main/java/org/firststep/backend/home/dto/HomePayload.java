@@ -3,6 +3,7 @@ package org.firststep.backend.home.dto;
 import java.util.List;
 
 import org.firststep.backend.category.dto.CategorySummary;
+import org.firststep.backend.flyer.dto.FlyerCard;
 import org.firststep.backend.legislation.dto.LawItem;
 import org.firststep.backend.organization.dto.OrgSummary;
 import org.firststep.backend.updates.dto.UpdateItem;
@@ -22,6 +23,7 @@ public record HomePayload(
         List<UpdateItem> updates,
         List<CategorySummary> categories,
         List<OrgSummary> organizations,
-        List<LawItem> delawareLaws
+        List<LawItem> delawareLaws,
+        List<FlyerCard> communityFlyers
 ) {
 }

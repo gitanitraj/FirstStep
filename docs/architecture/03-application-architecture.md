@@ -240,7 +240,13 @@ Decomposed **frame-first** into slices A–I:
   (two-column Orgs | Categories nav, reusing the existing 10-category taxonomy).
   On the current 229 records; D0 deferred. 6 backend + 15 frontend tests; verified
   live. See Decision 023.)*
-- **E — Community Information** flyer carousel.
+- [x] **E — Community Information flyer carousel.** → **Demo.** *(Extended the
+  flyer domain: `FlyerService.getCarouselCards()` → `FlyerCard`s with a
+  server-resolved + URL-encoded `imageUrl` (`/images/seasonal/…`), image-less
+  flyers filtered, sorted by event date; added to `/api/home` (`communityFlyers`).
+  `CommunityInformation` renders a horizontal scroll-snap carousel of flyer image
+  cards (peeking next card; no auto-advance). 3 backend + 21 frontend tests;
+  verified live. See Decision 025.)*
 - **F — Category → topic-group → topic → CivicContent pages** (Housing full;
   others skip the topic level until D0 lands).
 - **G — Organization landing pages** (aggregate all content by `organization`).
