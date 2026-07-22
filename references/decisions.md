@@ -1274,3 +1274,50 @@ carousel renders the real flyer images with a peeking next card; no console
 errors. Screenshot `step6e-carousel.png`.
 
 Out of scope: AI-search wiring (B), D0/deep pages (F–H).
+
+# Decision 026
+
+Slice **B — AI-search wiring** (DONE). **Completes the homepage.** The Utility
+Bar's AI search (UI-only since Slice A) now posts to `/api/decide` and shows the
+answer in a dismissible dropdown panel. Per the user, canned/degraded responses
+are acceptable — no AI provider is wired, so `/api/decide` returns its graceful
+"Unable to generate guidance" body, which the panel renders as a friendly notice.
+
+**Repurposed the Step-5a hero AI logic** (the `HeroGuidance` component kept
+unrendered for exactly this): extracted the result rendering + degraded detection
+into a new presentational `components/AiResultCard` (answerTitle/steps/citations,
+OR — when steps+citations are empty — a friendly "temporarily unavailable" line
+for the provider-unavailable stub [notes prefixed "AI call failed"] vs. the AI's
+own `notes` for a legit no-match). **`HeroGuidance.tsx` + its test + its
+annotated mirror were deleted** (fully superseded — the AI moved to the Utility
+Bar; the new homepage has no hero widget).
+
+**UtilityBar** now owns the search state: enter a query → `apiPost<DecisionRequest,
+DecisionResponse>('/api/decide', { userQuery, urgent: false, preferredCategories:
+[] })` (a plain "what do you need" box — the old urgency/category chips are gone),
+and renders a **dropdown result panel** absolutely positioned under the centered
+search (`.utility-center` is now `position: relative`). Panel states:
+loading/error/`AiResultCard`. **Dismiss** via close button, Escape, or click
+outside (document listeners added only while open). Accessible: `role="region"`,
+`aria-live="polite"`. New i18n keys (`search.thinking/error/unavailable/sources/
+close/resultsLabel`, EN+ES) — the canned/degraded copy is translated (answer
+content from the backend is not). High-contrast panel overrides added.
+
+**Design choice (default, flagged):** results in a dismissible dropdown panel
+(not a modal), keeping the search "always available without dominating".
+
+**Verification:** frontend `npm run build` + `npm test` green (20 tests; net −1
+vs. prior: removed HeroGuidance's 5, added `AiResultCard.test` [3: provider-
+unavailable friendly line + no raw-error leak, legit no-match notes, full
+answer/steps/sources] + `UtilityBar.test` [1: Enter posts the plain query and
+the panel shows the canned notice, then closes]). Live (Docker): typed a query,
+pressed Enter → panel showed "AI guidance is temporarily unavailable", no console
+errors. Screenshot `step6b-ai-search.png`.
+
+**HOMEPAGE COMPLETE** (Utility Bar w/ AI search + a11y · Hero + primary nav ·
+Delaware Laws rotator · Orgs|Categories discovery · flyer carousel), all from the
+single `/api/home` BFF + the interactive `/api/decide`. Remaining project work:
+**D0** (data categorization) → deep pages **F/G/H**.
+
+Out of scope: D0/deep pages (F–H), wiring a real AI provider (`/api/decide`
+stays a graceful stub).

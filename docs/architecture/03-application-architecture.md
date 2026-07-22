@@ -223,7 +223,13 @@ Decomposed **frame-first** into slices A–I:
   fallback. Retired the superseded Step-4/5 homepage components; kept
   `HeroGuidance`/`ImportantUpdates` to repurpose. 10 frontend tests + live
   deep-link verification green. See Decision 021.)*
-- **B — AI-search wiring** (Utility Bar → `/api/decide`; canned responses OK).
+- [x] **B — AI-search wiring.** → **Demo. (HOMEPAGE COMPLETE.)** *(Utility Bar
+  search posts to `/api/decide` and shows the answer in a dismissible dropdown
+  panel (close / Escape / click-outside). Repurposed the Step-5a hero AI logic
+  into a new `AiResultCard` (degraded → friendly "temporarily unavailable" notice,
+  since the provider is a stub); deleted the superseded `HeroGuidance`. Plain
+  query (no chips). i18n'd; high-contrast panel. 20 frontend tests; verified live.
+  See Decision 026.)*
 - [x] **C — New Delaware Laws rotator.** → **Demo.** *(New `legislation/`
   package: `LegislationService.getRecentSignedBills()` → top 7 from the
   GovernorSignedLegislation RSS feed as `LawItem`s, added to `/api/home`
