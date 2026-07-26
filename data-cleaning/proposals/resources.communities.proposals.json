@@ -1,0 +1,2856 @@
+[
+  {
+    "id": "SD-001",
+    "organization": "Easter Seals",
+    "displayCategory": "legal",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Disability Advocacy",
+      "tags": [
+        "Disability Advocacy",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Disability Advocacy"
+    }
+  },
+  {
+    "id": "SD-002",
+    "organization": "Epilepsy Foundation",
+    "displayCategory": "legal",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Disability Advocacy",
+      "tags": [
+        "Disability Advocacy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Disability Advocacy"
+    }
+  },
+  {
+    "id": "SD-003",
+    "organization": "Mosaic Delaware",
+    "displayCategory": "legal",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Disability Advocacy",
+      "tags": [
+        "Disability Advocacy",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Disability Advocacy"
+    }
+  },
+  {
+    "id": "SD-004",
+    "organization": "Learning Tree Academy",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Child Care & Early Learning"
+    }
+  },
+  {
+    "id": "SD-005",
+    "organization": "Learning Tree Academy",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Child Care & Early Learning"
+    }
+  },
+  {
+    "id": "SD-006",
+    "organization": "Delaware School for the Deaf - Early Learning Program",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Child Care & Early Learning"
+    }
+  },
+  {
+    "id": "SD-007",
+    "organization": "Harvest Child and Youth Development Center (Harvest Christian Academy)",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Child Care & Early Learning"
+    }
+  },
+  {
+    "id": "SD-008",
+    "organization": "Learning Tree Academy",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Child Care & Early Learning"
+    }
+  },
+  {
+    "id": "SD-009",
+    "organization": "New Directions Early Head Start-Early Learning Center Newark",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Child Care & Early Learning"
+    }
+  },
+  {
+    "id": "SD-010",
+    "organization": "Claymont Community Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-011",
+    "organization": "Delaware School for the Deaf",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-012",
+    "organization": "Delaware Skills Center (DSC)",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-013",
+    "organization": "Hair Academy School of Barbering and Beauty",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-014",
+    "organization": "Right Coast Pro Wrestling",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-015",
+    "organization": "The Everett Inc / Gilbert Perry Jr Center for the Arts",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-016",
+    "organization": "The Tutoring Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-017",
+    "organization": "The Tutoring Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "raw-category default: Education & Training"
+    }
+  },
+  {
+    "id": "SD-018",
+    "organization": "Delaware JobLink American Job Center - Newark",
+    "displayCategory": "employment",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Job Search Assistance",
+      "tags": [
+        "Job Search Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Job Search Assistance"
+    }
+  },
+  {
+    "id": "SD-019",
+    "organization": "Easter Seals",
+    "displayCategory": "employment",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Vocational Training",
+      "tags": [
+        "Vocational Training",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Vocational Training"
+    }
+  },
+  {
+    "id": "SD-020",
+    "organization": "Habitat for Humanity - ReEmployeAbility",
+    "displayCategory": "employment",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Job Search Assistance",
+      "tags": [
+        "Job Search Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "manual: Job Search Assistance (ReEmployeAbility helps injured workers return to work)"
+    }
+  },
+  {
+    "id": "SD-021",
+    "organization": "NCC Youth Workforce Development Program",
+    "displayCategory": "employment",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Employment",
+      "tags": [
+        "Youth Employment",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Employment"
+    }
+  },
+  {
+    "id": "SD-022",
+    "organization": "Re-wire to be Re-hired",
+    "displayCategory": "employment",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Job Search Assistance",
+      "tags": [
+        "Job Search Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Job Search Assistance"
+    }
+  },
+  {
+    "id": "SD-023",
+    "organization": "ServiceSource",
+    "displayCategory": "employment",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Vocational Training",
+      "tags": [
+        "Vocational Training",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Vocational Training"
+    }
+  },
+  {
+    "id": "SD-024",
+    "organization": "Art on the Green",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Community Celebrations",
+      "tags": [
+        "Community Celebrations"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Community Celebrations"
+    }
+  },
+  {
+    "id": "SD-025",
+    "organization": "William Penn Day",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Community Celebrations",
+      "tags": [
+        "Community Celebrations"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "raw-category default: Community Celebrations"
+    }
+  },
+  {
+    "id": "SD-026",
+    "organization": "Appoquinimink State Service Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Financial Assistance"
+    }
+  },
+  {
+    "id": "SD-027",
+    "organization": "DeLaWarr State Service Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Financial Assistance"
+    }
+  },
+  {
+    "id": "SD-028",
+    "organization": "Division of Medicaid & Medical Assistance (DMMA) - Children Community Alternative Disability Program",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance",
+        "Youth",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Financial Assistance"
+    }
+  },
+  {
+    "id": "SD-029",
+    "organization": "Hudson State Service Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Financial Assistance"
+    }
+  },
+  {
+    "id": "SD-030",
+    "organization": "New Castle County Department of Community Services",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Financial Assistance"
+    }
+  },
+  {
+    "id": "SD-031",
+    "organization": "YWCA - Foreclosure Prevention",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "raw-category default: Financial Assistance"
+    }
+  },
+  {
+    "id": "SD-032",
+    "organization": "Alpha Worship Center - Pantry of Hope",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-033",
+    "organization": "Claymont Community Center",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-034",
+    "organization": "DeLaWarr State Service Center",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-035",
+    "organization": "Emmanuel Dining Room South (Ministry of Caring)",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Prepared Meals",
+      "tags": [
+        "Prepared Meals"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Prepared Meals"
+    }
+  },
+  {
+    "id": "SD-036",
+    "organization": "Food Bank of Delaware",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-037",
+    "organization": "Glasgow Park Farmers Market",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Farmers Market",
+      "tags": [
+        "Farmers Market"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Farmers Market"
+    }
+  },
+  {
+    "id": "SD-038",
+    "organization": "Lutheran Community Services - Hope Lutheran Church",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-039",
+    "organization": "Meals on Wheels of Delaware - Newark Senior Center",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Home-Delivered Meals",
+      "tags": [
+        "Home-Delivered Meals",
+        "Seniors"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Home-Delivered Meals"
+    }
+  },
+  {
+    "id": "SD-040",
+    "organization": "New Covenant Christian Fellowship Church",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-041",
+    "organization": "Our Daily Bread",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "manual: Food Pantry (Our Daily Bread distributes bags of food)"
+    }
+  },
+  {
+    "id": "SD-042",
+    "organization": "Red Lion United Methodist Church",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-043",
+    "organization": "Saint Anne's Episcopal Church",
+    "displayCategory": "food",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Food Pantry"
+    }
+  },
+  {
+    "id": "SD-044",
+    "organization": "Newark 24/7 Urgent Care Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Medical Care",
+      "tags": [
+        "Medical Care"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Medical Care"
+    }
+  },
+  {
+    "id": "SD-045",
+    "organization": "Planned Parenthood",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Medical Care",
+      "tags": [
+        "Medical Care"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Medical Care"
+    }
+  },
+  {
+    "id": "SD-046",
+    "organization": "The Birth Center Holistic Women's Healthcare, LLC",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Medical Care",
+      "tags": [
+        "Medical Care",
+        "Youth",
+        "Women"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Medical Care"
+    }
+  },
+  {
+    "id": "SD-047",
+    "organization": "Appoquinimink State Service Center",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Rental Assistance",
+      "tags": [
+        "Rental Assistance"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Rental Assistance"
+    }
+  },
+  {
+    "id": "SD-048",
+    "organization": "Aquila Behavioral Health of Delaware",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sober Living",
+      "tags": [
+        "Sober Living",
+        "Youth",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sober Living"
+    }
+  },
+  {
+    "id": "SD-049",
+    "organization": "DeLaWarr State Service Center",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Emergency Shelter",
+      "tags": [
+        "Emergency Shelter"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Emergency Shelter"
+    }
+  },
+  {
+    "id": "SD-050",
+    "organization": "Hudson State Service Center",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Rental Assistance",
+      "tags": [
+        "Rental Assistance"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Rental Assistance"
+    }
+  },
+  {
+    "id": "SD-051",
+    "organization": "New Castle County Department of Community Services - Housing Authority - Housing Choice Vouchers",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Public Housing",
+      "tags": [
+        "Public Housing",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Public Housing"
+    }
+  },
+  {
+    "id": "SD-052",
+    "organization": "Newark Housing Authority - Housing Choice Vouchers",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Public Housing",
+      "tags": [
+        "Public Housing",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Public Housing"
+    }
+  },
+  {
+    "id": "SD-053",
+    "organization": "Newark Housing Authority - Public Housing Units",
+    "displayCategory": "housing",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Public Housing",
+      "tags": [
+        "Public Housing"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Public Housing"
+    }
+  },
+  {
+    "id": "SD-054",
+    "organization": "Claymont Community Center - Empowered Youth",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Life Skills",
+      "tags": [
+        "Life Skills",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Life Skills"
+    }
+  },
+  {
+    "id": "SD-055",
+    "organization": "Duffy's H.O.P.E., Inc.",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Life Skills",
+      "tags": [
+        "Life Skills",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Life Skills"
+    }
+  },
+  {
+    "id": "SD-056",
+    "organization": "Appoquinimink Counseling Services, LLC",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-057",
+    "organization": "Brandywine Counseling & Community Services, Inc. (BCCS) - Newark Treatment Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-058",
+    "organization": "Center for Child Development / Delaware Center for Counseling and Wellness",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-059",
+    "organization": "Center for Mental Wellness",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-060",
+    "organization": "CORAS Wellness & Behavioral Health - MAT and Outpatient clinics, Opioid Treatment Programs",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Substance Use Treatment"
+    }
+  },
+  {
+    "id": "SD-061",
+    "organization": "Crisis Intervention Services",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Crisis Services",
+      "tags": [
+        "Crisis Services"
+      ],
+      "cost": "low-cost",
+      "urgency": "emergency",
+      "rationale": "keyword: Crisis Services"
+    }
+  },
+  {
+    "id": "SD-062",
+    "organization": "Delaware Guidance Services for Children & Youth",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-063",
+    "organization": "LifeStance Health",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-064",
+    "organization": "LifeStance Health",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-065",
+    "organization": "LifeStance Health",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-066",
+    "organization": "LifeStance Health",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-067",
+    "organization": "Meadowwood Behavioral Health Hospital",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-068",
+    "organization": "Middletown Counseling Services",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-069",
+    "organization": "RI International - Recovery Response Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Substance Use Treatment"
+    }
+  },
+  {
+    "id": "SD-070",
+    "organization": "Rockford Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Substance Use Treatment"
+    }
+  },
+  {
+    "id": "SD-071",
+    "organization": "Safe Harbor Christian Counseling",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-072",
+    "organization": "Safe Harbor Christian Counseling",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-073",
+    "organization": "Safe Harbor Christian Counseling",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-074",
+    "organization": "Shaping Minds Therapeutic Services",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-075",
+    "organization": "Silver Lake Day Treatment Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-076",
+    "organization": "SOAR (Survivors of Abuse in Recovery, Inc.)",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-077",
+    "organization": "Supporting Kidds: The Center for Grieving Children and their Families",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Trauma & Grief Support",
+      "tags": [
+        "Trauma & Grief Support",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Trauma & Grief Support"
+    }
+  },
+  {
+    "id": "SD-078",
+    "organization": "Terry Children's Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth",
+        "Crisis Services"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Counseling & Therapy; +Crisis Services tag (crisis stabilization) -- user confirmed both"
+    }
+  },
+  {
+    "id": "SD-079",
+    "organization": "Viamonte Counseling and Consulting Services",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-080",
+    "organization": "YWCA Delaware - Sexual Assault Response Center (SARC)",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Crisis Services",
+      "tags": [
+        "Crisis Services"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "rationale": "keyword: Crisis Services"
+    }
+  },
+  {
+    "id": "SD-081",
+    "organization": "Aspira",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Mentoring",
+      "tags": [
+        "Mentoring",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Mentoring"
+    }
+  },
+  {
+    "id": "SD-082",
+    "organization": "Progressive Life Center Parent Partners Program",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Mentoring",
+      "tags": [
+        "Mentoring",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Mentoring"
+    }
+  },
+  {
+    "id": "SD-083",
+    "organization": "Unique Butterflies",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Mentoring",
+      "tags": [
+        "Mentoring",
+        "Youth",
+        "Women",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Mentoring"
+    }
+  },
+  {
+    "id": "SD-084",
+    "organization": "Children's Choice - Family Intervention Program",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Parenting Support"
+    }
+  },
+  {
+    "id": "SD-085",
+    "organization": "Delaware Adolescent Program, Inc. (DAPI)",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Parenting Support"
+    }
+  },
+  {
+    "id": "SD-086",
+    "organization": "Delaware School for the Deaf - FACES program",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Parenting Support"
+    }
+  },
+  {
+    "id": "SD-087",
+    "organization": "New Directions Early Head Start",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Parenting Support"
+    }
+  },
+  {
+    "id": "SD-088",
+    "organization": "New Directions Early Head Start-Early Learning Center Newark",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Parenting Support"
+    }
+  },
+  {
+    "id": "SD-089",
+    "organization": "The Birth Center Holistic Women's Healthcare, LLC",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Parenting Support"
+    }
+  },
+  {
+    "id": "SD-090",
+    "organization": "American Dance Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-091",
+    "organization": "American Martial Arts Institute",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-092",
+    "organization": "Bear Library",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Libraries",
+      "tags": [
+        "Libraries",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Libraries"
+    }
+  },
+  {
+    "id": "SD-093",
+    "organization": "Brandywine Valley SPCA",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-094",
+    "organization": "Claymont Boys and Girls Club of Delaware",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-095",
+    "organization": "Claymont Community Center - Brandywine Senior Center",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Senior Activities",
+      "tags": [
+        "Senior Activities",
+        "Seniors"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Senior Activities"
+    }
+  },
+  {
+    "id": "SD-096",
+    "organization": "Claymont Public Library",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Libraries",
+      "tags": [
+        "Libraries",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Libraries"
+    }
+  },
+  {
+    "id": "SD-097",
+    "organization": "Creative Kids Changing Communities - ART Studio 4:10 Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-098",
+    "organization": "Debbie Loftis Guitar LLC",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-099",
+    "organization": "DelArts",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-100",
+    "organization": "Delaware 4-H: Eisbenberg Elementary and Castle Hills",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-101",
+    "organization": "Delaware 4-H: Kirk Middle School",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-102",
+    "organization": "Delaware 4-H: Knollwood Community Center",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-103",
+    "organization": "Delaware Dance Company",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-104",
+    "organization": "Encore Dance Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-105",
+    "organization": "Encore Dance Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-106",
+    "organization": "Evolution Karate Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-107",
+    "organization": "Garfield Park - Police Athletic League of Delaware (PAL)",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-108",
+    "organization": "Glasgow Park",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Parks & Outdoors"
+    }
+  },
+  {
+    "id": "SD-109",
+    "organization": "Greater Newark Boys and Girls Club of Delaware",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-110",
+    "organization": "Hockessin - Police Athletic League of Delaware (PAL)",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-111",
+    "organization": "i9 Sports League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-112",
+    "organization": "i9 Sports League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-113",
+    "organization": "i9 Sports League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-114",
+    "organization": "i9 Sports League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-115",
+    "organization": "i9 Sports League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-116",
+    "organization": "i9 Sports League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-117",
+    "organization": "Iron Hill Park",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Parks & Outdoors"
+    }
+  },
+  {
+    "id": "SD-118",
+    "organization": "KidStrong",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-119",
+    "organization": "Kirkwood Soccer League",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-120",
+    "organization": "Knockout Boxing",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-121",
+    "organization": "Knockout Boxing",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-122",
+    "organization": "Learning Tree Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-123",
+    "organization": "Lums Pond State Park",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Parks & Outdoors"
+    }
+  },
+  {
+    "id": "SD-124",
+    "organization": "Melodic Movements",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-125",
+    "organization": "Mid County Lanes",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-126",
+    "organization": "Middle Run Valley Natural Area Park",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Parks & Outdoors"
+    }
+  },
+  {
+    "id": "SD-127",
+    "organization": "MOT (Middletown, Odessa, Townsend) Jean Birch Senior Center",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Senior Activities",
+      "tags": [
+        "Senior Activities",
+        "Seniors"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Senior Activities"
+    }
+  },
+  {
+    "id": "SD-128",
+    "organization": "New Castle Boys and Girls Club of Delaware",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-129",
+    "organization": "New Castle Dance and Music Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-130",
+    "organization": "New Castle Dance and Music Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-131",
+    "organization": "New Castle Hundred Archers Club",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-132",
+    "organization": "New Castle Sports and Recreation",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-133",
+    "organization": "Newark Art Alliance",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-134",
+    "organization": "Right Coast Pro Wrestling",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-135",
+    "organization": "Route 9 Library and Innovation Center",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Libraries",
+      "tags": [
+        "Libraries",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Libraries"
+    }
+  },
+  {
+    "id": "SD-136",
+    "organization": "Saint Anne's Episcopal Church",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-137",
+    "organization": "Saint Anne's Episcopal Church",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-138",
+    "organization": "Summer at Independence",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Youth Programs"
+    }
+  },
+  {
+    "id": "SD-139",
+    "organization": "Swim School Inc.",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-140",
+    "organization": "Titus Sports Academy",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-141",
+    "organization": "Western YMCA",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "keyword: Sports & Fitness"
+    }
+  },
+  {
+    "id": "SD-142",
+    "organization": "Woodcraft of Wilmington",
+    "displayCategory": "community-events",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "keyword: Arts & Music"
+    }
+  },
+  {
+    "id": "SD-143",
+    "organization": "Appoquinimink State Service Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-144",
+    "organization": "Delaware School for the Deaf",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-145",
+    "organization": "DeLaWarr State Service Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-146",
+    "organization": "Easter Seals",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-147",
+    "organization": "Epilepsy Foundation",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-148",
+    "organization": "Friendship House - MOT Empowerment Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-149",
+    "organization": "Friendship House - Newark Empowerment Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-150",
+    "organization": "Hudson State Service Center",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-151",
+    "organization": "New Directions Early Head Start-Early Learning Center Newark",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-152",
+    "organization": "PAWS for People",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-153",
+    "organization": "ServiceSource",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "People with Disabilities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-154",
+    "organization": "SOAR (Survivors of Abuse in Recovery, Inc.)",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-155",
+    "organization": "Supporting Kidds: The Center for Grieving Children and their Families",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-156",
+    "organization": "The Birth Center Holistic Women's Healthcare, LLC",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Women"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-157",
+    "organization": "Wellbeing On Main",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Information & Referral"
+    }
+  },
+  {
+    "id": "SD-158",
+    "organization": "Brandywine Counseling & Community Services, Inc. (BCCS) - Newark Treatment Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Counseling & Therapy"
+    }
+  },
+  {
+    "id": "SD-159",
+    "organization": "Brandywine Counseling & Community Services, Inc. (BCCS) - University Plaza Office",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Substance Use Treatment"
+    }
+  },
+  {
+    "id": "SD-160",
+    "organization": "CORAS Wellness & Behavioral Health - MAT and Outpatient clinics, Opioid Treatment Programs",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "keyword: Substance Use Treatment"
+    }
+  },
+  {
+    "id": "SD-161",
+    "organization": "RI International - Recovery Response Center",
+    "displayCategory": "health",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "cost": null,
+      "urgency": "emergency",
+      "rationale": "keyword: Substance Use Treatment"
+    }
+  },
+  {
+    "id": "SD-162",
+    "organization": "Champions for Children's Mental Health",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard",
+      "rationale": "raw-category default: Support Groups"
+    }
+  },
+  {
+    "id": "SD-163",
+    "organization": "Christiana Hospital (Helen F. Graham Cancer Center)",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Women"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Support Groups"
+    }
+  },
+  {
+    "id": "SD-164",
+    "organization": "Delaware Center for Justice - Safe Spaces",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Support Groups"
+    }
+  },
+  {
+    "id": "SD-165",
+    "organization": "Supporting Kidds: The Center for Grieving Children and their Families",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Support Groups"
+    }
+  },
+  {
+    "id": "SD-166",
+    "organization": "The Birth Center Holistic Women's Healthcare, LLC",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Women"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard",
+      "rationale": "raw-category default: Support Groups"
+    }
+  },
+  {
+    "id": "SD-167",
+    "organization": "ServiceSource",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Transportation",
+      "tags": [
+        "Transportation"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Transportation"
+    }
+  },
+  {
+    "id": "SD-168",
+    "organization": "Brandywine Valley SPCA",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Volunteer Opportunities"
+    }
+  },
+  {
+    "id": "SD-169",
+    "organization": "Brandywine Valley SPCA",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Volunteer Opportunities"
+    }
+  },
+  {
+    "id": "SD-170",
+    "organization": "Brandywine Valley SPCA",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Volunteer Opportunities"
+    }
+  },
+  {
+    "id": "SD-171",
+    "organization": "ChristianaCare VolunTeen Program",
+    "displayCategory": "community-support",
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities",
+        "Youth"
+      ],
+      "cost": null,
+      "urgency": "standard",
+      "rationale": "raw-category default: Volunteer Opportunities"
+    }
+  }
+]

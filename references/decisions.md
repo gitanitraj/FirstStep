@@ -1321,3 +1321,99 @@ single `/api/home` BFF + the interactive `/api/decide`. Remaining project work:
 
 Out of scope: D0/deep pages (F–H), wiring a real AI provider (`/api/decide`
 stays a graceful stub).
+
+# Decision 027
+
+**D0.1 + D0.2 — canonical taxonomy SSOT + AI enrichment pipeline** (tooling; not
+yet run against the data). Splits the domain model into two deliberately separate
+layers (per the user's refinement): a **stable, hand-maintained canonical
+taxonomy** (`Category → Subcategory`) and a **generated navigation** layer (D0.4,
+`Group → Topics`) built on top of it. This decision covers the first two pieces.
+
+**D0.1 — `app/data/taxonomy.json` is the single source of truth.** One file holds
+the canonical `Category → [Subcategory]` vocabulary for all 10 display categories,
+each with `matchCategories` (the raw source-category strings, mirroring
+`CategoryDefinition.java`'s raw→display mapping). `validate_schema.py` was rewired:
+its previously-hardcoded 3-category `VALID_CATEGORIES`/`CATEGORY_TO_SUBCATEGORY`/
+`VALID_SUBCATEGORIES` are now loaded from `taxonomy.json` via `_load_taxonomy()`
+(same variable names, so `validate_record()` is unchanged). The 58 curated
+`resources.json` records still pass 58/58. **`Eviction Prevention` is dual-placed**
+in both `housing` and `legal` (confirmed by the user — one seasonal flyer is an
+eviction-prevention legal resource; topics are content-agnostic and a subcategory
+may sit under more than one category).
+
+**D0.2 — `data-cleaning/scripts/enrich_resources.py`** proposes the fields the 171
+structurally-mapped `resources.communities.json` records lack (`subcategory`,
+`cost`, `urgency`, `tags` — see Decision 013 for why they're empty). **Two-phase,
+human-in-the-loop by design — the model never writes the data file directly:**
+`propose` writes a reviewable proposals file under `data-cleaning/proposals/`
+(each entry `approved: true`, flip to false to drop, or edit values in place);
+`apply` merges ONLY approved proposals, filling empty fields (never clobbering
+existing non-null values). **Subcategory is constrained** — a per-display-category
+JSON-schema enum built from `taxonomy.json`, so the model can only pick a valid
+canonical subcategory; categories with no subcategories omit the field.
+cost/urgency are best-effort enums; tags are free topic strings that feed
+navigation. A separate `--task flyers` pass tags each flyer with 1–3 canonical
+topics (constrained to the full 44-subcategory vocabulary) and unions them into
+the flyer's existing `tags`, so flyers fold into the same navigation topics.
+Claude API `claude-opus-4-8`, structured outputs (`output_config.format`).
+**No `anthropic` SDK** — the user declined to install it, so `propose` POSTs to the
+Messages API over raw HTTPS via the Python stdlib (`urllib`), zero third-party
+deps; structured outputs are a request parameter so nothing about the constrained
+design changes. `propose` needs `ANTHROPIC_API_KEY`; `apply` never calls the API.
+
+**Verification:** no-API smoke test — all 21 raw categories present in the data
+resolve through `matchCategories`; per-category enums build (health = 5 subs); the
+empty-category path drops `subcategory`; the flyer schema constrains to 44 topics.
+The enrichment script is **not** run here — the actual (billed) per-category passes
+are D0.3.
+
+Out of scope (this decision): running enrichment (D0.3), the navigation generator
+(D0.4), and integration/`--strict` validation of the enriched file (D0.5).
+
+# Decision 028
+
+**D0.3 — enrichment run (rules method) + flyer tagging, applied.** All 171 records
+and 7 flyers are now enriched, human-reviewed, and merged into the data files.
+
+**Pivot: rules method instead of AI.** The user set up an Anthropic API key but the
+account had a $0 credit balance (the Console "free plan" covers the Workbench UI,
+not programmatic Messages-API calls — there is no free API tier), and chose not to
+purchase credits. So `enrich_resources.py` gained a **`--method {rules,ai}`** switch
+(**rules is the default**). The rules proposer is offline, deterministic, dependency-
+free, and writes the SAME proposals shape as the AI path, so review/apply are
+unchanged. Two tiers: (1) `RAW_DEFAULT` maps raw source categories that ARE a
+subcategory (e.g. "Support Group" -> "Support Groups") — this alone covers all of
+community-support, because the DSCYF directory's raw category already is the
+subcategory there; (2) a `SUBCATEGORY_KEYWORDS` lexicon disambiguates the broad
+categories (Recreational, Mental Health, Housing, Food, Employment, Legal). The AI
+path is retained for a future funded key.
+
+**Result: 169/171 (98%) auto-assigned a canonical subcategory** on the first pass;
+community-support (58), community-events (53), health (32), housing (7), legal (3)
+were 100% covered. **2 gaps + 1 dual-topic were reviewed by the user:** SD-020
+(Habitat ReEmployeAbility) -> Job Search Assistance; SD-041 (Our Daily Bread) ->
+Food Pantry; SD-078 (Terry Children's, "crisis stabilization") kept
+`Counseling & Therapy` as subcategory **plus** a `Crisis Services` tag — the same
+content-agnostic dual-topic pattern as Eviction Prevention (a record has one
+canonical subcategory but surfaces under multiple navigation topics via tags).
+
+**Flyers (7) tagged with canonical topics unioned into existing hand tags.** Flyer
+keyword-matching is lower-confidence (flyers describe intent, not services — FL-003,
+a volunteer-recruitment flyer, mis-hit "food banks/shelters" and was corrected to
+Volunteer Opportunities), so all 7 were human-reviewed. **Two user-chosen free-form
+tags** are not canonical subcategories — `Student Support` (FL-004 back-to-school
+drive) and `Furniture/Household Goods` (FL-007 furniture giveaway) — which is fine:
+flyer tags have always been free-form and navigation topics gather by tag OR
+subcategory.
+
+**Data note (furniture):** the loaded 171-record `resources.communities.json` has
+**no** furniture-household resources, so FL-007 is currently the only content in
+that category. But the full 603-record source (`Service_Directory_cleaned.json`,
+`services[]`, `typeOfService` field) **does** have ~11 furniture services (Salvation
+Army, Habitat ReStore, Catholic Charities, Sunday Breakfast Mission) — they'd
+populate that category if the loaded dataset expands beyond the curated subset
+(Decision 013).
+
+Out of scope (this decision): navigation generation (D0.4) and `--strict` /
+integration verification of the enriched file (D0.5).

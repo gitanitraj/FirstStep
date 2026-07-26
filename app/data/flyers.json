@@ -6,13 +6,25 @@
       "title": "Summer Youth Enrichment Program — Registration Open",
       "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
       "verified": true,
-      "tags": ["Youth"],
-      "contentSource": { "type": "manual", "name": "West End Neighborhood House" },
+      "tags": [
+        "Youth",
+        "Youth Programs"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "West End Neighborhood House"
+      },
       "createdDate": "2026-06-10",
       "updatedDate": "2026-06-10",
       "organization": "West End Neighborhood House",
       "event_date": "2026-07-20",
-      "location": { "label": "West End Neighborhood House", "address": "710 N. Lincoln Street", "city": "Wilmington", "state": "DE", "zip": "19805" },
+      "location": {
+        "label": "West End Neighborhood House",
+        "address": "710 N. Lincoln Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19805"
+      },
       "image": "Youth.jpg"
     },
     {
@@ -21,13 +33,26 @@
       "title": "Know Your Rights: Eviction Prevention Info Session",
       "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
       "verified": true,
-      "tags": ["Housing Assistance"],
-      "contentSource": { "type": "manual", "name": "Community Legal Aid Society" },
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "Community Legal Aid Society"
+      },
       "createdDate": "2026-06-12",
       "updatedDate": "2026-06-12",
       "organization": "Community Legal Aid Society",
       "event_date": "2026-07-25",
-      "location": { "label": "Wilmington Public Library", "address": "10 E. 10th Street", "city": "Wilmington", "state": "DE", "zip": "19801" },
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
       "image": "Eviction Help.png"
     },
     {
@@ -36,13 +61,25 @@
       "title": "Community Volunteer Recruitment Drive",
       "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
       "verified": true,
-      "tags": ["Community"],
-      "contentSource": { "type": "manual", "name": "United Way of Delaware" },
+      "tags": [
+        "Community",
+        "Volunteer Opportunities"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "United Way of Delaware"
+      },
       "createdDate": "2026-06-08",
       "updatedDate": "2026-06-08",
       "organization": "United Way of Delaware",
       "event_date": "2026-08-01",
-      "location": { "label": "Rodney Square", "address": "1000 N. King Street", "city": "Wilmington", "state": "DE", "zip": "19801" },
+      "location": {
+        "label": "Rodney Square",
+        "address": "1000 N. King Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
       "image": "Volunteer.jpg"
     },
     {
@@ -51,13 +88,26 @@
       "title": "Back-to-School Supply Drive Fundraiser",
       "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
       "verified": true,
-      "tags": ["Community", "Free"],
-      "contentSource": { "type": "manual", "name": "Ministry of Caring Inc" },
+      "tags": [
+        "Community",
+        "Free",
+        "Student Support"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "Ministry of Caring Inc"
+      },
       "createdDate": "2026-06-15",
       "updatedDate": "2026-06-15",
       "organization": "Ministry of Caring Inc",
       "event_date": "2026-08-10",
-      "location": { "label": "Ministry of Caring", "address": "115 East 14th Street", "city": "Wilmington", "state": "DE", "zip": "19801" },
+      "location": {
+        "label": "Ministry of Caring",
+        "address": "115 East 14th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
       "image": "Fundraiser.jpg"
     },
     {
@@ -66,13 +116,26 @@
       "title": "Disability Services & Benefits Info Fair",
       "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
       "verified": true,
-      "tags": ["Disability Assistance"],
-      "contentSource": { "type": "manual", "name": "Delaware Division for the Visually Impaired" },
+      "tags": [
+        "Disability Assistance",
+        "Disability Advocacy",
+        "Information & Referral"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "Delaware Division for the Visually Impaired"
+      },
       "createdDate": "2026-06-11",
       "updatedDate": "2026-06-11",
       "organization": "Delaware Division for the Visually Impaired",
       "event_date": "2026-07-30",
-      "location": { "label": "Porter State Service Center", "address": "509 W. 8th Street", "city": "Wilmington", "state": "DE", "zip": "19801" },
+      "location": {
+        "label": "Porter State Service Center",
+        "address": "509 W. 8th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
       "image": "Disablility Info.jpg"
     },
     {
@@ -81,13 +144,26 @@
       "title": "Free Community Health Fair",
       "summary": "Free health screenings, vaccinations, and dental checkups — no insurance or ID required.",
       "verified": true,
-      "tags": ["Medical Assistance", "Free"],
-      "contentSource": { "type": "manual", "name": "Westside Family Healthcare" },
+      "tags": [
+        "Medical Assistance",
+        "Free",
+        "Medical Care"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "Westside Family Healthcare"
+      },
       "createdDate": "2026-06-09",
       "updatedDate": "2026-06-09",
       "organization": "Westside Family Healthcare",
       "event_date": "2026-08-05",
-      "location": { "label": "Eden Park Recreation Center", "address": "601 N. Van Buren Street", "city": "Wilmington", "state": "DE", "zip": "19805" },
+      "location": {
+        "label": "Eden Park Recreation Center",
+        "address": "601 N. Van Buren Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19805"
+      },
       "image": "Health Fair.jpg"
     },
     {
@@ -96,13 +172,26 @@
       "title": "Free Furniture Giveaway",
       "summary": "Free gently-used furniture available for families moving into new housing — first come, first served.",
       "verified": true,
-      "tags": ["Free", "Housing Assistance"],
-      "contentSource": { "type": "manual", "name": "Wilmington Housing Authority" },
+      "tags": [
+        "Free",
+        "Housing Assistance",
+        "Furniture/Household Goods"
+      ],
+      "contentSource": {
+        "type": "manual",
+        "name": "Wilmington Housing Authority"
+      },
       "createdDate": "2026-06-14",
       "updatedDate": "2026-06-14",
       "organization": "Wilmington Housing Authority",
       "event_date": "2026-08-15",
-      "location": { "label": "WHA Community Room", "address": "1500 Bowers Street", "city": "Wilmington", "state": "DE", "zip": "19802" },
+      "location": {
+        "label": "WHA Community Room",
+        "address": "1500 Bowers Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19802"
+      },
       "image": "Furniture.jpg"
     }
   ]

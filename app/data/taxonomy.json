@@ -1,0 +1,66 @@
+{
+  "version": 1,
+  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validator, backend and frontend. Navigation groups are NOT here -- they are generated separately (navigation.generated.json) by analyzing CivicContent. Topics are content-type-agnostic: a topic gathers CivicContent where resource.subcategory == topic OR content.tags contains the topic (so flyers/news/policy fold in without changing this taxonomy). 'matchCategories' are the raw source-data category strings that map to this display category (mirrors CategoryDefinition.java).",
+  "categories": [
+    {
+      "key": "housing",
+      "label": "Housing",
+      "matchCategories": ["Housing Assistance", "Housing"],
+      "subcategories": ["Emergency Shelter", "Transitional Housing", "Sober Living", "Rental Assistance", "Public Housing", "Homeownership", "Senior Housing", "Youth Housing", "Eviction Prevention"]
+    },
+    {
+      "key": "food",
+      "label": "Food",
+      "matchCategories": ["Food Program"],
+      "subcategories": ["Food Pantry", "Prepared Meals", "Home-Delivered Meals", "Farmers Market"]
+    },
+    {
+      "key": "clothing",
+      "label": "Clothing",
+      "matchCategories": ["Clothing & Incidentals"],
+      "subcategories": ["Clothing Closet", "Thrift Store", "Vouchers"]
+    },
+    {
+      "key": "health",
+      "label": "Health",
+      "matchCategories": ["Healthcare/Medical", "Mental Health", "Substance Use"],
+      "subcategories": ["Counseling & Therapy", "Crisis Services", "Substance Use Treatment", "Medical Care", "Trauma & Grief Support"]
+    },
+    {
+      "key": "employment",
+      "label": "Employment",
+      "matchCategories": ["Employment"],
+      "subcategories": ["Job Search Assistance", "Vocational Training", "Youth Employment"]
+    },
+    {
+      "key": "utilities",
+      "label": "Utilities",
+      "matchCategories": [],
+      "subcategories": []
+    },
+    {
+      "key": "legal",
+      "label": "Legal",
+      "matchCategories": ["Advocacy"],
+      "subcategories": ["Disability Advocacy", "Eviction Prevention"]
+    },
+    {
+      "key": "community-events",
+      "label": "Community Events",
+      "matchCategories": ["Recreational"],
+      "subcategories": ["Youth Programs", "Sports & Fitness", "Arts & Music", "Parks & Outdoors", "Libraries", "Senior Activities"]
+    },
+    {
+      "key": "furniture-household",
+      "label": "Furniture & Household",
+      "matchCategories": ["Furniture & Household Items"],
+      "subcategories": ["Appliances", "Starter Kits", "Thrift Store", "Vouchers"]
+    },
+    {
+      "key": "community-support",
+      "label": "Community Support",
+      "matchCategories": ["Resource Information", "Education/Training", "Parenting Education", "Financial Support", "Support Group", "Early Childhood/Pre-K", "Volunteer", "Mentor", "Life Skills", "Transportation", "Child Care", "Before/After School Care", "Entertainment"],
+      "subcategories": ["Information & Referral", "Education & Training", "Financial Assistance", "Parenting Support", "Support Groups", "Child Care & Early Learning", "Volunteer Opportunities", "Mentoring", "Life Skills", "Transportation", "Community Celebrations"]
+    }
+  ]
+}

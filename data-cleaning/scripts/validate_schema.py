@@ -39,41 +39,27 @@ SCHEMA_FILE = Path("data-cleaning/schema.json")
 # Valid controlled vocabulary
 # ─────────────────────────────────────────
 
-VALID_CATEGORIES = {
-    "Clothing & Incidentals",
-    "Furniture & Household Items",
-    "Housing Assistance",
-}
+# Controlled vocabulary is loaded from the canonical taxonomy — the single source
+# of truth shared with the backend and frontend (app/data/taxonomy.json). Keyed by
+# RAW source category (via each display category's matchCategories) so records that
+# carry raw category strings validate. Same variable names as before, so the rest
+# of the validator is unchanged.
+TAXONOMY_FILE = Path("app/data/taxonomy.json")
 
-# Single source of truth: category → its allowed subcategories.
-# VALID_SUBCATEGORIES is derived from this so the two can never drift apart.
-CATEGORY_TO_SUBCATEGORY = {
-    "Clothing & Incidentals": {
-        "Clothing Closet",
-        "Thrift Store",
-        "Vouchers",
-    },
-    "Furniture & Household Items": {
-        "Appliances",
-        "Starter Kits",
-        "Thrift Store",   # furniture/household thrift stores (e.g. ReStore)
-        "Vouchers",       # goods vouchers for furniture/household items
-    },
-    "Housing Assistance": {
-        "Emergency Shelter",
-        "Transitional Housing",
-        "Sober Living",
-        "Rental Assistance",
-        "Public Housing",  # publicly-owned units residents live in (vs. a portable subsidy)
-        "Homeownership",
-        "Senior Housing",
-        "Youth Housing",
-    },
-}
 
-VALID_SUBCATEGORIES = {
-    sub for subs in CATEGORY_TO_SUBCATEGORY.values() for sub in subs
-}
+def _load_taxonomy():
+    data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
+    cat_to_sub = {}
+    for cat in data["categories"]:
+        subs = set(cat.get("subcategories", []))
+        for raw in cat.get("matchCategories", []):
+            cat_to_sub[raw] = subs
+    valid_categories = set(cat_to_sub.keys())
+    valid_subcategories = {s for subs in cat_to_sub.values() for s in subs}
+    return valid_categories, cat_to_sub, valid_subcategories
+
+
+VALID_CATEGORIES, CATEGORY_TO_SUBCATEGORY, VALID_SUBCATEGORIES = _load_taxonomy()
 
 VALID_URGENCY = {"emergency", "time-limited", "standard"}
 VALID_COST    = {"free", "low-cost"}

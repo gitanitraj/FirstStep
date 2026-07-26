@@ -1,0 +1,112 @@
+[
+  {
+    "id": "FL-001",
+    "title": "Summer Youth Enrichment Program — Registration Open",
+    "existingTags": [
+      "Youth"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Youth Programs"
+      ],
+      "rationale": "human-reviewed"
+    }
+  },
+  {
+    "id": "FL-002",
+    "title": "Know Your Rights: Eviction Prevention Info Session",
+    "existingTags": [
+      "Housing Assistance"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Rental Assistance",
+        "Eviction Prevention"
+      ],
+      "rationale": "human-reviewed"
+    }
+  },
+  {
+    "id": "FL-003",
+    "title": "Community Volunteer Recruitment Drive",
+    "existingTags": [
+      "Community"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Volunteer Opportunities"
+      ],
+      "rationale": "human-reviewed"
+    }
+  },
+  {
+    "id": "FL-004",
+    "title": "Back-to-School Supply Drive Fundraiser",
+    "existingTags": [
+      "Community",
+      "Free"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Student Support"
+      ],
+      "rationale": "human-reviewed"
+    }
+  },
+  {
+    "id": "FL-005",
+    "title": "Disability Services & Benefits Info Fair",
+    "existingTags": [
+      "Disability Assistance"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Disability Advocacy",
+        "Information & Referral"
+      ],
+      "rationale": "human-reviewed"
+    }
+  },
+  {
+    "id": "FL-006",
+    "title": "Free Community Health Fair",
+    "existingTags": [
+      "Medical Assistance",
+      "Free"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Medical Care"
+      ],
+      "rationale": "human-reviewed"
+    }
+  },
+  {
+    "id": "FL-007",
+    "title": "Free Furniture Giveaway",
+    "existingTags": [
+      "Free",
+      "Housing Assistance"
+    ],
+    "method": "rules",
+    "approved": true,
+    "proposed": {
+      "tags": [
+        "Furniture/Household Goods"
+      ],
+      "rationale": "human-reviewed"
+    }
+  }
+]

@@ -40,7 +40,13 @@
           "url": "http://www.easterseals.com/de",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Disability Advocacy",
+      "tags": [
+        "Disability Advocacy",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-002",
@@ -74,7 +80,12 @@
           "url": "https://www.epilepsy.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Disability Advocacy",
+      "tags": [
+        "Disability Advocacy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-003",
@@ -108,7 +119,13 @@
           "url": "https://www.mosaicinfo.org/locations/delaware/all-de/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Disability Advocacy",
+      "tags": [
+        "Disability Advocacy",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-004",
@@ -142,7 +159,13 @@
           "url": "https://www.learningtreede.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-005",
@@ -176,7 +199,13 @@
           "url": "https://www.learningtreede.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-006",
@@ -210,7 +239,13 @@
           "url": "https://www.delawareoutreach.org/apps/pages/index.jsp?uREC_ID=414753&type=d",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-007",
@@ -244,7 +279,13 @@
           "url": "http://www.hcade.org/about-hcydc/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-008",
@@ -278,7 +319,13 @@
           "url": "https://www.learningtreede.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-009",
@@ -312,7 +359,14 @@
           "url": "https://www.ndehs.udel.edu/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Child Care & Early Learning",
+      "tags": [
+        "Child Care & Early Learning",
+        "Youth",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-010",
@@ -346,7 +400,13 @@
           "url": "https://claymontcenter.org/claymont-learning-center/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-011",
@@ -380,7 +440,14 @@
           "url": "https://www.dsdeaf.org/apps/pages/index.jsp?uREC_ID=255539&type=d&termREC_ID=&pREC_ID=498772",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-012",
@@ -414,7 +481,12 @@
           "url": "https://www.nccvtadulteducation.com/apps/pages/dscabout",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-013",
@@ -448,7 +520,12 @@
           "url": "https://hairacademysbb.edu/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-014",
@@ -476,7 +553,13 @@
           "url": "https://www.rightcoastpro.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-015",
@@ -510,7 +593,13 @@
           "url": "https://www.everetttheatre.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-016",
@@ -544,7 +633,14 @@
           "url": "https://www.tutoringcenter.com/center/BearDE",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-017",
@@ -578,7 +674,14 @@
           "url": "https://www.tutoringcenter.com/center/MiddletownDE",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Education & Training",
+      "tags": [
+        "Education & Training",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-018",
@@ -612,7 +715,12 @@
           "url": "https://www.joblink.delaware.gov/ada/r/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Job Search Assistance",
+      "tags": [
+        "Job Search Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-019",
@@ -646,7 +754,13 @@
           "url": "https://www.easterseals.com/de/our-programs/employment-training/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Vocational Training",
+      "tags": [
+        "Vocational Training",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-020",
@@ -674,7 +788,12 @@
           "url": "https://www.habitatncc.org/restore/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Job Search Assistance",
+      "tags": [
+        "Job Search Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-021",
@@ -708,7 +827,13 @@
           "url": "https://newcastlede.gov/859/Youth-Workforce-Development-Program",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Employment",
+      "tags": [
+        "Youth Employment",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-022",
@@ -742,7 +867,12 @@
           "url": "https://nccde.org/1180/Rewire-To-Be-Rehired",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Job Search Assistance",
+      "tags": [
+        "Job Search Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-023",
@@ -776,7 +906,13 @@
           "url": "https://www.servicesource.org/ https://www.servicesource.org/delaware-framework-for-success/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Vocational Training",
+      "tags": [
+        "Vocational Training",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-024",
@@ -810,7 +946,12 @@
           "url": "https://www.visitwilmingtonde.com/event/art-on-the-green/31771/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Community Celebrations",
+      "tags": [
+        "Community Celebrations"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-025",
@@ -844,7 +985,13 @@
           "url": "https://history.delaware.gov/2022/09/16/william-penn-day-10-29-2022/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Community Celebrations",
+      "tags": [
+        "Community Celebrations"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-026",
@@ -878,7 +1025,12 @@
           "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/appoquin.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-027",
@@ -912,7 +1064,12 @@
           "url": "http://dhss.delaware.gov/dhss/main/maps/dsscmap/delawarr.ht",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-028",
@@ -946,7 +1103,14 @@
           "url": "https://dhss.delaware.gov/dmma/disabledchildren.html",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance",
+        "Youth",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-029",
@@ -980,7 +1144,12 @@
           "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/hudson.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-030",
@@ -1014,7 +1183,12 @@
           "url": "https://www.newcastlede.gov/1269/Home-Repair-Programs",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-031",
@@ -1048,7 +1222,13 @@
           "url": "https://www.ywcade.org/what-we-do/economic-empowerment/home-ownership/foreclosure-prevention/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Financial Assistance",
+      "tags": [
+        "Financial Assistance"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-032",
@@ -1082,7 +1262,12 @@
           "url": "https://alphaworship.org/pantry-hope/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-033",
@@ -1116,7 +1301,12 @@
           "url": "https://claymontcenter.org/food-closet/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-034",
@@ -1150,7 +1340,12 @@
           "url": "http://dhss.delaware.gov/dhss/main/maps/dsscmap/delawarr.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-035",
@@ -1184,7 +1379,13 @@
           "url": "https://www.ministryofcaring.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Prepared Meals",
+      "tags": [
+        "Prepared Meals"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-036",
@@ -1218,7 +1419,12 @@
           "url": "http://www.fbd.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-037",
@@ -1252,7 +1458,12 @@
           "url": "https://www.newcastlede.gov/2052/Glasgow-Park-Farmers-Market",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Farmers Market",
+      "tags": [
+        "Farmers Market"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-038",
@@ -1286,7 +1497,12 @@
           "url": "https://lcsde.org/service/food-pantry-services",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-039",
@@ -1320,7 +1536,13 @@
           "url": "https://newarkseniorcenter.com/meals-on-wheels-clients/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Home-Delivered Meals",
+      "tags": [
+        "Home-Delivered Meals",
+        "Seniors"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-040",
@@ -1354,7 +1576,12 @@
           "url": "https://nccfde.org/ministries/outreach/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-041",
@@ -1388,7 +1615,14 @@
           "url": "https://www.ourdailybreadmot.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-042",
@@ -1422,14 +1656,19 @@
           "url": "https://www.redlionumc.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-043",
       "category": "Food Program",
       "organization": "Saint Anne's Episcopal Church",
-      "summary": "Every Friday, Our Daily Bread distributes bags of food to the community. Saint Anne's has partnered with Our Daily Bread to provide food items for the food bags. We collect the food on Sundays at worship and during the week from Monday thru Thursday, 9:00 AM to 4:00 PM. A volunteer from Saint Anne's delivers the food to Our Daily Bread once a week. Food items collected include: \u00bd gallon of milk, 1-pound packages of ground beef or chicken, bread, apples, oranges, personal wipes, vegetables, and canned protein (tuna or chicken) and fruits and vegetables.",
-      "description": "Every Friday, Our Daily Bread distributes bags of food to the community. Saint Anne's has partnered with Our Daily Bread to provide food items for the food bags. We collect the food on Sundays at worship and during the week from Monday thru Thursday, 9:00 AM to 4:00 PM. A volunteer from Saint Anne's delivers the food to Our Daily Bread once a week. Food items collected include: \u00bd gallon of milk, 1-pound packages of ground beef or chicken, bread, apples, oranges, personal wipes, vegetables, and canned protein (tuna or chicken) and fruits and vegetables.",
+      "summary": "Every Friday, Our Daily Bread distributes bags of food to the community. Saint Anne's has partnered with Our Daily Bread to provide food items for the food bags. We collect the food on Sundays at worship and during the week from Monday thru Thursday, 9:00 AM to 4:00 PM. A volunteer from Saint Anne's delivers the food to Our Daily Bread once a week. Food items collected include: ½ gallon of milk, 1-pound packages of ground beef or chicken, bread, apples, oranges, personal wipes, vegetables, and canned protein (tuna or chicken) and fruits and vegetables.",
+      "description": "Every Friday, Our Daily Bread distributes bags of food to the community. Saint Anne's has partnered with Our Daily Bread to provide food items for the food bags. We collect the food on Sundays at worship and during the week from Monday thru Thursday, 9:00 AM to 4:00 PM. A volunteer from Saint Anne's delivers the food to Our Daily Bread once a week. Food items collected include: ½ gallon of milk, 1-pound packages of ground beef or chicken, bread, apples, oranges, personal wipes, vegetables, and canned protein (tuna or chicken) and fruits and vegetables.",
       "population": "Families, individuals, children",
       "locations": [
         {
@@ -1456,7 +1695,13 @@
           "url": "https://www.saintannes.church/ministries.php",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "Food Pantry",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-044",
@@ -1490,7 +1735,12 @@
           "url": "https://www.newarkurgentcare.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Medical Care",
+      "tags": [
+        "Medical Care"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-045",
@@ -1524,7 +1774,12 @@
           "url": "https://www.plannedparenthood.org/planned-parenthood-delaware",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Medical Care",
+      "tags": [
+        "Medical Care"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-046",
@@ -1558,7 +1813,15 @@
           "url": "https://thebirthcenter.com/services#wellwoman",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Medical Care",
+      "tags": [
+        "Medical Care",
+        "Youth",
+        "Women"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-047",
@@ -1592,7 +1855,12 @@
           "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/appoquin.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Rental Assistance",
+      "tags": [
+        "Rental Assistance"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-048",
@@ -1626,7 +1894,14 @@
           "url": "https://www.aquilaofde.com/the-refuge/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sober Living",
+      "tags": [
+        "Sober Living",
+        "Youth",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-049",
@@ -1660,7 +1935,12 @@
           "url": "http://dhss.delaware.gov/dhss/main/maps/dsscmap/delawarr.ht",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Emergency Shelter",
+      "tags": [
+        "Emergency Shelter"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-050",
@@ -1694,7 +1974,12 @@
           "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/hudson.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Rental Assistance",
+      "tags": [
+        "Rental Assistance"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-051",
@@ -1728,7 +2013,13 @@
           "url": "https://www.newcastlede.gov/467/Housing-Choice-Voucher-HCV-Program",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Public Housing",
+      "tags": [
+        "Public Housing",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-052",
@@ -1762,7 +2053,13 @@
           "url": "https://newarkhousingauthority.net/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Public Housing",
+      "tags": [
+        "Public Housing",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-053",
@@ -1796,7 +2093,12 @@
           "url": "https://newarkhousingauthority.net/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Public Housing",
+      "tags": [
+        "Public Housing"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-054",
@@ -1830,7 +2132,13 @@
           "url": "https://claymontcenter.org/empowered-youth-program/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Life Skills",
+      "tags": [
+        "Life Skills",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-055",
@@ -1864,7 +2172,13 @@
           "url": "http://duffyshopeinc.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Life Skills",
+      "tags": [
+        "Life Skills",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-056",
@@ -1898,7 +2212,13 @@
           "url": "https://www.appocounseling.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-057",
@@ -1932,7 +2252,12 @@
           "url": "https://www.brandywinecounseling.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-058",
@@ -1966,7 +2291,13 @@
           "url": "https://thecenterforchilddevelopment.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-059",
@@ -2000,7 +2331,12 @@
           "url": "http://www.acfmw.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-060",
@@ -2034,7 +2370,12 @@
           "url": "https://coras.flywheelsites.com/services/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-061",
@@ -2068,7 +2409,13 @@
           "url": "https://dhss.delaware.gov/dsamh/crisis_intervention.html",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Crisis Services",
+      "tags": [
+        "Crisis Services"
+      ],
+      "cost": "low-cost",
+      "urgency": "emergency"
     },
     {
       "id": "SD-062",
@@ -2102,7 +2449,13 @@
           "url": "http://www.delawareguidance.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-063",
@@ -2136,7 +2489,13 @@
           "url": "https://lifestance.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-064",
@@ -2170,7 +2529,13 @@
           "url": "https://lifestance.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-065",
@@ -2204,7 +2569,13 @@
           "url": "https://lifestance.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-066",
@@ -2238,7 +2609,13 @@
           "url": "https://lifestance.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-067",
@@ -2272,7 +2649,13 @@
           "url": "http://www.meadowwoodhospital.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-068",
@@ -2306,7 +2689,12 @@
           "url": "https://middletowncounseling.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-069",
@@ -2340,7 +2728,12 @@
           "url": "https://riinternational.com/listing/recovery-response-center-newark/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-070",
@@ -2374,7 +2767,14 @@
           "url": "https://rockfordcenter.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-071",
@@ -2408,7 +2808,13 @@
           "url": "http://www.safeharbor1.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-072",
@@ -2442,7 +2848,13 @@
           "url": "http://www.safeharbor1.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-073",
@@ -2476,7 +2888,13 @@
           "url": "http://www.safeharbor1.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-074",
@@ -2510,7 +2928,12 @@
           "url": "https://www.shapingmindstherapy.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-075",
@@ -2544,7 +2967,13 @@
           "url": "https://kids.delaware.gov/prevention-and-behavioral-health-services/silver-lake-treatment-consortium/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-076",
@@ -2578,7 +3007,13 @@
           "url": "http://www.survivorsofabuse.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-077",
@@ -2612,7 +3047,13 @@
           "url": "https://supportingkidds.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Trauma & Grief Support",
+      "tags": [
+        "Trauma & Grief Support",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-078",
@@ -2646,7 +3087,14 @@
           "url": "https://kids.delaware.gov/prevention-and-behavioral-health-services/terry-childrens-center/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy",
+        "Youth",
+        "Crisis Services"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-079",
@@ -2680,7 +3128,12 @@
           "url": "https://www.viamontiecounseling.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-080",
@@ -2714,7 +3167,13 @@
           "url": "https://www.ywcade.org/what-we-do/sarc/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Crisis Services",
+      "tags": [
+        "Crisis Services"
+      ],
+      "cost": "free",
+      "urgency": "emergency"
     },
     {
       "id": "SD-081",
@@ -2748,7 +3207,13 @@
           "url": "http://aspirade.org/mentoring/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Mentoring",
+      "tags": [
+        "Mentoring",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-082",
@@ -2782,7 +3247,13 @@
           "url": "http://www.progressivelifecenter.org/services/parent-partner-program/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Mentoring",
+      "tags": [
+        "Mentoring",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-083",
@@ -2816,7 +3287,15 @@
           "url": "https://www.theuniquebutterflies.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Mentoring",
+      "tags": [
+        "Mentoring",
+        "Youth",
+        "Women",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-084",
@@ -2850,7 +3329,13 @@
           "url": "https://www.childrenschoice.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-085",
@@ -2884,7 +3369,14 @@
           "url": "http://dapi.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-086",
@@ -2918,7 +3410,13 @@
           "url": "https://www.dsdeaf.org/apps/pages/index.jsp?uREC_ID=256397&type=d",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-087",
@@ -2952,7 +3450,13 @@
           "url": "https://www.ndehs.udel.edu/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-088",
@@ -2986,7 +3490,14 @@
           "url": "https://www.ndehs.udel.edu/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Youth",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-089",
@@ -3020,7 +3531,13 @@
           "url": "https://thebirthcenter.com/services#wellwoman",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parenting Support",
+      "tags": [
+        "Parenting Support",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-090",
@@ -3054,7 +3571,13 @@
           "url": "https://www.danceatada.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-091",
@@ -3088,7 +3611,13 @@
           "url": "https://dewushu.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-092",
@@ -3122,7 +3651,13 @@
           "url": "https://www.nccde.org/291/Bear-Library",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Libraries",
+      "tags": [
+        "Libraries",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-093",
@@ -3156,7 +3691,13 @@
           "url": "https://www.bvspca.org/get-involved/for-kids",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-094",
@@ -3190,7 +3731,14 @@
           "url": "https://www.bgclubs.org/post/claymont-boys-girls-club",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-095",
@@ -3224,7 +3772,13 @@
           "url": "https://claymontcenter.org/brandywine-senior-center/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Senior Activities",
+      "tags": [
+        "Senior Activities",
+        "Seniors"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-096",
@@ -3258,7 +3812,13 @@
           "url": "http://www.nccde.org/298/Claymont-Library",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Libraries",
+      "tags": [
+        "Libraries",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-097",
@@ -3292,7 +3852,14 @@
           "url": "http://www.artstudio410.org/art-classes.html",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-098",
@@ -3326,7 +3893,12 @@
           "url": "https://debbie-loftis-guitar-llc.business.site/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-099",
@@ -3360,7 +3932,12 @@
           "url": "https://www.delarts.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-100",
@@ -3394,7 +3971,13 @@
           "url": "https://www.udel.edu/academics/colleges/canr/cooperative-extension/personal-economic-development/4H-youth-development/programs/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-101",
@@ -3428,7 +4011,14 @@
           "url": "https://www.udel.edu/academics/colleges/canr/cooperative-extension/personal-economic-development/4H-youth-development/programs/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-102",
@@ -3462,7 +4052,13 @@
           "url": "https://www.udel.edu/academics/colleges/canr/cooperative-extension/personal-economic-development/4H-youth-development/programs/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-103",
@@ -3496,7 +4092,12 @@
           "url": "http://delawaredancecompany.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-104",
@@ -3530,7 +4131,12 @@
           "url": "http://www.encoredanceacademyde.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-105",
@@ -3564,7 +4170,12 @@
           "url": "http://www.encoredanceacademyde.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-106",
@@ -3598,7 +4209,12 @@
           "url": "https://www.evolutionkaratede.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-107",
@@ -3632,7 +4248,14 @@
           "url": "http://palde.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-108",
@@ -3666,7 +4289,13 @@
           "url": "https://nccde.org/1537/Glasgow-Park",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-109",
@@ -3700,7 +4329,14 @@
           "url": "https://www.bgclubs.org/post/greater-newark-boys-girls-club",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-110",
@@ -3734,7 +4370,14 @@
           "url": "http://palde.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-111",
@@ -3768,7 +4411,13 @@
           "url": "https://www.i9sports.com/franchises/greater-wilmington-area-de/287",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-112",
@@ -3802,7 +4451,13 @@
           "url": "https://www.i9sports.com/franchises/greater-wilmington-area-de/287",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-113",
@@ -3836,7 +4491,13 @@
           "url": "https://www.i9sports.com/franchises/greater-wilmington-area-de/287",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-114",
@@ -3870,7 +4531,13 @@
           "url": "https://www.i9sports.com/franchises/greater-wilmington-area-de/287",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-115",
@@ -3904,7 +4571,13 @@
           "url": "https://www.i9sports.com/franchises/greater-wilmington-area-de/287",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-116",
@@ -3938,7 +4611,13 @@
           "url": "https://www.i9sports.com/franchises/greater-wilmington-area-de/287",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-117",
@@ -3972,7 +4651,12 @@
           "url": "https://www.newcastlede.gov/Facilities/Facility/Details/Iron-Hill-Park-54",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-118",
@@ -4006,7 +4690,13 @@
           "url": "https://www.kidstrong.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-119",
@@ -4034,7 +4724,13 @@
           "url": "https://www.kirkwoodsports.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-120",
@@ -4068,7 +4764,13 @@
           "url": "https://knockoutboxingde.com/ https://downtobox.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-121",
@@ -4102,7 +4804,13 @@
           "url": "https://knockoutboxingde.com/ https://downtobox.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-122",
@@ -4136,7 +4844,13 @@
           "url": "https://www.learningtreede.com/program-information/summer-camp/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-123",
@@ -4170,7 +4884,13 @@
           "url": "https://destateparks.com/PondsRivers/LumsPond",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-124",
@@ -4204,7 +4924,12 @@
           "url": "https://www.melodicmovements.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-125",
@@ -4238,7 +4963,13 @@
           "url": "http://midcountylanes.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-126",
@@ -4272,7 +5003,13 @@
           "url": "https://www.delawarenaturesociety.org/centers/middle-run-natural-area/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Parks & Outdoors",
+      "tags": [
+        "Parks & Outdoors"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-127",
@@ -4306,7 +5043,14 @@
           "url": "https://www.motseniorcenter.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Senior Activities",
+      "tags": [
+        "Senior Activities",
+        "Seniors"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-128",
@@ -4340,7 +5084,14 @@
           "url": "https://www.bgclubs.org/post/new-castle-boys-girls-club",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-129",
@@ -4374,7 +5125,13 @@
           "url": "https://newcastledanceacademy.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-130",
@@ -4408,7 +5165,13 @@
           "url": "https://newcastledanceacademy.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-131",
@@ -4442,7 +5205,13 @@
           "url": "https://nc100archers.com/lessons/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-132",
@@ -4476,7 +5245,13 @@
           "url": "http://www.nccde.org/499/Sports",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-133",
@@ -4510,7 +5285,13 @@
           "url": "https://www.newarkartsalliance.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-134",
@@ -4538,7 +5319,12 @@
           "url": "https://www.rightcoastpro.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-135",
@@ -4572,7 +5358,13 @@
           "url": "https://nccde.org/1389/Route-9-Library-Innovation-Center",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Libraries",
+      "tags": [
+        "Libraries",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-136",
@@ -4606,7 +5398,13 @@
           "url": "https://www.saintannes.church/ministries.php",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-137",
@@ -4640,7 +5438,13 @@
           "url": "https://www.saintannes.church/ministries.php",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-138",
@@ -4674,7 +5478,13 @@
           "url": "https://independence-2330-us-east1-01.preview.finalsitecdn.com/summer-camp https://independence-2330-us-east1-01.preview.finalsitecdn.com/summer-camp/specialty-camps",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Youth Programs",
+      "tags": [
+        "Youth Programs"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-139",
@@ -4708,7 +5518,13 @@
           "url": "https://www.swimschoolinc.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-140",
@@ -4742,7 +5558,12 @@
           "url": "https://titushp.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-141",
@@ -4776,7 +5597,14 @@
           "url": "https://www.ymcade.org/locations/western-ymca/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Sports & Fitness",
+      "tags": [
+        "Sports & Fitness",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-142",
@@ -4810,7 +5638,13 @@
           "url": "https://www.woodcraft.com/stores/wilmington",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Arts & Music",
+      "tags": [
+        "Arts & Music"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-143",
@@ -4844,7 +5678,13 @@
           "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/appoquin.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-144",
@@ -4878,7 +5718,12 @@
           "url": "https://www.delawareoutreach.org/apps/pages/index.jsp?uREC_ID=448521&type=d&termREC_ID=&pREC_ID=978599",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-145",
@@ -4912,7 +5757,13 @@
           "url": "http://dhss.delaware.gov/dhss/main/maps/dsscmap/delawarr.ht",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-146",
@@ -4946,7 +5797,14 @@
           "url": "https://www.easterseals.com/de/our-programs/childrens-services/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-147",
@@ -4980,7 +5838,12 @@
           "url": "https://www.epilepsy.com/tools-resources",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-148",
@@ -5014,7 +5877,12 @@
           "url": "https://www.friendshiphousede.org/delaware-homeless/our-programs/empowerment-centers/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-149",
@@ -5048,7 +5916,12 @@
           "url": "https://www.friendshiphousede.org/delaware-homeless/our-programs/empowerment-centers/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-150",
@@ -5082,7 +5955,13 @@
           "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/hudson.htm",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-151",
@@ -5116,7 +5995,14 @@
           "url": "https://www.ndehs.udel.edu/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-152",
@@ -5150,7 +6036,12 @@
           "url": "http://www.pawsforpeople.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-153",
@@ -5184,7 +6075,13 @@
           "url": "https://www.servicesource.org/delaware-benefits-counseling-and-financeability/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "People with Disabilities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-154",
@@ -5218,7 +6115,13 @@
           "url": "http://www.survivorsofabuse.org",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-155",
@@ -5252,7 +6155,13 @@
           "url": "https://supportingkidds.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-156",
@@ -5286,7 +6195,14 @@
           "url": "https://thebirthcenter.com/services#wellwoman",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral",
+        "Women"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-157",
@@ -5314,7 +6230,12 @@
           "url": "https://www.wellbeingonmain.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Information & Referral",
+      "tags": [
+        "Information & Referral"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-158",
@@ -5348,7 +6269,12 @@
           "url": "https://www.brandywinecounseling.com/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Counseling & Therapy",
+      "tags": [
+        "Counseling & Therapy"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-159",
@@ -5376,7 +6302,12 @@
           "url": "https://www.brandywinecounseling.com/dfs-liaisons/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-160",
@@ -5410,7 +6341,12 @@
           "url": "https://coras.flywheelsites.com/services/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-161",
@@ -5444,7 +6380,12 @@
           "url": "https://riinternational.com/listing/recovery-response-center-newark/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Substance Use Treatment",
+      "tags": [
+        "Substance Use Treatment"
+      ],
+      "urgency": "emergency"
     },
     {
       "id": "SD-162",
@@ -5478,7 +6419,14 @@
           "url": "http://championsde.org/open-interviews-family-support-provider/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Youth"
+      ],
+      "cost": "free",
+      "urgency": "standard"
     },
     {
       "id": "SD-163",
@@ -5512,7 +6460,13 @@
           "url": "https://christianacare.org/services/cancer/cancersupportservices/cancercommunityservices/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Women"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-164",
@@ -5546,7 +6500,12 @@
           "url": "https://dcjustice.org/our-programs/safe-spaces/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-165",
@@ -5580,7 +6539,13 @@
           "url": "https://supportingkidds.org/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-166",
@@ -5614,7 +6579,14 @@
           "url": "https://thebirthcenter.com",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Support Groups",
+      "tags": [
+        "Support Groups",
+        "Women"
+      ],
+      "cost": "low-cost",
+      "urgency": "standard"
     },
     {
       "id": "SD-167",
@@ -5648,7 +6620,12 @@
           "url": "https://www.servicesource.org/transportation/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Transportation",
+      "tags": [
+        "Transportation"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-168",
@@ -5682,7 +6659,13 @@
           "url": "https://www.bvspca.org/get-involved/for-kids",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-169",
@@ -5716,7 +6699,13 @@
           "url": "https://www.bvspca.org/get-involved/for-kids",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities",
+        "Youth"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-170",
@@ -5750,7 +6739,12 @@
           "url": "https://www.bvspca.org/get-involved/for-kids",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities"
+      ],
+      "urgency": "standard"
     },
     {
       "id": "SD-171",
@@ -5784,7 +6778,13 @@
           "url": "https://christianacare.org/about/volunteer/volunteen/",
           "label": "Program page"
         }
-      ]
+      ],
+      "subcategory": "Volunteer Opportunities",
+      "tags": [
+        "Volunteer Opportunities",
+        "Youth"
+      ],
+      "urgency": "standard"
     }
   ]
 }
