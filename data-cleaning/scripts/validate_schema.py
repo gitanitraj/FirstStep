@@ -6,6 +6,7 @@ Wilmington Civic App v2 schema.
 
 Usage:
     python data-cleaning/scripts/validate_schema.py
+    python data-cleaning/scripts/validate_schema.py --input app/data/resources.communities.json
     python data-cleaning/scripts/validate_schema.py --strict
     python data-cleaning/scripts/validate_schema.py --check-urls
     python data-cleaning/scripts/validate_schema.py --export-schema
@@ -123,8 +124,10 @@ def validate_record(record, index, check_urls=False):
     rid = record.get("id", "")
     if rid:
         prefix = rid.split("-")[0] if "-" in rid else ""
-        if prefix not in ("CI", "FH", "HA"):
-            errors.append(f"ID '{rid}' has unexpected prefix. Expected CI, FH, or HA.")
+        # CI/FH/HA = the hand-curated resources.json sets; SD = records mapped
+        # from the DSCYF Service Directory (resources.communities.json).
+        if prefix not in ("CI", "FH", "HA", "SD"):
+            errors.append(f"ID '{rid}' has unexpected prefix. Expected CI, FH, HA, or SD.")
 
     # ── 3. Controlled vocabulary ─────────────────────────────────
     cat = record.get("category")
@@ -284,8 +287,23 @@ def _check_url(url):
 # ─────────────────────────────────────────
 
 def detect_duplicates(records):
-    """Return a list of duplicate-related error strings."""
+    """Return (errors, warnings) as two lists of duplicate-related strings.
+
+    The listing key is organization + address + category + subcategory. Both
+    category levels belong in it because the same service is legitimately listed
+    under several source categories — Learning Tree Academy appears under
+    Before/After School Care, Child Care AND Early Childhood/Pre-K; the curated
+    thrift records are dual-listed under Clothing and Furniture. Keying on
+    org+address alone flagged 37 of those as duplicates.
+
+    Two tiers, because a key collision means different things:
+      - identical summary → a genuine duplicate listing (ERROR)
+      - different summary → one organization running several programs at one
+        site, e.g. Brandywine Valley SPCA's three volunteer programs. Worth an
+        eyeball, not a failure (WARNING).
+    """
     errors = []
+    warnings = []
 
     # Duplicate IDs
     seen_ids = set()
@@ -297,8 +315,8 @@ def detect_duplicates(records):
             errors.append(f"Duplicate ID: '{rid}'")
         seen_ids.add(rid)
 
-    # Duplicate organization + address
-    seen_pairs = set()
+    # Duplicate listings
+    seen_pairs = {}
     for r in records:
         org = r.get("organization")
         for loc in r.get("locations", []):
@@ -306,12 +324,17 @@ def detect_duplicates(records):
             # Skip confidential / addressless rows — collisions there are expected.
             if not addr or loc.get("confidential"):
                 continue
-            key = (org, addr)
-            if key in seen_pairs:
-                errors.append(f"Duplicate organization+address: {org} @ {addr}")
-            seen_pairs.add(key)
+            key = (org, addr, r.get("category"), r.get("subcategory"))
+            label = f"{org} @ {addr} ({r.get('subcategory')})"
+            first = seen_pairs.get(key)
+            if first is None:
+                seen_pairs[key] = r
+            elif first.get("summary") == r.get("summary"):
+                errors.append(f"Duplicate listing: {label} — {first.get('id')} and {r.get('id')} are identical")
+            else:
+                warnings.append(f"Same site and topic, different service: {label} — {first.get('id')} and {r.get('id')}")
 
-    return errors
+    return errors, warnings
 
 
 # ─────────────────────────────────────────
@@ -361,7 +384,7 @@ def export_json_schema():
 # Report printer
 # ─────────────────────────────────────────
 
-def print_report(results, total, dup_errors, strict):
+def print_report(results, total, dup_errors, dup_warnings, strict, input_file=INPUT_FILE):
     failed   = [r for r in results if r["errors"]]
     warned   = [r for r in results if r["warnings"]]
     passed   = [r for r in results if not r["errors"]]
@@ -369,7 +392,7 @@ def print_report(results, total, dup_errors, strict):
     print("\n" + "═" * 60)
     print("  WILMINGTON CIVIC APP — SCHEMA VALIDATOR")
     print("═" * 60)
-    print(f"  File:    {INPUT_FILE}")
+    print(f"  File:    {input_file}")
     print(f"  Records: {total}")
     print(f"  ✅ Passed:    {len(passed)}")
     print(f"  ❌ Failed:    {len(failed)}")
@@ -390,6 +413,11 @@ def print_report(results, total, dup_errors, strict):
         for e in dup_errors:
             print(f"    ✗ {e}")
 
+    if dup_warnings:
+        print("\n── MULTI-PROGRAM SITES ───────────────────────────────")
+        for w in dup_warnings:
+            print(f"    ! {w}")
+
     if warned and (strict or not failed):
         print("\n── WARNINGS ──────────────────────────────────────────")
         for r in warned:
@@ -405,6 +433,7 @@ def print_report(results, total, dup_errors, strict):
     failure_count = len(failed) + (1 if dup_errors else 0)
     if strict:
         failure_count += sum(1 for r in results if r["warnings"])
+        failure_count += len(dup_warnings)
     return failure_count
 
 
@@ -414,6 +443,8 @@ def print_report(results, total, dup_errors, strict):
 
 def main():
     parser = argparse.ArgumentParser(description="Validate resources.json against the v2 schema.")
+    parser.add_argument("--input", default=str(INPUT_FILE),
+                        help="Resource JSON file to validate (default: app/data/resources.json).")
     parser.add_argument("--strict", action="store_true",
                         help="Treat warnings as failures.")
     parser.add_argument("--check-urls", action="store_true",
@@ -426,12 +457,13 @@ def main():
         export_json_schema()
         sys.exit(0)
 
-    if not INPUT_FILE.exists():
-        print(f"\n❌ File not found: {INPUT_FILE}")
+    input_file = Path(args.input)
+    if not input_file.exists():
+        print(f"\n❌ File not found: {input_file}")
         print("   Run this script from the FIRSTSTEP/ project root.\n")
         sys.exit(1)
 
-    with open(INPUT_FILE, encoding="utf-8") as f:
+    with open(input_file, encoding="utf-8") as f:
         data = json.load(f)
 
     # Support both bare list and wrapped {"records": [...]} formats
@@ -453,9 +485,10 @@ def main():
             "warnings": warnings,
         })
 
-    dup_errors = detect_duplicates(records)
+    dup_errors, dup_warnings = detect_duplicates(records)
 
-    failure_count = print_report(results, len(records), dup_errors, args.strict)
+    failure_count = print_report(results, len(records), dup_errors, dup_warnings,
+                                 args.strict, input_file)
 
     # Exit with error code so CI/CD pipelines can detect failures
     sys.exit(1 if failure_count > 0 else 0)

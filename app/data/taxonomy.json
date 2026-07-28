@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validator, backend and frontend. Navigation groups are NOT here -- they are generated separately (navigation.generated.json) by analyzing CivicContent. Topics are content-type-agnostic: a topic gathers CivicContent where resource.subcategory == topic OR content.tags contains the topic (so flyers/news/policy fold in without changing this taxonomy). 'matchCategories' are the raw source-data category strings that map to this display category (mirrors CategoryDefinition.java).",
+  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validator, backend and frontend. Navigation groups are NOT here -- they live in a separate presentation artifact (navigation.json), so the domain model stays stable when navigation changes or is later generated. Topics are content-type-agnostic: a topic gathers CivicContent where resource.subcategory == topic OR content.tags contains the topic (so flyers/news/policy fold in without changing this taxonomy). 'matchCategories' are the raw source-data category strings that map to this display category (mirrors CategoryDefinition.java).",
   "categories": [
     {
       "key": "housing",

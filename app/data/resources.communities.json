@@ -3,7 +3,7 @@
     "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
     "retrieved": null,
     "coverage": "Newark, New Castle, Middletown, Bear, Claymont, Hockessin, DE (New Castle County)",
-    "note": "Structural field mapping only from Service_Directory_cleaned.json - eligibility, cost, urgency, tags, notes, access_mode, subcategory, and parent_organization are NOT populated (no source data in the raw directory). Not hand-curated like resources.json. See references/decisions.md Decision 013.",
+    "note": "Structurally mapped from Service_Directory_cleaned.json (Decision 013), then enriched (Decision 028 - subcategory and tags on all 171, cost and urgency best-effort) and normalized to the full resources.json schema (Decision 029). Fields the raw directory never carried - eligibility, eligibility_gender, access_mode, notes, parent_organization - are now explicit nulls rather than missing keys, so this file validates against the same schema as resources.json. Not hand-curated like resources.json.",
     "version": "1.0",
     "total_records": 171
   },
@@ -46,7 +46,15 @@
         "Disability Advocacy",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-002",
@@ -85,7 +93,15 @@
       "tags": [
         "Disability Advocacy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-003",
@@ -125,7 +141,15 @@
         "Disability Advocacy",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-004",
@@ -165,7 +189,15 @@
         "Child Care & Early Learning",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-005",
@@ -205,7 +237,15 @@
         "Child Care & Early Learning",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-006",
@@ -245,7 +285,15 @@
         "Child Care & Early Learning",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-007",
@@ -285,7 +333,15 @@
         "Child Care & Early Learning",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-008",
@@ -325,7 +381,15 @@
         "Child Care & Early Learning",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-009",
@@ -366,7 +430,15 @@
         "Youth",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-010",
@@ -406,7 +478,14 @@
         "Education & Training"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-011",
@@ -447,7 +526,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-012",
@@ -486,7 +572,15 @@
       "tags": [
         "Education & Training"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-013",
@@ -525,7 +619,15 @@
       "tags": [
         "Education & Training"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-014",
@@ -559,7 +661,16 @@
         "Education & Training",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "phones": [],
+      "access_mode": []
     },
     {
       "id": "SD-015",
@@ -599,7 +710,15 @@
         "Education & Training",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-016",
@@ -640,7 +759,14 @@
         "Youth"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-017",
@@ -681,7 +807,14 @@
         "Youth"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-018",
@@ -720,7 +853,15 @@
       "tags": [
         "Job Search Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-019",
@@ -760,7 +901,15 @@
         "Vocational Training",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-020",
@@ -793,7 +942,16 @@
       "tags": [
         "Job Search Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "phones": [],
+      "access_mode": []
     },
     {
       "id": "SD-021",
@@ -833,7 +991,15 @@
         "Youth Employment",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-022",
@@ -872,7 +1038,15 @@
       "tags": [
         "Job Search Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-023",
@@ -912,7 +1086,15 @@
         "Vocational Training",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-024",
@@ -951,7 +1133,15 @@
       "tags": [
         "Community Celebrations"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-025",
@@ -991,7 +1181,14 @@
         "Community Celebrations"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-026",
@@ -1030,7 +1227,15 @@
       "tags": [
         "Financial Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-027",
@@ -1069,7 +1274,15 @@
       "tags": [
         "Financial Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-028",
@@ -1110,7 +1323,15 @@
         "Youth",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-029",
@@ -1149,7 +1370,15 @@
       "tags": [
         "Financial Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-030",
@@ -1188,7 +1417,15 @@
       "tags": [
         "Financial Assistance"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-031",
@@ -1228,7 +1465,14 @@
         "Financial Assistance"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-032",
@@ -1267,7 +1511,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-033",
@@ -1306,7 +1558,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-034",
@@ -1345,7 +1605,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-035",
@@ -1385,7 +1653,14 @@
         "Prepared Meals"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-036",
@@ -1424,7 +1699,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-037",
@@ -1463,7 +1746,15 @@
       "tags": [
         "Farmers Market"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-038",
@@ -1502,7 +1793,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-039",
@@ -1542,7 +1841,15 @@
         "Home-Delivered Meals",
         "Seniors"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-040",
@@ -1581,7 +1888,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-041",
@@ -1622,7 +1937,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-042",
@@ -1661,7 +1983,15 @@
       "tags": [
         "Food Pantry"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-043",
@@ -1701,7 +2031,15 @@
         "Food Pantry",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-044",
@@ -1740,7 +2078,15 @@
       "tags": [
         "Medical Care"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-045",
@@ -1779,7 +2125,15 @@
       "tags": [
         "Medical Care"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-046",
@@ -1821,7 +2175,14 @@
         "Women"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-047",
@@ -1860,7 +2221,15 @@
       "tags": [
         "Rental Assistance"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-048",
@@ -1901,7 +2270,15 @@
         "Youth",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-049",
@@ -1940,7 +2317,15 @@
       "tags": [
         "Emergency Shelter"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-050",
@@ -1979,7 +2364,15 @@
       "tags": [
         "Rental Assistance"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-051",
@@ -2019,7 +2412,15 @@
         "Public Housing",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-052",
@@ -2059,7 +2460,15 @@
         "Public Housing",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-053",
@@ -2098,7 +2507,15 @@
       "tags": [
         "Public Housing"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-054",
@@ -2138,7 +2555,15 @@
         "Life Skills",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-055",
@@ -2178,7 +2603,15 @@
         "Life Skills",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-056",
@@ -2218,7 +2651,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-057",
@@ -2257,7 +2698,15 @@
       "tags": [
         "Counseling & Therapy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-058",
@@ -2297,7 +2746,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-059",
@@ -2336,7 +2793,15 @@
       "tags": [
         "Counseling & Therapy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-060",
@@ -2375,7 +2840,15 @@
       "tags": [
         "Substance Use Treatment"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-061",
@@ -2415,7 +2888,14 @@
         "Crisis Services"
       ],
       "cost": "low-cost",
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-062",
@@ -2455,7 +2935,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-063",
@@ -2495,7 +2983,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-064",
@@ -2535,7 +3031,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-065",
@@ -2575,7 +3079,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-066",
@@ -2615,7 +3127,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-067",
@@ -2655,7 +3175,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-068",
@@ -2694,7 +3222,15 @@
       "tags": [
         "Counseling & Therapy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-069",
@@ -2733,7 +3269,15 @@
       "tags": [
         "Substance Use Treatment"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-070",
@@ -2774,7 +3318,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-071",
@@ -2814,7 +3365,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-072",
@@ -2854,7 +3413,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-073",
@@ -2894,7 +3461,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-074",
@@ -2933,7 +3508,15 @@
       "tags": [
         "Counseling & Therapy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-075",
@@ -2973,7 +3556,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-076",
@@ -3013,7 +3604,15 @@
         "Counseling & Therapy",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-077",
@@ -3053,7 +3652,15 @@
         "Trauma & Grief Support",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-078",
@@ -3094,7 +3701,15 @@
         "Youth",
         "Crisis Services"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-079",
@@ -3133,7 +3748,15 @@
       "tags": [
         "Counseling & Therapy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-080",
@@ -3173,7 +3796,14 @@
         "Crisis Services"
       ],
       "cost": "free",
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-081",
@@ -3213,7 +3843,15 @@
         "Mentoring",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-082",
@@ -3253,7 +3891,15 @@
         "Mentoring",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-083",
@@ -3295,7 +3941,15 @@
         "Women",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-084",
@@ -3335,7 +3989,15 @@
         "Parenting Support",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-085",
@@ -3376,7 +4038,15 @@
         "Youth",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-086",
@@ -3416,7 +4086,15 @@
         "Parenting Support",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-087",
@@ -3456,7 +4134,15 @@
         "Parenting Support",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-088",
@@ -3497,7 +4183,15 @@
         "Youth",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-089",
@@ -3537,7 +4231,15 @@
         "Parenting Support",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-090",
@@ -3577,7 +4279,15 @@
         "Arts & Music",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-091",
@@ -3617,7 +4327,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-092",
@@ -3657,7 +4375,15 @@
         "Libraries",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-093",
@@ -3697,7 +4423,15 @@
         "Youth Programs",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-094",
@@ -3738,7 +4472,14 @@
         "Youth"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-095",
@@ -3778,7 +4519,15 @@
         "Senior Activities",
         "Seniors"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-096",
@@ -3818,7 +4567,15 @@
         "Libraries",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-097",
@@ -3859,7 +4616,15 @@
         "Youth",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-098",
@@ -3898,7 +4663,15 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-099",
@@ -3937,7 +4710,15 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-100",
@@ -3977,7 +4758,15 @@
         "Youth Programs",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-101",
@@ -4018,7 +4807,14 @@
         "Youth"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-102",
@@ -4058,7 +4854,15 @@
         "Youth Programs",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-103",
@@ -4097,7 +4901,15 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-104",
@@ -4136,7 +4948,15 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-105",
@@ -4175,7 +4995,15 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-106",
@@ -4214,7 +5042,15 @@
       "tags": [
         "Sports & Fitness"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-107",
@@ -4255,7 +5091,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-108",
@@ -4295,7 +5138,15 @@
         "Parks & Outdoors",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-109",
@@ -4336,7 +5187,14 @@
         "Youth"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-110",
@@ -4377,7 +5235,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-111",
@@ -4417,7 +5282,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-112",
@@ -4457,7 +5330,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-113",
@@ -4497,7 +5378,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-114",
@@ -4537,7 +5426,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-115",
@@ -4577,7 +5474,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-116",
@@ -4617,7 +5522,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-117",
@@ -4656,7 +5569,15 @@
       "tags": [
         "Parks & Outdoors"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-118",
@@ -4696,7 +5617,15 @@
         "Youth Programs",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-119",
@@ -4730,7 +5659,16 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "phones": [],
+      "access_mode": []
     },
     {
       "id": "SD-120",
@@ -4770,7 +5708,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-121",
@@ -4810,7 +5756,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-122",
@@ -4850,7 +5804,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-123",
@@ -4890,7 +5852,14 @@
         "Parks & Outdoors"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-124",
@@ -4929,7 +5898,15 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-125",
@@ -4969,7 +5946,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-126",
@@ -5009,7 +5994,14 @@
         "Parks & Outdoors"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-127",
@@ -5050,7 +6042,14 @@
         "Seniors"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-128",
@@ -5091,7 +6090,14 @@
         "Youth"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-129",
@@ -5131,7 +6137,15 @@
         "Arts & Music",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-130",
@@ -5171,7 +6185,15 @@
         "Arts & Music",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-131",
@@ -5211,7 +6233,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-132",
@@ -5251,7 +6281,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-133",
@@ -5291,7 +6329,15 @@
         "Arts & Music",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-134",
@@ -5324,7 +6370,16 @@
       "tags": [
         "Arts & Music"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "phones": [],
+      "access_mode": []
     },
     {
       "id": "SD-135",
@@ -5364,7 +6419,15 @@
         "Libraries",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-136",
@@ -5404,7 +6467,15 @@
         "Youth Programs",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-137",
@@ -5444,7 +6515,15 @@
         "Youth Programs",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-138",
@@ -5484,7 +6563,14 @@
         "Youth Programs"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-139",
@@ -5524,7 +6610,15 @@
         "Sports & Fitness",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-140",
@@ -5563,7 +6657,15 @@
       "tags": [
         "Sports & Fitness"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-141",
@@ -5604,7 +6706,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-142",
@@ -5644,7 +6753,14 @@
         "Arts & Music"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-143",
@@ -5684,7 +6800,15 @@
         "Information & Referral",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-144",
@@ -5723,7 +6847,15 @@
       "tags": [
         "Information & Referral"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-145",
@@ -5763,7 +6895,15 @@
         "Information & Referral",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-146",
@@ -5804,7 +6944,15 @@
         "Youth",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-147",
@@ -5843,7 +6991,15 @@
       "tags": [
         "Information & Referral"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-148",
@@ -5882,7 +7038,15 @@
       "tags": [
         "Information & Referral"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-149",
@@ -5921,7 +7085,15 @@
       "tags": [
         "Information & Referral"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-150",
@@ -5961,7 +7133,15 @@
         "Information & Referral",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-151",
@@ -6002,7 +7182,15 @@
         "Youth",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-152",
@@ -6041,7 +7229,15 @@
       "tags": [
         "Information & Referral"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-153",
@@ -6081,7 +7277,15 @@
         "Information & Referral",
         "People with Disabilities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-154",
@@ -6121,7 +7325,15 @@
         "Information & Referral",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-155",
@@ -6161,7 +7373,15 @@
         "Information & Referral",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-156",
@@ -6202,7 +7422,14 @@
         "Women"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-157",
@@ -6235,7 +7462,16 @@
       "tags": [
         "Information & Referral"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "phones": [],
+      "access_mode": []
     },
     {
       "id": "SD-158",
@@ -6274,7 +7510,15 @@
       "tags": [
         "Counseling & Therapy"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-159",
@@ -6307,7 +7551,16 @@
       "tags": [
         "Substance Use Treatment"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "phones": [],
+      "access_mode": []
     },
     {
       "id": "SD-160",
@@ -6346,7 +7599,15 @@
       "tags": [
         "Substance Use Treatment"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-161",
@@ -6385,7 +7646,15 @@
       "tags": [
         "Substance Use Treatment"
       ],
-      "urgency": "emergency"
+      "urgency": "emergency",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-162",
@@ -6426,7 +7695,14 @@
         "Youth"
       ],
       "cost": "free",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-163",
@@ -6466,7 +7742,15 @@
         "Support Groups",
         "Women"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-164",
@@ -6505,7 +7789,15 @@
       "tags": [
         "Support Groups"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-165",
@@ -6545,7 +7837,15 @@
         "Support Groups",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-166",
@@ -6586,7 +7886,14 @@
         "Women"
       ],
       "cost": "low-cost",
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-167",
@@ -6625,7 +7932,15 @@
       "tags": [
         "Transportation"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-168",
@@ -6665,7 +7980,15 @@
         "Volunteer Opportunities",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-169",
@@ -6705,7 +8028,15 @@
         "Volunteer Opportunities",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-170",
@@ -6744,7 +8075,15 @@
       "tags": [
         "Volunteer Opportunities"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     },
     {
       "id": "SD-171",
@@ -6784,7 +8123,15 @@
         "Volunteer Opportunities",
         "Youth"
       ],
-      "urgency": "standard"
+      "urgency": "standard",
+      "parent_organization": null,
+      "notes": null,
+      "eligibility": null,
+      "eligibility_gender": null,
+      "cost": null,
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "access_mode": []
     }
   ]
 }

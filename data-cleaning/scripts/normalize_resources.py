@@ -104,6 +104,9 @@ def normalize_record(record: Dict[str, Any]) -> Dict[str, Any]:
     normalized["parent_organization"] = normalize_text(record.get("parent_organization"))
     normalized["description"] = normalize_text(record.get("description"))
     normalized["notes"] = normalize_text(record.get("notes"))
+    normalized["eligibility"] = normalize_text(record.get("eligibility"))
+    normalized["eligibility_gender"] = normalize_text(record.get("eligibility_gender"))
+    normalized["cost"] = normalize_text(record.get("cost"))
 
     normalized["eligibility_age_min"] = parse_int(record.get("eligibility_age_min"))
     normalized["eligibility_age_max"] = parse_int(record.get("eligibility_age_max"))

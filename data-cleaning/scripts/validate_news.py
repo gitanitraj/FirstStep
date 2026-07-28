@@ -41,12 +41,29 @@ VALID_GEOGRAPHY = {"wilmington", "delaware", "both"}
 VALID_URGENCY   = {"emergency", "time-limited", "standard"}
 VALID_AUTHOR    = {"manual", "rss", "api"}
 
-VALID_CATEGORY_TAGS = {
-    "Clothing & Incidentals",
-    "Furniture & Household Items",
-    "Housing Assistance",
-    "General",
-}
+# category_tags are the human-facing labels a news item is filed under. They are
+# loaded from the canonical taxonomy — the single source of truth shared with the
+# validator, backend and frontend — rather than hardcoded. The previous hardcoded
+# set held only 4 strings from the original 3-category curated data and predated
+# the 10-category taxonomy (Decision 014), so it rejected every newer tag.
+#
+# Allowed = display LABELS (Housing, Food, Health…) plus canonical SUBCATEGORIES
+# (Rental Assistance…), so an item can be filed at either level. Raw source
+# category strings ("Housing Assistance") are deliberately NOT allowed — those are
+# DSCYF directory vocabulary, not user-facing labels.
+TAXONOMY_FILE = Path("app/data/taxonomy.json")
+
+
+def _load_category_tags():
+    data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
+    tags = {"General"}
+    for cat in data["categories"]:
+        tags.add(cat["label"])
+        tags.update(cat.get("subcategories", []))
+    return tags
+
+
+VALID_CATEGORY_TAGS = _load_category_tags()
 
 REQUIRED_FIELDS = [
     "id", "type", "headline", "summary", "body", "why_it_matters",

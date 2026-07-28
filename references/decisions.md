@@ -1417,3 +1417,108 @@ populate that category if the loaded dataset expands beyond the curated subset
 
 Out of scope (this decision): navigation generation (D0.4) and `--strict` /
 integration verification of the enriched file (D0.5).
+
+# Decision 029
+
+**D0.4 + D0.5 — navigation as its own artifact, and both data files validating
+clean. D0 IS COMPLETE; Slice F is unblocked.**
+
+**The design decision (user, during planning): navigation is a PRESENTATION model,
+not domain vocabulary, so it lives in its own file.** Decision 027 had planned
+either a `groups` key inside `taxonomy.json` or a `navigation.generated.json`
+produced by analyzing content. The user pushed back on both: topic groups are part
+of the navigation experience, not the domain model. Two artifacts, two lifecycles —
+`taxonomy.json` (Category → Subcategory, stable, what everything validates against)
+and **new `app/data/navigation.json`** (Group → Topics, editorial, expected to
+evolve). **The payoff is the long-term one:** when navigation generation becomes
+AI-assisted, only `navigation.json` is regenerated — the domain taxonomy stays
+stable, the backend keeps aggregating live content, and the frontend is untouched
+because it renders whatever navigation model it is handed. A **`source` field**
+(`hand-authored` now, `ai-generated` later) carries provenance so the **filename
+stays stable**: the AI swap changes content, never wiring.
+
+**Structure is authored; counts are computed at runtime.** `navigation.json` stores
+group labels and topic names — never counts. Baking counts into a data file would
+duplicate the aggregation the backend already does (`OrganizationService.
+getCuratedShortlist()`) and go stale against loaded data, violating Decision 019's
+*backend aggregates and normalizes; frontend only displays*. **Slice F's
+`NavigationService` does the counting**, using the standing content-agnostic rule
+(`resource.subcategory == topic OR content.tags contains topic`).
+
+**Only two categories are grouped** — housing (8 topics) and community-support (11).
+A category absent from `navigation.json` renders a **flat topic list**; a group
+header above legal's single topic is noise, not hierarchy. Housing: Need Help Right
+Away · Find a Place to Live · Help Staying Housed. Community Support: Get Help ·
+Family and Children · Learning and Skills · Connect with Others. Every subcategory
+is placed exactly once; `Eviction Prevention` stays dual-placed across categories
+(housing groups it, legal is flat).
+
+**New `data-cleaning/scripts/validate_navigation.py`** — one validator per data
+artifact is this repo's convention (`validate_schema.py` → resources,
+`validate_news.py` → news), and this gate is exactly what a future AI generator's
+output must pass. Enforces: every key exists in the taxonomy; every topic is a
+subcategory of its category (catches taxonomy-rename drift); **group topics cover
+every subcategory** (the subtle one — otherwise a topic can hold content and be
+unreachable from the UI, a bug nothing else would surface); no topic in two groups;
+no duplicate labels. Reports (never errors) flat categories and topics with no
+loaded content. `taxonomy.json`'s `note` was corrected to describe the split; the
+file is otherwise **structurally unchanged**.
+
+**D0.5 — the enriched file had never been validated, and failed 171/171.** Not a
+data-quality problem: six fields were **absent as keys** where the curated 58 carry
+them as explicit `null` (`eligibility`, `eligibility_age_min/max`,
+`eligibility_gender`, `access_mode`, `notes`, plus `cost` on 144), and the ID rule
+hardcoded the curated `CI/FH/HA` prefixes, rejecting every `SD-` id. Fixes:
+
+- **`normalize_resources.py` gained 3 lines** — it already filled 11 of those keys
+  via `record.get(...)`; `eligibility`, `eligibility_gender` and `cost` were simply
+  never touched. Run in place on `resources.communities.json`, this cleared all
+  1176 missing-field errors. Values land as `null` (the honest value — the DSCYF
+  directory never stated them), and `record.get` preserved the 27 costs the D0.3
+  enrichment assigned. **Verified: 0 pre-existing values changed, 9 keys added,
+  `meta` identical, 171 records aligned by id.** The curated file was left alone.
+- **`validate_schema.py`**: `SD` added to the ID prefixes; a **`--input` flag**
+  (it was hardcoded to `resources.json` and could not validate the communities
+  file at all).
+- **The `meta.note`** on `resources.communities.json` was corrected — it still
+  claimed subcategory/tags/cost were unpopulated, which D0.3 had changed.
+
+**Duplicate detection was wrong, and the finding was that there are NO duplicates.**
+The rule keyed on organization+address and flagged 37 pairs. Investigation showed
+every one is the **same service listed under multiple raw source categories** — the
+DSCYF directory does this deliberately (Learning Tree Academy under Before/After
+School Care, Child Care AND Early Childhood/Pre-K; BCCS and RI International under
+both Mental Health and Substance Use), and the curated thrift/voucher records are
+dual-listed across Clothing and Furniture (CI-004/FH-002, CI-013/FH-006). **Nothing
+was deleted.** The key became organization+address+**category**+subcategory, and
+`detect_duplicates()` now returns **(errors, warnings)** — two tiers, because a key
+collision means two different things: **identical summary → a true duplicate
+(ERROR); different summary → one organization running several programs at one site
+(WARNING)**. The two survivors are legitimate: Saint Anne's (Youth Group vs Sunday
+School in a Box) and Brandywine Valley SPCA (three volunteer programs). Both files
+now **exit 0**. Note this also fixed a pre-existing bug — `resources.json` had been
+exiting 1 on 3 of these false positives all along.
+
+**Warnings are accepted as documented debt** (user's call): 42 curated + 171
+communities warnings remain (`notes` empty, `parent_organization` null, long source
+summaries). `--strict` stays aspirational — clearing it means authoring content for
+~342 fields, which is editorial work, not a data pass.
+
+**Verification:** `validate_schema.py` on both files → **exit 0** (58 passed, 171
+passed, 0 failures). `validate_navigation.py` → **exit 0**, and both validators were
+**negative-tested**: a bogus topic, an omitted topic, a topic in two groups, a
+duplicate label, an unknown key and an empty groups[] each fail as intended; an
+identical cloned record raises the duplicate ERROR while a reworded clone raises
+only the WARNING. **127 backend tests green.** Live (Docker): `/api/home` category
+counts **unchanged** — housing 44 · health 32 · clothing 15 · food 12 ·
+furniture-household 6 · employment 6 · legal 3 · utilities 0 · community-support 58 ·
+community-events 60 (53 resources + 7 flyers) = 229 resources; `GET /api/resources/
+SD-004` round-trips with `eligibility: null`, proving in-place normalization did not
+break deserialization.
+
+Annotated mirror: `references/validate_navigation_annotated.py` (new script).
+`validate_schema.py` and `normalize_resources.py` have no annotated mirrors — a
+pre-existing gap, recorded here rather than by adding two ~450-line files.
+
+Out of scope (this decision): `NavigationService`, the category BFF endpoint and
+any frontend — all Slice F.

@@ -1,0 +1,72 @@
+{
+  "version": 1,
+  "source": "hand-authored",
+  "note": "Presentation model: how canonical topics are grouped for navigation. This is NOT the domain model -- categories and topics are referenced by key/name and MUST exist in taxonomy.json, which stays the single source of truth for the vocabulary. Counts are NOT stored here; the backend computes them over loaded CivicContent at request time (resource.subcategory == topic OR content.tags contains topic). A category absent from this file has no topic groups and renders a flat topic list. Only categories with many topics are grouped -- a group header over a single topic is noise. A future AI-assisted generator replaces THIS FILE ONLY (flipping 'source' to 'ai-generated'); taxonomy.json, the backend and the frontend are unaffected.",
+  "categories": [
+    {
+      "key": "housing",
+      "groups": [
+        {
+          "label": "Need Help Right Away",
+          "topics": [
+            "Emergency Shelter"
+          ]
+        },
+        {
+          "label": "Find a Place to Live",
+          "topics": [
+            "Transitional Housing",
+            "Sober Living",
+            "Public Housing",
+            "Senior Housing",
+            "Youth Housing"
+          ]
+        },
+        {
+          "label": "Help Staying Housed",
+          "topics": [
+            "Rental Assistance",
+            "Eviction Prevention",
+            "Homeownership"
+          ]
+        }
+      ]
+    },
+    {
+      "key": "community-support",
+      "groups": [
+        {
+          "label": "Get Help",
+          "topics": [
+            "Information & Referral",
+            "Financial Assistance",
+            "Transportation"
+          ]
+        },
+        {
+          "label": "Family and Children",
+          "topics": [
+            "Child Care & Early Learning",
+            "Parenting Support",
+            "Mentoring"
+          ]
+        },
+        {
+          "label": "Learning and Skills",
+          "topics": [
+            "Education & Training",
+            "Life Skills"
+          ]
+        },
+        {
+          "label": "Connect with Others",
+          "topics": [
+            "Support Groups",
+            "Volunteer Opportunities",
+            "Community Celebrations"
+          ]
+        }
+      ]
+    }
+  ]
+}

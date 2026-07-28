@@ -10,8 +10,8 @@
 #   no `subcategory`, `cost`, `urgency`, or `tags` (Decision 013: the raw DSCYF
 #   directory has no source data for them). This script proposes those fields with
 #   Claude, CONSTRAINED to the canonical vocabulary in app/data/taxonomy.json
-#   (D0.1), so the Category Hub (F) can group records and the navigation generator
-#   (D0.4) has tags to organize.
+#   (D0.1), so the Category Hub (F) can group records and the navigation layer
+#   (D0.4, app/data/navigation.json — see Decision 029) has tags to organize.
 #
 # WHY TWO PHASES (propose -> review -> apply)
 #   The model must NEVER edit the data file directly. `propose` calls the API and
