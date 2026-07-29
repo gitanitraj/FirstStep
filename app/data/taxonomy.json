@@ -1,65 +1,75 @@
 {
   "version": 1,
-  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validator, backend and frontend. Navigation groups are NOT here -- they live in a separate presentation artifact (navigation.json), so the domain model stays stable when navigation changes or is later generated. Topics are content-type-agnostic: a topic gathers CivicContent where resource.subcategory == topic OR content.tags contains the topic (so flyers/news/policy fold in without changing this taxonomy). 'matchCategories' are the raw source-data category strings that map to this display category (mirrors CategoryDefinition.java).",
+  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validator, backend and frontend. Navigation groups are NOT here -- they live in a separate presentation artifact (navigation.json), so the domain model stays stable when navigation changes or is later generated. Topics are content-type-agnostic: a topic gathers CivicContent where resource.subcategory == topic OR content.tags contains the topic (so flyers/news/policy fold in without changing this taxonomy). 'matchCategories' are the raw source-data category strings that map to this display category and 'matchCategoryTags' are the editorial news category_tags (display label plus any upstream alias, e.g. RSS says 'Healthcare') that associate a news item with it -- both mirror CategoryDefinition.java. A news item's resource_tags are descriptive metadata for search, filtering and AI retrieval and are NEVER used for categorization (Decision 031).",
   "categories": [
     {
       "key": "housing",
       "label": "Housing",
       "matchCategories": ["Housing Assistance", "Housing"],
+      "matchCategoryTags": ["Housing"],
       "subcategories": ["Emergency Shelter", "Transitional Housing", "Sober Living", "Rental Assistance", "Public Housing", "Homeownership", "Senior Housing", "Youth Housing", "Eviction Prevention"]
     },
     {
       "key": "food",
       "label": "Food",
       "matchCategories": ["Food Program"],
+      "matchCategoryTags": ["Food"],
       "subcategories": ["Food Pantry", "Prepared Meals", "Home-Delivered Meals", "Farmers Market"]
     },
     {
       "key": "clothing",
       "label": "Clothing",
       "matchCategories": ["Clothing & Incidentals"],
+      "matchCategoryTags": ["Clothing"],
       "subcategories": ["Clothing Closet", "Thrift Store", "Vouchers"]
     },
     {
       "key": "health",
       "label": "Health",
       "matchCategories": ["Healthcare/Medical", "Mental Health", "Substance Use"],
+      "matchCategoryTags": ["Health", "Healthcare"],
       "subcategories": ["Counseling & Therapy", "Crisis Services", "Substance Use Treatment", "Medical Care", "Trauma & Grief Support"]
     },
     {
       "key": "employment",
       "label": "Employment",
       "matchCategories": ["Employment"],
+      "matchCategoryTags": ["Employment"],
       "subcategories": ["Job Search Assistance", "Vocational Training", "Youth Employment"]
     },
     {
       "key": "utilities",
       "label": "Utilities",
       "matchCategories": [],
+      "matchCategoryTags": ["Utilities"],
       "subcategories": []
     },
     {
       "key": "legal",
       "label": "Legal",
       "matchCategories": ["Advocacy"],
+      "matchCategoryTags": ["Legal"],
       "subcategories": ["Disability Advocacy", "Eviction Prevention"]
     },
     {
       "key": "community-events",
       "label": "Community Events",
       "matchCategories": ["Recreational"],
+      "matchCategoryTags": ["Community Events"],
       "subcategories": ["Youth Programs", "Sports & Fitness", "Arts & Music", "Parks & Outdoors", "Libraries", "Senior Activities"]
     },
     {
       "key": "furniture-household",
       "label": "Furniture & Household",
       "matchCategories": ["Furniture & Household Items"],
+      "matchCategoryTags": ["Furniture & Household"],
       "subcategories": ["Appliances", "Starter Kits", "Thrift Store", "Vouchers"]
     },
     {
       "key": "community-support",
       "label": "Community Support",
       "matchCategories": ["Resource Information", "Education/Training", "Parenting Education", "Financial Support", "Support Group", "Early Childhood/Pre-K", "Volunteer", "Mentor", "Life Skills", "Transportation", "Child Care", "Before/After School Care", "Entertainment"],
+      "matchCategoryTags": ["Community Support"],
       "subcategories": ["Information & Referral", "Education & Training", "Financial Assistance", "Parenting Support", "Support Groups", "Child Care & Early Learning", "Volunteer Opportunities", "Mentoring", "Life Skills", "Transportation", "Community Celebrations"]
     }
   ]

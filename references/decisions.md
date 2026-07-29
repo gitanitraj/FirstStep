@@ -1522,3 +1522,155 @@ pre-existing gap, recorded here rather than by adding two ~450-line files.
 
 Out of scope (this decision): `NavigationService`, the category BFF endpoint and
 any frontend — all Slice F.
+
+# Decision 030
+
+**`validate_news.py` de-hardcoded — and the cleanup exposed that half the curated
+news never surfaces under any category.**
+
+**The problem:** `VALID_CATEGORY_TAGS` was a hardcoded 4-string set
+(`Clothing & Incidentals`, `Furniture & Household Items`, `Housing Assistance`,
+`General`) from the original 3-category curated data. It predates the 10-category
+taxonomy (Decision 014) and never got the `taxonomy.json` rewiring
+`validate_schema.py` received in D0.1, so it rejected every newer tag and the file
+had been **failing validation (exit 1) unnoticed**.
+
+**Structural finding that shaped the fix — `category_tags` drives nothing.**
+Tracing both tag fields through the backend: `category_tags` → `NewsItem.tags`,
+exposed on `/api/news` but rendered by no component and used in no aggregation.
+The field that actually associates a news item with a category is **`resource_tags`**,
+matched case-insensitively against `CategoryDefinition.matchNewsTags()` in
+`CategoryService.matchesAnyTag()` to pick each category's `latestPolicyUpdate`. So
+the validator had been policing the inert field with a stale vocabulary while the
+functional field went unchecked.
+
+**Three changes:**
+
+1. **Vocabulary loaded from `taxonomy.json`** via `_load_taxonomy_tags()` (same
+   pattern as `validate_schema.py`'s `_load_taxonomy()`). Allowed = display
+   **labels** + canonical **subcategories** + `General`, so an item can be filed at
+   category or topic level. **Raw source category strings are deliberately NOT
+   allowed** — "Housing Assistance" is DSCYF directory vocabulary, not a
+   user-facing label.
+2. **`taxonomy.json` gained `matchNewsTags` per category** (`housing`, `food`,
+   `healthcare`, `employment`, `utilities`, `legal`; empty for the other four),
+   mirroring `CategoryDefinition.java` exactly as `matchCategories` already does.
+   This is what lets a Python validator check a rule that previously existed only
+   in Java. The file's compact formatting was preserved (line-targeted insert, not
+   a JSON rewrite).
+3. **New reachability WARNING**: if none of a record's `resource_tags` match any
+   category's `matchNewsTags`, the item loads fine and is simply never surfaced
+   anywhere — a silent failure no other check could catch.
+
+**Data normalized (8 lines in `news.json`, formatting untouched):** Housing
+Assistance→Housing (×5), Food Access→Food (×2), Utility Assistance→Utilities,
+Dental Assistance + Medical Assistance→Health, and `Free` dropped (a cost, not a
+category). Safe because nothing renders these tags.
+
+**THE FINDING — 4 of 8 curated news items are unreachable** (the new warning fires
+on each): NP-001, NP-002, NP-006 are housing news whose `resource_tags` are
+fine-grained slugs (`rental-assistance`, `vouchers`, `SRAP`, `WHA`) that never
+include the literal token `housing`; **NP-008 tags `health` while the category
+matches on `healthcare`**. `matchesAnyTag` is exact `equalsIgnoreCase` — no
+substring, no stemming — so one token off means invisible. Live proof: Housing's
+`latestPolicyUpdate` comes only from NP-005 (the one housing item that happens to
+carry the token), and Health shows **none** despite having a Medicaid dental item.
+**Not fixed here** — it is a live-behavior change, and there are two candidate
+paths: widen `matchNewsTags` (code, also affects RSS classification) or add the
+category token to each item's `resource_tags` (data only). Left for the user.
+
+**Verification:** `validate_news.py` → **exit 0**, 8/8 passed (was 8/8 FAILED).
+127 backend tests green. Live (Docker rebuild): `/api/home` identical — same three
+categories carry a `latestPolicyUpdate` (housing, food, utilities), 236 category
+resource counts unchanged; `/api/news` returns the normalized tags. The other two
+validators still exit 0.
+
+Noted, not acted on: `taxonomy.json` now has **four** separate loaders
+(`validate_schema.py`, `validate_news.py`, `validate_navigation.py`,
+`enrich_resources.py`), each a handful of lines. A shared module would be DRYer;
+refactoring three working scripts was out of scope for this cleanup.
+
+# Decision 031
+
+**`category_tags` is now the authoritative field for news categorization
+(user's architectural call).** Decision 030 surfaced that 4 of 8 curated news items
+reached no category, and offered two fixes — widen the matching rules or add
+category tokens to `resource_tags`. **The user rejected both**: the mismatch is a
+prototype artifact, not a data problem. `category_tags` **is** the editorial
+classification of a NewsItem and should drive navigation; `resource_tags` stays
+descriptive metadata for search, filtering and AI retrieval and must not be
+overloaded with category meaning.
+
+**Three distinct concepts in the V2 CivicContent model, one field each:**
+
+| Field | Purpose |
+|---|---|
+| `category_tags` | Editorial classification and navigation |
+| `resource_tags` (future: `tags`) | Search, filtering, AI retrieval |
+| `status` / `expirationDate` | Content lifecycle |
+
+**Backend refactor (blast radius was small — `matchNewsTags` had exactly ONE
+usage):**
+
+- **`CategoryDefinition`**: `matchNewsTags` → **`matchCategoryTags`**, repopulated
+  with **editorial display-cased values** (was lowercase machine tokens). Each
+  category holds its own label plus any alias an upstream source emits: **health =
+  `["Health", "Healthcare"]`** because RSS-classified legislation says "Healthcare"
+  where the taxonomy says "Health". The four categories that previously had an
+  EMPTY list (clothing, community-events, furniture-household, community-support)
+  now carry their label, so they can surface a policy update if one is ever filed
+  under them.
+- **`CategoryService`**: matches `n.tags` (category_tags) instead of
+  `n.resourceTags`. The `matchNewsTags().isEmpty()` short-circuit was **removed** —
+  no list is empty anymore, so it was dead code. (Correcting the old annotated
+  note while removing it: it claimed an empty list would "vacuously match every
+  news item," which is backwards — the inner loop never runs, so nothing matches.
+  The guard was only ever an efficiency nicety.)
+- **`UpdateItem` gained `categoryTags`**, populated from `n.tags` for news and
+  `null` for flyers — a Flyer has no editorial classification field, and its own
+  `tags` are content descriptors, so promoting them would re-introduce exactly the
+  conflation this decision removes. **No grouping behavior changed**; this carries
+  the classification through so the Weekly Updates page (Slice H) can group
+  server-side without another DTO change.
+- **`taxonomy.json`** mirrors the rename and its note now states plainly that
+  `resource_tags` are never used for categorization.
+- **`validate_news.py`**: the reachability warning added in Decision 030 was
+  **retargeted onto `category_tags`** (warning on the wrong field would have been
+  worse than not warning). Aliases are accepted as valid `category_tags`. The
+  `resource_tags` check is now just a type/emptiness check with a comment saying
+  why there is no vocabulary to check it against.
+
+**Behavior change — the defect is fixed by design, not by patching data.** Live
+`/api/home`: **health now shows NP-008** (Medicaid dental — previously none), and
+housing resolves to **NP-006** rather than NP-005 because all four housing items
+are finally eligible and the most recent wins. Food (NP-003) and utilities (NP-004)
+unchanged. All 8 curated items are now reachable. `/api/updates` carries
+`categoryTags` for news (RSS items included — one live bill shows
+`["Healthcare", "Benefits", "Legal"]`, exercising the alias path) and `null` for
+flyers.
+
+**Verification:** **132 backend tests green** (127 + 5 new). New tests lock in the
+contract: `shouldIgnoreResourceTagsWhenAssociatingNewsWithCategory` (an item with
+`resourceTags=["housing"]` but `category_tags=["Food"]` must NOT reach housing),
+`shouldMatchCategoryTagAliasWhenSourceUsesDifferentLabel`,
+`shouldReturnNullPolicyUpdateWhenOnlySubcategoryTagIsPresent`,
+`shouldCarryEditorialCategoryTagsForNewsItems`, `shouldLeaveCategoryTagsNullForFlyers`.
+All four validators exit 0. Live verified via Docker rebuild. Annotated mirrors
+synced: `CategoryDefinition_annotated.java`, `CategoryService_annotated.java`,
+`UpdatesService_annotated.java`.
+
+**Left unmapped deliberately:** RSS emits `Disability`, `Benefits` and
+`Delaware Legislation`, which match no category. They only affect future Weekly
+Updates grouping, never category pages (`CategoryService` reads
+`newsService.getAll()`, which is curated news only — RSS reaches `UpdatesService`
+alone). **Observed while verifying, flagged not fixed:** `classifyLegislation`'s
+keyword matching is greedy — a wetlands bill came back tagged
+`["Housing", "Food", "Utilities", "Benefits", "Legal"]`. Slice H will inherit that
+noise if it groups RSS items by category.
+
+**TECHNICAL DEBT ITEM (user-directed, do AFTER Slice F):** extract a shared
+taxonomy loader. `taxonomy.json` now has four small, stable, independently
+exercised loaders (`validate_schema.py`, `validate_news.py`,
+`validate_navigation.py`, `enrich_resources.py`). Deliberately left alone to avoid
+mixing an architectural refactor into functional work. A second, smaller item:
+rename `resource_tags` → `tags` in the CivicContent model.

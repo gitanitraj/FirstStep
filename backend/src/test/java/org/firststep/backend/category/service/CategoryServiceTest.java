@@ -54,11 +54,12 @@ class CategoryServiceTest {
         return f;
     }
 
-    private NewsItem newsItem(String id, String communityId, List<String> resourceTags, String published) {
+    /** categoryTags is the editorial classification — the only field categorization reads. */
+    private NewsItem newsItem(String id, String communityId, List<String> categoryTags, String published) {
         NewsItem n = new NewsItem();
         n.id = id;
         n.communityId = communityId;
-        n.resourceTags = resourceTags;
+        n.tags = categoryTags;
         n.published = published;
         return n;
     }
@@ -127,9 +128,9 @@ class CategoryServiceTest {
     @Test
     void shouldFindMostRecentMatchingPolicyUpdate() {
         when(newsService.getAll()).thenReturn(List.of(
-                newsItem("NW-001", "wilmington-de", List.of("housing"), "2026-01-01"),
-                newsItem("NW-002", "wilmington-de", List.of("housing"), "2026-03-01"),
-                newsItem("NW-003", "wilmington-de", List.of("food"), "2026-05-01")));
+                newsItem("NW-001", "wilmington-de", List.of("Housing"), "2026-01-01"),
+                newsItem("NW-002", "wilmington-de", List.of("Housing"), "2026-03-01"),
+                newsItem("NW-003", "wilmington-de", List.of("Food"), "2026-05-01")));
 
         CategorySummary housing = find(service.getAll(null), "housing");
 
@@ -139,7 +140,44 @@ class CategoryServiceTest {
     @Test
     void shouldReturnNullPolicyUpdateWhenNoNewsMatches() {
         when(newsService.getAll()).thenReturn(List.of(
-                newsItem("NW-001", "wilmington-de", List.of("food"), "2026-01-01")));
+                newsItem("NW-001", "wilmington-de", List.of("Food"), "2026-01-01")));
+
+        CategorySummary housing = find(service.getAll(null), "housing");
+
+        assertNull(housing.latestPolicyUpdate());
+    }
+
+    @Test
+    void shouldIgnoreResourceTagsWhenAssociatingNewsWithCategory() {
+        // resource_tags are descriptive metadata for search, filtering and AI
+        // retrieval — they must never pull a news item into a category.
+        NewsItem n = newsItem("NW-001", "wilmington-de", List.of("Food"), "2026-01-01");
+        n.resourceTags = List.of("housing", "rental-assistance", "eviction");
+        when(newsService.getAll()).thenReturn(List.of(n));
+
+        List<CategorySummary> summaries = service.getAll(null);
+
+        assertNull(find(summaries, "housing").latestPolicyUpdate());
+        assertEquals("NW-001", find(summaries, "food").latestPolicyUpdate().id);
+    }
+
+    @Test
+    void shouldMatchCategoryTagAliasWhenSourceUsesDifferentLabel() {
+        // RSS-classified legislation says "Healthcare" where the taxonomy says "Health".
+        when(newsService.getAll()).thenReturn(List.of(
+                newsItem("NW-001", "wilmington-de", List.of("Healthcare"), "2026-01-01")));
+
+        CategorySummary health = find(service.getAll(null), "health");
+
+        assertEquals("NW-001", health.latestPolicyUpdate().id);
+    }
+
+    @Test
+    void shouldReturnNullPolicyUpdateWhenOnlySubcategoryTagIsPresent() {
+        // A topic-level tag is valid editorially but does not by itself reach a
+        // category — the item needs its category label too.
+        when(newsService.getAll()).thenReturn(List.of(
+                newsItem("NW-001", "wilmington-de", List.of("Rental Assistance"), "2026-01-01")));
 
         CategorySummary housing = find(service.getAll(null), "housing");
 

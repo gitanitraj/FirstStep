@@ -60,21 +60,23 @@ public class CategoryService {
                 Comparator.nullsLast(Comparator.reverseOrder())));
         List<SearchResult> latestItems = combined.stream().limit(MAX_LATEST_ITEMS).toList();
 
-        NewsItem latestPolicyUpdate = definition.matchNewsTags().isEmpty()
-                ? null
-                : news.stream()
-                        .filter(n -> matchesAnyTag(n.resourceTags, definition.matchNewsTags()))
-                        .max(Comparator.comparing(n -> n.published, Comparator.nullsFirst(Comparator.naturalOrder())))
-                        .orElse(null);
+        // Categorization reads a news item's EDITORIAL classification (category_tags),
+        // never its resource_tags — those are descriptive metadata for search,
+        // filtering and AI retrieval, and overloading them with category meaning is
+        // what previously left 4 of 8 curated items unreachable (Decision 031).
+        NewsItem latestPolicyUpdate = news.stream()
+                .filter(n -> matchesAnyTag(n.tags, definition.matchCategoryTags()))
+                .max(Comparator.comparing(n -> n.published, Comparator.nullsFirst(Comparator.naturalOrder())))
+                .orElse(null);
 
         return new CategorySummary(definition.key(), definition.label(), definition.icon(),
                 resourceCount, latestItems, latestPolicyUpdate);
     }
 
-    private boolean matchesAnyTag(List<String> resourceTags, List<String> matchNewsTags) {
-        if (resourceTags == null) return false;
-        for (String tag : resourceTags) {
-            for (String match : matchNewsTags) {
+    private boolean matchesAnyTag(List<String> categoryTags, List<String> matchCategoryTags) {
+        if (categoryTags == null) return false;
+        for (String tag : categoryTags) {
+            for (String match : matchCategoryTags) {
                 if (match.equalsIgnoreCase(tag)) return true;
             }
         }

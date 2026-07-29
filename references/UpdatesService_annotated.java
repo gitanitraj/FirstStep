@@ -120,12 +120,20 @@ public class UpdatesService {
                 n.published,
                 cs != null ? cs.name : null,
                 cs != null ? cs.url : null,
-                n.urgency);
+                n.urgency,
+                // Editorial classification carried through verbatim (Decision 031)
+                // so the Weekly Updates page can group by category server-side.
+                // This is category_tags — NOT resourceTags, which stay descriptive
+                // metadata for search, filtering and AI retrieval.
+                n.tags);
     }
 
     // Flyer → UpdateItem. Flyers have NO `published` field, so the display date is
     // the event date when present, else the load/updated date. Flyers carry no
-    // urgency and no external url, so those are null.
+    // urgency and no external url, so those are null — and no categoryTags either:
+    // a Flyer has no editorial classification field, and its own `tags` are content
+    // descriptors, so promoting them here would silently mix metadata into
+    // navigation (exactly the conflation Decision 031 removed from news).
     private UpdateItem toUpdateItem(Flyer f) {
         String date = f.eventDate != null ? f.eventDate : f.updatedDate;
         return new UpdateItem(
@@ -135,6 +143,7 @@ public class UpdatesService {
                 f.summary,
                 date,
                 f.organization,
+                null,
                 null,
                 null);
     }

@@ -54,16 +54,25 @@ VALID_AUTHOR    = {"manual", "rss", "api"}
 TAXONOMY_FILE = Path("app/data/taxonomy.json")
 
 
-def _load_category_tags():
+def _load_taxonomy_tags():
+    """Return (valid category_tags, the lowercased category-matching vocabulary)."""
     data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
     tags = {"General"}
+    match_tags = set()
     for cat in data["categories"]:
         tags.add(cat["label"])
         tags.update(cat.get("subcategories", []))
-    return tags
+        match_tags.update(t.lower() for t in cat.get("matchCategoryTags", []))
+        # Aliases an upstream source emits (RSS says "Healthcare") are valid
+        # category_tags too, even though they are not the display label.
+        tags.update(cat.get("matchCategoryTags", []))
+    return tags, match_tags
 
 
-VALID_CATEGORY_TAGS = _load_category_tags()
+# MATCH_CATEGORY_TAGS mirrors CategoryDefinition.matchCategoryTags — the values the
+# backend matches a news item's category_tags against to associate it with a
+# category. resource_tags are descriptive metadata and are never consulted.
+VALID_CATEGORY_TAGS, MATCH_CATEGORY_TAGS = _load_taxonomy_tags()
 
 REQUIRED_FIELDS = [
     "id", "type", "headline", "summary", "body", "why_it_matters",
@@ -115,11 +124,31 @@ def validate_record(record, index):
     else:
         for tag in cat_tags:
             if tag not in VALID_CATEGORY_TAGS:
-                errors.append(f"Invalid category_tag: '{tag}'. Valid: {VALID_CATEGORY_TAGS}")
+                errors.append(
+                    f"Invalid category_tag: '{tag}'. Must be a category label or "
+                    f"subcategory from {TAXONOMY_FILE} (or 'General')."
+                )
         if not cat_tags:
             warnings.append("category_tags is empty — consider tagging to at least one category.")
+        else:
+            # category_tags is the EDITORIAL classification and the only field that
+            # associates a news item with a category: CategoryService matches it
+            # case-insensitively against each category's matchCategoryTags to pick
+            # that category's latestPolicyUpdate. A subcategory-level tag is valid
+            # but does not by itself reach a category, so an item tagged only
+            # "Rental Assistance" loads fine and is never surfaced anywhere —
+            # exactly the silent failure no other check catches.
+            lowered = {str(t).lower() for t in cat_tags}
+            if not (lowered & MATCH_CATEGORY_TAGS):
+                warnings.append(
+                    f"category_tags {cat_tags} match no category — this item will "
+                    f"not surface under any category. Add one of: "
+                    f"{sorted(MATCH_CATEGORY_TAGS)}"
+                )
 
-    # 5. resource_tags must be a list
+    # 5. resource_tags must be a list — descriptive metadata for search, filtering
+    # and AI retrieval. Deliberately NOT used for categorization (Decision 031), so
+    # there is no vocabulary to check it against.
     res_tags = record.get("resource_tags", [])
     if not isinstance(res_tags, list):
         errors.append("resource_tags must be a list.")

@@ -6,7 +6,9 @@ package org.firststep.backend.category.service;
 // CategoryService implements /api/categories: for each of the 10 fixed
 // CategoryDefinitions, it counts matching Resource/Flyer records, picks the
 // 3 most recently updated as "latest items," and finds the most recent
-// News item whose resourceTags overlap the category's matchNewsTags.
+// News item whose EDITORIAL category_tags overlap the category's
+// matchCategoryTags (Decision 031 — resource_tags are descriptive metadata
+// and are never consulted for categorization).
 // =============================================================================
 
 import java.util.ArrayList;
@@ -69,21 +71,19 @@ public class CategoryService {
                 Comparator.nullsLast(Comparator.reverseOrder())));
         List<SearchResult> latestItems = combined.stream().limit(MAX_LATEST_ITEMS).toList();
 
-        NewsItem latestPolicyUpdate = definition.matchNewsTags().isEmpty()
-                ? null
-                : news.stream()
-                        .filter(n -> matchesAnyTag(n.resourceTags, definition.matchNewsTags()))
-                        .max(Comparator.comparing(n -> n.published, Comparator.nullsFirst(Comparator.naturalOrder())))
-                        .orElse(null);
+        NewsItem latestPolicyUpdate = news.stream()
+                .filter(n -> matchesAnyTag(n.tags, definition.matchCategoryTags()))
+                .max(Comparator.comparing(n -> n.published, Comparator.nullsFirst(Comparator.naturalOrder())))
+                .orElse(null);
 
         return new CategorySummary(definition.key(), definition.label(), definition.icon(),
                 resourceCount, latestItems, latestPolicyUpdate);
     }
 
-    private boolean matchesAnyTag(List<String> resourceTags, List<String> matchNewsTags) {
-        if (resourceTags == null) return false;
-        for (String tag : resourceTags) {
-            for (String match : matchNewsTags) {
+    private boolean matchesAnyTag(List<String> categoryTags, List<String> matchCategoryTags) {
+        if (categoryTags == null) return false;
+        for (String tag : categoryTags) {
+            for (String match : matchCategoryTags) {
                 if (match.equalsIgnoreCase(tag)) return true;
             }
         }
@@ -103,17 +103,27 @@ public class CategoryService {
 // same composition discipline as SearchService — treats each slice's
 // Service as its public API surface.
 //
-// MATCHING AGAINST NewsItem.resourceTags, NOT .tags: RssFeedService's
-// classifyLegislation() produces BOTH fields from the same matched-bucket
-// list, differing only in casing — tags gets Capitalized names ("Housing")
-// for display, resourceTags gets the same keys lowercase ("housing") —
-// see RssFeedService.java's classifyLegislation(). CategoryDefinition's
-// matchNewsTags values are lowercase specifically to line up with
-// resourceTags exactly, with an additional equalsIgnoreCase comparison as
-// a defensive safety net (costs nothing, guards against future casing
-// drift). Matching against .tags would require the mapping table to carry
-// display-cased strings instead, coupling this class to a formatting
-// choice made for a different purpose.
+// MATCHING AGAINST NewsItem.tags (category_tags), NOT .resourceTags —
+// REVERSED IN DECISION 031, and the reversal is the important lesson here.
+// The original implementation matched resourceTags because RssFeedService's
+// classifyLegislation() emits both fields from the same bucket list and the
+// lowercase one lined up with a lowercase mapping table. That was a
+// convenience of the prototype's plumbing, not a model decision, and it cost
+// real correctness: curated news carries HAND-WRITTEN resourceTags that are
+// fine-grained descriptors ("rental-assistance", "SRAP", "WHA"), so 4 of 8
+// curated items matched no category at all and silently never appeared —
+// Health showed no policy update despite having a Medicaid dental item.
+//
+// The V2 CivicContent model separates three concerns, and this class must
+// only ever read the first:
+//   category_tags   editorial classification -> navigation and categorization
+//   resource_tags   descriptive metadata     -> search, filtering, AI retrieval
+//   status/expires  content lifecycle
+// Overloading resource_tags with category meaning would collapse two of those
+// into one field. So matchCategoryTags now carries display-cased editorial
+// values ("Housing"), plus any alias an upstream source emits — RSS says
+// "Healthcare" where the taxonomy says "Health", so health holds both.
+// equalsIgnoreCase remains as a casing safety net.
 //
 // SORTING BY updatedDate FOR "LATEST ITEMS" — HONEST LIMITATION, NOTED
 // FOR THE FRONTEND: Resource.updatedDate is set from the JSON load/
@@ -124,14 +134,14 @@ public class CategoryService {
 // the data doesn't actually have. This is a UI guideline for the later
 // frontend steps (roadmap step 6/8), not a backend behavior change.
 //
-// matchNewsTags.isEmpty() SHORT-CIRCUITS TO null RATHER THAN SCANNING ALL
-// NEWS: categories like "clothing"/"furniture-household"/
-// "community-support" have no News-tag linkage defined at all (no
-// RssFeedService bucket maps onto them) — skipping the scan for these is
-// both a minor efficiency win and, more importantly, correct: an empty
-// matchNewsTags list would otherwise vacuously match every News item via
-// matchesAnyTag's inner loop, wrongly making every category's
-// latestPolicyUpdate resolve to "whatever is most recent overall."
+// THE isEmpty() SHORT-CIRCUIT IS GONE (Decision 031). It guarded the four
+// categories that had no news linkage at all. Worth correcting the original
+// note here: it claimed an empty match list would "vacuously match every
+// News item," which is backwards — matchesAnyTag's inner loop never runs
+// over an empty list, so it returns false and nothing matches. The guard was
+// only ever an efficiency nicety. Now every category owns at least its own
+// label as an editorial tag, so no list is ever empty and the branch is dead
+// code — removed rather than left as decoration.
 //
 // COMMUNITY FILTERING MIRRORS SearchService EXACTLY: same
 // filterByCommunity generic helper shape, same "empty/null communityId

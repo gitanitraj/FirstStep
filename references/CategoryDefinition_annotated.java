@@ -5,7 +5,7 @@ package org.firststep.backend.category.model;
 // =============================================================================
 // CategoryDefinition is the fixed, 10-entry taxonomy the homepage redesign's
 // sidebar/category previews are built on: a stable key/label/icon plus the
-// raw Resource.category strings and News resourceTags that belong to it.
+// raw Resource.category strings and editorial News category_tags that belong to it.
 // CategoryDefinition.ALL is the single source of truth CategoryService reads.
 // =============================================================================
 
@@ -16,35 +16,35 @@ public record CategoryDefinition(
         String label,
         String icon,
         List<String> matchCategories,
-        List<String> matchNewsTags,
+        List<String> matchCategoryTags,
         boolean includesFlyers
 ) {
 
     public static final List<CategoryDefinition> ALL = List.of(
             new CategoryDefinition("housing", "Housing", "🏠",
-                    List.of("Housing Assistance", "Housing"), List.of("housing"), false),
+                    List.of("Housing Assistance", "Housing"), List.of("Housing"), false),
             new CategoryDefinition("food", "Food", "🍎",
-                    List.of("Food Program"), List.of("food"), false),
+                    List.of("Food Program"), List.of("Food"), false),
             new CategoryDefinition("clothing", "Clothing", "👕",
-                    List.of("Clothing & Incidentals"), List.of(), false),
+                    List.of("Clothing & Incidentals"), List.of("Clothing"), false),
             new CategoryDefinition("health", "Health", "🏥",
-                    List.of("Healthcare/Medical", "Mental Health", "Substance Use"), List.of("healthcare"), false),
+                    List.of("Healthcare/Medical", "Mental Health", "Substance Use"), List.of("Health", "Healthcare"), false),
             new CategoryDefinition("employment", "Employment", "💼",
-                    List.of("Employment"), List.of("employment"), false),
+                    List.of("Employment"), List.of("Employment"), false),
             new CategoryDefinition("utilities", "Utilities", "💡",
-                    List.of(), List.of("utilities"), false),
+                    List.of(), List.of("Utilities"), false),
             new CategoryDefinition("legal", "Legal", "⚖️",
-                    List.of("Advocacy"), List.of("legal"), false),
+                    List.of("Advocacy"), List.of("Legal"), false),
             new CategoryDefinition("community-events", "Community Events", "🎉",
-                    List.of("Recreational"), List.of(), true),
+                    List.of("Recreational"), List.of("Community Events"), true),
             new CategoryDefinition("furniture-household", "Furniture & Household", "🛋️",
-                    List.of("Furniture & Household Items"), List.of(), false),
+                    List.of("Furniture & Household Items"), List.of("Furniture & Household"), false),
             new CategoryDefinition("community-support", "Community Support", "🤝",
                     List.of("Resource Information", "Education/Training", "Parenting Education",
                             "Financial Support", "Support Group", "Early Childhood/Pre-K", "Volunteer",
                             "Mentor", "Life Skills", "Transportation", "Child Care",
                             "Before/After School Care", "Entertainment"),
-                    List.of(), false)
+                    List.of("Community Support"), false)
     );
 }
 
@@ -91,7 +91,7 @@ public record CategoryDefinition(
 //
 // "utilities" HAS ZERO MATCHING RESOURCES TODAY (matchCategories is
 // empty) — accepted deliberately, not a bug. It still has real News
-// coverage via matchNewsTags, so CategoryService can still return a
+// coverage via matchCategoryTags, so CategoryService can still return a
 // meaningful latestPolicyUpdate even with resourceCount: 0.
 // =============================================================================
 
@@ -100,11 +100,14 @@ public record CategoryDefinition(
 // =============================================================================
 // - category/service/CategoryService.getAll() iterates CategoryDefinition.ALL
 //   and builds one CategorySummary per entry.
-// - matchNewsTags values are lowercase to match NewsItem.resourceTags'
-//   casing exactly, as produced by RssFeedService.classifyLegislation()
-//   (NewsItem.tags is capitalized for display; resourceTags is the
-//   lowercase machine-matching field — see CategoryService_annotated.java
-//   for why resourceTags was chosen over tags).
+// - matchCategoryTags holds EDITORIAL, display-cased values ("Housing") and
+//   is matched against NewsItem.tags (the category_tags field). Reversed in
+//   Decision 031: it previously held lowercase values matched against
+//   resourceTags, which conflated navigation with descriptive metadata and
+//   left 4 of 8 curated news items unreachable. Each entry carries its own
+//   label plus any upstream alias — RSS legislation says "Healthcare" where
+//   the taxonomy says "Health", so health holds both. See
+//   CategoryService_annotated.java for the full reasoning.
 // =============================================================================
 
 // =============================================================================

@@ -78,7 +78,8 @@ public class UpdatesService {
                 n.published,
                 cs != null ? cs.name : null,
                 cs != null ? cs.url : null,
-                n.urgency);
+                n.urgency,
+                n.tags);
     }
 
     private UpdateItem toUpdateItem(Flyer f) {
@@ -91,6 +92,7 @@ public class UpdatesService {
                 f.summary,
                 date,
                 f.organization,
+                null,
                 null,
                 null);
     }

@@ -94,6 +94,29 @@ class UpdatesServiceTest {
     }
 
     @Test
+    void shouldCarryEditorialCategoryTagsForNewsItems() {
+        // The Weekly Updates page groups by editorial classification, so the feed
+        // has to carry category_tags through (Decision 031).
+        NewsItem n = news("N1", "A law passed", "2026-05-01", "high");
+        n.tags = List.of("Housing", "Utilities");
+        UpdatesService service = service(List.of(n), List.of(), List.of());
+
+        assertEquals(List.of("Housing", "Utilities"), service.getUpdates().get(0).categoryTags());
+    }
+
+    @Test
+    void shouldLeaveCategoryTagsNullForFlyers() {
+        // A Flyer has no editorial classification field; its own tags are content
+        // descriptors, not navigation.
+        UpdatesService service = service(
+                List.of(),
+                List.of(),
+                List.of(flyer("F1", "Community day", "2026-06-15", "2026-06-01")));
+
+        assertNull(service.getUpdates().get(0).categoryTags());
+    }
+
+    @Test
     void shouldUseEventDateForFlyerAndFallBackToUpdatedDate() {
         UpdatesService service = service(
                 List.of(),
