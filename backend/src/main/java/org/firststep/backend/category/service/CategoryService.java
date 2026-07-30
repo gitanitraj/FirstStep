@@ -21,11 +21,14 @@ public class CategoryService {
 
     private static final int MAX_LATEST_ITEMS = 3;
 
+    private final TaxonomyService taxonomyService;
     private final ResourceService resourceService;
     private final NewsService newsService;
     private final FlyerService flyerService;
 
-    public CategoryService(ResourceService resourceService, NewsService newsService, FlyerService flyerService) {
+    public CategoryService(TaxonomyService taxonomyService, ResourceService resourceService,
+                           NewsService newsService, FlyerService flyerService) {
+        this.taxonomyService = taxonomyService;
         this.resourceService = resourceService;
         this.newsService = newsService;
         this.flyerService = flyerService;
@@ -37,7 +40,7 @@ public class CategoryService {
         List<NewsItem> news = filterByCommunity(newsService.getAll(), communityId);
 
         List<CategorySummary> summaries = new ArrayList<>();
-        for (CategoryDefinition definition : CategoryDefinition.ALL) {
+        for (CategoryDefinition definition : taxonomyService.getCategories()) {
             summaries.add(summarize(definition, resources, flyers, news));
         }
         return summaries;
@@ -45,10 +48,20 @@ public class CategoryService {
 
     private CategorySummary summarize(CategoryDefinition definition, List<Resource> resources,
                                        List<Flyer> flyers, List<NewsItem> news) {
+        // Resources still match on their RAW source category via matchCategories.
+        // Normalizing that into canonical categoryTags is the classifier's job
+        // (Slice F2); doing it here would put a second classifier in this service.
         List<Resource> matchedResources = resources.stream()
                 .filter(r -> definition.matchCategories().contains(r.category))
                 .toList();
-        List<Flyer> matchedFlyers = definition.includesFlyers() ? flyers : List.of();
+
+        // Flyers are classified editorially like every other content type. This
+        // replaces the old includesFlyers boolean, under which Community Events
+        // swept in all seven flyers regardless of subject while a furniture
+        // giveaway or an eviction-rights session reached no relevant category.
+        List<Flyer> matchedFlyers = flyers.stream()
+                .filter(f -> taxonomyService.matchesCategoryTags(definition, f.categoryTags))
+                .toList();
 
         int resourceCount = matchedResources.size() + matchedFlyers.size();
 
@@ -60,27 +73,16 @@ public class CategoryService {
                 Comparator.nullsLast(Comparator.reverseOrder())));
         List<SearchResult> latestItems = combined.stream().limit(MAX_LATEST_ITEMS).toList();
 
-        // Categorization reads a news item's EDITORIAL classification (category_tags),
-        // never its resource_tags — those are descriptive metadata for search,
-        // filtering and AI retrieval, and overloading them with category meaning is
-        // what previously left 4 of 8 curated items unreachable (Decision 031).
+        // Categorization reads a news item's EDITORIAL classification
+        // (category_tags), never its descriptive tags — see the CivicContent
+        // contract and decisions.md Decisions 031/032.
         NewsItem latestPolicyUpdate = news.stream()
-                .filter(n -> matchesAnyTag(n.tags, definition.matchCategoryTags()))
-                .max(Comparator.comparing(n -> n.published, Comparator.nullsFirst(Comparator.naturalOrder())))
+                .filter(n -> taxonomyService.matchesCategoryTags(definition, n.categoryTags))
+                .max(Comparator.comparing(n -> n.publishDate, Comparator.nullsFirst(Comparator.naturalOrder())))
                 .orElse(null);
 
         return new CategorySummary(definition.key(), definition.label(), definition.icon(),
                 resourceCount, latestItems, latestPolicyUpdate);
-    }
-
-    private boolean matchesAnyTag(List<String> categoryTags, List<String> matchCategoryTags) {
-        if (categoryTags == null) return false;
-        for (String tag : categoryTags) {
-            for (String match : matchCategoryTags) {
-                if (match.equalsIgnoreCase(tag)) return true;
-            }
-        }
-        return false;
     }
 
     private <T extends CivicContent> List<T> filterByCommunity(List<T> items, String communityId) {

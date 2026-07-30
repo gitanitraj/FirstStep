@@ -15,7 +15,7 @@ class LegislationServiceTest {
     private static NewsItem bill(String title, String published, String url) {
         NewsItem n = new NewsItem();
         n.title = title;
-        n.published = published;
+        n.publishDate = published;
         if (url != null) {
             ContentSource cs = new ContentSource();
             cs.url = url;

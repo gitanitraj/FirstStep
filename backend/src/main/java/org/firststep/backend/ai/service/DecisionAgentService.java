@@ -224,7 +224,7 @@ public class DecisionAgentService {
                     "summary", n.summary,
                     "whyItMatters", n.whyItMatters,
                     "urgency", n.urgency,
-                    "published", n.published,
+                    "published", n.publishDate,
                     "sourceName", n.contentSource != null ? n.contentSource.name : ""
             );
         }).toList();

@@ -10,6 +10,7 @@ package org.firststep.backend.flyer.model;
 // =============================================================================
 
 import org.firststep.backend.shared.model.CivicContent;
+import org.firststep.backend.shared.model.ContentType;
 import org.firststep.backend.shared.model.Location;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -17,6 +18,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Flyer extends CivicContent {
+
+    public Flyer() {
+        this.contentType = ContentType.FLYER;
+    }
+
     public String organization;
     @JsonProperty("event_date")
     public String eventDate;
@@ -24,6 +30,59 @@ public class Flyer extends CivicContent {
     public String image;
 }
 
+// =============================================================================
+// SLICE F1 UPDATE (Decision 032) — FLYERS FINALLY CLASSIFY
+// =============================================================================
+// Flyers were the ONLY CivicContent type with no editorial classification at
+// all. They had no `category` field and no category_tags; the only way a flyer
+// reached a category page was a hardcoded boolean on the category definition:
+//
+//     CategoryDefinition("community-events", ..., includesFlyers = true)
+//     List<Flyer> matched = definition.includesFlyers() ? flyers : List.of();
+//
+// Every flyer, into Community Events, regardless of what it was about. The
+// eviction-rights session, the health fair and the furniture giveaway all filed
+// under "Community Events" — so a tenant browsing Housing for eviction help
+// found nothing, while the flyer that would have helped sat under events.
+//
+// F1 added `category_tags` and `subcategory` to the 7 records in flyers.json.
+// The Flyer class needed NO new fields for this: both are inherited from the
+// CivicContent contract, and Jackson binds them automatically (category_tags
+// via the @JsonProperty on the base class). The only Java change here is the
+// constructor. That is the contract paying for itself — giving a content type a
+// capability it never had, with zero new fields on the type.
+//
+// includesFlyers was deleted from CategoryDefinition in the same slice.
+//
+// WHAT THE CLASSIFICATION LOOKS LIKE, and one thing it exposed:
+//
+//   FL-001 Summer Youth Enrichment    ["Community Events"]              Youth Programs
+//   FL-002 Eviction Prevention Session["Housing", "Legal"]              Eviction Prevention
+//   FL-003 Volunteer Recruitment      ["Community Support"]             Volunteer Opportunities
+//   FL-004 Back-to-School Supply Drive["Community Support"]             Education & Training
+//   FL-005 Disability Services Fair   ["Legal", "Community Support"]    Disability Advocacy
+//   FL-006 Community Health Fair      ["Health"]                        Medical Care
+//   FL-007 Free Furniture Giveaway    ["Furniture & Household"]         Starter Kits
+//
+// FL-002 is the case that proves the model: "Eviction Prevention" is declared a
+// subcategory under BOTH housing and legal, so ONE subcategory value correctly
+// places the flyer under both categories.
+//
+// FL-005 is the case that strains it: it is genuinely Legal (Disability
+// Advocacy) and Community Support (Information & Referral), but `subcategory`
+// is singular, so only one topic can be named. "Disability Advocacy" was chosen
+// as primary. A multi-valued subcategory was considered and rejected — see
+// ALTERNATIVES below.
+//
+// WHY tags WERE LEFT ALONE: the descriptive tags on these records ("Free",
+// "Community", "Youth", "Medical Assistance") are exactly what tags are for —
+// search and AI retrieval. They were NOT promoted to classification, because
+// promoting them is the conflation the contract exists to prevent. Note that
+// several of them ("Rental Assistance", "Eviction Prevention") happen to look
+// like topic names; under the old validate_navigation.py rule those free-form
+// strings were literally being counted as navigation placement. That rule was
+// removed in the same slice.
+//
 // =============================================================================
 // WHY THIS IMPLEMENTATION WAS CHOSEN
 // =============================================================================
@@ -91,4 +150,24 @@ public class Flyer extends CivicContent {
 //   is manually authored for this pass, not extracted. This is called out
 //   explicitly in references/decisions.md so it isn't mistaken for real
 //   extracted data later.
+// =============================================================================
+
+// =============================================================================
+// ALTERNATIVES CONSIDERED (Slice F1)
+// =============================================================================
+// - Make `subcategory` a List<String> so FL-005 could name both Disability
+//   Advocacy and Information & Referral. Rejected for now: it changes the
+//   contract for all five content types (and the 229 resources that each have
+//   exactly one) to serve one flyer, and "an item has one primary topic" is a
+//   defensible editorial rule. Revisit if multi-topic content becomes common
+//   rather than exceptional — the cross-category relationship GRAPH (the
+//   enrichment product) is the intended answer to "this also relates to that".
+// - Leave flyers unclassified until the relationship graph lands and let the
+//   graph surface them. Rejected: the graph is for RELATED content, a secondary
+//   surface. A flyer about eviction prevention is not merely "related to"
+//   Housing — it IS housing content, and belongs in the primary listing.
+// - Derive flyer classification from the existing descriptive tags
+//   automatically (several already match topic names). Rejected outright: that
+//   is tags driving navigation, the one thing the contract forbids. The tags
+//   that look right today do so by luck, and "Free" would classify nothing.
 // =============================================================================

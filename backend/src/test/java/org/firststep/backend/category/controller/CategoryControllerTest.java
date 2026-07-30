@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.category.service.TaxonomyService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
@@ -89,7 +90,7 @@ class CategoryControllerTest {
 
         @Bean
         CategoryService categoryService(ResourceService resourceService, NewsService newsService, FlyerService flyerService) {
-            return new CategoryService(resourceService, newsService, flyerService);
+            return new CategoryService(new TaxonomyService("../app/data"), resourceService, newsService, flyerService);
         }
     }
 

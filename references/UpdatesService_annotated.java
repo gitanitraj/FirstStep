@@ -109,7 +109,7 @@ public class UpdatesService {
     }
 
     // NewsItem → UpdateItem. contentSource can be null (defensive), so guard it
-    // before reading name/url. `published` is the news date field.
+    // before reading name/url. `publishDate` is the news date field.
     private UpdateItem toUpdateItem(NewsItem n) {
         ContentSource cs = n.contentSource;
         return new UpdateItem(
@@ -117,24 +117,24 @@ public class UpdatesService {
                 n.id,
                 n.title,
                 n.summary,
-                n.published,
+                n.publishDate,
                 cs != null ? cs.name : null,
                 cs != null ? cs.url : null,
                 n.urgency,
-                // Editorial classification carried through verbatim (Decision 031)
-                // so the Weekly Updates page can group by category server-side.
-                // This is category_tags — NOT resourceTags, which stay descriptive
-                // metadata for search, filtering and AI retrieval.
-                n.tags);
+                // Editorial classification carried through verbatim so the Weekly
+                // Updates page can group by category server-side. This is
+                // categoryTags — NOT `tags`, which are descriptive metadata for
+                // search, filtering and AI retrieval.
+                n.categoryTags);
     }
 
-    // Flyer → UpdateItem. Flyers have NO `published` field, so the display date is
-    // the event date when present, else the load/updated date. Flyers carry no
-    // urgency and no external url, so those are null — and no categoryTags either:
-    // a Flyer has no editorial classification field, and its own `tags` are content
-    // descriptors, so promoting them here would silently mix metadata into
-    // navigation (exactly the conflation Decision 031 removed from news).
+    // Flyer → UpdateItem. Flyers have NO `publishDate`, so the display date is the
+    // event date when present, else the load/updated date. Flyers carry no urgency
+    // and no external url, so those stay null. categoryTags IS now populated:
+    // Decision 032 gave flyers their own editorial classification, so there is a
+    // real field to read — their descriptive `tags` are still ignored here.
     private UpdateItem toUpdateItem(Flyer f) {
+        // Flyers have no `publishDate`; prefer the event date, else the load date.
         String date = f.eventDate != null ? f.eventDate : f.updatedDate;
         return new UpdateItem(
                 "flyer",
@@ -145,6 +145,46 @@ public class UpdatesService {
                 f.organization,
                 null,
                 null,
-                null);
+                f.categoryTags);
     }
 }
+
+// =============================================================================
+// SLICE F1 UPDATE (Decision 032) — FLYERS NOW CARRY CLASSIFICATION TOO
+// =============================================================================
+// Three small changes, one of which reverses a Decision-031 conclusion:
+//
+//   n.published  -> n.publishDate     (contract field rename)
+//   n.tags       -> n.categoryTags    (the field that actually holds editorial
+//                                      classification now — `tags` became
+//                                      descriptive metadata)
+//   flyer null   -> f.categoryTags    (REVERSAL, below)
+//
+// THE REVERSAL. Decision 031 passed null for a Flyer's categoryTags and said
+// why: "A Flyer has no editorial classification field, and its own tags are
+// content descriptors, so promoting them would re-introduce exactly the
+// conflation this decision removes."
+//
+// That reasoning was correct and the conclusion is now obsolete — because the
+// premise stopped being true. Slice F1 gave flyers real category_tags in
+// flyers.json, so there is now a genuine editorial field to read. Nothing is
+// being promoted from descriptive tags; the descriptive tags are still ignored
+// here, exactly as 031 intended.
+//
+// Worth naming the pattern: 031's rule was "don't fake classification from
+// descriptive data". F1 satisfies that rule by ADDING the missing data rather
+// than by relaxing the rule. The Weekly Updates page (Slice H) can now group
+// flyers server-side alongside news, which is what UpdateItem.categoryTags was
+// added for in the first place.
+//
+// The corresponding test flipped with it:
+//   shouldLeaveCategoryTagsNullForFlyers
+//     -> shouldCarryEditorialCategoryTagsForFlyers
+//   plus shouldLeaveCategoryTagsNullForUnclassifiedFlyer, which keeps the
+//   null path covered for a flyer nobody has classified yet.
+//
+// STILL TRUE, AND STILL THE POINT: this service reads `categoryTags` and never
+// `tags`. A flyer's descriptive tags ("Free", "Community", "Youth") play no
+// part in grouping. Verified live — /api/updates now returns
+// categoryTags ["Housing","Legal"] for FL-002 where it previously returned null.
+// =============================================================================

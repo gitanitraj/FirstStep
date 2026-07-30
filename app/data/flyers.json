@@ -6,6 +6,8 @@
       "title": "Summer Youth Enrichment Program — Registration Open",
       "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
       "verified": true,
+      "category_tags": ["Community Events"],
+      "subcategory": "Youth Programs",
       "tags": [
         "Youth",
         "Youth Programs"
@@ -33,6 +35,8 @@
       "title": "Know Your Rights: Eviction Prevention Info Session",
       "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
       "verified": true,
+      "category_tags": ["Housing", "Legal"],
+      "subcategory": "Eviction Prevention",
       "tags": [
         "Housing Assistance",
         "Rental Assistance",
@@ -61,6 +65,8 @@
       "title": "Community Volunteer Recruitment Drive",
       "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
       "verified": true,
+      "category_tags": ["Community Support"],
+      "subcategory": "Volunteer Opportunities",
       "tags": [
         "Community",
         "Volunteer Opportunities"
@@ -88,6 +94,8 @@
       "title": "Back-to-School Supply Drive Fundraiser",
       "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
       "verified": true,
+      "category_tags": ["Community Support"],
+      "subcategory": "Education & Training",
       "tags": [
         "Community",
         "Free",
@@ -116,6 +124,8 @@
       "title": "Disability Services & Benefits Info Fair",
       "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
       "verified": true,
+      "category_tags": ["Legal", "Community Support"],
+      "subcategory": "Disability Advocacy",
       "tags": [
         "Disability Assistance",
         "Disability Advocacy",
@@ -144,6 +154,8 @@
       "title": "Free Community Health Fair",
       "summary": "Free health screenings, vaccinations, and dental checkups — no insurance or ID required.",
       "verified": true,
+      "category_tags": ["Health"],
+      "subcategory": "Medical Care",
       "tags": [
         "Medical Assistance",
         "Free",
@@ -172,6 +184,8 @@
       "title": "Free Furniture Giveaway",
       "summary": "Free gently-used furniture available for families moving into new housing — first come, first served.",
       "verified": true,
+      "category_tags": ["Furniture & Household"],
+      "subcategory": "Starter Kits",
       "tags": [
         "Free",
         "Housing Assistance",

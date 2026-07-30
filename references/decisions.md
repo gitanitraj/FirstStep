@@ -1674,3 +1674,194 @@ exercised loaders (`validate_schema.py`, `validate_news.py`,
 `validate_navigation.py`, `enrich_resources.py`). Deliberately left alone to avoid
 mixing an architectural refactor into functional work. A second, smaller item:
 rename `resource_tags` → `tags` in the CivicContent model.
+# Decision 032
+
+**Slice F1 — the CivicContent contract is formalized, and `taxonomy.json`
+finally becomes the single source of truth it has claimed to be since Decision
+027.**
+
+**The user's architectural direction, stated once so later slices can cite it:**
+every CivicContent object — Resource, News item, Flyer, Expert content, Law, or
+whatever comes next — **must answer the same set of questions with the same
+fields**. That uniformity is what lets search, navigation, AI guidance, category
+pages and the future mobile app treat all civic information consistently instead
+of carrying a branch per type.
+
+| Question | Field |
+|---|---|
+| What kind of content is this? | `contentType` |
+| What is it about? | `category_tags` + `subcategory` |
+| How can it be found? | `tags` |
+| Where did it come from? | `contentSource` |
+| Who is it for? | `communityId` |
+| When is it relevant? | `publishDate`, `expirationDate`, `status` |
+
+Three rules follow from it, and they govern everything after this decision:
+**Category and Subcategory are editorial classification and drive navigation.
+Tags are descriptive metadata and drive search, filtering, AI enrichment and
+related-content discovery — tags must NEVER determine navigation. Content Type
+determines how content is presented, not where it appears in the hierarchy.**
+
+## The conflation this fixes
+
+Tracing the contract through the code turned up the concrete defect it exists to
+prevent. `JsonNewsRepository` was loading news.json's **editorial**
+`category_tags` into `CivicContent.tags` — the same inherited field that holds
+**descriptive** metadata on Resource and Flyer:
+
+```java
+item.tags = node.get("category_tags");   // one field, two meanings
+```
+
+So `tags` meant "which category is this" for a NewsItem and "what words describe
+this" for everything else, and every consumer had to know which type it held
+before it could read the field. Decision 031 saw the symptom (news items
+unreachable from their categories) and fixed the routing; F1 removes the cause by
+giving the two concepts two fields. This also closes 031's logged tech-debt item
+(`resource_tags` → `tags`) as a side effect rather than a separate rename.
+
+Correct mapping now: `category_tags` → `categoryTags` (editorial),
+`resource_tags` → `tags` (descriptive).
+
+## `taxonomy.json` is now actually loaded
+
+`CategoryDefinition.ALL` — a hardcoded ten-entry list in Java, hand-mirrored
+against `taxonomy.json` — **is deleted**. New **`TaxonomyService`** loads the
+file and serves the vocabulary; `CategoryDefinition` is now just the record
+Jackson binds each entry to. Decisions 030 and 031 had each paid the cost of the
+duplication by hand; a source of truth nothing consumes is a comment.
+
+Cheaper than expected: `taxonomy.json` already carried `matchCategories`,
+`matchCategoryTags` and `subcategories` for all ten. Only **`icon`** had to be
+added (10 lines). The file now also holds `subcategories` where the Java constant
+never did — which is why the backend could not offer a topic level before now.
+
+**Loaded in the constructor, not on `ApplicationReadyEvent`** like the content
+repositories. Content can load whenever; *vocabulary must exist before anything
+that uses it*. Constructor loading makes it a Spring dependency, so ordering is
+enforced by the container rather than by listener luck — which matters because
+F2's classifier will normalize resources *through* the taxonomy at load. **A
+missing taxonomy is fatal**, unlike a missing content file: ten silently empty
+categories rendering a plausible-looking homepage is far more expensive to
+diagnose than a startup failure.
+
+## Flyers classify like everything else; `includesFlyers` is gone
+
+Flyers were the only content type with **no editorial classification at all**.
+They reached a category through a hardcoded boolean:
+
+```java
+List<Flyer> matched = definition.includesFlyers() ? flyers : List.of();
+```
+
+Every flyer into Community Events regardless of subject — so the eviction-rights
+session, the health fair and the furniture giveaway all filed under events, and a
+tenant browsing Housing for eviction help found nothing. **`flyers.json` gained
+`category_tags` + `subcategory` on all 7 records; `includesFlyers` is deleted.**
+The Flyer *class* needed no new fields — both are inherited from the contract —
+which is the contract paying for itself.
+
+**The user's catch:** asked whether I had checked `images/seasonal/`. I had not.
+`Eviction Help.png` is FL-002, so **housing ▸ Eviction Prevention is not an empty
+topic** as I had claimed. Nor is Utilities empty: NP-004's `category_tags`
+include `Utilities`. Both "dead spots" from the F-scope were wrong.
+
+FL-002 also proves the model — `Eviction Prevention` is declared under **both**
+housing and legal, so one `subcategory` value correctly places it under both.
+FL-005 strains it: genuinely Legal (Disability Advocacy) *and* Community Support
+(Information & Referral), but `subcategory` is singular, so Disability Advocacy
+was chosen as primary. A multi-valued subcategory was rejected — it changes the
+contract for all five types and 229 resources to serve one flyer; the enrichment
+relationship graph is the intended answer to "this also relates to that".
+
+**Two flyer subcategories are judgment calls worth a second look:** FL-004
+(Back-to-School Supply Drive) → `Education & Training`, and FL-007 (Free
+Furniture Giveaway) → `Starter Kits`.
+
+## RSS: LAW is a content type, not a category
+
+`RssFeedService` now sets `contentType = LAW`. Legislation classifies into the
+ordinary taxonomy — a housing bill is Housing content, on the Housing page —
+while still rendering with its own treatment. **The general rule: if a proposed
+category answers "what format is this?" rather than "what is this about?", it is
+a content type.** This is why `contentType` is a per-instance *field* rather than
+an abstract method: a Law is a `NewsItem` with the same fields and behavior, so a
+`LawItem` subclass would exist only to return its own type tag.
+
+**The `Healthcare` alias was removed** from health's `matchCategoryTags`.
+Decision 031 added it so the taxonomy could absorb the RSS classifier's drifted
+vocabulary; that direction is how vocabularies rot — each integration widens the
+lists until "canonical" means "whatever anyone has ever emitted". Normalization
+now happens **at the source**. Matching is case-insensitive (a casing slip is a
+typo) but not fuzzy (a different word is a different vocabulary).
+
+**Known gap carried deliberately into F2:** the classifier still emits
+`Healthcare`, `Disability`, `Benefits` and `Delaware Legislation`, and has no
+keywords for four canonical categories. Safe because `CategoryService` reads
+curated news only — RSS reaches `UpdatesService` alone, so no category page is
+affected. Also confirmed the cause of 031's greedy-matching observation:
+`text.contains(kw)` is **raw substring, no word boundary**, so `"aid"` matches
+*said*/*paid* and `"care"` matches *careful*. Word-boundary matching plus the
+canonical mapping both belong in F2's `shared/classification/`
+(`CivicContentClassifier`, `CategoryClassifier`, `TagClassifier`), after which
+`RssFeedService` extracts content and does not decide categories.
+
+## `validate_navigation.py` was implementing the countermanded rule
+
+`count_topics()` credited a topic when **any descriptive tag matched a topic
+name**, and `count_flyer_tags()` credited flyer topics from free-form tags. That
+is metadata driving navigation, it inflated counts so topic counts did not sum to
+category counts, and it made the empty-topic warning unreliable. Both now use
+`subcategory` only; `count_flyer_tags()` → **`count_flyer_topics(label_to_key)`**
+returning `(category_key, topic)` tuples like `count_topics()`.
+
+## Verification
+
+**155 backend tests green** (was 132). New: `TaxonomyServiceTest` (13, run
+against the REAL `taxonomy.json` so they fail if the file drifts) and
+`CivicContentTest` (5, locking the contract). Changed tests that encode reversed
+decisions: `shouldMatchCategoryTagAliasWhenSourceUsesDifferentLabel` →
+`shouldNotMatchNonCanonicalCategoryLabel` (plus a case-insensitivity test),
+`shouldIncludeFlyersInCommunityEventsCount` →
+`shouldCountFlyersMatchingTheirEditorialCategoryTags`,
+`shouldLeaveCategoryTagsNullForFlyers` →
+`shouldCarryEditorialCategoryTagsForFlyers`. Added
+`shouldPlaceFlyerInEveryCategoryItIsEditoriallyClassifiedUnder` and
+`shouldNotCountFlyerWithNoEditorialClassification`.
+
+**All four validators exit 0.**
+
+**Live (Docker rebuild)** — counts moved exactly as predicted by the flyer
+reclassification: community-events **60 → 54** (53 resources + FL-001 only),
+housing **44 → 45**, legal **3 → 5**, health **32 → 33**, furniture-household
+**6 → 7**, community-support **58 → 61**; food/clothing/employment/utilities
+unchanged. **229 resources + 9 flyer placements = 238.** `latestPolicyUpdate`
+unchanged for every category (housing NP-006, food NP-003, health NP-008,
+utilities NP-004), confirming the news path did not regress while the flyer path
+changed. `/api/updates` now returns `categoryTags: ["Housing","Legal"]` for FL-002
+where it previously returned `null`. A resource round-trips with
+`contentType: "RESOURCE"` and its inherited `subcategory`.
+
+**Deliberate seam — resources are the one type NOT yet carrying canonical
+`categoryTags`.** `Resource.category` still holds the raw DSCYF string and
+`CategoryService` still translates it through `matchCategories`. Normalizing that
+is classification, and F2 does it for every source at once; doing it inline here
+would mean writing a second classifier that F2 deletes.
+
+Also unchanged: `CategorySummary.resourceCount` still counts resources + flyers,
+not news. The direction that **topic pages count all classified CivicContent**
+applies to the topic/category BFF endpoints, which land in F3/F4.
+
+Annotated mirrors synced: `CivicContent`, `ContentType` (new), `TaxonomyService`
+(new), `CategoryDefinition`, `CategoryService`, `Resource`, `NewsItem`, `Flyer`,
+`ExpertAnswer`, `FAQ`, `JsonNewsRepository`, `RssFeedService`, `UpdatesService`,
+`validate_navigation`.
+
+**Revised Slice F plan** (was four sub-slices; the contract and classifier work
+made it six): **F1 contract + taxonomy loading (this decision)** · F2
+`shared/classification/` + canonical RSS · F3 `NavigationService` + counts · F4
+`/api/category/{key}` BFF · F5 CategoryPage · F6 `/category/:key/:topic` +
+shared ContentCard. The **cross-category relationship graph** — an Enrich-stage
+product analyzing canonical categories, subcategories, tags and semantic
+similarity, persisted as metadata so it stays deterministic and cheap to serve —
+is scoped **after** F6: it is additive to the pages, not load-bearing for them.

@@ -17,6 +17,7 @@ import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -160,19 +161,21 @@ public class RssFeedService implements RssFeedSource {
                     ? entry.getUpdatedDate()
                     : new Date();
 
-        item.published = DATE_FMT.format(published);
-        item.createdDate = item.published;
-        item.updatedDate = item.published;
+        item.publishDate = DATE_FMT.format(published);
+        item.createdDate = item.publishDate;
+        item.updatedDate = item.publishDate;
 
-        item.active  = true;
+        item.status  = "active";
+
+        item.contentType = ContentType.LAW;
         item.type    = "legislation";
         item.urgency = "standard";
 
         // Step 2: keyword classification
         String text = (item.title + " " + item.summary).toLowerCase();
         Classification cls = classifyLegislation(text);
-        item.tags          = cls.categoryTags;
-        item.resourceTags  = cls.resourceTags;
+        item.categoryTags  = cls.categoryTags;
+        item.tags          = cls.resourceTags;
         item.whyItMatters  = cls.whyItMatters;
 
         // Step 3: extract "RELATING TO …" clause for a more readable title/why
@@ -569,4 +572,89 @@ public class RssFeedService implements RssFeedSource {
 //   swept multiple sentences into the title. Fixed by taking whichever
 //   terminator (period or phrase start) comes first — see decisions.md
 //   Decision 010 for the two real examples that exposed this.
+// =============================================================================
+
+// =============================================================================
+// SLICE F1 UPDATE (Decision 032) — LAW CONTENT TYPE, AND AN ADMISSION
+// =============================================================================
+// WHAT CHANGED HERE
+// -----------------------------------------------------------------------------
+//   item.published      -> item.publishDate       (contract field name)
+//   item.active = true  -> item.status = "active" (contract lifecycle field)
+//   item.contentType = ContentType.LAW            (NEW)
+//   item.tags         = cls.categoryTags          -> item.categoryTags
+//   item.resourceTags = cls.resourceTags          -> item.tags
+//
+// The last two are the important pair. classifyLegislation() has always
+// produced BOTH an editorial classification and a set of descriptive keywords —
+// it just had nowhere correct to put them. categoryTags went into the shared
+// `tags` field (the descriptive one) and the descriptive keywords went into a
+// NewsItem-only `resourceTags` field. The contract gave each one its right home
+// and the two assignments simply swapped.
+//
+// contentType = LAW is what lets signed legislation classify into the ordinary
+// taxonomy (a housing bill is Housing content, on the Housing page) while still
+// rendering with its own treatment. There is no "Legislation" category and
+// there should not be one — see ContentType_annotated.java Section 1.
+//
+// WHAT IS STILL WRONG HERE (deliberately, until Slice F2)
+// -----------------------------------------------------------------------------
+// classifyLegislation() is doing EDITORIAL work inside a fetching service, and
+// it emits a vocabulary that is not the taxonomy's:
+//
+//     emits                canonical taxonomy says
+//     -----                -----------------------
+//     Housing/Food/         (same — these are fine)
+//     Employment/Utilities/
+//     Legal
+//     Healthcare            Health
+//     Disability            (no such category — nearest is legal ▸ Disability Advocacy)
+//     Benefits              (no such category — nearest is community-support ▸
+//                            Financial Assistance)
+//     Delaware Legislation  (not a category at all — it is a CONTENT TYPE,
+//                            which is now what ContentType.LAW expresses)
+//
+// and four canonical categories (clothing, community-events,
+// furniture-household, community-support) have no keywords at all, so RSS can
+// never reach them.
+//
+// Decision 031 papered over the first row by adding "Healthcare" as an alias in
+// the taxonomy. Slice F1 REMOVED that alias, on the principle that drift is
+// normalized at the source rather than absorbed downstream. That leaves a known
+// gap: as of F1, an RSS item tagged "Healthcare" matches no category.
+//
+// WHY THAT GAP IS SAFE TO CARRY: CategoryService reads newsService.getAll(),
+// which is CURATED news only. RSS items reach UpdatesService alone. So no
+// category page is affected — the drifted values are visible in /api/updates'
+// categoryTags and nowhere else, exactly as they were before.
+//
+// THE OTHER KNOWN DEFECT — greedy substring matching:
+//
+//     if (text.contains(kw))     // raw substring, no word boundary
+//
+// "aid" matches *said* and *paid*; "care" matches *careful*; "farm" matches any
+// *farmer*. This is why Decision 031 observed a wetlands bill coming back tagged
+// ["Housing", "Food", "Utilities", "Benefits", "Legal"]. A word-boundary regex
+// is the fix.
+//
+// ALL OF THE ABOVE IS SLICE F2's JOB, in shared/classification/:
+//
+//     RSS -> [extract] -> RssFeedService
+//                            |
+//                      CivicContentClassifier
+//                       /              \
+//              CategoryClassifier   TagClassifier
+//                            |
+//                   canonical taxonomy values
+//                            |
+//                     CategoryService
+//
+// After F2, RssFeedService EXTRACTS content and does not decide categories. The
+// keyword tables, the boundary matching and the canonical mapping all move into
+// the classifier, where every source (RSS, resources' raw directory categories,
+// future feeds) shares one implementation. That is the architectural principle
+// this slice is building toward:
+//
+//     Every CivicContent source classifies content using the SAME canonical
+//     taxonomy.
 // =============================================================================

@@ -38,8 +38,8 @@ class NewsControllerTest {
         contentSource.url = "http://example.com";
         item.contentSource = contentSource;
 
-        item.published = "2024-01-01";
-        item.active = true;
+        item.publishDate = "2024-01-01";
+        item.status = "active";
         item.type = "general-news";
         item.urgency = "standard";
         item.tags = List.of("Community", "Updates");
@@ -76,8 +76,8 @@ class NewsControllerTest {
                 .andExpect(jsonPath("$.data[0].summary").value("Test Summary"))
                 .andExpect(jsonPath("$.data[0].contentSource.name").value("Test Source"))
                 .andExpect(jsonPath("$.data[0].contentSource.url").value("http://example.com"))
-                .andExpect(jsonPath("$.data[0].published").value("2024-01-01"))
-                .andExpect(jsonPath("$.data[0].active").value(true))
+                .andExpect(jsonPath("$.data[0].publishDate").value("2024-01-01"))
+                .andExpect(jsonPath("$.data[0].status").value("active"))
                 .andExpect(jsonPath("$.data[0].type").value("general-news"))
                 .andExpect(jsonPath("$.data[0].urgency").value("standard"))
                 .andExpect(jsonPath("$.data[0].tags[0]").value("Community"))

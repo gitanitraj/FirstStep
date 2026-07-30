@@ -75,15 +75,15 @@ public class UpdatesService {
                 n.id,
                 n.title,
                 n.summary,
-                n.published,
+                n.publishDate,
                 cs != null ? cs.name : null,
                 cs != null ? cs.url : null,
                 n.urgency,
-                n.tags);
+                n.categoryTags);
     }
 
     private UpdateItem toUpdateItem(Flyer f) {
-        // Flyers have no `published`; prefer the event date, else the load date.
+        // Flyers have no `publishDate`; prefer the event date, else the load date.
         String date = f.eventDate != null ? f.eventDate : f.updatedDate;
         return new UpdateItem(
                 "flyer",
@@ -94,6 +94,9 @@ public class UpdatesService {
                 f.organization,
                 null,
                 null,
-                null);
+                // Flyers now carry editorial classification like every other
+                // CivicContent type (Decision 032), so this is no longer null —
+                // the Weekly Updates page can group them server-side.
+                f.categoryTags);
     }
 }

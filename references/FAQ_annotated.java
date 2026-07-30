@@ -9,12 +9,17 @@ package org.firststep.backend.expert.model;
 // =============================================================================
 
 import org.firststep.backend.shared.model.CivicContent;
+import org.firststep.backend.shared.model.ContentType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class FAQ extends CivicContent {
+
+    public FAQ() {
+        this.contentType = ContentType.EXPERT;
+    }
     public String question;
     public String answer;
     @JsonProperty("source_expert_answer_id")
@@ -74,4 +79,26 @@ public class FAQ extends CivicContent {
 //   unnecessary defensive logic for a "stub" pass with hand-authored,
 //   already-consistent data — revisit if this data is ever
 //   externally/automatically generated.
+// =============================================================================
+
+// =============================================================================
+// SLICE F1 UPDATE (Decision 032) — THE CivicContent CONTRACT
+// =============================================================================
+// The only change to this class is the constructor setting contentType. It
+// inherits the full contract from CivicContent: categoryTags + subcategory
+// (editorial classification), tags (descriptive), contentSource, communityId,
+// publishDate/expirationDate/status.
+//
+// NOTE THAT BOTH ExpertAnswer AND FAQ REPORT ContentType.EXPERT. They are
+// different classes with different fields, but they are the same KIND of thing
+// to a reader — an authoritative answer to a question — and get the same card
+// treatment. contentType follows PRESENTATION, not the class hierarchy; see
+// ContentType_annotated.java Section 3. (The same principle runs the other way
+// for NewsItem, where one class serves two content types, NEWS and LAW.)
+//
+// Expert content is not yet editorially classified in its data files, so
+// categoryTags is null and this content does not appear on category pages. That
+// is a DATA gap, not a code gap — the moment expert-answers.json gains
+// category_tags, these items flow into categories through exactly the same path
+// as everything else, with no Java change. That is the contract paying off.
 // =============================================================================

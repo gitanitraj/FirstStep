@@ -17,6 +17,7 @@ import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
@@ -159,19 +160,25 @@ public class RssFeedService implements RssFeedSource {
                     ? entry.getUpdatedDate()
                     : new Date();
 
-        item.published = DATE_FMT.format(published);
-        item.createdDate = item.published;
-        item.updatedDate = item.published;
+        item.publishDate = DATE_FMT.format(published);
+        item.createdDate = item.publishDate;
+        item.updatedDate = item.publishDate;
 
-        item.active  = true;
+        item.status  = "active";
         item.type    = "legislation";
         item.urgency = "standard";
+
+        // Signed legislation is a NewsItem that PRESENTS as a Law. Content type
+        // decides the treatment; classification below decides where it appears.
+        // Keeping LAW here (rather than inventing a "Legislation" category) is
+        // what preserves the dedicated Law experience without a second taxonomy.
+        item.contentType = ContentType.LAW;
 
         // Step 2: keyword classification
         String text = (item.title + " " + item.summary).toLowerCase();
         Classification cls = classifyLegislation(text);
-        item.tags          = cls.categoryTags;
-        item.resourceTags  = cls.resourceTags;
+        item.categoryTags  = cls.categoryTags;
+        item.tags          = cls.resourceTags;
         item.whyItMatters  = cls.whyItMatters;
 
         // Step 3: extract "RELATING TO …" clause for a more readable headline/why

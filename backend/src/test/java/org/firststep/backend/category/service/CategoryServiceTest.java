@@ -30,7 +30,12 @@ class CategoryServiceTest {
         resourceService = mock(ResourceService.class);
         newsService = mock(NewsService.class);
         flyerService = mock(FlyerService.class);
-        service = new CategoryService(resourceService, newsService, flyerService);
+        // The REAL taxonomy, not a mock — these tests assert against the actual
+        // ten categories and their real match rules, which is the point: they
+        // fail if app/data/taxonomy.json drifts. Surefire's working directory is
+        // backend/, so the project data dir is one level up.
+        service = new CategoryService(new TaxonomyService("../app/data"),
+                resourceService, newsService, flyerService);
 
         when(resourceService.getAll()).thenReturn(List.of());
         when(newsService.getAll()).thenReturn(List.of());
@@ -46,10 +51,11 @@ class CategoryServiceTest {
         return r;
     }
 
-    private Flyer flyer(String id, String communityId, String updatedDate) {
+    private Flyer flyer(String id, String communityId, List<String> categoryTags, String updatedDate) {
         Flyer f = new Flyer();
         f.id = id;
         f.communityId = communityId;
+        f.categoryTags = categoryTags;
         f.updatedDate = updatedDate;
         return f;
     }
@@ -59,8 +65,8 @@ class CategoryServiceTest {
         NewsItem n = new NewsItem();
         n.id = id;
         n.communityId = communityId;
-        n.tags = categoryTags;
-        n.published = published;
+        n.categoryTags = categoryTags;
+        n.publishDate = published;
         return n;
     }
 
@@ -87,12 +93,12 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldIncludeFlyersInCommunityEventsCount() {
+    void shouldCountFlyersMatchingTheirEditorialCategoryTags() {
         when(resourceService.getAll()).thenReturn(List.of(
                 resource("CI-001", "wilmington-de", "Recreational", "2026-01-01")));
         when(flyerService.getAll()).thenReturn(List.of(
-                flyer("FL-001", "wilmington-de", "2026-01-05"),
-                flyer("FL-002", "wilmington-de", "2026-01-06")));
+                flyer("FL-001", "wilmington-de", List.of("Community Events"), "2026-01-05"),
+                flyer("FL-002", "wilmington-de", List.of("Community Events"), "2026-01-06")));
 
         CategorySummary communityEvents = find(service.getAll(null), "community-events");
 
@@ -100,12 +106,41 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldNotIncludeFlyersInCategoriesThatDontIncludeFlyers() {
-        when(flyerService.getAll()).thenReturn(List.of(flyer("FL-001", "wilmington-de", "2026-01-05")));
+    void shouldPlaceFlyerInEveryCategoryItIsEditoriallyClassifiedUnder() {
+        // FL-002 (the eviction-rights session) is genuinely both Housing and
+        // Legal. Under the old includesFlyers boolean it reached neither — it
+        // was swept into Community Events regardless of subject.
+        when(flyerService.getAll()).thenReturn(List.of(
+                flyer("FL-002", "wilmington-de", List.of("Housing", "Legal"), "2026-01-06")));
+
+        List<CategorySummary> summaries = service.getAll(null);
+
+        assertEquals(1, find(summaries, "housing").resourceCount());
+        assertEquals(1, find(summaries, "legal").resourceCount());
+        assertEquals(0, find(summaries, "community-events").resourceCount());
+    }
+
+    @Test
+    void shouldNotCountFlyerInCategoryItIsNotClassifiedUnder() {
+        when(flyerService.getAll()).thenReturn(List.of(
+                flyer("FL-001", "wilmington-de", List.of("Community Events"), "2026-01-05")));
 
         CategorySummary housing = find(service.getAll(null), "housing");
 
         assertEquals(0, housing.resourceCount());
+    }
+
+    @Test
+    void shouldNotCountFlyerWithNoEditorialClassification() {
+        // Navigation is driven solely by editorial classification. An unclassified
+        // flyer reaches nothing rather than falling back to descriptive tags.
+        Flyer f = flyer("FL-099", "wilmington-de", null, "2026-01-05");
+        f.tags = List.of("Housing Assistance", "Rental Assistance");
+        when(flyerService.getAll()).thenReturn(List.of(f));
+
+        List<CategorySummary> summaries = service.getAll(null);
+
+        assertTrue(summaries.stream().allMatch(s -> s.resourceCount() == 0));
     }
 
     @Test
@@ -148,11 +183,11 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldIgnoreResourceTagsWhenAssociatingNewsWithCategory() {
-        // resource_tags are descriptive metadata for search, filtering and AI
-        // retrieval — they must never pull a news item into a category.
+    void shouldIgnoreDescriptiveTagsWhenAssociatingNewsWithCategory() {
+        // tags are descriptive metadata for search, filtering and AI retrieval —
+        // they must never pull a news item into a category.
         NewsItem n = newsItem("NW-001", "wilmington-de", List.of("Food"), "2026-01-01");
-        n.resourceTags = List.of("housing", "rental-assistance", "eviction");
+        n.tags = List.of("housing", "rental-assistance", "eviction");
         when(newsService.getAll()).thenReturn(List.of(n));
 
         List<CategorySummary> summaries = service.getAll(null);
@@ -162,14 +197,24 @@ class CategoryServiceTest {
     }
 
     @Test
-    void shouldMatchCategoryTagAliasWhenSourceUsesDifferentLabel() {
-        // RSS-classified legislation says "Healthcare" where the taxonomy says "Health".
+    void shouldNotMatchNonCanonicalCategoryLabel() {
+        // The "Healthcare" alias is GONE. Decision 031 added it so the taxonomy
+        // could absorb the RSS classifier's drifted vocabulary; Decision 032
+        // reverses that direction — every source emits canonical values and the
+        // taxonomy stays narrow. Widening this list is how vocabularies rot.
         when(newsService.getAll()).thenReturn(List.of(
                 newsItem("NW-001", "wilmington-de", List.of("Healthcare"), "2026-01-01")));
 
-        CategorySummary health = find(service.getAll(null), "health");
+        assertNull(find(service.getAll(null), "health").latestPolicyUpdate());
+    }
 
-        assertEquals("NW-001", health.latestPolicyUpdate().id);
+    @Test
+    void shouldMatchCanonicalCategoryLabelCaseInsensitively() {
+        // Casing slips in authored data are tolerated; a different word is not.
+        when(newsService.getAll()).thenReturn(List.of(
+                newsItem("NW-001", "wilmington-de", List.of("health"), "2026-01-01")));
+
+        assertEquals("NW-001", find(service.getAll(null), "health").latestPolicyUpdate().id);
     }
 
     @Test

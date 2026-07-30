@@ -77,32 +77,37 @@ def _records(path):
 
 
 def count_topics(raw_to_key):
-    """Count loaded content per (category_key, topic) using the standing topic
-    rule: resource.subcategory == topic OR content.tags contains topic. Flyers
-    carry no category, so their tags count toward every category that owns the
-    topic."""
+    """Count loaded CivicContent per (category_key, topic).
+
+    EDITORIAL CLASSIFICATION ONLY: a topic is credited by `subcategory`, never by
+    descriptive `tags`. The previous rule also counted any tag matching a topic
+    name, which let search metadata decide navigation and inflated counts —
+    exactly the conflation the CivicContent contract removes (Decision 032).
+    """
     counts = Counter()
     for path in RESOURCE_FILES:
         for record in _records(path):
             key = raw_to_key.get(record.get("category"))
-            if not key:
+            if not key or not record.get("subcategory"):
                 continue
-            if record.get("subcategory"):
-                counts[(key, record["subcategory"])] += 1
-            for tag in record.get("tags") or []:
-                if tag != record.get("subcategory"):
-                    counts[(key, tag)] += 1
+            counts[(key, record["subcategory"])] += 1
     return counts
 
 
-def count_flyer_tags():
-    """Flyer tags are free-form and category-less — returned as a flat set of
-    tag names so a topic can be credited in whichever category owns it."""
-    tags = Counter()
+def count_flyer_topics(label_to_key):
+    """Flyers now carry their own editorial classification (category_tags +
+    subcategory), so they count toward a (category, topic) pair like any other
+    CivicContent instead of being credited by free-form tags."""
+    counts = Counter()
     for flyer in _records(FLYER_FILE):
-        for tag in flyer.get("tags") or []:
-            tags[tag] += 1
-    return tags
+        topic = flyer.get("subcategory")
+        if not topic:
+            continue
+        for label in flyer.get("category_tags") or []:
+            key = label_to_key.get(label)
+            if key:
+                counts[(key, topic)] += 1
+    return counts
 
 
 # ─────────────────────────────────────────
@@ -283,8 +288,9 @@ def main():
     grouped   = {e.get("key") for e in entries}
     ungrouped = sorted(k for k in taxonomy if k not in grouped)
 
-    counts     = count_topics(raw_to_key)
-    flyer_tags = count_flyer_tags()
+    label_to_key = {meta["label"]: key for key, meta in taxonomy.items()}
+    counts       = count_topics(raw_to_key)
+    flyer_counts = count_flyer_topics(label_to_key)
     empty_topics = []
     for entry in entries:
         key = entry.get("key")
@@ -292,7 +298,7 @@ def main():
             continue
         for group in entry.get("groups") or []:
             for topic in group.get("topics") or []:
-                if not counts.get((key, topic)) and not flyer_tags.get(topic):
+                if not counts.get((key, topic)) and not flyer_counts.get((key, topic)):
                     empty_topics.append((key, topic))
 
     had_failure = print_report(

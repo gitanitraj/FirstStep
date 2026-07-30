@@ -12,6 +12,7 @@ package org.firststep.backend.resource.model;
 import java.util.List;
 
 import org.firststep.backend.shared.model.CivicContent;
+import org.firststep.backend.shared.model.ContentType;
 import org.firststep.backend.shared.model.Location;
 import org.firststep.backend.shared.model.Phone;
 import org.firststep.backend.shared.model.Website;
@@ -21,8 +22,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Resource extends CivicContent {
+
+    public Resource() {
+        this.contentType = ContentType.RESOURCE;
+    }
+
+    /** Raw source category as published by the directory — NOT the canonical taxonomy label. */
     public String category;
-    public String subcategory;
     public String organization;
     @JsonProperty("parent_organization")
     public String parentOrganization;
@@ -80,6 +86,39 @@ public class Resource extends CivicContent {
 // - locations/phones/websites: retyped from Resource's old nested static
 //   Location/Phone/Website classes to the now-shared top-level classes in
 //   shared.model — same fields, same annotations, just promoted.
+// =============================================================================
+
+// =============================================================================
+// SLICE F1 UPDATE (Decision 032) — THE CivicContent CONTRACT
+// =============================================================================
+// Two changes, both consequences of CivicContent becoming a formal contract:
+//
+// 1. `subcategory` MOVED UP to CivicContent. It is no longer a Resource field.
+//    It was only ever declared here because resources were the only type that
+//    had one — but "what topic is this about?" is a question EVERY content type
+//    must answer, and flyers now answer it too. Leaving it on Resource would
+//    mean a topic page had to ask "is this a Resource?" before it could read
+//    the topic, which is the special-casing the contract removes.
+//
+// 2. The constructor sets contentType = RESOURCE. See
+//    CivicContent_annotated.java Section 2 for why this is a constructor
+//    assignment rather than an overridden abstract method.
+//
+// WHAT DELIBERATELY DID NOT CHANGE: `category` still holds the RAW source
+// string ("Housing Assistance", "Recreational", "Before/After School Care") —
+// DSCYF directory vocabulary, not a canonical taxonomy label. Resources are
+// therefore the one content type still NOT carrying canonical categoryTags:
+// CategoryService continues to translate their raw category through the
+// taxonomy's matchCategories list.
+//
+// That is a deliberate seam, not an oversight. Normalizing a raw source
+// category into a canonical one is CLASSIFICATION, and Slice F2 introduces
+// shared/classification/ to do exactly that for every source at once (RSS has
+// the same problem, worse). Doing it inline here in F1 would have meant writing
+// a second classifier that F2 then deletes.
+//
+// When F2 lands, `category` becomes pure provenance — a record of what the
+// upstream directory said — and `categoryTags` carries the canonical answer.
 // =============================================================================
 
 // =============================================================================

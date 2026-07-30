@@ -6,6 +6,7 @@ import java.nio.file.Path;
 import java.util.List;
 
 import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.shared.model.ContentType;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -56,7 +57,23 @@ class RssFeedServiceTest {
         service.fetchFeeds();
 
         NewsItem item = service.getRssItems().get(0);
-        assertTrue(item.tags.contains("Housing"));
+        assertTrue(item.categoryTags.contains("Housing"));
+    }
+
+    @Test
+    void shouldMarkSignedLegislationWithLawContentType(@TempDir Path tempDir) throws IOException {
+        // Content type decides PRESENTATION (the dedicated Law experience);
+        // category_tags decide WHERE it appears. A bill about housing classifies
+        // into Housing like any other content while still rendering as a Law.
+        String feedUrl = writeFeed(tempDir, "law.xml", "HB 1",
+                "AN ACT RELATING TO EVICTION PROTECTIONS FOR TENANTS AND LANDLORDS.");
+
+        RssFeedService service = serviceFor(feedUrl);
+        service.fetchFeeds();
+
+        NewsItem item = service.getRssItems().get(0);
+        assertEquals(ContentType.LAW, item.contentType);
+        assertTrue(item.categoryTags.contains("Housing"));
     }
 
     @Test
@@ -93,7 +110,7 @@ class RssFeedServiceTest {
         service.fetchFeeds();
 
         NewsItem item = service.getRssItems().get(0);
-        assertEquals(List.of("Delaware Legislation"), item.tags);
+        assertEquals(List.of("Delaware Legislation"), item.categoryTags);
         assertEquals("Stay informed about new laws signed by the Governor of Delaware.", item.whyItMatters);
     }
 

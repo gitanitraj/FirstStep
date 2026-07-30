@@ -24,7 +24,7 @@ class UpdatesServiceTest {
         n.id = id;
         n.title = title;
         n.summary = title + " summary";
-        n.published = published;
+        n.publishDate = published;
         n.urgency = urgency;
         ContentSource cs = new ContentSource();
         cs.name = "Delaware Legislature";
@@ -98,16 +98,26 @@ class UpdatesServiceTest {
         // The Weekly Updates page groups by editorial classification, so the feed
         // has to carry category_tags through (Decision 031).
         NewsItem n = news("N1", "A law passed", "2026-05-01", "high");
-        n.tags = List.of("Housing", "Utilities");
+        n.categoryTags = List.of("Housing", "Utilities");
         UpdatesService service = service(List.of(n), List.of(), List.of());
 
         assertEquals(List.of("Housing", "Utilities"), service.getUpdates().get(0).categoryTags());
     }
 
     @Test
-    void shouldLeaveCategoryTagsNullForFlyers() {
-        // A Flyer has no editorial classification field; its own tags are content
-        // descriptors, not navigation.
+    void shouldCarryEditorialCategoryTagsForFlyers() {
+        // Decision 031 left this null because a Flyer had no editorial
+        // classification field at all. Decision 032 gave flyers category_tags
+        // like every other CivicContent type, so the feed carries them through.
+        Flyer f = flyer("F1", "Community day", "2026-06-15", "2026-06-01");
+        f.categoryTags = List.of("Community Events");
+        UpdatesService service = service(List.of(), List.of(), List.of(f));
+
+        assertEquals(List.of("Community Events"), service.getUpdates().get(0).categoryTags());
+    }
+
+    @Test
+    void shouldLeaveCategoryTagsNullForUnclassifiedFlyer() {
         UpdatesService service = service(
                 List.of(),
                 List.of(),

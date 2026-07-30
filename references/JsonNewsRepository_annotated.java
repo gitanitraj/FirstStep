@@ -63,11 +63,16 @@ public class JsonNewsRepository implements NewsRepository {
         item.contentSource = contentSource;
 
         item.title = node.hasNonNull("headline") ? node.get("headline").asText() : null;
-        item.tags = node.hasNonNull("category_tags")
-                ? mapper.convertValue(node.get("category_tags"), new TypeReference<List<String>>() {})
+        item.tags = node.hasNonNull("resource_tags")
+                ? mapper.convertValue(node.get("resource_tags"), new TypeReference<List<String>>() {})
                 : null;
-        item.createdDate = item.published;
-        item.updatedDate = item.published;
+
+        item.publishDate = node.hasNonNull("published") ? node.get("published").asText() : null;
+        item.expirationDate = node.hasNonNull("expires") ? node.get("expires").asText() : null;
+        item.status = node.hasNonNull("active") && !node.get("active").asBoolean() ? "inactive" : "active";
+
+        item.createdDate = item.publishDate;
+        item.updatedDate = item.publishDate;
 
         if (item.communityId == null) {
             item.communityId = defaultCommunityId;
@@ -136,4 +141,57 @@ public class JsonNewsRepository implements NewsRepository {
 //   parsing ResourceRepository has: rejected — out of scope for fixing the
 //   specific reported bug (the path), and would be an unrequested
 //   behavioral change beyond what Decision 007 committed to.
+// =============================================================================
+
+// =============================================================================
+// SLICE F1 UPDATE (Decision 032) — THIS METHOD IS THE NORMALIZE STAGE
+// =============================================================================
+// applyContentSourceAndDefaults() was always doing pipeline Normalize work
+// (mapping a heterogeneous source file onto the shared knowledge model). Slice
+// F1 made that its explicit job, because the CivicContent contract gave it a
+// canonical target to map ONTO:
+//
+//     news.json key      ->  CivicContent contract field
+//     ---------------        ---------------------------
+//     headline           ->  title
+//     source_name/_url   ->  contentSource
+//     category_tags      ->  categoryTags   (via @JsonProperty, automatic)
+//     resource_tags      ->  tags           (mapped here)
+//     published          ->  publishDate    (mapped here)
+//     expires            ->  expirationDate (mapped here)
+//     active             ->  status         (mapped here)
+//
+// news.json itself is UNCHANGED. Source files keep their own historical
+// vocabulary; translating it is the repository's job. See
+// CivicContent_annotated.java Section 4 for why renaming the data file was
+// rejected.
+//
+// THE LINE THAT CHANGED MEANING — and the bug it was causing:
+//
+//     BEFORE:  item.tags = node.get("category_tags")
+//     AFTER:   item.tags = node.get("resource_tags")
+//
+// The old line loaded EDITORIAL classification into the DESCRIPTIVE field. It
+// is the single line that made `tags` mean "which category is this" for a
+// NewsItem and "what words describe this" for a Resource or Flyer — one field,
+// two meanings, which every downstream consumer then had to disambiguate by
+// checking the type first.
+//
+// It is also why the field is now absent from this method for category_tags:
+// CivicContent declares @JsonProperty("category_tags") on categoryTags, so
+// Jackson binds it with no code at all. The mapping that needed a line of code
+// disappeared once the model named the concept correctly. That is usually the
+// sign a model change was the right one.
+//
+// ON status: mapped from `active` rather than read directly, because the
+// contract asks a lifecycle QUESTION ("when is it relevant?") and the file
+// answers with a boolean. Note the expression treats a MISSING `active` key as
+// "active" — absence of a deactivation flag means the item is live, which is
+// the safer default for civic information (failing closed would silently hide
+// content that no one marked either way).
+//
+// Deliberately NOT derived here: `status` does not consult expirationDate.
+// Computing "expired" at load time would bake the load timestamp into the data
+// and go stale in a long-running process. expirationDate is carried through as
+// a fact; whoever renders decides what to do about it.
 // =============================================================================

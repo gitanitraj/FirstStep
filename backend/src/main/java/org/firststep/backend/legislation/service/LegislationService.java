@@ -31,7 +31,7 @@ public class LegislationService {
         return rssFeedSource.getRssItems().stream()
                 // Newest first; bills without a date sort last (yyyy-MM-dd is
                 // lexically sortable).
-                .sorted(Comparator.comparing((NewsItem n) -> n.published,
+                .sorted(Comparator.comparing((NewsItem n) -> n.publishDate,
                         Comparator.nullsLast(Comparator.reverseOrder())))
                 .limit(MAX_BILLS)
                 .map(this::toLawItem)
@@ -40,6 +40,6 @@ public class LegislationService {
 
     private LawItem toLawItem(NewsItem n) {
         ContentSource cs = n.contentSource;
-        return new LawItem(n.title, cs != null ? cs.url : null, n.published);
+        return new LawItem(n.title, cs != null ? cs.url : null, n.publishDate);
     }
 }

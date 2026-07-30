@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.category.service.TaxonomyService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
@@ -47,7 +48,7 @@ class HomeControllerTest {
             news.id = "N1";
             news.title = "A new law";
             news.summary = "Summary";
-            news.published = "2026-05-01";
+            news.publishDate = "2026-05-01";
 
             Resource resource = new Resource();
             resource.id = "CI-001";
@@ -87,7 +88,7 @@ class HomeControllerTest {
             NewsItem bill = new NewsItem();
             bill.id = "B1";
             bill.title = "Relating to Housing Supply and Housing Affordability.";
-            bill.published = "2026-07-13";
+            bill.publishDate = "2026-07-13";
 
             NewsService newsService = new NewsService(() -> List.of(news));
             RssFeedSource rssSource = () -> List.of(bill);
@@ -95,7 +96,7 @@ class HomeControllerTest {
             ResourceService resourceService = new ResourceService(resourceRepo);
 
             UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService);
-            CategoryService categoryService = new CategoryService(resourceService, newsService, flyerService);
+            CategoryService categoryService = new CategoryService(new TaxonomyService("../app/data"), resourceService, newsService, flyerService);
             OrganizationService organizationService = new OrganizationService(resourceService);
             LegislationService legislationService = new LegislationService(rssSource);
             return new HomeService(updatesService, categoryService, organizationService, legislationService, flyerService);

@@ -47,6 +47,19 @@ public class JsonNewsRepository implements NewsRepository {
         }
     }
 
+    /**
+     * Normalize stage: map news.json's own key vocabulary onto the CivicContent
+     * contract. The data file keeps its historical names (headline, published,
+     * expires, active, resource_tags); this is where they become the canonical
+     * title / publishDate / expirationDate / status / tags every content type
+     * shares.
+     *
+     * <p>Note what is NOT here any more: category_tags used to be loaded into
+     * {@code item.tags}, which made one field mean "editorial classification"
+     * for news and "descriptive metadata" for everything else. category_tags now
+     * binds straight to {@code categoryTags} via CivicContent's @JsonProperty,
+     * and {@code tags} carries resource_tags — descriptive, as the contract says.
+     */
     private void applyContentSourceAndDefaults(NewsItem item, JsonNode node) {
         ContentSource contentSource = new ContentSource();
         contentSource.name = node.hasNonNull("source_name") ? node.get("source_name").asText() : null;
@@ -54,11 +67,16 @@ public class JsonNewsRepository implements NewsRepository {
         item.contentSource = contentSource;
 
         item.title = node.hasNonNull("headline") ? node.get("headline").asText() : null;
-        item.tags = node.hasNonNull("category_tags")
-                ? mapper.convertValue(node.get("category_tags"), new TypeReference<List<String>>() {})
+        item.tags = node.hasNonNull("resource_tags")
+                ? mapper.convertValue(node.get("resource_tags"), new TypeReference<List<String>>() {})
                 : null;
-        item.createdDate = item.published;
-        item.updatedDate = item.published;
+
+        item.publishDate = node.hasNonNull("published") ? node.get("published").asText() : null;
+        item.expirationDate = node.hasNonNull("expires") ? node.get("expires").asText() : null;
+        item.status = node.hasNonNull("active") && !node.get("active").asBoolean() ? "inactive" : "active";
+
+        item.createdDate = item.publishDate;
+        item.updatedDate = item.publishDate;
 
         if (item.communityId == null) {
             item.communityId = defaultCommunityId;

@@ -39,7 +39,7 @@ class UpdatesControllerTest {
             n.id = "N1";
             n.title = "A new law";
             n.summary = "Summary";
-            n.published = "2026-05-01";
+            n.publishDate = "2026-05-01";
             n.urgency = "high";
             ContentSource cs = new ContentSource();
             cs.name = "Delaware Legislature";

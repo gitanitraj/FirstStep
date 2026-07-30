@@ -159,45 +159,89 @@ def _records(path):
 
 
 def count_topics(raw_to_key):
-    """Count loaded content per (category_key, topic) using the standing topic
-    rule: resource.subcategory == topic OR content.tags contains topic. Flyers
-    carry no category, so their tags count toward every category that owns the
-    topic."""
-    # ANNOTATION: the OR in that rule is what makes topics CONTENT-TYPE-AGNOSTIC
-    # (taxonomy.json's own note says so). A resource lands in a topic via its one
-    # canonical subcategory; anything else — flyers, news, a resource that spans
-    # two topics like SD-078's Crisis Services tag (Decision 028) — lands via
-    # tags. That is how Eviction Prevention shows content: zero resources carry
-    # the subcategory, but flyer FL-002 carries the tag.
+    """Count loaded CivicContent per (category_key, topic).
+
+    EDITORIAL CLASSIFICATION ONLY: a topic is credited by `subcategory`, never by
+    descriptive `tags`. The previous rule also counted any tag matching a topic
+    name, which let search metadata decide navigation and inflated counts —
+    exactly the conflation the CivicContent contract removes (Decision 032).
+    """
+    # ANNOTATION — THIS FUNCTION USED TO IMPLEMENT THE WRONG RULE.
     #
-    # The `tag != subcategory` guard avoids double-counting a record that carries
-    # its own subcategory in tags too, which the enrichment run does routinely.
+    # It previously followed taxonomy.json's original note: "a topic gathers
+    # CivicContent where resource.subcategory == topic OR content.tags contains
+    # the topic". The OR was there to make topics content-type-agnostic — flyers
+    # and news carried no subcategory, so their free-form tags were the only
+    # handle available.
+    #
+    # Slice F1 removed the reason for it. Every content type now carries a real
+    # `subcategory`, so the workaround is unnecessary — and it was actively
+    # harmful:
+    #
+    #   1. It let DESCRIPTIVE metadata determine NAVIGATION. A record tagged
+    #      "Crisis Services" for search purposes was counted as placed under the
+    #      Crisis Services topic, whether or not an editor ever classified it
+    #      there.
+    #   2. It inflated counts. A record whose tags happened to include two topic
+    #      names counted toward both, so topic counts did not sum to the
+    #      category count and no one could tell why.
+    #   3. It made the "empty topic" warning unreliable in the worst direction —
+    #      a topic could look populated purely because some unrelated record used
+    #      the same word as a search keyword.
+    #
+    # The old docstring's example is instructive: it cited Eviction Prevention as
+    # a topic with "zero resources carrying the subcategory, but flyer FL-002
+    # carries the tag". That is still true of the resources — and FL-002 now
+    # carries `subcategory: "Eviction Prevention"` as real editorial
+    # classification, so the topic is populated for the RIGHT reason. The
+    # workaround and the correct answer happened to agree in that one case; they
+    # would not have in general.
+    #
+    # The `tag != subcategory` double-count guard is gone with the rule it
+    # guarded.
     counts = Counter()
     for path in RESOURCE_FILES:
         for record in _records(path):
             key = raw_to_key.get(record.get("category"))
-            if not key:
+            if not key or not record.get("subcategory"):
                 continue
-            if record.get("subcategory"):
-                counts[(key, record["subcategory"])] += 1
-            for tag in record.get("tags") or []:
-                if tag != record.get("subcategory"):
-                    counts[(key, tag)] += 1
+            counts[(key, record["subcategory"])] += 1
     return counts
 
 
-def count_flyer_tags():
-    """Flyer tags are free-form and category-less — returned as a flat set of
-    tag names so a topic can be credited in whichever category owns it."""
-    # ANNOTATION: flyers genuinely have no category field (Decision 025), so
-    # keying them by (category, topic) would be inventing data. A flat tag count
-    # is the honest shape, and the caller credits the topic in whatever category
-    # names it.
-    tags = Counter()
+def count_flyer_topics(label_to_key):
+    """Flyers now carry their own editorial classification (category_tags +
+    subcategory), so they count toward a (category, topic) pair like any other
+    CivicContent instead of being credited by free-form tags."""
+    # ANNOTATION: the signature change tells the story. The old function was
+    # count_flyer_tags() and returned a FLAT Counter of tag names, with this
+    # comment: "Flyer tags are free-form and category-less — returned as a flat
+    # set of tag names so a topic can be credited in whichever category owns it."
+    #
+    # "Category-less" was the problem. A flyer had no way to say which category
+    # it belonged to, so a tag matching a topic name credited that topic under
+    # EVERY category declaring it — FL-002's "Eviction Prevention" tag counted
+    # under both housing and legal not because an editor said so, but because the
+    # function had no better information.
+    #
+    # Now it does: flyers.json carries category_tags. The return key is a
+    # (category_key, topic) TUPLE, matching count_topics(), so both sources of
+    # content are counted the same way. FL-002 still lands under housing AND
+    # legal — but now because it is editorially classified as both.
+    #
+    # label_to_key maps a display label ("Furniture & Household") back to its key
+    # ("furniture-household"), because category_tags hold LABELS while the rest of
+    # this script keys on the stable category key.
+    counts = Counter()
     for flyer in _records(FLYER_FILE):
-        for tag in flyer.get("tags") or []:
-            tags[tag] += 1
-    return tags
+        topic = flyer.get("subcategory")
+        if not topic:
+            continue
+        for label in flyer.get("category_tags") or []:
+            key = label_to_key.get(label)
+            if key:
+                counts[(key, topic)] += 1
+    return counts
 
 
 # ─────────────────────────────────────────
@@ -430,8 +474,9 @@ def main():
     # flyer tags it — the same OR from the topic rule. Eviction Prevention passes
     # on the flyer side alone (FL-002), which is exactly the content-agnostic
     # behavior the taxonomy note promises.
-    counts     = count_topics(raw_to_key)
-    flyer_tags = count_flyer_tags()
+    label_to_key = {meta["label"]: key for key, meta in taxonomy.items()}
+    counts       = count_topics(raw_to_key)
+    flyer_counts = count_flyer_topics(label_to_key)
     empty_topics = []
     for entry in entries:
         key = entry.get("key")
@@ -439,7 +484,7 @@ def main():
             continue
         for group in entry.get("groups") or []:
             for topic in group.get("topics") or []:
-                if not counts.get((key, topic)) and not flyer_tags.get(topic):
+                if not counts.get((key, topic)) and not flyer_counts.get((key, topic)):
                     empty_topics.append((key, topic))
 
     had_failure = print_report(
