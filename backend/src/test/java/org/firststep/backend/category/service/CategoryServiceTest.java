@@ -9,6 +9,7 @@ import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.service.NewsService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
+import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -42,12 +43,23 @@ class CategoryServiceTest {
         when(flyerService.getAll()).thenReturn(List.of());
     }
 
+    /**
+     * Builds a resource the way one actually arrives at CategoryService: with a
+     * RAW source category, then normalized by the classifier exactly as the
+     * repository does at ingestion (Slice F2).
+     *
+     * <p>Hand-setting canonical categoryTags here would have been simpler, but it
+     * would stop these tests from covering the seam that F2 introduced — that a
+     * directory string like "Housing Assistance" still reaches the Housing
+     * category now that CategoryService no longer translates it itself.
+     */
     private Resource resource(String id, String communityId, String category, String updatedDate) {
         Resource r = new Resource();
         r.id = id;
         r.communityId = communityId;
         r.category = category;
         r.updatedDate = updatedDate;
+        ClassifierFixture.real().classify(r);
         return r;
     }
 

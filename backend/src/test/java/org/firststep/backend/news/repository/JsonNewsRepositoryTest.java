@@ -5,6 +5,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
+import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.news.model.NewsItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
@@ -16,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class JsonNewsRepositoryTest {
 
     private JsonNewsRepository repositoryFor(String dataDir) {
-        JsonNewsRepository repository = new JsonNewsRepository();
+        JsonNewsRepository repository = new JsonNewsRepository(ClassifierFixture.real());
         ReflectionTestUtils.setField(repository, "dataDir", dataDir);
         ReflectionTestUtils.setField(repository, "defaultCommunityId", "wilmington-de");
         return repository;

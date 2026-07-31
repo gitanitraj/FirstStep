@@ -60,17 +60,15 @@ public class CategoryService {
 
     private CategorySummary summarize(CategoryDefinition definition, List<Resource> resources,
                                        List<Flyer> flyers, List<NewsItem> news) {
-        // Resources still match on their RAW source category via matchCategories.
-        // Normalizing that into canonical categoryTags is the classifier's job
-        // (Slice F2); doing it here would put a second classifier in this service.
+        // ONE rule for every content type. Slice F2 moved the raw-source-category
+        // translation into the classifier (shared/classification), which runs at
+        // ingestion — so by the time anything reaches this service it already
+        // carries canonical categoryTags, and this service no longer knows or
+        // cares that resources arrive from a directory with its own vocabulary.
         List<Resource> matchedResources = resources.stream()
-                .filter(r -> definition.matchCategories().contains(r.category))
+                .filter(r -> taxonomyService.matchesCategoryTags(definition, r.categoryTags))
                 .toList();
 
-        // Flyers are classified editorially like every other content type. This
-        // replaces the old includesFlyers boolean, under which Community Events
-        // swept in all seven flyers regardless of subject while a furniture
-        // giveaway or an eviction-rights session reached no relevant category.
         List<Flyer> matchedFlyers = flyers.stream()
                 .filter(f -> taxonomyService.matchesCategoryTags(definition, f.categoryTags))
                 .toList();
@@ -273,3 +271,40 @@ public class CategoryService {
 //   a single subcategory — matching on subcategory would drop it from one of
 //   them.
 // =============================================================================
+
+// =============================================================================
+// SLICE F2 UPDATE (Decision 033) — THE QUERY-LAYER TRANSLATION IS GONE
+// =============================================================================
+// Before:  .filter(r -> definition.matchCategories().contains(r.category))
+// After:   .filter(r -> taxonomyService.matchesCategoryTags(definition, r.categoryTags))
+//
+// Resources were the last content type still being translated from an upstream
+// vocabulary at REQUEST time. That translation moved into the classifier, which
+// runs at ingestion — so by the time anything reaches this service it already
+// carries canonical categoryTags, and this class no longer knows that resources
+// come from a directory with its own words for things.
+//
+// Look at what summarize() became: resources, flyers and news now go through the
+// SAME predicate. There is one rule left in this service — "does the item's
+// editorial classification name this category?" — and three content types
+// obeying it identically. F1 removed the includesFlyers special case; F2 removed
+// the matchCategories one; nothing type-specific remains.
+//
+// WHAT DID NOT MOVE: matchCategories still exists in taxonomy.json. It was not
+// legacy cruft to delete — it is a hand-curated mapping of a known upstream
+// vocabulary with 100% coverage, and it is now tier 1 of CategoryClassifier.
+// What was wrong was its LAYER, not the table. See
+// CategoryClassifier_annotated.java Section 1.
+//
+// VERIFIED LIVE: /api/home category counts are byte-identical to F1 —
+// housing 45 · food 12 · clothing 15 · health 33 · employment 6 · utilities 0 ·
+// legal 5 · community-events 54 · furniture-household 7 · community-support 61 =
+// 238. That identity is the whole point: moving WHERE classification happens
+// must not change WHAT is classified. The counts were re-checked after the
+// keyword vocabulary was later tuned, and did not move then either — every
+// resource classifies through tier 1, which keywords cannot affect.
+//
+// STILL UNCHANGED, and now the only thing left for a later slice:
+// `resourceCount` counts resources + flyers, not news. Topic pages are specified
+// to count all classified CivicContent; that lands with the category/topic BFF
+// endpoints in F3/F4, where the DTO is reshaped anyway.

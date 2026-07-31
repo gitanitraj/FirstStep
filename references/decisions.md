@@ -1865,3 +1865,175 @@ shared ContentCard. The **cross-category relationship graph** — an Enrich-stag
 product analyzing canonical categories, subcategories, tags and semantic
 similarity, persisted as metadata so it stays deterministic and cheap to serve —
 is scoped **after** F6: it is additive to the pages, not load-bearing for them.
+
+# Decision 033
+
+**Slice F2 — a shared classification engine. Every CivicContent source now
+classifies into the canonical taxonomy through one implementation, at ingestion.**
+
+**The user's direction:** don't fix individual callers, and don't just swap
+`text.contains()` for a word-boundary regex. Introduce a `shared.classification`
+package where `CategoryClassifier` determines canonical category and subcategory
+and `TagClassifier` assigns descriptive tags, both operating on tokenized text.
+Move the keyword vocabulary into `taxonomy.json`. After F2, `CategoryService`
+operates purely on the unified domain model.
+
+## Taxonomy corrections (Part 1)
+
+Two subcategory changes, **organizing around resident needs rather than
+organizational service terminology**:
+
+- `furniture-household`: **`Starter Kits` → `Furniture & Household Goods`** —
+  better represents the actual range (ReStore, Catholic Charities, furniture
+  banks) and matches the words residents use. Affected FH-005 and FL-007.
+- `community-support`: **new `School Supplies`** — a supply drive is recurring
+  seasonal assistance, not an educational service. FL-004 moved off
+  `Education & Training`. `community-support` is grouped, so `navigation.json`
+  also gained it under **Family and Children** (an unplaced topic fails
+  `validate_navigation.py`).
+
+**FL-005 stays `Legal` ▸ `Disability Advocacy`, singular.** Its Community Support
+relevance lives in descriptive tags and, later, the relationship graph. A
+multi-valued subcategory was rejected: it complicates navigation, validation and
+counting platform-wide to serve a minority of items.
+
+## The engine
+
+`shared/classification/` — `Tokenizer`, `Classification`, `CategoryClassifier`,
+`TagClassifier`, `CivicContentClassifier`.
+
+**Tokenization, not regex.** Whole-word matching is now *structural* — there is
+no way to express a substring match through the API, so the bug cannot return via
+a caller who forgets a `\b`. Phrases match only contiguously, and weigh their
+token count (a two-word phrase is stronger evidence than a single word).
+
+**`singularize()` was necessary and is deliberately not a stemmer.** Real text
+says "TENANTS AND LANDLORDS"; the taxonomy says "tenant". Without normalization
+the vocabulary would need every word twice. Rules are conservative with explicit
+guards (`gas`, `bus`, `business`, `status`, `analysis` untouched) because
+over-stemming manufactures false matches — trading a substring bug for a stemming
+bug is not progress. Applied to keywords *and* text so the two meet in the middle.
+
+**Two tiers, and `matchCategories` survived.** The brief said legacy translation
+could be removed; that was right about the **query layer** and wrong about the
+**mapping table**, so the two were separated. `CategoryService`'s request-time
+filtering is gone. `matchCategories` was promoted to **tier 1**: a hand-curated
+mapping of a known upstream vocabulary with 100% coverage of all 229 resources.
+Replacing a correct deterministic mapping with keyword guessing would trade a
+right answer for a likely one. **"Legacy" describes where code lives, not whether
+it is correct.** Tier 1 short-circuits — a mapped resource is never keyword-scored.
+
+**Tier 2 scoring:** `MIN_SCORE = 2` (one stray word is never enough) plus a
+`RELATIVE_FLOOR = 0.5` — a category is kept only if it scores at least half the
+leader. Chosen over a hard "max 3" cap, which is worse in both directions: it
+truncates a genuinely four-category item *and* still admits three bad matches for
+an item deserving none. A relative floor scales with the evidence.
+
+**Confidence is used, not stored.** It is not a field on `CivicContent` — that
+would be a category error (confidence is a property of the *act* of classifying,
+and a hand-authored classification has no meaningful confidence value). It gates
+the threshold and drives a startup summary.
+
+## The classification policy (user's formulation, adopted verbatim)
+
+> The classifier only classifies when editorial classification is absent.
+> Hand-authored editorial classifications are authoritative and **immutable
+> during ingestion**. Automated classification exists **solely to normalize
+> unclassified content.**
+
+"During ingestion" is precise — an editor changing the data file is exactly how
+classification *should* change; the *pipeline* must not. **The rule applies per
+FIELD, not per item**: NP-001 has `category_tags` but no `subcategory`; per-item
+logic would leave it permanently topic-less.
+
+**The corollary was verified empirically, not just asserted.** Mid-slice the
+keyword vocabulary was tuned (legal and community-support gained terms) and the
+live category counts **did not move by a single record** — 238 before, 238 after
+— because every editorially-placed item is immutable. Only previously
+unclassified RSS bills moved (134 → 175 of 428). *Changes must result from
+intentional editorial decisions, never from classifier behavior.*
+
+## RSS stops classifying
+
+Deleted from `RssFeedService`: `TAG_KEYWORDS`, `TAG_WHY`, the private
+`Classification` class, `classifyLegislation()` — ~90 lines, replaced by
+`classifier.classify(item)`. Called **before** the "RELATING TO" title rewrite so
+the classifier sees raw bill text.
+
+`WHY_BY_CATEGORY` stayed: it is law-specific **editorial copy**, not taxonomy
+vocabulary — a sentence about what a new law means for a resident makes no sense
+on a Resource. Re-keyed onto canonical labels, with entries added for the four
+categories that previously had none.
+
+**`"Delaware Legislation"` is gone as a category tag.** It described a content
+TYPE, and `ContentType.LAW` expresses that properly, so an unclassifiable bill
+now carries **empty `categoryTags` + `contentType: LAW`** — honestly
+uncategorized rather than filed under a pseudo-category.
+
+## A bug I introduced and caught during live verification
+
+Tier 1 initially returned the raw source category as `evidence`, which
+`TagClassifier` then merged into descriptive tags — pushing **"Housing
+Assistance" / "Before/After School Care" into `tags` on all 229 resources**. A
+category name in the one field that must never hold one, plus DSCYF vocabulary
+polluting search. Tier 1 now returns **empty evidence**; provenance is already on
+`Resource.category`. Locked in by
+`shouldNotLeakUpstreamSourceVocabularyIntoDescriptiveTags`.
+
+## Verification
+
+**205 backend tests green** (was 155), clean build. New: `TokenizerTest` (16),
+`CategoryClassifierTest` (14), `CivicContentClassifierTest` (14),
+`TagClassifierTest` (7). `ClassifierFixture` wires a *real* classifier to the
+real taxonomy — a mock would make every repository test pass whether or not
+classification works.
+
+**Test-fixture change worth noting:** `CategoryServiceTest` and
+`CategoryControllerTest` build `Resource` objects directly, bypassing ingestion,
+so they now classify in the helper — which keeps them covering the seam (a raw
+directory string still reaches the right category) rather than hand-setting
+canonical tags.
+
+**All validators exit 0. Frontend 20 green.**
+
+**Live (Docker), the two-part invariant both halves holding:**
+- **Category counts frozen:** housing 45 · food 12 · clothing 15 · health 33 ·
+  employment 6 · utilities 0 · legal 5 · community-events 54 ·
+  furniture-household 7 · community-support 61 = **238**, identical to F1 and
+  identical again after keyword tuning.
+- **Topic counts: exactly the three intentional moves** — `Starter Kits` 2→0,
+  `Furniture & Household Goods` 0→2, `Education & Training` 9→8,
+  `School Supplies` 0→1. No fourth change.
+
+**Defects fixed, measured on 428 live bills:** no `Healthcare` / `Disability` /
+`Benefits` / `Delaware Legislation` anywhere; max categories on one item **4**
+(was 5+), and that one plausibly is four-topic; the four previously unreachable
+categories now classify (Community Support 44 bills, Community Events 2).
+`SD-004` returns `category_tags: ["Community Support"]` with clean tags.
+
+**Honest cost:** 253 of 428 bills unclassified. Many genuinely aren't
+civic-assistance content (pet stores, the state flag). Some are misses — "Relating
+to the Court of Chancery" scores 1 on "court", below `MIN_SCORE`. Lowering the
+threshold is precisely how the five-category wetlands bill happened. Declining is
+the deliberate trade; the startup summary exists so the vocabulary improves with
+evidence — that is how the mid-slice tuning pass was diagnosed.
+
+Architecture docs updated: `04-editorial-principles.md` (classification section),
+`01-domain-model.md` ("when to introduce a domain class" — *different behavior,
+not different data*; a Law does not qualify), `02-information-flow.md` (Stage 4
+Enrich, with the relationship graph named as the next Enrich product).
+
+Annotated mirrors: 5 new + `CategoryService`, `CategoryDefinition`,
+`RssFeedService` and all 5 repositories. **Pre-existing gap noted, not fixed:**
+`JsonResourceRepository_annotated.java` omits a 12-line validation method — it
+predates F2 (verified against HEAD) and expanding scope to fix it was out of
+scope for this slice.
+
+**Known wrinkle:** `shared.classification` depends on
+`category.service.TaxonomyService`. The vocabulary is really shared
+infrastructure that lives in the category package for historical reasons; moving
+it was churn F2 did not need. Recorded rather than hidden.
+
+**Next: F3** — `NavigationService` (groups + topics + counts by editorial
+classification only), then F4 `/api/category/{key}` BFF, F5 CategoryPage, F6
+topic route + shared ContentCard. The relationship graph follows F6.

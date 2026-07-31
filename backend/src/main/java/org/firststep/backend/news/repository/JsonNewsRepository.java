@@ -5,6 +5,7 @@ import java.util.Collections;
 import java.util.List;
 
 import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.model.ContentSource;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -17,6 +18,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class JsonNewsRepository implements NewsRepository {
+
+    private final CivicContentClassifier classifier;
+
+    public JsonNewsRepository(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     private final ObjectMapper mapper = new ObjectMapper();
 
@@ -81,6 +88,11 @@ public class JsonNewsRepository implements NewsRepository {
         if (item.communityId == null) {
             item.communityId = defaultCommunityId;
         }
+
+        // Curated news carries hand-authored category_tags, which are immutable
+        // here. What this CAN fill is the absent subcategory — the per-field rule
+        // in CivicContentClassifier, without which these items stay topic-less.
+        classifier.classify(item);
     }
 
     @Override

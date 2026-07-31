@@ -4,6 +4,35 @@
 
 See the diagram: [uml/domain-model-uml.md](uml/domain-model-uml.md).
 
+## When to introduce a domain class
+
+**Do not introduce a new domain class simply because a content type has different
+*data*. Introduce a new domain class only when it has different *business
+behavior*.**
+
+This rule exists to prevent a specific and tempting form of overengineering: a
+class-per-shape hierarchy that grows a type every time a field differs, and whose
+subclasses are then indistinguishable in behavior.
+
+The v2 types earn their existence:
+
+| Type | The behavior that justifies it |
+| --- | --- |
+| **Resource** | Eligibility, locations, contacts, and organizations — it must be matched against a person's circumstances and connected to a provider. |
+| **Flyer** | Image-based media — the artifact *is* the content, and it is preserved and rendered rather than read. |
+| **ExpertAnswer** / **FAQ** | Curated knowledge — attributed, reviewed, and answering a question rather than describing a service. |
+| **NewsItem** | Time-based editorial content — it publishes, expires, and has a "why it matters". |
+
+A **Law** does *not*. It has the same fields and the same behavior as a NewsItem;
+only its presentation differs. That is why `LAW` is a value of
+`shared.model.ContentType` and not a `LawItem` class — a class whose only
+distinguishing feature is its own type tag models nothing. See
+`references/decisions.md` Decision 032.
+
+The corollary: **content type describes presentation, category describes
+subject.** If a proposed category answers "what format is this?" rather than
+"what is this about?", it is a content type, not a category.
+
 ## Core Knowledge
 
 The primary things the community cares about.

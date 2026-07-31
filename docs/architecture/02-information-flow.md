@@ -32,8 +32,47 @@ Information originates from two format classes and several actor types.
 
 ## Stage 4 — Enrich
 
-> TODO: Categories, tags, summaries, citations, relationships, translations,
-> AI-generated context. (v1's RSS classifier is a concrete example of enrichment.)
+**Classification is the first implemented Enrich product.**
+`shared.classification` normalizes every source into the canonical taxonomy at
+ingestion:
+
+```
+source text ─▶ Tokenizer ─▶ CategoryClassifier ─┬─▶ canonical category_tags
+                                                └─▶ TagClassifier ─▶ descriptive tags
+```
+
+- **`CivicContentClassifier`** is the single entry point every ingestion path
+  calls. It extracts each content type's prose and enforces the classification
+  policy (see [04-editorial-principles.md](04-editorial-principles.md#classification)):
+  it fills editorial fields **only when absent**, per field.
+- **`CategoryClassifier`** works in two tiers — an exact match against a
+  category's `matchCategories` (upstream source vocabulary, deterministic), then
+  scored keyword/phrase evidence from `taxonomy.json`'s `keywords`.
+- **`TagClassifier`** assigns descriptive tags from matched evidence, additively.
+  Never category names.
+- **`Tokenizer`** gives whole-word and contiguous-phrase matching. It replaced
+  raw substring search, under which `"aid"` matched *said* and one bill
+  classified into five categories at once.
+
+Vocabulary lives in `app/data/taxonomy.json`, so tuning classification is a data
+change, not a code change. Classification runs **at load, in memory** — the data
+files stay as authored, and a vocabulary change takes effect on restart with no
+migration.
+
+Every source uses this one engine: `JsonResourceRepository`, `JsonNewsRepository`,
+`JsonFlyerRepository`, `JsonExpertAnswerRepository`, `JsonFaqRepository` and
+`RssFeedService`. `RssFeedService` in particular now *extracts* content and does
+not decide categories — it previously held its own keyword tables and emitted a
+private vocabulary (`Healthcare`, `Benefits`, `Delaware Legislation`) that the
+taxonomy did not recognize.
+
+> TODO — the next Enrich product: **the relationship graph.** Cross-category
+> relevance ("this flyer relates to that law") is computed from canonical
+> categories, subcategories, tags and semantic similarity, then *persisted as
+> metadata* so it stays deterministic and cheap to serve. It is the mechanism for
+> cross-category relevance; a second editorial classification is not.
+
+> TODO: summaries, citations, translations, AI-generated context.
 
 ## Stage 5 — Deliver
 

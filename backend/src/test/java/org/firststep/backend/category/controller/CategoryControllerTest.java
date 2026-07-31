@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.category.service.TaxonomyService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
@@ -43,6 +44,12 @@ class CategoryControllerTest {
                     r.id = "CI-001";
                     r.communityId = "wilmington-de";
                     r.category = "Housing Assistance";
+                    // This stub stands in for JsonResourceRepository, which
+                    // classifies at load (Slice F2). Without it the resource
+                    // reaches CategoryService with no canonical categoryTags and
+                    // counts toward nothing — the repository, not the query
+                    // layer, is what normalizes the raw source category now.
+                    ClassifierFixture.real().classify(r);
                     return List.of(r);
                 }
 

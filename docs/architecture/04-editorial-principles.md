@@ -20,6 +20,54 @@ especially the **Enrich** and **Deliver** stages.
 -   Accuracy before speed.
 -   Build trust through transparency and traceability.
 
+## Classification
+
+**Editorial classification identifies the *primary home* of a CivicContent item.
+Tags describe what the content is *about*. Cross-category relevance is expressed
+through *relationships*, not multiple editorial classifications.**
+
+| Concept | Field | Job |
+| --- | --- | --- |
+| Editorial classification | `category_tags` + `subcategory` | Where the item lives. Drives navigation. |
+| Descriptive metadata | `tags` | What it is about. Drives search, filtering, AI enrichment. |
+| Relationships | enrichment product | Cross-category relevance. |
+
+Editorial classification is **deterministic and singular**: one `subcategory`,
+chosen by an editor. A multi-valued subcategory was rejected — it complicates
+navigation, validation and counting across the whole platform in order to serve a
+minority of items. When an item is genuinely relevant beyond its primary home
+(the disability-services flyer that is Legal ▸ Disability Advocacy but also
+speaks to Community Support ▸ Information & Referral), that relevance belongs in
+descriptive tags and in the relationship graph — not in a second classification.
+
+**Tags must never determine navigation.** This is not a style preference: when
+one field carries both meanings, every consumer must first ask what kind of
+content it is holding before it can interpret the field, which is exactly the
+special-casing the CivicContent contract exists to abolish.
+
+### Automated classification is subordinate to editorial classification
+
+> The classifier only classifies when editorial classification is absent.
+> Hand-authored editorial classifications are authoritative and **immutable
+> during ingestion**. Automated classification exists **solely to normalize
+> unclassified content.**
+
+"Immutable during ingestion" is precise: editorial classification can and should
+change — an editor edits it. What is forbidden is the *pipeline* mutating it. The
+rule applies **per field**, so an item with hand-authored `category_tags` and no
+`subcategory` keeps the former untouched while the latter remains eligible.
+
+It follows that **changes to how content is classified must result from
+intentional editorial decisions, never from classifier behavior.** Tuning the
+keyword vocabulary may change what *unclassified* content normalizes to; it must
+never move content an editor has already placed.
+
+Every source — Resources, News, RSS/Laws, Flyers and Expert content — classifies
+into the same canonical taxonomy (`app/data/taxonomy.json`). Upstream label drift
+is normalized **at the source**, never absorbed by widening the taxonomy's match
+lists downstream, which is how a controlled vocabulary decays into a record of
+every integration ever built.
+
 ## Civic Content
 
 Every piece of CivicContent should answer:

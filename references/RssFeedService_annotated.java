@@ -16,6 +16,7 @@ import com.rometools.rome.feed.synd.*;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
@@ -34,6 +35,15 @@ import java.util.stream.Collectors;
 public class RssFeedService implements RssFeedSource {
 
     private static final Logger log = LoggerFactory.getLogger(RssFeedService.class);
+
+    // Slice F2: this service EXTRACTS content and no longer decides categories.
+    // Its keyword tables and classifyLegislation() moved into
+    // shared/classification, where every source shares one implementation.
+    private final CivicContentClassifier classifier;
+
+    public RssFeedService(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     // WHY: Comma-separated URL list from application.properties so URLs can be
     // changed or added without recompiling.
@@ -130,16 +140,15 @@ public class RssFeedService implements RssFeedSource {
     // ENTRY → NewsItem CONVERSION
     // =============================================================================
     // HOW IT WORKS:
-    // 1. Map raw RSS fields (title, description, link, date) onto NewsItem fields
-    //    — title (inherited from CivicContent) and contentSource (built from the
-    //    feed's title/entry's link) instead of v1's flat headline/sourceName/
-    //    sourceUrl fields.
-    // 2. Run keyword classification to assign civic category tags (the inherited
-    //    `tags` field) and a generic "why it matters" sentence.
-    // 3. Try to extract a "RELATING TO …" clause from the description. If not
-    //    found (Resolutions and some Acts never use that phrasing), fall back to
-    //    the bill's own "This Bill/Act/Resolution/Joint Resolution …"
-    //    self-description instead of leaving the raw bill number as the title.
+    // 1. Map raw RSS fields (title, description, link, date) to NewsItem fields.
+    // 2. Run keyword classification to assign civic category tags and a generic
+    //    "why it matters" sentence.
+    // 3. Try to extract a "RELATING TO …" clause from the description. Delaware
+    //    legislation descriptions always begin with the full act title in ALL CAPS,
+    //    e.g. "AN ACT TO AMEND TITLE 1 … RELATING TO PUERTO RICO DAY." If found,
+    //    this clause (converted to Sentence Case) replaces both the bill-number
+    //    headline and the generic why-it-matters text, giving users a readable,
+    //    specific description of the law.
     private NewsItem convertEntry(SyndFeed feed, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
@@ -166,19 +175,24 @@ public class RssFeedService implements RssFeedSource {
         item.updatedDate = item.publishDate;
 
         item.status  = "active";
-
-        item.contentType = ContentType.LAW;
         item.type    = "legislation";
         item.urgency = "standard";
 
-        // Step 2: keyword classification
-        String text = (item.title + " " + item.summary).toLowerCase();
-        Classification cls = classifyLegislation(text);
-        item.categoryTags  = cls.categoryTags;
-        item.tags          = cls.resourceTags;
-        item.whyItMatters  = cls.whyItMatters;
+        // Signed legislation is a NewsItem that PRESENTS as a Law. Content type
+        // decides the treatment; classification below decides where it appears.
+        // Keeping LAW here (rather than inventing a "Legislation" category) is
+        // what preserves the dedicated Law experience without a second taxonomy.
+        item.contentType = ContentType.LAW;
 
-        // Step 3: extract "RELATING TO …" clause for a more readable title/why
+        // Step 2: classification is delegated. This service extracts content;
+        // shared/classification decides the canonical category and descriptive
+        // tags, using the same vocabulary and the same engine as every other
+        // source. Called before the title rewrite below so the classifier sees
+        // the raw bill text, which carries more signal than the tidied clause.
+        classifier.classify(item);
+        item.whyItMatters = whyItMattersFor(item.categoryTags);
+
+        // Step 3: extract "RELATING TO …" clause for a more readable headline/why
         String relatingTo = extractRelatingTo(item.summary);
         if (relatingTo != null) {
             item.title         = relatingTo;
@@ -214,9 +228,7 @@ public class RssFeedService implements RssFeedSource {
     //      "This Act…", "This Senate…", etc. When there is no period before this
     //      phrase, stop just before it and append a period.
     //   3. 120-character cap — hard safety net, truncates at last word boundary.
-    //   Returns null if "RELATING TO" is not found, or if NEITHER terminator (1) nor
-    //   (2) is found at all — the character cap (3) only trims an already-found
-    //   match, it does not by itself create an end point.
+    //   Returns null if "RELATING TO" is not found or nothing remains after trimming.
     private static final int RELATING_TO_MAX_CHARS = 120;
 
     private static String extractRelatingTo(String summary) {
@@ -372,97 +384,49 @@ public class RssFeedService implements RssFeedSource {
     }
 
     // =============================================================================
-    // CLASSIFICATION
+    // WHY IT MATTERS (law-specific editorial copy)
     // =============================================================================
-    // WHY LinkedHashMap: insertion order matters — the first matched tag determines
-    // which "why it matters" sentence is used when multiple tags match.
+    // Slice F2 moved keyword classification OUT of this service into
+    // shared/classification. What stays here is the one thing that is genuinely
+    // legislation-specific rather than taxonomy vocabulary: the sentence telling a
+    // resident why a NEW LAW in a given category might affect them. That copy is
+    // about laws, not about the category in general, so it does not belong in
+    // taxonomy.json alongside the shared vocabulary.
     //
-    // HOW IT WORKS: Each entry's lowercase title+summary is tested against
-    // keyword arrays. Any matching bucket adds its display tag to the result list.
-    // If no bucket matches, a generic "Delaware Legislation" tag and fallback
-    // sentence are returned.
-    private static final class Classification {
-        List<String> categoryTags;
-        List<String> resourceTags;
-        String whyItMatters;
-        Classification(List<String> categoryTags, List<String> resourceTags, String whyItMatters) {
-            this.categoryTags = categoryTags;
-            this.resourceTags = resourceTags;
-            this.whyItMatters = whyItMatters;
-        }
-    }
-
-    private static final Map<String, String[]> TAG_KEYWORDS = new LinkedHashMap<>();
+    // Keyed by canonical category LABEL (not the old lowercase bucket names), and
+    // LinkedHashMap because insertion order picks the sentence when a bill
+    // classifies into several categories.
+    private static final Map<String, String> WHY_BY_CATEGORY = new LinkedHashMap<>();
     static {
-        TAG_KEYWORDS.put("housing",    new String[]{"housing", "rent", "landlord", "tenant", "evict",
-                                                    "mortgage", "residential", "manufactured home",
-                                                    "affordable rental", "shelter"});
-        TAG_KEYWORDS.put("healthcare", new String[]{"health", "medical", "medicaid", "medicare",
-                                                    "hospital", "clinic", "mental health", "prescription",
-                                                    "nursing", "patient", "wellness", "behavioral health",
-                                                    "opioid", "drug", "therapy", "physician", "care",
-                                                    "insurance", "vaccination", "public health",
-                                                    "drinking water", "long-term care", "school-based health"});
-        TAG_KEYWORDS.put("food",       new String[]{"food", "nutrition", "snap", "hunger", "grocery",
-                                                    "meal", "wic", "restaurant meals", "dietitian",
-                                                    "farm", "agriculture"});
-        TAG_KEYWORDS.put("employment", new String[]{"employ", "worker", "wage", "labor", "job",
-                                                    "workplace", "paid leave", "unemployment",
-                                                    "workforce", "occupational", "salary", "licensure"});
-        TAG_KEYWORDS.put("utilities",  new String[]{"utility", "utilities", "electric", "energy",
-                                                    "net meter", "solar", "water system"});
-        TAG_KEYWORDS.put("disability", new String[]{"disability", "disabilities", "accessible", "accessibility",
-                                                    "accommodation", "developmental disability",
-                                                    "rehabilitation", "hearing", "blue envelope"});
-        TAG_KEYWORDS.put("benefits",   new String[]{"benefit", "assistance", "subsidy", "aid",
-                                                    "social service", "low-income", "poverty",
-                                                    "state employee benefit", "child care",
-                                                    "school-based", "voucher"});
-        TAG_KEYWORDS.put("legal",      new String[]{"court", "justice", "civil right", "equal accommodation",
-                                                    "protection", "eviction", "trafficking",
-                                                    "stalking", "criminal", "juvenile"});
+        WHY_BY_CATEGORY.put("Housing",     "This new law may affect your rights as a renter, homeowner, or manufactured-home resident in Delaware.");
+        WHY_BY_CATEGORY.put("Health",      "This new law may change what health services or coverage are available to you or your family.");
+        WHY_BY_CATEGORY.put("Food",        "This new law may affect food assistance programs or nutrition services in your community.");
+        WHY_BY_CATEGORY.put("Employment",  "This new law may change your rights or benefits at work, including wages, leave, or licensing.");
+        WHY_BY_CATEGORY.put("Utilities",   "This new law may affect your electric, water, or energy bills.");
+        WHY_BY_CATEGORY.put("Legal",       "This new law may affect your legal rights or access to the courts.");
+        WHY_BY_CATEGORY.put("Community Support", "This new law may change assistance programs or services available in your community.");
+        WHY_BY_CATEGORY.put("Community Events",  "This new law may affect community programs, recreation, or public spaces near you.");
+        WHY_BY_CATEGORY.put("Clothing",    "This new law may affect programs providing clothing and everyday essentials.");
+        WHY_BY_CATEGORY.put("Furniture & Household", "This new law may affect programs providing furniture and household goods.");
     }
 
-    private static final Map<String, String> TAG_WHY = new LinkedHashMap<>();
-    static {
-        TAG_WHY.put("housing",    "This new law may affect your rights as a renter, homeowner, or manufactured-home resident in Delaware.");
-        TAG_WHY.put("healthcare", "This new law may change what health services or coverage are available to you or your family.");
-        TAG_WHY.put("food",       "This new law may affect food assistance programs or nutrition services in your community.");
-        TAG_WHY.put("employment", "This new law may change your rights or benefits at work, including wages, leave, or licensing.");
-        TAG_WHY.put("utilities",  "This new law may affect your electric, water, or energy bills.");
-        TAG_WHY.put("disability", "This new law may expand services or protections for people with disabilities.");
-        TAG_WHY.put("benefits",   "This new law may change assistance programs or benefits available to low-income Delawareans.");
-        TAG_WHY.put("legal",      "This new law may affect your legal rights or access to the courts.");
-    }
+    private static final String GENERIC_WHY =
+            "Stay informed about new laws signed by the Governor of Delaware.";
 
-    private static Classification classifyLegislation(String text) {
-        List<String> matched = new ArrayList<>();
-        for (Map.Entry<String, String[]> entry : TAG_KEYWORDS.entrySet()) {
-            for (String kw : entry.getValue()) {
-                if (text.contains(kw)) {
-                    matched.add(entry.getKey());
-                    break;
+    // Picks the sentence for the first classified category, falling back to the
+    // generic line. An unclassifiable bill keeps EMPTY categoryTags rather than a
+    // "Delaware Legislation" pseudo-category — that string described a content
+    // TYPE, and ContentType.LAW now expresses it properly.
+    private static String whyItMattersFor(List<String> categoryTags) {
+        if (categoryTags != null) {
+            for (String tag : categoryTags) {
+                String why = WHY_BY_CATEGORY.get(tag);
+                if (why != null) {
+                    return why;
                 }
             }
         }
-
-        if (matched.isEmpty()) {
-            return new Classification(
-                List.of("Delaware Legislation"),
-                List.of(),
-                "Stay informed about new laws signed by the Governor of Delaware."
-            );
-        }
-
-        List<String> categoryTags = matched.stream()
-                .map(t -> Character.toUpperCase(t.charAt(0)) + t.substring(1))
-                .collect(Collectors.toList());
-
-        List<String> resourceTags = new ArrayList<>(matched);
-
-        String why = TAG_WHY.get(matched.get(0));
-
-        return new Classification(categoryTags, resourceTags, why);
+        return GENERIC_WHY;
     }
 
     // =============================================================================
@@ -658,3 +622,65 @@ public class RssFeedService implements RssFeedSource {
 //     Every CivicContent source classifies content using the SAME canonical
 //     taxonomy.
 // =============================================================================
+
+// =============================================================================
+// SLICE F2 UPDATE (Decision 033) — THIS SERVICE NO LONGER CLASSIFIES
+// =============================================================================
+// DELETED from this file: TAG_KEYWORDS (8 keyword arrays), TAG_WHY, the private
+// Classification class, and classifyLegislation(). Roughly 90 lines. What
+// replaced them at the call site is one line:
+//
+//     classifier.classify(item);
+//
+// The F1 annotation below predicted this and named the reason: "classifyLegislation()
+// is doing EDITORIAL work inside a fetching service". A service whose job is
+// network I/O and XML parsing had become the only place in the system that knew
+// what a category was — and it knew a DIFFERENT set of categories from the
+// taxonomy everything else used.
+//
+// Three defects went with it, all previously documented as known-and-deferred:
+//
+//   VOCABULARY DRIFT.  It emitted Healthcare / Disability / Benefits /
+//   "Delaware Legislation" — none canonical. Decision 031 had papered over the
+//   first by adding a "Healthcare" alias to the taxonomy; F1 removed the alias;
+//   F2 removed the cause. Verified live: no drifted value appears in /api/updates
+//   or /api/news/rss any more.
+//
+//   SUBSTRING MATCHING.  text.contains("aid") matched "said"/"paid". See
+//   Tokenizer_annotated.java Section 1. Live max categories on one bill went from
+//   5+ to 4, and that one bill (Office of Inspector General) plausibly does touch
+//   four.
+//
+//   FOUR UNREACHABLE CATEGORIES.  clothing, community-events,
+//   furniture-household and community-support had no keywords at all, so RSS
+//   could never classify into them. They have vocabulary now — Community Support
+//   picks up 44 live bills, Community Events 2.
+//
+// WHAT DELIBERATELY STAYED — and why it is not an inconsistency:
+//
+// WHY_BY_CATEGORY is law-specific EDITORIAL COPY ("This new law may affect your
+// rights as a renter…"). It is not taxonomy vocabulary: it is a sentence about
+// what a NEW LAW in that category means for a resident, which would make no
+// sense on a Resource or a Flyer. Moving it into taxonomy.json alongside the
+// shared vocabulary would put news-domain copy into the domain model. It was
+// re-keyed from the old lowercase bucket names onto canonical category LABELS,
+// and gained entries for the four categories that previously had none.
+//
+// THE FALLBACK CHANGED MEANING. "Delaware Legislation" is gone as a category
+// tag. It described a content TYPE, not a subject — and ContentType.LAW (added
+// in F1) expresses that properly. So an unclassifiable bill now carries EMPTY
+// categoryTags and contentType LAW, which is the honest statement "this is a
+// law, and we could not say what it is about". It keeps the generic
+// why-it-matters sentence.
+//
+// That honesty has a visible cost worth recording: of 428 live bills, 253 are
+// unclassified. Many genuinely are not civic-assistance content (pet stores,
+// animal cruelty, the state flag). Some are misses — a bill titled "Relating to
+// the Court of Chancery" scores 1 on "court", below MIN_SCORE, and is declined.
+// The alternative is lowering the threshold, which is precisely how the
+// five-category wetlands bill happened. Declining is the deliberate trade; the
+// startup summary exists so the vocabulary can be improved with evidence.
+//
+// ORDERING NOTE: classify() is called BEFORE the "RELATING TO" title rewrite, so
+// the classifier sees the raw bill text rather than the tidied clause. The raw
+// description carries more signal.

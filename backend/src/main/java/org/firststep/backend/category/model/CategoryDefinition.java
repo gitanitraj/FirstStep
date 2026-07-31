@@ -1,6 +1,7 @@
 package org.firststep.backend.category.model;
 
 import java.util.List;
+import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +33,15 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
  * Community Events sweep in every flyer regardless of what the flyer was about —
  * the last place where content reached a category by special case rather than by
  * editorial classification. Flyers now carry their own {@code category_tags}.
+ *
+ * <p>Slice F2 added the classification vocabulary: {@code keywords} (terms and
+ * phrases that are evidence FOR this category in free text) and the optional
+ * {@code subcategoryKeywords} map. Both are read by
+ * {@code shared.classification.CategoryClassifier}. Note the three vocabularies
+ * are distinct and none substitutes for another — {@code matchCategories} is
+ * upstream source vocabulary matched exactly, {@code matchCategoryTags} is
+ * canonical editorial classification, {@code keywords} is probabilistic evidence
+ * used only when nothing has classified the item already.
  */
 @JsonIgnoreProperties(ignoreUnknown = true)
 public record CategoryDefinition(
@@ -40,6 +50,24 @@ public record CategoryDefinition(
         String icon,
         List<String> matchCategories,
         List<String> matchCategoryTags,
+        List<String> keywords,
+        Map<String, List<String>> subcategoryKeywords,
         List<String> subcategories
 ) {
+
+    /**
+     * Null-safe accessors — taxonomy.json is hand-authored and both keyword
+     * fields are optional, so a category may legitimately omit them. Callers
+     * should never have to null-check a vocabulary.
+     */
+    public List<String> keywordsOrEmpty() {
+        return keywords == null ? List.of() : keywords;
+    }
+
+    public List<String> subcategoryKeywordsFor(String subcategory) {
+        if (subcategoryKeywords == null) {
+            return List.of();
+        }
+        return subcategoryKeywords.getOrDefault(subcategory, List.of());
+    }
 }

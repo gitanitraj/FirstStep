@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
 
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.expert.model.ExpertAnswer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -19,6 +20,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class JsonExpertAnswerRepository implements ExpertAnswerRepository {
+
+    private final CivicContentClassifier classifier;
+
+    public JsonExpertAnswerRepository(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     private final ObjectMapper mapper = new ObjectMapper();
     private List<ExpertAnswer> expertAnswers = Collections.emptyList();
@@ -87,6 +94,9 @@ public class JsonExpertAnswerRepository implements ExpertAnswerRepository {
         if (expertAnswer.communityId == null) {
             expertAnswer.communityId = defaultCommunityId;
         }
+        // Expert content has never been editorially classified, so this is
+        // where it first reaches the taxonomy — no per-type code needed.
+        classifier.classify(expertAnswer);
     }
 
     @Override

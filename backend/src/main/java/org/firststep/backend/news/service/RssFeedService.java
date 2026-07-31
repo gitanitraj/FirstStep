@@ -16,6 +16,7 @@ import com.rometools.rome.feed.synd.*;
 import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
@@ -34,6 +35,15 @@ import java.util.stream.Collectors;
 public class RssFeedService implements RssFeedSource {
 
     private static final Logger log = LoggerFactory.getLogger(RssFeedService.class);
+
+    // Slice F2: this service EXTRACTS content and no longer decides categories.
+    // Its keyword tables and classifyLegislation() moved into
+    // shared/classification, where every source shares one implementation.
+    private final CivicContentClassifier classifier;
+
+    public RssFeedService(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     // WHY: Comma-separated URL list from application.properties so URLs can be
     // changed or added without recompiling.
@@ -174,12 +184,13 @@ public class RssFeedService implements RssFeedSource {
         // what preserves the dedicated Law experience without a second taxonomy.
         item.contentType = ContentType.LAW;
 
-        // Step 2: keyword classification
-        String text = (item.title + " " + item.summary).toLowerCase();
-        Classification cls = classifyLegislation(text);
-        item.categoryTags  = cls.categoryTags;
-        item.tags          = cls.resourceTags;
-        item.whyItMatters  = cls.whyItMatters;
+        // Step 2: classification is delegated. This service extracts content;
+        // shared/classification decides the canonical category and descriptive
+        // tags, using the same vocabulary and the same engine as every other
+        // source. Called before the title rewrite below so the classifier sees
+        // the raw bill text, which carries more signal than the tidied clause.
+        classifier.classify(item);
+        item.whyItMatters = whyItMattersFor(item.categoryTags);
 
         // Step 3: extract "RELATING TO …" clause for a more readable headline/why
         String relatingTo = extractRelatingTo(item.summary);
@@ -373,97 +384,49 @@ public class RssFeedService implements RssFeedSource {
     }
 
     // =============================================================================
-    // CLASSIFICATION
+    // WHY IT MATTERS (law-specific editorial copy)
     // =============================================================================
-    // WHY LinkedHashMap: insertion order matters — the first matched tag determines
-    // which "why it matters" sentence is used when multiple tags match.
+    // Slice F2 moved keyword classification OUT of this service into
+    // shared/classification. What stays here is the one thing that is genuinely
+    // legislation-specific rather than taxonomy vocabulary: the sentence telling a
+    // resident why a NEW LAW in a given category might affect them. That copy is
+    // about laws, not about the category in general, so it does not belong in
+    // taxonomy.json alongside the shared vocabulary.
     //
-    // HOW IT WORKS: Each entry's lowercase headline+summary is tested against
-    // keyword arrays. Any matching bucket adds its display tag to the result list.
-    // If no bucket matches, a generic "Delaware Legislation" tag and fallback
-    // sentence are returned.
-    private static final class Classification {
-        List<String> categoryTags;
-        List<String> resourceTags;
-        String whyItMatters;
-        Classification(List<String> categoryTags, List<String> resourceTags, String whyItMatters) {
-            this.categoryTags = categoryTags;
-            this.resourceTags = resourceTags;
-            this.whyItMatters = whyItMatters;
-        }
-    }
-
-    private static final Map<String, String[]> TAG_KEYWORDS = new LinkedHashMap<>();
+    // Keyed by canonical category LABEL (not the old lowercase bucket names), and
+    // LinkedHashMap because insertion order picks the sentence when a bill
+    // classifies into several categories.
+    private static final Map<String, String> WHY_BY_CATEGORY = new LinkedHashMap<>();
     static {
-        TAG_KEYWORDS.put("housing",    new String[]{"housing", "rent", "landlord", "tenant", "evict",
-                                                    "mortgage", "residential", "manufactured home",
-                                                    "affordable rental", "shelter"});
-        TAG_KEYWORDS.put("healthcare", new String[]{"health", "medical", "medicaid", "medicare",
-                                                    "hospital", "clinic", "mental health", "prescription",
-                                                    "nursing", "patient", "wellness", "behavioral health",
-                                                    "opioid", "drug", "therapy", "physician", "care",
-                                                    "insurance", "vaccination", "public health",
-                                                    "drinking water", "long-term care", "school-based health"});
-        TAG_KEYWORDS.put("food",       new String[]{"food", "nutrition", "snap", "hunger", "grocery",
-                                                    "meal", "wic", "restaurant meals", "dietitian",
-                                                    "farm", "agriculture"});
-        TAG_KEYWORDS.put("employment", new String[]{"employ", "worker", "wage", "labor", "job",
-                                                    "workplace", "paid leave", "unemployment",
-                                                    "workforce", "occupational", "salary", "licensure"});
-        TAG_KEYWORDS.put("utilities",  new String[]{"utility", "utilities", "electric", "energy",
-                                                    "net meter", "solar", "water system"});
-        TAG_KEYWORDS.put("disability", new String[]{"disability", "disabilities", "accessible", "accessibility",
-                                                    "accommodation", "developmental disability",
-                                                    "rehabilitation", "hearing", "blue envelope"});
-        TAG_KEYWORDS.put("benefits",   new String[]{"benefit", "assistance", "subsidy", "aid",
-                                                    "social service", "low-income", "poverty",
-                                                    "state employee benefit", "child care",
-                                                    "school-based", "voucher"});
-        TAG_KEYWORDS.put("legal",      new String[]{"court", "justice", "civil right", "equal accommodation",
-                                                    "protection", "eviction", "trafficking",
-                                                    "stalking", "criminal", "juvenile"});
+        WHY_BY_CATEGORY.put("Housing",     "This new law may affect your rights as a renter, homeowner, or manufactured-home resident in Delaware.");
+        WHY_BY_CATEGORY.put("Health",      "This new law may change what health services or coverage are available to you or your family.");
+        WHY_BY_CATEGORY.put("Food",        "This new law may affect food assistance programs or nutrition services in your community.");
+        WHY_BY_CATEGORY.put("Employment",  "This new law may change your rights or benefits at work, including wages, leave, or licensing.");
+        WHY_BY_CATEGORY.put("Utilities",   "This new law may affect your electric, water, or energy bills.");
+        WHY_BY_CATEGORY.put("Legal",       "This new law may affect your legal rights or access to the courts.");
+        WHY_BY_CATEGORY.put("Community Support", "This new law may change assistance programs or services available in your community.");
+        WHY_BY_CATEGORY.put("Community Events",  "This new law may affect community programs, recreation, or public spaces near you.");
+        WHY_BY_CATEGORY.put("Clothing",    "This new law may affect programs providing clothing and everyday essentials.");
+        WHY_BY_CATEGORY.put("Furniture & Household", "This new law may affect programs providing furniture and household goods.");
     }
 
-    private static final Map<String, String> TAG_WHY = new LinkedHashMap<>();
-    static {
-        TAG_WHY.put("housing",    "This new law may affect your rights as a renter, homeowner, or manufactured-home resident in Delaware.");
-        TAG_WHY.put("healthcare", "This new law may change what health services or coverage are available to you or your family.");
-        TAG_WHY.put("food",       "This new law may affect food assistance programs or nutrition services in your community.");
-        TAG_WHY.put("employment", "This new law may change your rights or benefits at work, including wages, leave, or licensing.");
-        TAG_WHY.put("utilities",  "This new law may affect your electric, water, or energy bills.");
-        TAG_WHY.put("disability", "This new law may expand services or protections for people with disabilities.");
-        TAG_WHY.put("benefits",   "This new law may change assistance programs or benefits available to low-income Delawareans.");
-        TAG_WHY.put("legal",      "This new law may affect your legal rights or access to the courts.");
-    }
+    private static final String GENERIC_WHY =
+            "Stay informed about new laws signed by the Governor of Delaware.";
 
-    private static Classification classifyLegislation(String text) {
-        List<String> matched = new ArrayList<>();
-        for (Map.Entry<String, String[]> entry : TAG_KEYWORDS.entrySet()) {
-            for (String kw : entry.getValue()) {
-                if (text.contains(kw)) {
-                    matched.add(entry.getKey());
-                    break;
+    // Picks the sentence for the first classified category, falling back to the
+    // generic line. An unclassifiable bill keeps EMPTY categoryTags rather than a
+    // "Delaware Legislation" pseudo-category — that string described a content
+    // TYPE, and ContentType.LAW now expresses it properly.
+    private static String whyItMattersFor(List<String> categoryTags) {
+        if (categoryTags != null) {
+            for (String tag : categoryTags) {
+                String why = WHY_BY_CATEGORY.get(tag);
+                if (why != null) {
+                    return why;
                 }
             }
         }
-
-        if (matched.isEmpty()) {
-            return new Classification(
-                List.of("Delaware Legislation"),
-                List.of(),
-                "Stay informed about new laws signed by the Governor of Delaware."
-            );
-        }
-
-        List<String> categoryTags = matched.stream()
-                .map(t -> Character.toUpperCase(t.charAt(0)) + t.substring(1))
-                .collect(Collectors.toList());
-
-        List<String> resourceTags = new ArrayList<>(matched);
-
-        String why = TAG_WHY.get(matched.get(0));
-
-        return new Classification(categoryTags, resourceTags, why);
+        return GENERIC_WHY;
     }
 
     // =============================================================================

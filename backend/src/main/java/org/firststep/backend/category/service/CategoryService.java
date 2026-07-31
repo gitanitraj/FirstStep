@@ -48,17 +48,15 @@ public class CategoryService {
 
     private CategorySummary summarize(CategoryDefinition definition, List<Resource> resources,
                                        List<Flyer> flyers, List<NewsItem> news) {
-        // Resources still match on their RAW source category via matchCategories.
-        // Normalizing that into canonical categoryTags is the classifier's job
-        // (Slice F2); doing it here would put a second classifier in this service.
+        // ONE rule for every content type. Slice F2 moved the raw-source-category
+        // translation into the classifier (shared/classification), which runs at
+        // ingestion — so by the time anything reaches this service it already
+        // carries canonical categoryTags, and this service no longer knows or
+        // cares that resources arrive from a directory with its own vocabulary.
         List<Resource> matchedResources = resources.stream()
-                .filter(r -> definition.matchCategories().contains(r.category))
+                .filter(r -> taxonomyService.matchesCategoryTags(definition, r.categoryTags))
                 .toList();
 
-        // Flyers are classified editorially like every other content type. This
-        // replaces the old includesFlyers boolean, under which Community Events
-        // swept in all seven flyers regardless of subject while a furniture
-        // giveaway or an eviction-rights session reached no relevant category.
         List<Flyer> matchedFlyers = flyers.stream()
                 .filter(f -> taxonomyService.matchesCategoryTags(definition, f.categoryTags))
                 .toList();

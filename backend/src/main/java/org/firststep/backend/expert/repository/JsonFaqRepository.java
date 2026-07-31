@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
 
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.expert.model.FAQ;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -19,6 +20,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class JsonFaqRepository implements FaqRepository {
+
+    private final CivicContentClassifier classifier;
+
+    public JsonFaqRepository(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     private final ObjectMapper mapper = new ObjectMapper();
     private List<FAQ> faqs = Collections.emptyList();
@@ -87,6 +94,7 @@ public class JsonFaqRepository implements FaqRepository {
         if (faq.communityId == null) {
             faq.communityId = defaultCommunityId;
         }
+        classifier.classify(faq);
     }
 
     @Override

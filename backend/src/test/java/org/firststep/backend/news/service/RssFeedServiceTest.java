@@ -3,8 +3,8 @@ package org.firststep.backend.news.service;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.List;
 
+import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.model.ContentType;
 import org.junit.jupiter.api.Test;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class RssFeedServiceTest {
 
     private RssFeedService serviceFor(String feedUrl) {
-        RssFeedService service = new RssFeedService();
+        RssFeedService service = new RssFeedService(ClassifierFixture.real());
         ReflectionTestUtils.setField(service, "rssFeedUrls", feedUrl);
         ReflectionTestUtils.setField(service, "defaultCommunityId", "wilmington-de");
         return service;
@@ -110,7 +110,12 @@ class RssFeedServiceTest {
         service.fetchFeeds();
 
         NewsItem item = service.getRssItems().get(0);
-        assertEquals(List.of("Delaware Legislation"), item.categoryTags);
+        // "Delaware Legislation" is gone as a category tag. It described a
+        // content TYPE, not a subject, and ContentType.LAW now expresses that
+        // properly — so an uncategorizable bill is honestly uncategorized rather
+        // than filed under a pseudo-category (Decision 033).
+        assertTrue(item.categoryTags == null || item.categoryTags.isEmpty());
+        assertEquals(ContentType.LAW, item.contentType);
         assertEquals("Stay informed about new laws signed by the Governor of Delaware.", item.whyItMatters);
     }
 

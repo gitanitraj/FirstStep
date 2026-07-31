@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
 
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.util.CommunitySlug;
@@ -36,6 +37,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class JsonResourceRepository implements ResourceRepository {
+
+    private final CivicContentClassifier classifier;
+
+    public JsonResourceRepository(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Resource> resources = Collections.emptyList();
@@ -128,6 +135,7 @@ public class JsonResourceRepository implements ResourceRepository {
         resource.updatedDate = contentSource.retrieved;
 
         resource.communityId = communityIdFor(resource);
+        classifier.classify(resource);
     }
 
     private String communityIdFor(Resource resource) {
@@ -243,3 +251,35 @@ public class JsonResourceRepository implements ResourceRepository {
 //   themselves already arrived as static snapshots with no runtime
 //   generation step.
 // =============================================================================
+
+// =============================================================================
+// SLICE F2 UPDATE (Decision 033) — CLASSIFICATION AT INGESTION
+// =============================================================================
+// This repository now injects CivicContentClassifier and calls classify() as
+// part of applying defaults. That single line is what "classification happens at
+// ingestion" means concretely — by the time anything leaves this repository it
+// carries canonical categoryTags, so no downstream service has to translate a
+// source vocabulary at request time. CategoryService used to do exactly that for
+// resources; it no longer does.
+//
+// All five Json*Repository classes and RssFeedService call the same method. That
+// was the goal of F2: a shared classification ENGINE, not per-caller fixes.
+//
+// WHAT classify() WILL AND WILL NOT DO HERE — the policy in one line:
+//
+//     It fills editorial fields ONLY when they are absent, per field.
+//
+// So for flyers and curated news, which carry hand-authored category_tags from
+// Decision 032, this is a no-op on the category field and can only ever fill an
+// absent subcategory. For resources it maps the raw source category through the
+// taxonomy's matchCategories (deterministic, tier 1). For expert content, which
+// has never been editorially classified, it is the first time that content
+// reaches the taxonomy at all — with no per-type code written for it.
+//
+// See CivicContentClassifier_annotated.java Section 1 for why the policy lives in
+// the classifier rather than being re-stated at each of these six call sites.
+//
+// TESTING NOTE: the constructor change rippled into every test that builds this
+// repository directly. They use shared/classification/ClassifierFixture.real(),
+// which wires a real classifier to the real app/data/taxonomy.json — a mock
+// would make these tests pass whether or not classification works at all.

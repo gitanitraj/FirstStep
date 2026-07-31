@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
 
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.util.CommunitySlug;
@@ -23,6 +24,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class JsonResourceRepository implements ResourceRepository {
+
+    private final CivicContentClassifier classifier;
+
+    public JsonResourceRepository(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Resource> resources = Collections.emptyList();
@@ -154,6 +161,11 @@ private void applyContentSourceAndDefaults(Resource resource, JsonNode node) {
     resource.updatedDate = contentSource.retrieved;
 
     resource.communityId = communityIdFor(resource);
+
+    // Normalize the raw source category into canonical editorial
+    // classification. Fills categoryTags only when absent; a resource's
+    // subcategory is already editorially assigned and is never touched.
+    classifier.classify(resource);
 }
 
 /**

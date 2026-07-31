@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 import java.nio.file.Path;
 
+import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.flyer.model.Flyer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
@@ -19,6 +20,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @Repository
 public class JsonFlyerRepository implements FlyerRepository {
+
+    private final CivicContentClassifier classifier;
+
+    public JsonFlyerRepository(CivicContentClassifier classifier) {
+        this.classifier = classifier;
+    }
 
     private final ObjectMapper mapper = new ObjectMapper();
     private List<Flyer> flyers = Collections.emptyList();
@@ -102,6 +109,10 @@ public class JsonFlyerRepository implements FlyerRepository {
         if (flyer.communityId == null) {
             flyer.communityId = defaultCommunityId;
         }
+        // Flyers carry hand-authored category_tags and subcategory (Decision
+        // 032), so this is a no-op for them today — it exists so an
+        // unclassified flyer added later is normalized like anything else.
+        classifier.classify(flyer);
     }
 
     @Override
