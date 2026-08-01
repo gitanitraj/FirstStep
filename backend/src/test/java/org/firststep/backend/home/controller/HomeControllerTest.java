@@ -98,7 +98,7 @@ class HomeControllerTest {
             UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService);
             CategoryService categoryService = new CategoryService(new TaxonomyService("../app/data"), resourceService, newsService, flyerService);
             OrganizationService organizationService = new OrganizationService(resourceService);
-            LegislationService legislationService = new LegislationService(rssSource);
+            LegislationService legislationService = new LegislationService(() -> List.of(bill));
             return new HomeService(updatesService, categoryService, organizationService, legislationService, flyerService);
         }
     }

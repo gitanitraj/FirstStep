@@ -63,24 +63,32 @@ public class CivicContentClassifier {
     }
 
     /**
-     * Normalize one item in place. Safe to call on anything, including content
-     * that is already fully classified — that is the common case, and it is a
-     * no-op for the editorial fields by design.
+     * Normalize one item in place and report what was decided. Safe to call on
+     * anything, including content that is already fully classified — that is the
+     * common case, and it is a no-op for the editorial fields by design.
+     *
+     * <p><b>Callers act on {@link ClassificationResult#relevant()} and must not
+     * inspect {@code categoryTags} to decide whether content belongs.</b> The
+     * admission decision is made once, here, so it cannot drift across the six
+     * ingestion points that call this method.
      */
-    public void classify(CivicContent item) {
+    public ClassificationResult classify(CivicContent item) {
         if (item == null) {
-            return;
+            return ClassificationResult.irrelevant("no content");
         }
 
         boolean needsCategory = isBlank(item.categoryTags);
         boolean needsSubcategory = item.subcategory == null || item.subcategory.isBlank();
 
         if (!needsCategory && !needsSubcategory) {
+            // An editor already placed this. That placement IS the relevance
+            // decision, and the engine has no mandate to second-guess it.
             editorial.incrementAndGet();
-            return;
+            return ClassificationResult.editorial(item.categoryTags, item.subcategory);
         }
 
-        Classification result = categoryClassifier.classify(sourceCategoryOf(item), classifiableText(item));
+        ClassificationResult result = categoryClassifier.classify(
+                sourceIdOf(item), sourceCategoryOf(item), classifiableText(item));
 
         // PER-FIELD, and only into absent fields. Note the asymmetry with tags
         // below: editorial fields are filled only when empty, descriptive tags
@@ -100,6 +108,16 @@ public class CivicContentClassifier {
         } else {
             classified.incrementAndGet();
         }
+
+        List<String> finalTags = item.tags == null ? List.of() : item.tags;
+
+        // An item that arrived with editorial category_tags but no subcategory is
+        // relevant even when topic resolution declined — relevance is about
+        // ADMISSION, not completeness. The editor already admitted it.
+        if (!needsCategory) {
+            return ClassificationResult.editorial(item.categoryTags, item.subcategory).withTags(finalTags);
+        }
+        return result.withTags(finalTags);
     }
 
     /**
@@ -158,6 +176,21 @@ public class CivicContentClassifier {
     /** Only Resources carry an upstream source category; everything else returns null. */
     private static String sourceCategoryOf(CivicContent item) {
         return item instanceof Resource r ? r.category : null;
+    }
+
+    /**
+     * Which upstream provider this content came from, read from
+     * {@code contentSource.id} — the field ContentSource has always had for
+     * exactly this and never used.
+     *
+     * <p>Taking it from the data rather than passing it as a parameter keeps
+     * {@code classify(item)} single-argument at all six ingestion points, five of
+     * which have no upstream vocabulary at all and would just pass null. The
+     * repository that knows which provider it is loading stamps the id; the
+     * classifier reads it.
+     */
+    private static String sourceIdOf(CivicContent item) {
+        return item.contentSource != null ? item.contentSource.id : null;
     }
 
     private static void append(StringBuilder text, String value) {
@@ -306,3 +339,51 @@ public class CivicContentClassifier {
 //   functionally, but every caller would then have to rebuild its list, and the
 //   models are mutable public-field POJOs throughout; a lone immutable seam here
 //   would be inconsistent without being safer.
+
+// =============================================================================
+// SLICE F2.1 UPDATE (Decision 034) — THE ADMISSION DECISION
+// =============================================================================
+// classify() returns ClassificationResult instead of void. That is the whole
+// change, and it exists so ingestion can act on ONE question:
+//
+//     Should this content enter First Step at all?
+//
+// First Step is not a legislative tracker or a directory mirror. Of 428 signed
+// Delaware bills, ~175 are civic information a resident might need and ~253 are
+// about pet stores, animal cruelty and the state flag. Before this, all 428
+// entered and flowed into /api/updates.
+//
+// THE RULE CALLERS MUST FOLLOW:
+//
+//     Branch on result.relevant(). Never on categoryTags.
+//
+// Every caller could compute `!categoryTags.isEmpty()` and be correct today.
+// It is forbidden because relevance is a BUSINESS question, and a business
+// question answered independently at six ingestion points will eventually be
+// answered six ways — the first time the rule gains a nuance, five of the six
+// will not hear about it. RssFeedService is the only caller that acts on it,
+// because it is the only automated source; hand-authored content is relevant by
+// definition, since an editor placing content IS the relevance decision.
+//
+// TWO SUBTLETIES IN THE RETURN PATH, both worth their tests:
+//
+//   EDITORIAL CONTENT RETURNS relevant=true VIA A DIFFERENT PATH. An item that
+//   arrives already classified never reaches the classifier at all — it returns
+//   ClassificationResult.editorial() immediately. The engine has no mandate to
+//   re-judge an editor.
+//
+//   AN ITEM WITH category_tags BUT NO subcategory IS STILL RELEVANT. Curated
+//   news (NP-001) has this shape. Topic resolution may decline — no
+//   subcategoryKeywords are authored yet — and the method still returns
+//   editorial(), because relevance is about ADMISSION, not completeness. Getting
+//   this backwards would have quietly dropped every curated news item.
+//
+// SOURCE IDENTITY NOW COMES FROM THE DATA. sourceIdOf() reads
+// contentSource.id — a field ContentSource has always declared for exactly this
+// and never populated. JsonResourceRepository stamps "dscyf-directory" at load.
+//
+// The alternative was a sourceId parameter on classify(), which five of the six
+// ingestion points would pass null to forever. Reading it from provenance keeps
+// the call single-argument AND makes the provider visible in the API response,
+// where it is genuinely useful. The repository that knows what it is loading
+// declares it; the classifier just reads it.

@@ -55,6 +55,7 @@ from pathlib import Path
 from typing import Any, Dict, List, Optional
 
 TAXONOMY_FILE = Path("app/data/taxonomy.json")
+SOURCE_MAPPINGS_FILE = Path("app/data/source-mappings.json")
 RESOURCES_FILE = Path("app/data/resources.communities.json")
 FLYERS_FILE = Path("app/data/flyers.json")
 PROPOSALS_DIR = Path("data-cleaning/proposals")
@@ -76,19 +77,27 @@ VALID_URGENCY = ["emergency", "time-limited", "standard"]
 def load_taxonomy() -> Dict[str, Any]:
     """Return {raw_category -> {key,label,subcategories}} plus the full subcategory set."""
     data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
-    raw_to_display: Dict[str, Dict[str, Any]] = {}
+    by_key: Dict[str, Dict[str, Any]] = {}
     all_subcategories: List[str] = []
     for cat in data["categories"]:
-        display = {
+        by_key[cat["key"]] = {
             "key": cat["key"],
             "label": cat["label"],
             "subcategories": cat.get("subcategories", []),
         }
-        for raw in cat.get("matchCategories", []):
-            raw_to_display[raw] = display
         for sub in cat.get("subcategories", []):
             if sub not in all_subcategories:
                 all_subcategories.append(sub)
+
+    # Raw provider vocabulary lives in its own artifact (Decision 034) — it is a
+    # source adapter, not part of First Step's editorial taxonomy.
+    raw_to_display: Dict[str, Dict[str, Any]] = {}
+    if SOURCE_MAPPINGS_FILE.exists():
+        mappings = json.loads(SOURCE_MAPPINGS_FILE.read_text(encoding="utf-8"))
+        for source in mappings.get("sources", []):
+            for raw, key in (source.get("mappings") or {}).items():
+                if key in by_key:
+                    raw_to_display[raw] = by_key[key]
     return {"raw_to_display": raw_to_display, "all_subcategories": all_subcategories}
 
 

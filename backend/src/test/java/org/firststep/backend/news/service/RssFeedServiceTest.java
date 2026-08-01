@@ -15,11 +15,18 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
- * Exercises fetchFeeds() end-to-end (loadFeed -> convertEntry ->
- * classifyLegislation/extractRelatingTo) against local file:// RSS fixtures
- * instead of a real network call — avoids network flakiness while still
- * testing through the public API, since convertEntry/classifyLegislation/
- * extractRelatingTo are private and not directly callable from a test.
+ * Exercises fetchFeeds() end-to-end against local file:// RSS fixtures instead of
+ * a real network call — avoids network flakiness while still testing through the
+ * public API, since convertEntry/extractRelatingTo are private.
+ *
+ * <p><b>Note which accessor each test reads.</b> Title extraction and
+ * keep-last-good are LEGISLATION PRESENTATION concerns and read
+ * {@code getSignedBills()}, the ungated feed — most of these fixtures (money
+ * transmission, appropriations, the state flag) are bills a resident has no use
+ * for, and they are correctly absent from the discovery feed. The two
+ * classification tests read {@code getRssItems()}, which only carries bills that
+ * passed relevance assessment. That the two lists differ is the point of the
+ * split (Slice F2.1).
  */
 class RssFeedServiceTest {
 
@@ -84,7 +91,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("Relating to Money Transmission.", item.title);
         assertEquals("Relating to Money Transmission.", item.whyItMatters);
     }
@@ -97,7 +104,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("Relating to Delaware Banks and Trust Companies.", item.title);
     }
 
@@ -109,7 +116,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         // "Delaware Legislation" is gone as a category tag. It described a
         // content TYPE, not a subject, and ContentType.LAW now expresses that
         // properly — so an uncategorizable bill is honestly uncategorized rather
@@ -129,7 +136,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertTrue(item.title.length() <= 121, "should truncate to the 120-char cap plus trailing period");
         assertTrue(item.title.endsWith("."));
     }
@@ -147,7 +154,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("The bill appropriates $146,199,300 to provide one-time funded items through the Office of Management and Budget.", item.title);
         assertEquals(item.title, item.whyItMatters);
     }
@@ -164,7 +171,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("Senate Joint Resolution: The Official General Fund Revenue Estimate for Fiscal Year 2027.", item.title);
     }
 
@@ -181,7 +188,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("House Joint Resolution: Extending the Reporting Date of the Driving Under the Influence Prevention Task Force.", item.title);
     }
 
@@ -203,7 +210,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("Senate Joint Resolution: Directing the Division to Explore Health Insurance Initiatives.", item.title);
     }
 
@@ -222,7 +229,7 @@ class RssFeedServiceTest {
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
 
-        NewsItem item = service.getRssItems().get(0);
+        NewsItem item = service.getSignedBills().get(0);
         assertEquals("Senate Joint Resolution: Directing All Electric Utilities to Participate in an Analysis of Grid Technologies.", item.title);
     }
 
@@ -232,14 +239,14 @@ class RssFeedServiceTest {
 
         RssFeedService service = serviceFor(feedUrl);
         service.fetchFeeds();
-        assertEquals(1, service.getRssItems().size());
+        assertEquals(1, service.getSignedBills().size());
 
         // Point at a file that doesn't exist -> loadFeed fails, collected stays empty,
         // and fetchFeeds() must not overwrite the last good result with nothing.
         ReflectionTestUtils.setField(service, "rssFeedUrls", tempDir.resolve("missing.xml").toUri().toString());
         service.fetchFeeds();
 
-        assertEquals(1, service.getRssItems().size());
-        assertEquals("Relating to Food Assistance.", service.getRssItems().get(0).title);
+        assertEquals(1, service.getSignedBills().size());
+        assertEquals("Relating to Food Assistance.", service.getSignedBills().get(0).title);
     }
 }

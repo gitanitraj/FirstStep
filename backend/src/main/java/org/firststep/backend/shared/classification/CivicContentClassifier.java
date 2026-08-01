@@ -63,24 +63,32 @@ public class CivicContentClassifier {
     }
 
     /**
-     * Normalize one item in place. Safe to call on anything, including content
-     * that is already fully classified — that is the common case, and it is a
-     * no-op for the editorial fields by design.
+     * Normalize one item in place and report what was decided. Safe to call on
+     * anything, including content that is already fully classified — that is the
+     * common case, and it is a no-op for the editorial fields by design.
+     *
+     * <p><b>Callers act on {@link ClassificationResult#relevant()} and must not
+     * inspect {@code categoryTags} to decide whether content belongs.</b> The
+     * admission decision is made once, here, so it cannot drift across the six
+     * ingestion points that call this method.
      */
-    public void classify(CivicContent item) {
+    public ClassificationResult classify(CivicContent item) {
         if (item == null) {
-            return;
+            return ClassificationResult.irrelevant("no content");
         }
 
         boolean needsCategory = isBlank(item.categoryTags);
         boolean needsSubcategory = item.subcategory == null || item.subcategory.isBlank();
 
         if (!needsCategory && !needsSubcategory) {
+            // An editor already placed this. That placement IS the relevance
+            // decision, and the engine has no mandate to second-guess it.
             editorial.incrementAndGet();
-            return;
+            return ClassificationResult.editorial(item.categoryTags, item.subcategory);
         }
 
-        Classification result = categoryClassifier.classify(sourceCategoryOf(item), classifiableText(item));
+        ClassificationResult result = categoryClassifier.classify(
+                sourceIdOf(item), sourceCategoryOf(item), classifiableText(item));
 
         // PER-FIELD, and only into absent fields. Note the asymmetry with tags
         // below: editorial fields are filled only when empty, descriptive tags
@@ -100,6 +108,16 @@ public class CivicContentClassifier {
         } else {
             classified.incrementAndGet();
         }
+
+        List<String> finalTags = item.tags == null ? List.of() : item.tags;
+
+        // An item that arrived with editorial category_tags but no subcategory is
+        // relevant even when topic resolution declined — relevance is about
+        // ADMISSION, not completeness. The editor already admitted it.
+        if (!needsCategory) {
+            return ClassificationResult.editorial(item.categoryTags, item.subcategory).withTags(finalTags);
+        }
+        return result.withTags(finalTags);
     }
 
     /**
@@ -158,6 +176,21 @@ public class CivicContentClassifier {
     /** Only Resources carry an upstream source category; everything else returns null. */
     private static String sourceCategoryOf(CivicContent item) {
         return item instanceof Resource r ? r.category : null;
+    }
+
+    /**
+     * Which upstream provider this content came from, read from
+     * {@code contentSource.id} — the field ContentSource has always had for
+     * exactly this and never used.
+     *
+     * <p>Taking it from the data rather than passing it as a parameter keeps
+     * {@code classify(item)} single-argument at all six ingestion points, five of
+     * which have no upstream vocabulary at all and would just pass null. The
+     * repository that knows which provider it is loading stamps the id; the
+     * classifier reads it.
+     */
+    private static String sourceIdOf(CivicContent item) {
+        return item.contentSource != null ? item.contentSource.id : null;
     }
 
     private static void append(StringBuilder text, String value) {

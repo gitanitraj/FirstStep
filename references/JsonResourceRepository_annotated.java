@@ -38,6 +38,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Repository
 public class JsonResourceRepository implements ResourceRepository {
 
+    /**
+     * Identifies the upstream provider for source adaptation. Must match a
+     * {@code sources[].id} in app/data/source-mappings.json — that file translates
+     * this directory's category vocabulary ("Housing Assistance", "Before/After
+     * School Care") into First Step's canonical taxonomy.
+     */
+    static final String DSCYF_DIRECTORY_SOURCE_ID = "dscyf-directory";
+
     private final CivicContentClassifier classifier;
 
     public JsonResourceRepository(CivicContentClassifier classifier) {
@@ -53,100 +61,154 @@ public class JsonResourceRepository implements ResourceRepository {
     @Value("${app.default-community-id:wilmington-de}")
     private String defaultCommunityId;
 
-    @EventListener(ApplicationReadyEvent.class)
-    public void init() {
-        List<Resource> curated = loadFile("resources.json");
-        List<Resource> communities = loadFile("resources.communities.json");
+    /**
+     * Loads resources after the Spring application is ready.
+     * Loads the curated app/data/resources.json plus the structurally-mapped
+     * app/data/resources.communities.json (see decisions.md Decision 013),
+     * concatenating both into one in-memory list.
+     */
+@EventListener(ApplicationReadyEvent.class)
+public void init() {
+    List<Resource> curated = loadFile("resources.json");
+    List<Resource> communities = loadFile("resources.communities.json");
 
-        List<Resource> combined = new ArrayList<>(curated);
-        combined.addAll(communities);
-        resources = combined;
+    List<Resource> combined = new ArrayList<>(curated);
+    combined.addAll(communities);
+    resources = combined;
 
-        System.out.println("Loaded " + resources.size() + " total resources ("
-                + curated.size() + " from resources.json, "
-                + communities.size() + " from resources.communities.json)");
+    System.out.println("Loaded " + resources.size() + " total resources ("
+            + curated.size() + " from resources.json, "
+            + communities.size() + " from resources.communities.json)");
+}
+
+/**
+ * Loads and parses a single resource JSON file: external file at
+ * dataDir/filename first, then classpath /filename as a fallback. Returns
+ * an empty list (not an exception) if neither is found.
+ */
+private List<Resource> loadFile(String filename) {
+    Path external = Path.of(dataDir, filename);
+    try {
+        if (external.toFile().exists()) {
+            JsonNode root = mapper.readTree(external.toFile());
+            List<Resource> loaded = parseJsonNodeToList(root);
+            System.out.println("Loaded resources from " + external + " (" + loaded.size() + " records)");
+            return loaded;
+        }
+    } catch (Exception e) {
+        System.err.println("Failed to load " + external + ": " + e.getMessage());
     }
 
-    private List<Resource> loadFile(String filename) {
-        Path external = Path.of(dataDir, filename);
-        try {
-            if (external.toFile().exists()) {
-                JsonNode root = mapper.readTree(external.toFile());
-                List<Resource> loaded = parseJsonNodeToList(root);
-                System.out.println("Loaded resources from " + external + " (" + loaded.size() + " records)");
-                return loaded;
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to load " + external + ": " + e.getMessage());
+    try (InputStream is = getClass().getResourceAsStream("/" + filename)) {
+        if (is != null) {
+            JsonNode root = mapper.readTree(is);
+            List<Resource> loaded = parseJsonNodeToList(root);
+            System.out.println("Loaded resources from classpath " + filename + " (" + loaded.size() + " records)");
+            return loaded;
+        } else {
+            System.out.println("No " + filename + " found on classpath.");
         }
+    } catch (Exception e) {
+        System.err.println("Failed to load classpath " + filename + ": " + e.getMessage());
+    }
+    return Collections.emptyList();
+}
 
-        try (InputStream is = getClass().getResourceAsStream("/" + filename)) {
-            if (is != null) {
-                JsonNode root = mapper.readTree(is);
-                List<Resource> loaded = parseJsonNodeToList(root);
-                System.out.println("Loaded resources from classpath " + filename + " (" + loaded.size() + " records)");
-                return loaded;
-            } else {
-                System.out.println("No " + filename + " found on classpath.");
-            }
-        } catch (Exception e) {
-            System.err.println("Failed to load classpath " + filename + ": " + e.getMessage());
-        }
+/**
+ * Helper to convert a JsonNode into List<Resource> supporting multiple top-level shapes.
+ */
+private List<Resource> parseJsonNodeToList(JsonNode root) throws JsonProcessingException {
+    if (root == null || root.isNull()) {
         return Collections.emptyList();
     }
 
-    private List<Resource> parseJsonNodeToList(JsonNode root) throws JsonProcessingException {
-        if (root == null || root.isNull()) {
-            return Collections.emptyList();
-        }
-        if (root.isArray()) {
-            return convertResourceArray(root);
-        }
-        if (root.isObject()) {
-            if (root.has("records") && root.get("records").isArray()) {
-                return convertResourceArray(root.get("records"));
-            }
-            if (root.has("resources") && root.get("resources").isArray()) {
-                return convertResourceArray(root.get("resources"));
-            }
-            Resource single = mapper.convertValue(root, Resource.class);
-            applyContentSourceAndDefaults(single, root);
-            return Collections.singletonList(single);
-        }
-        return Collections.emptyList();
+    // If it's already an array, deserialize directly
+    if (root.isArray()) {
+        return convertResourceArray(root);
     }
 
-    private List<Resource> convertResourceArray(JsonNode arrayNode) {
-        List<Resource> parsed = mapper.convertValue(arrayNode, new TypeReference<List<Resource>>() {});
-        for (int i = 0; i < parsed.size(); i++) {
-            applyContentSourceAndDefaults(parsed.get(i), arrayNode.get(i));
+    // If it's an object with a common wrapper key
+    if (root.isObject()) {
+        if (root.has("records") && root.get("records").isArray()) {
+            return convertResourceArray(root.get("records"));
         }
-        return parsed;
-    }
-
-    private void applyContentSourceAndDefaults(Resource resource, JsonNode node) {
-        ContentSource contentSource = new ContentSource();
-        contentSource.name = node.hasNonNull("source") ? node.get("source").asText() : null;
-        contentSource.retrieved = node.hasNonNull("retrieved") ? node.get("retrieved").asText() : null;
-        resource.contentSource = contentSource;
-
-        resource.title = resource.organization;
-        resource.createdDate = contentSource.retrieved;
-        resource.updatedDate = contentSource.retrieved;
-
-        resource.communityId = communityIdFor(resource);
-        classifier.classify(resource);
-    }
-
-    private String communityIdFor(Resource resource) {
-        if (resource.locations != null && !resource.locations.isEmpty()) {
-            String slug = CommunitySlug.forCity(resource.locations.get(0).city);
-            if (slug != null) {
-                return slug;
-            }
+        if (root.has("resources") && root.get("resources").isArray()) {
+            return convertResourceArray(root.get("resources"));
         }
-        return defaultCommunityId;
+
+        // If it's a single resource object, wrap it into a list
+        Resource single = mapper.convertValue(root, Resource.class);
+        applyContentSourceAndDefaults(single, root);
+        return Collections.singletonList(single);
     }
+
+    // Fallback empty
+    return Collections.emptyList();
+}
+
+/**
+ * Deserializes an array node to List<Resource>, then re-walks the same array
+ * (by index — Jackson list conversion preserves order) to populate each
+ * Resource's contentSource/title/createdDate/updatedDate/communityId from
+ * fields the v1 JSON shape carries flat (source, retrieved) or that don't
+ * exist in the source data at all (communityId) — see
+ * applyContentSourceAndDefaults.
+ */
+private List<Resource> convertResourceArray(JsonNode arrayNode) {
+    List<Resource> parsed = mapper.convertValue(arrayNode, new TypeReference<List<Resource>>() {});
+    for (int i = 0; i < parsed.size(); i++) {
+        applyContentSourceAndDefaults(parsed.get(i), arrayNode.get(i));
+    }
+    return parsed;
+}
+
+/**
+ * Populates the CivicContent fields that don't map 1:1 onto the v1 JSON
+ * shape: contentSource is built from the flat source/retrieved keys (Jackson
+ * ignores them as unknown properties since Resource has no matching fields);
+ * title is derived from organization (the field app.js has always rendered
+ * as a resource's display title); createdDate/updatedDate default to the
+ * retrieved date (the closest existing timestamp-like value); communityId
+ * defaults to app.default-community-id since none of today's data has one.
+ */
+private void applyContentSourceAndDefaults(Resource resource, JsonNode node) {
+    ContentSource contentSource = new ContentSource();
+    // The provider identity, which is what tells the classification engine which
+    // source-mappings.json block translates this record's raw `category`. Both
+    // resource files come from the same directory but describe themselves with
+    // different `source` strings, so the stable id is stamped here by the
+    // repository that knows what it is loading, rather than parsed out of prose.
+    contentSource.id = DSCYF_DIRECTORY_SOURCE_ID;
+    contentSource.name = node.hasNonNull("source") ? node.get("source").asText() : null;
+    contentSource.retrieved = node.hasNonNull("retrieved") ? node.get("retrieved").asText() : null;
+    resource.contentSource = contentSource;
+
+    resource.title = resource.organization;
+    resource.createdDate = contentSource.retrieved;
+    resource.updatedDate = contentSource.retrieved;
+
+    resource.communityId = communityIdFor(resource);
+
+    // Normalize the raw source category into canonical editorial
+    // classification. Fills categoryTags only when absent; a resource's
+    // subcategory is already editorially assigned and is never touched.
+    classifier.classify(resource);
+}
+
+/**
+ * Derives communityId from the resource's primary location city (e.g.
+ * "Newark" -> "newark-de"), falling back to app.default-community-id only
+ * when no location/city is available.
+ */
+private String communityIdFor(Resource resource) {
+    if (resource.locations != null && !resource.locations.isEmpty()) {
+        String slug = CommunitySlug.forCity(resource.locations.get(0).city);
+        if (slug != null) {
+            return slug;
+        }
+    }
+    return defaultCommunityId;
+}
 
     @Override
     public List<Resource> findAll() {
@@ -158,8 +220,29 @@ public class JsonResourceRepository implements ResourceRepository {
         return resources.stream().filter(r -> id.equals(r.id)).findFirst();
     }
 
+    // Unused today (no caller wires this in) — carried over as-is from v1's
+    // ResourceService rather than removed or newly hooked up; deciding
+    // whether/how to surface validation results is out of this pass's scope.
     private void validateResources(List<Resource> resources) {
-        // unused today — see WHY section below
+    int missingIds = 0;
+    int missingCategories = 0;
+
+    for (Resource r : resources) {
+
+        if (r.id == null || r.id.isBlank()) {
+            missingIds++;
+        }
+
+        if (r.category == null || r.category.isBlank()) {
+            missingCategories++;
+        }
+    }
+
+    System.out.println(
+        "Validation summary: "
+        + missingIds + " missing ids, "
+        + missingCategories + " missing categories"
+    );
     }
 }
 
@@ -283,3 +366,28 @@ public class JsonResourceRepository implements ResourceRepository {
 // repository directly. They use shared/classification/ClassifierFixture.real(),
 // which wires a real classifier to the real app/data/taxonomy.json — a mock
 // would make these tests pass whether or not classification works at all.
+
+// =============================================================================
+// SLICE F2.1 UPDATE (Decision 034) — STAMPING PROVENANCE
+// =============================================================================
+// One line added:  contentSource.id = DSCYF_DIRECTORY_SOURCE_ID;
+//
+// Source adaptation is keyed by provider (a raw category only translates for the
+// source that declared it), so the classification engine needs to know WHOSE
+// vocabulary a record's `category` field is written in. It reads
+// contentSource.id — a field ContentSource has always declared for exactly this
+// purpose and never populated until now.
+//
+// WHY THE REPOSITORY DECLARES IT rather than the data: both resource files come
+// from the same directory but describe themselves differently —
+// "FIRST Community Services Directory — Delaware DSCYF" and "Delaware DSCYF
+// Service Directory (raw, structurally mapped)". Neither is a stable id, and
+// parsing an id out of prose would encode a wording accident as a business fact.
+// The component that knows which provider it is loading is this repository, so
+// this is where the id is asserted.
+//
+// The constant must match a sources[].id in source-mappings.json.
+// EditorialStabilityTest.shouldPlaceEveryResourceByDeterministicSourceMappingNot\
+// ByKeywords fails if the two ever drift, because every resource would silently
+// fall through to keyword inference and still classify — plausibly, unstably,
+// and wrongly.

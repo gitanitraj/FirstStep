@@ -2037,3 +2037,173 @@ it was churn F2 did not need. Recorded rather than hidden.
 **Next: F3** — `NavigationService` (groups + topics + counts by editorial
 classification only), then F4 `/api/category/{key}` BFF, F5 CategoryPage, F6
 topic route + shared ContentCard. The relationship graph follows F6.
+
+# Decision 034
+
+**Slices F2.1 + F3 — source adaptation leaves the taxonomy, relevance becomes an
+explicit admission decision, and `NavigationService` lands as a read model.**
+
+## The governing principle, now written down
+
+> **Classification is an ingestion concern, not a query concern.** By the time
+> content becomes CivicContent, its editorial classification has already been
+> determined — allowing every downstream service to operate on a unified domain
+> model instead of reinterpreting source-specific data.
+
+Three things in the codebase are that principle applied, which is why the doc
+names them: F2 removed `CategoryService`'s request-time translation; F2.1 moved
+source adaptation into the engine; F3's read model is only *possible* because of
+it. All three are in `03-application-architecture.md`, alongside the engine's
+**four responsibilities** (adapt source vocabularies · determine editorial
+classification · generate descriptive tags · determine relevance), applied
+consistently to every ingestion source. **Confidence is the measure supporting
+the fourth, not a fifth responsibility** — which is why it lives on
+`ClassificationResult` and never on `CivicContent`.
+
+## Part A — `matchCategories` was a source adapter in the wrong file
+
+**The user's call:** `matchCategories` is a deterministic source adapter and
+belongs in the classification engine, not the canonical editorial taxonomy.
+
+`taxonomy.json` was carrying `"Housing Assistance"`, `"Before/After School Care"`,
+`"Early Childhood/Pre-K"` — **DSCYF's words in the file that defines what First
+Step's categories are.** Moved to new **`app/data/source-mappings.json`**, loaded
+by **`SourceMappingService`**. Same reasoning as Decision 029's
+taxonomy/navigation split: two artifacts because two lifecycles and two owners.
+An editor changes the taxonomy; adopting a provider changes the mappings.
+
+**Keyed by source**, not flat, which buys two things the moment a second provider
+exists: **provenance** (a merged flat list loses whose word was whose) and
+**correctness** (two providers can use the same string for different things; a
+flat map forces one to win silently). The cost is that content must carry its
+source identity — read from **`ContentSource.id`**, a field the model has always
+declared for exactly this and never populated. `JsonResourceRepository` stamps
+`"dscyf-directory"` at load. The alternative, a `sourceId` parameter on
+`classify()`, would have five of six ingestion points passing null forever.
+
+**A missing mappings file is NOT fatal**, unlike a missing taxonomy. The rule
+generalizing both: *fail fast when the alternative is a plausible wrong answer;
+degrade when the alternative is a less precise right one.*
+
+`taxonomy.json` now contains **no vendor vocabulary at all** — the test of
+whether the split was drawn in the right place. Three Python scripts repointed.
+
+## Part B — Relevance, and `ClassificationResult`
+
+**First Step is not a legislative tracker.** Of 428 signed Delaware bills, ~175
+are civic information a resident might need; the rest are pet stores, animal
+cruelty and the state flag. All 428 previously entered and flowed into
+`/api/updates`.
+
+`Classification` → **`ClassificationResult`**, gaining `relevant` and `reason`.
+**Both collections stay ordered Lists** (per the user): `categoryTags` because
+multi-category is intentional — `Eviction Prevention` is under both Housing and
+Legal — and `tags` because tag order is an editorial decision.
+
+**Relevance is set by the engine, never inferred by a caller.** No
+`RelevanceAssessor` class — a service whose body is `!categoryTags.isEmpty()` is
+ceremony — but the concept is *visible on the result* rather than re-derived.
+Every caller could compute it correctly today; it is forbidden because a business
+question answered at six ingestion points will eventually be answered six ways.
+Verified by grep: no caller reads `categoryTags` to decide admission.
+
+The record stays **immutable** despite the sketched `setRelevant(...)`: a
+record's canonical constructor *is* "set it while producing the result", and the
+requirement was that the engine decide, not that the field be mutable.
+
+`reason` is what makes conservative-by-design auditable —
+`"evidence below threshold (score 1 < 2)"` is a vocabulary task,
+`"no category keywords matched"` is a different one; without it both look
+identical from outside.
+
+**Two subtleties, each with a test:** content an editor already placed returns
+`editorial()` without re-judgement, and an item with `category_tags` but no
+`subcategory` (curated news) is **still relevant** — relevance is about
+*admission*, not completeness. Getting that backwards would have dropped every
+curated news item.
+
+### The rotator stays independent
+
+`RssFeedService` now implements two interfaces: **`RssFeedSource`**
+(relevance-gated → discovery) and new **`SignedLegislationSource`** (all bills →
+presentation). `LegislationService` reads the second, so the "New Delaware Laws"
+rotator still shows what the Governor signed — **including "Pet Stores and Animal
+Welfare"**, verified live. Before the split, one accessor served both, so adding
+a relevance gate would have silently emptied the rotator of half its content: a
+presentation feature broken by a discovery decision, invisibly (seven bills would
+still appear, just a different seven).
+
+The test suite makes the split legible: the fixtures that broke were all *title
+extraction* tests, which now read `getSignedBills()`; only the two classification
+tests read the gated feed.
+
+## Part C — Two principles, one of them enforced
+
+**Conservative by design** — prefers leaving content unclassified over assigning
+an incorrect category; accuracy improves through vocabulary, never through lower
+thresholds. *A resident who finds nothing has a gap; a resident who finds the
+wrong thing has been misled, and stops trusting the rest.*
+
+**The Editorial Stability Invariant is now a test, not prose.**
+`EditorialStabilityTest` pins per-category counts for both protected classes —
+hand-authored `category_tags` **and** deterministic source mappings — and asserts
+every resource is placed by mapping rather than inference.
+
+**Negative-tested, and the result is the argument for the whole invariant.**
+Removing one mapping did not make 37 housing resources disappear; it **silently
+redistributed them** into community-support 61→76, health 33→37, clothing 15→16,
+housing 45→30. Plausible-looking and completely wrong. Both the Java test and
+`validate_schema.py` failed loudly with actionable messages.
+
+The invariant deliberately does **not** freeze automatically classified content —
+freezing that would forbid the engine from improving.
+
+## Part D — F3: `NavigationService`
+
+**A read model, not a business model** (user's framing). It reads exactly two
+fields — `categoryTags` and `subcategory` — and never consults text, tags,
+keywords or content type. Handed an unclassified item it counts nothing.
+
+There is no fallback, deliberately: a fallback would be an editorial rule wearing
+a convenience disguise, and "where does this appear?" would have two answers in
+two places. `shouldNotClassifyUnclassifiedContent` pins it with a resource
+deliberately stuffed with housing language;
+`shouldNotUseDescriptiveTagsToPlaceContent` covers the subtler version.
+
+Loads `navigation.json` (first Java reader). **Decision 029's "a category absent
+from navigation.json renders a flat topic list" is now structural** — `build()`
+returns groups or flat topics, never both. Counts cover **all** classified
+CivicContent with a per-type breakdown, and topic counts are **scoped to their
+category**, so `Eviction Prevention` counts correctly under Housing and Legal
+independently. Empty topics are returned rather than hidden — suppressing them
+would conceal exactly what `validate_navigation.py` exists to surface.
+
+**No endpoint** (F4), and `/api/home` untouched — which is what keeps the
+Editorial Stability Invariant trivially checkable across this slice.
+
+## Verification
+
+**225 backend tests green** (was 205), clean build. All validators exit 0.
+
+**Live (Docker):**
+- **Category counts frozen at 238** — housing 45 · food 12 · clothing 15 ·
+  health 33 · employment 6 · utilities 0 · legal 5 · community-events 54 ·
+  furniture-household 7 · community-support 61. Moving `matchCategories` to a
+  source adapter is a refactor; nothing moved.
+- **Rotator independence:** `delawareLaws` returns 7 bills including
+  "Pet Stores and Animal Welfare" and "Animal Cruelty".
+- **Relevance gate:** `/api/news/rss` carries 175 bills, **0 unclassified**.
+- **Startup:** taxonomy (10 categories, 45 subcategories) · source mappings
+  (1 source, 24 mappings) · navigation (2 grouped categories) · "175 of 428 bills
+  admitted as CivicContent".
+
+**Process note, recorded because it nearly cost real work:** a sync script
+written as `open(path,'w').write(build(path))` truncated five annotated mirrors —
+Python opens (and empties) the file before evaluating the argument that reads it.
+Recovered from HEAD; the fix is to build all content first and write only after
+every transform succeeds. Mirrors are now machine-verified against production
+(19 files, 0 drift).
+
+**Next: F4** — `GET /api/category/{key}` as a thin BFF over
+`NavigationService.getByKey()`, then F5 CategoryPage, F6 topic route + shared
+ContentCard. The relationship graph follows F6.

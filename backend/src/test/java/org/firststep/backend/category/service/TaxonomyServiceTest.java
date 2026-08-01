@@ -46,7 +46,6 @@ class TaxonomyServiceTest {
 
         assertEquals("Housing", housing.label());
         assertEquals("🏠", housing.icon());
-        assertTrue(housing.matchCategories().contains("Housing Assistance"));
         assertEquals(List.of("Housing"), housing.matchCategoryTags());
         assertEquals(9, housing.subcategories().size());
     }

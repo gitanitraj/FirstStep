@@ -21,7 +21,8 @@ public final class ClassifierFixture {
 
     public static CivicContentClassifier real() {
         return new CivicContentClassifier(
-                new CategoryClassifier(new TaxonomyService("../app/data")),
+                new CategoryClassifier(new TaxonomyService("../app/data"),
+                        new SourceMappingService("../app/data")),
                 new TagClassifier());
     }
 }

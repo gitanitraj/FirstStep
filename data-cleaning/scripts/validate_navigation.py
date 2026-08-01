@@ -32,6 +32,7 @@ from pathlib import Path
 
 INPUT_FILE    = Path("app/data/navigation.json")
 TAXONOMY_FILE = Path("app/data/taxonomy.json")
+SOURCE_MAPPINGS_FILE = Path("app/data/source-mappings.json")
 
 # Loaded CivicContent, used only to REPORT which topics currently have no content.
 # Counts are never written to navigation.json — the backend computes them live.
@@ -48,17 +49,25 @@ FLYER_FILE = Path("app/data/flyers.json")
 
 def load_taxonomy():
     """Return {category_key: {"label": str, "subcategories": [str]}} plus the
-    raw-source-category -> key map used to place resource records."""
+    raw-source-category -> key map used to place resource records.
+
+    The two come from different files on purpose (Decision 034): taxonomy.json is
+    First Step's editorial vocabulary, source-mappings.json is how an upstream
+    provider's vocabulary translates into it. A provider's words do not belong in
+    the editorial domain model."""
     data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
     categories = {}
-    raw_to_key = {}
     for cat in data["categories"]:
         categories[cat["key"]] = {
             "label":         cat.get("label", cat["key"]),
             "subcategories": cat.get("subcategories", []),
         }
-        for raw in cat.get("matchCategories", []):
-            raw_to_key[raw] = cat["key"]
+
+    raw_to_key = {}
+    if SOURCE_MAPPINGS_FILE.exists():
+        mappings = json.loads(SOURCE_MAPPINGS_FILE.read_text(encoding="utf-8"))
+        for source in mappings.get("sources", []):
+            raw_to_key.update(source.get("mappings") or {})
     return categories, raw_to_key
 
 

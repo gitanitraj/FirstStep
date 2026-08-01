@@ -10,6 +10,7 @@ import org.firststep.backend.news.service.NewsService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.classification.ClassifierFixture;
+import org.firststep.backend.shared.model.ContentSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -59,6 +60,11 @@ class CategoryServiceTest {
         r.communityId = communityId;
         r.category = category;
         r.updatedDate = updatedDate;
+        // The provider id, stamped by JsonResourceRepository in production. Source
+        // adaptation is keyed by source, so without it the raw category cannot be
+        // translated — two providers may use the same word for different things.
+        r.contentSource = new ContentSource();
+        r.contentSource.id = "dscyf-directory";
         ClassifierFixture.real().classify(r);
         return r;
     }

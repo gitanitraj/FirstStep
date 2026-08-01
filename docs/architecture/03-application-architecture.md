@@ -29,6 +29,78 @@ Errors are centralized through `shared/web/GlobalExceptionHandler`
 same `ApiResponse` envelope shape as a successful response.
 
 
+## Classification is an ingestion concern, not a query concern
+
+**By the time content becomes CivicContent, its editorial classification has
+already been determined** — allowing every downstream service to operate on a
+unified domain model instead of reinterpreting source-specific data.
+
+This is the governing principle of the classification subsystem, and three
+things in the codebase are it applied:
+
+- **`CategoryService` no longer translates raw provider categories at request
+  time.** That was classification happening at query time, and it meant a query
+  layer had to know DSCYF's vocabulary (Decision 033).
+- **Source adaptation lives in the engine**, not in the taxonomy, so no
+  query-layer code ever sees an upstream vocabulary again (Decision 034).
+- **`NavigationService` is forbidden from classifying.** A read model over
+  already-classified content is only *possible* because of this principle.
+
+### The classification engine's four responsibilities
+
+`shared/classification` owns all four, and applies them **consistently to every
+ingestion source**. No source implements its own.
+
+1. **Adapt source vocabularies** into the canonical taxonomy —
+   `SourceMappingService`, reading `app/data/source-mappings.json`.
+2. **Determine editorial classification** — which category and subcategory
+   (`CategoryClassifier`).
+3. **Generate descriptive tags** — how residents find the content
+   (`TagClassifier`).
+4. **Determine whether automated content is relevant enough** to become
+   CivicContent at all — the admission gate, carried on
+   `ClassificationResult.relevant()`.
+
+Confidence is the *measure* supporting responsibility 4, not a fifth
+responsibility — which is why it lives on `ClassificationResult` and never on
+`CivicContent`. Content is a thing; confidence is a property of the act of
+judging it.
+
+Relevance is set by the engine and read by callers. **No ingestion point may
+inspect `categoryTags` to decide whether content belongs**, because the same
+business question answered in six places will eventually be answered six ways.
+
+### Two feeds, because two questions
+
+`RssFeedService` implements two single-method interfaces that must not be able
+to change each other:
+
+| Interface | Answers | Feeds |
+| --- | --- | --- |
+| `RssFeedSource` | "what civic content did we admit?" | discovery — updates, categories, search, AI |
+| `SignedLegislationSource` | "what has the Governor signed?" | the Delaware Laws rotator |
+
+Legislation **presentation** is deliberately ungated: the rotator shows what was
+signed, whether or not any of it is relevant to a resident seeking help. Before
+these were split, one accessor served both, so introducing a relevance gate
+would have silently emptied the rotator of every uncategorizable bill — a
+presentation feature broken by a discovery decision.
+
+## `NavigationService` is a read model, not a business model
+
+Its responsibility is to transform the editorial taxonomy and classified
+CivicContent into a navigation structure optimized for the UI. **It must not
+classify content, infer relationships, or contain editorial rules.** All
+editorial decisions belong to the taxonomy and the classification pipeline;
+NavigationService only aggregates, counts, and shapes data for presentation.
+
+In practice it reads exactly two fields — `categoryTags` and `subcategory` —
+and never consults text, tags, keywords or content type to decide placement.
+Handed an unclassified item it counts nothing rather than inferring. There is no
+fallback, deliberately: a fallback would be an editorial rule wearing a
+convenience disguise, and the moment one exists, "where does this appear?" has
+two answers in two places.
+
 ## Repository — per-slice interfaces, not one generic class
 
 **Decided** (resolves the previously-open question): each vertical slice owns

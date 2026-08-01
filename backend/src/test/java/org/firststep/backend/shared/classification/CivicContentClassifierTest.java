@@ -6,6 +6,7 @@ import org.firststep.backend.expert.model.ExpertAnswer;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.shared.model.ContentSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -108,10 +109,20 @@ class CivicContentClassifierTest {
 
     // ---- Resources: source vocabulary + untouched subcategory ---------------
 
+    /** A resource as JsonResourceRepository produces one: raw category PLUS the
+     *  provider id, without which no source adapter can know whose vocabulary
+     *  "Housing Assistance" is. */
+    private Resource dscyfResource(String rawCategory) {
+        Resource r = new Resource();
+        r.category = rawCategory;
+        r.contentSource = new ContentSource();
+        r.contentSource.id = "dscyf-directory";
+        return r;
+    }
+
     @Test
     void shouldClassifyResourceFromItsRawSourceCategory() {
-        Resource resource = new Resource();
-        resource.category = "Housing Assistance";
+        Resource resource = dscyfResource("Housing Assistance");
         resource.subcategory = "Emergency Shelter";
         resource.title = "Sunday Breakfast Mission";
 
@@ -128,8 +139,7 @@ class CivicContentClassifierTest {
         // into tags would both put a category name in the descriptive field and
         // pollute search with upstream vocabulary. Provenance stays on
         // Resource.category, where it belongs.
-        Resource resource = new Resource();
-        resource.category = "Housing Assistance";
+        Resource resource = dscyfResource("Housing Assistance");
         resource.title = "Sunday Breakfast Mission";
         resource.tags = List.of("emergency");
 
@@ -140,8 +150,7 @@ class CivicContentClassifierTest {
 
     @Test
     void shouldClassifyResourceWhoseSourceCategoryIsUnknownUsingItsText() {
-        Resource resource = new Resource();
-        resource.category = "Unmapped Vendor Category";
+        Resource resource = dscyfResource("Unmapped Vendor Category");
         resource.subcategory = "Food Pantry";
         resource.title = "Neighborhood food pantry";
         resource.description = "Groceries and meals for families facing hunger.";

@@ -40,23 +40,33 @@ SCHEMA_FILE = Path("data-cleaning/schema.json")
 # Valid controlled vocabulary
 # ─────────────────────────────────────────
 
-# Controlled vocabulary is loaded from the canonical taxonomy — the single source
-# of truth shared with the backend and frontend (app/data/taxonomy.json). Keyed by
-# RAW source category (via each display category's matchCategories) so records that
-# carry raw category strings validate. Same variable names as before, so the rest
-# of the validator is unchanged.
-TAXONOMY_FILE = Path("app/data/taxonomy.json")
+# Controlled vocabulary comes from TWO artifacts, deliberately split (Decision 034):
+#   taxonomy.json        First Step's canonical editorial vocabulary.
+#   source-mappings.json how an upstream provider's category strings translate
+#                        into it — a deterministic source adapter.
+# Records here carry RAW provider categories, so validation keys on those and
+# resolves each to its canonical category via the source mappings. Same variable
+# names as before, so the rest of the validator is unchanged.
+TAXONOMY_FILE        = Path("app/data/taxonomy.json")
+SOURCE_MAPPINGS_FILE = Path("app/data/source-mappings.json")
 
 
 def _load_taxonomy():
     data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
+    subs_by_key = {c["key"]: set(c.get("subcategories", [])) for c in data["categories"]}
+
+    mappings = json.loads(SOURCE_MAPPINGS_FILE.read_text(encoding="utf-8"))
     cat_to_sub = {}
-    for cat in data["categories"]:
-        subs = set(cat.get("subcategories", []))
-        for raw in cat.get("matchCategories", []):
-            cat_to_sub[raw] = subs
+    for source in mappings.get("sources", []):
+        for raw, key in (source.get("mappings") or {}).items():
+            if key not in subs_by_key:
+                raise SystemExit(
+                    f"source-mappings.json maps '{raw}' to unknown category key '{key}'"
+                )
+            cat_to_sub[raw] = subs_by_key[key]
+
     valid_categories = set(cat_to_sub.keys())
-    valid_subcategories = {s for subs in cat_to_sub.values() for s in subs}
+    valid_subcategories = {s for subs in subs_by_key.values() for s in subs}
     return valid_categories, cat_to_sub, valid_subcategories
 
 

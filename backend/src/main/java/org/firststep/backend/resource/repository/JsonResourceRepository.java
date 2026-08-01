@@ -25,6 +25,14 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 @Repository
 public class JsonResourceRepository implements ResourceRepository {
 
+    /**
+     * Identifies the upstream provider for source adaptation. Must match a
+     * {@code sources[].id} in app/data/source-mappings.json — that file translates
+     * this directory's category vocabulary ("Housing Assistance", "Before/After
+     * School Care") into First Step's canonical taxonomy.
+     */
+    static final String DSCYF_DIRECTORY_SOURCE_ID = "dscyf-directory";
+
     private final CivicContentClassifier classifier;
 
     public JsonResourceRepository(CivicContentClassifier classifier) {
@@ -152,6 +160,12 @@ private List<Resource> convertResourceArray(JsonNode arrayNode) {
  */
 private void applyContentSourceAndDefaults(Resource resource, JsonNode node) {
     ContentSource contentSource = new ContentSource();
+    // The provider identity, which is what tells the classification engine which
+    // source-mappings.json block translates this record's raw `category`. Both
+    // resource files come from the same directory but describe themselves with
+    // different `source` strings, so the stable id is stamped here by the
+    // repository that knows what it is loading, rather than parsed out of prose.
+    contentSource.id = DSCYF_DIRECTORY_SOURCE_ID;
     contentSource.name = node.hasNonNull("source") ? node.get("source").asText() : null;
     contentSource.retrieved = node.hasNonNull("retrieved") ? node.get("retrieved").asText() : null;
     resource.contentSource = contentSource;

@@ -1,12 +1,11 @@
 {
   "version": 1,
-  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validators AND the backend -- TaxonomyService loads this file at startup, so no Java service holds a hardcoded copy of the vocabulary any more. Navigation groups are NOT here -- they live in a separate presentation artifact (navigation.json), so the domain model stays stable when navigation changes or is later generated. EDITORIAL CLASSIFICATION DRIVES NAVIGATION: a topic gathers CivicContent whose subcategory == the topic, and a category gathers CivicContent whose category_tags contain its label. Descriptive 'tags' are NEVER used to place content in the hierarchy -- they serve search, filtering and AI enrichment only, and cross-category relationships are an enrichment product persisted as metadata, not a second editorial taxonomy. 'matchCategories' are the raw source-data category strings that map to this display category; 'matchCategoryTags' are the canonical editorial category_tags that associate any CivicContent item with it. Every source -- Resources, News, RSS/Laws, Flyers and Expert content -- classifies into THIS vocabulary; upstream label drift is normalized at the source, not compensated for by widening these lists (Decision 032).",
+  "note": "Canonical Category -> Subcategory taxonomy (stable domain model), the single source of truth for the validators AND the backend -- TaxonomyService loads this file at startup, so no Java service holds a hardcoded copy of the vocabulary any more. Navigation groups are NOT here -- they live in a separate presentation artifact (navigation.json), so the domain model stays stable when navigation changes or is later generated. This file is PURELY EDITORIAL: upstream provider vocabulary lives in source-mappings.json, loaded by the classification engine, so no vendor's words appear here. EDITORIAL CLASSIFICATION DRIVES NAVIGATION: a topic gathers CivicContent whose subcategory == the topic, and a category gathers CivicContent whose category_tags contain its label. Descriptive 'tags' are NEVER used to place content in the hierarchy -- they serve search, filtering and AI enrichment only, and cross-category relationships are an enrichment product persisted as metadata, not a second editorial taxonomy. 'matchCategoryTags' are the canonical editorial category_tags that associate any CivicContent item with it. Every source -- Resources, News, RSS/Laws, Flyers and Expert content -- classifies into THIS vocabulary; upstream label drift is normalized at the source, not compensated for by widening these lists (Decision 032).",
   "categories": [
     {
       "key": "housing",
       "label": "Housing",
       "icon": "🏠",
-      "matchCategories": ["Housing Assistance", "Housing"],
       "matchCategoryTags": ["Housing"],
       "keywords": ["housing", "rental", "rent", "renter", "landlord", "tenant", "lease", "eviction", "evicted", "mortgage", "foreclosure", "homeless", "shelter", "manufactured home", "public housing", "rental assistance", "homeownership", "security deposit", "affordable housing"],
       "subcategories": ["Emergency Shelter", "Transitional Housing", "Sober Living", "Rental Assistance", "Public Housing", "Homeownership", "Senior Housing", "Youth Housing", "Eviction Prevention"]
@@ -15,7 +14,6 @@
       "key": "food",
       "label": "Food",
       "icon": "🍎",
-      "matchCategories": ["Food Program"],
       "matchCategoryTags": ["Food"],
       "keywords": ["food", "nutrition", "snap", "hunger", "grocery", "groceries", "meal", "meals", "pantry", "wic", "food pantry", "food bank", "farmers market", "ebt", "school meals", "produce", "soup kitchen"],
       "subcategories": ["Food Pantry", "Prepared Meals", "Home-Delivered Meals", "Farmers Market"]
@@ -24,7 +22,6 @@
       "key": "clothing",
       "label": "Clothing",
       "icon": "👕",
-      "matchCategories": ["Clothing & Incidentals"],
       "matchCategoryTags": ["Clothing"],
       "keywords": ["clothing", "clothes", "coat", "coats", "uniform", "uniforms", "shoes", "thrift", "thrift store", "clothing closet", "winter coat", "school uniform", "apparel", "diapers"],
       "subcategories": ["Clothing Closet", "Thrift Store", "Vouchers"]
@@ -33,7 +30,6 @@
       "key": "health",
       "label": "Health",
       "icon": "🏥",
-      "matchCategories": ["Healthcare/Medical", "Mental Health", "Substance Use"],
       "matchCategoryTags": ["Health"],
       "keywords": ["health", "medical", "medicaid", "medicare", "hospital", "clinic", "mental health", "prescription", "dental", "dentist", "nursing", "patient", "behavioral health", "substance use", "opioid", "addiction", "therapy", "counseling", "physician", "vaccination", "public health", "health insurance", "recovery"],
       "subcategories": ["Counseling & Therapy", "Crisis Services", "Substance Use Treatment", "Medical Care", "Trauma & Grief Support"]
@@ -42,7 +38,6 @@
       "key": "employment",
       "label": "Employment",
       "icon": "💼",
-      "matchCategories": ["Employment"],
       "matchCategoryTags": ["Employment"],
       "keywords": ["employment", "employer", "worker", "workers", "wage", "wages", "job", "jobs", "labor", "workplace", "unemployment", "workforce", "occupational", "apprenticeship", "job training", "resume", "hiring", "paid leave", "vocational", "career"],
       "subcategories": ["Job Search Assistance", "Vocational Training", "Youth Employment"]
@@ -51,7 +46,6 @@
       "key": "utilities",
       "label": "Utilities",
       "icon": "💡",
-      "matchCategories": [],
       "matchCategoryTags": ["Utilities"],
       "keywords": ["utility", "utilities", "electric", "electricity", "energy", "heating", "cooling", "utility bill", "water bill", "gas bill", "solar", "net metering", "liheap", "weatherization", "shutoff", "drinking water"],
       "subcategories": []
@@ -60,7 +54,6 @@
       "key": "legal",
       "label": "Legal",
       "icon": "⚖️",
-      "matchCategories": ["Advocacy"],
       "matchCategoryTags": ["Legal"],
       "keywords": ["court", "courts", "legal", "attorney", "lawyer", "civil rights", "expungement", "custody", "guardianship", "immigration", "discrimination", "restraining order", "legal aid", "criminal record", "juvenile", "disability", "disability rights", "accessibility", "accommodation", "advocacy", "criminal", "sentencing", "prison", "parole", "probation", "incarceration", "public defender", "victim", "offender"],
       "subcategories": ["Disability Advocacy", "Eviction Prevention"]
@@ -69,7 +62,6 @@
       "key": "community-events",
       "label": "Community Events",
       "icon": "🎉",
-      "matchCategories": ["Recreational"],
       "matchCategoryTags": ["Community Events"],
       "keywords": ["festival", "parade", "concert", "recreation", "recreational", "sports", "fitness", "library", "libraries", "park", "parks", "arts", "music", "youth program", "senior activities", "community event", "celebration", "camp", "athletics"],
       "subcategories": ["Youth Programs", "Sports & Fitness", "Arts & Music", "Parks & Outdoors", "Libraries", "Senior Activities"]
@@ -78,7 +70,6 @@
       "key": "furniture-household",
       "label": "Furniture & Household",
       "icon": "🛋️",
-      "matchCategories": ["Furniture & Household Items"],
       "matchCategoryTags": ["Furniture & Household"],
       "keywords": ["furniture", "mattress", "appliance", "appliances", "bed", "beds", "sofa", "couch", "dresser", "kitchenware", "cookware", "household goods", "furniture bank", "linens", "dishes", "home goods"],
       "subcategories": ["Appliances", "Furniture & Household Goods", "Thrift Store", "Vouchers"]
@@ -87,7 +78,6 @@
       "key": "community-support",
       "label": "Community Support",
       "icon": "🤝",
-      "matchCategories": ["Resource Information", "Education/Training", "Parenting Education", "Financial Support", "Support Group", "Early Childhood/Pre-K", "Volunteer", "Mentor", "Life Skills", "Transportation", "Child Care", "Before/After School Care", "Entertainment"],
       "matchCategoryTags": ["Community Support"],
       "keywords": ["referral", "information and referral", "financial assistance", "parenting", "child care", "childcare", "daycare", "mentoring", "mentor", "support group", "volunteer", "volunteering", "life skills", "transportation", "bus pass", "tutoring", "school supplies", "back to school", "literacy", "ged", "case management", "early learning", "education", "student", "scholarship", "school district", "foster care", "child welfare", "after school"],
       "subcategories": ["Information & Referral", "Education & Training", "Financial Assistance", "Parenting Support", "Support Groups", "Child Care & Early Learning", "School Supplies", "Volunteer Opportunities", "Mentoring", "Life Skills", "Transportation", "Community Celebrations"]

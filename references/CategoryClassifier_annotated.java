@@ -5,6 +5,7 @@ import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.Set;
 
 import org.firststep.backend.category.model.CategoryDefinition;
@@ -16,20 +17,29 @@ import org.springframework.stereotype.Component;
  *
  * <p>Two tiers, tried in order.
  *
- * <p><b>Tier 1 — source-vocabulary mapping (deterministic, confidence 1.0).</b>
- * When an item arrives carrying a raw source category, an exact match against a
- * category's {@code matchCategories} settles it and keyword scoring never runs.
- * This is what keeps all 229 resources classified exactly as they are today.
- * The instinct to delete {@code matchCategories} as "legacy translation" was
- * resisted deliberately: it is a hand-curated mapping of a known upstream
- * vocabulary with 100% coverage, and replacing it with keyword guessing would
- * trade a correct answer for a probabilistic one. What F2 removes is that
- * translation happening in the QUERY layer (CategoryService); as classifier
- * input it is exactly the right kind of evidence.
+ * <p><b>Deterministic translation first, inference only after.</b> That ordering
+ * is the design, not an optimization: an exact answer should never be displaced
+ * by a probabilistic one.
+ *
+ * <p><b>Tier 1 — source adaptation (deterministic, confidence 1.0).</b> When an
+ * item arrives carrying an upstream category, {@link SourceMappingService}
+ * translates it and keyword scoring never runs. This is what keeps all 229
+ * resources classified exactly as they are. The mapping table is hand-curated
+ * with 100% coverage of the DSCYF directory; replacing it with keyword guessing
+ * would trade a correct answer for a likely one.
+ *
+ * <p>The table used to live in {@code taxonomy.json} as {@code matchCategories}.
+ * Slice F2.1 moved it to {@code source-mappings.json} because it is a provider's
+ * vocabulary rather than First Step's — the editorial taxonomy should not carry
+ * any one vendor's words. Two moves, both about layering: F2 took this
+ * translation out of the QUERY layer, F2.1 took it out of the DOMAIN model.
  *
  * <p><b>Tier 2 — keyword evidence (scored).</b> For free text — legislation,
  * flyers, expert answers — each category is scored by the distinct
  * keywords/phrases from taxonomy.json that appear in it.
+ *
+ * <p>Either tier can conclude the content does not belong in First Step at all;
+ * that verdict travels on {@link ClassificationResult#relevant()}.
  */
 @Component
 public class CategoryClassifier {
@@ -58,51 +68,62 @@ public class CategoryClassifier {
     private static final double CONFIDENT_SCORE = 6.0;
 
     private final TaxonomyService taxonomyService;
+    private final SourceMappingService sourceMappingService;
 
-    public CategoryClassifier(TaxonomyService taxonomyService) {
+    public CategoryClassifier(TaxonomyService taxonomyService, SourceMappingService sourceMappingService) {
         this.taxonomyService = taxonomyService;
+        this.sourceMappingService = sourceMappingService;
     }
 
     /**
-     * @param rawSourceCategory the item's upstream category string, or null when
-     *                          the source has no such concept (news, flyers, RSS)
+     * @param sourceId          which upstream provider this content came from, or
+     *                          null when it has none (news, flyers, RSS)
+     * @param rawSourceCategory the item's upstream category string, or null
      * @param text              the item's classifiable prose
      */
-    public Classification classify(String rawSourceCategory, String text) {
-        Classification bySource = classifyBySourceVocabulary(rawSourceCategory);
+    public ClassificationResult classify(String sourceId, String rawSourceCategory, String text) {
+        ClassificationResult bySource = classifyBySourceVocabulary(sourceId, rawSourceCategory);
         if (bySource != null) {
             return bySource;
         }
         return classifyByKeywords(text);
     }
 
-    /** Tier 1. Returns null (not Classification.none()) to mean "no opinion, try tier 2". */
-    private Classification classifyBySourceVocabulary(String rawSourceCategory) {
-        if (rawSourceCategory == null || rawSourceCategory.isBlank()) {
+    /**
+     * Tier 1 — deterministic source adaptation. Returns null (not a result) to
+     * mean "no opinion, try tier 2", so an unmapped value falls through to
+     * inference rather than being reported as a confident non-answer.
+     */
+    private ClassificationResult classifyBySourceVocabulary(String sourceId, String rawSourceCategory) {
+        Optional<String> key = sourceMappingService.categoryKeyFor(sourceId, rawSourceCategory);
+        if (key.isEmpty()) {
             return null;
         }
-        for (CategoryDefinition definition : taxonomyService.getCategories()) {
-            for (String source : definition.matchCategories()) {
-                if (source.equalsIgnoreCase(rawSourceCategory.trim())) {
-                    // Evidence is deliberately EMPTY, not the source category.
-                    // Evidence feeds TagClassifier, and a source category is
-                    // upstream vocabulary ("Housing Assistance", "Before/After
-                    // School Care") — putting it in descriptive tags would push a
-                    // category name into the field that must never hold one, and
-                    // pollute search with DSCYF's words. Provenance is already
-                    // preserved on Resource.category.
-                    return new Classification(List.of(definition.label()), null, 1.0, List.of());
-                }
-            }
+        Optional<CategoryDefinition> definition = taxonomyService.findByKey(key.get());
+        if (definition.isEmpty()) {
+            // The mapping names a category the taxonomy does not have — a data
+            // error in source-mappings.json. Fall through to keywords rather
+            // than emitting a category that does not exist.
+            System.err.println("source-mappings.json maps '" + rawSourceCategory
+                    + "' to unknown category key '" + key.get() + "'");
+            return null;
         }
-        return null;
+        // Evidence is deliberately EMPTY, not the source category. Evidence feeds
+        // TagClassifier, and a source category is upstream vocabulary ("Housing
+        // Assistance", "Before/After School Care") — putting it in descriptive
+        // tags would push a category name into the field that must never hold
+        // one, and pollute search with DSCYF's words. Provenance is already
+        // preserved on Resource.category.
+        return ClassificationResult.relevant(
+                List.of(definition.get().label()), null, 1.0,
+                "source mapping (" + sourceId + "): " + rawSourceCategory, List.of());
     }
 
-    /** Tier 2. */
-    private Classification classifyByKeywords(String text) {
+    /** Tier 2 — keyword inference, for content no source mapping covers. */
+    private ClassificationResult classifyByKeywords(String text) {
         List<String> tokens = Tokenizer.tokenize(text);
         if (tokens.isEmpty()) {
-            return Classification.none();
+            return ClassificationResult.irrelevant("no classifiable text");
         }
 
         Map<CategoryDefinition, Integer> scores = new LinkedHashMap<>();
@@ -131,14 +152,17 @@ public class CategoryClassifier {
         }
 
         if (scores.isEmpty()) {
-            return Classification.none();
+            return ClassificationResult.irrelevant("no category keywords matched");
         }
 
         int best = scores.values().stream().mapToInt(Integer::intValue).max().orElse(0);
         if (best < MIN_SCORE) {
             // Evidence exists but is too thin. Declining is the right answer —
             // an unclassified item is honest, a wrongly-classified one is not.
-            return Classification.none();
+            // The engine is CONSERVATIVE BY DESIGN: accuracy improves by
+            // enriching the vocabulary, never by lowering this threshold.
+            return ClassificationResult.irrelevant(
+                    "evidence below threshold (score " + best + " < " + MIN_SCORE + ")");
         }
 
         double cutoff = Math.max(MIN_SCORE, best * RELATIVE_FLOOR);
@@ -155,7 +179,8 @@ public class CategoryClassifier {
 
         String subcategory = resolveSubcategory(kept, tokens);
 
-        return new Classification(labels, subcategory, confidence, evidence);
+        return ClassificationResult.relevant(labels, subcategory, confidence,
+                "matched: " + String.join(", ", evidence), evidence);
     }
 
     /**
@@ -325,3 +350,53 @@ public class CategoryClassifier {
 // - Keeping keywords in Java. Rejected — vocabulary is data, and tuning it
 //   should not require a recompile. Putting them in taxonomy.json is what made
 //   the mid-slice tuning pass a one-file edit.
+
+// =============================================================================
+// SLICE F2.1 UPDATE (Decision 034) — TIER 1 MOVED HOUSE
+// =============================================================================
+// The tier-1 table did not change. Where it LIVES did.
+//
+//   before   definition.matchCategories()      // from taxonomy.json
+//   after    sourceMappingService.categoryKeyFor(sourceId, raw)
+//                                              // from source-mappings.json
+//
+// Two moves, one year apart in reasoning, both about layering:
+//   F2   took this translation out of the QUERY layer (CategoryService was
+//        doing it per request).
+//   F2.1 took it out of the DOMAIN model (taxonomy.json was carrying DSCYF's
+//        vocabulary in the file that defines First Step's own).
+//
+// It is now where it always belonged: an ingestion-time source adapter inside
+// the classification engine. See SourceMappingService_annotated.java Section 1.
+//
+// WHAT ALSO CHANGED, and why it is more than a rename:
+//
+//   A SOURCE ID IS NOW REQUIRED. classify() takes sourceId, because mappings are
+//   keyed per provider. A raw category only translates for the source that
+//   declared it — two directories can use the same word for different things.
+//   The cost is that content must carry its provenance; the benefit is that
+//   adopting a second provider cannot silently reinterpret the first's data.
+//
+//   A MAPPING TO AN UNKNOWN CATEGORY FALLS THROUGH rather than emitting it.
+//   source-mappings.json is hand-edited and can drift from taxonomy.json; the
+//   only options were to emit a category that does not exist, crash, or fall
+//   through to keywords with a loud stderr line. The third keeps the app running
+//   while making the data error visible — and validate_schema.py now fails hard
+//   on the same condition, so CI catches it before a human does.
+//
+//   THE RESULT TYPE CARRIES RELEVANCE. Both tiers now return
+//   ClassificationResult, whose `relevant` flag is the admission decision and
+//   whose `reason` explains it ("source mapping (dscyf-directory): Housing
+//   Assistance", "evidence below threshold (score 1 < 2)").
+//
+// TIER 1 STILL RETURNS EMPTY EVIDENCE — the F2 reasoning is unchanged and worth
+// restating because it caused a real bug: evidence feeds TagClassifier, and a
+// source category is a CATEGORY NAME in a provider's words. Letting it through
+// put "Housing Assistance" into the descriptive tags of all 229 resources.
+//
+// THE INVARIANT THIS TIER UNDERWRITES: EditorialStabilityTest asserts that every
+// resource is placed by source mapping and NOT by keyword inference. Removing a
+// single mapping during verification did not make 37 resources disappear — it
+// silently redistributed them into community-support, health and clothing, all
+// plausible-looking. That is the failure mode a deterministic tier exists to
+// prevent, and the reason it must never become "mostly deterministic".

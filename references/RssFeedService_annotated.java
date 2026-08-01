@@ -17,6 +17,7 @@ import com.rometools.rome.io.SyndFeedInput;
 import com.rometools.rome.io.XmlReader;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.classification.CivicContentClassifier;
+import org.firststep.backend.shared.classification.ClassificationResult;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
@@ -32,7 +33,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
-public class RssFeedService implements RssFeedSource {
+public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 
     private static final Logger log = LoggerFactory.getLogger(RssFeedService.class);
 
@@ -54,11 +55,31 @@ public class RssFeedService implements RssFeedSource {
     @Value("${app.default-community-id:wilmington-de}")
     private String defaultCommunityId;
 
-    // WHY: volatile ensures the list is visible across threads when @Scheduled
-    // writes it and the request thread reads it concurrently.
+    // WHY: volatile ensures the lists are visible across threads when @Scheduled
+    // writes them and the request thread reads them concurrently.
+    //
+    // TWO lists, because this service feeds two independent concerns (Slice F2.1):
+    //   signedBills — EVERY bill. Legislation presentation (the Delaware Laws
+    //                 rotator) shows what the Governor signed, ungated.
+    //   rssItems    — only bills that passed relevance assessment and are
+    //                 therefore CivicContent. Discovery: updates, categories,
+    //                 search, AI retrieval.
+    // One list served both before, so adding a relevance gate would have emptied
+    // the rotator of every uncategorizable bill — a presentation feature broken
+    // by a discovery decision.
     private volatile List<NewsItem> rssItems = List.of();
+    private volatile List<NewsItem> signedBills = List.of();
 
     private static final SimpleDateFormat DATE_FMT = new SimpleDateFormat("yyyy-MM-dd");
+
+    /**
+     * A converted bill plus the engine's verdict on it. Two values because
+     * conversion and admission are separate questions and classification must
+     * happen exactly once — the alternative was classifying again in fetchFeeds,
+     * which would double-count the startup summary.
+     */
+    private record ConvertedEntry(NewsItem item, ClassificationResult classification) {
+    }
 
     // =============================================================================
     // SCHEDULED FETCH
@@ -78,7 +99,8 @@ public class RssFeedService implements RssFeedSource {
             return;
         }
 
-        List<NewsItem> collected = new ArrayList<>();
+        List<NewsItem> allBills = new ArrayList<>();
+        List<NewsItem> relevant = new ArrayList<>();
 
         for (String rawUrl : rssFeedUrls.split(",")) {
             String url = rawUrl.trim();
@@ -89,8 +111,15 @@ public class RssFeedService implements RssFeedSource {
                 if (feed == null) continue;
 
                 for (SyndEntry entry : feed.getEntries()) {
-                    NewsItem item = convertEntry(feed, entry);
-                    collected.add(item);
+                    ConvertedEntry converted = convertEntry(feed, entry);
+                    allBills.add(converted.item());
+
+                    // THE ADMISSION GATE. Branch on relevant() and never on
+                    // categoryTags — the engine owns this decision so it cannot
+                    // drift across ingestion points.
+                    if (converted.classification().relevant()) {
+                        relevant.add(converted.item());
+                    }
                 }
 
                 log.info("RSS: Loaded {} entries from {}", feed.getEntries().size(), url);
@@ -101,14 +130,25 @@ public class RssFeedService implements RssFeedSource {
         }
 
         // WHY only replace when non-empty: a transient network failure during a
-        // refresh should not wipe out the last good result.
-        if (!collected.isEmpty()) {
-            rssItems = List.copyOf(collected);
+        // refresh should not wipe out the last good result. Keyed on allBills so
+        // a fetch that returns only irrelevant bills still counts as a success.
+        if (!allBills.isEmpty()) {
+            signedBills = List.copyOf(allBills);
+            rssItems = List.copyOf(relevant);
+            log.info("RSS: {} of {} bills admitted as CivicContent", relevant.size(), allBills.size());
         }
     }
 
+    /** Relevance-gated CivicContent. Discovery only. */
+    @Override
     public List<NewsItem> getRssItems() {
         return rssItems;
+    }
+
+    /** Every signed bill, ungated. Legislation presentation only. */
+    @Override
+    public List<NewsItem> getSignedBills() {
+        return signedBills;
     }
 
     // ------------------------------------------------------------
@@ -149,7 +189,7 @@ public class RssFeedService implements RssFeedSource {
     //    this clause (converted to Sentence Case) replaces both the bill-number
     //    headline and the generic why-it-matters text, giving users a readable,
     //    specific description of the law.
-    private NewsItem convertEntry(SyndFeed feed, SyndEntry entry) {
+    private ConvertedEntry convertEntry(SyndFeed feed, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
         item.id        = "rss-" + UUID.randomUUID();
@@ -185,11 +225,11 @@ public class RssFeedService implements RssFeedSource {
         item.contentType = ContentType.LAW;
 
         // Step 2: classification is delegated. This service extracts content;
-        // shared/classification decides the canonical category and descriptive
-        // tags, using the same vocabulary and the same engine as every other
-        // source. Called before the title rewrite below so the classifier sees
-        // the raw bill text, which carries more signal than the tidied clause.
-        classifier.classify(item);
+        // shared/classification decides relevance, the canonical category and the
+        // descriptive tags, using the same vocabulary and the same engine as every
+        // other source. Called before the title rewrite below so the classifier
+        // sees the raw bill text, which carries more signal than the tidied clause.
+        ClassificationResult classification = classifier.classify(item);
         item.whyItMatters = whyItMattersFor(item.categoryTags);
 
         // Step 3: extract "RELATING TO …" clause for a more readable headline/why
@@ -209,7 +249,7 @@ public class RssFeedService implements RssFeedSource {
             }
         }
 
-        return item;
+        return new ConvertedEntry(item, classification);
     }
 
     // =============================================================================
@@ -684,3 +724,57 @@ public class RssFeedService implements RssFeedSource {
 // ORDERING NOTE: classify() is called BEFORE the "RELATING TO" title rewrite, so
 // the classifier sees the raw bill text rather than the tidied clause. The raw
 // description carries more signal.
+
+// =============================================================================
+// SLICE F2.1 UPDATE (Decision 034) — TWO FEEDS, TWO QUESTIONS
+// =============================================================================
+// This service now implements TWO interfaces and maintains TWO lists:
+//
+//   RssFeedSource.getRssItems()             relevance-gated  -> DISCOVERY
+//   SignedLegislationSource.getSignedBills() ungated         -> PRESENTATION
+//
+// WHY THE SPLIT WAS NECESSARY, not merely tidy. Before it, one accessor served
+// both. Adding a relevance gate would therefore have emptied the "New Delaware
+// Laws" rotator of every bill the classifier could not categorize — roughly half
+// of them — turning a factual legislative feed into an editorial selection
+// without anyone deciding to. A discovery decision would have silently broken a
+// presentation feature.
+//
+// The two answer genuinely different questions:
+//
+//   "What civic content did we admit?"     Categories, updates, search, AI.
+//                                          Must exclude pet-store legislation.
+//   "What has the Governor signed?"        The rotator. Must NOT exclude it —
+//                                          the section is about legislation, not
+//                                          about curated help.
+//
+// This keeps editorial taxonomy, source adaptation and legislation presentation
+// as three independent concerns; none can change another by accident.
+//
+// THE GATE ITSELF is one line in fetchFeeds():
+//
+//     if (converted.classification().relevant()) { relevant.add(...); }
+//
+// Branching on relevant() and never on categoryTags — the engine owns the
+// admission decision so it cannot drift across ingestion points.
+//
+// WHY ConvertedEntry EXISTS. convertEntry() must return both the item and the
+// verdict, because classification has to happen exactly once: calling classify()
+// again in fetchFeeds would double-count the startup summary that the keyword
+// vocabulary is tuned from. A private two-field record is the honest way to
+// return two things.
+//
+// WHY THE KEEP-LAST-GOOD GUARD KEYS ON allBills. A fetch that returns only
+// irrelevant bills is a SUCCESSFUL fetch that admitted nothing — keying the
+// guard on the relevant list would treat it as a network failure and preserve
+// stale data indefinitely.
+//
+// TEST NOTE worth reading before editing RssFeedServiceTest: most fixtures there
+// (money transmission, appropriations, resolutions, the state flag) are bills a
+// resident has no use for, and they are CORRECTLY absent from getRssItems().
+// Those tests exercise title extraction — a presentation concern — and read
+// getSignedBills(). Only the two classification tests read the gated feed. That
+// the two lists differ is the point.
+//
+// LIVE: 175 of 428 bills admitted; the rotator still shows 7, including "Pet
+// Stores and Animal Welfare".

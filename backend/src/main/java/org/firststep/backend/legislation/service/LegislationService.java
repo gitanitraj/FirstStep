@@ -5,7 +5,7 @@ import java.util.List;
 
 import org.firststep.backend.legislation.dto.LawItem;
 import org.firststep.backend.news.model.NewsItem;
-import org.firststep.backend.news.service.RssFeedSource;
+import org.firststep.backend.news.service.SignedLegislationSource;
 import org.firststep.backend.shared.model.ContentSource;
 import org.springframework.stereotype.Service;
 
@@ -15,20 +15,29 @@ import org.springframework.stereotype.Service;
  * feed, so its items ARE the signed bills; this just sorts newest-first,
  * caps at the rotator size, and maps to the display DTO — aggregation stays
  * server-side (backend aggregates, frontend displays).
+ *
+ * <p><b>Reads {@link SignedLegislationSource}, deliberately NOT
+ * {@code RssFeedSource}.</b> This is legislation PRESENTATION: the section is
+ * titled "New Delaware Laws" and its job is to show what the Governor signed,
+ * whether or not any of it is relevant to a resident looking for help. Reading
+ * the relevance-gated discovery feed instead would silently drop every bill the
+ * classifier could not categorize — roughly half of them — turning a factual
+ * legislative feed into an editorial selection without anyone deciding to
+ * (Slice F2.1).
  */
 @Service
 public class LegislationService {
 
     private static final int MAX_BILLS = 7;
 
-    private final RssFeedSource rssFeedSource;
+    private final SignedLegislationSource signedLegislationSource;
 
-    public LegislationService(RssFeedSource rssFeedSource) {
-        this.rssFeedSource = rssFeedSource;
+    public LegislationService(SignedLegislationSource signedLegislationSource) {
+        this.signedLegislationSource = signedLegislationSource;
     }
 
     public List<LawItem> getRecentSignedBills() {
-        return rssFeedSource.getRssItems().stream()
+        return signedLegislationSource.getSignedBills().stream()
                 // Newest first; bills without a date sort last (yyyy-MM-dd is
                 // lexically sortable).
                 .sorted(Comparator.comparing((NewsItem n) -> n.publishDate,

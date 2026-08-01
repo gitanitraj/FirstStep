@@ -45,6 +45,22 @@ one field carries both meanings, every consumer must first ask what kind of
 content it is holding before it can interpret the field, which is exactly the
 special-casing the CivicContent contract exists to abolish.
 
+### The classification engine is conservative by design
+
+**It prefers leaving CivicContent unclassified over assigning an incorrect
+editorial category. Classification becomes more accurate through improvements to
+the taxonomy and vocabulary — never by lowering confidence thresholds.**
+
+This has a visible cost and it is accepted deliberately: roughly half of signed
+Delaware legislation is admitted, and some of the rest are genuine misses rather
+than genuinely irrelevant bills. Lowering the score threshold would admit them —
+along with everything else, which is how a bill about wetlands once acquired five
+categories. A resident who finds nothing has a gap; a resident who finds the
+wrong thing has been misled, and stops trusting the rest.
+
+The right response to a miss is therefore always a vocabulary question — *which
+words should have caught this?* — never a threshold question.
+
 ### Automated classification is subordinate to editorial classification
 
 > The classifier only classifies when editorial classification is absent.
@@ -61,6 +77,30 @@ It follows that **changes to how content is classified must result from
 intentional editorial decisions, never from classifier behavior.** Tuning the
 keyword vocabulary may change what *unclassified* content normalizes to; it must
 never move content an editor has already placed.
+
+### The Editorial Stability Invariant
+
+**Changes to the classification engine must not change editorial category counts
+for manually classified CivicContent, or for content placed by deterministic
+source mappings. Those counts must remain stable regardless of keyword tuning,
+classifier improvements, or threshold adjustments. Any change must result from an
+intentional editorial decision or a taxonomy update.**
+
+Two protected classes, for two reasons: hand-authored `category_tags` because an
+editor decided, and source-mapped placement because *deterministic* means the
+answer does not depend on how the vocabulary is feeling today.
+
+It deliberately does **not** freeze automatically classified content. Those
+counts are expected to move as the vocabulary improves — freezing them would
+forbid the engine from ever getting better, which is the opposite of the point.
+
+**This invariant is enforced, not merely stated.** `EditorialStabilityTest` pins
+the per-category counts against the real data files and fails the build if they
+move. It also asserts that every resource is placed by source mapping rather than
+keyword inference — because the dangerous failure is not content disappearing, it
+is content being *silently reclassified*. Removing a single mapping during
+verification moved 37 housing resources into community-support, health and
+clothing: plausible-looking, and completely wrong.
 
 Every source — Resources, News, RSS/Laws, Flyers and Expert content — classifies
 into the same canonical taxonomy (`app/data/taxonomy.json`). Upstream label drift
