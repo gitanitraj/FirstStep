@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.firststep.backend.category.service.CategoryService;
 import org.firststep.backend.category.service.TaxonomyService;
+import org.firststep.backend.expert.service.ExpertAnswerService;
+import org.firststep.backend.expert.service.FaqService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
@@ -27,6 +29,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -95,9 +98,11 @@ class HomeControllerTest {
             FlyerService flyerService = new FlyerService(flyerRepo);
             ResourceService resourceService = new ResourceService(resourceRepo);
 
-            UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService);
-            CategoryService categoryService = new CategoryService(new TaxonomyService("../app/data"), resourceService, newsService, flyerService);
-            OrganizationService organizationService = new OrganizationService(resourceService);
+            TaxonomyService taxonomyService = new TaxonomyService("../app/data");
+            UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService,
+                    mock(ExpertAnswerService.class), mock(FaqService.class), taxonomyService);
+            CategoryService categoryService = new CategoryService(taxonomyService, resourceService, newsService, flyerService);
+            OrganizationService organizationService = new OrganizationService(resourceService, taxonomyService);
             LegislationService legislationService = new LegislationService(() -> List.of(bill));
             return new HomeService(updatesService, categoryService, organizationService, legislationService, flyerService);
         }

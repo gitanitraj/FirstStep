@@ -4,11 +4,13 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.firststep.backend.category.dto.CategoryMetadata;
+import org.firststep.backend.category.dto.CategoryPage;
+import org.firststep.backend.category.service.CategoryPageService;
 import org.firststep.backend.category.service.CategoryService;
-import org.firststep.backend.navigation.dto.CategoryNavigation;
 import org.firststep.backend.navigation.dto.TopicGroup;
 import org.firststep.backend.navigation.dto.TopicNavigation;
-import org.firststep.backend.navigation.service.NavigationService;
+import org.firststep.backend.organization.dto.OrgSummary;
 import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.model.ContentType;
@@ -22,6 +24,7 @@ import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.repository.ResourceRepository;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
+import org.firststep.backend.updates.dto.UpdateItem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -44,11 +47,11 @@ class CategoryControllerTest {
     @Autowired
     private MockMvc mockMvc;
 
-    // The category-page BFF is a pass-through, so the read model is mocked here:
-    // this test covers routing, the response envelope and the unknown-key path.
-    // Aggregation correctness is NavigationServiceTest's job, against real data.
+    // The controller only routes, so the aggregate is mocked here: this test covers
+    // path binding, the response envelope and the unknown-key path. Composition
+    // correctness is CategoryPageServiceTest's job, against real services.
     @MockitoBean
-    private NavigationService navigationService;
+    private CategoryPageService categoryPageService;
 
     @Configuration
     static class TestConfig {
@@ -135,34 +138,44 @@ class CategoryControllerTest {
                 .andExpect(jsonPath("$.data[?(@.key=='housing')].resourceCount").value(1));
     }
 
-    // ---- GET /api/category/{key} — the category page BFF (Slice F4) ---------
+    // ---- GET /api/category/{key} — the category page BFF (Slice F5a) --------
 
-    private static CategoryNavigation housingNavigation() {
-        return new CategoryNavigation("housing", "Housing Assistance", "🏠", 45,
-                Map.of(ContentType.RESOURCE, 40, ContentType.LAW, 5),
+    private static CategoryPage housingPage() {
+        return new CategoryPage(
+                new CategoryMetadata("housing", "Housing", "🏠", 73,
+                        Map.of(ContentType.RESOURCE, 44, ContentType.LAW, 20), "2026-06-15"),
+                List.of(new UpdateItem("news", ContentType.LAW, "L1", "A signed bill", "Summary",
+                        "2026-06-15", "Delaware Legislature", "https://example.gov/L1", null,
+                        List.of("Housing"))),
                 List.of(new TopicGroup("Need Help Right Away",
                         List.of(new TopicNavigation("Emergency Shelter", "emergency-shelter", 12,
                                 Map.of(ContentType.RESOURCE, 12))))),
-                List.of());
+                List.of(),
+                List.of(new OrgSummary("Housing Alliance", "housing-alliance", 12)));
     }
 
     @Test
-    void shouldReturnWholeCategoryPageShapeInOneResponse() throws Exception {
-        when(navigationService.getByKey("housing", null)).thenReturn(Optional.of(housingNavigation()));
+    void shouldReturnAllThreePillarsInOneResponse() throws Exception {
+        when(categoryPageService.getByKey("housing", null)).thenReturn(Optional.of(housingPage()));
 
         mockMvc.perform(get("/api/category/housing"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data.label").value("Housing Assistance"))
-                .andExpect(jsonPath("$.data.totalCount").value(45))
-                .andExpect(jsonPath("$.data.countsByType.RESOURCE").value(40))
+                .andExpect(jsonPath("$.data.metadata.label").value("Housing"))
+                .andExpect(jsonPath("$.data.metadata.totalCount").value(73))
+                .andExpect(jsonPath("$.data.metadata.countsByType.RESOURCE").value(44))
+                // Stay Informed — and contentType distinguishes a law from news.
+                .andExpect(jsonPath("$.data.updates[0].contentType").value("LAW"))
+                // Discover
                 .andExpect(jsonPath("$.data.groups[0].label").value("Need Help Right Away"))
-                .andExpect(jsonPath("$.data.groups[0].topics[0].slug").value("emergency-shelter"));
+                .andExpect(jsonPath("$.data.groups[0].topics[0].slug").value("emergency-shelter"))
+                // Connect
+                .andExpect(jsonPath("$.data.organizations[0].slug").value("housing-alliance"));
     }
 
     @Test
     void shouldReturn404WhenCategoryKeyIsNotInTheTaxonomy() throws Exception {
-        when(navigationService.getByKey(any(), any())).thenReturn(Optional.empty());
+        when(categoryPageService.getByKey(any(), any())).thenReturn(Optional.empty());
 
         mockMvc.perform(get("/api/category/nonexistent"))
                 .andExpect(status().isNotFound())
@@ -171,13 +184,13 @@ class CategoryControllerTest {
     }
 
     @Test
-    void shouldPassCommunityIdThroughToTheReadModel() throws Exception {
-        when(navigationService.getByKey("housing", "wilmington-de"))
-                .thenReturn(Optional.of(housingNavigation()));
+    void shouldPassCommunityIdThroughToTheAggregate() throws Exception {
+        when(categoryPageService.getByKey("housing", "wilmington-de"))
+                .thenReturn(Optional.of(housingPage()));
 
         mockMvc.perform(get("/api/category/housing").param("communityId", "wilmington-de"))
                 .andExpect(status().isOk());
 
-        verify(navigationService).getByKey("housing", "wilmington-de");
+        verify(categoryPageService).getByKey("housing", "wilmington-de");
     }
 }

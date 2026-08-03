@@ -86,6 +86,10 @@ these were split, one accessor served both, so introducing a relevance gate
 would have silently emptied the rotator of every uncategorizable bill — a
 presentation feature broken by a discovery decision.
 
+The split pays off again in the category page: its "Stay Informed" feed reads
+`RssFeedSource`, and `SignedLegislationSource` **could not serve it even if
+asked** — an unclassified bill has no category to be scoped to.
+
 ## `NavigationService` is a read model, not a business model
 
 Its responsibility is to transform the editorial taxonomy and classified
@@ -100,6 +104,56 @@ Handed an unclassified item it counts nothing rather than inferring. There is no
 fallback, deliberately: a fallback would be an editorial rule wearing a
 convenience disguise, and the moment one exists, "where does this appear?" has
 two answers in two places.
+
+## The category page is an aggregate read model
+
+A category page serves **two complementary purposes**: helping residents browse
+resources, and helping them understand what has changed. Three pillars:
+
+| Pillar | Question | Source |
+| --- | --- | --- |
+| **Discover** | What is available? | topic groups / flat topics, with counts |
+| **Connect** | Where do I go or contact next? | organizations in this category |
+| **Stay Informed** | What has changed? | news, legislation, flyers, expert content |
+
+This exists because of a measured fact, not a preference. Resources and flyers
+carry a `subcategory`; news, legislation and expert content do not — **193 of the
+429 classified items have a category and no topic.** Topic tiles therefore reach
+only about half of a category (housing 45 of 73; utilities 0 of 22).
+
+The wrong fix is to make the classifier infer subcategories. That is deferred to
+**Version 3** and it would trade a conservative engine for a guessing one. The
+right frame is that those items are not a coverage gap — they are the *other
+half* of the page. **Coverage grows by composition, not by inference.** Measured
+across all ten categories, `browse ∪ updates == totalCount` exactly.
+
+`CategoryPageService` composes, and each collaborator keeps its own job:
+
+```
+CategoryPageService
+  ├── NavigationService.getByKey()         → metadata + groups/topics
+  ├── UpdatesService.getForCategory()      → news + law + flyer + expert
+  └── OrganizationService.getForCategory() → organizations
+```
+
+**NavigationService is unchanged by this.** It still produces resident navigation
+and nothing else; composition happens one layer up, so the read model never
+learns about pages.
+
+### When orchestration earns a service
+
+F4 and F5a are the same rule applied to different facts, and the pair is worth
+keeping as the worked example:
+
+- **F4 refused a `CategoryPageService`.** The endpoint had one source and an
+  empty composition step, so the service would have forwarded a call. A BFF gives
+  a page one page-shaped endpoint; it does not oblige every endpoint to have a
+  service.
+- **F5a introduced it.** Three sources and a real composition — the second use an
+  abstraction needs before it earns its name.
+
+The same test applies elsewhere: `HomeService` composes five aggregators plus
+static config, and earns its keep for the same reason.
 
 ## Repository — per-slice interfaces, not one generic class
 

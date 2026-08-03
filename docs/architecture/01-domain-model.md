@@ -105,19 +105,55 @@ The primary things the community cares about.
   no `CommunityRepository`/`Service`/`Controller` and no discovery
   endpoint — communityId values are real and derived, but nothing yet lets
   a client enumerate which communities exist.
-- **Category** — a fixed, 10-entry taxonomy (`category.model.
-  CategoryDefinition.ALL`: Housing, Food, Clothing, Health, Employment,
-  Utilities, Legal, Community Events, Furniture & Household, Community
-  Support), not a stored/CRUD entity — a static registry mapping each
-  canonical category to the real `Resource.category` strings and News
-  `resourceTags` that belong to it, since `Resource.category` itself is
-  uncontrolled free text with no enforced taxonomy. `GET /api/categories`
+- **Category** — a 10-entry taxonomy (Housing, Food, Clothing, Health,
+  Employment, Utilities, Legal, Community Events, Furniture & Household,
+  Community Support), not a stored/CRUD entity. Loaded from
+  `app/data/taxonomy.json` by `category/service/TaxonomyService` — the hand-
+  mirrored `CategoryDefinition.ALL` registry this document once described was
+  deleted in Slice F1, because two copies of a vocabulary that must agree is a
+  drift bug waiting to happen. `GET /api/categories`
   (`category/service/CategoryService`) aggregates counts, latest items,
   and linked policy updates per category, reusing `search.dto.SearchResult`
   for the polymorphic Resource/Flyer item list. See
   `references/decisions.md` Decision 014 for why the taxonomy has 10
   entries, not the originally-proposed 7.
 - **Tag** — Realized as `CivicContent.tags: List<String>` (see below).
+
+## Three vocabularies
+
+The system uses three distinct vocabularies, and most confusion about "where
+does this content go?" comes from collapsing them:
+
+```
+Taxonomy (Editorial)        Category  →  Subcategory     what First Step KNOWS
+Navigation (Presentation)   Group     →  Topic           how residents DISCOVER it
+Content                     CivicContent                 the things themselves
+```
+
+**A navigation Topic references an editorial Subcategory.** "Housing ▸ Rental
+Assistance" is simultaneously an editorial subcategory and a navigation topic
+*because navigation references it* — Topic is a pointer into the taxonomy, not a
+fourth vocabulary of its own. That is why `validate_navigation.py` can check
+every authored topic against the taxonomy, and why `NavigationService` counts a
+topic by reading each item's `subcategory` field.
+
+The two artifacts have deliberately different lifecycles (Decision 029):
+`taxonomy.json` is the stable domain model that everything validates against;
+`navigation.json` is editorial presentation, regenerable — a future AI navigation
+generator rewrites that one file and nothing else.
+
+| Layer | Field | Job |
+| --- | --- | --- |
+| Category | `category_tags` | Which category page an item appears on |
+| Subcategory | `subcategory` | Which topic within it — **browse only** |
+| Tags | `tags` | Search, AI, relationships — **never placement** |
+
+**Content carrying a category and no subcategory is fully classified**, not
+half-classified. Resources and flyers have topics because an editor gave them
+one; news, legislation and expert content generally do not, and the classifier is
+conservative by design and will not invent one. Such content is reached through a
+category page's *updates* rather than its *topics* — see 03's "the category page
+is an aggregate read model."
 
 ## Supporting objects
 

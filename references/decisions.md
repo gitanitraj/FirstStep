@@ -2311,3 +2311,155 @@ sitting unused now).
 **Next: F5** — `CategoryPage` replacing the stub at `/category/:key`, which needs
 the untopiced-content decision above. Then F6 topic route + shared ContentCard;
 the relationship graph follows F6.
+
+# Decision 036
+
+**Slice F5a — the category page becomes an aggregate read model. Coverage grows
+by composition, not by inference.**
+
+## The problem F4 exposed
+
+Putting `totalCount` beside the per-topic counts showed they do not meet: housing
+45 of 73, health 33 of 84, legal 5 of 41, utilities **0 of 22**. The cause is
+structural, and measured:
+
+| Content type | count | has `subcategory` |
+| --- | --- | --- |
+| Resource | 229 | **229** |
+| Flyer | 7 | **7** |
+| News | 8 | 0 |
+| Signed legislation | 175 | 0 |
+| Expert answers / FAQ | 12 | 0 |
+
+**193 of 429 classified items carry a category and no topic.**
+
+## The user's direction, and why it is the right call
+
+> Do not attempt to increase topic coverage by making the classifier infer
+> subcategories. That's a Version 3 feature. The classifier should remain
+> conservative and only assign editorial classifications supported by the
+> taxonomy.
+
+Instead: **a category page serves two complementary purposes — helping residents
+browse resources, and helping them understand what has changed.** The topicless
+items are not a gap in the first purpose; they are the second. That reframing
+turns a coverage problem into a page-design problem, and page design is where it
+belongs.
+
+The rejected alternative had already been priced. F2.1's negative test showed
+what guessing costs: removing one source mapping silently redistributed 37
+housing resources into three other categories — plausible-looking and completely
+wrong. Loosening the classifier to fill topics would have been the same trade.
+
+## Three vocabularies, now named (`01-domain-model.md`)
+
+```
+Taxonomy (Editorial)        Category  →  Subcategory     what First Step KNOWS
+Navigation (Presentation)   Group     →  Topic           how residents DISCOVER it
+Content                     CivicContent                 the things themselves
+```
+
+**A navigation Topic references an editorial Subcategory.** "Housing ▸ Rental
+Assistance" is both at once *because navigation references it* — Topic is a
+pointer into the taxonomy, not a fourth vocabulary. That is why
+`validate_navigation.py` can check topics against the taxonomy and why
+`NavigationService` counts a topic by reading `subcategory`.
+
+It follows that **content with a category and no subcategory is fully
+classified**, not half-classified.
+
+## Three pillars
+
+| Pillar | Question | Field |
+| --- | --- | --- |
+| **Discover** | What is available? | `groups` / `topics` |
+| **Connect** | Where do I go or contact next? | `organizations` |
+| **Stay Informed** | What has changed? | `updates` |
+
+## Composition, with every service keeping its job
+
+```
+CategoryPageService
+  ├── NavigationService.getByKey()          → metadata + groups/topics
+  ├── UpdatesService.getForCategory()       → news + law + flyer + expert
+  └── OrganizationService.getForCategory()  → orgs ranked within the category
+```
+
+**`NavigationService` is untouched — verified, not asserted.** `git diff` on the
+whole navigation package is empty and its 14 tests needed zero edits. That was
+the design constraint: composition happens one layer up so the read model never
+learns about pages.
+
+**`UpdatesService` gained the category-scoped merge rather than a second merger
+being written.** Its javadoc has claimed since Decision 019 to be "the single
+place cross-type merging happens", and contradicting a documented invariant to
+save ten lines of loop is a bad trade. It gained `ExpertAnswerService`,
+`FaqService` and `TaxonomyService`; the homepage feed is behaviourally unchanged
+(still 8 items, still no expert content). The reuse that mattered was the private
+`toUpdateItem` mappers — date selection and source/url resolution — not the loop.
+
+**Resources are excluded from the feed**, which is the load-bearing exclusion: a
+resource is a standing service, not an event, and excluding them is what makes
+the two halves complementary rather than overlapping.
+
+**`UpdateItem` gained `contentType`** so a page can badge a LAW differently from
+curated NEWS — `type` reports "news" for both. Nothing is inferred; every
+CivicContent subtype already knows its own type. **Recorded as debt:** `type` and
+`contentType` overlap and `type` survives only because the shipped homepage reads
+it. Slice H rebuilds that feed and is where they converge.
+
+**The F2.1 feed split paid off again.** The category feed reads `RssFeedSource`
+(gated, classified); `SignedLegislationSource` could not serve it even if asked,
+because an unclassified bill has no category to be scoped to.
+
+## When orchestration earns a service
+
+F4 refused a `CategoryPageService` — one source, empty composition step, so it
+would have forwarded a call. F5a built it — three sources, real composition. **The
+rule did not change; the facts did.** Worth keeping as the worked example that
+"no abstractions for single-use code" is a test rather than a taste.
+
+Reshaping the shipped endpoint was safe because `/category/:key` is still
+`StubPage`. After F5b it stops being free.
+
+`CategoryNavigation` was **not** modified — reshaping the read model's contract to
+suit a page is exactly the coupling this slice exists to prevent. `CategoryPage`
+projects `metadata` + `groups` + `topics` as siblings rather than nesting the
+whole record, which would have repeated key/label/icon/counts twice in one
+payload.
+
+`CategoryMetadata` has **no `description`** and `lastUpdated` derives from the
+updates feed only — never `Resource.updatedDate`, a load-date proxy that must not
+be shown as a freshness guarantee. Category descriptions are deferred to the
+future Admin project, because `taxonomy.json` is an editorial artifact and its
+prose is written by editors.
+
+## Verification
+
+**253 backend tests green** (was 228), clean build. All three validators exit 0.
+**20 frontend tests green** with no frontend edits.
+
+**The coverage identity, measured live across all ten categories —
+`browse + topicless == totalCount`, exactly:**
+
+| | total | browse | topicless | shown |
+| --- | --- | --- | --- | --- |
+| housing | 73 | 45 | 28 | 6 |
+| health | 84 | 33 | 51 | 6 |
+| legal | 41 | 5 | 36 | 6 |
+| utilities | 22 | 0 | 22 | 6 |
+| community-support | 105 | 60 | 45 | 6 |
+
+**Utilities is the sharpest demonstration:** 0 resources and 0 topics — a
+literally empty page before this slice — now carries 22 signed bills, none of
+them placed by a guess.
+
+**Live:** `/api/category/housing` returns all three pillars, with `RESOURCE 44 ·
+NEWS 5 · FLYER 1 · LAW 20 · EXPERT 3` and an updates feed carrying all four
+content types. Food returns flat topics and no groups; unknown key still 404s.
+**Editorial Stability Invariant holds — `/api/home` still totals 238.**
+`/api/updates` still returns 8 items with no EXPERT content.
+
+**Next: F5b** — the React `CategoryPage` replacing the stub: Current Updates +
+Browse sections, TS types, CSS, vitest. Then F6 (`/category/:key/:topic` + shared
+`ContentCard`), then the relationship graph.

@@ -3,6 +3,9 @@ package org.firststep.backend.updates.controller;
 import java.util.List;
 import java.util.Optional;
 
+import org.firststep.backend.category.service.TaxonomyService;
+import org.firststep.backend.expert.service.ExpertAnswerService;
+import org.firststep.backend.expert.service.FaqService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
@@ -20,6 +23,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -59,7 +63,9 @@ class UpdatesControllerTest {
                     return Optional.empty();
                 }
             };
-            return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo));
+            return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo),
+                    mock(ExpertAnswerService.class), mock(FaqService.class),
+                    new TaxonomyService("../app/data"));
         }
     }
 
