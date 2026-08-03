@@ -2207,3 +2207,107 @@ every transform succeeds. Mirrors are now machine-verified against production
 **Next: F4** — `GET /api/category/{key}` as a thin BFF over
 `NavigationService.getByKey()`, then F5 CategoryPage, F6 topic route + shared
 ContentCard. The relationship graph follows F6.
+
+# Decision 035
+
+**Slice F4 — `GET /api/category/{key}`, the category page's BFF.** A thin
+pass-through over the F3 read model, plus one finding the endpoint made visible
+that F5 has to answer.
+
+## The endpoint
+
+```
+GET /api/category/{key}?communityId=…  →  ApiResponse<CategoryNavigation>
+```
+
+Added to the existing `CategoryController`, which now owns the whole
+`/api/category*` URL family: `/api/categories` serves the homepage's discovery
+tiles, `/api/category/{key}` serves the category page.
+
+**Three "don't build it yet" calls, all the same rule — an abstraction needs a
+second use before it earns its name:**
+
+1. **No `CategoryPageService`.** The BFF pattern says a page gets one
+   page-shaped endpoint so the client stays a display layer; it does not say
+   every endpoint needs a service. `NavigationService` *is* the aggregator, so an
+   intervening service would forward a call and nothing else. `HomeService`
+   earns its existence by composing five aggregators plus static config — here
+   there is one source and the composition step is empty.
+2. **No `CategoryPagePayload` wrapper.** `CategoryNavigation` is already exactly
+   the page: key, label, icon, totalCount, countsByType, groups, topics. A
+   one-field wrapper deepens the JSON for nothing. Adding it later, when a second
+   top-level field exists, is a small honest change.
+3. **No `NavigationController`.** Rejected on two grounds: the codebase's
+   convention is one controller per URL family (`ResourceController` owns
+   `/resources`, `/health`, `/seasonal-images`), and `navigation` is the read
+   model's package — F3 kept delivery concerns out of it deliberately.
+
+**404, not an empty payload, for an unknown key.** `getByKey` returns
+`Optional.empty()`; the controller throws `NotFoundException`, matching
+Resource/Flyer/Expert controllers. Returning an empty `CategoryNavigation` would
+make `/category/hosuing` render a real-looking, permanently empty page. This is
+the mirror image of `TopicNavigation`'s rule that empty topics are *returned*
+rather than hidden — both follow from **never let "nothing here" and "no such
+thing" look alike.**
+
+## The finding: ~47% of category content has no topic
+
+The endpoint reports `totalCount` and per-topic counts side by side, and the two
+do not meet:
+
+| Category | total | reachable via topics | no topic |
+| --- | --- | --- | --- |
+| housing | 73 | 45 | **28** |
+| health | 84 | 33 | **51** |
+| legal | 41 | 5 | **36** |
+| utilities | 22 | 0 | **22** |
+| community-support | 105 | 60 | **45** |
+
+Cause, confirmed directly: **all 175 admitted RSS bills carry a category and no
+`subcategory`** (`/api/news/rss`: 175 admitted, 0 with a subcategory), while all
+229 resources have one. That is not a defect — it is the designed consequence of
+the earlier decision to put **category-level keywords only** in `taxonomy.json`.
+The classifier has no subcategory-level evidence to work from and, being
+conservative by design, assigns nothing rather than guessing.
+
+Verified there is **no navigation reachability gap**: both grouped categories
+cover their taxonomy subcategories exactly (housing 9/9, community-support
+12/12), and no topic count exceeds its category total anywhere.
+
+**This is an editorial question, and F5 must not answer it by accident.** Three
+options, in the order I'd rank them:
+1. The category page shows topic tiles **and** a recent-content list scoped to
+   the category, so untopiced content is reachable without inventing a topic.
+2. An explicit "More in this category" bucket for items with no subcategory.
+3. Accept it — laws reach residents through Important Notices (Slice H), and
+   category topics are for resources.
+
+Whichever is chosen, the rule from F3 holds: **NavigationService must not infer a
+topic for this content.** The fix, if one is wanted, is subcategory-level
+vocabulary in the taxonomy — an editorial change, not a classifier change.
+
+## Verification
+
+**228 backend tests green** (was 225), clean build. Three new controller tests:
+full page shape in one response, 404 on an unknown key, `communityId` passed
+through to the read model. The read model is mocked there on purpose — routing
+and envelope are the controller's job; aggregation is `NavigationServiceTest`'s,
+against real data.
+
+All three validators exit 0. **20 frontend tests green** (untouched — no
+frontend work in F4; TypeScript types land with the page in F5 rather than
+sitting unused now).
+
+**Live (Docker):**
+- All 10 category keys resolve; unknown key → 404 with the standard envelope.
+- **Editorial Stability Invariant holds — 238**, unmoved.
+- Grouped vs flat is correct end to end: housing returns 2+ groups and an empty
+  flat list, food returns 4 flat topics and no groups.
+- Cross-check against the homepage: housing `RESOURCE 44 + FLYER 1 = 45`, food
+  `RESOURCE 12` — the same numbers `/api/home` reports, from a different code
+  path. The larger totals are the news, laws and expert content F3 added, exactly
+  as that slice predicted.
+
+**Next: F5** — `CategoryPage` replacing the stub at `/category/:key`, which needs
+the untopiced-content decision above. Then F6 topic route + shared ContentCard;
+the relationship graph follows F6.

@@ -1,11 +1,17 @@
 package org.firststep.backend.category.controller;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.navigation.dto.CategoryNavigation;
+import org.firststep.backend.navigation.dto.TopicGroup;
+import org.firststep.backend.navigation.dto.TopicNavigation;
+import org.firststep.backend.navigation.service.NavigationService;
 import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.model.ContentType;
 import org.firststep.backend.category.service.TaxonomyService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
@@ -22,8 +28,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
@@ -33,6 +43,12 @@ class CategoryControllerTest {
 
     @Autowired
     private MockMvc mockMvc;
+
+    // The category-page BFF is a pass-through, so the read model is mocked here:
+    // this test covers routing, the response envelope and the unknown-key path.
+    // Aggregation correctness is NavigationServiceTest's job, against real data.
+    @MockitoBean
+    private NavigationService navigationService;
 
     @Configuration
     static class TestConfig {
@@ -117,5 +133,51 @@ class CategoryControllerTest {
         mockMvc.perform(get("/api/categories"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.data[?(@.key=='housing')].resourceCount").value(1));
+    }
+
+    // ---- GET /api/category/{key} — the category page BFF (Slice F4) ---------
+
+    private static CategoryNavigation housingNavigation() {
+        return new CategoryNavigation("housing", "Housing Assistance", "🏠", 45,
+                Map.of(ContentType.RESOURCE, 40, ContentType.LAW, 5),
+                List.of(new TopicGroup("Need Help Right Away",
+                        List.of(new TopicNavigation("Emergency Shelter", "emergency-shelter", 12,
+                                Map.of(ContentType.RESOURCE, 12))))),
+                List.of());
+    }
+
+    @Test
+    void shouldReturnWholeCategoryPageShapeInOneResponse() throws Exception {
+        when(navigationService.getByKey("housing", null)).thenReturn(Optional.of(housingNavigation()));
+
+        mockMvc.perform(get("/api/category/housing"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data.label").value("Housing Assistance"))
+                .andExpect(jsonPath("$.data.totalCount").value(45))
+                .andExpect(jsonPath("$.data.countsByType.RESOURCE").value(40))
+                .andExpect(jsonPath("$.data.groups[0].label").value("Need Help Right Away"))
+                .andExpect(jsonPath("$.data.groups[0].topics[0].slug").value("emergency-shelter"));
+    }
+
+    @Test
+    void shouldReturn404WhenCategoryKeyIsNotInTheTaxonomy() throws Exception {
+        when(navigationService.getByKey(any(), any())).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/category/nonexistent"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.success").value(false))
+                .andExpect(jsonPath("$.errorCode").value("NOT_FOUND"));
+    }
+
+    @Test
+    void shouldPassCommunityIdThroughToTheReadModel() throws Exception {
+        when(navigationService.getByKey("housing", "wilmington-de"))
+                .thenReturn(Optional.of(housingNavigation()));
+
+        mockMvc.perform(get("/api/category/housing").param("communityId", "wilmington-de"))
+                .andExpect(status().isOk());
+
+        verify(navigationService).getByKey("housing", "wilmington-de");
     }
 }
