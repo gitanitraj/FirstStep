@@ -2460,6 +2460,73 @@ content types. Food returns flat topics and no groups; unknown key still 404s.
 **Editorial Stability Invariant holds — `/api/home` still totals 238.**
 `/api/updates` still returns 8 items with no EXPERT content.
 
+## Exit criterion — Slice H retires `UpdateItem.type`
+
+The `type` / `contentType` overlap introduced here is **temporary and time-boxed
+to Slice H**, not an accepted permanent shape. Recording the end state now, so
+the overlap cannot become permanent by nobody deciding:
+
+> **Slice H retires `UpdateItem.type`. `contentType` becomes the single semantic
+> identifier for CivicContent. Any presentation labels or badges are derived from
+> `contentType` by the frontend.**
+
+```
+ContentType
+  RESOURCE
+  NEWS
+  LAW
+  FLYER
+  EXPERT
+```
+
+The two fields are not equivalent and never were — `type` reports `"news"` for
+both curated news and signed legislation, which is precisely the conflation
+`contentType` exists to remove. Keeping both is a migration state: `type` is read
+by the shipped homepage feed, and removing a field mid-slice would have broken a
+working page to tidy a DTO.
+
+**Why the labels move to the frontend.** `"news"`/`"flyer"`/`"expert"` are display
+strings living in a domain DTO — a presentation decision the backend has no
+business making. Once `contentType` is the only identifier, the backend states
+*what a thing is* and the client decides how to render it. That is the same
+separation the CivicContent contract already draws between `contentType`
+(presentation) and `category_tags` (placement).
+
+**Done means:** `UpdateItem.type` deleted; `UpdatesService`'s four mappers no
+longer pass a literal; `frontend/src/types/api.ts` drops `type`; every consumer
+branches on `contentType`; the F5a tests asserting `type` are updated rather than
+deleted.
+
+## Governance rule (new, set by the user with this decision)
+
+> **Annotated mirrors must always match production before a slice is considered
+> complete, but they do not have to be updated during unrelated feature work.**
+
+This replaces "keep annotated reference copies synchronized immediately whenever
+production code changes" in `CLAUDE.md`, which has been amended.
+
+**The obligation is scoped to the files a slice touches.** Modify a source file
+and its mirror must be in sync before the slice is done — F5a's seven were, and
+were machine-verified. Pre-existing drift in files the slice did not touch is
+**not that slice's blocker**; it is debt owned by whichever slice next touches
+those files. Report it, do not fix it opportunistically.
+
+The rule earns its place because the old one made mirrors a tax on all work
+rather than a record of the work being done: any slice touching any file could be
+held up by drift it did not cause and had no context to repair correctly.
+
+**Known drift under the new rule, reported and deliberately not fixed:**
+
+| Mirror | Gap | Owed by |
+| --- | --- | --- |
+| `DecisionAgentService_annotated` | missing the whole 199-line `decide()` | next AI slice |
+| `FlyerService_annotated` | missing `getCarouselCards()` (Slice E) | next flyer slice |
+| `HomeService_annotated` | missing 3 of 5 aggregators (Slices C/D/E) | next homepage slice |
+| `ExpertAnswer_annotated` | import order only | next expert slice |
+
+Verification is now mechanical: a script strips comments and blank lines from
+both sides and compares. 79 mirrors checked, 4 drifted, all pre-existing.
+
 **Next: F5b** — the React `CategoryPage` replacing the stub: Current Updates +
 Browse sections, TS types, CSS, vitest. Then F6 (`/category/:key/:topic` + shared
 `ContentCard`), then the relationship graph.

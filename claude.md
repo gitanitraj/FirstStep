@@ -71,7 +71,11 @@ Break annotated references into clearly labeled sections that explain:
     How the classes and methods interact
     Alternative approaches that were considered (when relevant)
 
-Keep annotated reference copies synchronized immediately whenever production code changes.
+**Annotated mirrors must match production before a slice is considered complete, but they do not have to be updated during unrelated feature work.**
+
+The obligation is scoped to the files a slice touches. If a slice modifies a source file, that file's mirror must be in sync before the slice is done. Pre-existing drift in files the slice did not touch is NOT that slice's blocker — it is debt owned by whichever slice next touches those files. Report it; do not fix it opportunistically.
+
+This replaces the earlier "synchronize immediately whenever production code changes," which in practice pulled unrelated files into every slice and made the mirrors a tax on all work rather than a record of the work being done.
 
 Use the references/ directory consistently so it becomes a reliable long-term learning resource for understanding previous design decisions.
 

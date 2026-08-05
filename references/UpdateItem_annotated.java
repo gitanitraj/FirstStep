@@ -27,7 +27,8 @@ import java.util.List;
 import org.firststep.backend.shared.model.ContentType;
 
 public record UpdateItem(
-        String type,     // "news" | "flyer" | "expert" — see contentType
+        // DEPRECATED — removed in Slice H. See contentType.
+        String type,     // "news" | "flyer" | "expert"
         ContentType contentType,
         String id,
         String title,
@@ -59,12 +60,31 @@ public record UpdateItem(
 // its own contentType — NewsItem defaults to NEWS and RssFeedService stamps LAW
 // at ingestion — so the mappers read a field rather than guessing from a title.
 //
-// TECH DEBT, RECORDED DELIBERATELY: `type` and `contentType` overlap, and
-// `contentType` is strictly better. `type` survives only because the shipped
-// homepage feed reads it, and removing a field mid-slice would break a working
-// page to tidy a DTO. SLICE H (Important Notices) rebuilds that feed and is where
-// the two converge. Naming the debt here is the point — an undocumented
-// redundancy is how a field becomes permanent by accident.
+// A MIGRATION STATE, TIME-BOXED — NOT AN ACCEPTED SHAPE. `type` survives only
+// because the shipped homepage feed reads it, and removing a field mid-slice
+// would break a working page to tidy a DTO.
+//
+// THE EXIT CRITERION (Decision 036, set by the user):
+//
+//     Slice H retires UpdateItem.type. contentType becomes the SINGLE semantic
+//     identifier for CivicContent. Any presentation labels or badges are derived
+//     from contentType by the frontend.
+//
+//       ContentType: RESOURCE · NEWS · LAW · FLYER · EXPERT
+//
+// WHY THE LABELS BELONG TO THE FRONTEND. "news"/"flyer"/"expert" are DISPLAY
+// STRINGS sitting in a domain DTO — a presentation decision the backend has no
+// business making. Once contentType is the only identifier, the backend states
+// what a thing IS and the client decides how to render it. That is the same
+// separation the CivicContent contract already draws between contentType
+// (presentation) and category_tags (placement); `type` was quietly straddling it.
+//
+// DONE MEANS: `type` deleted; UpdatesService's four mappers no longer pass a
+// literal; frontend/src/types/api.ts drops the field; every consumer branches on
+// contentType; the F5a tests asserting `type` are UPDATED rather than deleted.
+//
+// Writing the end state down is the point. An undocumented redundancy is how a
+// field becomes permanent by accident — nobody ever decides to keep it.
 // =============================================================================
 
 // =============================================================================

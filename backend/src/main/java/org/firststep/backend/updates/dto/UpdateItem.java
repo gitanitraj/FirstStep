@@ -14,16 +14,21 @@ import org.firststep.backend.shared.model.ContentType;
  * frontend displays).
  */
 public record UpdateItem(
-        String type,     // "news" | "flyer" | "expert" — see contentType
+        // DEPRECATED — removed in Slice H. See contentType.
+        String type,     // "news" | "flyer" | "expert"
         // The item's place in the CivicContent contract. Added in F5a because a
         // category page must distinguish signed legislation from curated news, and
         // `type` cannot: it reports "news" for both.
         //
-        // TECH DEBT: `type` and `contentType` overlap, and `contentType` is the one
-        // that belongs to the domain model. `type` survives only because the
-        // homepage feed reads it, and removing a field mid-slice would break a
-        // shipped page. Slice H (Important Notices) rebuilds that feed and is where
-        // the two converge.
+        // MIGRATION STATE, time-boxed to Slice H. `type` survives only because the
+        // shipped homepage feed reads it, and removing a field mid-slice would
+        // break a working page to tidy a DTO.
+        //
+        // END STATE (Decision 036 exit criterion): Slice H retires
+        // UpdateItem.type. contentType becomes the SINGLE semantic identifier for
+        // CivicContent, and any presentation labels or badges are derived from it
+        // by the frontend — "news"/"flyer"/"expert" are display strings that do
+        // not belong in a domain DTO.
         ContentType contentType,
         String id,
         String title,
