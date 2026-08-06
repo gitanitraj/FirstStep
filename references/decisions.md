@@ -2804,3 +2804,161 @@ next come up.
 
 **Next: F6** — `/category/:key/:topic` + its BFF + a shared `ContentCard`. Then
 the Front Door scoping pass.
+
+# Decision 039
+
+**CSS architecture — design tokens, a token-driven theme, and incremental CSS
+Modules. Phases 0–2 done; Phases 3–4 are conventions for later slices.**
+
+## The diagnosis was wrong, and correcting it changed the plan
+
+The two collisions were **not** two unrelated components sharing a global class
+name. In both, one side was **not a component at all** — it was a deleted
+component's CSS that outlived it. Both classes had **zero `.tsx` references**:
+
+| Collision | Class | Owner |
+| --- | --- | --- |
+| Step 5c | `.category-group-header` | retired |
+| Slice F5b | `.category-browse` | `CategoryPreviewList`, retired in Slice A |
+
+**39% of `index.css` was orphaned this way.** The mechanism: component deleted →
+CSS left behind → the name *looks* free (grep the components, find nothing) → a
+new component claims it → silent inheritance.
+
+That matters because scoping and hygiene fix different halves. Scoping makes the
+bug class impossible; **deleting CSS with its component would have prevented both
+actual instances.** The phased plan handles live CSS as pages get rewritten but
+never reaches CSS whose component is already gone — hence Phase 0.
+
+## Tailwind rejected, CSS Modules chosen
+
+1. **The high-contrast theme.** 55 rules of `body.high-contrast .foo` — an
+   accessibility feature with its own test. Survives Modules almost verbatim;
+   under Tailwind every one becomes a custom variant on every element.
+2. **The palette is shared with the backend's static `styles.css`.** CSS custom
+   properties can serve two stylesheets in two build systems; a Tailwind config
+   cannot.
+3. **"Its own identity, not a framework's defaults"** — the stated goal argues
+   against adopting an opinionated scale.
+4. **Zero config in Vite** vs adding PostCSS to a Dockerfile already running a
+   Node stage into a Maven build.
+
+**On "dozens of reusable components": not yet.** 10 components + 3 pages, none
+used more than once. The trajectory justifies the work — F6 adds the first shared
+component and the Front Door roughly doubles the count — but *migrating at 13
+rather than 25* is the honest argument, not the current size.
+
+## Phase 0 — clean before restructuring
+
+`styles/tokens.css` extracted (the 15 existing `:root` properties, unchanged).
+**44 orphan rule blocks removed**, all from `HeroGuidance`, `CategoryPreviewList`,
+`AppLayout` and `Sidebar`. **167 → 123 selectors.**
+
+**Two false positives the first pass produced, both caught before deleting:**
+- `badge-resource|law|news|flyer|expert` are built dynamically
+  (`` `badge-${contentType.toLowerCase()}` ``) and never appear as literals. A
+  naive "grep for the class name" sweep would have deleted all five.
+- `\blogo\b` matched **inside** `hero-logo`, because `-` is a word boundary.
+  Hyphen-aware boundaries (`(?<![\w-])…(?![\w-])`) were needed.
+
+Scope was deliberately held: no consolidating, renaming or specificity tidying.
+
+## Phase 1 — the `styles/` structure
+
+`tokens.css` (`:root` only) · `base.css` (resets, typography, `.visually-hidden`)
+· `themes.css` (high contrast). `index.css` **124 → 91 selectors**.
+
+Ownership rule: **a class that styles a component never appears in any of the
+three.** `.section-placeholder` — used by 7 components — was deliberately *left*
+in `index.css` rather than promoted to `base.css`, because it is a shared
+component style, not a base utility. Phase 3 decides what it becomes.
+
+## Phase 2 — the theme becomes tokens
+
+`body.high-contrast` now redefines `--surface`, `--bg-lighter`, `--bg-light`,
+`--border-color` and the three text tokens. **30 → 20 blocks.** A new `--surface`
+token replaced the literal `white` in six panel rules — the value those rules
+always wanted.
+
+**Two tokens deliberately NOT flipped, and the reason is a real finding:**
+- **`--primary-color` is overloaded.** It is the utility bar's *background*
+  (wants `#000`) and heading *text* (wants `#ff0`). No single value satisfies
+  both. Splitting it into surface/ink roles is a token redesign — **tracked, not
+  done here.**
+- **`--warning-color`** is only ever a background behind white text; flipping it
+  to `#ff0` would make `.update-urgency` yellow-on-white.
+
+## What the visual gate caught — the most valuable result
+
+**A rule can look redundant by value while doing SPECIFICITY work.**
+
+`body.high-contrast .category-update-title { color: #fff }` was removed as
+redundant, since `--text-primary` is already `#fff`. It was not redundant: an
+update title is an `<a>` when the source has a URL, and `body.high-contrast a`
+(0,1,2) outranks the component's own `.category-update-title` (0,1,0). Every
+linked title turned **yellow**, which also collapsed the hover state into a
+no-op.
+
+Caught by pixel-diffing screenshots: four 16px bands per page, spaced ~103px,
+`rgb(15,15,15) → rgb(15,15,0)` — anti-aliased white text becoming yellow. **No
+unit test could see this**; the DOM was identical. Restored with the reasoning in
+a comment.
+
+## Two accepted visual changes, both accessibility fixes
+
+Phases 0 and 1 were **byte-identical across all 16 combinations** (4 pages × 2
+viewports × 2 themes). Phase 2 left **14 of 16 identical**; the two that differ
+are both homepage/high-contrast, and both are latent defects being fixed:
+
+| Element | Was (high contrast) | Now |
+| --- | --- | --- |
+| `.flyer-card-image` background | `rgb(247,234,220)` — **cream** | `rgb(34,34,34)` |
+| `.flyer-card-meta` colour | `rgb(156,163,175)` — **gray on black** | `rgb(255,255,255)` |
+
+`.flyer-card` and `.flyer-card-title` had overrides; `.flyer-card-image` and
+`.flyer-card-meta` were simply forgotten. **That is the argument for token-driven
+theming in one example:** the per-component approach requires remembering every
+element and missed two; the token approach covers them by construction. **Light
+mode is unchanged in every case.**
+
+## Phases 3–4 — conventions, not work
+
+**Phase 3:** every new slice uses co-located CSS Modules
+(`components/ContentCard/{ContentCard.tsx,ContentCard.module.css}`). Existing
+components stay put until a slice touches them, so no component is migrated only
+to be rewritten by the Front Door. **F6 is the first application.**
+
+**Phase 4:** the Front Door redesign deletes rules from `index.css` as it
+rewrites pages.
+
+`:global()` is reserved for `:root`, `html` and `body.high-contrast`. Phase 2 is
+what makes that affordable — with the theme token-driven, components need no
+escape hatch at all.
+
+## The `index.css` contract
+
+**End state: an import manifest and nothing else.** During migration it may also
+hold not-yet-moved component rules — **it is a QUARANTINE, not a home: rules only
+ever leave it.**
+
+**Never allowed from Phase 3 onward: a global rule for a component built after
+the convention was adopted.** That is the likeliest regression, because it is
+always the path of least resistance in the moment.
+
+**Enforced as a ratchet — the selector count may only decrease. 167 → 91.**
+
+## Verification
+
+**34 frontend tests green · `tsc --noEmit` clean · 253 backend tests green**
+(untouched — the change is frontend-only).
+
+**Zero orphaned selectors remain**, verified with hyphen-aware boundaries across
+`.tsx`, `.ts` and `index.html`, with the five dynamic `badge-*` classes correctly
+retained. **Light mode byte-identical on all 8 combinations at every phase.**
+
+**Follow-ups recorded, not done:** split the overloaded `--primary-color`;
+`.section-placeholder`'s 7-component ownership; the 17 classes shared across 2+
+components, which is the list Phase 3 has to answer.
+
+**Next: F6** — `/category/:key/:topic`, with `ContentCard` as the first component
+built in the new structure.

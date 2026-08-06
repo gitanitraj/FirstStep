@@ -1,127 +1,17 @@
-/* First Step — React frontend global styles (Step 4: AppLayout + Sidebar).
-   Palette mirrors backend/src/main/resources/static/styles.css (warm civic
-   identity). Layout classes adapted from references/CSSforNewDesign.md, recolored
-   from that doc's blue/purple to the existing green/orange/cream vars. */
+/* First Step — React frontend global styles.
 
-:root {
-  --primary-color: #1a5c38;
-  --primary-light: #2d7d4a;
-  --accent-color: #e07b39;
-  --warning-color: #d97706;
-  --bg-light: #f7eadc;
-  --bg-lighter: #fbecd6;
-  --border-color: #e5ddd5;
-  --text-primary: #1c1917;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
-  --transition: all 0.2s ease;
-  --radius: 12px;
-}
+   MIGRATION IN PROGRESS (Decision 039). This file is a QUARANTINE, not a home:
+   rules only ever leave it. Its selector count may only decrease.
 
-* {
-  box-sizing: border-box;
-}
+     - Design tokens now live in styles/tokens.css.
+     - Component rules below are legacy globals awaiting CSS Modules; each moves
+       into its component's .module.css when a slice next touches that component.
+     - NEVER add a rule here for a component built from now on. New component
+       styles belong in <Component>.module.css. */
 
-body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
-  background-color: var(--bg-lighter);
-  color: var(--text-primary);
-  margin: 0;
-  padding: 0;
-  line-height: 1.6;
-}
-
-/* ===== Header ===== */
-.site-header {
-  background: white;
-  border-bottom: 1px solid var(--border-color);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  box-shadow: var(--shadow-sm);
-}
-
-.header-content {
-  display: flex;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 14px 24px;
-}
-
-.logo {
-  margin: 0;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--primary-color);
-  line-height: 1.2;
-}
-
-/* ===== Layout: Sidebar + Main ===== */
-.home-layout {
-  display: grid;
-  grid-template-columns: 240px 1fr;
-  gap: 32px;
-  padding: 32px;
-  max-width: 1200px;
-  margin: 0 auto;
-}
-
-/* ===== Sidebar ===== */
-.home-sidebar {
-  position: sticky;
-  top: 80px; /* Below header */
-  height: fit-content;
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.sidebar-section {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.sidebar-title {
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  margin: 0;
-}
-
-.category-checkbox {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 8px 0;
-  font-size: 14px;
-  cursor: pointer;
-}
-
-.category-checkbox input {
-  cursor: pointer;
-  accent-color: var(--primary-color);
-}
-
-.category-count {
-  color: var(--text-light);
-  font-size: 13px;
-  margin-left: auto;
-}
-
-/* ===== Main Content ===== */
-.home-main {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-}
+@import './styles/tokens.css';
+@import './styles/base.css';
+@import './styles/themes.css';
 
 .section-placeholder {
   color: var(--text-light);
@@ -130,156 +20,9 @@ body {
   margin: 0;
 }
 
-/* ===== Hero + AI guidance widget (Step 5a) ===== */
-.hero-section {
-  background: linear-gradient(135deg, #1a5c38 0%, #2d7d4a 60%, #e07b39 100%);
-  color: white;
-  padding: 32px;
-  border-radius: var(--radius);
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.hero-title {
-  margin: 0;
-  font-size: 30px;
-  font-weight: 700;
-  line-height: 1.3;
-}
-
-.hero-subtitle {
-  margin: 0;
-  font-size: 17px;
-  opacity: 0.92;
-  line-height: 1.5;
-}
-
-.hero-ai-form {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.hero-ai-input {
-  width: 100%;
-  padding: 12px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.4);
-  border-radius: 8px;
-  font-size: 15px;
-  font-family: inherit;
-  line-height: 1.4;
-  resize: vertical;
-}
-
-.hero-ai-chips {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  align-items: center;
-}
-
-.hero-chip {
-  padding: 8px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.6);
-  border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
-  color: white;
-  font-size: 14px;
-  font-weight: 500;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.hero-chip:hover {
-  background: rgba(255, 255, 255, 0.22);
-}
-
-.hero-chip.active {
-  background: white;
-  color: var(--primary-color);
-  border-color: white;
-  font-weight: 600;
-}
-
-.hero-ai-submit {
-  margin-left: auto;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 8px;
-  background: var(--accent-color);
-  color: white;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.hero-ai-submit:hover:not(:disabled) {
-  filter: brightness(1.06);
-}
-
-.hero-ai-submit:disabled {
-  opacity: 0.7;
-  cursor: default;
-}
-
-.hero-ai-result {
-  background: white;
-  color: var(--text-primary);
-  border-radius: 8px;
-  padding: 18px 20px;
-}
-
-.hero-ai-answer-title {
-  margin: 0 0 12px 0;
-  font-size: 18px;
-  font-weight: 600;
-  color: var(--primary-color);
-}
-
-.hero-ai-steps {
-  margin: 0;
-  padding-left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  font-size: 15px;
-}
-
-.hero-ai-why {
-  margin: 4px 0 0 0;
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.hero-ai-citations {
-  margin: 14px 0 0 0;
-  font-size: 13px;
-  color: var(--text-light);
-}
-
-.hero-ai-unavailable {
-  margin: 0;
-  font-size: 15px;
-  color: var(--text-secondary);
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0, 0, 0, 0);
-  white-space: nowrap;
-  border: 0;
-}
-
 /* ===== Important Updates (Step 5b) ===== */
 .updates-panel {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 18px 20px;
@@ -362,135 +105,6 @@ body {
   color: var(--text-light);
 }
 
-/* ===== Category previews (Step 5c) ===== */
-/* NB: distinct class names — `.category-group-header` is already used (with a
-   different meaning) in the backend demo's styles.css. */
-.category-previews {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-}
-
-.previews-title {
-  margin: 0;
-  font-size: 17px;
-  font-weight: 600;
-  color: var(--text-primary);
-  padding-bottom: 10px;
-  border-bottom: 2px solid var(--accent-color);
-}
-
-.category-preview-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
-  gap: 14px;
-}
-
-.category-preview {
-  background: white;
-  border: 1px solid var(--border-color);
-  border-left: 4px solid var(--accent-color);
-  border-radius: var(--radius);
-  padding: 16px 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  transition: var(--transition);
-}
-
-.category-preview:hover {
-  box-shadow: var(--shadow-md);
-  transform: translateY(-2px);
-  border-left-color: var(--primary-color);
-}
-
-.category-preview-header {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.category-preview-icon {
-  font-size: 28px;
-  flex-shrink: 0;
-}
-
-.category-preview-label {
-  margin: 0;
-  font-size: 16px;
-  font-weight: 600;
-  color: var(--text-primary);
-}
-
-.category-preview-count {
-  margin: 2px 0 0 0;
-  font-size: 13px;
-  color: var(--text-light);
-}
-
-.category-preview-policy {
-  margin: 0;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--primary-color);
-  line-height: 1.3;
-}
-
-.category-preview-items {
-  margin: 0;
-  padding-left: 18px;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  font-size: 13px;
-  color: var(--text-secondary);
-}
-
-.category-browse {
-  align-self: flex-start;
-  margin-top: 2px;
-  padding: 8px 14px;
-  border: 1px solid var(--border-color);
-  border-radius: 6px;
-  background: none;
-  color: var(--primary-color);
-  font-size: 13px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: var(--transition);
-}
-
-.category-browse:hover:not(:disabled) {
-  background: var(--bg-light);
-  border-color: var(--primary-color);
-}
-
-.category-browse:disabled {
-  color: var(--text-light);
-  cursor: not-allowed;
-}
-
-/* ===== Mobile ===== */
-@media (max-width: 768px) {
-  .home-layout {
-    grid-template-columns: 1fr;
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .home-sidebar {
-    position: static;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .sidebar-section {
-    flex: 1;
-    min-width: 150px;
-  }
-}
-
 /* =============================================================================
    Civic-portal homepage frame (Slice A) — Utility Bar, Hero, section shells.
    ============================================================================= */
@@ -532,7 +146,7 @@ body {
   left: 0;
   right: 0;
   z-index: 10;
-  background: white;
+  background: var(--surface);
   color: var(--text-primary);
   border: 1px solid var(--border-color);
   border-radius: 10px;
@@ -606,15 +220,6 @@ body {
   font-family: inherit;
 }
 
-.utility-a11y {
-  border: none;
-  background: none;
-  color: white;
-  font-size: 18px;
-  cursor: pointer;
-  opacity: 0.85;
-}
-
 /* ===== Hero ===== */
 .site-hero {
   display: flex;
@@ -674,7 +279,7 @@ body {
   padding: 10px 16px;
   border: 1px solid var(--border-color);
   border-radius: 999px;
-  background: white;
+  background: var(--surface);
   color: var(--text-primary);
   font-size: 15px;
   font-weight: 600;
@@ -712,7 +317,7 @@ body {
 .community-info,
 .category-header,
 .category-section {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 20px 24px;
@@ -899,7 +504,7 @@ body {
 }
 
 .stub-page {
-  background: white;
+  background: var(--surface);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
   padding: 32px 24px;
@@ -1122,178 +727,7 @@ a.category-update-title:hover {
 }
 
 .utility-button[aria-pressed='true'] {
-  background: white;
+  background: var(--surface);
   color: var(--primary-color);
 }
 
-/* =============================================================================
-   High-contrast accessibility theme (toggled via the Utility Bar; body class set
-   by useHighContrast). Ported from the old styles.css approach (black + #ff0),
-   rewritten for the new civic-portal frame classes.
-   ============================================================================= */
-body.high-contrast {
-  background: #000;
-  color: #fff;
-}
-
-body.high-contrast .utility-bar {
-  background: #000;
-  border-bottom-color: #ff0;
-}
-
-body.high-contrast .ai-search-input {
-  background: #000;
-  color: #fff;
-  border-color: #fff;
-}
-
-body.high-contrast .utility-button {
-  background: #000;
-  border-color: #fff;
-  color: #fff;
-}
-
-body.high-contrast .utility-button[aria-pressed='true'] {
-  background: #ff0;
-  color: #000;
-}
-
-body.high-contrast .hero-appname {
-  color: #ff0;
-}
-
-body.high-contrast .hero-tagline,
-body.high-contrast .section-placeholder {
-  color: #fff;
-}
-
-body.high-contrast .hero-logo {
-  background: #fff;
-  border-radius: 6px;
-}
-
-body.high-contrast .primary-nav-item {
-  background: #000;
-  border-color: #fff;
-  color: #fff;
-}
-
-body.high-contrast .primary-nav-item:hover {
-  color: #ff0;
-  border-color: #ff0;
-}
-
-body.high-contrast .primary-nav-item.active {
-  background: #ff0;
-  border-color: #ff0;
-  color: #000;
-}
-
-body.high-contrast .laws-feature,
-body.high-contrast .discovery,
-body.high-contrast .community-info,
-body.high-contrast .stub-page,
-body.high-contrast .category-header,
-body.high-contrast .category-section {
-  background: #000;
-  border-color: #ff0;
-}
-
-body.high-contrast .laws-title,
-body.high-contrast .community-title,
-body.high-contrast .discovery-col-title,
-body.high-contrast .stub-page h2,
-body.high-contrast .category-title,
-body.high-contrast .category-section-title {
-  color: #ff0;
-}
-
-/* Category page. Every badge collapses to the same black-on-yellow: in high
-   contrast the LABEL carries the distinction, not the colour — which is the
-   point of using text badges rather than colour-only indicators. */
-body.high-contrast .category-badge,
-body.high-contrast .badge-resource,
-body.high-contrast .badge-law,
-body.high-contrast .badge-news,
-body.high-contrast .badge-flyer,
-body.high-contrast .badge-expert {
-  background: #ff0;
-  color: #000;
-}
-
-body.high-contrast .category-counts,
-body.high-contrast .category-updated,
-body.high-contrast .category-update-summary,
-body.high-contrast .category-update-meta,
-body.high-contrast .category-group-title {
-  color: #fff;
-}
-
-body.high-contrast .category-update-title {
-  color: #fff;
-}
-
-body.high-contrast a.category-update-title:hover {
-  color: #ff0;
-}
-
-body.high-contrast .category-update {
-  border-bottom-color: #ff0;
-}
-
-body.high-contrast .discovery-divider {
-  background: #ff0;
-}
-
-body.high-contrast .laws-dot {
-  background: #555;
-}
-
-body.high-contrast .laws-dot.active {
-  background: #ff0;
-}
-
-body.high-contrast .laws-bill-date {
-  color: #fff;
-}
-
-body.high-contrast .flyer-card {
-  background: #000;
-  border-color: #ff0;
-}
-
-body.high-contrast .flyer-card-title {
-  color: #fff;
-}
-
-body.high-contrast .ai-search-panel {
-  background: #000;
-  border-color: #ff0;
-  color: #fff;
-}
-
-body.high-contrast .ai-result-title {
-  color: #ff0;
-}
-
-body.high-contrast .ai-result-loading,
-body.high-contrast .ai-result-unavailable,
-body.high-contrast .ai-result-why,
-body.high-contrast .ai-result-sources,
-body.high-contrast .ai-search-close {
-  color: #fff;
-}
-
-body.high-contrast .discovery-item:hover {
-  background: #222;
-  color: #ff0;
-}
-
-body.high-contrast .discovery-item-count {
-  color: #fff;
-}
-
-body.high-contrast a,
-body.high-contrast .stub-back {
-  color: #ff0;
-}

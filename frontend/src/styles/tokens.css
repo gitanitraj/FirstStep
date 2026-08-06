@@ -1,0 +1,29 @@
+/* Design tokens — the ONLY place raw palette values live.
+   Mirrors backend/src/main/resources/static/styles.css so the React app and the
+   legacy static app share one warm civic identity (green/orange/cream). That
+   shared palette is why these are CSS custom properties rather than a framework
+   config: two stylesheets in two build systems can both read them.
+
+   RULE: this file contains :root and nothing else. No component classes.
+   Extracted from index.css in the Phase 0 CSS cleanup (Decision 039). */
+
+:root {
+  --primary-color: #1a5c38;
+  --primary-light: #2d7d4a;
+  --accent-color: #e07b39;
+  --warning-color: #d97706;
+  /* Raised panel/card background. Was a literal `white` in six rules; a token
+     because the high-contrast theme has to flip it. */
+  --surface: white;
+  --bg-light: #f7eadc;
+  --bg-lighter: #fbecd6;
+  --border-color: #e5ddd5;
+  --text-primary: #1c1917;
+  --text-secondary: #6b7280;
+  --text-light: #9ca3af;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --transition: all 0.2s ease;
+  --radius: 12px;
+}

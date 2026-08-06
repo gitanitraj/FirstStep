@@ -1,0 +1,151 @@
+/* Themes — the default theme lives in tokens.css; this file holds the
+   high-contrast accessibility theme.
+
+   Toggled by hooks/useHighContrast.ts, which puts `high-contrast` on <body>.
+
+   PHASE 2 (done): the theme is expressed as TOKEN REDEFINITION. What remains
+   below are the cases a token cannot express — inversions (yellow ground, black
+   ink) and one-off shape changes. Each surviving rule is there for a reason. */
+
+/* =============================================================================
+   High-contrast accessibility theme (toggled via the Utility Bar; body class set
+   by useHighContrast). Ported from the old styles.css approach (black + #ff0),
+   rewritten for the new civic-portal frame classes.
+   ============================================================================= */
+body.high-contrast {
+  /* THE THEME, expressed once. Only tokens whose every usage agrees are flipped
+     here; anything that inverts (yellow ground, black ink) or diverges stays an
+     explicit rule below, because no single token value satisfies both roles.
+
+     NOT flipped, deliberately:
+       --primary-color  overloaded — it is the utility bar's BACKGROUND (wants
+                        #000) and heading TEXT (wants #ff0). Splitting it into
+                        surface/ink roles is a token redesign, tracked separately.
+       --warning-color  only used as a background behind white text; flipping it
+                        to #ff0 would make .update-urgency yellow-on-white. */
+  --surface: #000;
+  --bg-lighter: #000;
+  --bg-light: #222;
+  --border-color: #ff0;
+  --text-primary: #fff;
+  --text-secondary: #fff;
+  --text-light: #fff;
+
+  background: #000;
+  color: #fff;
+}
+
+body.high-contrast .utility-bar {
+  background: #000;
+  border-bottom-color: #ff0;
+}
+
+body.high-contrast .ai-search-input {
+  background: #000;
+  color: #fff;
+  border-color: #fff;
+}
+
+body.high-contrast .utility-button {
+  background: #000;
+  border-color: #fff;
+  color: #fff;
+}
+
+body.high-contrast .utility-button[aria-pressed='true'] {
+  background: #ff0;
+  color: #000;
+}
+
+body.high-contrast .hero-appname {
+  color: #ff0;
+}
+
+body.high-contrast .hero-logo {
+  background: #fff;
+  border-radius: 6px;
+}
+
+body.high-contrast .primary-nav-item {
+  background: #000;
+  border-color: #fff;
+  color: #fff;
+}
+
+body.high-contrast .primary-nav-item:hover {
+  color: #ff0;
+  border-color: #ff0;
+}
+
+body.high-contrast .primary-nav-item.active {
+  background: #ff0;
+  border-color: #ff0;
+  color: #000;
+}
+
+body.high-contrast .laws-title,
+body.high-contrast .community-title,
+body.high-contrast .discovery-col-title,
+body.high-contrast .stub-page h2,
+body.high-contrast .category-title,
+body.high-contrast .category-section-title {
+  color: #ff0;
+}
+
+/* Category page. Every badge collapses to the same black-on-yellow: in high
+   contrast the LABEL carries the distinction, not the colour — which is the
+   point of using text badges rather than colour-only indicators. */
+body.high-contrast .category-badge,
+body.high-contrast .badge-resource,
+body.high-contrast .badge-law,
+body.high-contrast .badge-news,
+body.high-contrast .badge-flyer,
+body.high-contrast .badge-expert {
+  background: #ff0;
+  color: #000;
+}
+
+/* NOT redundant, despite --text-primary already being #fff. An update title can
+   be an <a> (news and laws carry a source URL), and `body.high-contrast a` below
+   is MORE specific (0,1,2) than the component's own `.category-update-title`
+   (0,1,0). Without this rule the generic link colour wins and every linked title
+   turns yellow — which also collapses the hover state below into no-op.
+
+   Removing it during the Phase 2 collapse is exactly what the visual gate
+   caught: 4 title rows per page shifted white -> yellow. A rule can look
+   redundant by value while doing SPECIFICITY work. */
+body.high-contrast .category-update-title {
+  color: #fff;
+}
+
+body.high-contrast a.category-update-title:hover {
+  color: #ff0;
+}
+
+body.high-contrast .laws-dot {
+  background: #555;
+}
+
+body.high-contrast .laws-dot.active {
+  background: #ff0;
+}
+
+body.high-contrast .ai-search-panel {
+  background: #000;
+  border-color: #ff0;
+  color: #fff;
+}
+
+body.high-contrast .ai-result-title {
+  color: #ff0;
+}
+
+body.high-contrast .discovery-item:hover {
+  background: #222;
+  color: #ff0;
+}
+
+body.high-contrast a,
+body.high-contrast .stub-back {
+  color: #ff0;
+}
