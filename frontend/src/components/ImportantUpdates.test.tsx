@@ -11,10 +11,10 @@ function envelope(data: UpdateItem[]) {
 }
 
 const feedA: UpdateItem[] = [
-  { type: 'news', id: 'N1', title: 'News One', summary: 'First', date: '2026-05-01', source: 'Legislature', url: null, urgency: 'high' },
+  { type: 'news', contentType: 'NEWS', id: 'N1', title: 'News One', summary: 'First', date: '2026-05-01', source: 'Legislature', url: null, urgency: 'high', categoryTags: null },
 ];
 const feedB: UpdateItem[] = [
-  { type: 'flyer', id: 'F1', title: 'News Two', summary: 'Second', date: '2026-06-01', source: 'Community Center', url: null, urgency: null },
+  { type: 'flyer', contentType: 'FLYER', id: 'F1', title: 'News Two', summary: 'Second', date: '2026-06-01', source: 'Community Center', url: null, urgency: null, categoryTags: null },
 ];
 
 describe('ImportantUpdates', () => {

@@ -155,6 +155,35 @@ conservative by design and will not invent one. Such content is reached through 
 category page's *updates* rather than its *topics* — see 03's "the category page
 is an aggregate read model."
 
+### What makes something a category?
+
+Ask what question it answers. The test has three outcomes, and only one of them
+is a category:
+
+| The proposed thing answers… | It is a… | Example |
+| --- | --- | --- |
+| *"What is this about?"* | **Category** | Housing, Food, Legal |
+| *"What format is this?"* | **ContentType** | `LAW`, `FLYER`, `EXPERT` |
+| *"Who is this for?"* | **population / eligibility facet** | Seniors, veterans, families with children |
+
+The middle row is why `LAW` is a contentType rather than a category (Decision
+032): a housing bill is *about* housing and *formatted as* legislation, and
+forcing it to choose would lose one of those facts.
+
+The third row is the same mistake in a different dimension, and the fields for it
+already exist and are unused: `Resource` carries `population`,
+`eligibility_age_min`, `eligibility_age_max` and `eligibility_gender`, with 43
+distinct population values in the loaded data.
+
+**Facets and categories compose.** "Housing resources for seniors" is the Housing
+category *filtered by* an eligibility facet — one item, two independent
+descriptions, no contradiction. Promoting "Seniors" to a category would force
+every senior housing resource to choose between two homes and split the housing
+page in half. A facet answers a question the category never asked.
+
+This applies whenever the information architecture grows: a proposed new category
+must survive all three rows of the table, not just sound plausible in a nav list.
+
 ## Supporting objects
 
 - **ContentSource** — Provenance link (Level 1: source attribution). Fields:

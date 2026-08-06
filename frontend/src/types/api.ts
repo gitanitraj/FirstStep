@@ -60,8 +60,16 @@ export interface DecisionResponse {
 
 // ===== Important Updates (GET /api/updates) — mirrors updates/dto/UpdateItem =====
 
+/**
+ * What a piece of CivicContent IS. Mirrors the backend enum. Presentation labels
+ * are derived from this in the UI — the backend never sends a display string.
+ */
+export type ContentType = 'RESOURCE' | 'NEWS' | 'LAW' | 'FLYER' | 'EXPERT';
+
 export interface UpdateItem {
-  type: string; // "news" | "flyer"
+  /** @deprecated Removed in Slice H — reports "news" for both news and laws. Use contentType. */
+  type: string;
+  contentType: ContentType;
   id: string;
   title: string;
   summary: string;
@@ -69,6 +77,7 @@ export interface UpdateItem {
   source: string | null;
   url: string | null;
   urgency: string | null;
+  categoryTags: string[] | null;
 }
 
 // ===== Homepage aggregate (GET /api/home) — mirrors home/dto records =====
@@ -111,4 +120,44 @@ export interface HomePayload {
   organizations: OrgSummary[];
   delawareLaws: LawItem[];
   communityFlyers: FlyerCard[];
+}
+
+// ===== Category page aggregate (GET /api/category/{key}) — mirrors category/dto =====
+
+export interface CategoryMetadata {
+  key: string;
+  label: string;
+  icon: string;
+  totalCount: number;
+  countsByType: Partial<Record<ContentType, number>>;
+  /** Most recent EDITORIAL date in the updates feed — never a record's load date. */
+  lastUpdated: string | null;
+}
+
+export interface TopicNavigation {
+  name: string;
+  slug: string;
+  count: number;
+  countsByType: Partial<Record<ContentType, number>>;
+}
+
+export interface TopicGroup {
+  label: string;
+  topics: TopicNavigation[];
+}
+
+/**
+ * The whole category page in one response. Three pillars: Discover (groups /
+ * topics), Connect (organizations), Stay Informed (updates).
+ *
+ * `groups` and `topics` are MUTUALLY EXCLUSIVE — a category grouped in
+ * navigation.json returns groups and an empty topic list, one absent from it
+ * returns a flat topic list and no groups.
+ */
+export interface CategoryPage {
+  metadata: CategoryMetadata;
+  updates: UpdateItem[];
+  groups: TopicGroup[];
+  topics: TopicNavigation[];
+  organizations: OrgSummary[];
 }

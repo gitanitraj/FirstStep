@@ -2530,3 +2530,277 @@ both sides and compares. 79 mirrors checked, 4 drifted, all pre-existing.
 **Next: F5b** — the React `CategoryPage` replacing the stub: Current Updates +
 Browse sections, TS types, CSS, vitest. Then F6 (`/category/:key/:topic` + shared
 `ContentCard`), then the relationship graph.
+
+# Decision 037
+
+**Slice F5b — the React CategoryPage. `/category/:key` stops being a stub, and the
+F5a aggregate finally has a consumer.**
+
+## Why this came before the Front Door redesign
+
+The user delivered a comprehensive homepage re-architecture (8 sections, Mission
+Cards, "First Step Originals") mid-slice, and chose to finish F5b first. The
+reasoning that settled it: **the Front Door's Row 5 LEFT is "Civic Resource
+Categories", so
+category pages survive the pivot** — and its Mission Cards are the same three
+pillars F5a already built (Discover → resources, Connect → organizations, Stay
+Informed → updates). The redesign *reinforces* the aggregate rather than
+superseding it. Meanwhile F5a had left a shipped BFF with no consumer, which its
+own notes flagged as the point where reshaping stops being free.
+
+The Front Door spec is captured verbatim, unscoped, with its open questions
+recorded —
+including that **"Seniors" is a population, not a category.** `Resource` already
+carries `population`, `eligibility_age_min/max` and `eligibility_gender` (43
+distinct population values), so "Seniors" is an eligibility facet. Making it a
+category would answer *"who is this for?"* rather than *"what is this about?"* —
+the same test that kept `LAW` a contentType.
+
+## The page
+
+Order confirmed by the user: **Current Updates → Browse → Organizations**, badges
+as **plain type names** (Law · News · Flyer · Expert) rather than event wording,
+because "New Law" is a claim about time the badge cannot verify.
+
+Two extracted components, not three. The split is by whether there is real
+rendering *logic*: `CategoryUpdates` owns the label map and link-out rule,
+`CategoryBrowse` owns the grouped/flat branch, and organizations are ~12 inline
+lines reusing `.discovery-item`. A third component would be an abstraction over a
+single use with nothing inside it.
+
+**`/category/:key/:topic` is declared now**, pointing at `StubPage`, so the topic
+links this page renders resolve to "Coming soon" rather than falling through to
+the not-found route — the precedent Slice D set.
+
+## The Slice H exit criterion, honoured at its first opportunity
+
+**F5b reads `contentType` and never `type`.** Reading `type` here would be a bug,
+not a style choice: it reports `"news"` for both curated news and signed
+legislation, so the feed would render `[News] Relating to Rent Increases.` and a
+resident could not tell a change in the law from an announcement.
+
+The label map lives in the frontend, translated per locale — the "presentation
+labels are derived from `contentType` by the frontend" half of Decision 036's exit
+criterion. **When Slice H deletes `type`, this page needs no edit.** Pinned by a
+page test whose fixture has `type` and `contentType` *deliberately disagreeing*.
+
+The map is typed `Record<ContentType, string>`, so adding a content type without a
+label **fails the build** rather than rendering `undefined`.
+
+## Three defects found, and where each was caught
+
+1. **`tsc` caught what vitest could not.** Adding `contentType` to `UpdateItem`
+   orphaned two fixtures in `ImportantUpdates.test.tsx`. Vitest passed anyway
+   (esbuild strips types), but `"build": "tsc && vite build"` means **the Docker
+   build would have failed.** Typecheck is a separate gate from the test run.
+2. **"1 flyers"** — caught in live browser verification, not by any test.
+   Fixed with explicit `.one` / `.plural` keys rather than appending an "s": no
+   suffix rule survives Spanish (`ley` → `leyes`). Regression test added.
+3. **A CSS collision that made the page look broken.** `.category-browse`
+   rendered ~240px wide beside two 1152px sections, because index.css **already
+   had** a `.category-browse` rule — the "Browse" *button* from
+   `CategoryPreviewList`, retired in Slice A. Its `align-self: flex-start` applied
+   silently to a full-width section.
+
+   **Dead CSS is not inert.** A retired component's styles keep matching, so a new
+   class name is not safe just because no component uses it — grep the stylesheet,
+   not just the components. This is the second time (Step 5c needed "distinct
+   `.category-preview*` CSS to avoid a `.category-group-header` collision").
+   **Fixed by renaming the new section to `.category-topics`, not by deleting the
+   stale rule** — the dead-CSS sweep is a tracked END-OF-REDESIGN TODO and
+   deleting unrelated code mid-slice is out of scope.
+
+   Only a rendered-width measurement could catch this. The DOM was correct, so
+   every unit test passed. Worth remembering when judging what live verification
+   is for.
+
+## An upstream failure worth recording
+
+Mid-verification the Delaware feed returned malformed XML (`Invalid XML: Error on
+line 40: element type "link" must be terminated`) and `RssFeedSource` fell to 0
+items — so laws vanished from every category page. **Not caused by F5b, which
+changes no Java.** Fetching the feed directly returned *valid* XML (`xmllint`
+clean, line 40 a `<pubDate>`), so the backend had received a different, transient
+response.
+
+Two things this exposed, neither fixed here:
+- **`@Scheduled(fixedDelay = 1 hour)` means a boot-time fetch failure leaves the
+  app lawless for an hour.** There is no retry/backoff on failure.
+- **The app degrades gracefully** — the error is caught, pages still render, and
+  category counts simply exclude laws. That is the right behaviour and it worked.
+
+Restarting the container refetched successfully (**179 of 432 bills admitted**).
+Recorded as a resilience question for a later slice, not a defect of this one.
+
+## Verification
+
+**34 frontend tests green** (was 20), **`tsc --noEmit` clean**, **253 backend
+tests green** (unchanged — F5b touches no Java).
+
+**Live (Docker + headless Chromium):**
+- Housing: `44 resources · 20 laws · 5 news items · 3 expert answers · 1 flyer`;
+  badges FLYER/LAW/LAW/LAW/LAW/EXPERT; three group headings; topic href
+  `/app-next/category/housing/emergency-shelter`; 8 organizations.
+- Food renders **0 groups, 4 flat topics**. Utilities renders **6 updates and the
+  no-topics line** — the page that was literally empty before F5a.
+- Unknown key shows "We couldn't find that category." with a way home; the raw
+  backend message is not shown.
+- **Spanish:** Actualizaciones Actuales · Explorar Recursos · Organizaciones,
+  badges FOLLETO / LEY / EXPERTO.
+- **High contrast:** sections `rgb(0,0,0)`, badges `rgb(255,255,0)`. Every badge
+  collapses to the same yellow — the LABEL carries the distinction, not the
+  colour, which is why text badges were chosen over colour-only indicators.
+- Only failing request is the deliberate `404 /api/category/nope`.
+- Deep-link reload of a two-segment route still served by `SpaWebConfig`.
+
+**Next: F6** — `/category/:key/:topic` + its BFF + a shared `ContentCard`. Then
+the Front Door scoping pass, then the relationship graph.
+
+# Decision 038
+
+**Three tracked debt items, a measured performance baseline, a Version 3 backlog,
+and an information-architecture rule. Documentation only — no production code
+changed.**
+
+Raised by the user reviewing Slice F5b. Recorded rather than fixed, in this
+project's existing pattern: the tech-debt memory carries the actionable item,
+this file carries the reasoning. (`gh` is not installed and the repo's GitHub
+issues would need manual creation; the memory is also what actually gets re-read
+at the start of each slice.)
+
+## A correction to what I reported in F5b
+
+I said the RSS failure meant "no retry, so a bad boot-time fetch leaves the app
+lawless for an hour." The retry half is right; the rest was wrong. Reading
+`RssFeedService.fetchFeeds()`:
+
+```java
+// WHY only replace when non-empty: a transient network failure during a
+// refresh should not wipe out the last good result.
+if (!allBills.isEmpty()) { signedBills = …; rssItems = …; }
+```
+
+**A last-good guard already exists.** What F5b hit was the one case it cannot
+cover — the failure was on the **boot fetch**, when both lists were still
+`List.of()`, so the guard faithfully preserved nothing.
+
+| The ask | Actual state |
+| --- | --- |
+| retry with exponential backoff | **Missing.** The real fix — a cold start has nothing to fall back on. |
+| keep last successful snapshot | **Partially exists** — in memory, across refreshes. Missing: surviving a restart. |
+| distinguish stale from no data | **Missing entirely.** No `lastSuccessfulFetch` exists, and nothing is surfaced. |
+
+## Debt 1 — ad hoc pluralization
+
+F5b's `CategoryPage.tsx` picks `n === 1 ? 'one' : 'plural'`. It fits English and
+Spanish and breaks on a third locale: Russian has 4 plural forms, Arabic 6.
+**The plural rule is a property of the locale**, so it belongs in localization
+rather than in a ternary.
+
+**Fix: `Intl.PluralRules`** — built into every modern browser, driven by the same
+CLDR data ICU uses, zero dependencies:
+
+```ts
+const suffix = new Intl.PluralRules(lang).select(n);  // 'one' | 'other' | 'few' | …
+```
+
+Keys become CLDR categories, so **`contentType.law.plural` → `.other`**; the
+current name is not a CLDR category and would mislead a translator. Only locales
+that need `.few`/`.many` grow those keys.
+
+**Deliberately split from the framework question.** `Intl.PluralRules` is *debt* —
+correcting a hack in shipped code. A full ICU/i18next stack is a *new capability*
+and goes on the Version 3 backlog. Bundling them would leave the cheap correct
+fix waiting on the expensive one.
+
+## Debt 2 — RSS resilience (a production availability concern)
+
+Three parts, in the order they pay off:
+
+1. **Retry with backoff.** The next attempt today is `fixedDelay` = 1 hour. A few
+   retries at increasing intervals would have turned the observed outage into
+   seconds — the feed was valid on the very next request.
+2. **Persist the last good snapshot** so it survives a restart, not only a failed
+   refresh. Turns "lawless until the feed recovers" into "serving yesterday's
+   laws".
+3. **Distinguish stale from absent** — record `lastSuccessfulFetch` and let the
+   UI say **"as of <date>"** instead of silently showing fewer laws. This is the
+   part with an editorial consequence: a resident seeing no housing laws cannot
+   tell whether none exist or the feed is down, and this project's standard is
+   "build trust through transparency."
+
+   It has a home already built. `CategoryMetadata.lastUpdated` is the same *kind*
+   of fact and `CategoryUpdates` already renders it as "Latest 2026-07-25". A
+   feed-level "as of" should reuse that pattern rather than invent a second one.
+
+**Stated plainly: the failure was graceful.** The error was caught, pages
+rendered, counts simply excluded laws, nothing crashed. The gap is honesty about
+degradation, not stability.
+
+## Debt 3 — no performance or regression checks exist
+
+There is no perf tooling of any kind: no Lighthouse, no bundle analysis, no
+budgets, no CI. Answering the four questions with measurements taken 2026-08-06
+rather than assumptions:
+
+| Question | Answer |
+| --- | --- |
+| **Render speed** | Not measured anywhere. Today: DOMContentLoaded **38–52 ms**, **191 DOM nodes**. |
+| **Filtering speed** | **No client-side filtering exists** — by design the BFF filters server-side. `/api/category/housing` **22 KB / 6 ms**; `/api/home` **55 KB / 49 ms**. |
+| **Mobile layout** | Media queries exist and are now verified at 375 px: **no horizontal overflow**, 16 px padding applied, section head stacks to column, every update title fits. |
+| **Scrolling** | No virtualization and none needed — 6 updates, ≤12 topics, 8 organizations. Page height 2729 px at 375 px wide. |
+
+**Recording the gap, not building a budget yet.** Nothing is slow, so a budget
+today guards nothing. The **Front Door redesign** is when this changes — First
+Step Originals, four Community Information card groups and a Latest Updates feed
+all land on one page, which is when payload and DOM size actually grow. The
+numbers above are the "before".
+
+## The Version 3 backlog, and a naming collision
+
+"Version 3" had been used as a place to defer things three times with no list, so
+nothing could be reviewed as a set. Now consolidated in
+`memory/firststep_version3_backlog.md`:
+
+| Deferred to Version 3 | Also recorded at | Why |
+| --- | --- | --- |
+| **Subcategory inference** | `04-editorial-principles.md`, `03-application-architecture.md`, Decision 036 | The classifier stays conservative; coverage grows by composition, not inference. |
+| **Admin function + category descriptions** | `04-editorial-principles.md`, Decision 036 | `taxonomy.json` prose is editorial and belongs to editors, not a code slice. |
+| **Full ICU / i18next localization** | this decision | Needed when translation leaves developers, a third locale appears, or interpolation is required. |
+
+It is a **separate list from tech debt**, because deferred capability is not debt.
+Debt is something wrong in shipped code; these are things deliberately not built.
+Mixing them makes the debt list look unfixable and the roadmap invisible.
+
+**Naming collision, half of which this session introduced.** "V3" meant two
+unrelated things: the product release above, and the 8-section homepage redesign
+that Decision 037 called "homepage V3" (the *third homepage design*). "V3's Row 5
+LEFT is Civic Resource Categories" and "subcategory inference is a Version 3
+feature" are sentences about different things, and left alone someone reasonably
+concludes the redesign ships with subcategory inference.
+
+**The redesign is now the "Front Door" redesign** — the user's own phrase ("Slice
+H is building the front door to the CivicContent ecosystem"), unambiguous and
+more descriptive than a version number. **"Version 3" is reserved for the product
+backlog and nothing else.**
+
+## The category / facet distinction, preserved
+
+"Seniors" is a **population, not a category**. `Resource` already carries
+`population`, `eligibility_age_min`, `eligibility_age_max` and
+`eligibility_gender`, with 43 distinct population values in the loaded data — so
+the facet exists and is unused, not missing.
+
+This generalizes the existing contentType heuristic rather than inventing a rule.
+`01-domain-model.md` now carries the complete test: *what is this about?* → a
+Category · *what format is this?* → a ContentType · *who is this for?* → a
+population/eligibility facet. Facets and categories **compose**: "Housing
+resources for seniors" is a Housing category filtered by an eligibility facet.
+Making Seniors a category would force every senior housing resource to choose
+between two homes — Decision 032's mistake in a new dimension.
+
+Flagged against the Front Door spec's Row 5 category list, which is where it will
+next come up.
+
+**Next: F6** — `/category/:key/:topic` + its BFF + a shared `ContentCard`. Then
+the Front Door scoping pass.

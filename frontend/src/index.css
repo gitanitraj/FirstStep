@@ -709,7 +709,9 @@ body {
 
 .laws-feature,
 .discovery,
-.community-info {
+.community-info,
+.category-header,
+.category-section {
   background: white;
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
@@ -719,7 +721,8 @@ body {
 
 .laws-title,
 .community-title,
-.discovery-col-title {
+.discovery-col-title,
+.category-section-title {
   margin: 0 0 12px 0;
   font-size: 18px;
   font-weight: 600;
@@ -903,6 +906,148 @@ body {
   text-align: center;
 }
 
+/* ===== Category page (Slice F5b) ===== */
+.category-title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+.category-icon {
+  font-size: 28px;
+}
+
+.category-counts {
+  margin: 6px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.category-section-head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* .category-section-title inherits the shared panel-title rule above, so this
+   only cancels the margin the head row already provides. */
+.category-section-head .category-section-title {
+  margin-bottom: 0;
+}
+
+.category-updated {
+  color: var(--text-light);
+  font-size: 13px;
+}
+
+.category-update-list,
+.category-update-list li {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.category-update-list {
+  margin-top: 12px;
+}
+
+.category-update {
+  padding: 12px 0;
+  border-bottom: 1px solid var(--border-color);
+}
+
+.category-update:last-child {
+  border-bottom: none;
+}
+
+.category-update-head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+/* Content-type badge. One shared shape; the per-type modifier only changes
+   colour, so a new ContentType needs a single extra rule. */
+.category-badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: white;
+  background: var(--text-secondary);
+}
+
+.badge-resource {
+  background: var(--primary-color);
+}
+.badge-law {
+  background: var(--accent-color);
+}
+.badge-news {
+  background: var(--primary-light);
+}
+.badge-flyer {
+  background: var(--warning-color);
+}
+.badge-expert {
+  background: #4b5563;
+}
+
+.category-update-title {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+a.category-update-title:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.category-update-summary {
+  margin: 6px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+  /* Long RSS bill bodies blew out a card during Step 5b; keep them to two lines. */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.category-update-meta {
+  margin: 6px 0 0 0;
+  color: var(--text-light);
+  font-size: 12px;
+}
+
+.category-group {
+  margin-top: 16px;
+}
+
+.category-group:first-of-type {
+  margin-top: 8px;
+}
+
+.category-group-title {
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--text-secondary);
+}
+
 .stub-back {
   color: var(--primary-color);
   font-weight: 600;
@@ -931,6 +1076,22 @@ body {
 
   .discovery-divider {
     display: none;
+  }
+
+  .category-header,
+  .category-section {
+    padding: 16px;
+  }
+
+  .category-title {
+    font-size: 22px;
+  }
+
+  /* Stack the heading above the "Latest <date>" line rather than letting them
+     compete for one narrow row. */
+  .category-section-head {
+    flex-direction: column;
+    gap: 2px;
   }
 }
 
@@ -1031,7 +1192,9 @@ body.high-contrast .primary-nav-item.active {
 body.high-contrast .laws-feature,
 body.high-contrast .discovery,
 body.high-contrast .community-info,
-body.high-contrast .stub-page {
+body.high-contrast .stub-page,
+body.high-contrast .category-header,
+body.high-contrast .category-section {
   background: #000;
   border-color: #ff0;
 }
@@ -1039,8 +1202,43 @@ body.high-contrast .stub-page {
 body.high-contrast .laws-title,
 body.high-contrast .community-title,
 body.high-contrast .discovery-col-title,
-body.high-contrast .stub-page h2 {
+body.high-contrast .stub-page h2,
+body.high-contrast .category-title,
+body.high-contrast .category-section-title {
   color: #ff0;
+}
+
+/* Category page. Every badge collapses to the same black-on-yellow: in high
+   contrast the LABEL carries the distinction, not the colour — which is the
+   point of using text badges rather than colour-only indicators. */
+body.high-contrast .category-badge,
+body.high-contrast .badge-resource,
+body.high-contrast .badge-law,
+body.high-contrast .badge-news,
+body.high-contrast .badge-flyer,
+body.high-contrast .badge-expert {
+  background: #ff0;
+  color: #000;
+}
+
+body.high-contrast .category-counts,
+body.high-contrast .category-updated,
+body.high-contrast .category-update-summary,
+body.high-contrast .category-update-meta,
+body.high-contrast .category-group-title {
+  color: #fff;
+}
+
+body.high-contrast .category-update-title {
+  color: #fff;
+}
+
+body.high-contrast a.category-update-title:hover {
+  color: #ff0;
+}
+
+body.high-contrast .category-update {
+  border-bottom-color: #ff0;
 }
 
 body.high-contrast .discovery-divider {
