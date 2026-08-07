@@ -21,6 +21,12 @@ TODOs for what isn't yet.
 | [03-application-architecture.md](03-application-architecture.md) | How the software implements the flow, plus the **Milestone Roadmap**. |
 | [04-editorial-principles.md](04-editorial-principles.md) | Content and governance rules for what enters and leaves the knowledge base. |
 
+## Related
+
+| Doc | Purpose |
+| --- | --- |
+| [../frontend/css-architecture.md](../frontend/css-architecture.md) | Where a style belongs: design tokens, `base.css`/`themes.css` ownership, the `index.css` quarantine rule, CSS Module naming, and when `:global()` is allowed. |
+
 ## Diagrams
 
 UML diagrams live in [uml/](uml/):

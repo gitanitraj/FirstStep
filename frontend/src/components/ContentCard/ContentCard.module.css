@@ -1,0 +1,118 @@
+/* ContentCard — locally scoped. Class names are short and semantic because the
+   filename already namespaces them (docs/frontend/css-architecture.md).
+
+   EVERY colour is a token, so the high-contrast theme applies by redefinition
+   and this file needs no :global() escape hatch. That is the payoff of Decision
+   039 Phase 2, demonstrated on the first component built under the convention. */
+
+.card {
+  list-style: none;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  flex-shrink: 0;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  color: white;
+  background: var(--text-secondary);
+}
+
+/* Per-type modifiers. Composed in the TSX as styles[`badge${contentType}`], so
+   the enum value maps straight to a class and a new content type needs one rule
+   rather than a branch. */
+.badgeRESOURCE {
+  background: var(--primary-color);
+}
+.badgeLAW {
+  background: var(--accent-color);
+}
+.badgeNEWS {
+  background: var(--primary-light);
+}
+.badgeFLYER {
+  background: var(--warning-color);
+}
+.badgeEXPERT {
+  background: #4b5563;
+}
+
+.title {
+  font-weight: 600;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+
+a.title:hover {
+  color: var(--primary-color);
+  text-decoration: underline;
+}
+
+.provider {
+  margin: 6px 0 0 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-secondary);
+}
+
+.summary {
+  margin: 6px 0 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  /* Some sources carry very long bodies as their summary — clamp so one card
+     cannot dominate the list. */
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.facts {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin: 10px 0 0 0;
+  font-size: 12px;
+}
+
+.cost,
+.urgency {
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-weight: 600;
+  text-transform: capitalize;
+  border: 1px solid var(--border-color);
+  color: var(--text-secondary);
+}
+
+/* Urgency is the one fact that should catch the eye — it is why a resident in a
+   hurry is on this page. */
+.urgency {
+  border-color: var(--accent-color);
+  color: var(--accent-color);
+}
+
+.date {
+  color: var(--text-light);
+}

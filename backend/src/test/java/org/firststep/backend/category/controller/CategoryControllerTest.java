@@ -6,8 +6,12 @@ import java.util.Optional;
 
 import org.firststep.backend.category.dto.CategoryMetadata;
 import org.firststep.backend.category.dto.CategoryPage;
+import org.firststep.backend.category.dto.TopicMetadata;
+import org.firststep.backend.category.dto.TopicPage;
 import org.firststep.backend.category.service.CategoryPageService;
 import org.firststep.backend.category.service.CategoryService;
+import org.firststep.backend.category.service.TopicPageService;
+import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.navigation.dto.TopicGroup;
 import org.firststep.backend.navigation.dto.TopicNavigation;
 import org.firststep.backend.organization.dto.OrgSummary;
@@ -52,6 +56,9 @@ class CategoryControllerTest {
     // correctness is CategoryPageServiceTest's job, against real services.
     @MockitoBean
     private CategoryPageService categoryPageService;
+
+    @MockitoBean
+    private TopicPageService topicPageService;
 
     @Configuration
     static class TestConfig {
@@ -192,5 +199,52 @@ class CategoryControllerTest {
                 .andExpect(status().isOk());
 
         verify(categoryPageService).getByKey("housing", "wilmington-de");
+    }
+
+    // ---- GET /api/category/{key}/{topic} — the topic page BFF (Slice F6) ----
+
+    private static TopicPage shelterPage() {
+        return new TopicPage(
+                new TopicMetadata("housing", "Housing", "🏠", "Emergency Shelter", "emergency-shelter",
+                        1, Map.of(ContentType.RESOURCE, 1)),
+                List.of(new ContentItem(ContentType.RESOURCE, "R1", "Ministry of Caring Shelter",
+                        "Overnight beds.", "Ministry of Caring", "Wilmington", "free", "emergency",
+                        null, "https://example.org")));
+    }
+
+    @Test
+    void shouldReturnTheTopicPageWithItsBreadcrumbAndItems() throws Exception {
+        when(topicPageService.getByKey("housing", "emergency-shelter", null))
+                .thenReturn(Optional.of(shelterPage()));
+
+        mockMvc.perform(get("/api/category/housing/emergency-shelter"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.success").value(true))
+                .andExpect(jsonPath("$.data.metadata.name").value("Emergency Shelter"))
+                // The breadcrumb: the client asked with a key and gets a label back.
+                .andExpect(jsonPath("$.data.metadata.categoryLabel").value("Housing"))
+                .andExpect(jsonPath("$.data.items[0].contentType").value("RESOURCE"))
+                .andExpect(jsonPath("$.data.items[0].organization").value("Ministry of Caring"))
+                .andExpect(jsonPath("$.data.items[0].location").value("Wilmington"));
+    }
+
+    @Test
+    void shouldReturn404ForAnUnknownTopic() throws Exception {
+        when(topicPageService.getByKey(any(), any(), any())).thenReturn(Optional.empty());
+
+        mockMvc.perform(get("/api/category/housing/not-a-topic"))
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.errorCode").value("NOT_FOUND"));
+    }
+
+    @Test
+    void shouldPassCommunityIdThroughToTheTopicPage() throws Exception {
+        when(topicPageService.getByKey("housing", "emergency-shelter", "wilmington-de"))
+                .thenReturn(Optional.of(shelterPage()));
+
+        mockMvc.perform(get("/api/category/housing/emergency-shelter").param("communityId", "wilmington-de"))
+                .andExpect(status().isOk());
+
+        verify(topicPageService).getByKey("housing", "emergency-shelter", "wilmington-de");
     }
 }

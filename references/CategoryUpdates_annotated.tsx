@@ -23,19 +23,13 @@
  * ============================================================================= */
 
 import { useI18n } from '../i18n/I18nProvider';
-import type { ContentType, UpdateItem } from '../types/api';
+import { CONTENT_TYPE_LABEL } from '../i18n/contentTypeLabel';
+import type { UpdateItem } from '../types/api';
 
-// One lookup, exhaustively keyed by ContentType. Using Record<ContentType, …>
-// rather than a loose object means TypeScript FAILS THE BUILD if a new content
-// type is added to the enum and not given a label here — the compiler enforces
-// what would otherwise be a silent "undefined" badge in production.
-const LABEL_KEY: Record<ContentType, string> = {
-  RESOURCE: 'contentType.resource',
-  NEWS: 'contentType.news',
-  LAW: 'contentType.law',
-  FLYER: 'contentType.flyer',
-  EXPERT: 'contentType.expert',
-};
+// The label map moved to i18n/contentTypeLabel.ts in Slice F6, once ContentCard
+// became a second consumer — an abstraction earning its name on the second use,
+// the same rule the backend services follow. Still exhaustively keyed by
+// ContentType there, so a new content type without a label fails the build.
 
 interface Props {
   updates: UpdateItem[];
@@ -72,7 +66,7 @@ export default function CategoryUpdates({ updates, lastUpdated }: Props) {
             <li className="category-update" key={`${u.contentType}-${u.id}`}>
               <div className="category-update-head">
                 <span className={`category-badge badge-${u.contentType.toLowerCase()}`}>
-                  {t(LABEL_KEY[u.contentType])}
+                  {t(CONTENT_TYPE_LABEL[u.contentType])}
                 </span>
                 {/* Link out only when the source gave us a URL (news and laws do;
                     flyers and expert answers do not). Editorial standard:

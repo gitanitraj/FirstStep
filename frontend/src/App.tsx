@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { I18nProvider } from './i18n/I18nProvider';
 import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
+import TopicPage from './pages/TopicPage/TopicPage';
 import StubPage from './pages/StubPage';
 
 /**
@@ -17,9 +18,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/category/:key" element={<CategoryPage />} />
-          {/* Declared so topic links resolve to "Coming soon" rather than falling
-              through to the not-found route. The real page is Slice F6. */}
-          <Route path="/category/:key/:topic" element={<StubPage name="Topic" />} />
+          <Route path="/category/:key/:topic" element={<TopicPage />} />
           <Route path="/organization/:slug" element={<StubPage name="Organization" />} />
           <Route path="/community-info" element={<StubPage name="Community Info" />} />
           <Route path="/important-notices" element={<StubPage name="Important Notices" />} />

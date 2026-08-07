@@ -147,6 +147,44 @@ export interface TopicGroup {
 }
 
 /**
+ * One piece of CivicContent normalized for display as a card. Mirrors
+ * shared/dto/ContentItem.
+ *
+ * Note there is no legacy `type` string here — this shape was defined after the
+ * Decision 036 exit criterion, so `contentType` is the only discriminator.
+ */
+export interface ContentItem {
+  contentType: ContentType;
+  id: string;
+  title: string;
+  summary: string | null;
+  organization: string | null;
+  /** City only — a browse card never carries a street address. */
+  location: string | null;
+  cost: string | null;
+  urgency: string | null;
+  date: string | null;
+  url: string | null;
+}
+
+// ===== Topic page (GET /api/category/{key}/{topic}) — mirrors category/dto =====
+
+export interface TopicMetadata {
+  categoryKey: string;
+  categoryLabel: string;
+  categoryIcon: string;
+  name: string;
+  slug: string;
+  totalCount: number;
+  countsByType: Partial<Record<ContentType, number>>;
+}
+
+export interface TopicPage {
+  metadata: TopicMetadata;
+  items: ContentItem[];
+}
+
+/**
  * The whole category page in one response. Three pillars: Discover (groups /
  * topics), Connect (organizations), Stay Informed (updates).
  *

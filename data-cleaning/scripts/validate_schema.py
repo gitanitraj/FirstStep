@@ -201,6 +201,27 @@ def validate_record(record, index, check_urls=False):
                 if not loc.get("state"):
                     errors.append(f"Location[{i}] is not confidential but 'state' is null or missing.")
 
+            # CONFIDENTIAL LOCATION MODELING (decisions.md Decision 040, tech
+            # debt 8). A data-model completeness rule, not privacy remediation —
+            # nothing is being hidden and then leaked.
+            #
+            # In the DSCYF source, `confidential` is the value IN PLACE OF an
+            # address: the organization does not publish its location. HA-006's
+            # address is already null. Six OTHER locations also have a null
+            # address, but only because it is unknown — and the domain model
+            # cannot yet tell those two cases apart, since it drops the flag.
+            #
+            # Until it can, this rule holds the invariant: an address appearing
+            # on a confidential location means something upstream or some
+            # enrichment step GENERATED one, and no consumer should infer,
+            # generate or expose an address for a confidential location.
+            if loc.get("confidential", False) and loc.get("address"):
+                errors.append(
+                    f"Location[{i}] is confidential but carries an address. "
+                    "Confidential means the location is deliberately unpublished — "
+                    "an address here must be removed, not displayed."
+                )
+
     # ── 6. Phones structure ──────────────────────────────────────
     phones = record.get("phones", [])
     if not isinstance(phones, list):

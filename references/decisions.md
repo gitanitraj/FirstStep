@@ -2962,3 +2962,184 @@ components, which is the list Phase 3 has to answer.
 
 **Next: F6** — `/category/:key/:topic`, with `ContentCard` as the first component
 built in the new structure.
+
+# Decision 040
+
+**Slice F6 — the topic page. The navigation hierarchy is complete, and
+`ContentCard` is the first component built on the CSS Modules convention.**
+
+`GET /api/category/{key}/{topic}` + `/category/:key/:topic`. Category → topic
+group → topic → **CivicContent** (Decision 021) now exists end to end; the topic
+links `CategoryBrowse` has rendered since F5b resolve to a real page instead of a
+stub.
+
+## The fact that shaped the slice
+
+**Only resources (229/229) and flyers (7/7) carry a `subcategory`.** News, signed
+legislation and expert answers carry none, so they can never appear on a topic
+page. That is not a limitation — it is the same measurement that made the
+category page an aggregate (Decision 036), seen from the other side: **browse
+reaches what has a topic, the category page's updates feed reaches what does
+not.** Together they cover everything, which is the coverage identity from 036
+restated as two pages.
+
+## `ContentItem`, and why it is not `UpdateItem`
+
+A new normalized display DTO in `shared/dto`. F5a argued hard for ONE cross-type
+merger, so the divergence needs justifying:
+
+| | answers | resources |
+| --- | --- | --- |
+| `UpdateItem` | "what changed?" | **excluded by design** |
+| `ContentItem` | "what is this?" | included |
+
+Forcing resources into a DTO named *update* would repeat the exact naming
+confusion (`type` meaning two things) that Decision 036 is retiring. They overlap
+in ~7 fields, and that is **acknowledged debt, not an oversight**.
+
+**Intended end state: `ContentItem` becomes the single display DTO and
+`UpdateItem` disappears alongside `type` in Slice H**, at which point the updates
+feeds return `ContentItem`s sorted by date. `ContentItem` already has no `type`
+field — it was defined after the exit criterion, so there is nothing in it for
+Slice H to remove.
+
+## The CSS convention, proven
+
+`components/ContentCard/{ContentCard.tsx, ContentCard.module.css}` — co-located,
+per Decision 039. Verified live rather than assumed:
+
+- **Classes are scoped:** rendered as `_card_1kq6h_8`, `_badge_1kq6h_29
+  _badgeRESOURCE_1kq6h_44`. A collision with a deleted component's CSS is now
+  structurally impossible for this component.
+- **Themed for free:** high contrast measured at `rgb(0,0,0)` surface and
+  `rgb(255,255,0)` border with **zero `:global()`** and zero theme rules of its
+  own. Every colour is a token, so Phase 2's redefinition does the work. That is
+  the payoff of 039 Phase 2, demonstrated on the first component to depend on it.
+- **The ratchet held: F6 added ZERO rules to `index.css`** (91 selectors,
+  unchanged).
+
+`i18n/contentTypeLabel.ts` was extracted once `ContentCard` became a **second**
+consumer beside `CategoryUpdates` — the same "earn it on the second use" rule the
+backend services follow.
+
+**What stayed global, deliberately:** `home-body`, `stub-page`, `stub-back`,
+`section-placeholder`. Phase 3's rule is that existing styles move when a slice
+touches *them*, not when a new page happens to use them. Migrating those here
+would have meant duplicating them into a module or refactoring four other
+components.
+
+## Two defects found by looking at the page
+
+Both were on **every card** of the first real render, both in this component's
+own logic, and **neither was a rendering error** — the DOM was exactly what the
+code asked for. They were judgement errors, and only a screenshot surfaces those:
+
+1. **Title/organization duplication.** Directory records frequently name a
+   resource after its provider, so ten cards each read "American Red Cross" then
+   "American Red Cross · Wilmington".
+2. **"Standard" urgency rendered as a chip.** `urgency: "standard"` means
+   ordinary, so every non-urgent resource wore a badge announcing it was not
+   urgent. `ImportantUpdates` already skipped it.
+
+Both fixed and pinned by tests, so the judgement survives the next refactor.
+
+## A readiness check tests the slice's contract, not the app's health
+
+The upstream Delaware RSS feed served malformed XML again mid-verification, and
+my readiness loop — which waited for `LAW > 0` — **spun for ten minutes**.
+
+**Topic pages contain no laws.** The check was gated on a dependency the slice
+does not have. The user's rule, recorded because it generalizes the mistake:
+
+> **A readiness check should test the slice's contract, not the application's
+> overall health.**
+
+Corollaries applied here: F6 was **not** gated on RSS or LAW availability; the
+feed failure is **documented separately** as the existing ingestion-reliability
+debt (item 5); and **no RSS fix was introduced into F6** merely to make a
+readiness check pass. Mixing an availability fix into a page slice would have
+made both harder to review and neither easier to reason about.
+
+**The debt is now demonstrably real rather than theoretical — it has cost
+verification time twice.** Same failure both times: a boot fetch fails, there is
+no retry, and `fixedDelay` means the next attempt is an hour away. Fetching the
+feed directly returned valid XML on both occasions.
+
+## Confidential Location Modeling — a data-model completeness item
+
+**Classified by the user as data-model completeness, NOT privacy remediation:**
+
+> Preserve the distinction between an unknown address and a deliberately
+> unpublished address during ingestion. Until the domain model supports that
+> distinction, validation must prevent confidential locations from carrying an
+> address. No consumer should infer, generate or expose an address for a
+> confidential location.
+
+I initially called this "a privacy gap … a protected address being dropped".
+**That was wrong twice over** — wrong on the facts, and wrong in category. The
+user corrected both. Checked against the data:
+
+```json
+HA-006  { "label": "Primary", "address": null, "city": "Wilmington",
+          "state": "DE", "zip": null, "confidential": true }
+```
+
+**The address is already null.** In the DSCYF source, `confidential` is the value
+*in place of* an address — the organization does not publish its location — not a
+flag concealing an address that exists. **First Step is not exposing a protected
+address**, and nothing here says otherwise.
+
+**The real issue is loss of meaning at ingestion.** `shared/model/Location` does
+not map `confidential`, so two different source facts collapse into one null:
+
+| Source meaning | After ingestion | Count |
+| --- | --- | --- |
+| address unknown | `address: null` | 6 |
+| **deliberately unpublished** | `address: null` | 1 (HA-006) |
+
+The risk is therefore **forward-looking, not current**: a later geocoding step, a
+detail page or a map would have no way to know HA-006 must never acquire an
+address. The domain model should express *an address that may be unavailable or
+confidential*, rather than inferring or displaying one.
+
+**Recorded as data-model completeness, not fixed here** (user's call — it does
+not block F6). The fix is a model that carries an address which may be
+*unavailable or confidential* rather than merely absent, plus deciding what every
+consumer does with it.
+
+**Why the classification matters and is not pedantry:** filed as privacy
+remediation this reads as an incident — something leaked, someone should be told.
+Filed as completeness it reads as what it is: the model cannot yet express a
+distinction the source makes. The two get different urgency, different reviewers
+and different write-ups, and only one of them is accurate.
+
+**Verified now, so the invariant holds while the model catches up:**
+`validate_schema.py` gained an ERROR when a confidential location carries an
+address. It was negative-tested — planting an address on a confidential location
+fires it — so it is a live guard rather than an inert rule. All three validators
+still exit 0. `ContentItem` also carries **no address field at all**, so a browse
+card cannot leak one by construction.
+
+## Verification
+
+**271 backend tests green** (was 253, +18) · **48 frontend green** (was 34, +14) ·
+`tsc --noEmit` clean · **92 mirrors checked, no drift in any F6-touched file**.
+
+**API:** topic counts match the category page exactly (Emergency Shelter 10,
+Transitional Housing 11, Food Pantry 9). `legal/eviction-prevention` returns the
+dual-classified flyer, and `housing/food-pantry` **404s** — proving topics are
+category-scoped rather than global.
+
+**Live**, desktop and 375px, light and high contrast: 10 cards, breadcrumb
+`🏠 Housing › Emergency Shelter` → `/category/housing`, no horizontal overflow, 0
+failed requests, click-through from the category page lands on the topic page.
+Category page unchanged in both themes (3 sections, 3 groups, 9 topic links, 8
+organizations).
+
+A pixel regression check against the F5b baseline was **not** meaningful this run
+— with the feed down those pages legitimately show fewer items — so the category
+page was verified structurally instead. Stated plainly rather than reported as a
+pass.
+
+**Next: the Front Door scoping pass** ([[firststep-front-door-spec]]), with its
+open questions already recorded.

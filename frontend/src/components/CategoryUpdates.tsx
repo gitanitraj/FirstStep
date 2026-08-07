@@ -1,5 +1,6 @@
 import { useI18n } from '../i18n/I18nProvider';
-import type { ContentType, UpdateItem } from '../types/api';
+import { CONTENT_TYPE_LABEL } from '../i18n/contentTypeLabel';
+import type { UpdateItem } from '../types/api';
 
 /**
  * "Stay Informed" — what has changed in this category: news, signed legislation,
@@ -15,14 +16,6 @@ import type { ContentType, UpdateItem } from '../types/api';
  * and a signed bill; reading it here would make a law indistinguishable from an
  * announcement — the exact conflation `contentType` was added to remove.
  */
-const LABEL_KEY: Record<ContentType, string> = {
-  RESOURCE: 'contentType.resource',
-  NEWS: 'contentType.news',
-  LAW: 'contentType.law',
-  FLYER: 'contentType.flyer',
-  EXPERT: 'contentType.expert',
-};
-
 interface Props {
   updates: UpdateItem[];
   lastUpdated: string | null;
@@ -52,7 +45,7 @@ export default function CategoryUpdates({ updates, lastUpdated }: Props) {
             <li className="category-update" key={`${u.contentType}-${u.id}`}>
               <div className="category-update-head">
                 <span className={`category-badge badge-${u.contentType.toLowerCase()}`}>
-                  {t(LABEL_KEY[u.contentType])}
+                  {t(CONTENT_TYPE_LABEL[u.contentType])}
                 </span>
                 {/* Link out only when the source gave us a URL (news and laws do;
                     flyers and expert answers do not). Editorial standard:
