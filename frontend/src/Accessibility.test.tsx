@@ -23,16 +23,17 @@ describe('Accessibility controls', () => {
   it('toggles the UI language between English and Spanish', () => {
     renderHome();
 
-    // Starts English.
-    expect(screen.getByText(/Your trusted guide to community resources/)).toBeInTheDocument();
+    // The tagline appears in BOTH the header and the footer, so assert on all
+    // of them — a getByText here would fail on ambiguity rather than on meaning.
+    expect(screen.getAllByText(/Your trusted guide to community resources/).length).toBeGreaterThan(0);
 
     // Switch to Spanish via the language button.
     fireEvent.click(screen.getByRole('button', { name: 'Switch language' }));
 
-    expect(screen.getByText(/Tu guía confiable de recursos comunitarios/)).toBeInTheDocument();
+    expect(screen.getAllByText(/Tu guía confiable de recursos comunitarios/).length).toBeGreaterThan(0);
     expect(screen.queryByText(/Your trusted guide to community resources/)).not.toBeInTheDocument();
     // Nav label also translated.
-    expect(screen.getByRole('link', { name: /Asistencia de Vivienda/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: 'Vivienda' })).toBeInTheDocument();
   });
 
   it('toggles the high-contrast body class', () => {

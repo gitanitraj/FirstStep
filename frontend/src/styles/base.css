@@ -8,6 +8,14 @@
   box-sizing: border-box;
 }
 
+/* 17px base, not 16. This is an accessibility decision before an aesthetic one:
+   First Step's audience skews older and lower-vision, and the whole page is rem
+   based, so one value lifts every module at once. Set as a percentage rather
+   than px so a resident who has raised their browser's default still wins. */
+html {
+  font-size: 106.25%;
+}
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
     'Helvetica Neue', Arial, sans-serif;

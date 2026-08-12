@@ -1,0 +1,194 @@
+/* SiteHeader — the global three-zone header plus the nav row beneath it.
+   Shape taken from the original First Step (branding | AI banner | utilities).
+
+   Every colour is a token, so high contrast applies by redefinition. */
+
+/* The bar itself spans the viewport; its CONTENTS align with the page container
+   below, so the brand sits on the same line as every section heading. */
+.header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.headerInner {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 18px var(--page-gutter);
+}
+
+/* ---- Left: branding ---- */
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  flex-shrink: 0;
+  border-radius: 6px;
+}
+
+.brandText {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.2;
+}
+
+.appName {
+  font-size: 1.55rem;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--primary-color);
+}
+
+.tagline {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+/* ---- Right: the accessibility controls ---- */
+
+.utilities {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.utilityButton {
+  min-width: 40px;
+  padding: 8px 12px;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: 8px;
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.utilityButton:hover {
+  background: var(--bg-light);
+}
+
+/* ---- The nav row ---- */
+
+.nav {
+  background: var(--primary-color);
+  border-bottom: 3px solid var(--accent-color);
+}
+
+.navInner {
+  display: flex;
+  gap: 4px;
+  flex-wrap: wrap;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 0 var(--page-gutter);
+}
+
+/* v1's treatment, restored. The label is near-white rather than the cream
+   --bg-lighter, which read as a washed-out orange against the green; and hover
+   fills the WHOLE TAB with a translucent white rather than only underlining it,
+   so the target a resident is aiming at is the thing that lights up. */
+.navItem {
+  padding: 15px 22px;
+  font-size: 1.02rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: rgba(255, 255, 255, 0.88);
+  transition: var(--transition);
+}
+
+.navItem:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.active {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.16);
+}
+
+@media (max-width: 860px) {
+  .headerInner {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .utilities {
+    margin-left: auto;
+  }
+
+
+
+  .navItem {
+    padding: 10px 12px;
+    font-size: 0.88rem;
+  }
+}
+
+/* ---- High contrast ----
+   `:global(body.high-contrast)` is the ONE sanctioned escape hatch
+   (docs/frontend/css-architecture.md): a theme selector, never a component one.
+
+   These blocks exist because `--primary-color` is overloaded — it is brand INK
+   (wants #ff0 here) and brand SURFACE (wants #000) at the same time, so no single
+   token value satisfies both and the theme cannot be expressed by redefinition
+   alone. That overload is tracked debt; splitting the token would delete most of
+   what follows. */
+
+:global(body.high-contrast) .header {
+  background: #000;
+  border-bottom-color: #ff0;
+}
+
+:global(body.high-contrast) .appName {
+  color: #ff0;
+}
+
+:global(body.high-contrast) .logo {
+  background: #fff;
+  border-radius: 6px;
+}
+
+:global(body.high-contrast) .utilityButton {
+  background: #000;
+  border-color: #fff;
+  color: #fff;
+}
+
+:global(body.high-contrast) .utilityButton[aria-pressed='true'] {
+  background: #ff0;
+  color: #000;
+}
+
+:global(body.high-contrast) .nav {
+  background: #000;
+  border-bottom: 1px solid #ff0;
+}
+
+:global(body.high-contrast) .navItem {
+  color: #fff;
+}
+
+/* The active item must stay distinguishable once every label is the same white.
+   The default theme does that with a translucent white fill, which is invisible
+   on black — so high contrast inverts the tab instead. */
+:global(body.high-contrast) .navItem:hover {
+  background: #333;
+  color: #ff0;
+}
+
+:global(body.high-contrast) .active {
+  background: #ff0;
+  color: #000;
+}

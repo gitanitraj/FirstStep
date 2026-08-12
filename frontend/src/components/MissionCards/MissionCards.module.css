@@ -1,0 +1,91 @@
+/* MissionCards — Discover · Connect · Stay Informed.
+
+   The three cards are deliberately IDENTICAL in weight: one grid track each, no
+   featured variant, no accent on one of them. A visitor who does not yet know
+   what they need must not be steered. */
+
+.section {
+  padding: 0 var(--page-gutter);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 36px 34px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-brand-sm);
+  transition: var(--transition);
+}
+
+.card:hover {
+  box-shadow: var(--shadow-brand-md);
+  transform: translateY(-3px);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.65rem;
+  letter-spacing: -0.015em;
+  color: var(--primary-color);
+}
+
+.body {
+  margin: 0 0 8px;
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* Pushed to the bottom so all three buttons align regardless of copy length —
+   otherwise the longest card would imply a hierarchy the design denies. */
+.action {
+  margin-top: auto;
+  padding: 13px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  text-decoration: none;
+  color: var(--surface);
+  background: var(--primary-color);
+  border-radius: 999px;
+  transition: var(--transition);
+}
+
+.action:hover {
+  background: var(--primary-light);
+}
+
+@media (max-width: 900px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 24px 22px;
+  }
+}
+
+/* ---- High contrast ---- */
+
+:global(body.high-contrast) .title {
+  color: #ff0;
+}
+
+/* All three actions stay identical, as in the default theme. */
+:global(body.high-contrast) .action {
+  background: #ff0;
+  color: #000;
+}

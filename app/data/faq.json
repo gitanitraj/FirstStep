@@ -15,8 +15,8 @@
       "verified": true,
       "tags": ["benefits", "food"],
       "contentSource": {
-        "id": null,
-        "name": "First Step Curated FAQ",
+        "id": "first-step",
+        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -35,8 +35,8 @@
       "verified": true,
       "tags": ["housing", "tenant-rights"],
       "contentSource": {
-        "id": null,
-        "name": "First Step Curated FAQ",
+        "id": "first-step",
+        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -55,8 +55,8 @@
       "verified": true,
       "tags": ["legal"],
       "contentSource": {
-        "id": null,
-        "name": "First Step Curated FAQ",
+        "id": "first-step",
+        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -75,8 +75,8 @@
       "verified": true,
       "tags": ["utilities", "benefits"],
       "contentSource": {
-        "id": null,
-        "name": "First Step Curated FAQ",
+        "id": "first-step",
+        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -95,8 +95,8 @@
       "verified": true,
       "tags": ["health", "benefits"],
       "contentSource": {
-        "id": null,
-        "name": "First Step Curated FAQ",
+        "id": "first-step",
+        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -115,8 +115,8 @@
       "verified": true,
       "tags": ["employment", "benefits"],
       "contentSource": {
-        "id": null,
-        "name": "First Step Curated FAQ",
+        "id": "first-step",
+        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"

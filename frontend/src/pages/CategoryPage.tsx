@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiGet } from '../api/client';
-import UtilityBar from '../components/UtilityBar';
-import SiteHero from '../components/SiteHero';
+import SiteHeader from '../components/SiteHeader/SiteHeader';
 import CategoryUpdates from '../components/CategoryUpdates';
 import CategoryBrowse from '../components/CategoryBrowse';
 import { useI18n } from '../i18n/I18nProvider';
@@ -43,8 +42,7 @@ export default function CategoryPage() {
 
   return (
     <>
-      <UtilityBar />
-      <SiteHero />
+      <SiteHeader />
       <main className="home-body">
         {/* An unknown key 404s from the API. Show a way out rather than the raw
             "Category not found: x" — a typo'd URL is a user event, not an error. */}

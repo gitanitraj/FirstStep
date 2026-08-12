@@ -1,0 +1,175 @@
+/* NewLaws — the retained RSS/news scroll, framed as a teaser into Updates. */
+
+.section {
+  margin: 0 var(--page-gutter);
+  padding: 34px 38px;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.75rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  color: var(--primary-color);
+}
+
+.more {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.more:hover {
+  color: var(--primary-light);
+}
+
+.rotator {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* THE BOX MUST NOT RESIZE AS IT ROTATES.
+   Without a floor, every 5-second advance grows or shrinks this box and shoves
+   the two columns below it up and down the page — the kind of movement that
+   makes a page feel cheap and a link hard to click.
+
+   Every title occupies the SAME grid cell, so the cell is as tall as the tallest
+   of them and nothing moves when the visible one changes. This replaced a
+   hard-coded `min-height: 3 lines`, which was measured correct at 1280px and
+   reserved a dead line at 1600px — and would have needed re-measuring for any
+   longer bill title the feed happens to publish. */
+.billStack {
+  display: grid;
+}
+
+.billStack > * {
+  grid-area: 1 / 1;
+  visibility: hidden;
+}
+
+.bill {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 500;
+  line-height: 1.45;
+}
+
+.billActive {
+  visibility: visible;
+  animation: fade 0.4s ease;
+}
+
+.bill a {
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.bill a:hover {
+  text-decoration: underline;
+}
+
+.billDate {
+  color: var(--text-light);
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.placeholder {
+  color: var(--text-secondary);
+  font-weight: 400;
+}
+
+.dots {
+  display: flex;
+  gap: 8px;
+}
+
+.dot {
+  width: 9px;
+  height: 9px;
+  padding: 0;
+  border: none;
+  border-radius: 50%;
+  background: var(--border-color);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.active {
+  background: var(--primary-color);
+}
+
+/* What lives behind the link — the teaser's payload. */
+.types {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 18px 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.type {
+  padding: 6px 14px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  background: var(--bg-lighter);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 640px) {
+  .section {
+    padding: 20px 18px;
+  }
+
+  .bill {
+    font-size: 1.05rem;
+  }
+}
+
+/* ---- High contrast ---- */
+
+:global(body.high-contrast) .title {
+  color: #ff0;
+}
+
+:global(body.high-contrast) .dot {
+  background: #555;
+}
+
+:global(body.high-contrast) .active {
+  background: #ff0;
+}
+
+:global(body.high-contrast) .type {
+  background: #000;
+  border-color: #ff0;
+  color: #fff;
+}

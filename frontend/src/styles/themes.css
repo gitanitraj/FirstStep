@@ -8,8 +8,7 @@
    ink) and one-off shape changes. Each surviving rule is there for a reason. */
 
 /* =============================================================================
-   High-contrast accessibility theme (toggled via the Utility Bar; body class set
-   by useHighContrast). Ported from the old styles.css approach (black + #ff0),
+   High-contrast accessibility theme (body class set by useHighContrast). Ported from the old styles.css approach (black + #ff0),
    rewritten for the new civic-portal frame classes.
    ============================================================================= */
 body.high-contrast {
@@ -35,57 +34,6 @@ body.high-contrast {
   color: #fff;
 }
 
-body.high-contrast .utility-bar {
-  background: #000;
-  border-bottom-color: #ff0;
-}
-
-body.high-contrast .ai-search-input {
-  background: #000;
-  color: #fff;
-  border-color: #fff;
-}
-
-body.high-contrast .utility-button {
-  background: #000;
-  border-color: #fff;
-  color: #fff;
-}
-
-body.high-contrast .utility-button[aria-pressed='true'] {
-  background: #ff0;
-  color: #000;
-}
-
-body.high-contrast .hero-appname {
-  color: #ff0;
-}
-
-body.high-contrast .hero-logo {
-  background: #fff;
-  border-radius: 6px;
-}
-
-body.high-contrast .primary-nav-item {
-  background: #000;
-  border-color: #fff;
-  color: #fff;
-}
-
-body.high-contrast .primary-nav-item:hover {
-  color: #ff0;
-  border-color: #ff0;
-}
-
-body.high-contrast .primary-nav-item.active {
-  background: #ff0;
-  border-color: #ff0;
-  color: #000;
-}
-
-body.high-contrast .laws-title,
-body.high-contrast .community-title,
-body.high-contrast .discovery-col-title,
 body.high-contrast .stub-page h2,
 body.high-contrast .category-title,
 body.high-contrast .category-section-title {
@@ -120,20 +68,6 @@ body.high-contrast .category-update-title {
 
 body.high-contrast a.category-update-title:hover {
   color: #ff0;
-}
-
-body.high-contrast .laws-dot {
-  background: #555;
-}
-
-body.high-contrast .laws-dot.active {
-  background: #ff0;
-}
-
-body.high-contrast .ai-search-panel {
-  background: #000;
-  border-color: #ff0;
-  color: #fff;
 }
 
 body.high-contrast .ai-result-title {

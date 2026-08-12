@@ -3143,3 +3143,556 @@ pass.
 
 **Next: the Front Door scoping pass** ([[firststep-front-door-spec]]), with its
 open questions already recorded.
+
+# Decision 041
+
+**The Front Door is scoped as a composition layer over existing capabilities, not
+as a new content architecture.**
+
+A scoping pass, not a build. Output:
+**[docs/architecture/05-front-door.md](../docs/architecture/05-front-door.md)** —
+the canonical Front Door information architecture. This entry records the
+*reasoning*; the doc records the *result*.
+
+## The risk being managed
+
+**Presentation and discovery needs get satisfied by inventing new domain concepts
+rather than using the existing CivicContent model.** The Front Door asks three
+structurally identical questions at once — Seniors, the Community Information
+groups, and First Step Originals — and each has a cheap wrong answer that looks
+like a domain concept.
+
+This is not hypothetical. **It already happened here and was paid down.** Flyers
+once reached a category through a hardcoded `includesFlyers` boolean on the
+Community Events category definition: a *presentation* need satisfied by a
+*domain* special case. F1 deleted it. `UpdateItem.type` is the second instance,
+and it costs Slice H a named retirement criterion (Decision 036).
+
+The through-line adopted: **presentation may compose the model in new ways; it
+may not add to it.**
+
+## Three resolutions
+
+| Need | Resolution | Rejected |
+| --- | --- | --- |
+| Seniors pathway | controlled **discovery tag** derived from population/eligibility | a category · a ContentType |
+| Community Information ×4 | existing types + distinguishing **metadata** | four new ContentTypes |
+| First Step Originals | a **`ContentSource`** identity | an `Originals` domain class |
+
+### Why `ContentSource` and not a new ContentType
+
+**The data was already making this distinction — informally.**
+
+| File | `contentSource.name` | `contentType` |
+| --- | --- | --- |
+| `faq.json` | `"First Step Curated FAQ"` | `EXPERT` |
+| `expert-answers.json` | `"Delaware Volunteer Legal Services"` | `EXPERT` |
+
+Same content type, different producers: "we made this" versus "we publish this".
+`ContentSource` already declares an `id` field — and it is `null` in every record
+in every data file. So the mechanism exists and is unused; `contentSource.id =
+"first-step"` is the structured form of a fact the data already records, not a
+new concept. **Originals describes who created the content, not a different kind
+of CivicContent.**
+
+The counter-argument that lost: a new ContentType is not a local change here.
+Verified blast radius of one enum value — the enum, `contentTypeLabel.ts` (an
+exhaustive `Record<ContentType, string>` that *fails the build* if unhandled),
+five `badge-*` CSS classes, `UpdatesService`'s mappers,
+`EditorialStabilityTest`'s pinned baseline, EN + ES i18n keys, and a full
+annotated mirror per file touched. Four new types is that cost four times, for
+one homepage row — and the resulting values would answer CivicContent's six
+questions *identically*, which empties the enum of meaning for the types that
+earned it.
+
+### Why `seniors` is derived metadata over preserved evidence
+
+**Seniors answers "Is this relevant to seniors?" — not "Was this program created
+exclusively for seniors?"** It is a resident discovery need, so it is
+first-class; it is not a statement about the program, so it is not taxonomy.
+
+The shape: **source evidence stays authoritative** (`population`, `eligibility`,
+`eligibility_age_min/max` are the resident-facing requirement and are never
+rewritten — a resident is told *"Age 62 and older"*, not *"seniors"*), and
+`seniors` is an **additional** controlled tag computed during **Enrich**, the
+stage that already produces derived metadata.
+
+This refines `01-domain-model.md`'s third row rather than contradicting it. That
+row correctly calls "who is this for?" a population/eligibility facet; what was
+missing was the mechanism connecting the facet to a discovery path. **A discovery
+pathway is a filtered view across the taxonomy, never a node within it** — which
+is how "a first-class path driven by tags metadata" stays consistent with "tags
+never determine navigation." Placement and filtering are different operations.
+
+Consequences accepted: no second Seniors query, no Seniors ContentType, no
+separate senior-resource model. The Seniors page is a discovery page like any
+other, presenting results with the same category and content-type structure.
+
+## The finding that changed the rule
+
+**Free-text phrase matching produces a false positive that no word-boundary rule
+fixes.** `older adults?` matches the literal sentence:
+
+> *"Age 18 and **older Adults** recovering from substance abuse…"* — HA-010, HA-014
+
+The phrase genuinely spans the end of `"Age 18 and older"` and the start of the
+next sentence. Same family as `\blogo\b` matching inside `hero-logo` during the
+CSS sweep (Decision 039) — **the boundary is not where it looks.**
+
+The important part is *how* those two records get excluded. Filtering them on
+`age = 18` appears to work and is wrong: HA-034 and HA-035 are also
+`Age 18 and older` and **are** senior-relevant, because their eligibility reads
+*"includes elderly and disabled persons."* So the exclusion must come from a
+**collision guard** (`\d+\s+and\s+older\s+adults?` stripped before term matching),
+not from the age gate. A rule that cannot separate those two cases is the wrong
+rule however plausible its output looks — which is why the doc negative-tests it.
+
+Two further data facts recorded: `eligibility_age_min` is 20/58 in
+`resources.json` and **0/171** in `resources.communities.json` (the threshold
+lives only in the prose `population` string there — a decision the implementing
+slice must make), and **age evidence currently adds no record that term evidence
+does not already find.** The age rule is future-proofing, not coverage, and
+saying so prevents a later reader treating it as load-bearing.
+
+Verified reach: **8 resources**, 0 non-resource CivicContent. The doc ships the
+script that reproduces the list.
+
+## Scoping answers recorded
+
+- **Age 50+ → include, and flag the evidence source**, so the 50–54 band stays
+  auditable without re-deriving. *Note for honesty:* under the final rule this
+  threshold changes zero records today — SD-095 and SD-127 both carry `Seniors`
+  tags and enter on term evidence regardless. The decision bought clarity, not
+  coverage.
+- **First Step Originals ships with what exists** — the 6 curated FAQs — proving
+  the `ContentSource` mechanism against live data rather than a hypothetical.
+- **Community Information stays presentation** over existing CivicContent.
+
+## Sequencing consequence, stated up front
+
+Mission-card destinations are resolved: Discover → `/discover`
+(`CategoryService` exists, route is new), Connect → `/find-help` (**Slice G**),
+Stay Informed → `/updates` (**Slice H**). `/discover` is a real page rather than
+an anchor scroll, because the global nav item needs a destination and an anchor
+is not one.
+
+**Therefore: when the Front Door ships, two of its three mission cards point at
+stub pages.** That follows directly from the intended order — the Front Door
+composes, then G and H fill in the destinations it points toward — but it is
+recorded now rather than discovered during verification.
+
+## Gaps, with owners
+
+1. `ContentSource.id` unpopulated everywhere — Originals has no queryable key.
+2. Originals content unclassified — FAQ **0/6**, Expert **0/6** carry
+   `category_tags`. **Separate from gap 1:** contentSource says *who made it*,
+   editorial classification says *where it appears*. Conflating them causes rework.
+3. Seniors derivation not implemented.
+4. Community Information grouping metadata missing — all 7 flyers are
+   `contentSource.type: "manual"`. The implementing slice **must not reach for
+   `subcategory`**; that is the topic level of navigation, and using it for
+   presentation grouping is the `includesFlyers` mistake in a new costume.
+5. No organization directory — **Slice G**.
+6. No Important Notices page — **Slice H**.
+7. Payload growth is the performance trigger (baseline 2026-08-06: `/api/home`
+   55 KB / 49 ms, 191 DOM nodes).
+
+## Verification
+
+Doc-only by construction: no `backend/`, `frontend/`, `app/data/` or test file
+changed, so **no annotated mirror is in scope for this slice**. Every service
+named in the dependency map was confirmed to exist; every "already built" claim
+resolves to a real endpoint or component; every count in the doc ships with the
+command that produced it, and the Seniors script was extracted from the doc and
+run to confirm it reproduces all 8 records.
+
+**Next: designing the actual homepage**, then Slice G and Slice H to fill in the
+two destinations the Front Door points toward.
+
+# Decision 042
+
+**Slice H — Homepage Composition. The front door is built, and the complexity
+stays behind it.**
+
+Decision 041 set the domain guardrails; it deliberately did not define the visual
+homepage. This slice does. Canonical spec:
+**[docs/architecture/05-front-door.md](../docs/architecture/05-front-door.md)**.
+
+**Scope: the homepage only.** Destinations stay stubs, each getting its own
+slice. Six of the seven Community Resources pathways already resolve to real
+Slice F category pages, so the front door is not pointing at nothing.
+
+## The constraint that drove every decision
+
+**The original First Step homepage was a question and four icon cards.** That
+restraint is the target, and it is why the strongest force in this slice was
+subtraction:
+
+| | before | after |
+| --- | --- | --- |
+| top-of-page bars | 2 (UtilityBar + SiteHero) | **1** (three-zone header) |
+| homepage search boxes | 2 (strip + section) | **1** |
+| `index.css` selectors | 91 | **50** |
+| homepage components with data | 4 | 4 (different ones) |
+
+**Detailed search, filtering, browsing and full CivicContent presentation belong
+on destination pages.** Applied to me as well: no extra sections were added
+beyond the eight specified.
+
+## The header came from the original, not from a new design
+
+v1's `index.html` has `.header-content` = branding · `.ai-banner-header`
+("Have questions? Get answers with AI.") · `.header-utilities` (`ES`, `⊕`), with
+a separate `.main-nav` beneath. Slice H restores that shape.
+
+**That resolved "ARIA" without guessing.** The spec's
+`First Step | About | Housing | Community | Updates | ARIA` is not six nav links:
+*First Step* is the branding zone, *About…Updates* is the nav row, and **ARIA is
+the utilities cluster** — where v1 and `UtilityBar` both already put the
+accessibility controls. They were never relocated; they were named. `ARIA` is a
+`role="group"`, and a test asserts it contains two buttons and **no link**.
+
+The centre banner is a **teaser, not a second search box** — an anchor on the
+homepage, a route change elsewhere (a category page has no AI section, so an
+anchor there would be dead). Both forms are tested.
+
+## Three needs, three resolutions — none of them a new domain concept
+
+**Community Resources → an authored list** (`app/data/homepage.json`), a sibling
+editorial artifact to `navigation.json`. Seven pathways, because *which* seven of
+ten categories a resident sees first is an editorial judgement and one of the
+seven is not a category at all. **Labels and icons are RESOLVED from
+taxonomy.json, never authored** — two files holding one label is the drift bug
+Decision 032 removed.
+
+`kind` carries the guardrail into the data and then into the URL:
+
+```
+category  → /category/{key}     canonical taxonomy category
+discovery → /discover/{key}     controlled query over CivicContent metadata
+```
+
+Routing Seniors to `/category/seniors` would assert a taxonomy entry that must
+never exist, and the "obvious fix" would be to create it. Separate namespaces
+make the wrong fix unappealing. Pinned by a test phrased as the thing that must
+not happen.
+
+**First Step Originals → `contentSource.id`.** The data was already making the
+distinction informally: `faq.json` says `"First Step"`, `expert-answers.json`
+says `"Delaware Volunteer Legal Services"`, and **both are `contentType: EXPERT`**.
+Same kind, different producer. The `id` field existed and was null everywhere;
+this slice populates it on the six FAQs. Future briefings and data stories appear
+**with no code change** — the payoff of identifying by provenance rather than
+enumerating types. The filter is a private method in `HomeService`, not an
+`OriginalsService`: one source today, and this codebase introduces the service at
+the second (the F4 → F5a rule).
+
+**Community Information → pathways, and a gap dissolved.** Front Door gap 4 said
+the four groups need distinguishing metadata that does not exist (all 7 flyers
+are `contentSource.type: "manual"`). **The homepage does not need to group
+anything — it needs to offer a way in.** Events, Meetings and Announcements are
+three links to `/community`; the grouping question moves to the destination page
+where it belongs.
+
+Worth generalizing: **a data-model gap can be a symptom of asking a page to do a
+destination's job.** Before adding a field to satisfy a screen, check whether the
+screen should have been asking. No flyer metadata changed; no ContentType was
+added.
+
+## What left the payload
+
+`categories` → replaced by `communityResources` (seven label+icon pathways, not
+ten summaries with counts and previews). `organizations` → **removed entirely**;
+organizations moved behind Connect → Find Help, where a directory can do them
+justice. `OrganizationService.getCuratedShortlist()` is consequently unused —
+**left in place for Slice G rather than deleted**, and flagged here so it does
+not become mystery dead code.
+
+`getHome()` also lost its `communityId`. Nothing the homepage returns is
+community-scoped anymore and the frontend never sent it; a parameter that is
+accepted and silently ignored is worse than one that is absent.
+
+## Rebalanced Slice H exit criterion
+
+**The `UpdateItem.type` retirement (Decision 036) moves to the Latest Updates
+page work**, not "Slice H" by name. That criterion belongs with the work that
+actually touches the updates feed and its consumers. It remains non-optional.
+
+## CSS: the ratchet, and the specificity trap in reverse
+
+`index.css` **91 → 50**, as five components retired and their rules left with
+them. Eight new components are co-located CSS Modules.
+
+**`ContentCard`'s zero-`:global()` record did not survive, for a documented
+reason.** `body.high-contrast a` has specificity (0,1,2); a CSS Module class has
+(0,1,0). Every new component with links needed an explicit
+`:global(body.high-contrast)` block or its labels would turn yellow and hover
+states collapse — the same trap Decision 039 found by *deleting* a rule, met here
+by *omitting* one. `:global()` on a theme selector is the one sanctioned use
+(`docs/frontend/css-architecture.md`).
+
+The root cause is the tracked `--primary-color` overload: brand INK (wants `#ff0`)
+and brand SURFACE (wants `#000`) in one token. **Splitting it would delete most
+of those blocks** — the debt item is now concrete rather than theoretical.
+
+Dead rules were removed from `themes.css` **only where the target class no longer
+exists**, since a rule for a live element can be doing specificity work while
+looking redundant by value.
+
+**The sweep produced five false positives**, two of them a new kind worth
+recording alongside the known ones (dynamic `` `badge-${…}` `` classes; `\b`
+matching inside hyphens): **`.discovery` matched prose** ("a discovery pathway")
+and **`.community-title` matched an `id` attribute**, not a `className`. Grep for
+`className="x"`, not for `x`.
+
+## Verification
+
+277 backend (+6) · 63 frontend · `tsc --noEmit` clean · 4 validators exit 0,
+the new one negative-tested on all four of its rules · `index.css` ratchet 91 → 50 ·
+live at 1280px and 375px in both themes · the six category pathways clicked, not
+assumed.
+
+**Next: the destination pages** — Latest Updates (carrying the `UpdateItem.type`
+retirement), Community, Discover, and Slice G's organization directory behind
+Find Help.
+
+# Decision 043
+
+**Slice H polish pass — the front door reviewed on screen, and corrected.**
+
+Everything here came from looking at the rendered page rather than from a plan.
+Recorded because most of it is the kind of thing a test suite cannot see.
+
+## "ARIA" was a misreading, and the fix is to remove rather than rename
+
+Slice H put the word **ARIA** in the header as a label for the language and
+contrast buttons, on the reading that the spec's
+`First Step | About | Housing | Community | Updates | ARIA` made it the utilities
+cluster. **ARIA is Accessible Rich Internet Applications** — the W3C spec. v1 had
+some ARIA usage that was ultimately removed, and none is being reintroduced yet.
+
+Removed: the visible chip and its `role="group" aria-label="ARIA"` wrapper. The
+two buttons already carry their own accessible names, so the wrapper was ARIA
+for its own sake — **no ARIA beats decorative ARIA**, which is the actual rule.
+
+Also removed as redundant: an `aria-label` on a plain `<div>` (does nothing
+without a role) and one on a list already named by the heading above it.
+
+**Kept, deliberately:** `aria-labelledby` tying each section to its heading,
+`aria-live` on the AI answer, `aria-pressed` on the contrast toggle,
+`aria-hidden` on decorative emoji and the new arrows. These do real work for
+screen-reader users; removing them would be an accessibility regression on a
+service whose audience includes people who most need it.
+
+A test pins the removal *as a prohibition*: no "ARIA" text, no `role="group"`.
+
+## Two destination pages, split by who produced the content
+
+The homepage's Important Updates feed becomes **two** pages, not one:
+
+| Route | Page | Producer |
+| --- | --- | --- |
+| `/updates` | **Latest Updates** | **government** — agencies, officials, programs |
+| `/community-notices` | **Community Notices** | **non-government** — churches, nonprofits, community groups |
+
+A church offering a free meal and a state agency changing SNAP eligibility are
+both "notices", and collapsing them would flatten the difference a resident most
+needs: *who is telling me this, and what does that imply about it?*
+
+**That split is a `ContentSource` distinction — the third time ContentSource has
+answered a question that looked like it wanted a new ContentType** (after First
+Step Originals in 042). It is becoming the default answer to "these are the same
+shape but different in kind", and worth checking first next time.
+
+A merged feed on the front door could not honour it, so `updates` left
+`HomePayload` and `ImportantUpdates` left the homepage. **`/api/updates` still
+serves the feed** for those pages; `ImportantUpdates.tsx` is retained unrendered
+as their starting point, flagged like `getCuratedShortlist()`.
+
+## Layout: full width, and a magazine sidebar
+
+**Full width.** No centred max-width column. Every top-level section indents by
+one new token, `--page-gutter: clamp(18px, 4vw, 64px)`, so they stay aligned as
+the viewport grows. The AI form and its answer panel keep a 760px measure —
+a search field spanning 2000px is unusable.
+
+**First Step Originals became a fixed 340px sidebar**, ruled off with a left
+border, uppercase kicker heading and ruled rows rather than cards. A FIXED track,
+not a fraction: a magazine sidebar should stay put while the main column absorbs
+the extra width, and a fractional track would widen both until it stopped reading
+as a sidebar.
+
+## Corrections made from the render
+
+- **Mission cards** lost their emoji and their italic questions ("What is
+  available?"). The emoji were decoration; the question restated the sentence
+  directly beneath it.
+- **"Important Changes in Delaware" → "New Laws in Delaware"**, undoing 042's
+  rename. The broader name promised policy changes and deadlines while the
+  section only ever renders signed legislation — a small lie on every page load.
+  The chips beneath it carry the broader remit, and they are explicitly a teaser
+  for the destination.
+- **The laws box no longer resizes as it rotates.** `min-height: calc(1.45em*3)`
+  holds the longest title (a full House Joint Resolution); short ones leave the
+  space empty. It was growing and shrinking every five seconds and shoving the
+  columns below it around.
+- **Category cards gained an arrow in a circle.** A bordered box does not say
+  "clickable" on its own, least of all to a resident who is not a confident web
+  user. `aria-hidden` — the whole card is the link and the label already names it.
+- **Community Information lost its three pathway cards.** Events, Meetings and
+  Announcements were three links stacked above a "See all" link to the same page
+  — one destination offered four times. Flyers alone now. **The gap-4 reasoning
+  survived their removal unchanged**, which suggests it was about the shape of
+  the page rather than those three cards.
+- **Flyers switched from `object-fit: cover` to `contain`.** They are POSTERS —
+  `cover` cropped "FREE LEGAL HELP IS AVAILABLE FOR DELAWARE RENTERS" mid-line.
+  Letterboxing costs polish and keeps the flyer readable, which is the only
+  reason to show an image instead of a title.
+- **~370px of dead space** under the resource cards, because the sidebar ran far
+  longer. Closed by enlarging the cards and clamping sidebar summaries to two
+  lines — even rows read better in a narrow track anyway.
+
+## Verification
+
+277 backend · 63 frontend · `tsc` clean · 4 validators exit 0 · `index.css`
+ratchet **held at 50** (this pass added no global rules) · EN/ES key parity
+checked mechanically (77 = 77) · live at 1280 and 375 in both themes, no
+horizontal overflow, console clean.
+
+**Next: the destination pages.** Latest Updates (government) and Community
+Notices (community) are now distinct, and the `UpdateItem.type` retirement
+belongs with whichever is built first.
+
+# Decision 044
+
+**Front door design pass — larger type, real elevation, a contained page, and
+the AI search removed.**
+
+Driven by review against two reference sites the user named: **newarkde.gov** and
+**sanjoseca.gov**.
+
+## The AI search is gone, not moved
+
+It was powered by an Ollama agent that is no longer wired in. **An entry point
+that cannot answer is worse than none** — a prominent "ask us anything" box on a
+civic service homepage is a promise, and a resident in difficulty is the wrong
+person to disappoint. Both the search section and the header banner were removed.
+
+`AiSearch.tsx`, `AiResultCard.tsx` and `POST /api/decide` are retained unrendered
+for whenever AI is decided. **Added to the Version 3 backlog.**
+
+Consequence worth stating: the front door no longer serves "intentional
+discovery" directly. Discover → Explore Resources carries that job until the
+search returns.
+
+## What the reference sites were actually doing
+
+Three things, and none of them is decoration:
+
+1. **Contained content with generous margins.** Neither site runs edge to edge.
+   Content now caps at `--page-max: 1600px` and centres. On a 1280–1512 laptop
+   that IS full width; past it, line lengths and a 7-across card grid stop
+   becoming unreadable. This revises 043's edge-to-edge decision after seeing the
+   references.
+2. **Real elevation.** The old `--shadow-sm` was a single 5%-opacity 1px shadow —
+   so faint every card looked painted on, which is what "the cards lay flat"
+   was describing. All three shadow tokens are now TWO layers, a tight contact
+   shadow plus a soft ambient one, which is what makes a card read as resting on
+   a surface rather than printed on it.
+3. **Larger type.** Root size 16px → **17px** via `html { font-size: 106.25% }`,
+   plus targeted increases on section headings (1.35 → 1.75rem) and body copy.
+   Set as a percentage, not px, so a resident who has raised their browser
+   default still wins. **This is an accessibility decision before an aesthetic
+   one** — the audience skews older and lower-vision.
+
+**Section background BANDS were considered and rejected** (user's call): the
+separation is carried by elevation and whitespace instead.
+
+## First Step Originals gets a tinted panel
+
+Warm `--bg-light` ground, a 4px accent top rule and a resting shadow, rather than
+the bare left border it had. A second WHITE surface beside the white category
+cards would have read as one more card; the tint says "different kind of content"
+before a word is read. That is a component treatment, not a page band, so it
+coexists with the no-bands decision.
+
+In high contrast the tint cannot survive — `--bg-light` is `#222` there, which
+against a `#000` page is a distinction nobody can see — so the accent rule and
+border carry the separation instead.
+
+## The laws box: a measured fix replacing a guessed one
+
+043 gave `.bill` a `min-height` of 3 lines. Measured in the browser, that was
+**exactly right at 1280px and reserved a dead line at 1600px** — and it would
+have needed re-measuring for any longer title the feed publishes.
+
+Replaced with a **ghost stack**: every title renders into the same CSS grid cell
+(`grid-area: 1/1`) with only the current one `visible`. The cell measures the
+tallest title at whatever width it has, for whatever data arrives. Hidden titles
+are out of the accessibility tree by virtue of `visibility: hidden`.
+
+Verified by clicking every dot at two widths: **one distinct box height at each**,
+and the heights DIFFER between widths (300px vs 271px) — which is the proof it is
+measuring content rather than repeating a constant.
+
+## Verification, and one honest gap
+
+277 backend · 58 frontend · `tsc` clean · 4 validators exit 0 · `index.css`
+ratchet held at **50** · EN/ES parity 74 = 74 · no horizontal overflow at 1280 or
+375 in either theme · console clean.
+
+**The Delaware RSS feed is down again — the THIRD occurrence of tech-debt item 5**
+(`Invalid XML: The element type "link" must be terminated`). Per the standing
+readiness rule this did not gate the slice. The rotator was verified against
+INJECTED laws via a request intercept, which tests this slice's contract rather
+than Delaware's uptime. The live page currently shows the section's degraded
+state, which is itself correct behaviour.
+
+## Decision 044 addendum — brand-tinted contrast, and what measuring it exposed
+
+The user asked for "a bit more contrast", a **green shadow** behind the mission
+cards, and a **green** wash behind First Step Originals. Doing it properly turned
+up two accessibility failures that had been sitting in the palette.
+
+**Brand-tinted elevation.** `--shadow-brand-sm/md`, built from `--primary-color`
+(`rgba(26, 92, 56, …)`) rather than near-black. A green shadow on a cream page
+reads as part of the identity instead of grey haze, and carries more apparent
+contrast at the same opacity because it differs in HUE as well as value.
+
+**Both first attempts were too weak, and only measurement showed it:**
+
+- The wash at **8%** composited to `#e9e0c9` — a warm khaki, indistinguishable
+  from the cream page. Over a ground this saturated, a light green tint simply
+  disappears. Raised to **18%** → `#d3d2ba`, a sage that actually reads as green.
+- The shadow at **13%/10%** was invisible at 2× zoom. Raised to **22%/16%**.
+  Verified by cropping the card's BOTTOM edge, where a downward shadow actually
+  falls — the first crop caught the top edge and showed nothing, which would have
+  been easy to misread as "the shadow is broken".
+
+### Two WCAG failures found by checking rather than looking
+
+Neither was introduced by this change; both were already shipping.
+
+| Token | Was | Measured | Now | Now measures |
+| --- | --- | --- | --- | --- |
+| `--text-light` | `#9ca3af` | **2.54:1 on white** — fails AA on every date and meta line | `#6f6a64` | 5.36 white · 4.61 page |
+| accent as TEXT | `#e07b39` | **2.26:1** on the Originals panel | `--accent-ink: #8f4009` | 4.71 on the wash |
+| `--text-secondary` | `#6b7280` | 3.04 on the new wash | `#57534e` | 7.63 white · 6.57 page · 4.98 wash |
+
+`--accent-color` is unchanged and still does the fills and rules — it is a
+perfectly good fill colour and a poor text colour, which is why the split exists.
+The greys also moved from COOL blue-greys to WARM stone tones, which suit a
+cream-and-green palette rather than fighting it.
+
+**The binding constraint was the wash, not white.** Deepening the Originals panel
+to make it visibly green is what pushed the accent text under AA — so the
+readable-accent fix is a direct consequence of the green request, not an unrelated
+tidy-up.
+
+**Every text token now passes AA (≥4.5:1) on every ground it actually appears
+on**, verified with a contrast script rather than by eye. Non-text separation
+(panel vs page, 1.13) is deliberately low: a wash is a cue, not a control.
+
+High contrast is unaffected — the green shadows are invisible on black, which is
+harmless, and the Originals panel keeps its explicit `#000` + yellow-border
+override.

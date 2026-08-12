@@ -1,0 +1,109 @@
+/* SiteFooter — structure is the deliverable; the content is mock. */
+
+.footer {
+  margin-top: 32px;
+  padding: 40px var(--page-gutter) 32px;
+  background: var(--primary-color);
+  color: var(--bg-lighter);
+}
+
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.brandBlock {
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
+}
+
+.brand {
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--surface);
+}
+
+.tagline {
+  font-size: 0.92rem;
+}
+
+.links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+.link {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--bg-lighter);
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.link:hover {
+  color: var(--surface);
+  border-bottom-color: var(--accent-color);
+}
+
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 0.88rem;
+}
+
+/* Deliberately conspicuous — this is placeholder content, and it should look
+   like placeholder content until it is replaced. */
+.mock {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--accent-color);
+}
+
+.verify,
+.attribution {
+  margin: 20px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+}
+
+.attribution {
+  margin-top: 8px;
+  opacity: 0.8;
+}
+
+@media (max-width: 640px) {
+  .inner {
+    gap: 18px;
+  }
+}
+
+/* ---- High contrast ---- */
+
+/* `color` is NOT optional here. The default footer sets its text to
+   var(--bg-lighter) — cream on the green ground — and high contrast redefines
+   that token to #000 while this background is also #000. Without this line the
+   tagline, contact, verification note and attribution all render BLACK ON BLACK
+   and vanish, in the theme that exists for readability. Caught only by looking
+   at the rendered page; no test could see it. */
+:global(body.high-contrast) .footer {
+  background: #000;
+  color: #fff;
+  border-top: 1px solid #ff0;
+}
+
+:global(body.high-contrast) .brand {
+  color: #ff0;
+}
+
+:global(body.high-contrast) .mock {
+  color: #ff0;
+}

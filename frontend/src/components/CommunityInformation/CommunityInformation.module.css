@@ -1,0 +1,110 @@
+/* CommunityInformation — a three-flyer preview and nothing else. */
+
+.section {
+  padding: 0 var(--page-gutter);
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.title {
+  margin: 0;
+  font-size: 1.75rem;
+  letter-spacing: -0.01em;
+  color: var(--primary-color);
+}
+
+.more {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.more:hover {
+  color: var(--primary-light);
+}
+
+.intro {
+  margin: 8px 0 20px;
+  font-size: 1.02rem;
+  color: var(--text-secondary);
+}
+
+.flyers {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.flyerCard {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.flyerCard:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* CONTAIN, not cover. These are posters: the words are the content. `cover`
+   cropped "FREE LEGAL HELP IS AVAILABLE FOR DELAWARE RENTERS" mid-line and cut
+   both edges off the monthly-focus flyer. Letterboxing costs a little polish and
+   keeps the flyer readable, which is the whole point of showing it. */
+.flyerImage {
+  width: 100%;
+  height: 320px;
+  object-fit: contain;
+  display: block;
+  padding: 10px;
+  background: var(--bg-light);
+}
+
+.flyerBody {
+  padding: 16px 18px;
+}
+
+.flyerTitle {
+  margin: 0;
+  font-size: 1.08rem;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--text-primary);
+}
+
+.flyerMeta {
+  margin: 6px 0 0;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1000px) {
+  .flyers {
+    grid-template-columns: 1fr;
+  }
+
+  .flyerImage {
+    height: 300px;
+  }
+}
+
+/* ---- High contrast ---- */
+
+:global(body.high-contrast) .title {
+  color: #ff0;
+}

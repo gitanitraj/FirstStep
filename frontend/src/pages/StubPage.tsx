@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
-import UtilityBar from '../components/UtilityBar';
-import SiteHero from '../components/SiteHero';
+import SiteHeader from '../components/SiteHeader/SiteHeader';
 import { useI18n } from '../i18n/I18nProvider';
 
 /**
@@ -12,8 +11,7 @@ export default function StubPage({ name }: { name: string }) {
   const { t } = useI18n();
   return (
     <>
-      <UtilityBar />
-      <SiteHero />
+      <SiteHeader />
       <main className="home-body">
         <section className="stub-page">
           <h2>{name}</h2>

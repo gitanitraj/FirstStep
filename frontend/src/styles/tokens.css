@@ -19,11 +19,50 @@
   --bg-lighter: #fbecd6;
   --border-color: #e5ddd5;
   --text-primary: #1c1917;
-  --text-secondary: #6b7280;
-  --text-light: #9ca3af;
-  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  /* WARM greys, and darker than the originals. Two reasons, both measured:
+     #6b7280/#9ca3af are COOL blue-greys that fight a cream-and-green palette,
+     and --text-light measured 2.54:1 on white — a WCAG AA failure on every date
+     and meta line on the site. These pass AA on white, on the page ground and on
+     the Originals wash. */
+  --text-secondary: #57534e;
+  --text-light: #6f6a64;
+  /* Elevation. Two layers each — a tight contact shadow plus a soft ambient one
+     — because a single blurred shadow reads as a smudge while two read as a card
+     resting on a surface. The old values (a single 5% 1px shadow) were so faint
+     that every card looked painted on. */
+  --shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.07), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.09), 0 2px 4px rgba(28, 25, 23, 0.05);
+  --shadow-lg: 0 14px 32px rgba(28, 25, 23, 0.13), 0 4px 8px rgba(28, 25, 23, 0.06);
+  /* BRAND-TINTED elevation, built from --primary-color rather than near-black.
+     A green shadow on a cream page reads as part of the identity instead of as
+     grey haze, and it carries more apparent contrast at the same opacity because
+     it differs from the background in HUE as well as value. */
+  --shadow-brand-sm: 0 3px 6px rgba(26, 92, 56, 0.22), 0 8px 20px rgba(26, 92, 56, 0.16);
+  --shadow-brand-md: 0 8px 18px rgba(26, 92, 56, 0.30), 0 18px 36px rgba(26, 92, 56, 0.20);
+  /* The Originals panel wash. rgba, not a flat colour, so the page background
+     genuinely shows through — it reads as an overlay rather than another opaque
+     card. Orange at 55%: a green wash was tried first and rejected on looks, and
+     a lighter orange washed out against a ground this warm. */
+  --surface-brand-wash: rgba(224, 123, 57, 0.55);
+  /* Body text sitting ON that wash. --text-secondary measures 3.97:1 there and
+     fails AA; this keeps the title/summary hierarchy and reaches 5.42:1. */
+  --text-on-wash: #443f3a;
+  /* Accent for TEXT on a light surface. --accent-color (#e07b39) is a fill and a
+     rule colour; as small text it measures 2.26:1 on the Originals panel, which
+     fails WCAG AA outright. This darker burnt orange keeps the editorial cue and
+     clears 4.5:1 on white, on the page ground AND on the green wash — the wash
+     is the binding constraint, since that is where it is actually used. */
+  --accent-ink: #8f4009;
   --transition: all 0.2s ease;
   --radius: 12px;
+  /* Horizontal breathing room inside the container. Every top-level section
+     indents by this one value so they stay aligned down the page, and it scales
+     with the viewport so a wide monitor gets a generous margin while a phone
+     does not lose content to padding. */
+  --page-gutter: clamp(18px, 4vw, 64px);
+  /* Content stops here and centres. On a 1280-1512 laptop this IS full width;
+     past that it prevents card grids and paragraphs stretching to unreadable
+     line lengths. Both reference sites (Newark, San José) contain their content
+     the same way — it is a large part of why they read as considered. */
+  --page-max: 1600px;
 }

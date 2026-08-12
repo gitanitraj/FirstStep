@@ -20,6 +20,7 @@ TODOs for what isn't yet.
 | [02-information-flow.md](02-information-flow.md) | How information moves through Collect → Generate metadata → Normalize → Enrich → Deliver. |
 | [03-application-architecture.md](03-application-architecture.md) | How the software implements the flow, plus the **Milestone Roadmap**. |
 | [04-editorial-principles.md](04-editorial-principles.md) | Content and governance rules for what enters and leaves the knowledge base. |
+| [05-front-door.md](05-front-door.md) | The homepage information architecture: mission pathways, global navigation, the section-by-section **dependency map**, and the gaps each future slice owns. |
 
 ## Related
 

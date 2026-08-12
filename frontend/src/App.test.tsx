@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, within } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 import App from './App';
@@ -7,16 +7,29 @@ import type { HomePayload } from './types/api';
 
 const home: HomePayload = {
   aiConfig: { placeholder: 'Ask here', suggestedPrompts: [], chips: [] },
-  updates: [],
-  categories: [
-    { key: 'housing', label: 'Housing', icon: '🏠', resourceCount: 44, latestItems: [], latestPolicyUpdate: null },
+  communityResources: [
+    { key: 'housing', label: 'Housing', icon: '🏠', kind: 'category' },
+    { key: 'seniors', label: 'Seniors', icon: '🧓', kind: 'discovery' },
   ],
-  organizations: [{ name: 'American Red Cross', slug: 'american-red-cross', resourceCount: 6 }],
+  originals: [
+    {
+      contentType: 'EXPERT',
+      id: 'FAQ-001',
+      title: 'How do I apply for SNAP benefits?',
+      summary: 'Apply online through Delaware ASSIST.',
+      organization: 'First Step',
+      location: null,
+      cost: null,
+      urgency: null,
+      date: '2026-07-11',
+      url: null,
+    },
+  ],
   delawareLaws: [],
   communityFlyers: [],
 };
 
-describe('Homepage frame', () => {
+describe('The front door', () => {
   beforeEach(() => {
     vi.stubGlobal(
       'fetch',
@@ -30,38 +43,75 @@ describe('Homepage frame', () => {
     vi.unstubAllGlobals();
   });
 
-  it('renders the civic-portal frame and the Resource Discovery data', async () => {
+  it('renders the header, the AI question and every section in order', async () => {
     render(
       <MemoryRouter>
         <HomePage />
       </MemoryRouter>,
     );
 
-    // Frame (renders immediately).
-    expect(screen.getByText('First Step')).toBeInTheDocument();
-    expect(
-      screen.getByText(/Your trusted guide to community resources, program updates and local information\./),
-    ).toBeInTheDocument();
+    // The three header zones: brand, AI banner, accessibility controls.
     expect(screen.getByRole('link', { name: /First Step home/i })).toHaveAttribute('href', '/');
-    for (const label of ['Housing Assistance', 'Community Info', 'Important Notices', 'Life Assistance']) {
-      expect(screen.getByRole('link', { name: new RegExp(label) })).toBeInTheDocument();
-    }
-    expect(screen.getByPlaceholderText(/Tell me what you need today/)).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'New Delaware Laws' })).toBeInTheDocument();
-    expect(screen.getByRole('heading', { name: 'Community Information' })).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Toggle high contrast' })).toBeInTheDocument();
 
-    // Resource Discovery data arrives from the /api/home fetch (category href
-    // detail is covered in ResourceDiscovery.test).
-    expect(await screen.findByRole('link', { name: /American Red Cross/ })).toBeInTheDocument();
+    // The nav row — four items, and NO category competing with the pathways
+    // other than Housing, which is deliberately privileged.
+    const nav = screen.getByRole('navigation', { name: 'Primary' });
+    for (const label of ['About', 'Housing', 'Community', 'Updates']) {
+      expect(within(nav).getByRole('link', { name: label })).toBeInTheDocument();
+    }
+
+    // The three pathways, equal in weight.
+    for (const title of ['Discover', 'Connect', 'Stay Informed']) {
+      expect(screen.getByRole('heading', { name: title })).toBeInTheDocument();
+    }
+
+    // Passive discovery: the renamed RSS scroll and its route to Updates.
+    expect(
+      screen.getByRole('heading', { name: 'New Laws in Delaware' }),
+    ).toBeInTheDocument();
+
+    expect(screen.getByRole('heading', { name: 'Community Information' })).toBeInTheDocument();
+    expect(screen.getByRole('contentinfo')).toBeInTheDocument();
+  });
+
+  it('routes a category pathway and a discovery pathway differently', async () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+
+    // The distinction that must survive: Seniors is NOT a category, so it must
+    // not route to /category/seniors. If someone "simplifies" the href logic,
+    // this is what fails.
+    expect(await screen.findByRole('link', { name: /Housing/ })).toHaveAttribute(
+      'href',
+      '/category/housing',
+    );
+    expect(screen.getByRole('link', { name: /Seniors/ })).toHaveAttribute(
+      'href',
+      '/discover/seniors',
+    );
+  });
+
+  it('shows First Step Originals from the payload', async () => {
+    render(
+      <MemoryRouter>
+        <HomePage />
+      </MemoryRouter>,
+    );
+
+    expect(await screen.findByText('How do I apply for SNAP benefits?')).toBeInTheDocument();
   });
 });
 
 describe('App routing', () => {
-  it('routes a primary-nav destination to its stub page (under the /app-next basename)', () => {
-    window.history.pushState({}, '', '/app-next/important-notices');
+  it('routes a global-nav destination to its stub page (under the /app-next basename)', () => {
+    window.history.pushState({}, '', '/app-next/updates');
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Important Notices' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Latest Updates' })).toBeInTheDocument();
     expect(screen.getByText('Coming soon.')).toBeInTheDocument();
   });
 });

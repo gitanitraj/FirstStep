@@ -1,108 +1,227 @@
 /* =============================================================================
- * ANNOTATED REFERENCE — the civic-portal homepage FRAME (Slice A).
- * Groups the small presentational frame components into one learning file:
- *   pages/HomePage.tsx, components/{UtilityBar, SiteHero, PrimaryNav}.tsx
- * (Section shells DelawareLawsFeature/ResourceDiscovery/CommunityInformation are
- * trivial placeholder scaffolds — filled in slices C–E.) App.tsx routing is
- * annotated at the bottom. See references/decisions.md Decision 021.
+ * ANNOTATED REFERENCE — the FRONT DOOR frame (Slice H).
+ * Groups the frame into one learning file:
+ *   components/SiteHeader/SiteHeader.tsx · pages/HomePage.tsx · App.tsx routing
+ * Supersedes the Slice A frame (UtilityBar + SiteHero + PrimaryNav), all deleted.
+ * See references/decisions.md Decision 042 and docs/architecture/05-front-door.md.
  * =============================================================================
  *
  * BIG PICTURE
- *   The homepage is a "trusted civic-information portal" of five vertical
- *   sections. Slice A builds the FRAME (Utility Bar + Hero + primary nav + three
- *   section shells) and introduces client-side routing. Everything data-driven
- *   comes later; here the components are pure structure.
+ *   The homepage is a COMPOSITION, and the complexity lives behind it. Every
+ *   section offers a way in and stops. Searching, filtering, browsing and full
+ *   CivicContent presentation belong to the destination pages.
+ *
+ *   The measure of HomePage.tsx is how little it does.
  * ============================================================================= */
 
-import { BrowserRouter, Routes, Route, Link, NavLink } from 'react-router-dom';
+// =============================================================================
+// PART 1 — SiteHeader: three zones, then the nav row
+// =============================================================================
+//
+//   ┌──────────────┬────────────────────────┬──────────────┐
+//   │ First Step   │ 🤖 Get answers with AI │     ES  ⊕    │
+//   │ + tagline    │                        │              │
+//   └──────────────┴────────────────────────┴──────────────┘
+//     About  |  Housing  |  Community  |  Updates
+//
+// THIS SHAPE IS NOT NEW. It is the ORIGINAL First Step header, recovered:
+// backing/src/main/resources/static/index.html has `.header-content` with
+// branding on the left, an `.ai-banner-header` in the middle reading "Have
+// questions? Get answers with AI.", and `.header-utilities` on the right holding
+// exactly two buttons — `ES` and `⊕`. Beneath it sits a separate `.main-nav`.
+//
+// That recovery settled where the accessibility controls belong. It did NOT
+// settle what "ARIA" meant in the spec — see the next section for that.
 
-/* ---------------------------------------------------------------------------
- * pages/HomePage.tsx — composes the five sections in order.
- * A plain composition component: no state, no data. Utility Bar and Hero sit
- * above <main>; the three shells stack inside it.
- * ------------------------------------------------------------------------- */
-export function HomePage() {
+const NAV_ITEMS: { labelKey: string; to: string }[] = [
+  { labelKey: 'nav.about', to: '/about' },
+  { labelKey: 'nav.housing', to: '/category/housing' },
+  { labelKey: 'nav.community', to: '/community' },
+  { labelKey: 'nav.updates', to: '/updates' },
+];
+
+export default function SiteHeader() {
+  const { lang, setLang, t } = useI18n();
+  const { highContrast, toggle } = useHighContrast();
+  const { pathname } = useLocation();
+  const otherLang = lang === 'en' ? 'es' : 'en';
+  const onHome = pathname === '/';
+
   return (
     <>
-      {/* <UtilityBar/> <SiteHero/> then: */}
-      <main className="home-body">
-        {/* <DelawareLawsFeature/> <ResourceDiscovery/> <CommunityInformation/> */}
-      </main>
+      <header className={styles.header}>
+        <Link to="/" className={styles.brand} aria-label={t('brand.home')}>
+          <img className={styles.logo} src={logoFeet} width={44} height={44} alt="" />
+          <span className={styles.brandText}>
+            <span className={styles.appName}>First Step</span>
+            <span className={styles.tagline}>{t('tagline')}</span>
+          </span>
+        </Link>
+
+        {/* An anchor on the homepage, a route change anywhere else. */}
+        {onHome ? (
+          <a className={styles.aiBanner} href="#ai-search">…</a>
+        ) : (
+          <Link className={styles.aiBanner} to="/#ai-search">…</Link>
+        )}
+
+        {/* No visible label, no role="group" — see the ARIA section below. */}
+        <div className={styles.utilities}>
+          <button … onClick={() => setLang(otherLang)}>{otherLang.toUpperCase()}</button>
+          <button … onClick={toggle} aria-pressed={highContrast}>⊕</button>
+        </div>
+      </header>
+
+      <nav className={styles.nav} aria-label="Primary">
+        {NAV_ITEMS.map((item) => (
+          <NavLink key={item.to} to={item.to} className={…}>{t(item.labelKey)}</NavLink>
+        ))}
+      </nav>
     </>
   );
 }
 
-/* ---------------------------------------------------------------------------
- * components/UtilityBar.tsx — narrow sticky top strip, 3 zones via a
- * grid-template-columns: 1fr auto 1fr (left slot | centered search | right slot).
- *   - left:  reserved for future social icons (empty now)
- *   - center: the ALWAYS-AVAILABLE AI search. Rendered but `disabled` in Slice A —
- *             wiring to /api/decide (canned responses acceptable) is Slice B.
- *   - right: reserved for ARIA/accessibility controls (a disabled ♿ placeholder)
- * Kept a narrow strip so it's always reachable "without dominating the page".
- * ------------------------------------------------------------------------- */
+// -----------------------------------------------------------------------------
+// "ARIA" — A MISREADING, CORRECTED (Decision 043)
+// -----------------------------------------------------------------------------
+// The spec listed the nav as `First Step | About | Housing | Community | Updates
+// | ARIA`. Slice H read the last item as a LABEL for the utilities cluster and
+// rendered the word "ARIA" beside the two buttons, wrapped in a role="group".
+//
+// **ARIA is Accessible Rich Internet Applications** — the W3C spec. v1 used some
+// and it was ultimately removed; none is being reintroduced yet. So the chip and
+// the wrapper are both gone. The buttons already carry their own accessible
+// names, which made the wrapper ARIA for its own sake, and **no ARIA beats
+// decorative ARIA**.
+//
+// A test pins it as a PROHIBITION rather than a feature: no "ARIA" text anywhere,
+// and no role="group". Kept, deliberately, are the attributes doing real work —
+// aria-labelledby on sections, aria-live on the AI answer, aria-pressed on the
+// contrast toggle, aria-hidden on decorative emoji and arrows.
+//
+// -----------------------------------------------------------------------------
+// THE CENTRE BANNER IS A TEASER, NOT A SECOND SEARCH BOX
+// -----------------------------------------------------------------------------
+// The retired UtilityBar held a live search input on every page. The front door
+// has a dedicated AI Search section asking "What do you need help with today?".
+// Keeping both would put two search affordances on one screen competing for the
+// same intent — precisely the duplication a front door exists to avoid.
+//
+// So the banner navigates rather than searches, as v1's did when it jumped to
+// the AI Guidance screen. It is an `<a href="#ai-search">` on the homepage and a
+// `<Link to="/#ai-search">` anywhere else, because a category page has no such
+// section and an anchor there would be a dead link. Both forms are pinned by
+// tests.
+//
+// -----------------------------------------------------------------------------
+// WHY ONE COMPONENT INSTEAD OF THREE
+// -----------------------------------------------------------------------------
+// Slice A had UtilityBar (sticky strip: search + a11y) ABOVE SiteHero (brand +
+// PrimaryNav) — two stacked full-width bars holding what v1 fit in one row plus
+// a nav. Collapsing them recovers vertical space at the top of every page, which
+// is the space a front door most needs.
+//
+// The cost is that SiteHeader renders on EVERY route, so this slice's frame
+// change touches the category, topic and stub pages. That is called out in the
+// verification steps rather than discovered later.
 
-/* ---------------------------------------------------------------------------
- * components/SiteHero.tsx — trust without oversized imagery.
- * The brand is a <Link to="/"> so the logo "globally returns home from anywhere"
- * (it's a router Link, so it works on every page, not just the homepage). The
- * app name + exact tagline sit beside the logo; <PrimaryNav/> renders on the
- * app-name row (flex row, brand left / nav right).
- * ------------------------------------------------------------------------- */
-export function SiteHeroSketch() {
+// =============================================================================
+// PART 2 — HomePage: the composition
+// =============================================================================
+
+export default function HomePage() {
+  const [home, setHome] = useState<HomePayload | null>(null);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    apiGet<HomePayload>('/api/home').then(setHome).catch((err: Error) => setError(err.message));
+  }, []);
+
   return (
-    <header className="site-hero">
-      <Link to="/" className="hero-brand" aria-label="First Step home">
-        {/* logo + appname + tagline */}
-      </Link>
-      {/* <PrimaryNav/> */}
-    </header>
+    <>
+      <SiteHeader />
+      <main className={styles.body}>
+        <AiSearch />                                              {/* intentional discovery */}
+        <MissionCards />                                          {/* static, no data */}
+        <NewLaws laws={home?.delawareLaws ?? null} />              {/* passive discovery */}
+
+        <div className={styles.split}>
+          <CommunityResources pathways={home?.communityResources ?? null} />
+          <FirstStepOriginals originals={home?.originals ?? null} />
+        </div>
+
+        <CommunityInformation flyers={home?.communityFlyers ?? null} />
+        {error && <p className={styles.error} role="alert">{error}</p>}
+      </main>
+      <SiteFooter />
+    </>
   );
 }
 
-/* ---------------------------------------------------------------------------
- * components/PrimaryNav.tsx — the 4 highest-level nav items.
- * Uses <NavLink> (not <Link>) so the active route gets an `active` class for
- * styling. Destinations are data-config'd in a NAV_ITEMS array. In Slice A they
- * point at routes that render StubPage; later slices swap the targets to real
- * pages. `value`/labels: Housing Assistance, Community Info, Important Notices,
- * Life Assistance (catchall).
- * ------------------------------------------------------------------------- */
-export function PrimaryNavSketch() {
-  const NAV_ITEMS = [
-    { label: 'Housing Assistance', icon: '🏠', to: '/category/housing-assistance' },
-    { label: 'Community Info', icon: '🏘️', to: '/community-info' },
-    { label: 'Important Notices', icon: '🔔', to: '/important-notices' },
-    { label: 'Life Assistance', icon: '🧭', to: '/life-assistance' },
-  ];
-  return (
-    <nav className="primary-nav" aria-label="Primary">
-      {NAV_ITEMS.map((item) => (
-        <NavLink key={item.to} to={item.to} className={({ isActive }) => `primary-nav-item${isActive ? ' active' : ''}`}>
-          <span aria-hidden="true">{item.icon}</span>
-          <span>{item.label}</span>
-        </NavLink>
-      ))}
-    </nav>
-  );
-}
+// -----------------------------------------------------------------------------
+// TWO VISITORS, ONE PAGE
+// -----------------------------------------------------------------------------
+// The section order is not decorative. It serves two different people:
+//
+//   INTENTIONAL DISCOVERY — "I need housing help." Starts and ends at AiSearch,
+//   which is why the question sits directly under the header.
+//
+//   PASSIVE DISCOVERY — arrives with no defined need. Everything below the fold
+//   is for them: what has CHANGED that may affect their housing, health,
+//   employment or benefits, then what EXISTS, then what the community is saying.
+//   The goal is helping residents find information they did not know to look for.
+//
+// -----------------------------------------------------------------------------
+// ONE REQUEST, SIX SECTIONS, EACH HANDLING ITS OWN NULL
+// -----------------------------------------------------------------------------
+// HomePage owns the single GET /api/home call (the BFF load) and distributes.
+// The frame renders IMMEDIATELY — header, AI search, mission cards and the
+// footer need no data at all — so the page is never blank while the payload
+// loads. Each data section takes `T[] | null` and shows its own placeholder,
+// rather than the page gating everything behind one spinner.
+//
+// THE UPDATES FEED IS NO LONGER HERE (043). It became TWO destination pages
+// split by who produced the content — Latest Updates (government: agencies,
+// officials, programs) and Community Notices (non-government: churches,
+// nonprofits, community groups). A single merged feed on the front door could
+// not honour that distinction, and the front door's job is the way in.
+// `HomePayload.updates` went with it; /api/updates still serves those pages.
+//
+// THE PAGE IS FULL WIDTH (043) — no centred max-width column. Sections indent by
+// the shared `--page-gutter` token so they align down the page while the content
+// uses the whole viewport. The AI form keeps a 760px measure, because a search
+// field spanning 2000px is unusable.
 
-/* ---------------------------------------------------------------------------
- * App.tsx — routing. BrowserRouter's basename MUST be "/app-next" because the
- * SPA is served under that prefix (SpaWebConfig). "/" → HomePage; the four nav
- * destinations → StubPage; "*" catches unknown paths. StubPage reuses the frame
- * (UtilityBar + SiteHero) so navigation feels real while the destination is a
- * "Coming soon" placeholder — this is what the SpaWebConfig deep-link fallback
- * serves on a hard refresh.
- * ------------------------------------------------------------------------- */
-export function AppSketch() {
-  return (
-    <BrowserRouter basename="/app-next">
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* /category/:key, /community-info, /important-notices, /life-assistance → StubPage */}
-        {/* "*" → StubPage "Page not found" */}
-      </Routes>
-    </BrowserRouter>
-  );
-}
+// =============================================================================
+// PART 3 — App routing: the destinations the front door points at
+// =============================================================================
+//
+//   /                    HomePage
+//   /category/:key       CategoryPage        (Slice F — REAL)
+//   /category/:key/:topic TopicPage          (Slice F — REAL)
+//   /discover            StubPage            Discover → Explore Resources
+//   /discover/:facet     StubPage            a discovery pathway (Seniors)
+//   /find-help           StubPage            Connect → Find Help (Slice G)
+//   /updates             StubPage            Stay Informed → View Updates
+//   /community           StubPage            Community Information
+//   /about               StubPage
+//   /organization/:slug  StubPage            (Slice G)
+//   *                    StubPage            not found
+//
+// MOST OF THESE ARE STUBS ON PURPOSE. Slice H's scope was the composition, and
+// the front door is what tells us which destinations are needed and in what
+// order. Two of the three mission cards therefore land on stubs the day this
+// ships — a consequence of the intended sequencing (compose first, fill in
+// behind), recorded up front rather than discovered during verification.
+//
+// SIX OF THE SEVEN Community Resources pathways are NOT stubs: housing,
+// employment, health, legal, furniture-household and food all resolve to real
+// category pages built in Slice F. Only Seniors is a stub, because the `seniors`
+// derivation is Front Door gap 3 and is not implemented.
+//
+// `/discover/:facet` is its own route rather than reusing `/category/:key`, and
+// that separation IS the architecture: a discovery pathway is a filtered view
+// ACROSS the taxonomy, never a node within it. Routing Seniors to
+// /category/seniors would assert a taxonomy entry that must never exist. A test
+// pins both hrefs.
+// =============================================================================

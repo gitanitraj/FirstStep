@@ -1,8 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
-import UtilityBar from '../../components/UtilityBar';
-import SiteHero from '../../components/SiteHero';
+import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import ContentCard from '../../components/ContentCard/ContentCard';
 import { useI18n } from '../../i18n/I18nProvider';
 import type { TopicPage as TopicPagePayload } from '../../types/api';
@@ -37,8 +36,7 @@ export default function TopicPage() {
 
   return (
     <>
-      <UtilityBar />
-      <SiteHero />
+      <SiteHeader />
       <main className="home-body">
         {error && (
           <section className="stub-page" role="alert">

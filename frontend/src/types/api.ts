@@ -113,11 +113,26 @@ export interface FlyerCard {
   eventDate: string | null;
 }
 
+/**
+ * One entry in the homepage's Community Resources column.
+ *
+ * `kind` is the guardrail made visible in the type: a `category` pathway routes
+ * to that category page and had its label/icon resolved from the taxonomy; a
+ * `discovery` pathway is a controlled query over existing CivicContent metadata
+ * and authored its own. Seniors is the only `discovery` entry today, and it is
+ * deliberately NOT a category (Decision 041).
+ */
+export interface ResourcePathway {
+  key: string;
+  label: string;
+  icon: string;
+  kind: 'category' | 'discovery';
+}
+
 export interface HomePayload {
   aiConfig: AiConfig;
-  updates: UpdateItem[];
-  categories: CategorySummary[];
-  organizations: OrgSummary[];
+  communityResources: ResourcePathway[];
+  originals: ContentItem[];
   delawareLaws: LawItem[];
   communityFlyers: FlyerCard[];
 }

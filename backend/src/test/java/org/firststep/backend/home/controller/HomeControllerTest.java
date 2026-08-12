@@ -3,24 +3,19 @@ package org.firststep.backend.home.controller;
 import java.util.List;
 import java.util.Optional;
 
-import org.firststep.backend.category.service.CategoryService;
 import org.firststep.backend.category.service.TaxonomyService;
-import org.firststep.backend.expert.service.ExpertAnswerService;
+import org.firststep.backend.expert.model.FAQ;
+import org.firststep.backend.expert.repository.FaqRepository;
 import org.firststep.backend.expert.service.FaqService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
 import org.firststep.backend.home.service.HomeService;
+import org.firststep.backend.home.service.PathwayService;
 import org.firststep.backend.legislation.service.LegislationService;
 import org.firststep.backend.news.model.NewsItem;
-import org.firststep.backend.news.service.NewsService;
-import org.firststep.backend.news.service.RssFeedSource;
-import org.firststep.backend.organization.service.OrganizationService;
-import org.firststep.backend.resource.model.Resource;
-import org.firststep.backend.resource.repository.ResourceRepository;
-import org.firststep.backend.resource.service.ResourceService;
+import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
-import org.firststep.backend.updates.service.UpdatesService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -29,7 +24,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 
-import static org.mockito.Mockito.mock;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -46,30 +40,7 @@ class HomeControllerTest {
         @Bean
         HomeService homeService() {
             // Wire the REAL aggregators with fake repositories so the endpoint
-            // exercises actual composition (aiConfig + updates + categories).
-            NewsItem news = new NewsItem();
-            news.id = "N1";
-            news.title = "A new law";
-            news.summary = "Summary";
-            news.publishDate = "2026-05-01";
-
-            Resource resource = new Resource();
-            resource.id = "CI-001";
-            resource.communityId = "wilmington-de";
-            resource.category = "Housing Assistance";
-            resource.organization = "American Red Cross";
-
-            ResourceRepository resourceRepo = new ResourceRepository() {
-                @Override
-                public List<Resource> findAll() {
-                    return List.of(resource);
-                }
-
-                @Override
-                public Optional<Resource> findById(String id) {
-                    return Optional.empty();
-                }
-            };
+            // exercises actual composition rather than a mocked payload.
             Flyer flyer = new Flyer();
             flyer.id = "FL-1";
             flyer.title = "Free Community Health Fair";
@@ -93,18 +64,47 @@ class HomeControllerTest {
             bill.title = "Relating to Housing Supply and Housing Affordability.";
             bill.publishDate = "2026-07-13";
 
-            NewsService newsService = new NewsService(() -> List.of(news));
-            RssFeedSource rssSource = () -> List.of(bill);
+            // Two FAQs with DIFFERENT producers, so the Originals filter has
+            // something to reject as well as something to accept — an EXPERT item
+            // First Step did not make must not become an "Original".
+            FAQ ours = new FAQ();
+            ours.id = "FAQ-001";
+            ours.title = "How do I apply for SNAP benefits?";
+            ours.summary = "Apply online through Delaware ASSIST.";
+            ours.updatedDate = "2026-07-11";
+            ours.contentSource = contentSource("first-step", "First Step");
+
+            FAQ theirs = new FAQ();
+            theirs.id = "FAQ-999";
+            theirs.title = "Someone else's answer";
+            theirs.contentSource = contentSource(null, "Delaware Volunteer Legal Services");
+
+            FaqRepository faqRepo = new FaqRepository() {
+                @Override
+                public List<FAQ> findAll() {
+                    return List.of(ours, theirs);
+                }
+
+                @Override
+                public Optional<FAQ> findById(String id) {
+                    return Optional.empty();
+                }
+            };
+
             FlyerService flyerService = new FlyerService(flyerRepo);
-            ResourceService resourceService = new ResourceService(resourceRepo);
+            FaqService faqService = new FaqService(faqRepo);
 
             TaxonomyService taxonomyService = new TaxonomyService("../app/data");
-            UpdatesService updatesService = new UpdatesService(newsService, rssSource, flyerService,
-                    mock(ExpertAnswerService.class), mock(FaqService.class), taxonomyService);
-            CategoryService categoryService = new CategoryService(taxonomyService, resourceService, newsService, flyerService);
-            OrganizationService organizationService = new OrganizationService(resourceService, taxonomyService);
+            PathwayService pathwayService = new PathwayService(taxonomyService, "../app/data");
             LegislationService legislationService = new LegislationService(() -> List.of(bill));
-            return new HomeService(updatesService, categoryService, organizationService, legislationService, flyerService);
+            return new HomeService(pathwayService, faqService, legislationService, flyerService);
+        }
+
+        private static ContentSource contentSource(String id, String name) {
+            ContentSource source = new ContentSource();
+            source.id = id;
+            source.name = name;
+            return source;
         }
     }
 
@@ -117,16 +117,28 @@ class HomeControllerTest {
                 .andExpect(jsonPath("$.data.aiConfig.placeholder").exists())
                 .andExpect(jsonPath("$.data.aiConfig.chips[0].value").value("urgent"))
                 .andExpect(jsonPath("$.data.aiConfig.chips[0].urgent").value(true))
-                // Curated organization shortlist (the fake resource's org).
-                .andExpect(jsonPath("$.data.organizations[0].name").exists())
-                .andExpect(jsonPath("$.data.organizations[0].slug").exists())
+                // The seven authored Community Resources pathways. Housing leads,
+                // and its label/icon are RESOLVED from taxonomy.json rather than
+                // authored in homepage.json — that is the anti-drift rule.
+                .andExpect(jsonPath("$.data.communityResources[0].key").value("housing"))
+                .andExpect(jsonPath("$.data.communityResources[0].label").value("Housing"))
+                .andExpect(jsonPath("$.data.communityResources[0].kind").value("category"))
+                // Seniors is a DISCOVERY pathway, never a category.
+                .andExpect(jsonPath("$.data.communityResources[?(@.key=='seniors')].kind").value("discovery"))
+                // First Step Originals: ours in, theirs out — both are EXPERT, so
+                // only contentSource can tell them apart.
+                .andExpect(jsonPath("$.data.originals.length()").value(1))
+                .andExpect(jsonPath("$.data.originals[0].id").value("FAQ-001"))
+                .andExpect(jsonPath("$.data.originals[0].organization").value("First Step"))
                 // Recent signed bills (from the fake RSS source).
                 .andExpect(jsonPath("$.data.delawareLaws[0].title").value("Relating to Housing Supply and Housing Affordability."))
                 // Community flyer carousel — imageUrl resolved + encoded server-side.
                 .andExpect(jsonPath("$.data.communityFlyers[0].imageUrl").value("/images/seasonal/Health%20Fair.jpg"))
-                // Composed feeds. The curated news is present (order-independent:
-                // the RSS bill also merges into updates and may sort ahead by date).
-                .andExpect(jsonPath("$.data.updates[?(@.id=='N1')]").exists())
-                .andExpect(jsonPath("$.data.categories").isArray());
+                // The homepage carries neither an organizations column nor an
+                // updates feed. Organizations moved behind Connect → Find Help;
+                // the feed became two destination pages split by producer
+                // (Latest Updates = government, Community Notices = community).
+                .andExpect(jsonPath("$.data.organizations").doesNotExist())
+                .andExpect(jsonPath("$.data.updates").doesNotExist());
     }
 }
