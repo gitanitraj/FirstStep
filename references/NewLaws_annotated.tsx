@@ -128,16 +128,36 @@ export default function NewLaws({ laws }: { laws: LawItem[] | null }) {
 // heading now describes what is actually in the box, and the chips describe what
 // is behind the link. Both are honest.
 //
-// SECTION 3b — THE BOX NO LONGER RESIZES AS IT ROTATES
+// SECTION 3b — THE BOX NO LONGER RESIZES AS IT ROTATES: THE GHOST STACK
 // =============================================================================
-// `.bill` carries `min-height: calc(1.45em * 3)` — three lines, enough for the
-// longest title in the feed (a House Joint Resolution running to a full
-// paragraph) at the narrowest desktop width.
+// Without a floor the box grows and shrinks every five seconds and shoves the
+// two columns below it up and down the page — the kind of movement that makes a
+// page feel cheap and a link hard to click.
 //
-// Without it the box grew and shrank every five seconds and shoved the two
-// columns below it up and down the page. Short titles now leave the space empty,
-// which is the intended trade: a stable page beats a tightly-packed one, and
-// motion under a link is worse than whitespace beside it.
+// FIRST ATTEMPT, AND WHY IT WAS WRONG: `min-height: calc(1.45em * 3)`. Measured
+// in the browser, three lines was EXACTLY right at 1280px and reserved a dead
+// line at 1600px, because the longest title wraps to 3 lines at the narrower
+// width and 2 at the wider one. It would also have needed re-measuring for any
+// longer bill the feed happens to publish. A magic number that is only correct
+// at one viewport is not a fix.
+//
+// WHAT IT IS NOW: every title renders into the SAME CSS grid cell —
+//
+//     .billStack   { display: grid; }
+//     .billStack>* { grid-area: 1 / 1; visibility: hidden; }
+//     .billActive  { visibility: visible; animation: fade .4s ease; }
+//
+// so the cell is as tall as the TALLEST title, at whatever width it happens to
+// have, for whatever data arrives. `visibility: hidden` also keeps the inactive
+// titles out of the accessibility tree, so a screen reader hears one law rather
+// than seven.
+//
+// VERIFIED by clicking every dot at two widths: one distinct box height at each,
+// and the heights DIFFER between widths (300px vs 271px) — which is the proof it
+// is measuring content rather than repeating a constant.
+//
+// The React tests pin both halves: exactly one `.billActive` exists, and the
+// stack contains one <p> per law.
 //
 // UNCHANGED: the rotator itself, the 5s cadence, the fade, the dots, and
 // `prefersReducedMotion()`. The reduced-motion check is an accessibility

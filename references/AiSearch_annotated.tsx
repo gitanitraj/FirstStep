@@ -2,13 +2,24 @@
  * ANNOTATED REFERENCE — frontend/src/components/AiSearch/
  *   AiSearch.tsx + AiSearch.module.css, plus components/AiResultCard.tsx
  * Slice B originally, as the Utility Bar dropdown (Decision 026).
- * MOVED and RESHAPED in Slice H (Decision 042).
+ * MOVED and RESHAPED in Slice H (042); ⚠️ REMOVED FROM THE PAGE in 044.
  * Keep this mirror in sync whenever the production files change.
  * =============================================================================
  *
- * WHAT THIS IS
+ * ⚠️ THIS COMPONENT IS NOT RENDERED ANYWHERE. It is retained, with
+ * AiResultCard and POST /api/decide, for whenever AI is decided — see the
+ * Version 3 backlog. Nothing imports it, so nothing here is live.
+ *
+ * WHAT IT WAS
  *   The homepage's AI Guidance entry point — "What do you need help with today?"
  *   Type a need, submit, and the answer appears in a panel below the form.
+ *
+ * WHY IT WAS PULLED (Decision 044)
+ *   It was powered by an Ollama agent that is no longer wired in. A prominent
+ *   "ask us anything" box on a civic service homepage is a PROMISE, and a
+ *   resident in difficulty is the wrong person to disappoint — **an entry point
+ *   that cannot answer is worse than none.** The header banner that pointed at
+ *   it went too, for the same reason.
  *
  * WHO IT SERVES
  *   The visitor who ALREADY KNOWS what they need ("I need housing help", "where

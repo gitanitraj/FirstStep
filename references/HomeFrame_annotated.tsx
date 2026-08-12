@@ -24,6 +24,11 @@
 //   └──────────────┴────────────────────────┴──────────────┘
 //     About  |  Housing  |  Community  |  Updates
 //
+// NAV STYLING IS v1's, RESTORED (044): labels are near-white rather than the
+// cream --bg-lighter, which read as washed-out orange against the green, and
+// hover fills the WHOLE TAB with rgba(255,255,255,.12) rather than only drawing
+// an underline — the target a resident aims at is the thing that lights up.
+//
 // THIS SHAPE IS NOT NEW. It is the ORIGINAL First Step header, recovered:
 // backing/src/main/resources/static/index.html has `.header-content` with
 // branding on the left, an `.ai-banner-header` in the middle reading "Have
@@ -57,13 +62,6 @@ export default function SiteHeader() {
             <span className={styles.tagline}>{t('tagline')}</span>
           </span>
         </Link>
-
-        {/* An anchor on the homepage, a route change anywhere else. */}
-        {onHome ? (
-          <a className={styles.aiBanner} href="#ai-search">…</a>
-        ) : (
-          <Link className={styles.aiBanner} to="/#ai-search">…</Link>
-        )}
 
         {/* No visible label, no role="group" — see the ARIA section below. */}
         <div className={styles.utilities}>
@@ -100,18 +98,23 @@ export default function SiteHeader() {
 // contrast toggle, aria-hidden on decorative emoji and arrows.
 //
 // -----------------------------------------------------------------------------
-// THE CENTRE BANNER IS A TEASER, NOT A SECOND SEARCH BOX
+// THE AI ENTRY POINT WAS REMOVED, NOT RELOCATED (Decision 044)
 // -----------------------------------------------------------------------------
-// The retired UtilityBar held a live search input on every page. The front door
-// has a dedicated AI Search section asking "What do you need help with today?".
-// Keeping both would put two search affordances on one screen competing for the
-// same intent — precisely the duplication a front door exists to avoid.
+// The header centre held a "Have questions? Get answers with AI." banner, and
+// the page below it held a search section. Both are gone: the Ollama agent that
+// powered them is no longer wired in, and **an entry point that cannot answer is
+// worse than none** — a prominent "ask us anything" box is a promise, and a
+// resident in difficulty is the wrong person to disappoint.
 //
-// So the banner navigates rather than searches, as v1's did when it jumped to
-// the AI Guidance screen. It is an `<a href="#ai-search">` on the homepage and a
-// `<Link to="/#ai-search">` anywhere else, because a category page has no such
-// section and an anchor there would be a dead link. Both forms are pinned by
-// tests.
+// `components/AiSearch/`, `AiResultCard.tsx` and `POST /api/decide` are retained
+// UNRENDERED for whenever this is decided. On the Version 3 backlog.
+//
+// Consequence, stated plainly: the front door no longer serves "intentional
+// discovery" directly. Discover -> Explore Resources carries that job until the
+// search returns.
+//
+// The header centre is now empty; the brand sits left and the accessibility
+// controls are pushed right with `margin-left: auto`.
 //
 // -----------------------------------------------------------------------------
 // WHY ONE COMPONENT INSTEAD OF THREE
@@ -141,7 +144,6 @@ export default function HomePage() {
     <>
       <SiteHeader />
       <main className={styles.body}>
-        <AiSearch />                                              {/* intentional discovery */}
         <MissionCards />                                          {/* static, no data */}
         <NewLaws laws={home?.delawareLaws ?? null} />              {/* passive discovery */}
 
@@ -163,8 +165,9 @@ export default function HomePage() {
 // -----------------------------------------------------------------------------
 // The section order is not decorative. It serves two different people:
 //
-//   INTENTIONAL DISCOVERY — "I need housing help." Starts and ends at AiSearch,
-//   which is why the question sits directly under the header.
+//   INTENTIONAL DISCOVERY — "I need housing help." Served by the Discover
+//   mission card until the AI search returns; it used to start at a search
+//   section directly under the header.
 //
 //   PASSIVE DISCOVERY — arrives with no defined need. Everything below the fold
 //   is for them: what has CHANGED that may affect their housing, health,

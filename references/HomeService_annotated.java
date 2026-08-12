@@ -29,7 +29,6 @@ import org.firststep.backend.home.dto.HomePayload;
 import org.firststep.backend.legislation.service.LegislationService;
 import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.shared.model.ContentSource;
-import org.firststep.backend.updates.service.UpdatesService;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -51,16 +50,14 @@ public class HomeService {
                     new AiChip("housing", "🏠 Housing", false),
                     new AiChip("essentials", "🛒 Essentials", false)));
 
-    private final UpdatesService updatesService;
     private final PathwayService pathwayService;
     private final FaqService faqService;
     private final LegislationService legislationService;
     private final FlyerService flyerService;
 
-    public HomeService(UpdatesService updatesService, PathwayService pathwayService,
+    public HomeService(PathwayService pathwayService,
             FaqService faqService, LegislationService legislationService,
             FlyerService flyerService) {
-        this.updatesService = updatesService;
         this.pathwayService = pathwayService;
         this.faqService = faqService;
         this.legislationService = legislationService;
@@ -70,7 +67,6 @@ public class HomeService {
     public HomePayload getHome() {
         return new HomePayload(
                 AI_CONFIG,
-                updatesService.getUpdates(),
                 pathwayService.getCommunityResources(),
                 originals(),
                 legislationService.getRecentSignedBills(),
@@ -159,6 +155,29 @@ public class HomeService {
 // what becomes that service.
 //
 // =============================================================================
+// SECTION 2b — WHY getHome() LOST ITS updates FEED (Decision 043)
+// =============================================================================
+// The homepage's Important Updates feed became TWO destination pages, split by
+// WHO PRODUCED the content:
+//
+//     /updates            Latest Updates     GOVERNMENT — agencies, officials,
+//                                            programs
+//     /community-notices  Community Notices  NON-GOVERNMENT — churches,
+//                                            nonprofits, community groups
+//
+// A church offering a free meal and a state agency changing SNAP eligibility are
+// both "notices", and a merged feed on the front door flattens the difference a
+// resident most needs: who is telling me this, and what does that imply?
+//
+// THAT SPLIT IS A ContentSource DISTINCTION — the third time ContentSource has
+// answered a question that looked like it wanted a new ContentType (after First
+// Step Originals above). It is becoming the default answer to "same shape,
+// different in kind"; check it first.
+//
+// So `updates` left HomePayload and this service stopped injecting
+// UpdatesService. `/api/updates` still serves the feed for those pages, and
+// `ImportantUpdates.tsx` is retained unrendered as their starting point.
+//
 // SECTION 3 — WHY getHome() LOST ITS communityId
 // =============================================================================
 // The parameter existed to pass through to categoryService.getAll(communityId).
@@ -188,7 +207,6 @@ public class HomeService {
 // CALL PATH:
 //   GET /api/home
 //     -> HomeService.getHome()
-//        -> UpdatesService.getUpdates()               (news + laws + flyers + expert, cap 8)
 //        -> PathwayService.getCommunityResources()    (seven authored pathways)
 //        -> originals()                               (FAQs where contentSource.id = first-step)
 //        -> LegislationService.getRecentSignedBills() (the retained RSS scroll)
