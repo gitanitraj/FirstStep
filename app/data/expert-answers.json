@@ -13,10 +13,12 @@
       "title": "What can I do if my landlord won't return my security deposit?",
       "summary": "Delaware law gives landlords 20 days to return a deposit or provide an itemized list of deductions.",
       "verified": true,
-      "tags": ["housing", "tenant-rights"],
+      "tags": [
+        "housing",
+        "tenant-rights"
+      ],
       "contentSource": {
-        "id": null,
-        "name": "Delaware Volunteer Legal Services",
+        "id": "de-volunteer-legal-services",
         "type": "expert-session",
         "url": null,
         "retrieved": "2026-07-01"
@@ -29,8 +31,18 @@
       "expert_credentials": "Staff Attorney, Housing Unit",
       "expert_organization": "Delaware Volunteer Legal Services",
       "expert_contact": {
-        "phones": [{"number": "302-478-8850", "label": "Main"}],
-        "websites": [{"url": "https://www.dvls.org", "label": "DVLS"}],
+        "phones": [
+          {
+            "number": "302-478-8850",
+            "label": "Main"
+          }
+        ],
+        "websites": [
+          {
+            "url": "https://www.dvls.org",
+            "label": "DVLS"
+          }
+        ],
         "email": "housing@dvls.org"
       },
       "session_date": "2026-06-15"
@@ -41,10 +53,12 @@
       "title": "How do I apply for SNAP benefits in Delaware?",
       "summary": "You can apply online through Delaware ASSIST, by mail, or in person at a State Service Center.",
       "verified": true,
-      "tags": ["benefits", "food"],
+      "tags": [
+        "benefits",
+        "food"
+      ],
       "contentSource": {
-        "id": null,
-        "name": "Delaware Health and Social Services",
+        "id": "de-dhss",
         "type": "expert-session",
         "url": null,
         "retrieved": "2026-07-01"
@@ -57,8 +71,18 @@
       "expert_credentials": "Case Worker, Division of Social Services",
       "expert_organization": "Delaware Health and Social Services",
       "expert_contact": {
-        "phones": [{"number": "302-571-4900", "label": "New Castle County Service Center"}],
-        "websites": [{"url": "https://assist.dhss.delaware.gov", "label": "Delaware ASSIST"}],
+        "phones": [
+          {
+            "number": "302-571-4900",
+            "label": "New Castle County Service Center"
+          }
+        ],
+        "websites": [
+          {
+            "url": "https://assist.dhss.delaware.gov",
+            "label": "Delaware ASSIST"
+          }
+        ],
         "email": null
       },
       "session_date": "2026-06-15"
@@ -69,10 +93,11 @@
       "title": "What are my rights if I'm fired without notice in Delaware?",
       "summary": "Delaware is an at-will employment state, but there are important exceptions worth knowing.",
       "verified": true,
-      "tags": ["employment"],
+      "tags": [
+        "employment"
+      ],
       "contentSource": {
-        "id": null,
-        "name": "Community Legal Aid Society",
+        "id": "community-legal-aid",
         "type": "expert-session",
         "url": null,
         "retrieved": "2026-07-01"
@@ -85,8 +110,18 @@
       "expert_credentials": "Employment Law Attorney",
       "expert_organization": "Community Legal Aid Society",
       "expert_contact": {
-        "phones": [{"number": "302-575-0660", "label": "Main"}],
-        "websites": [{"url": "https://www.declasi.org", "label": "CLASI"}],
+        "phones": [
+          {
+            "number": "302-575-0660",
+            "label": "Main"
+          }
+        ],
+        "websites": [
+          {
+            "url": "https://www.declasi.org",
+            "label": "CLASI"
+          }
+        ],
         "email": null
       },
       "session_date": "2026-05-20"
@@ -97,10 +132,12 @@
       "title": "Do I qualify for Medicaid if I'm unemployed?",
       "summary": "Delaware expanded Medicaid — eligibility is based on household income, not employment status.",
       "verified": true,
-      "tags": ["health", "benefits"],
+      "tags": [
+        "health",
+        "benefits"
+      ],
       "contentSource": {
-        "id": null,
-        "name": "Westside Family Healthcare",
+        "id": "westside-family-healthcare",
         "type": "expert-session",
         "url": null,
         "retrieved": "2026-07-01"
@@ -113,8 +150,18 @@
       "expert_credentials": "Certified Healthcare Navigator",
       "expert_organization": "Westside Family Healthcare",
       "expert_contact": {
-        "phones": [{"number": "302-655-5500", "label": "Main"}],
-        "websites": [{"url": "https://www.westsidehealth.org", "label": "Westside Family Healthcare"}],
+        "phones": [
+          {
+            "number": "302-655-5500",
+            "label": "Main"
+          }
+        ],
+        "websites": [
+          {
+            "url": "https://www.westsidehealth.org",
+            "label": "Westside Family Healthcare"
+          }
+        ],
         "email": null
       },
       "session_date": "2026-06-15"
@@ -125,10 +172,12 @@
       "title": "How much notice does my landlord have to give before eviction?",
       "summary": "Notice periods depend on the reason for eviction — from 5 days for nonpayment up to 60 days for no-cause termination of a year-to-year lease.",
       "verified": true,
-      "tags": ["housing", "tenant-rights"],
+      "tags": [
+        "housing",
+        "tenant-rights"
+      ],
       "contentSource": {
-        "id": null,
-        "name": "Delaware Volunteer Legal Services",
+        "id": "de-volunteer-legal-services",
         "type": "expert-session",
         "url": null,
         "retrieved": "2026-07-01"
@@ -141,8 +190,18 @@
       "expert_credentials": "Staff Attorney, Housing Unit",
       "expert_organization": "Delaware Volunteer Legal Services",
       "expert_contact": {
-        "phones": [{"number": "302-478-8850", "label": "Main"}],
-        "websites": [{"url": "https://www.dvls.org", "label": "DVLS"}],
+        "phones": [
+          {
+            "number": "302-478-8850",
+            "label": "Main"
+          }
+        ],
+        "websites": [
+          {
+            "url": "https://www.dvls.org",
+            "label": "DVLS"
+          }
+        ],
         "email": "housing@dvls.org"
       },
       "session_date": "2026-06-15"
@@ -153,10 +212,12 @@
       "title": "Is there help paying my winter heating bill?",
       "summary": "LIHEAP provides one-time heating assistance grants to income-eligible Delaware households.",
       "verified": true,
-      "tags": ["utilities", "benefits"],
+      "tags": [
+        "utilities",
+        "benefits"
+      ],
       "contentSource": {
-        "id": null,
-        "name": "Delaware Health and Social Services",
+        "id": "de-dhss",
         "type": "expert-session",
         "url": null,
         "retrieved": "2026-07-01"
@@ -169,8 +230,18 @@
       "expert_credentials": "Case Worker, Division of Social Services",
       "expert_organization": "Delaware Health and Social Services",
       "expert_contact": {
-        "phones": [{"number": "302-571-4900", "label": "New Castle County Service Center"}],
-        "websites": [{"url": "https://dhss.delaware.gov/dhss/dss/liheap.html", "label": "LIHEAP Information"}],
+        "phones": [
+          {
+            "number": "302-571-4900",
+            "label": "New Castle County Service Center"
+          }
+        ],
+        "websites": [
+          {
+            "url": "https://dhss.delaware.gov/dhss/dss/liheap.html",
+            "label": "LIHEAP Information"
+          }
+        ],
         "email": null
       },
       "session_date": "2026-06-15"

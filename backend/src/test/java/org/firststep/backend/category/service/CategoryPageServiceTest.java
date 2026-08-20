@@ -18,6 +18,7 @@ import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.model.ContentType;
 import org.firststep.backend.updates.dto.UpdateItem;
 import org.firststep.backend.updates.service.UpdatesService;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -62,7 +63,7 @@ class CategoryPageServiceTest {
         NavigationService navigation = new NavigationService("../app/data", taxonomy,
                 resourceService, newsService, flyerService, expertAnswerService, faqService, rssFeedSource);
         UpdatesService updates = new UpdatesService(newsService, rssFeedSource, flyerService,
-                expertAnswerService, faqService, taxonomy);
+                expertAnswerService, faqService, taxonomy, new ContentSourceService("../app/data"));
         OrganizationService organizations = new OrganizationService(resourceService, taxonomy);
         service = new CategoryPageService(navigation, updates, organizations);
     }

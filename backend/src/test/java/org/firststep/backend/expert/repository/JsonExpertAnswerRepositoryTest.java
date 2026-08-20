@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.expert.model.ExpertAnswer;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class JsonExpertAnswerRepositoryTest {
 
     private JsonExpertAnswerRepository repositoryFor(String dataDir) {
-        JsonExpertAnswerRepository repository = new JsonExpertAnswerRepository(ClassifierFixture.real());
+        JsonExpertAnswerRepository repository = new JsonExpertAnswerRepository(ClassifierFixture.real(), new ContentSourceService("../app/data"));
         ReflectionTestUtils.setField(repository, "dataDir", dataDir);
         ReflectionTestUtils.setField(repository, "defaultCommunityId", "wilmington-de");
         return repository;

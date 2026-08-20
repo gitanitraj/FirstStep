@@ -67,8 +67,6 @@ export interface DecisionResponse {
 export type ContentType = 'RESOURCE' | 'NEWS' | 'LAW' | 'FLYER' | 'EXPERT';
 
 export interface UpdateItem {
-  /** @deprecated Removed in Slice H — reports "news" for both news and laws. Use contentType. */
-  type: string;
   contentType: ContentType;
   id: string;
   title: string;
@@ -78,6 +76,30 @@ export interface UpdateItem {
   url: string | null;
   urgency: string | null;
   categoryTags: string[] | null;
+}
+
+/** One content type's updates within a sector page. Mirrors updates/dto/UpdateGroup. */
+export interface UpdateGroup {
+  contentType: ContentType;
+  count: number;
+  items: UpdateItem[];
+}
+
+/**
+ * A whole sector's updates. Mirrors updates/dto/UpdatesPage.
+ *
+ * Serves BOTH destination pages — Latest Updates (`government`) and Community
+ * Notices (`community`) — because the only thing separating them is who
+ * published the content.
+ *
+ * `groups` only ever contains types that HAVE content: the backend never builds
+ * an empty group, so "do not render empty groups" (Decision 045) is guaranteed by
+ * the payload rather than by a guard here.
+ */
+export interface UpdatesPage {
+  sector: 'GOVERNMENT' | 'COMMUNITY' | 'FIRST_STEP';
+  totalCount: number;
+  groups: UpdateGroup[];
 }
 
 // ===== Homepage aggregate (GET /api/home) — mirrors home/dto records =====

@@ -72,7 +72,7 @@ export default function ImportantUpdates({ initialUpdates }: { initialUpdates?: 
       {updates && updates.length > 0 && (
         <ul className="updates-list">
           {updates.map((u) => (
-            <li className="update-item" key={`${u.type}-${u.id}`}>
+            <li className="update-item" key={`${u.contentType}-${u.id}`}>
               <div className="update-item-head">
                 <span className="update-item-title">{u.title}</span>
                 {u.urgency && u.urgency !== 'standard' && (

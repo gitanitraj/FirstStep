@@ -18,7 +18,6 @@ const housing: CategoryPagePayload = {
       // `type` and `contentType` deliberately DISAGREE: `type` says "news" for a
       // signed bill. The page must badge from contentType, so that when Slice H
       // deletes `type` nothing here needs to change.
-      type: 'news',
       contentType: 'LAW',
       id: 'L1',
       title: 'Relating to Rent Increases.',

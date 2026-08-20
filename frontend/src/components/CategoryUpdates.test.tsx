@@ -9,7 +9,6 @@ function update(
   overrides: Partial<UpdateItem> = {},
 ): UpdateItem {
   return {
-    type: 'news',
     contentType,
     id,
     title: `Item ${id}`,
@@ -42,9 +41,9 @@ describe('CategoryUpdates', () => {
     render(
       <CategoryUpdates
         updates={[
-          update('F1', 'FLYER', { type: 'flyer' }),
-          update('E1', 'EXPERT', { type: 'expert' }),
-          update('R1', 'RESOURCE', { type: 'news' }),
+          update('F1', 'FLYER'),
+          update('E1', 'EXPERT'),
+          update('R1', 'RESOURCE'),
         ]}
         lastUpdated={null}
       />,

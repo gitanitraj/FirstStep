@@ -184,3 +184,21 @@ public class JsonExpertAnswerRepository implements ExpertAnswerRepository {
 // repository directly. They use shared/classification/ClassifierFixture.real(),
 // which wires a real classifier to the real app/data/taxonomy.json — a mock
 // would make these tests pass whether or not classification works at all.
+
+// =============================================================================
+// SLICE I — PRODUCER NAME IS RESOLVED HERE (Decision 045)
+// =============================================================================
+// The expert answer record carries `contentSource.id` and NOT the producer's name.
+// This repository calls `contentSources.resolveName(...)` as it loads, which is
+// the Normalize stage — the same place other source vocabulary becomes the
+// CivicContent contract.
+//
+// Doing it at load rather than at each display site means every downstream
+// consumer sees a resolved name without knowing the registry exists. It is also
+// what collapses "Delaware DHSS" and "Delaware Health and Social Services" into
+// one agency.
+//
+// BEST-EFFORT AND NON-BLOCKING: an unresolvable id leaves the name null and logs.
+// The item is still loaded, still classified, still browsable — provenance
+// resolution is a capability, not a validity gate.
+// =============================================================================

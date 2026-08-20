@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "source": "hand-authored",
+  "note": "The PRODUCER REGISTRY: who publishes the civic content First Step carries. Content records reference a producer by `id` and never duplicate its attributes -- `name` and `sector` are resolved from here at load time, so one producer has exactly one identity no matter how many files mention it. That is what collapses 'Delaware DHSS' and 'Delaware Health and Social Services' into a single agency. `sector` is deliberately NOT called `type`: contentSource.type already means ingestion format (manual, expert-session, faq), and contentType means what the content IS (NEWS, LAW, FLYER, EXPERT). Three different questions, three different fields. `feedUrl` makes a producer's RSS endpoint inseparable from its identity -- RssFeedService reads its feed list from here, so a feed cannot be added without declaring who publishes it, and a runtime feed title can never become producer identity. An id referenced by a record but absent here is an ERROR at build time (validate_content_sources.py) and, at runtime, excludes that item from sector-scoped views ONLY -- it stays valid CivicContent everywhere else. See references/decisions.md Decision 045.",
+  "sectors": ["government", "community", "first-step"],
+  "sources": [
+    {
+      "id": "city-of-wilmington",
+      "name": "City of Wilmington",
+      "sector": "government"
+    },
+    {
+      "id": "de-housing-authority",
+      "name": "Delaware State Housing Authority",
+      "sector": "government"
+    },
+    {
+      "id": "de-dhss",
+      "name": "Delaware Health and Social Services",
+      "sector": "government",
+      "note": "Appeared as both 'Delaware DHSS' (news) and its full name (expert answers) before the registry existed."
+    },
+    {
+      "id": "wilmington-housing-authority",
+      "name": "Wilmington Housing Authority",
+      "sector": "government",
+      "note": "Publishes BOTH a news item and a flyer -- the case that proves sector follows the producer, not the contentType."
+    },
+    {
+      "id": "de-visually-impaired",
+      "name": "Delaware Division for the Visually Impaired",
+      "sector": "government"
+    },
+    {
+      "id": "de-legislature",
+      "name": "Delaware General Assembly",
+      "sector": "government",
+      "feedUrl": "https://legis.delaware.gov/rss/RssFeeds/GovernorSignedLegislation"
+    },
+    {
+      "id": "wilmington-farmers-market",
+      "name": "Wilmington Farmers Market",
+      "sector": "community"
+    },
+    {
+      "id": "west-end-neighborhood-house",
+      "name": "West End Neighborhood House",
+      "sector": "community"
+    },
+    {
+      "id": "ministry-of-caring",
+      "name": "Ministry of Caring Inc",
+      "sector": "community"
+    },
+    {
+      "id": "community-legal-aid",
+      "name": "Community Legal Aid Society",
+      "sector": "community"
+    },
+    {
+      "id": "united-way-delaware",
+      "name": "United Way of Delaware",
+      "sector": "community"
+    },
+    {
+      "id": "westside-family-healthcare",
+      "name": "Westside Family Healthcare",
+      "sector": "community"
+    },
+    {
+      "id": "de-volunteer-legal-services",
+      "name": "Delaware Volunteer Legal Services",
+      "sector": "community"
+    },
+    {
+      "id": "first-step",
+      "name": "First Step",
+      "sector": "first-step",
+      "note": "First Step's own editorial output -- the FAQs shown as First Step Originals (Decision 042)."
+    }
+  ]
+}

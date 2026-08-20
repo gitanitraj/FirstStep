@@ -27,8 +27,6 @@ import java.util.List;
 import org.firststep.backend.shared.model.ContentType;
 
 public record UpdateItem(
-        // DEPRECATED — removed in Slice H. See contentType.
-        String type,     // "news" | "flyer" | "expert"
         ContentType contentType,
         String id,
         String title,
@@ -116,4 +114,27 @@ public record UpdateItem(
 //   in CategoryPage.updates.
 // - Mirrored on the frontend by the UpdateItem interface in
 //   frontend/src/types/api.ts.
+// =============================================================================
+
+// =============================================================================
+// `type` WAS DELETED — Decision 045 closed Decision 036's exit criterion
+// =============================================================================
+// A `String type` ("news" | "flyer" | "expert") sat above contentType from Step
+// 5b until Slice I. It reported "news" for BOTH curated news and signed
+// legislation, so a resident could not tell a change in the law from an
+// announcement — the conflation that made F5a add contentType alongside it, and
+// that made the overlap a time-boxed migration rather than an accepted shape.
+//
+// The criterion was DELETION, not deprecation: the field does not exist in the
+// model, services, serialized payload, Java fixtures, frontend types, components
+// or tests. Verified by absence, surface by surface.
+//
+// contentType is now the SOLE semantic content-type identifier in the updates
+// pipeline. Presentation labels and badges are derived from it BY THE FRONTEND —
+// display strings do not belong in a domain DTO.
+//
+// THREE LOOKALIKE FIELDS SURVIVE and are not this one:
+//   NewsItem.type        deadline · policy-update      domain data
+//   contentSource.type   manual · expert-session       ingestion format
+//   SearchResult.type    resource · news · flyer       search projection
 // =============================================================================

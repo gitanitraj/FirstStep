@@ -1,6 +1,7 @@
 package org.firststep.backend.updates.service;
 
 import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -8,6 +9,11 @@ import java.util.Map;
 
 import org.firststep.backend.category.model.CategoryDefinition;
 import org.firststep.backend.category.service.TaxonomyService;
+import org.firststep.backend.shared.model.Sector;
+import org.firststep.backend.updates.dto.UpdatesPage;
+import org.firststep.backend.updates.dto.UpdateGroup;
+import org.firststep.backend.shared.model.ContentType;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.firststep.backend.expert.model.ExpertAnswer;
 import org.firststep.backend.expert.model.FAQ;
 import org.firststep.backend.expert.service.ExpertAnswerService;
@@ -59,15 +65,100 @@ public class UpdatesService {
     private final ExpertAnswerService expertAnswerService;
     private final FaqService faqService;
     private final TaxonomyService taxonomyService;
+    private final ContentSourceService contentSources;
 
     public UpdatesService(NewsService newsService, RssFeedSource rssFeedSource, FlyerService flyerService,
-            ExpertAnswerService expertAnswerService, FaqService faqService, TaxonomyService taxonomyService) {
+            ExpertAnswerService expertAnswerService, FaqService faqService, TaxonomyService taxonomyService,
+            ContentSourceService contentSources) {
         this.newsService = newsService;
         this.rssFeedSource = rssFeedSource;
         this.flyerService = flyerService;
         this.expertAnswerService = expertAnswerService;
         this.faqService = faqService;
         this.taxonomyService = taxonomyService;
+        this.contentSources = contentSources;
+    }
+
+    /**
+     * Everything published by producers in one SECTOR, newest first.
+     *
+     * <p>Feeds the two destination pages — Latest Updates (government) and
+     * Community Notices (community). Both draw on the SAME content types; the
+     * only thing that separates them is who published the item, which is why this
+     * is one method with a parameter rather than two feeds.
+     *
+     * <p><b>Sector follows the producer, never the ContentType.</b> Wilmington
+     * Housing Authority publishes both a news item and a flyer, and both are
+     * government — a rule of the form "flyers are community" would be wrong.
+     *
+     * <p><b>Unresolvable ids are excluded, never guessed.</b>
+     * {@code isInSector} returns false for every sector when the id is absent or
+     * unknown, so such an item appears on neither page. It remains valid
+     * CivicContent everywhere else — see ContentSourceService's failure boundary.
+     *
+     * <p>No cap: this is a destination, not the front door's teaser.
+     */
+    public List<UpdateItem> getBySector(Sector sector) {
+        List<UpdateItem> items = new ArrayList<>();
+        for (NewsItem n : newsAndLegislation()) {
+            if (contentSources.isInSector(n.contentSource, sector)) {
+                items.add(toUpdateItem(n));
+            }
+        }
+        for (Flyer f : flyerService.getAll()) {
+            if (contentSources.isInSector(f.contentSource, sector)) {
+                items.add(toUpdateItem(f));
+            }
+        }
+        for (ExpertAnswer e : expertAnswerService.getAll()) {
+            if (contentSources.isInSector(e.contentSource, sector)) {
+                items.add(toUpdateItem(e));
+            }
+        }
+        for (FAQ f : faqService.getAll()) {
+            if (contentSources.isInSector(f.contentSource, sector)) {
+                items.add(toUpdateItem(f));
+            }
+        }
+        return sortAndCap(items, Integer.MAX_VALUE);
+    }
+
+    /**
+     * One sector's whole page, grouped by content type.
+     *
+     * <p><b>Groups are generated from the content present, never enumerated.</b>
+     * The loop walks the items and creates a group the first time it meets a
+     * type, so a sector with no laws produces no LAW group and the "never render
+     * an empty group" rule (Decision 045) holds by construction rather than by a
+     * frontend guard.
+     *
+     * <p>Group ORDER follows the ContentType enum's declaration order — stable
+     * and predictable, so a page does not reshuffle itself when the newest item
+     * changes type. Item order WITHIN each group stays reverse-chronological,
+     * which is the ordering that carries meaning.
+     *
+     * <p>Lives here rather than in a UpdatesPageService because there is nothing
+     * to compose: one source, shaped. F4 refused a service for exactly this, and
+     * F5a added one only once three sources had to be merged.
+     */
+    public UpdatesPage getPage(Sector sector) {
+        List<UpdateItem> items = getBySector(sector);
+
+        Map<ContentType, List<UpdateItem>> byType = new EnumMap<>(ContentType.class);
+        for (UpdateItem item : items) {
+            if (item.contentType() != null) {
+                byType.computeIfAbsent(item.contentType(), t -> new ArrayList<>()).add(item);
+            }
+        }
+
+        List<UpdateGroup> groups = new ArrayList<>();
+        for (ContentType type : ContentType.values()) {
+            List<UpdateItem> group = byType.get(type);
+            if (group != null && !group.isEmpty()) {
+                groups.add(new UpdateGroup(type, group.size(), List.copyOf(group)));
+            }
+        }
+        return new UpdatesPage(sector, items.size(), List.copyOf(groups));
     }
 
     /**
@@ -157,7 +248,6 @@ public class UpdatesService {
     private UpdateItem toUpdateItem(NewsItem n) {
         ContentSource cs = n.contentSource;
         return new UpdateItem(
-                "news",
                 // NEWS for curated items, LAW for signed legislation — the NewsItem
                 // itself already knows which it is, so nothing is inferred here.
                 n.contentType,
@@ -175,7 +265,6 @@ public class UpdatesService {
         // Flyers have no `publishDate`; prefer the event date, else the load date.
         String date = f.eventDate != null ? f.eventDate : f.updatedDate;
         return new UpdateItem(
-                "flyer",
                 f.contentType,
                 f.id,
                 f.title,
@@ -192,7 +281,6 @@ public class UpdatesService {
 
     private UpdateItem toUpdateItem(ExpertAnswer e) {
         return new UpdateItem(
-                "expert",
                 e.contentType,
                 e.id,
                 e.title,
@@ -209,7 +297,6 @@ public class UpdatesService {
     private UpdateItem toUpdateItem(FAQ f) {
         ContentSource cs = f.contentSource;
         return new UpdateItem(
-                "expert",
                 f.contentType,
                 f.id,
                 f.title,

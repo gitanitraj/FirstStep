@@ -19,6 +19,7 @@ import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.classification.ClassificationResult;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -42,15 +43,21 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
     // shared/classification, where every source shares one implementation.
     private final CivicContentClassifier classifier;
 
-    public RssFeedService(CivicContentClassifier classifier) {
+    private final ContentSourceService contentSources;
+
+    public RssFeedService(CivicContentClassifier classifier, ContentSourceService contentSources) {
         this.classifier = classifier;
+        this.contentSources = contentSources;
     }
 
-    // WHY: Comma-separated URL list from application.properties so URLs can be
-    // changed or added without recompiling.
-    // Configured as: news.rss.urls=https://legis.delaware.gov/rss/RssFeeds/GovernorSignedLegislation
-    @Value("${news.rss.urls:}")
-    private String rssFeedUrls;
+    // FEEDS COME FROM THE PRODUCER REGISTRY, NOT FROM A URL LIST.
+    //
+    // content-sources.json pairs each feedUrl with the producer id that publishes
+    // it, so a feed cannot be added without declaring who it belongs to, and the
+    // item's provenance is known before the first byte is parsed. The previous
+    // `news.rss.urls` property carried URLs alone, which left identity to be
+    // guessed at parse time from feed.getTitle() — a value the upstream publisher
+    // can change at will. See Decision 045.
 
     @Value("${app.default-community-id:wilmington-de}")
     private String defaultCommunityId;
@@ -94,24 +101,25 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
             initialDelayString = "${news.rss.initial-delay:500}"
     )
     public void fetchFeeds() {
-        if (rssFeedUrls == null || rssFeedUrls.isBlank()) {
-            log.warn("RSS: No feed URLs configured");
+        Map<String, String> feeds = contentSources.feedUrls();
+        if (feeds.isEmpty()) {
+            log.warn("RSS: No feeds declared in content-sources.json");
             return;
         }
 
         List<NewsItem> allBills = new ArrayList<>();
         List<NewsItem> relevant = new ArrayList<>();
 
-        for (String rawUrl : rssFeedUrls.split(",")) {
-            String url = rawUrl.trim();
-            if (url.isEmpty()) continue;
+        for (Map.Entry<String, String> feedEntry : feeds.entrySet()) {
+            String producerId = feedEntry.getKey();
+            String url = feedEntry.getValue();
 
             try {
                 SyndFeed feed = loadFeed(url);
                 if (feed == null) continue;
 
                 for (SyndEntry entry : feed.getEntries()) {
-                    ConvertedEntry converted = convertEntry(feed, entry);
+                    ConvertedEntry converted = convertEntry(producerId, entry);
                     allBills.add(converted.item());
 
                     // THE ADMISSION GATE. Branch on relevant() and never on
@@ -189,7 +197,7 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
     //    this clause (converted to Sentence Case) replaces both the bill-number
     //    headline and the generic why-it-matters text, giving users a readable,
     //    specific description of the law.
-    private ConvertedEntry convertEntry(SyndFeed feed, SyndEntry entry) {
+    private ConvertedEntry convertEntry(String producerId, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
         item.id        = "rss-" + UUID.randomUUID();
@@ -197,9 +205,13 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
         item.summary   = extractSummary(entry);
         item.body      = item.summary;
 
+        // Identity is CONFIGURATION, stamped from the registry entry this feed
+        // came from. feed.getTitle() is never used as provenance — an upstream
+        // publisher renaming their feed must not silently re-attribute content.
         ContentSource contentSource = new ContentSource();
-        contentSource.name = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
+        contentSource.id   = producerId;
         contentSource.url  = entry.getLink();
+        contentSources.resolveName(contentSource);
         item.contentSource = contentSource;
 
         item.communityId = defaultCommunityId;

@@ -13,10 +13,12 @@
       "title": "How do I apply for SNAP benefits?",
       "summary": "Apply online through Delaware ASSIST, by mail, or in person at a State Service Center.",
       "verified": true,
-      "tags": ["benefits", "food"],
+      "tags": [
+        "benefits",
+        "food"
+      ],
       "contentSource": {
         "id": "first-step",
-        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -33,10 +35,12 @@
       "title": "What is the eviction notice period in Delaware?",
       "summary": "5 days for nonpayment of rent, 7 days for lease violations, 60 days for no-cause termination.",
       "verified": true,
-      "tags": ["housing", "tenant-rights"],
+      "tags": [
+        "housing",
+        "tenant-rights"
+      ],
       "contentSource": {
         "id": "first-step",
-        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -53,10 +57,11 @@
       "title": "Where can I get free legal help in Wilmington?",
       "summary": "Delaware Volunteer Legal Services and Community Legal Aid Society both offer free civil legal help.",
       "verified": true,
-      "tags": ["legal"],
+      "tags": [
+        "legal"
+      ],
       "contentSource": {
         "id": "first-step",
-        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -73,10 +78,12 @@
       "title": "Am I eligible for LIHEAP heating assistance?",
       "summary": "Eligibility is based on household size and income, generally up to 200% of the federal poverty level.",
       "verified": true,
-      "tags": ["utilities", "benefits"],
+      "tags": [
+        "utilities",
+        "benefits"
+      ],
       "contentSource": {
         "id": "first-step",
-        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -93,10 +100,12 @@
       "title": "What documents do I need to apply for Medicaid?",
       "summary": "Proof of identity, income, residency, and household size.",
       "verified": true,
-      "tags": ["health", "benefits"],
+      "tags": [
+        "health",
+        "benefits"
+      ],
       "contentSource": {
         "id": "first-step",
-        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"
@@ -113,10 +122,12 @@
       "title": "How do I file an unemployment claim in Delaware?",
       "summary": "File online through the Delaware Division of Unemployment Insurance as soon as you lose your job.",
       "verified": true,
-      "tags": ["employment", "benefits"],
+      "tags": [
+        "employment",
+        "benefits"
+      ],
       "contentSource": {
         "id": "first-step",
-        "name": "First Step",
         "type": "faq",
         "url": null,
         "retrieved": "2026-07-11"

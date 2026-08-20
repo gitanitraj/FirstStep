@@ -778,3 +778,36 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 //
 // LIVE: 175 of 428 bills admitted; the rotator still shows 7, including "Pet
 // Stores and Animal Welfare".
+
+// =============================================================================
+// SLICE I — FEEDS COME FROM THE PRODUCER REGISTRY (Decision 045)
+// =============================================================================
+// BEFORE: `news.rss.urls` in application.properties held URLs alone, and each
+// item's provenance was guessed at parse time:
+//
+//     contentSource.name = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
+//
+// That makes identity a RUNTIME value an upstream publisher can change. If
+// Delaware renamed its feed, every bill would silently re-attribute.
+//
+// AFTER: content-sources.json pairs each feedUrl with the producer id that
+// publishes it, and fetchFeeds() iterates contentSources.feedUrls():
+//
+//     contentSource.id = producerId;      // stamped by construction
+//     contentSources.resolveName(...);    // name from the registry
+//
+// A feed CANNOT be added without declaring who publishes it, and provenance is
+// known before the first byte is parsed. feed.getTitle() may still be logged; it
+// can no longer reach contentSource.id.
+//
+// `news.rss.urls` was retired — a DEPLOYMENT-VISIBLE change. The refresh schedule
+// stayed in properties, because that is deployment tuning rather than editorial
+// data.
+//
+// TEST IMPACT WORTH KEEPING: RssFeedServiceTest no longer injects a URL by
+// reflection. It writes a temp registry declaring one producer with a feedUrl —
+// so the test must declare a producer to have a feed at all, which is the point.
+// The last-good-result test now CORRUPTS THE FEED FILE in place rather than
+// re-pointing a private field, which is the real failure mode: the Delaware feed
+// has served malformed XML three times during development (tech-debt 5).
+// =============================================================================

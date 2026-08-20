@@ -6,15 +6,17 @@
       "title": "Summer Youth Enrichment Program — Registration Open",
       "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
       "verified": true,
-      "category_tags": ["Community Events"],
+      "category_tags": [
+        "Community Events"
+      ],
       "subcategory": "Youth Programs",
       "tags": [
         "Youth",
         "Youth Programs"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "West End Neighborhood House"
+        "id": "west-end-neighborhood-house",
+        "type": "manual"
       },
       "createdDate": "2026-06-10",
       "updatedDate": "2026-06-10",
@@ -35,7 +37,10 @@
       "title": "Know Your Rights: Eviction Prevention Info Session",
       "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
       "verified": true,
-      "category_tags": ["Housing", "Legal"],
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
       "subcategory": "Eviction Prevention",
       "tags": [
         "Housing Assistance",
@@ -43,8 +48,8 @@
         "Eviction Prevention"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "Community Legal Aid Society"
+        "id": "community-legal-aid",
+        "type": "manual"
       },
       "createdDate": "2026-06-12",
       "updatedDate": "2026-06-12",
@@ -65,15 +70,17 @@
       "title": "Community Volunteer Recruitment Drive",
       "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
       "verified": true,
-      "category_tags": ["Community Support"],
+      "category_tags": [
+        "Community Support"
+      ],
       "subcategory": "Volunteer Opportunities",
       "tags": [
         "Community",
         "Volunteer Opportunities"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "United Way of Delaware"
+        "id": "united-way-delaware",
+        "type": "manual"
       },
       "createdDate": "2026-06-08",
       "updatedDate": "2026-06-08",
@@ -94,7 +101,9 @@
       "title": "Back-to-School Supply Drive Fundraiser",
       "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
       "verified": true,
-      "category_tags": ["Community Support"],
+      "category_tags": [
+        "Community Support"
+      ],
       "subcategory": "School Supplies",
       "tags": [
         "Community",
@@ -102,8 +111,8 @@
         "Student Support"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "Ministry of Caring Inc"
+        "id": "ministry-of-caring",
+        "type": "manual"
       },
       "createdDate": "2026-06-15",
       "updatedDate": "2026-06-15",
@@ -124,7 +133,10 @@
       "title": "Disability Services & Benefits Info Fair",
       "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
       "verified": true,
-      "category_tags": ["Legal", "Community Support"],
+      "category_tags": [
+        "Legal",
+        "Community Support"
+      ],
       "subcategory": "Disability Advocacy",
       "tags": [
         "Disability Assistance",
@@ -132,8 +144,8 @@
         "Information & Referral"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "Delaware Division for the Visually Impaired"
+        "id": "de-visually-impaired",
+        "type": "manual"
       },
       "createdDate": "2026-06-11",
       "updatedDate": "2026-06-11",
@@ -154,7 +166,9 @@
       "title": "Free Community Health Fair",
       "summary": "Free health screenings, vaccinations, and dental checkups — no insurance or ID required.",
       "verified": true,
-      "category_tags": ["Health"],
+      "category_tags": [
+        "Health"
+      ],
       "subcategory": "Medical Care",
       "tags": [
         "Medical Assistance",
@@ -162,8 +176,8 @@
         "Medical Care"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "Westside Family Healthcare"
+        "id": "westside-family-healthcare",
+        "type": "manual"
       },
       "createdDate": "2026-06-09",
       "updatedDate": "2026-06-09",
@@ -184,7 +198,9 @@
       "title": "Free Furniture Giveaway",
       "summary": "Free gently-used furniture available for families moving into new housing — first come, first served.",
       "verified": true,
-      "category_tags": ["Furniture & Household"],
+      "category_tags": [
+        "Furniture & Household"
+      ],
       "subcategory": "Furniture & Household Goods",
       "tags": [
         "Free",
@@ -192,8 +208,8 @@
         "Furniture/Household Goods"
       ],
       "contentSource": {
-        "type": "manual",
-        "name": "Wilmington Housing Authority"
+        "id": "wilmington-housing-authority",
+        "type": "manual"
       },
       "createdDate": "2026-06-14",
       "updatedDate": "2026-06-14",

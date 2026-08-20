@@ -151,7 +151,7 @@ class CategoryControllerTest {
         return new CategoryPage(
                 new CategoryMetadata("housing", "Housing", "🏠", 73,
                         Map.of(ContentType.RESOURCE, 44, ContentType.LAW, 20), "2026-06-15"),
-                List.of(new UpdateItem("news", ContentType.LAW, "L1", "A signed bill", "Summary",
+                List.of(new UpdateItem(ContentType.LAW, "L1", "A signed bill", "Summary",
                         "2026-06-15", "Delaware Legislature", "https://example.gov/L1", null,
                         List.of("Housing"))),
                 List.of(new TopicGroup("Need Help Right Away",

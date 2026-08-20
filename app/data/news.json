@@ -16,16 +16,21 @@
       "published": "2026-06-01",
       "expires": "2026-06-30",
       "geography": "wilmington",
-      "source_name": "City of Wilmington",
       "source_url": "https://www.wilmingtonde.gov",
-      "category_tags": ["Housing"],
-      "resource_tags": ["rental-assistance", "eviction", "emergency"],
+      "category_tags": [
+        "Housing"
+      ],
+      "resource_tags": [
+        "rental-assistance",
+        "eviction",
+        "emergency"
+      ],
       "urgency": "time-limited",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "city-of-wilmington"
     },
-
     {
       "id": "NP-002",
       "type": "policy-update",
@@ -36,16 +41,23 @@
       "published": "2026-06-02",
       "expires": "2026-07-14",
       "geography": "delaware",
-      "source_name": "Delaware State Housing Authority",
       "source_url": "http://www.destatehousing.com",
-      "category_tags": ["Housing"],
-      "resource_tags": ["SRAP", "vouchers", "rental-assistance", "waitlist", "low-income"],
+      "category_tags": [
+        "Housing"
+      ],
+      "resource_tags": [
+        "SRAP",
+        "vouchers",
+        "rental-assistance",
+        "waitlist",
+        "low-income"
+      ],
       "urgency": "time-limited",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "de-housing-authority"
     },
-
     {
       "id": "NP-003",
       "type": "program-change",
@@ -56,16 +68,24 @@
       "published": "2026-06-01",
       "expires": "2026-10-31",
       "geography": "wilmington",
-      "source_name": "Wilmington Farmers Market",
       "source_url": "https://www.wilmingtonfarmersmarket.org",
-      "category_tags": ["Food"],
-      "resource_tags": ["food", "SNAP", "EBT", "farmers-market", "fresh-produce", "Double-Up-Food-Bucks"],
+      "category_tags": [
+        "Food"
+      ],
+      "resource_tags": [
+        "food",
+        "SNAP",
+        "EBT",
+        "farmers-market",
+        "fresh-produce",
+        "Double-Up-Food-Bucks"
+      ],
       "urgency": "standard",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "wilmington-farmers-market"
     },
-
     {
       "id": "NP-004",
       "type": "policy-update",
@@ -76,16 +96,27 @@
       "published": "2026-06-02",
       "expires": null,
       "geography": "both",
-      "source_name": "Delaware DHSS",
       "source_url": "https://dhss.delaware.gov",
-      "category_tags": ["Housing", "Utilities", "Rental Assistance"],
-      "resource_tags": ["emergency-assistance", "rental-assistance", "utilities", "low-income", "TANF", "SSI", "poverty-threshold"],
+      "category_tags": [
+        "Housing",
+        "Utilities",
+        "Rental Assistance"
+      ],
+      "resource_tags": [
+        "emergency-assistance",
+        "rental-assistance",
+        "utilities",
+        "low-income",
+        "TANF",
+        "SSI",
+        "poverty-threshold"
+      ],
       "urgency": "standard",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "de-dhss"
     },
-
     {
       "id": "NP-005",
       "type": "new-resource",
@@ -96,16 +127,23 @@
       "published": "2026-05-30",
       "expires": null,
       "geography": "wilmington",
-      "source_name": "West End Neighborhood House",
       "source_url": "https://westendnh.org/programs/life-lines/",
-      "category_tags": ["Housing"],
-      "resource_tags": ["youth", "foster-care", "LGBTQ", "housing", "age-expansion"],
+      "category_tags": [
+        "Housing"
+      ],
+      "resource_tags": [
+        "youth",
+        "foster-care",
+        "LGBTQ",
+        "housing",
+        "age-expansion"
+      ],
       "urgency": "standard",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "west-end-neighborhood-house"
     },
-
     {
       "id": "NP-006",
       "type": "policy-update",
@@ -116,16 +154,23 @@
       "published": "2026-06-03",
       "expires": "2026-08-07",
       "geography": "wilmington",
-      "source_name": "Wilmington Housing Authority",
       "source_url": "https://whadelaware.org/",
-      "category_tags": ["Housing"],
-      "resource_tags": ["vouchers", "Housing-Choice-Voucher", "WHA", "waitlist", "low-income"],
+      "category_tags": [
+        "Housing"
+      ],
+      "resource_tags": [
+        "vouchers",
+        "Housing-Choice-Voucher",
+        "WHA",
+        "waitlist",
+        "low-income"
+      ],
       "urgency": "time-limited",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "wilmington-housing-authority"
     },
-
     {
       "id": "NP-007",
       "type": "general-news",
@@ -136,16 +181,23 @@
       "published": "2026-06-01",
       "expires": null,
       "geography": "wilmington",
-      "source_name": "Ministry of Caring Inc",
       "source_url": "https://www.ministryofcaring.org/",
-      "category_tags": ["Food"],
-      "resource_tags": ["food", "meals", "ministry-of-caring", "no-cost", "no-ID-required"],
+      "category_tags": [
+        "Food"
+      ],
+      "resource_tags": [
+        "food",
+        "meals",
+        "ministry-of-caring",
+        "no-cost",
+        "no-ID-required"
+      ],
       "urgency": "standard",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "ministry-of-caring"
     },
-
     {
       "id": "NP-008",
       "type": "policy-update",
@@ -156,14 +208,22 @@
       "published": "2026-05-28",
       "expires": null,
       "geography": "both",
-      "source_name": "Delaware DHSS",
       "source_url": "https://dhss.delaware.gov",
-      "category_tags": ["Health"],
-      "resource_tags": ["Medicaid", "dental", "health", "low-income", "insurance"],
+      "category_tags": [
+        "Health"
+      ],
+      "resource_tags": [
+        "Medicaid",
+        "dental",
+        "health",
+        "low-income",
+        "insurance"
+      ],
       "urgency": "standard",
       "author": "manual",
       "verified": true,
-      "active": true
+      "active": true,
+      "source_id": "de-dhss"
     }
   ]
 }

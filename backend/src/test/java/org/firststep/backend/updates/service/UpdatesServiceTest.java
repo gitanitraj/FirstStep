@@ -19,6 +19,7 @@ import org.firststep.backend.news.service.RssFeedSource;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.model.ContentType;
 import org.firststep.backend.updates.dto.UpdateItem;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -109,7 +110,7 @@ class UpdatesServiceTest {
         // rule, so a fixture would prove only that the filter loop runs.
         return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo),
                 new ExpertAnswerService(expertRepo), new FaqService(faqRepo),
-                new TaxonomyService("../app/data"));
+                new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
     }
 
     @Test
@@ -135,7 +136,7 @@ class UpdatesServiceTest {
 
         UpdateItem item = service.getUpdates().get(0);
 
-        assertEquals("news", item.type());
+        assertEquals(ContentType.NEWS, item.contentType());
         assertEquals("A law passed", item.title());
         assertEquals("2026-05-01", item.date());
         assertEquals("Delaware Legislature", item.source());
@@ -190,7 +191,7 @@ class UpdatesServiceTest {
         UpdateItem noEvent = updates.stream().filter(u -> u.id().equals("F2")).findFirst().orElseThrow();
         assertEquals("2026-06-15", withEvent.date());
         assertEquals("2026-06-10", noEvent.date()); // fell back to updatedDate
-        assertEquals("flyer", withEvent.type());
+        assertEquals(ContentType.FLYER, withEvent.contentType());
         assertEquals("Community Center", withEvent.source());
         assertNull(withEvent.url());
         assertNull(withEvent.urgency());
@@ -281,7 +282,11 @@ class UpdatesServiceTest {
         UpdateItem item = service(List.of(), List.of(bill), List.of())
                 .getForCategory("housing", null, 10).get(0);
 
-        assertEquals("news", item.type());
+        // The whole point of this test, now that the legacy `type` is gone: the
+        // feed carries ONE identifier, and it says LAW. The old String type
+        // reported "news" for signed legislation AND curated news, so a resident
+        // could not tell a change in the law from an announcement — the conflation
+        // Decision 036 existed to end.
         assertEquals(ContentType.LAW, item.contentType());
     }
 

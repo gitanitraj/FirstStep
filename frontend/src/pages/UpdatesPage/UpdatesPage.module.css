@@ -1,0 +1,67 @@
+/* UpdatesPage — Latest Updates and Community Notices.
+
+   Same layout language as the homepage: contained at --page-max, inset by
+   --page-gutter, so a resident moving between them does not feel the page
+   change shape underneath them. */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 48px 0 0;
+}
+
+.header {
+  padding: 0 var(--page-gutter);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary-color);
+}
+
+.intro {
+  margin: 10px 0 0;
+  max-width: 68ch;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+.count {
+  margin: 14px 0 0;
+  font-size: 0.92rem;
+  font-weight: 600;
+  color: var(--text-light);
+}
+
+.groups {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  padding: 0 var(--page-gutter);
+}
+
+.placeholder {
+  margin: 0;
+  padding: 0 var(--page-gutter);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1000px) {
+  .body {
+    gap: 20px;
+    padding-top: 32px;
+  }
+}
+
+/* ---- High contrast ---- */
+
+:global(body.high-contrast) .title {
+  color: #ff0;
+}

@@ -7,6 +7,7 @@ import java.util.List;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -20,9 +21,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonNewsRepository implements NewsRepository {
 
     private final CivicContentClassifier classifier;
+    private final ContentSourceService contentSources;
 
-    public JsonNewsRepository(CivicContentClassifier classifier) {
+    public JsonNewsRepository(CivicContentClassifier classifier, ContentSourceService contentSources) {
         this.classifier = classifier;
+        this.contentSources = contentSources;
     }
 
     private final ObjectMapper mapper = new ObjectMapper();
@@ -68,9 +71,14 @@ public class JsonNewsRepository implements NewsRepository {
      * and {@code tags} carries resource_tags — descriptive, as the contract says.
      */
     private void applyContentSourceAndDefaults(NewsItem item, JsonNode node) {
+        // The record references its producer by ID; the NAME is resolved from
+        // content-sources.json rather than authored here, so "Delaware DHSS" and
+        // "Delaware Health and Social Services" cannot describe two agencies.
+        // `url` stays per-record — it is THIS item's link, not the producer's.
         ContentSource contentSource = new ContentSource();
-        contentSource.name = node.hasNonNull("source_name") ? node.get("source_name").asText() : null;
+        contentSource.id = node.hasNonNull("source_id") ? node.get("source_id").asText() : null;
         contentSource.url = node.hasNonNull("source_url") ? node.get("source_url").asText() : null;
+        contentSources.resolveName(contentSource);
         item.contentSource = contentSource;
 
         item.title = node.hasNonNull("headline") ? node.get("headline").asText() : null;

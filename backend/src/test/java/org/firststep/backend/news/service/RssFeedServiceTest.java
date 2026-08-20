@@ -7,6 +7,7 @@ import java.nio.file.Path;
 import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.model.ContentType;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -30,9 +31,26 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
  */
 class RssFeedServiceTest {
 
-    private RssFeedService serviceFor(String feedUrl) {
-        RssFeedService service = new RssFeedService(ClassifierFixture.real());
-        ReflectionTestUtils.setField(service, "rssFeedUrls", feedUrl);
+    /**
+     * Builds the service around a registry that declares ONE producer publishing
+     * the fixture feed.
+     *
+     * <p>Feeds are no longer injected as a bare URL list — a feed now arrives
+     * paired with the producer id that publishes it (Decision 045), so the test
+     * has to declare a producer to have a feed at all. That is the point: it is
+     * structurally impossible to fetch content whose provenance is unknown, and
+     * these tests exercise the real path rather than a reflection shortcut.
+     */
+    private RssFeedService serviceFor(Path dir, String feedUrl) throws IOException {
+        Files.writeString(dir.resolve("content-sources.json"), """
+                { "version": 1, "sectors": ["government", "community", "first-step"],
+                  "sources": [ { "id": "de-legislature",
+                                 "name": "Delaware General Assembly",
+                                 "sector": "government",
+                                 "feedUrl": "%s" } ] }
+                """.formatted(feedUrl));
+        RssFeedService service = new RssFeedService(
+                ClassifierFixture.real(), new ContentSourceService(dir.toString()));
         ReflectionTestUtils.setField(service, "defaultCommunityId", "wilmington-de");
         return service;
     }
@@ -60,7 +78,7 @@ class RssFeedServiceTest {
         String feedUrl = writeFeed(tempDir, "housing.xml", "HB 1",
                 "AN ACT RELATING TO EVICTION PROTECTIONS FOR TENANTS AND LANDLORDS.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getRssItems().get(0);
@@ -75,7 +93,7 @@ class RssFeedServiceTest {
         String feedUrl = writeFeed(tempDir, "law.xml", "HB 1",
                 "AN ACT RELATING TO EVICTION PROTECTIONS FOR TENANTS AND LANDLORDS.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getRssItems().get(0);
@@ -88,7 +106,7 @@ class RssFeedServiceTest {
         String feedUrl = writeFeed(tempDir, "relating.xml", "HB 311",
                 "AN ACT TO AMEND TITLE 5 OF THE DELAWARE CODE RELATING TO MONEY TRANSMISSION.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -101,7 +119,7 @@ class RssFeedServiceTest {
         String feedUrl = writeFeed(tempDir, "delaware.xml", "HB 42",
                 "AN ACT TO AMEND TITLE 5 RELATING TO DELAWARE BANKS AND TRUST COMPANIES.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -113,7 +131,7 @@ class RssFeedServiceTest {
         String feedUrl = writeFeed(tempDir, "generic.xml", "HB 2",
                 "AN ACT CONCERNING THE STATE FLAG DESIGN.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -133,7 +151,7 @@ class RssFeedServiceTest {
         String longClause = "RELATING TO " + "WORD ".repeat(30) + ".";
         String feedUrl = writeFeed(tempDir, "long.xml", "HB 3", longClause);
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -151,7 +169,7 @@ class RssFeedServiceTest {
                 "TO THE OFFICE OF MANAGEMENT AND BUDGET. This Act appropriates $146,199,300 to provide " +
                 "one-time funded items through the Office of Management and Budget.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -168,7 +186,7 @@ class RssFeedServiceTest {
                 "THE OFFICIAL GENERAL FUND REVENUE ESTIMATE FOR FISCAL YEAR 2027. This Resolution provides " +
                 "the official revenue, refund, and unencumbered funds estimates for Fiscal Year 2027.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -185,7 +203,7 @@ class RssFeedServiceTest {
                 "This Joint Resolution extends the reporting date of the Driving Under the Influence " +
                 "Prevention Task Force from January 1, 2026, to January 1, 2027.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -207,7 +225,7 @@ class RssFeedServiceTest {
                 "initiatives. This Joint Resolution also requires the Division to provide a report to the " +
                 "General Assembly as to its findings.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -226,7 +244,7 @@ class RssFeedServiceTest {
                 "Grid technologies offer efficient tools to increase capacity. Studies demonstrate real " +
                 "benefits. This resolution directs the state energy office to conduct a cost-benefit analysis.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
 
         NewsItem item = service.getSignedBills().get(0);
@@ -237,13 +255,16 @@ class RssFeedServiceTest {
     void shouldKeepLastGoodResultWhenFetchFails(@TempDir Path tempDir) throws IOException {
         String feedUrl = writeFeed(tempDir, "good.xml", "HB 4", "AN ACT RELATING TO FOOD ASSISTANCE.");
 
-        RssFeedService service = serviceFor(feedUrl);
+        RssFeedService service = serviceFor(tempDir, feedUrl);
         service.fetchFeeds();
         assertEquals(1, service.getSignedBills().size());
 
-        // Point at a file that doesn't exist -> loadFeed fails, collected stays empty,
-        // and fetchFeeds() must not overwrite the last good result with nothing.
-        ReflectionTestUtils.setField(service, "rssFeedUrls", tempDir.resolve("missing.xml").toUri().toString());
+        // Now make the FEED ITSELF go bad, on the same service — which is the
+        // real failure this guard exists for: the Delaware feed has served
+        // malformed XML three times during development (tech-debt 5). loadFeed
+        // fails, `collected` stays empty, and fetchFeeds() must not overwrite the
+        // last good result with nothing.
+        Files.writeString(tempDir.resolve("good.xml"), "<rss><channel><title>truncated");
         service.fetchFeeds();
 
         assertEquals(1, service.getSignedBills().size());

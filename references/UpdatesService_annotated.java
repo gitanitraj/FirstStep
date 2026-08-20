@@ -325,3 +325,36 @@ public class UpdatesService {
 // `tags`. A flyer's descriptive tags ("Free", "Community", "Youth") play no part
 // in grouping or in category scoping.
 // =============================================================================
+
+// =============================================================================
+// SLICE I — getBySector(Sector) and getPage(Sector)
+// =============================================================================
+// The service gained a THIRD question. It already answered "what changed?" for
+// the homepage (getUpdates) and "what changed in Housing?" for a category page
+// (getForCategory); it now answers "what did GOVERNMENT publish?".
+//
+// getBySector walks the same four sources and asks one thing of each item:
+//
+//     contentSources.isInSector(item.contentSource, sector)
+//
+// It NEVER branches on contentType. Wilmington Housing Authority publishes both a
+// news item and a flyer and both are government — so "flyers are community"
+// would have been wrong. Sector is a property of the PRODUCER (Decision 045).
+//
+// Unresolvable ids are excluded, never guessed: isInSector is false for every
+// sector, so such an item is on neither page while remaining valid CivicContent
+// everywhere else. No cap — a destination is not a teaser.
+//
+// getPage adds the grouping, SERVER-SIDE, generated from the content present:
+// a group is created the first time a type is met, so an empty group is never
+// built and therefore never rendered (Decision 045's constraint, guaranteed by
+// the payload rather than by a frontend guard). Group order follows the enum;
+// item order within a group stays reverse-chronological.
+//
+// It lives here rather than in an UpdatesPageService because there is nothing to
+// COMPOSE — one source, shaped. F4 refused a service for exactly this; F5a added
+// one only once three sources had to be merged.
+//
+// UpdatesService is still "the single place cross-type merging happens"
+// (Decision 036). Slice I added a filter and a projection, not a second merger.
+// =============================================================================

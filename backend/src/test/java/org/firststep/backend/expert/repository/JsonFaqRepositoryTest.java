@@ -8,6 +8,7 @@ import java.util.Optional;
 
 import org.firststep.backend.shared.classification.ClassifierFixture;
 import org.firststep.backend.expert.model.FAQ;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.io.TempDir;
 import org.springframework.test.util.ReflectionTestUtils;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class JsonFaqRepositoryTest {
 
     private JsonFaqRepository repositoryFor(String dataDir) {
-        JsonFaqRepository repository = new JsonFaqRepository(ClassifierFixture.real());
+        JsonFaqRepository repository = new JsonFaqRepository(ClassifierFixture.real(), new ContentSourceService("../app/data"));
         ReflectionTestUtils.setField(repository, "dataDir", dataDir);
         ReflectionTestUtils.setField(repository, "defaultCommunityId", "wilmington-de");
         return repository;

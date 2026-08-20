@@ -74,9 +74,13 @@ def _load_taxonomy_tags():
 # category. resource_tags are descriptive metadata and are never consulted.
 VALID_CATEGORY_TAGS, MATCH_CATEGORY_TAGS = _load_taxonomy_tags()
 
+# `source_id` replaced `source_name` when the producer registry landed: a record
+# references its publisher by a stable id and the NAME is resolved from
+# content-sources.json, so one agency cannot appear under two spellings.
+# validate_content_sources.py is what checks the id actually resolves.
 REQUIRED_FIELDS = [
     "id", "type", "headline", "summary", "body", "why_it_matters",
-    "published", "expires", "geography", "source_name", "source_url",
+    "published", "expires", "geography", "source_id", "source_url",
     "category_tags", "resource_tags", "urgency", "author", "verified", "active",
 ]
 

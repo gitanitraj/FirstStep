@@ -3696,3 +3696,128 @@ on**, verified with a contrast script rather than by eye. Non-text separation
 High contrast is unaffected — the green shadows are invisible on black, which is
 harmless, and the Originals panel keeps its explicit `#000` + yellow-border
 override.
+
+# Decision 045
+
+**Slice I — the updates destinations, and the provenance model that made them
+possible. Amends Decision 041 and closes Decision 036.**
+
+`/updates` had four entry points and was a stub — the largest dead end on the
+site. Building it required answering a question the data could not: **who
+published this?**
+
+## The split is by PRODUCER, and nothing in the data said so
+
+| Route | Page | Producers |
+| --- | --- | --- |
+| `/updates` | Latest Updates | government — agencies, officials, programs |
+| `/community-notices` | Community Notices | non-government — churches, nonprofits, community groups |
+
+Three dead ends were checked before building anything:
+
+- **`contentSource.type` encodes FORMAT**, not sector — `manual`,
+  `expert-session`, `faq`.
+- **`contentType` cannot carry it either.** Wilmington Housing Authority publishes
+  BOTH a news item and a flyer, and both are government. A rule of the form
+  "flyers are community" would have been wrong, and wrong in a way that only
+  showed up on inspection of the data.
+- **`contentSource.name` is not a key.** The same agency appeared as *"Delaware
+  DHSS"* and *"Delaware Health and Social Services"*; RSS items took their name
+  from `feed.getTitle()` at runtime, so it was not authored at all.
+
+**Four `type`-ish fields now exist and only one was deleted.** Recorded because
+the next person will meet all four: `contentType` (what the content IS),
+`NewsItem.type` (`deadline`/`policy-update` — domain data), `contentSource.type`
+(ingestion format), and `SearchResult.type` (a search projection). The registry
+field is called **`sector`**, never `type`, for exactly this reason.
+
+## The provenance model
+
+`app/data/content-sources.json` — 14 producers. **Identity normalizes around a
+stable id; a single registry owns producer metadata; records reference the
+producer by id and never duplicate its attributes.** `name` resolves from the
+registry at load (the Normalize stage, in the repositories), which is what
+collapsed the two DHSS spellings into one agency.
+
+**RSS provenance is configuration, never a runtime value.** The registry entry
+carries `feedUrl`, so `RssFeedService` reads its feed list from the registry and
+stamps each item with that entry's id. A feed cannot be added without declaring
+who publishes it. `news.rss.urls` was retired from `application.properties` —
+**deployment-visible**, and the reason is that a URL alone left identity to be
+guessed from a feed title the upstream publisher can change.
+
+## THE FAILURE BOUNDARY — the most important decision here
+
+> **Provenance resolution is a CAPABILITY, not a VALIDITY GATE.**
+
+An unknown `contentSource.id` means the item **cannot participate in
+sector-scoped views, and nothing else.** It is still valid CivicContent —
+browsable, searchable, classifiable, present on its category and topic pages.
+
+**The codebase already worked this way.** Decision 036 established that content
+with a category but no `subcategory` is *fully* classified, not half-classified —
+it simply cannot appear on a topic page. A missing optional dimension narrows
+**where** content can appear; it never invalidates the content.
+
+**Exclude-and-log, not throw-at-startup.** Three arguments, the third decisive:
+
+1. A civic service must not go offline because one JSON record has a typo.
+2. `validate_content_sources.py` is the real gate — build-time, blocking. Runtime
+   is defense in depth, and defense in depth must not be the thing that breaks.
+3. **Throwing would violate the boundary itself.** Failing startup on an
+   unresolvable id makes provenance a global validity requirement for all
+   CivicContent — precisely what the boundary forbids. Exclude-and-log is not a
+   weaker form of failing fast; it is the behaviour the architecture implies.
+
+Observability, since an ERROR line is easy to lose: a **startup summary** on
+`ApplicationReadyEvent` — `14 producers, 1 UNRESOLVED reference(s) [...]`.
+Deliberately **not** on `/api/health`, which returns a bare `"OK"` and lives in
+`ResourceController`; reshaping a liveness probe to carry editorial diagnostics
+would give a resource controller a reason to know about content sources.
+
+**Verified live, not assumed.** A record was planted referencing
+`de-department-of-education`: absent from both sector pages, **still present on
+`/api/category/housing` and in `/api/search`**, validator exit 1, startup summary
+naming it.
+
+## Amending Decision 041 — metadata-driven grouping is permitted
+
+Latest Updates exposed a boundary case 041's wording was too broad to express.
+The core rule is unchanged; a permission is added:
+
+> **Presentation may group or organize existing CivicContent by controlled
+> metadata** — `contentType`, category, `ContentSource` — **when that grouping
+> represents a meaningful user-facing discovery model.** Such groupings must use
+> **generic presentation components** rather than a component or domain concept
+> per metadata value. **Empty groups are not rendered.**
+
+The distinction that makes it safe: grouping **reads** metadata the domain
+already owns. It adds no type, field or class. The violation would not be the
+grouping — it would be `LawGroup` beside `NewsGroup`, enumerating the metadata in
+code. One generic `UpdateGroup` renders every group, so a sixth ContentType costs
+nothing here. **Empty groups cannot reach the client at all**: the server never
+builds one, so the rule holds by construction rather than by a frontend guard.
+
+Written into `docs/architecture/05-front-door.md`, which is canonical.
+
+## Closing Decision 036: `UpdateItem.type` is DELETED
+
+Not deprecated, not unused — **absent**, on every surface: model, services,
+serialized payload, Java fixtures, frontend types, components and tests. Verified
+by absence rather than by assertion, surface by surface.
+
+One test lost its point in a way worth recording. `CategoryUpdates.test` used to
+render `RESOURCE` carrying `type: 'news'` — a decoy proving the badge read the
+right field. **That disagreement is no longer expressible**, because there is now
+one identifier. The test kept its name and lost its decoy.
+
+## Verification
+
+289 backend (+11 ContentSourceService, +1 failure boundary) · 63 frontend ·
+`tsc` clean · **5 validators exit 0**, the new one negative-tested on each rule ·
+live sector split confirmed on real data, including both counter-examples ·
+`index.css` ratchet unchanged.
+
+**Next: the remaining destinations** — Slice G's organization directory behind
+Find Help, then Discover, Community and About. Community Notices still has **no
+homepage entry point**, which is the first thing to fix now that it is real.

@@ -37,6 +37,22 @@ model.** Three resolutions follow from that, and they govern everything below:
 **The through-line: presentation may compose the model in new ways; it may not
 add to it.** Every section in §6 is scoped against that test.
 
+> **AMENDED by Decision 045.** The rule above is unchanged. What was too broad
+> was its silence on *grouping*, which the Latest Updates page exposed as a
+> legitimate boundary case:
+>
+> **Presentation may group or organize existing CivicContent by controlled
+> metadata** — such as `contentType`, category, or `ContentSource` — **when that
+> grouping represents a meaningful user-facing discovery model.** Such groupings
+> must use **generic presentation components** rather than creating a component
+> or domain concept per metadata value. **Empty groups are not rendered.**
+>
+> The distinction that makes this safe: grouping *reads* metadata the domain
+> already owns. It adds no type, no field and no class. A `LawGroup` component
+> beside a `NewsGroup` component would be the violation — not the grouping
+> itself, but enumerating the metadata in code. One generic `UpdateGroup`
+> renders every group, so a sixth ContentType costs nothing.
+
 ### 1.1 Why this is the risk
 
 This is not a hypothetical. **The same failure already happened in this codebase

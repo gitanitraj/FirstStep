@@ -108,10 +108,12 @@ describe('The front door', () => {
 
 describe('App routing', () => {
   it('routes a global-nav destination to its stub page (under the /app-next basename)', () => {
-    window.history.pushState({}, '', '/app-next/updates');
+    // /updates and /community-notices are REAL pages now (Slice I), so this
+    // asserts the stub mechanism on a destination that is still one.
+    window.history.pushState({}, '', '/app-next/find-help');
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Latest Updates' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Find Help' })).toBeInTheDocument();
     expect(screen.getByText('Coming soon.')).toBeInTheDocument();
   });
 });

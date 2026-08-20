@@ -15,6 +15,7 @@ import org.firststep.backend.news.service.RssFeedSource;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
 import org.firststep.backend.updates.service.UpdatesService;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -65,7 +66,7 @@ class UpdatesControllerTest {
             };
             return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo),
                     mock(ExpertAnswerService.class), mock(FaqService.class),
-                    new TaxonomyService("../app/data"));
+                    new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
         }
     }
 
@@ -74,7 +75,10 @@ class UpdatesControllerTest {
         mockMvc.perform(get("/api/updates"))
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$.success").value(true))
-                .andExpect(jsonPath("$.data[0].type").value("news"))
+                .andExpect(jsonPath("$.data[0].contentType").value("NEWS"))
+                // The legacy `type` must not be in the payload at all — the
+                // criterion is deletion, not deprecation (Decision 045).
+                .andExpect(jsonPath("$.data[0].type").doesNotExist())
                 .andExpect(jsonPath("$.data[0].id").value("N1"))
                 .andExpect(jsonPath("$.data[0].source").value("Delaware Legislature"))
                 .andExpect(jsonPath("$.data[0].urgency").value("high"));
