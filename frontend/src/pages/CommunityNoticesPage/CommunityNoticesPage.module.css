@@ -1,0 +1,194 @@
+/* CommunityNoticesPage — one layout for five routes.
+
+   Same layout language as the homepage and Latest Updates (contained at
+   --page-max, inset by --page-gutter) so moving between destinations does not
+   feel like changing sites. */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 48px 0 0;
+}
+
+.header {
+  padding: 0 var(--page-gutter);
+}
+
+.title {
+  margin: 0;
+  font-size: clamp(1.9rem, 3vw, 2.5rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  color: var(--primary-color);
+}
+
+.intro {
+  margin: 10px 0 0;
+  max-width: 68ch;
+  font-size: 1.08rem;
+  line-height: 1.6;
+  color: var(--text-secondary);
+}
+
+/* ---- The four view cards: navigation, present on every route ---- */
+
+.views {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 0 var(--page-gutter);
+}
+
+.viewCard {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 20px 22px;
+  text-decoration: none;
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+  transition: var(--transition);
+}
+
+.viewCard:hover {
+  border-color: var(--primary-light);
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* The active view is unmistakable: the URL is the source of truth, and the cards
+   have to agree with it on sight. */
+.active {
+  border-color: var(--primary-color);
+  border-width: 2px;
+  background: var(--bg-lighter);
+  box-shadow: var(--shadow-brand-sm);
+}
+
+.viewIcon {
+  flex-shrink: 0;
+  font-size: 1.5rem;
+  line-height: 1;
+}
+
+.viewLabel {
+  flex: 1;
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.viewCount {
+  flex-shrink: 0;
+  padding: 2px 11px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-secondary);
+  background: var(--bg-lighter);
+  border: 1px solid var(--border-color);
+  border-radius: 999px;
+}
+
+.active .viewCount {
+  color: var(--surface);
+  background: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+/* ---- Bodies ---- */
+
+.viewBody,
+.previews {
+  padding: 0 var(--page-gutter);
+}
+
+.previews {
+  display: flex;
+  flex-direction: column;
+  gap: 34px;
+}
+
+.previewHead {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 14px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.previewTitle {
+  margin: 0;
+  font-size: 1.35rem;
+  letter-spacing: -0.01em;
+  color: var(--primary-color);
+}
+
+.previewMore {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--primary-color);
+  text-decoration: none;
+  border-bottom: 2px solid var(--accent-color);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.placeholder {
+  margin: 0;
+  padding: 0 var(--page-gutter);
+  color: var(--text-secondary);
+}
+
+@media (max-width: 1000px) {
+  .body {
+    gap: 22px;
+    padding-top: 32px;
+  }
+
+  .views {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 560px) {
+  .views {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ---- High contrast ---- */
+
+:global(body.high-contrast) .title,
+:global(body.high-contrast) .previewTitle {
+  color: #ff0;
+}
+
+:global(body.high-contrast) .viewCard {
+  color: #fff;
+}
+
+:global(body.high-contrast) .active {
+  border-color: #ff0;
+  background: #222;
+}
+
+:global(body.high-contrast) .active .viewCount {
+  background: #ff0;
+  color: #000;
+  border-color: #ff0;
+}

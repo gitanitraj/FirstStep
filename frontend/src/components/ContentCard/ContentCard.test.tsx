@@ -15,6 +15,7 @@ function item(overrides: Partial<ContentItem> = {}): ContentItem {
     urgency: null,
     date: null,
     url: null,
+  imageUrl: null,
     ...overrides,
   };
 }

@@ -19,11 +19,12 @@ const shelter: TopicPagePayload = {
       contentType: 'RESOURCE', id: 'R1', title: 'Ministry of Caring Shelter',
       summary: 'Overnight beds.', organization: 'Ministry of Caring', location: 'Wilmington',
       cost: 'free', urgency: 'emergency', date: null, url: 'https://example.org',
+        imageUrl: null,
     },
     {
       contentType: 'FLYER', id: 'F1', title: 'Winter shelter drive',
       summary: null, organization: 'Community Center', location: null,
-      cost: null, urgency: null, date: '2026-08-01', url: null,
+      cost: null, urgency: null, date: '2026-08-01', url: null, imageUrl: null,
     },
   ],
 };

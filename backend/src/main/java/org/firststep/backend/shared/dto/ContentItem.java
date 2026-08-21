@@ -37,6 +37,20 @@ public record ContentItem(
         /** Flyer event date, news publish date. Resources have no editorial date. */
         String date,
         /** Somewhere to go next — the provider's own site, never First Step's. */
-        String url
+        String url,
+        /**
+         * Resolved, URL-encoded image path — flyers only, null everywhere else.
+         *
+         * <p>Follows the same rule as {@code cost} and {@code urgency}: fields
+         * after {@code summary} are optional and populated by whichever types
+         * have them. It does not reintroduce per-type special-casing, because a
+         * card reads the same fields for every type and omits what is null.
+         *
+         * <p>Added in Slice J for the Community Notices flyer gallery, where the
+         * IMAGE IS THE CONTENT — a list of flyer titles throws away the thing
+         * worth browsing. Resolved by {@code FlyerService.imageUrlFor}, which
+         * stays the single owner of the encoding rule.
+         */
+        String imageUrl
 ) {
 }

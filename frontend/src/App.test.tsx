@@ -23,6 +23,7 @@ const home: HomePayload = {
       urgency: null,
       date: '2026-07-11',
       url: null,
+      imageUrl: null,
     },
   ],
   delawareLaws: [],
@@ -71,7 +72,7 @@ describe('The front door', () => {
       screen.getByRole('heading', { name: 'New Laws in Delaware' }),
     ).toBeInTheDocument();
 
-    expect(screen.getByRole('heading', { name: 'Community Information' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Community Notices' })).toBeInTheDocument();
     expect(screen.getByRole('contentinfo')).toBeInTheDocument();
   });
 

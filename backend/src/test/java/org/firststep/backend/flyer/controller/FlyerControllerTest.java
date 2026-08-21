@@ -7,6 +7,7 @@ import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.flyer.service.FlyerService;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -48,7 +49,7 @@ class FlyerControllerTest {
 
         @Bean
         FlyerService flyerService(FlyerRepository flyerRepository) {
-            return new FlyerService(flyerRepository);
+            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"));
         }
     }
 

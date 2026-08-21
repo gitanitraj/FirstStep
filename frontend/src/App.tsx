@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import TopicPage from './pages/TopicPage/TopicPage';
 import UpdatesPage from './pages/UpdatesPage/UpdatesPage';
+import CommunityNoticesPage from './pages/CommunityNoticesPage/CommunityNoticesPage';
 import StubPage from './pages/StubPage';
 
 /**
@@ -17,7 +18,9 @@ import StubPage from './pages/StubPage';
  *   /discover         Discover → Explore Resources (all ten categories)
  *   /find-help        Connect → Find Help          (Slice G, organization directory)
  *   /updates          Latest Updates — GOVERNMENT producers (LIVE)
- *   /community-notices Community Notices — NON-GOVERNMENT producers (LIVE)
+ *   /community-notices[/:view]  Community Notices — NON-GOVERNMENT producers.
+ *                     Five routes, one page: overview · events · meetings ·
+ *                     announcements · flyers (LIVE)
  *
  * Those two share ONE component; the sector is a prop, because the pages differ
  * only in who published the content (Decision 045).
@@ -37,7 +40,11 @@ export default function App() {
           <Route path="/discover/:facet" element={<StubPage name="Discovery pathway" />} />
           <Route path="/find-help" element={<StubPage name="Find Help" />} />
           <Route path="/updates" element={<UpdatesPage sector="government" />} />
-          <Route path="/community-notices" element={<UpdatesPage sector="community" />} />
+          {/* ONE page, five routes. The `:view` param is the source of truth for
+              the active view, so every URL works when typed, shared or reached
+              with the back button — no visit to the landing route required. */}
+          <Route path="/community-notices" element={<CommunityNoticesPage />} />
+          <Route path="/community-notices/:view" element={<CommunityNoticesPage />} />
           <Route path="/community" element={<StubPage name="Community" />} />
           <Route path="/about" element={<StubPage name="About First Step" />} />
           <Route path="/organization/:slug" element={<StubPage name="Organization" />} />

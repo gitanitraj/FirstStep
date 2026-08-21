@@ -12,7 +12,8 @@
       "subcategory": "Youth Programs",
       "tags": [
         "Youth",
-        "Youth Programs"
+        "Youth Programs",
+        "event"
       ],
       "contentSource": {
         "id": "west-end-neighborhood-house",
@@ -21,7 +22,7 @@
       "createdDate": "2026-06-10",
       "updatedDate": "2026-06-10",
       "organization": "West End Neighborhood House",
-      "event_date": "2026-07-20",
+      "event_date": "2026-09-07",
       "location": {
         "label": "West End Neighborhood House",
         "address": "710 N. Lincoln Street",
@@ -45,7 +46,8 @@
       "tags": [
         "Housing Assistance",
         "Rental Assistance",
-        "Eviction Prevention"
+        "Eviction Prevention",
+        "meeting"
       ],
       "contentSource": {
         "id": "community-legal-aid",
@@ -54,7 +56,7 @@
       "createdDate": "2026-06-12",
       "updatedDate": "2026-06-12",
       "organization": "Community Legal Aid Society",
-      "event_date": "2026-07-25",
+      "event_date": "2026-08-30",
       "location": {
         "label": "Wilmington Public Library",
         "address": "10 E. 10th Street",
@@ -76,7 +78,8 @@
       "subcategory": "Volunteer Opportunities",
       "tags": [
         "Community",
-        "Volunteer Opportunities"
+        "Volunteer Opportunities",
+        "announcement"
       ],
       "contentSource": {
         "id": "united-way-delaware",
@@ -85,7 +88,7 @@
       "createdDate": "2026-06-08",
       "updatedDate": "2026-06-08",
       "organization": "United Way of Delaware",
-      "event_date": "2026-08-01",
+      "event_date": "2026-09-15",
       "location": {
         "label": "Rodney Square",
         "address": "1000 N. King Street",
@@ -108,7 +111,8 @@
       "tags": [
         "Community",
         "Free",
-        "Student Support"
+        "Student Support",
+        "event"
       ],
       "contentSource": {
         "id": "ministry-of-caring",
@@ -117,7 +121,7 @@
       "createdDate": "2026-06-15",
       "updatedDate": "2026-06-15",
       "organization": "Ministry of Caring Inc",
-      "event_date": "2026-08-10",
+      "event_date": "2026-08-26",
       "location": {
         "label": "Ministry of Caring",
         "address": "115 East 14th Street",
@@ -141,7 +145,8 @@
       "tags": [
         "Disability Assistance",
         "Disability Advocacy",
-        "Information & Referral"
+        "Information & Referral",
+        "announcement"
       ],
       "contentSource": {
         "id": "de-visually-impaired",
@@ -173,7 +178,8 @@
       "tags": [
         "Medical Assistance",
         "Free",
-        "Medical Care"
+        "Medical Care",
+        "event"
       ],
       "contentSource": {
         "id": "westside-family-healthcare",
@@ -182,7 +188,7 @@
       "createdDate": "2026-06-09",
       "updatedDate": "2026-06-09",
       "organization": "Westside Family Healthcare",
-      "event_date": "2026-08-05",
+      "event_date": "2026-09-02",
       "location": {
         "label": "Eden Park Recreation Center",
         "address": "601 N. Van Buren Street",
@@ -205,7 +211,8 @@
       "tags": [
         "Free",
         "Housing Assistance",
-        "Furniture/Household Goods"
+        "Furniture/Household Goods",
+        "announcement"
       ],
       "contentSource": {
         "id": "wilmington-housing-authority",

@@ -64,7 +64,7 @@ class UpdatesControllerTest {
                     return Optional.empty();
                 }
             };
-            return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo),
+            return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo, new ContentSourceService("../app/data")),
                     mock(ExpertAnswerService.class), mock(FaqService.class),
                     new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
         }

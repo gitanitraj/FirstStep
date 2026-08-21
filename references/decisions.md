@@ -3821,3 +3821,194 @@ live sector split confirmed on real data, including both counter-examples ·
 **Next: the remaining destinations** — Slice G's organization directory behind
 Find Help, then Discover, Community and About. Community Notices still has **no
 homepage entry point**, which is the first thing to fix now that it is real.
+
+---
+
+# Decision 046 — Community Notices: four views, three kinds, one page
+
+**Slice J.** Slice I made `/community-notices` real and left it a flat feed with
+**no homepage entry point**. This slice turns it into a destination: four
+resident-facing discovery views, reachable by URL, reachable from the homepage.
+
+## The data-model question, surfaced rather than invented around
+
+The instruction was explicit: *if an existing field cannot reliably distinguish
+Events, Meetings, Announcements or Flyers, identify that as a data-model question
+during scoping rather than silently inventing a frontend-only classification.*
+
+It cannot. Measured against the real data before writing any code:
+
+| View | Derivable from existing fields? | Items |
+| --- | --- | --- |
+| **Flyers** | yes — `contentType = FLYER` | 5 |
+| **Announcements** | yes — `contentType = NEWS` + community sector | 3 |
+| **Events** | only via `event_date` — but every dated community item **was** a flyer, so Events would have been the same five items under a second name, and all five dates had passed | 0 upcoming |
+| **Meetings** | **no.** "meeting" appeared in **0 of 21 records**, and no field could have expressed one | 0 |
+
+Two of the four views were underivable, and one of the two derivable ones would
+have been a duplicate. A frontend heuristic here would have been guessing.
+
+## The answer: a controlled kind vocabulary in `tags`
+
+```json
+{ "version": 1, "noticeKinds": ["event", "meeting", "announcement"], "categories": [ … ] }
+```
+
+**No new field, no new ContentType, no new domain class.** The kinds ride in the
+existing `tags` array — the same mechanism as the Seniors discovery tag — and the
+vocabulary lives in `taxonomy.json`, which already declares itself the single
+source of truth for controlled vocabulary. A seventh data file would have brought
+a seventh loader and a seventh validator with it.
+
+It is genuinely **editorial, not presentational**: a church posting a notice knows
+whether it is a fundraiser or a public meeting. First Step records what the
+producer already knows. That is what keeps this inside Decision 045's amendment
+rather than outside Decision 041.
+
+### Three kinds, not four — and the asymmetry is the point
+
+**"Flyer" is not a kind of notice. It is a form a notice takes.** It stays on
+`contentType`, an axis that already existed. Adding a fourth kind would have
+encoded the same fact twice and let the two copies disagree.
+
+```
+events         tags contains "event"        (any contentType)
+meetings       tags contains "meeting"      (any contentType)
+announcements  tags contains "announcement" (any contentType)
+flyers         contentType = FLYER          (any kind)
+```
+
+## Views are LENSES, not buckets
+
+The asymmetry above is exactly why the views **overlap by design**. A health-fair
+flyer carries kind `event` and appears in **both** Events and Flyers, because
+"what is happening?" and "what posters are up?" are different questions about the
+same item. On live data, `events ∩ flyers = {FL-001, FL-004, FL-006}`.
+
+This is not a defect to reconcile. Category and topic pages already overlap the
+same way. A partition would have forced a false choice onto every item that
+legitimately answers two questions.
+
+`TaxonomyService.noticeKindOf` returns empty for **zero kinds and for more than
+one** — never guessing which of two wins. Two kinds is an authoring error the
+validator blocks; if one silently won, the record would look correctly filed on
+whichever page it landed on.
+
+## One page architecture, five routes
+
+```
+/community-notices                 overview — four cards + a preview of each
+/community-notices/events          the same page, events view
+/community-notices/meetings        …
+/community-notices/announcements   …
+/community-notices/flyers          …
+```
+
+**The URL is the source of truth.** The active view comes from `useParams`, never
+from component state — the pattern `CategoryPage` and `TopicPage` already use. All
+five routes work when typed, bookmarked, shared or reached with the back button,
+without passing through the landing route first.
+
+**One BFF endpoint**, `GET /api/community-notices/{view}`, page-shaped. `counts`
+rides on **every** response because the four nav cards render on every route; a
+separate counts call would have made the nav fill in after the page had drawn.
+
+**An unknown view is a 404 naming the view**, not a quiet fall back to the landing
+page. A view that EXISTS and is empty and a view that DOES NOT EXIST are different
+facts and must not share a status code.
+
+**The landing route is a destination, not a redirect.** It answers "what kinds of
+community information can I find here?" with counts and a real sample of each. A
+page that only routed onward would be a menu wearing a destination's URL.
+
+### What differs between views, and why
+
+Only the sort, and each choice answers a resident question:
+
+- **Events / Meetings / Flyers** — soonest first. A past event at the top is
+  useless; a flyer is a poster *for* something, and that something has a date.
+- **Announcements** — newest first. Nothing to attend, so recency is the whole
+  signal.
+
+Plus one presentation departure: **Flyers gets a gallery grid.** The image IS the
+content — the dates, the phone number, the languages it is printed in are all on
+the poster — so a list of titles throws away the thing worth browsing.
+`object-fit: contain` per Decision 044: `cover` cropped "FREE LEGAL HELP IS
+AVAILABLE FOR DELAWARE RENTERS" mid-line. A **grid, not a carousel**: a carousel
+is a preview device for someone who has not yet decided, and wrong on a page
+someone reached by asking for flyers.
+
+## Sector scoping is unchanged from Slice I
+
+Every view is scoped to `Sector.COMMUNITY` through `ContentSourceService.isInSector`,
+untouched. **Community-produced information is not the same thing as community
+resources**, and a government flyer is not a community notice no matter how it is
+tagged — Wilmington Housing Authority's flyer is correctly tagged, resolvable, and
+absent from all four views.
+
+An unresolvable producer is excluded from every view and **stays valid CivicContent
+everywhere else** — the Slice I failure boundary doing its job here unchanged.
+Provenance resolution remains a capability, not a validity gate.
+
+## The homepage entry point
+
+The row below the two-column split, previously **Community Information**, is now
+**Community Notices** and links to the destination. The rename carries meaning:
+the row above it (Community *Resources*) is services a resident can **use**; this
+is what organizations are **telling** the neighborhood. Two different questions,
+and the labels now say so.
+
+### The rename turned working code into wrong code
+
+Found by looking at the rendered page, not by any test. `getCarouselCards()` had
+never been sector-scoped, so on live data the row showed:
+
+| | | |
+| --- | --- | --- |
+| FL-005 | Disability Services & Benefits Info Fair | **government** |
+| FL-007 | Free Furniture Giveaway | **government** |
+| FL-004 | Back-to-School Supply Drive Fundraiser | community |
+
+Two thirds of a row labeled *Community Notices*, linking to a destination that
+correctly excludes both. A resident who saw the furniture giveaway and clicked
+"See all community notices" would not have found it.
+
+That was not wrong before this slice — under the vaguer heading "Community
+Information" it was merely imprecise. **A rename can convert correct code into
+incorrect code without touching it, because the label is part of the contract.**
+
+Fixed by scoping `getCarouselCards()` to `Sector.COMMUNITY`, which is where the
+row's other three content rules already lived. FlyerService gained a
+ContentSourceService dependency and nine test files gained a constructor
+argument — the honest price of keeping one rule in one place. Nothing is lost:
+both government flyers already appear in Latest Updates, verified on live data
+before the filter was added.
+
+## Governance: a testing rule, written down because it cost real time
+
+> **Negative tests must verify the intended failure path, not merely assert that
+> invalid input produces some failure.** When validation rules overlap, isolate
+> the rule under test or assert its specific diagnostic.
+
+Added to `CLAUDE.md`. Slice I is the case study: a validator rule shipped **dead**
+and its own negative test passed anyway, because an earlier rule caught the input
+first and the exit code was non-zero as expected. The test asserted failure, not
+the failure it was written for.
+
+Applied here: the three new validator rules are each negative-tested against
+**their own message**, and the controller's 404 test asserts
+`"Unknown notices view: newsletters"` rather than merely a non-200.
+
+## Known data-model gap, recorded rather than papered over
+
+**News items carry no `event_date`.** An event-tagged news item therefore sorts by
+its *publish* date in the Events view. Today that affects one record (NP-003) and
+the ordering is not visibly wrong, but the field genuinely means something
+different from the one beside it. Noted as debt; the fix is a real date model on
+news, not a cast in the sort.
+
+## Verification
+
+309 backend · 73 frontend · `tsc` clean · 5 validators exit 0 ·
+all five routes loaded **directly** · lens overlap and sector scoping asserted on
+live data · `index.css` ratchet unchanged at 50.

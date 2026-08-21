@@ -3,7 +3,8 @@
     "schema_version": "1.0",
     "description": "Manually authored news and policy updates for the Wilmington Civic Briefing app.",
     "coverage": "Wilmington, DE and statewide Delaware policy affecting Wilmington residents",
-    "author_note": "All records in this file are manually written. Set active: false to suppress without deleting."
+    "author_note": "All records in this file are manually written. Set active: false to suppress without deleting.",
+    "total_records": 10
   },
   "records": [
     {
@@ -78,7 +79,8 @@
         "EBT",
         "farmers-market",
         "fresh-produce",
-        "Double-Up-Food-Bucks"
+        "Double-Up-Food-Bucks",
+        "event"
       ],
       "urgency": "standard",
       "author": "manual",
@@ -136,7 +138,8 @@
         "foster-care",
         "LGBTQ",
         "housing",
-        "age-expansion"
+        "age-expansion",
+        "announcement"
       ],
       "urgency": "standard",
       "author": "manual",
@@ -190,7 +193,8 @@
         "meals",
         "ministry-of-caring",
         "no-cost",
-        "no-ID-required"
+        "no-ID-required",
+        "announcement"
       ],
       "urgency": "standard",
       "author": "manual",
@@ -224,6 +228,55 @@
       "verified": true,
       "active": true,
       "source_id": "de-dhss"
+    },
+    {
+      "id": "NP-009",
+      "type": "general-news",
+      "headline": "West End Neighborhood House holds community input session on Life Lines expansion",
+      "summary": "An open session on September 4 to gather resident input on extending the Life Lines youth housing programme.",
+      "body": "West End Neighborhood House will hold an open community input session on Thursday, September 4 at 6:00pm at 710 N. Lincoln Street, Wilmington.\n\nStaff will present the proposed expansion of the Life Lines youth housing programme and take questions and comments from residents. Young people who have used the programme, families, and neighbours are all encouraged to attend.\n\nThe session is free and open to the public. Light refreshments will be served. Spanish interpretation is available on request with 48 hours' notice.",
+      "why_it_matters": "Residents who use or live near youth housing services can shape how the programme grows before decisions are final.",
+      "published": "2026-08-18",
+      "expires": "2026-09-10",
+      "geography": "wilmington",
+      "source_id": "west-end-neighborhood-house",
+      "source_url": "https://www.westendnh.org",
+      "category_tags": [
+        "Housing"
+      ],
+      "resource_tags": [
+        "youth",
+        "housing",
+        "meeting"
+      ],
+      "urgency": "standard",
+      "author": "manual",
+      "verified": true,
+      "active": true
+    },
+    {
+      "id": "NP-010",
+      "type": "general-news",
+      "headline": "United Way of Delaware opens monthly volunteer coordination meeting to the public",
+      "summary": "Monthly coordination meetings for volunteers and partner organizations are now open to any resident who wants to attend.",
+      "body": "United Way of Delaware has opened its monthly volunteer coordination meeting to the general public, beginning Tuesday, September 9 at 5:30pm.\n\nThe meeting brings together partner organizations, food banks, shelters and neighbourhood cleanup crews to coordinate the month's volunteer needs. Residents who want to volunteer but are not sure where to start are welcome to attend and be matched on the spot.\n\nMeetings are held on the second Tuesday of each month at 625 N. Orange Street, Wilmington. No registration is required.",
+      "why_it_matters": "It gives residents a direct, low-commitment route into volunteering without needing to know which organization to approach first.",
+      "published": "2026-08-20",
+      "expires": "2026-09-15",
+      "geography": "wilmington",
+      "source_id": "united-way-delaware",
+      "source_url": "https://www.uwde.org",
+      "category_tags": [
+        "Community Support"
+      ],
+      "resource_tags": [
+        "volunteering",
+        "meeting"
+      ],
+      "urgency": "standard",
+      "author": "manual",
+      "verified": true,
+      "active": true
     }
   ]
 }

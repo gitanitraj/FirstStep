@@ -35,21 +35,22 @@ describe('CommunityInformation', () => {
     );
   });
 
-  it('should offer one route into the Community page', () => {
+  it('should offer one route into the Community Notices destination', () => {
     // The section is flyers and a way in. The three pathway cards it used to
-    // carry (Events / Meetings / Announcements) restated this single link.
+    // carry (Events / Meetings / Announcements) restated this single link — and
+    // those views now live on the destination, where they belong.
     renderWith([flyer(1)]);
 
     const links = screen.getAllByRole('link');
 
     expect(links).toHaveLength(1);
-    expect(links[0]).toHaveAttribute('href', '/community');
+    expect(links[0]).toHaveAttribute('href', '/community-notices');
   });
 
   it('should render the heading and intro even with no flyers', () => {
     renderWith(null);
 
-    expect(screen.getByRole('heading', { name: 'Community Information' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Community Notices' })).toBeInTheDocument();
     expect(screen.queryAllByRole('listitem')).toHaveLength(0);
   });
 });

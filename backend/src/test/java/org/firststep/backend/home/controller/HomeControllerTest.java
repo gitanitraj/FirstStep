@@ -16,6 +16,7 @@ import org.firststep.backend.legislation.service.LegislationService;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -47,6 +48,9 @@ class HomeControllerTest {
             flyer.organization = "Westside Family Healthcare";
             flyer.image = "Health Fair.jpg";
             flyer.eventDate = "2026-08-05";
+            // The homepage row is the Community Notices preview, so the fixture
+            // needs a COMMUNITY producer — an unattributed flyer is in no sector.
+            flyer.contentSource = contentSource("westside-family-healthcare", "Westside Family Healthcare");
             FlyerRepository flyerRepo = new FlyerRepository() {
                 @Override
                 public List<Flyer> findAll() {
@@ -91,7 +95,7 @@ class HomeControllerTest {
                 }
             };
 
-            FlyerService flyerService = new FlyerService(flyerRepo);
+            FlyerService flyerService = new FlyerService(flyerRepo, new ContentSourceService("../app/data"));
             FaqService faqService = new FaqService(faqRepo);
 
             TaxonomyService taxonomyService = new TaxonomyService("../app/data");

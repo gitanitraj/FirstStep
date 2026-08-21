@@ -39,6 +39,15 @@ from pathlib import Path
 # ─────────────────────────────────────────
 
 INPUT_FILE = Path("app/data/content-sources.json")
+TAXONOMY_FILE = Path("app/data/taxonomy.json")
+
+# Files whose COMMUNITY-sector records must declare a notice kind. Expert answers
+# are community-produced too but are Q&A, not notices — they are not browsed
+# through Events/Meetings/Announcements, so they are deliberately absent here.
+NOTICE_FILES = [
+    (Path("app/data/flyers.json"), "contentSource", "tags"),
+    (Path("app/data/news.json"), "source_id", "resource_tags"),
+]
 
 # Every file whose records reference a producer. `key` is the field that holds
 # the reference — news.json keeps its own raw vocabulary (source_id), the rest
@@ -58,6 +67,14 @@ CONTENT_FILES = [
 def load_registry():
     data = json.loads(INPUT_FILE.read_text(encoding="utf-8"))
     return data, data.get("sources") or [], data.get("sectors") or []
+
+
+def load_notice_kinds():
+    """The controlled kind vocabulary, from the artifact that already owns
+    controlled vocabulary. Not a new file — that would have meant a new loader
+    and a new validator for three strings."""
+    data = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))
+    return [k.lower() for k in (data.get("noticeKinds") or [])]
 
 
 def _records(path):
@@ -170,6 +187,65 @@ def validate_references(known_ids):
     return errors, counts
 
 
+def validate_notice_kinds(kinds, community_ids):
+    """Every COMMUNITY-sector notice declares EXACTLY ONE kind.
+
+    Three rules, each with its OWN diagnostic, because a negative test that only
+    checks for "some failure" proves nothing about which rule caught it — a dead
+    rule shipped that way in Slice I. Rule C in particular is masked by rule A
+    unless the record under test also carries a valid kind.
+    """
+    errors = []
+    counted = 0
+
+    for path, source_key, tag_field in NOTICE_FILES:
+        for record in _records(path):
+            if source_key == "contentSource":
+                source_id = (record.get("contentSource") or {}).get("id")
+            else:
+                source_id = record.get(source_key)
+            if source_id not in community_ids:
+                continue                      # government content has its own destination
+            counted += 1
+
+            rid = record.get("id", "?")
+            tags = [t.lower() for t in (record.get(tag_field) or [])]
+            found = [t for t in tags if t in kinds]
+
+            # RULE A — no kind at all.
+            if not found:
+                errors.append(
+                    f"{path.name}: '{rid}' is a community notice with NO kind. "
+                    f"Add exactly one of {kinds} to {tag_field} — without it the "
+                    f"item reaches no Community Notices view."
+                )
+
+            # RULE B — more than one. Guessing a winner would hide the ambiguity.
+            elif len(set(found)) > 1:
+                errors.append(
+                    f"{path.name}: '{rid}' declares {len(set(found))} kinds "
+                    f"{sorted(set(found))}. A notice is one kind; the views are "
+                    f"lenses, but the kind itself is singular."
+                )
+
+            # RULE C — a NEAR MISS: plural or variant spelling of a real kind.
+            # Fires independently of A and B, so a record can be well-formed and
+            # still be caught carrying "meetings" alongside "meeting".
+            for tag in tags:
+                if tag in kinds:
+                    continue
+                for kind in kinds:
+                    if tag in (kind + "s", kind + "es") or tag.rstrip("s") == kind:
+                        errors.append(
+                            f"{path.name}: '{rid}' has tag '{tag}', which looks like "
+                            f"the kind '{kind}' but is not it. Controlled vocabulary "
+                            f"is exact — '{tag}' silently reaches no view."
+                        )
+                        break
+
+    return errors, counted
+
+
 # ─────────────────────────────────────────
 # Report printer
 # ─────────────────────────────────────────
@@ -241,6 +317,11 @@ def main():
 
     reg_errors, reg_warnings = validate_registry(sources, sectors)
     ref_errors, counts = validate_references(known_ids)
+
+    community_ids = {s["id"] for s in sources if s.get("sector") == "community"}
+    kind_errors, notice_count = validate_notice_kinds(load_notice_kinds(), community_ids)
+    ref_errors = ref_errors + kind_errors
+    counts["community notices"] = notice_count
 
     used = set()
     for path, key in CONTENT_FILES:

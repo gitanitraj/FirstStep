@@ -1,6 +1,6 @@
 /* =============================================================================
  * ANNOTATED REFERENCE — backend/.../shared/dto/ContentItem.java
- * Slice F6. See references/decisions.md Decision 040.
+ * Slice F6 (Decision 040); `imageUrl` added in Slice J (Decision 046).
  * =============================================================================
  *
  * WHAT IT IS: one piece of CivicContent normalized for display as a card.
@@ -12,6 +12,33 @@
  * WHAT IT DELIBERATELY LACKS: a legacy `type` string. This record was defined
  * AFTER Decision 036's exit criterion, so `contentType` is the only
  * discriminator and there is nothing here for Slice H to remove.
+ *
+ * SLICE J — WHY ADDING `imageUrl` DID NOT REOPEN PER-TYPE SPECIAL-CASING
+ * ---------------------------------------------------------------------
+ * The Community Notices flyer gallery needs a poster URL, and only flyers have
+ * one. That LOOKS like the beginning of a type-specific field creep, so it is
+ * worth being precise about why it is not.
+ *
+ * Every field after `summary` is already optional and populated by whichever
+ * types have it — `cost` is resources, `urgency` is news, `date` means "event
+ * date" for flyers and "publish date" for news. A card reads the SAME fields for
+ * every type and omits what is null; no consumer branches on contentType to
+ * decide which fields exist. `imageUrl` follows that established rule rather
+ * than introducing a new one.
+ *
+ * The line that would have crossed it: a `FlyerContentItem` subtype, or a
+ * consumer writing `if (contentType == FLYER) { … }` to decide whether to look.
+ * NoticeGallery instead asks `item.imageUrl ? … : fallback` — a null check, not
+ * a type check.
+ *
+ * The value is resolved and URL-encoded by FlyerService.imageUrlFor, which stays
+ * the single owner of the encoding rule (Decision 025).
+ *
+ * COST OF THE CHANGE, RECORDED: this is a record, so adding a component broke
+ * every call site at compile time — TopicPageService (x2), HomeService, and the
+ * test fixtures. That is the constructor-arity tax on records, and it is the
+ * GOOD failure mode: the compiler enumerated every place that had to decide what
+ * the new field means, and none could be forgotten.
  * ============================================================================= */
 
 package org.firststep.backend.shared.dto;
@@ -53,24 +80,20 @@ public record ContentItem(
         /** Flyer event date, news publish date. Resources have no editorial date. */
         String date,
         /** Somewhere to go next — the provider's own site, never First Step's. */
-        String url
+        String url,
+        /**
+         * Resolved, URL-encoded image path — flyers only, null everywhere else.
+         *
+         * <p>Follows the same rule as {@code cost} and {@code urgency}: fields
+         * after {@code summary} are optional and populated by whichever types
+         * have them. It does not reintroduce per-type special-casing, because a
+         * card reads the same fields for every type and omits what is null.
+         *
+         * <p>Added in Slice J for the Community Notices flyer gallery, where the
+         * IMAGE IS THE CONTENT — a list of flyer titles throws away the thing
+         * worth browsing. Resolved by {@code FlyerService.imageUrlFor}, which
+         * stays the single owner of the encoding rule.
+         */
+        String imageUrl
 ) {
 }
-
-// =============================================================================
-// OPTIONAL FIELDS ARE NOT PER-TYPE SPECIAL-CASING
-// =============================================================================
-// cost and urgency are resource-only; date is flyer/news-only. That looks like
-// the special-casing the CivicContent contract abolishes, and it is not:
-//
-//   The CONTRACT is about the DOMAIN — every content type must answer the same
-//   six questions with the same fields, so no consumer has to ask what kind of
-//   object it holds before it can classify or place it.
-//
-//   This is a DISPLAY PROJECTION. The card reads the same fields for every type
-//   and omits whatever is null. There is no `if (contentType === …)` anywhere in
-//   ContentCard, which is the property that actually matters.
-//
-// UpdateItem already behaves this way (urgency null for flyers, url null for
-// flyers), so the precedent is established rather than newly invented.
-// =============================================================================

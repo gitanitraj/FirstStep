@@ -108,7 +108,7 @@ class UpdatesServiceTest {
         };
         // The real taxonomy: category scoping IS the taxonomy's matchCategoryTags
         // rule, so a fixture would prove only that the filter loop runs.
-        return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo),
+        return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo, new ContentSourceService("../app/data")),
                 new ExpertAnswerService(expertRepo), new FaqService(faqRepo),
                 new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
     }

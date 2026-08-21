@@ -31,14 +31,25 @@ import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.shared.model.ContentSource;
 import org.springframework.stereotype.Service;
 
+/**
+ * Assembles the single homepage payload by composing the existing aggregators
+ * plus static hero config. No data logic is duplicated here — it only stitches
+ * the pieces the homepage needs together.
+ *
+ * <p><b>Slice H reshaped what "the pieces" are.</b> The homepage is now a front
+ * door: a small number of progressively deeper choices, with the complexity
+ * behind it on destination pages. So this service composes SIX sections instead
+ * of the old five, and dropped organizations entirely — see {@link HomePayload}.
+ */
 @Service
 public class HomeService {
 
     /** ContentSource.id marking content First Step produced itself. */
     private static final String FIRST_STEP = "first-step";
 
-    // Static hero config, backend-owned so the AI form's chips and prompts can
-    // change without a frontend deploy.
+    // Static hero config. Kept server-side so the homepage's AI form (chips,
+    // prompts, placeholder) is backend-owned; the chip `value`s match what
+    // the AI search sends to POST /api/decide.
     private static final AiConfig AI_CONFIG = new AiConfig(
             "E.g., I need rental help near Wilmington for seniors",
             List.of(
@@ -73,8 +84,23 @@ public class HomeService {
                 flyerService.getCarouselCards());
     }
 
-    // See SECTION 2. The filter lives here, privately, because it has exactly
-    // one source today.
+    /**
+     * First Step Originals — CivicContent First Step produced itself, identified
+     * by {@code contentSource.id}, never by a new ContentType or domain class
+     * (Decision 041). "Originals" describes WHO MADE the content, and
+     * ContentSource is the field that already answers that question.
+     *
+     * <p>Today that is curated FAQs and nothing else, which is why the filter
+     * lives here as a private method rather than in an OriginalsService: it has
+     * exactly one source, and this codebase introduces the service at the SECOND
+     * one (the F4 → F5a rule). When briefings or data stories arrive, this method
+     * is what becomes that service.
+     *
+     * <p>Note what this does NOT do: it does not treat every EXPERT item as an
+     * original. Expert answers carry {@code contentSource.name = "Delaware
+     * Volunteer Legal Services"} — same contentType, different producer. That
+     * distinction is the entire argument for using ContentSource here.
+     */
     private List<ContentItem> originals() {
         List<ContentItem> items = new ArrayList<>();
         for (FAQ faq : faqService.getAll()) {
@@ -90,7 +116,10 @@ public class HomeService {
                     source.name,
                     null, null, null,
                     faq.updatedDate,
-                    null));
+                    // No url: this is First Step's own content, so there is no
+                    // originating organization to send the resident to.
+                    null,
+                    null));   // FAQs carry no image
         }
         return List.copyOf(items);
     }
@@ -212,4 +241,34 @@ public class HomeService {
 //        -> LegislationService.getRecentSignedBills() (the retained RSS scroll)
 //        -> FlyerService.getCarouselCards()           (flyer images; the client shows 3)
 //     -> ApiResponse.success(HomePayload)
+// =============================================================================
+
+// =============================================================================
+// SECTION 5 — SLICE J: THE FLYER ROW GOT A DESTINATION (Decision 046)
+// =============================================================================
+// getHome() is UNCHANGED in shape. The flyer carousel cards it already returned
+// now feed a section labeled "Community Notices" that links to
+// /community-notices instead of /community.
+//
+// That the backend needed no change is the point worth recording. The homepage
+// row was already a preview of community-produced flyers; what Slice J supplied
+// was a destination worth linking to. Renaming a section and re-pointing a link
+// are presentation decisions, and they stayed entirely in the frontend — no new
+// field, no new endpoint, no aggregate reshaped.
+//
+// Contrast with what WOULD have reached this class: if the homepage row had been
+// asked to group flyers by notice kind, HomeService would have had to read the
+// kind vocabulary and build four collections. It was never asked to, because the
+// grouping belongs to the destination. See CommunityInformation_annotated.tsx
+// Section 1 for the full history of that gap.
+//
+// The one mechanical touch: ContentItem gained `imageUrl`, so this class's
+// ContentItem construction passes null for it — homepage cards here carry no
+// poster. Same compile-time enumeration described in TopicPageService's mirror.
+//
+// WHAT THE RENAME DID CHANGE, one layer down: getCarouselCards() is now scoped
+// to the community sector, because the row's new label made its absence a bug —
+// see FlyerService_annotated.java's closing section. This class still just calls
+// the method; the rule stayed with the method that already owned three quarters
+// of it, rather than being re-implemented here as a post-filter.
 // =============================================================================

@@ -1,18 +1,27 @@
 /* =============================================================================
  * ANNOTATED REFERENCE — frontend/src/components/CommunityInformation/
  *   CommunityInformation.tsx + CommunityInformation.module.css
- * Slice E originally (Decision 025); REWRITTEN in Slice H (Decision 042).
+ * Slice E originally (Decision 025); REWRITTEN in Slice H (Decision 042);
+ * RENAMED and re-pointed in Slice J (Decision 046).
  * Keep this mirror in sync whenever the production file changes.
  * =============================================================================
  *
  * WHAT THIS COMPONENT IS
- *   Information originating from the community: a heading, one link out, and
- *   three flyer images. That is the whole section.
+ *   The homepage's preview of community-produced information: a heading, one
+ *   link out, and three flyer images. That is the whole section.
+ *
+ * NOTE ON THE FILE NAME
+ *   The component is still called CommunityInformation; the SECTION is called
+ *   Community Notices. The file was left alone deliberately — renaming it would
+ *   have churned imports, the CSS Module, the test file and the mirror in a diff
+ *   whose actual content is three strings. Recorded here so the mismatch reads
+ *   as a decision rather than an oversight; it is cheap debt to pay off in
+ *   whichever slice next has reason to open this file.
  *
  * WHY IT IS THE MOST INTERESTING SECTION IN THE SLICE
  *   It is where a documented data-model gap turned out not to be a problem at
  *   all — twice over, and the second time by deleting the thing that solved it
- *   the first time. See Section 1.
+ *   the first time. Then Slice J answered it properly. See Section 1.
  * ============================================================================= */
 
 import { Link } from 'react-router-dom';
@@ -27,6 +36,32 @@ interface Props {
 /** How many flyer images the homepage shows. The rest live on the Community page. */
 const FLYER_LIMIT = 3;
 
+/**
+ * Community Notices — the homepage's preview of community-produced information.
+ *
+ * RENAMED from "Community Information" in Slice J, and the rename carries
+ * meaning: **community-produced information is not the same thing as community
+ * resources.** The row above this one (Community Resources) is services a
+ * resident can USE; this is what organisations are TELLING the neighbourhood.
+ * Two different questions, and the labels now say so.
+ *
+ * It links to /community-notices, where Events · Meetings · Announcements ·
+ * Flyers are four discovery views over the same content.
+ *
+ * **Flyers, and nothing else here.** An earlier draft also carried three pathway
+ * cards (Upcoming Events · Meeting Notices · Announcements) above the images.
+ * They were removed: the flyers ARE the community's own voice, they carry their
+ * own images and dates, and three text links above them restated what the "See
+ * all" link already offered. The section says more by showing less.
+ *
+ * That removal did not resurrect the data-model question those cards sidestepped.
+ * Slice J has since ANSWERED it: a controlled kind vocabulary (event · meeting ·
+ * announcement) in `tags`, and the four views live on the destination page where
+ * they always belonged. This row still groups nothing — it previews, and links.
+ *
+ * `imageUrl` is already resolved and URL-encoded server-side, so this component
+ * only displays.
+ */
 export default function CommunityInformation({ flyers }: Props) {
   const { t } = useI18n();
   const preview = flyers?.slice(0, FLYER_LIMIT) ?? [];
@@ -34,10 +69,14 @@ export default function CommunityInformation({ flyers }: Props) {
   return (
     <section className={styles.section} aria-labelledby="community-title">
       <div className={styles.head}>
-        <h2 id="community-title" className={styles.title}>{t('section.community')}</h2>
-        <Link className={styles.more} to="/community">{t('community.viewAll')}</Link>
+        <h2 id="community-title" className={styles.title}>
+          {t('notices.title')}
+        </h2>
+        <Link className={styles.more} to="/community-notices">
+          {t('notices.homeViewAll')}
+        </Link>
       </div>
-      <p className={styles.intro}>{t('community.intro')}</p>
+      <p className={styles.intro}>{t('notices.homeIntro')}</p>
 
       {preview.length > 0 && (
         <ul className={styles.flyers}>
@@ -46,7 +85,11 @@ export default function CommunityInformation({ flyers }: Props) {
               <img className={styles.flyerImage} src={flyer.imageUrl} alt={flyer.title} loading="lazy" />
               <div className={styles.flyerBody}>
                 <p className={styles.flyerTitle}>{flyer.title}</p>
-                <p className={styles.flyerMeta}>…organization · eventDate…</p>
+                <p className={styles.flyerMeta}>
+                  {flyer.organization && <span>{flyer.organization}</span>}
+                  {flyer.organization && flyer.eventDate && <span> · </span>}
+                  {flyer.eventDate && <span>{flyer.eventDate}</span>}
+                </p>
               </div>
             </li>
           ))}
@@ -57,7 +100,7 @@ export default function CommunityInformation({ flyers }: Props) {
 }
 
 // =============================================================================
-// SECTION 1 — THE GAP THAT DISSOLVED
+// SECTION 1 — THE GAP THAT DISSOLVED, AND WAS LATER ANSWERED
 // =============================================================================
 // The Front Door scoping pass (Decision 041) recorded gap 4:
 //
@@ -73,9 +116,9 @@ export default function CommunityInformation({ flyers }: Props) {
 //
 // THE HOMEPAGE DOES NOT NEED TO GROUP ANYTHING. It needs to offer a way in.
 //
-// Slice H answered that with three LINKS to /community — Events, Meetings,
-// Announcements — rather than three filtered lists. The grouping question moved
-// to the destination page, and no flyer metadata was needed.
+// Slice H answered that with three LINKS — Events, Meetings, Announcements —
+// rather than three filtered lists. The grouping question moved to the
+// destination page, and no flyer metadata was needed.
 //
 // THEN THE THREE LINKS WENT TOO (043). Seeing them rendered, they were three
 // text links stacked above a "See all community information" link that already
@@ -93,8 +136,19 @@ export default function CommunityInformation({ flyers }: Props) {
 // a destination's job.** Before adding a field to satisfy a screen, check whether
 // the screen should have been asking.
 //
-// A test now pins the END state instead: the section exposes exactly ONE link,
-// and it goes to /community. If a future change starts filtering here, or adds
+// SLICE J CLOSED IT AT THE DESTINATION (046). The gap was real — it was just
+// never the homepage's. Measured against actual data, two of the four views were
+// not derivable from any existing field ("meeting" appeared in 0 of 21 records)
+// and a third would have duplicated Flyers. The answer was a controlled kind
+// vocabulary in `tags`, declared in taxonomy.json and consumed by
+// CommunityNoticesService — editorial metadata the producer already knows, not a
+// frontend-invented classification.
+//
+// Note where that vocabulary is NOT read: here. This component still groups
+// nothing. The homepage was right to stay out of it, start to finish.
+//
+// A test pins the end state: the section exposes exactly ONE link, and it now
+// goes to /community-notices. If a future change starts filtering here, or adds
 // a fourth route to the same page, that count is where it surfaces.
 //
 // =============================================================================
@@ -140,4 +194,26 @@ export default function CommunityInformation({ flyers }: Props) {
 // because this slice was rewriting it anyway. That is the standing rule working
 // as designed — components migrate when a slice touches them, never in a
 // churn-only diff. Its old rules left index.css as part of the same change.
+// =============================================================================
+
+// =============================================================================
+// SECTION 5 — THE RENAME CARRIES MEANING (Slice J)
+// =============================================================================
+// "Community Information" became "Community Notices", and the link moved from
+// /community to /community-notices.
+//
+// The rename is not cosmetic. The row directly above this one is Community
+// RESOURCES — services a resident can USE. This row is what organizations are
+// TELLING the neighborhood. Two genuinely different questions that had been
+// sitting under two labels a resident could not tell apart, one of which
+// ("Information") could plausibly have meant either.
+//
+// The link change is the other half: before Slice J, /community-notices existed
+// as a URL with NO entry point anywhere in the product — reachable only by
+// typing it. A destination nothing links to is not a destination. Slice I's own
+// closing note flagged this as the first thing to fix, and this is the fix.
+//
+// Copy lives in the shared `notices.*` i18n namespace rather than a homepage-
+// specific one, so the section heading and the destination's <h1> are the same
+// string in both languages and cannot drift apart.
 // =============================================================================

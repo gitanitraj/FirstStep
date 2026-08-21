@@ -124,7 +124,8 @@ public class TopicPageService {
                 r.cost,
                 r.urgency,
                 null,                       // no editorial date — see the sort comment
-                firstWebsite(r.websites));
+                firstWebsite(r.websites),
+                null);                      // resources carry no image
     }
 
     private static ContentItem toContentItem(Flyer f) {
@@ -134,7 +135,11 @@ public class TopicPageService {
                 f.organization,
                 null, null, null,
                 f.eventDate,
-                cs != null ? cs.url : null);
+                cs != null ? cs.url : null,
+                // Browse cards stay text — the flyer GALLERY is where the image
+                // is the content (Slice J). Passing it here would change every
+                // topic page's shape for one view's benefit.
+                null);
     }
 
     /**

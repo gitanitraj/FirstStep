@@ -46,15 +46,60 @@ public class TaxonomyService {
 
     /** Wrapper matching taxonomy.json's top level; version/note/source are metadata. */
     @JsonIgnoreProperties(ignoreUnknown = true)
-    private record Taxonomy(List<CategoryDefinition> categories) {
+    private record Taxonomy(List<CategoryDefinition> categories, List<String> noticeKinds) {
     }
 
     private final List<CategoryDefinition> categories;
+    private final List<String> noticeKinds;
 
     public TaxonomyService(@Value("${app.data.dir:app/data}") String dataDir) {
-        this.categories = load(dataDir);
+        Taxonomy taxonomy = load(dataDir);
+        this.categories = taxonomy.categories();
+        this.noticeKinds = taxonomy.noticeKinds() == null ? List.of() : List.copyOf(taxonomy.noticeKinds());
         System.out.println("Loaded taxonomy (" + categories.size() + " categories, "
-                + allSubcategories().size() + " distinct subcategories)");
+                + allSubcategories().size() + " distinct subcategories, "
+                + noticeKinds.size() + " notice kinds)");
+    }
+
+    /**
+     * The controlled vocabulary for WHAT KIND of community notice an item is —
+     * {@code event}, {@code meeting}, {@code announcement}. Carried in a record's
+     * existing {@code tags}, so this adds no field and no ContentType.
+     *
+     * <p><b>Three kinds, not four.</b> "Flyers" is not a kind — it is
+     * {@code contentType}, an axis that already exists. A flyer advertising a
+     * health fair carries kind {@code event} and appears in BOTH views, because
+     * they are lenses over the same content rather than exclusive buckets.
+     *
+     * <p>It lives in taxonomy.json rather than a new file because that artifact
+     * already declares itself the single source of truth for controlled
+     * vocabulary — a seventh data file would have brought a seventh loader and a
+     * seventh validator with it.
+     */
+    public List<String> getNoticeKinds() {
+        return noticeKinds;
+    }
+
+    /** True if {@code tag} is a declared notice kind. Case-insensitive, like category matching. */
+    public boolean isNoticeKind(String tag) {
+        return tag != null && noticeKinds.stream().anyMatch(k -> k.equalsIgnoreCase(tag));
+    }
+
+    /**
+     * The single notice kind carried by these tags, or empty.
+     *
+     * <p>Empty when there is none AND when there is more than one: two kinds is an
+     * authoring error the validator blocks, and guessing which one wins would hide
+     * it. The same never-guess rule ContentSourceService applies to an unknown
+     * producer (Decision 045).
+     */
+    public Optional<String> noticeKindOf(List<String> tags) {
+        if (tags == null) {
+            return Optional.empty();
+        }
+        List<String> found = tags.stream().filter(this::isNoticeKind)
+                .map(t -> t.toLowerCase(Locale.ROOT)).distinct().toList();
+        return found.size() == 1 ? Optional.of(found.get(0)) : Optional.empty();
     }
 
     /** All categories, in the file's authored order — that order is the display order. */
@@ -117,19 +162,19 @@ public class TaxonomyService {
                 .findFirst());
     }
 
-    private static List<CategoryDefinition> load(String dataDir) {
+    private static Taxonomy load(String dataDir) {
         ObjectMapper mapper = new ObjectMapper();
         Path external = Path.of(dataDir, "taxonomy.json");
         try {
             if (Files.exists(external)) {
-                return mapper.readValue(external.toFile(), Taxonomy.class).categories();
+                return mapper.readValue(external.toFile(), Taxonomy.class);
             }
             try (InputStream in = TaxonomyService.class.getResourceAsStream("/taxonomy.json")) {
                 if (in == null) {
                     throw new IllegalStateException(
                             "taxonomy.json not found at " + external.toAbsolutePath() + " or on the classpath");
                 }
-                return mapper.readValue(in, Taxonomy.class).categories();
+                return mapper.readValue(in, Taxonomy.class);
             }
         } catch (IllegalStateException e) {
             throw e;

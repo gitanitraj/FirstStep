@@ -14,6 +14,7 @@ import org.firststep.backend.resource.repository.ResourceRepository;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.search.service.SearchService;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -87,7 +88,7 @@ class SearchControllerTest {
 
         @Bean
         FlyerService flyerService(FlyerRepository flyerRepository) {
-            return new FlyerService(flyerRepository);
+            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"));
         }
 
         @Bean

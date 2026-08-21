@@ -101,7 +101,8 @@ public class HomeService {
                     faq.updatedDate,
                     // No url: this is First Step's own content, so there is no
                     // originating organization to send the resident to.
-                    null));
+                    null,
+                    null));   // FAQs carry no image
         }
         return List.copyOf(items);
     }

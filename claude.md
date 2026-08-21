@@ -105,6 +105,10 @@ Test Public Behavior: Verify what a class does through its public API rather tha
 Positive Scenarios: Verify correct behavior when valid inputs are provided.
 Negative Scenarios: Verify that invalid inputs are handled correctly and expected exceptions are thrown.
 
+**Negative tests must verify the intended failure path, not merely assert that invalid input produces some failure.** A green negative test only tells you that *something* rejected the input — not that the rule you were testing is the thing that rejected it. When validation rules overlap, isolate the rule under test or assert its specific diagnostic (the exact message, the exact exception type, the exact status code).
+
+This is not hypothetical. A validator rule shipped dead in Slice I and its own negative test passed anyway: an earlier rule caught the bad input first, the exit code was non-zero as expected, and the rule under test never ran. The test asserted failure, not the failure it was written for.
+
 Boundary Conditions: Test edge cases such as empty collections, zero values, maximum values, and null references when applicable.
 
 Object Relationships: Verify associations between objects, collection management, inheritance behavior, and composition relationships.

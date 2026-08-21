@@ -29,6 +29,7 @@ import org.firststep.backend.resource.repository.ResourceRepository;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
 import org.firststep.backend.updates.dto.UpdateItem;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
@@ -121,7 +122,7 @@ class CategoryControllerTest {
 
         @Bean
         FlyerService flyerService(FlyerRepository flyerRepository) {
-            return new FlyerService(flyerRepository);
+            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"));
         }
 
         @Bean
@@ -209,7 +210,7 @@ class CategoryControllerTest {
                         1, Map.of(ContentType.RESOURCE, 1)),
                 List.of(new ContentItem(ContentType.RESOURCE, "R1", "Ministry of Caring Shelter",
                         "Overnight beds.", "Ministry of Caring", "Wilmington", "free", "emergency",
-                        null, "https://example.org")));
+                        null, "https://example.org", null)));
     }
 
     @Test

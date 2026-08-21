@@ -42,12 +42,23 @@ import org.firststep.backend.shared.model.Location;
 import org.firststep.backend.shared.model.Website;
 import org.springframework.stereotype.Service;
 
+/**
+ * The topic page's BFF (Slice F6) — the fourth level of the navigation
+ * hierarchy, where CivicContent is finally listed.
+ *
+ * <p>Like every other read path here it reads <b>editorial classification
+ * only</b>: an item appears under a topic when its {@code categoryTags} match the
+ * category AND its {@code subcategory} equals the topic. No text matching, no
+ * tags, no inference. Classification is an ingestion concern.
+ *
+ * <p><b>Why it composes ResourceService and FlyerService directly</b> rather than
+ * going through NavigationService or UpdatesService: those answer "how many?" and
+ * "what changed?". This one needs the items themselves, and only the two types
+ * that carry a subcategory can ever appear.
+ */
 @Service
 public class TopicPageService {
 
-    // Only three collaborators, and no NavigationService. This service needs the
-    // ITEMS; NavigationService answers "how many?" and UpdatesService answers
-    // "what changed?". Different questions, so no reuse to force.
     private final TaxonomyService taxonomyService;
     private final ResourceService resourceService;
     private final FlyerService flyerService;
@@ -59,12 +70,13 @@ public class TopicPageService {
         this.flyerService = flyerService;
     }
 
-    // BOTH lookups go through the taxonomy, and that is what makes topics
-    // category-scoped rather than global. "Eviction Prevention" is declared by
-    // Housing AND Legal; findTopicBySlug(categoryKey, slug) resolves it within
-    // ONE category, so /housing/eviction-prevention and /legal/eviction-prevention
-    // are two distinct pages and /housing/food-pantry is a 404 rather than an
-    // empty housing page.
+    /**
+     * One topic, or empty when either the category key or the topic slug is
+     * unknown. Both resolve through the taxonomy, so a topic that is not declared
+     * under that category 404s even if another category declares it — which is
+     * what makes "Eviction Prevention" two distinct pages under Housing and Legal
+     * rather than one ambiguous page.
+     */
     public Optional<TopicPage> getByKey(String categoryKey, String topicSlug, String communityId) {
         CategoryDefinition definition = taxonomyService.findByKey(categoryKey).orElse(null);
         if (definition == null) {
@@ -92,8 +104,7 @@ public class TopicPageService {
 
         // Alphabetical. A browse list wants a predictable order a resident can
         // scan, and resources have no editorial date to sort by — updatedDate is
-        // a load-date proxy and sorting by it would imply a recency the data
-        // cannot back.
+        // a load-date proxy and must not imply recency.
         items.sort(Comparator.comparing(ContentItem::title,
                 Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER)));
 
@@ -103,10 +114,6 @@ public class TopicPageService {
         return new TopicPage(metadata, List.copyOf(items));
     }
 
-    // EDITORIAL CLASSIFICATION ONLY — categoryTags for the category, subcategory
-    // for the topic. No text matching, no `tags`, no inference. Handed an
-    // unclassified item this matches nothing, exactly like NavigationService and
-    // UpdatesService. Classification is an ingestion concern.
     private boolean matches(CategoryDefinition definition, String topic, CivicContent item, String communityId) {
         if (communityId != null && !communityId.isBlank() && !communityId.equals(item.communityId)) {
             return false;
@@ -137,7 +144,8 @@ public class TopicPageService {
                 r.cost,
                 r.urgency,
                 null,                       // no editorial date — see the sort comment
-                firstWebsite(r.websites));
+                firstWebsite(r.websites),
+                null);                      // resources carry no image
     }
 
     private static ContentItem toContentItem(Flyer f) {
@@ -147,9 +155,18 @@ public class TopicPageService {
                 f.organization,
                 null, null, null,
                 f.eventDate,
-                cs != null ? cs.url : null);
+                cs != null ? cs.url : null,
+                // Browse cards stay text — the flyer GALLERY is where the image
+                // is the content (Slice J). Passing it here would change every
+                // topic page's shape for one view's benefit.
+                null);
     }
 
+    /**
+     * City only, never a street address. A browse card exists to help a resident
+     * decide whether an item is near them; the full address belongs on a detail
+     * view where the provider's own contact route is alongside it.
+     */
     private static String firstCity(List<Location> locations) {
         if (locations == null) {
             return null;
@@ -208,4 +225,22 @@ public class TopicPageService {
 // UpdateItem disappears alongside `type` in Slice H — at which point the updates
 // feeds return ContentItems sorted by date. Doing that now would mean touching
 // /api/updates and the homepage, which is outside a topic-page slice.
+// =============================================================================
+
+// =============================================================================
+// SLICE J TOUCH — A CONSTRUCTOR ARGUMENT, AND NOTHING ELSE
+// =============================================================================
+// ContentItem gained an `imageUrl` component for the Community Notices flyer
+// gallery. This class builds ContentItems from Resources and from NewsItems,
+// neither of which has an image, so both call sites pass null.
+//
+// Worth recording because the change is a good advertisement for records over
+// builders: adding a component broke every construction site at COMPILE TIME,
+// and the compiler enumerated each place that had to decide what the new field
+// means here. A builder would have let these two sites silently keep their old
+// shape and default the field, which is the same outcome by accident rather than
+// by decision.
+//
+// The answer here was "topic pages have no images", and that is now stated in
+// code rather than left implicit.
 // =============================================================================

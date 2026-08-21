@@ -202,6 +202,34 @@ export interface ContentItem {
   urgency: string | null;
   date: string | null;
   url: string | null;
+  /** Flyers only — resolved and URL-encoded server-side. Null everywhere else. */
+  imageUrl: string | null;
+}
+
+/** The five Community Notices routes. The URL is the source of truth for which is active. */
+export type NoticeView = 'OVERVIEW' | 'EVENTS' | 'MEETINGS' | 'ANNOUNCEMENTS' | 'FLYERS';
+
+export interface NoticePreview {
+  view: NoticeView;
+  count: number;
+  items: ContentItem[];
+}
+
+/**
+ * One page in five states. Mirrors notices/dto/CommunityNoticesPage.
+ *
+ * `counts` is present on EVERY response because the four navigation cards render
+ * on every route — a view returning only its own items would leave the nav
+ * numbers to fill in after the page had already drawn.
+ *
+ * `items` carries the active view and is empty on OVERVIEW; `previews` is the
+ * reverse.
+ */
+export interface CommunityNoticesPage {
+  view: NoticeView;
+  counts: Partial<Record<NoticeView, number>>;
+  items: ContentItem[];
+  previews: NoticePreview[];
 }
 
 // ===== Topic page (GET /api/category/{key}/{topic}) — mirrors category/dto =====

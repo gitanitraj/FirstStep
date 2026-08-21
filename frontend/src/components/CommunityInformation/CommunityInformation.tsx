@@ -11,17 +11,27 @@ interface Props {
 const FLYER_LIMIT = 3;
 
 /**
- * Community Information — information originating from the community.
+ * Community Notices — the homepage's preview of community-produced information.
  *
- * **Flyers, and nothing else.** An earlier draft also carried three pathway
+ * RENAMED from "Community Information" in Slice J, and the rename carries
+ * meaning: **community-produced information is not the same thing as community
+ * resources.** The row above this one (Community Resources) is services a
+ * resident can USE; this is what organisations are TELLING the neighbourhood.
+ * Two different questions, and the labels now say so.
+ *
+ * It links to /community-notices, where Events · Meetings · Announcements ·
+ * Flyers are four discovery views over the same content.
+ *
+ * **Flyers, and nothing else here.** An earlier draft also carried three pathway
  * cards (Upcoming Events · Meeting Notices · Announcements) above the images.
  * They were removed: the flyers ARE the community's own voice, they carry their
  * own images and dates, and three text links above them restated what the "See
  * all" link already offered. The section says more by showing less.
  *
- * That removal did not resurrect the data-model question those cards sidestepped
- * — nothing here groups flyers by kind, so no flyer metadata is needed. The
- * grouping question still belongs to the Community destination page.
+ * That removal did not resurrect the data-model question those cards sidestepped.
+ * Slice J has since ANSWERED it: a controlled kind vocabulary (event · meeting ·
+ * announcement) in `tags`, and the four views live on the destination page where
+ * they always belonged. This row still groups nothing — it previews, and links.
  *
  * `imageUrl` is already resolved and URL-encoded server-side, so this component
  * only displays.
@@ -34,13 +44,13 @@ export default function CommunityInformation({ flyers }: Props) {
     <section className={styles.section} aria-labelledby="community-title">
       <div className={styles.head}>
         <h2 id="community-title" className={styles.title}>
-          {t('section.community')}
+          {t('notices.title')}
         </h2>
-        <Link className={styles.more} to="/community">
-          {t('community.viewAll')}
+        <Link className={styles.more} to="/community-notices">
+          {t('notices.homeViewAll')}
         </Link>
       </div>
-      <p className={styles.intro}>{t('community.intro')}</p>
+      <p className={styles.intro}>{t('notices.homeIntro')}</p>
 
       {preview.length > 0 && (
         <ul className={styles.flyers}>
