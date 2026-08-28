@@ -1,0 +1,206 @@
+/* =============================================================================
+ * ANNOTATED REFERENCE — frontend/src/styles/typography.module.css
+ * Typography Phase 1 (Option B). See docs/frontend/css-architecture.md.
+ * =============================================================================
+ *
+ * WHAT IT IS: seven typography roles, and the one place a component asks "what
+ * kind of text is this?" instead of restating a family and a weight.
+ *
+ * THE PROBLEM IT SOLVES, stated precisely
+ * ---------------------------------------
+ * The brief was that a role system must REDUCE scattered typography decisions,
+ * not replace scattered literals with scattered COMBINATIONS of tokens. That is
+ * a real failure mode: shipping --font-display and --weight-bold and letting
+ * each component reassemble a role from them leaves exactly as many decisions as
+ * before, just spelled differently, and with no name for what was decided.
+ *
+ * So the tokens are raw material and the ROLES are the interface. A component
+ * composes `displayPage`; it does not pick a family.
+ *
+ * WHY `composes` AND NOT GLOBAL UTILITY CLASSES
+ * ---------------------------------------------
+ * A global `.display-page` would have to live in index.css, which is a
+ * QUARANTINE whose selector count may only ever decrease (the ratchet, currently
+ * 50). Seven role classes there would break it and reopen the global namespace
+ * the CSS Modules architecture closed.
+ *
+ * `composes` is the CSS Modules answer: class names stay locally scoped and
+ * hashed, while the DECLARATIONS live once. Verified in the built output —
+ * `._displayMasthead_te4ce_61{font-family:var(--font-display);...}` appears once
+ * and component classes reference it.
+ *
+ * WHY ROLES CARRY ONLY FAMILY AND WEIGHT
+ * --------------------------------------
+ * Not font-size, not line-height. Two reasons, one of them a cascade trap:
+ *
+ *   1. Phase 1 is a TYPEFACE change. The 98 existing font-size declarations stay
+ *      exactly as authored, so nothing resizes and the diff stays reviewable.
+ *
+ *   2. A composed class's rules land in a different position in the stylesheet
+ *      than the composing component's. A role that also set line-height could
+ *      silently win or lose against a component setting its own, and which one
+ *      won would depend on file order — invisible, and different per component.
+ *      Restricting roles to properties no component currently varies makes
+ *      composition predictable rather than lucky.
+ *
+ * Leading tokens exist in tokens.css for components that need one. They are
+ * applied where the new font metrics or readability require it, never swept
+ * through the site — that was an explicit constraint on this phase.
+ *
+ * THE DIVIDING LINE, AND HOW IT WAS DECIDED
+ * -----------------------------------------
+ *   MONTSERRAT  hierarchy, destination, brand
+ *   OPEN SANS   the working interface, reading, compact content hierarchy
+ *
+ * The contested role was card titles. A visual A/B — identical content, sizes
+ * and weights, only the card-title face differing — settled it for Open Sans:
+ * Montserrat is a geometric face whose wide letterforms earn their keep at
+ * 28-42px and mostly cost horizontal space at 17px, where titles wrap earlier
+ * for no gain in signal. `displayCard` was proposed and then deleted; it is not
+ * in this file.
+ *
+ * A CONSEQUENCE OF OPTION B, caught by measuring loaded faces
+ * ----------------------------------------------------------
+ * Deleting `displayCard` left every Montserrat role at weight 700, so the
+ * imported Montserrat 600 face had no consumer. It was dropped: four faces ship,
+ * not five. Worth noting how it was found — not by reading the code, but by
+ * enumerating document.fonts on a live page and seeing a loaded face that
+ * nothing referenced.
+ *
+ * ROLES ARE ASSIGNED BY FUNCTION, NEVER BY HEADING TAG
+ * ----------------------------------------------------
+ * Measured before designing: <h2> in this codebase spans 1rem to 1.75rem — a 75%
+ * range — and TopicPage's <h1> at 26px is SMALLER than four of those h2s. Tag
+ * level does not track prominence here, so `h2 { font-family: Montserrat }`
+ * would have coupled a 1rem uppercase masthead to a 1.75rem section title.
+ *
+ * That is also why `displayMasthead` exists: FIRST STEP ORIGINALS is set at
+ * 1rem, and it is display work by FUNCTION rather than by size.
+ *
+ * BRAND IS SEPARATE FROM NAVIGATION, DELIBERATELY
+ * -----------------------------------------------
+ * An earlier draft had one `uiStrong` role covering the wordmark and the nav.
+ * They were split because the wordmark is BRAND and the nav beside it is
+ * INTERFACE — one role covering both would mean restyling the brand every time
+ * the navigation changed.
+ *
+ * A BUG THIS CAUSED, worth keeping
+ * --------------------------------
+ * The `brand` role was first composed onto SiteHeader's `.brand`, which is the
+ * <Link> FLEX WRAPPER around the logo and the text. Font properties inherit, so
+ * that put Montserrat on the wordmark AND on the tagline beside it, which is
+ * body copy.
+ *
+ * APPLY A ROLE TO THE ELEMENT THAT CARRIES THE TEXT, not to a layout container.
+ * The role belongs on `.appName`. Nothing in the build would have caught this —
+ * it compiles, it passes tests, and it renders "wrong but plausible".
+ * ============================================================================= */
+
+/*
+ * TYPOGRAPHY ROLES — the single place a component asks "what kind of text is
+ * this?" instead of restating a family and a weight.
+ *
+ * HOW TO USE (CSS Modules `composes`, not a global utility class):
+ *
+ *     .title {
+ *       composes: displayPage from '../../styles/typography.module.css';
+ *       font-size: clamp(2rem, 5vw, 2.75rem);   // the component still owns size
+ *     }
+ *
+ * WHY `composes` RATHER THAN GLOBAL CLASSES. A global `.display-page` would have
+ * to live in index.css, which is a QUARANTINE whose selector count may only ever
+ * decrease — adding seven role classes there would break the ratchet and reopen
+ * the global namespace this architecture closed. `composes` keeps every class
+ * scoped and locally-named while the DECLARATIONS live in one file.
+ *
+ * WHY ROLES CARRY ONLY FAMILY AND WEIGHT. Deliberately not font-size and not
+ * line-height. Two reasons:
+ *
+ *   1. Phase 1 is a typeface change, not a sizing pass. The 98 existing
+ *      font-size declarations stay exactly as authored, so nothing resizes.
+ *   2. Cascade safety. A composed class's rules land in a different place in the
+ *      stylesheet than the composing component's, so a role that also set
+ *      line-height could silently win or lose against a component that sets its
+ *      own. Keeping roles to the properties no component currently varies makes
+ *      composition predictable.
+ *
+ * Leading tokens exist in tokens.css for components that want them; they are
+ * applied where a component genuinely needs one, never swept through the site.
+ *
+ * THE DIVIDING LINE, from the approved role map:
+ *
+ *   MONTSERRAT  signals hierarchy, destination and brand.
+ *   OPEN SANS   carries the working interface, the reading experience and
+ *               compact content hierarchy.
+ *
+ * A NEW MONTSERRAT USE REQUIRES A DISPLAY OR BRAND RATIONALE. If a role is
+ * "a title, but small and functional", it is Open Sans.
+ */
+
+/* ---- Montserrat: hierarchy, destination, brand ---------------------------- */
+
+/** The name of a destination. Page-level <h1>s. */
+.displayPage {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+/** A major landmark within a page — the big section headings on the homepage. */
+.displaySection {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+/**
+ * A nameplate. Currently only FIRST STEP ORIGINALS, which is set small and
+ * uppercase — display work by function, not by size, which is exactly why roles
+ * are assigned by function.
+ */
+.displayMasthead {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/**
+ * The First Step name itself. Kept SEPARATE from navigation: the wordmark is
+ * brand, the nav beside it is interface, and one role covering both would mean
+ * restyling the brand every time the nav changed.
+ */
+.brand {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+}
+
+/* ---- Open Sans: interface, reading, compact hierarchy --------------------- */
+
+/**
+ * Interface text the user acts on — navigation, buttons, controls.
+ * Open Sans deliberately: these are operated, not read.
+ */
+.uiStrong {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+}
+
+/**
+ * A small functional label introducing a block — "Why it matters", a preview
+ * heading, a group heading. Often an <h2> in the markup, and still not display
+ * type; the A/B settled that.
+ */
+.uiLabel {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+}
+
+/**
+ * Compact content hierarchy: card and list-item titles. This is the role the
+ * preview's A/B resolved — Montserrat's geometric letterforms earn their keep at
+ * 28-42px and mostly cost horizontal space at 17px, where titles wrap earlier
+ * for no gain in signal.
+ */
+.contentTitle {
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+}

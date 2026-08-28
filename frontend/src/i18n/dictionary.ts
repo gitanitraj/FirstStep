@@ -62,6 +62,14 @@ export const dictionary: Record<Lang, Record<string, string>> = {
     'footer.attribution': 'First Step — community information for Delaware residents.',
     // Community Notices (Slice J). FOUR views over community-produced content —
     // lenses, not buckets: a health-fair flyer is in both Events and Flyers.
+    'originals.publishedBy': 'Published by',
+    'originals.updated': 'Updated',
+    'originals.whyItMatters': 'Why it matters',
+    'originals.disclosure.ai-assisted':
+      'This article was written with AI assistance and reviewed by First Step before publication.',
+    'originals.notFound.title': 'Article not found',
+    'originals.notFound.body': 'This article is not available. It may have been moved, or it may never have been published.',
+    'originals.notFound.back': 'Back to First Step',
     'notices.title': 'Community Notices',
     'notices.homeIntro': 'Events, meetings, announcements and flyers shared by organizations and neighbors across the community.',
     'notices.homeViewAll': 'See all community notices',
@@ -171,6 +179,14 @@ export const dictionary: Record<Lang, Record<string, string>> = {
     'footer.mockNotice': 'Contacto de ejemplo',
     'footer.verify': 'Confirma siempre los detalles con la organización que brinda el servicio. First Step te dirige a ellos; no los reemplaza.',
     'footer.attribution': 'First Step — información comunitaria para residentes de Delaware.',
+    'originals.publishedBy': 'Publicado por',
+    'originals.updated': 'Actualizado',
+    'originals.whyItMatters': 'Por qu\u00e9 es importante',
+    'originals.disclosure.ai-assisted':
+      'Este art\u00edculo fue escrito con asistencia de inteligencia artificial y revisado por First Step antes de su publicaci\u00f3n.',
+    'originals.notFound.title': 'Art\u00edculo no encontrado',
+    'originals.notFound.body': 'Este art\u00edculo no est\u00e1 disponible. Es posible que se haya movido o que nunca se haya publicado.',
+    'originals.notFound.back': 'Volver a First Step',
     'notices.title': 'Avisos Comunitarios',
     'notices.homeIntro': 'Eventos, reuniones, anuncios y folletos compartidos por organizaciones y vecinos de toda la comunidad.',
     'notices.homeViewAll': 'Ver todos los avisos comunitarios',

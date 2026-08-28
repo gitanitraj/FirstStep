@@ -162,3 +162,21 @@ AI summarizes but never invents.
 ## Community submissions
 
 > TODO: Intake, moderation, and provenance rules for resident/partner submissions.
+
+## First Step's own editorial writing
+
+> TODO: See **Decision 048**. The Editorial Standards above govern how First Step
+> handles OTHER organizations' civic information. They do not yet address First
+> Step writing its own articles, which is a different act with its own failure
+> modes — unsourced speculation presented as fact, advocacy in the closing
+> paragraph, internal contradiction, an inaccurate dateline.
+>
+> Needed: a standard covering sourcing requirements, the line between reporting
+> and advocacy, how speculation is marked or excluded, and when a claim needs a
+> citation — plus a **review gate that FLAGS a failing article with reasons**
+> rather than passing it silently.
+>
+> Note this cannot be a validator. Every existing gate checks structure, which
+> works because those rules are mechanical; no script detects that one paragraph
+> contradicts another. The gate is a review checklist, and only the mechanical
+> parts of it ever graduate into `data-cleaning/scripts/`.

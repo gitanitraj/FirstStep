@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nProvider';
 import type { ContentItem } from '../../types/api';
 import styles from './FirstStepOriginals.module.css';
@@ -59,8 +60,28 @@ export default function FirstStepOriginals({ originals }: Props) {
         <ul className={styles.list}>
           {preview.map((item) => (
             <li key={item.id} className={styles.item}>
-              <h3 className={styles.itemTitle}>{item.title}</h3>
-              {item.summary && <p className={styles.summary}>{item.summary}</p>}
+              {/* The route is derived from the id rather than read from a url
+                  field: ContentItem.url means "the provider's own site, never
+                  First Step's", and an Original has no provider site.
+
+                  Articles are distinguished by contentType, not by an id prefix.
+                  An `id.startsWith('OR-')` check would encode a data-authoring
+                  convention in the client and break silently the day an id
+                  scheme changed; contentType is a semantic field the server
+                  already sets. FAQs (EXPERT) have no reading surface and stay
+                  unlinked — Decision 048 scopes the article pipeline to
+                  articles. */}
+              {item.contentType === 'NEWS' ? (
+                <Link className={styles.itemLink} to={`/originals/${item.id}`}>
+                  <h3 className={styles.itemTitle}>{item.title}</h3>
+                  {item.summary && <p className={styles.summary}>{item.summary}</p>}
+                </Link>
+              ) : (
+                <>
+                  <h3 className={styles.itemTitle}>{item.title}</h3>
+                  {item.summary && <p className={styles.summary}>{item.summary}</p>}
+                </>
+              )}
             </li>
           ))}
         </ul>

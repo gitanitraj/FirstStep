@@ -164,6 +164,46 @@ grep -cE "^[.#a-zA-Z].*\{" frontend/src/index.css
 It was 167 before the cleanup and is **91** now. A change that increases it has
 done something wrong.
 
+## Typography roles
+
+**Components do not choose a typeface.** They declare what kind of text something
+is, and the role decides. Seven roles live in `styles/typography.module.css`.
+
+```css
+.title {
+  composes: displayPage from '../../styles/typography.module.css';
+  font-size: clamp(2rem, 5vw, 2.75rem);   /* the component still owns size */
+}
+```
+
+**Why `composes` and not a global utility class.** A global `.display-page`
+would have to live in `index.css` — a quarantine whose selector count may only
+ever DECREASE. Seven role classes there would break the ratchet and reopen the
+global namespace this architecture exists to close. `composes` keeps every class
+locally scoped while the declarations live in one file.
+
+**Roles carry family and weight only** — never `font-size`, never
+`line-height`. A composed class lands in a different place in the stylesheet
+than the component composing it, so a role that also set leading could silently
+win or lose against a component that sets its own. Restricting roles to
+properties no component currently varies makes composition predictable.
+
+**The dividing line:**
+
+| | |
+| --- | --- |
+| **Montserrat** | hierarchy, destination, brand |
+| **Open Sans** | the working interface, reading, compact content hierarchy |
+
+A new Montserrat use requires a display or brand rationale. If a role is
+"a title, but small and functional", it is Open Sans — an A/B on card titles
+settled that, and the reasoning is in `typography.module.css`.
+
+**Apply a role to the element that carries the TEXT, not to a layout wrapper.**
+Font properties inherit, so composing `brand` onto a flex container put
+Montserrat on the wordmark *and* the tagline beside it. The role belongs on
+`.appName`, not on the `<Link>` that wraps it.
+
 ## When `:global()` is allowed
 
 **Reserved for top-level theme selectors: `:root`, `html`, `body.high-contrast`.**
@@ -204,3 +244,35 @@ comparison of the actual pixels, in **both** themes and **both** viewport widths
 - [ ] `index.css` selector count did not increase.
 - [ ] No new `:global()` outside `:root` / `html` / `body.high-contrast`.
 - [ ] Verified in light **and** high contrast, at desktop **and** 375px.
+- [ ] Every colour comes from a **defined** token — no `var(--name, #literal)`
+      fallbacks on colour, and no raw hex in a component rule.
+- [ ] If the component uses `--primary-color` as INK, it declares its own
+      `:global(body.high-contrast)` rule. That token is deliberately not flipped.
+
+### Why those last two were added (Slice K)
+
+`ArticlePage` shipped its title and headings as:
+
+```css
+color: var(--brand-green, #1a5c38);   /* --brand-green does not exist */
+```
+
+Every rule fell silently through to the literal, which cannot participate in a
+theme. Rendered dark green on black: **2.63:1**, on the most important text on
+the page.
+
+Switching to `--primary-color` fixed nothing — the measurement still said
+2.63:1 — because that token is **deliberately not flipped** (it is overloaded as
+both a surface and an ink colour; see `styles/themes.css`). The real convention
+is that each component declares its own high-contrast rules, and that block had
+been omitted entirely. Measured after the real fix: **19.56:1**.
+
+**The lesson is not that a rule was missing. Line 206 above already required
+verifying both themes, and it was skipped.** What the toolchain could see was
+all green: 87 frontend tests passed, `tsc` was clean, and the light theme looked
+correct. **No test, type check or default-theme screenshot can observe a colour
+contrast failure.** Only rendering the alternate theme and *measuring* it can —
+which is why contrast on this project is measured, never eyeballed.
+
+A fallback literal is the specific trap: it exists to make a missing token
+harmless, and its actual effect is to make a missing token **invisible**.

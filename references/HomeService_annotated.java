@@ -27,6 +27,8 @@ import org.firststep.backend.home.dto.AiChip;
 import org.firststep.backend.home.dto.AiConfig;
 import org.firststep.backend.home.dto.HomePayload;
 import org.firststep.backend.legislation.service.LegislationService;
+import org.firststep.backend.originals.model.Article;
+import org.firststep.backend.originals.service.ArticleService;
 import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.shared.model.ContentSource;
 import org.springframework.stereotype.Service;
@@ -65,14 +67,16 @@ public class HomeService {
     private final FaqService faqService;
     private final LegislationService legislationService;
     private final FlyerService flyerService;
+    private final ArticleService articleService;
 
     public HomeService(PathwayService pathwayService,
             FaqService faqService, LegislationService legislationService,
-            FlyerService flyerService) {
+            FlyerService flyerService, ArticleService articleService) {
         this.pathwayService = pathwayService;
         this.faqService = faqService;
         this.legislationService = legislationService;
         this.flyerService = flyerService;
+        this.articleService = articleService;
     }
 
     public HomePayload getHome() {
@@ -100,9 +104,39 @@ public class HomeService {
      * original. Expert answers carry {@code contentSource.name = "Delaware
      * Volunteer Legal Services"} — same contentType, different producer. That
      * distinction is the entire argument for using ContentSource here.
+     *
+     * <p><b>Slice K adds ARTICLES, and only approved ones.</b> The filtering is
+     * not done here: {@code articleService.getPublishable()} has already applied
+     * the editorial review boundary, so this method cannot accidentally publish a
+     * draft by forgetting a condition (Decision 048). That is the point of
+     * putting the rule in the query rather than in every consumer.
+     *
+     * <p><b>The FAQ half is deliberately NOT brought under review.</b> "First
+     * Step-created content" and "First Step Original article" are different
+     * concepts; FAQs stay outside Decision 048 and are not retroactively gated.
+     * Articles come first because articles are where First Step makes assertions.
      */
     private List<ContentItem> originals() {
         List<ContentItem> items = new ArrayList<>();
+
+        // Approved articles lead — they are the substantial editorial work.
+        for (Article article : articleService.getPublishable()) {
+            items.add(new ContentItem(
+                    article.contentType,
+                    article.id,
+                    article.title,
+                    article.summary,
+                    article.contentSource != null ? article.contentSource.name : null,
+                    null, null, null,
+                    article.publishDate,
+                    // No url yet: the reading surface is the next Slice K step.
+                    // Until it exists an article card announces itself and stops,
+                    // which is honest — First Step hosts this text, so there is no
+                    // originating organization to send the resident to instead.
+                    null,
+                    null));
+        }
+
         for (FAQ faq : faqService.getAll()) {
             ContentSource source = faq.contentSource;
             if (source == null || !FIRST_STEP.equals(source.id)) {
@@ -271,4 +305,43 @@ public class HomeService {
 // see FlyerService_annotated.java's closing section. This class still just calls
 // the method; the rule stayed with the method that already owned three quarters
 // of it, rather than being re-implemented here as a post-filter.
+// =============================================================================
+
+// =============================================================================
+// SECTION 6 — SLICE K: ARTICLES ENTER ORIGINALS THROUGH A GATE (Decision 048)
+// =============================================================================
+// originals() now composes TWO sources: approved articles, then curated FAQs.
+//
+// THE FILTERING IS NOT DONE HERE, AND THAT IS THE DESIGN. This method calls
+// articleService.getPublishable(), which has ALREADY applied the editorial
+// review boundary. There is no `if (status == approved)` in this file, because a
+// condition written here is a condition a future edit can drop.
+//
+// Contrast the FAQ loop directly below it, which DOES carry its own filter
+// (`FIRST_STEP.equals(source.id)`). That one is a composition choice — which
+// producer's content belongs in this panel. The article one is a SAFETY rule —
+// whether unreviewed editorial content may reach a resident. Composition
+// choices belong to the composer; safety rules belong upstream where they cannot
+// be forgotten. Two filters that look alike in code and are not alike in kind.
+//
+// WHY ARTICLES LEAD THE LIST
+// --------------------------
+// They are the substantial editorial work; an FAQ answer is a sentence. Ordering
+// is presentation, not policy, and is safe to decide here.
+//
+// WHY THE ARTICLE CARD HAS NO URL YET
+// -----------------------------------
+// The reading surface is the next Slice K step. Until it exists an article card
+// announces itself and stops — which is honest rather than broken: First Step
+// HOSTS this text, so unlike every other card in the product there is no
+// originating organization to send the reader to instead. That absence is
+// exactly why articles need a detail page at all.
+//
+// WHAT WAS DELIBERATELY NOT DONE
+// ------------------------------
+// FAQs were NOT brought under editorial review. "First Step-created content" and
+// "First Step Original ARTICLE" are different concepts, and Decision 048 scopes
+// the gate to articles — where First Step makes assertions in its own voice. A
+// two-sentence FAQ answer has never needed that burden, and retroactively gating
+// six live records would have been scope creep wearing a safety justification.
 // =============================================================================

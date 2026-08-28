@@ -4012,3 +4012,648 @@ news, not a cast in the sort.
 309 backend · 73 frontend · `tsc` clean · 5 validators exit 0 ·
 all five routes loaded **directly** · lens overlap and sector scoping asserted on
 live data · `index.css` ratchet unchanged at 50.
+
+---
+
+# Decision 047 — Three content-architecture questions, deliberately deferred
+
+Raised by real content during the first hand-authoring pass after Slice J. All
+three are **recorded rather than solved**, and none is to be worked around by
+distorting the content to fit the current schema.
+
+The standing instruction that governs all three: *preserve the honest shape of
+the content wherever the current schema permits; where it does not, defer
+publication rather than misclassify.*
+
+## 1. Structured related links / citations
+
+**Requirement:** CivicContent may need structured related links rather than a
+single `source_url`.
+
+The Rent Escrow Program is the case that exposed it. One announcement legitimately
+has three destinations — the City's announcement, the ordinance it rests on, and
+the agency that administers it — and the schema has one field:
+
+```
+Rent Escrow Program
+  What happened…  Who qualifies…  How to apply…
+
+  Related information:
+    • City of Wilmington announcement
+    • Relevant ordinance
+    • First State Community Action Agency
+```
+
+**Interim handling:** the City announcement is `source_url`; the ordinance is
+preserved as text in the body. It is not clickable, and that is the visible cost
+of the gap rather than a solution.
+
+**Why this matters more than it looks.** First Step is civic guidance. "Here is
+the law this came from" is close to the core of what such a site owes a resident,
+and a single-link model quietly makes that unpublishable. Note also that this is
+NOT the same field as `contentSource` — provenance (who produced it) and citation
+(what it rests on) are different questions, and collapsing them would repeat the
+mistake Slice I spent a slice undoing.
+
+## 2. Service geography vs publication geography vs resident relevance
+
+**Requirement:** distinguish three things the model currently conflates.
+
+Authored flyers now include Seaford, Dover and Long Neck — Sussex and Kent
+County. Every prior flyer carried `communityId: "wilmington-de"`, and news
+`geography` admits only `wilmington` · `delaware` · `both`.
+
+**First Step serves Wilmington as its primary community, but its content pipeline
+already admits Delaware-wide content and content specific to other Delaware
+communities.** Those are not the same fact, and neither is the third one:
+
+| | |
+| --- | --- |
+| **Service geography** | where the program actually delivers help |
+| **Publication geography** | where the notice was published / whose community it belongs to |
+| **Resident relevance** | whether *this* resident should be shown it |
+
+**Interim handling:** author the honest value the current vocabulary permits —
+`delaware` for statewide, and non-Wilmington items are not relabeled Wilmington
+to satisfy an assumption. **The geographic model is NOT expanded as part of
+authoring work.** `communityId` is currently inert (nothing filters on it), so
+honest values cost nothing today and will be worth having when it stops being
+inert.
+
+Future discovery rules must make the three-way distinction above. Substantial;
+not needed now.
+
+## 3. Language-aware media
+
+**Requirement:** one flyer, two language versions, one `image` field.
+
+Childcare Finders exists as an English and a Spanish poster. Two records would
+duplicate the program; one record shows one language.
+
+**Interim handling:** publish the English flyer.
+
+**Assessment, since it was asked for.** The image half is genuinely small — an
+optional second filename, resolved in `FlyerService.imageUrlFor`, which is
+already the single owner of image-URL resolution, and a locale read in the
+component (`useI18n` already exposes `lang`). Call it a contained change.
+
+**The text half is not.** `alt` is the item's title, and the summary, dates and
+organization are all English. A Spanish poster under English alt text and an
+English summary is worse than an honest English-only card, because it *claims*
+a Spanish experience it does not deliver. That is content translation, not a
+media feature.
+
+**Recommendation: not yet.** One bilingual flyer is the first use, and this
+codebase introduces the mechanism at the second (the F4 → F5a rule). Keep the
+Spanish asset — it costs nothing and is the test case when a second arrives.
+
+## What was NOT deferred
+
+**First Step editorial articles.** Articles are part of the intended Originals
+ecosystem, not a workaround, so an explainer is not to be forced into FAQ shape
+merely because FAQ is the only path that exists. Scoped separately — see the
+Slice K proposal — on the finding that **First Step has never displayed the full
+text of anything**: `NewsItem.body` is authored, required by the validator, and
+then dropped at the DTO boundary, reaching no client surface. Every existing
+piece of content either links out to its producer or shows a summary.
+
+## Standing rule reaffirmed
+
+**Producer identity is separate from administrators, partners and service
+locations.** A city announcement about a program a nonprofit administers is
+government-produced. Government flyers follow the sector rules like all other
+content and belong in Latest Updates, not Community Notices — flyers are not
+automatically community content.
+
+**Producers are never guessed.** Registry entries are created only from verified
+producer identity and sector.
+
+---
+
+# Decision 048 — The editorial review boundary for First Step Originals
+
+**Supersedes the first draft of 048**, which framed this as "write an editorial
+standard." That was too small. The standards the failing article broke already
+existed; what did not exist was a **boundary between generating an article and
+publishing it**, and a vocabulary for what First Step may assert given its
+evidence.
+
+## What this decides
+
+**A successfully generated article is not a publishable article.** Every First
+Step Original article passes an explicit editorial review that tests sourcing,
+attribution, verification, neutrality, factual support, and unsupported
+inference. The review may FLAG rather than reject, but **publication cannot
+bypass the review.**
+
+```
+        AI generates draft
+                 ↓
+        AI reviews draft against First Step standards
+                 ↓
+        PASS  |  FLAGS + reasons + affected passages + recommended action
+                 ↓
+        Human publisher makes the final decision
+```
+
+## Scope: First Step Original ARTICLES only
+
+**Not all content with `contentSource: first-step`.** FAQs are First Step-created
+and stay outside this decision; they are not retroactively brought into scope.
+
+**"First Step-created content" and "First Step Original article" are not
+synonyms.** Different artifacts may earn different review workflows, and
+collapsing them now would impose an article's review burden on a two-sentence
+FAQ answer that has never needed it.
+
+`docs/architecture/04-editorial-principles.md` remains the foundation for
+handling **other organizations'** civic information. This decision governs the
+narrower and riskier act of **First Step speaking in its own voice.**
+
+## Why Originals is a different act
+
+Summarizing a government notice and writing an article are not the same job. The
+first is constrained by the source: fidelity is the whole standard. The second
+has no such rail — First Step chooses what to assert, how certain to sound, and
+what a fact implies. **The failure modes are different, so the safeguards must
+be.**
+
+## The four tiers — and why they attach to PASSAGES, not articles
+
+The first draft of this decision treated article quality as a property of an
+article. It is not. The ChristianaCare draft was **correct in paragraph four and
+wrong in paragraph six.**
+
+`verified` is one boolean for an entire record. Epistemic status varies sentence
+by sentence, so the taxonomy attaches to passages and the review output must
+quote them exactly.
+
+| tier | meaning | what it licenses |
+| --- | --- | --- |
+| **Verified fact** | First Step has evidence sufficient to state it directly | Assert plainly |
+| **Attributed claim** | A source said it; First Step has not independently established it | State it **as the source's** — never as First Step's |
+| **AI summary** | Faithful restatement or compression of source material | Must add no claim absent from the source |
+| **Editorial inference** | A conclusion drawn beyond what the evidence establishes | Qualify, support with evidence, or remove |
+
+**The ChristianaCare failure was a silent tier-2 → tier-1 promotion.** A
+spokesperson's forward-looking statement became First Step's own assertion that
+the company "plans to use the property for various purposes." Nobody decided to
+do that; the draft simply dropped the attribution, and no step existed to catch
+it.
+
+> **A source's optimistic or promotional statement must never quietly become
+> First Step's independent assertion.**
+
+## The four drift axes
+
+The testable core. An article may not be rendered:
+
+**more certain** · **more positive** · **more consequential** · **more complete**
+
+…than the available evidence supports.
+
+Each names a real breach in the draft: a hedged evaluation became definite plans
+(certain); "expected to have a positive impact on the local community"
+(positive); a routine land purchase became landscape-shaping (consequential); a
+WILMINGTON dateline on a Newark property (complete).
+
+**Every flag type maps to one of the four.** That keeps the taxonomy principled
+rather than an accreting list of things somebody once noticed.
+
+## Generator ≠ Reviewer
+
+**Draft generation and draft evaluation are separate steps, including when both
+are performed by AI.**
+
+Not a self-check appended to generation. A generator asked to review its own work
+tends to ratify its own choices — it already has the rationale for every sentence
+and will supply it again rather than test it. **The reviewer should evaluate the
+text against the standard without the generation rationale in context.**
+
+This is a structural claim, not a procedural preference: it is why the review is
+a separate pass with its own output, and why that output records **who** reviewed.
+
+## Three provenance questions, currently conflated into one field
+
+Investigated before proposing any change to `author`, per instruction. The
+finding changes the recommendation:
+
+**`author` does not mean what its name suggests.** Its vocabulary is
+`manual` · `rss` · `api`, it is **never read into Java** (no model, no DTO, no
+client surface), and all ten news records carry `manual`. It describes **how a
+record entered the system** — ingestion method.
+
+Three genuinely different questions:
+
+| question | field | status |
+| --- | --- | --- |
+| How did this record enter the system? | `author` | exists, means ingestion |
+| Who composed this article's prose? | generation provenance | **does not exist** |
+| Who evaluated it against the standard? | review provenance | **does not exist** |
+
+**Therefore: do NOT add `ai` to `author`.** An AI-drafted article that a human
+pastes into the JSON is `manual` by ingestion and AI by composition — both true,
+about different things. Adding `ai` would force a choice between two facts and
+destroy the Generator ≠ Reviewer distinction at the data layer, where it most
+needs to survive.
+
+Generation provenance and review provenance are **separate fields**. `author` is
+left alone; renaming it to `ingestion` is a reasonable later cleanup, out of
+scope here.
+
+## The review output contract
+
+```
+editorialReview {
+  status:       draft | in-review | approved | flagged
+  reviewedDate: YYYY-MM-DD
+  reviewer:     who performed the review (AI identity or human)
+  flags: [
+    {
+      passage:        the exact text at issue, quoted
+      issue:          see below
+      reason:         why it breaches the standard
+      recommendation: cite | attribute | qualify | remove | verify
+    }
+  ]
+  override: {            // present only when a human published over a flag
+    reason:   required
+    by:       who
+    date:     YYYY-MM-DD
+  }
+}
+```
+
+**Flag types**, each tied to a drift axis:
+
+| issue | axis |
+| --- | --- |
+| `unattributed-claim` — a source's statement presented as First Step's | certain |
+| `unsupported-inference` — a conclusion beyond the evidence | consequential |
+| `advocacy` — evaluative language, unattributed | positive |
+| `certainty-drift` — a hedged source rendered as definite | certain |
+| `scope-drift` — broader or more complete than the evidence | complete |
+| `missing-citation` — a factual claim with no source | certain |
+| `attribution-mismatch` — the citation does not support the claim | certain |
+
+## Review states, and why `published` is not one of them
+
+```
+draft → in-review → approved
+                  → flagged
+```
+
+**Publication is a SEPARATE condition.** Public serving requires `approved`, but
+an approved article may legitimately be unpublished or scheduled — those are
+scheduling facts, not review facts, and folding them into `status` would make a
+scheduling change look like a re-review.
+
+**No public path serves a `flagged` article.** When a human resolves or overrides
+a flag, **the flag and the override record are preserved** and the article moves
+to `approved`. The history is not rewritten — that record is the accountability.
+
+## Flag disposition lifecycle
+
+**No hard-block flag types in the first version.** A flag holds the article for
+human disposition, and a human may approve publication over any of them.
+
+**The review system surfaces judgment and creates accountability. It does not
+replace the final publish decision.**
+
+Each flag has its own lifecycle, separate from the article's:
+
+```
+open → resolved | withdrawn | overridden
+```
+
+| | meaning |
+| --- | --- |
+| **resolved** | the concern was LEGITIMATE and was subsequently addressed |
+| **withdrawn** | the REVIEWER WAS WRONG; the flag should not have been raised |
+| **overridden** | the concern REMAINS VALID; an authorized human published anyway |
+
+**`withdrawn` and `overridden` must never be conflated.** One records a reviewer
+false positive, the other a live objection a human deliberately overruled. Filing
+a withdrawal as an override claims a human published over a real concern when
+there was none; filing an override as a withdrawal erases a standing objection by
+calling the reviewer mistaken. Either way the history stops being evidence.
+
+Not hypothetical — the Rent Escrow review produced one of each in a single round.
+
+### Review history is evidence, not disposable workflow state
+
+**A dispositioned flag is never rewritten and never deleted.** The original
+`passage`, `issue`, `reason` and `recommendation` remain exactly as raised; the
+disposition records what happened to them afterwards.
+
+One consequence worth stating: an OPEN flag's passage must exist in the article's
+text, but a RESOLVED one's need not — resolving a flag often means revising away
+exactly the passage it named. The record preserves what was flagged, not what
+currently reads.
+
+### The shape, and how it was arrived at
+
+```
+ReviewFlag
+├── passage           ┐
+├── issue             │ the finding — never mutated, never deleted
+├── reason            │
+├── recommendation    ┘
+└── disposition       (absent = open)
+    ├── status        resolved | withdrawn | overridden
+    ├── date
+    ├── actor
+    └── reason
+```
+
+**`FlagDisposition` is `ReviewOverride` generalized, not a parallel structure.**
+The earlier design had a review-level `override { reason, by, date }`. Its three
+fields survive with their meanings unchanged (`by` renamed `actor`); the only
+addition is `status`. Two things changed:
+
+- **It was renamed**, because "override" is now one of three values it CARRIES
+  rather than the thing it IS.
+- **It moved from the review down onto the flag**, because a review-level
+  override could not say WHICH of several concerns a human had overruled.
+
+The alternative — adding `resolveReason`, `withdrawReason` and `overrideReason`
+beside each other — would have made one lifecycle look like three unrelated
+features, with three subtly different shapes to keep in step.
+
+### Two safety rules, both pointed the same way
+
+**`status` is held as a String and resolved through a controlled enum**, exactly
+as the article's own status is. An unrecognized value therefore stays UNRESOLVED
+rather than being guessed or rejected outright: the vocabulary is controlled by
+the enum, while the raw text survives deserialization so a typo can be seen and
+logged instead of vanishing.
+
+**The four fields travel together.** A disposition missing its status, date,
+actor or reason is INCOMPLETE and does not count — the flag stays open. A
+half-recorded disposition is indistinguishable from a flag someone stopped
+thinking about, and treating it as settled would let a concern retire itself.
+This generalizes the rule the old override already enforced for `reason` alone.
+
+Both rules err the same way: **anything the system cannot confidently read as a
+decision leaves the concern STANDING.**
+
+### `publishDate` is descriptive, never a gate
+
+Stated before the reading surface exists, because this is the field most likely
+to become a second publication state by accident.
+
+**Serving is gated by ONE condition: `editorialReview.status == approved`.**
+`publishDate` has no part in it.
+
+| | |
+| --- | --- |
+| **What it means** | the date the article BEARS — what a reader is shown |
+| **Who sets it** | editorial, by hand |
+| **Effect on serving** | none |
+
+Three things follow, and each is a mistake waiting to be made:
+
+- **An approved article with a NULL `publishDate` is served.** It sorts last and
+  displays no date. If a null date withheld it, the field would have become a
+  second gate through an ordering detail.
+- **A future-dated approved article is served today.** Scheduling is not
+  implemented. A `publishDate <= today` comparison added to the query would be
+  scheduling — arriving by accident, unreviewed, and indistinguishable from a
+  bug.
+- **Approval does not set it.** The two are independent; coupling them would make
+  a date correction look like a re-approval.
+
+Decision 048 says an approved article "may legitimately be unpublished or
+scheduled." That remains true as an intent and is NOT what `publishDate` does
+today. **If scheduling is wanted, it must be an explicit decision with its own
+mechanism** — not an emergent property of a date comparison someone adds to a
+filter.
+
+A test pins the load-bearing case: an approved article with no `publishDate` is
+still served.
+
+### The two lifecycles are not coupled
+
+Dispositioning every flag does NOT approve an article, and a preserved flag does
+not un-publish one. A human moves the article; inferring approval from "no open
+flags" would let the review system make the publish decision it explicitly does
+not make.
+
+An approved article carrying an OPEN flag is an undocumented override. It is not
+blocked in code — there are no hard blocks — but it is genuinely mechanical, and
+so is a candidate for the validator list below.
+
+### The silent-failure mode this created, and the test that closes it
+
+Every model class here is `@JsonIgnoreProperties(ignoreUnknown = true)` — right
+for tolerating extra keys, dangerous for detecting missing ones. A `disposition`
+misspelled in the data or renamed in Java would be **silently ignored**: nothing
+throws, every flag reads as OPEN, the article stays withheld, and the system
+looks entirely healthy while having lost its review history.
+
+No API surface exposes `editorialReview`, so a running application cannot
+demonstrate the round trip either — the boundary deliberately keeps review data
+off public payloads. Unit tests over hand-built objects prove the LOGIC; they do
+not prove the logic is REACHED BY THE AUTHORED DATA.
+
+`ArticleDeserializationTest` loads the real `app/data/articles.json` and asserts
+the counts. It was verified by injecting the typo: with `dispositon` in the file,
+both dispositions vanish and all six Rent Escrow flags read as open —
+`expected: <4> but was: <6>`. The test names the failure it was written for,
+per the standing testing rule.
+
+It is also the only current check that articles.json is well-formed against the
+model. **articles.json still has no validator script**, which remains recorded
+rather than closed.
+
+### Explicitly not built
+
+The dispositions ARE the calibration data: how often a reviewer flags things that
+turn out to be fine is readable from them directly. **Reviewer analytics, scoring
+and any counting API are a non-goal**, now and in this decision's scope.
+
+## What remains human judgment, permanently
+
+- **The publish decision.** Always.
+- Whether a flagged passage is acceptable in its context
+- Whether a source is trustworthy
+- **Whether the story is worth telling at all** — the ChristianaCare draft's
+  deepest problem may be that a $24M land purchase with no announced plans does
+  not help a resident find housing, food, or care
+- Any override
+
+## Regression cases live in their own library
+
+Real drafts that failed review are preserved in
+`docs/editorial/regression-cases.md`, not in this decision.
+
+**Each case serves two systems, and the findings must not be merged:**
+
+| | question | owner |
+| --- | --- | --- |
+| **Generation** | how do we stop the writing model producing this? | the article-writing model's prompt |
+| **Review** | how does First Step detect and disposition it anyway? | this decision |
+
+The separation matters because the two fixes are independent. A generation fix
+that makes a failure rarer does not remove the need for review; a review that
+catches it does not fix the generator. Rent Escrow (case 002) is evidence that
+both are needed — and, being output from a model under training rather than
+finished editorial work, it is primarily a test of the GENERATOR.
+
+**An editorial finding is not an architectural requirement.** A case records what
+the standard must catch. It does not, by itself, justify a source-verification
+subsystem, mandatory manual URL checking, or new mechanical validators. Where a
+case genuinely exposes a schema or workflow gap, that gap is recorded as a
+decision rather than inferred from the fact that an article was wrong.
+
+## Reachable is not verified
+
+The sharpest thing case 002 demonstrates: **the source was reachable and a claim
+in the article was still overstated.**
+
+A resolving URL proves nothing about the sentences that cite it. The City's page
+establishes the escrow MECHANISM — eligible tenants MAY deposit rent into escrow
+when specified essential services are not restored after the required notice. The
+draft rendered that as an OUTCOME: the program "ensures" tenants avoid eviction.
+Two drifts in one sentence — the modality (may → ensures) and the scope (a
+payment mechanism → an eviction result).
+
+This is precisely why review is editorial rather than mechanical, and it bounds
+the mechanical list below: URL ACCESSIBILITY is checkable by a script;
+SUBSTANTIVE VERIFICATION — does this source support this claim, is the cited law
+correctly characterized, is this phone number current — is not, and never
+becomes so.
+
+## Mechanical checks: the line
+
+**A validator can check that the review HAPPENED and is WELL-FORMED. It cannot
+check that the review was RIGHT.**
+
+Structural facts about the review are mechanical. The review's judgments are not,
+and the standard must never be shrunk to what a script can catch.
+
+*Promotable into `data-cleaning/scripts/` eventually:*
+
+- `editorialReview.status` present and in vocabulary
+- `approved` implies `reviewedDate` and a recorded `reviewer`
+- A disposition is complete: status in vocabulary, plus date, actor and reason
+- An `approved` article carries no OPEN flags
+- Dateline city appears in the body / agrees with `geography`
+- `source_url` resolves — network-dependent, so a warning, never an error
+- **After Decision 047:** a passage marked verified carries at least one citation
+
+*Never promotable:* whether a citation supports its claim · whether a sentence is
+inference or fact · whether tone is neutral · whether an attributed claim was
+silently upgraded. **These are the entire point.**
+
+## The public contract: what a reader receives
+
+`ArticleDetail` carries ten of the nineteen fields an `Article` holds.
+
+**Public:** `id`, `title`, `summary`, `whyItMatters`, `body`, `byline`,
+`disclosure`, `publishDate`, `updatedDate`, `categoryTags`, `subcategory`.
+
+**Structurally excluded — no component exists to put them in:**
+`generatedBy`, `editorialReview` in its entirety (status, reviewedDate, reviewer,
+every flag, every disposition and its actor and reason), and `verified`.
+
+**Omitted as unnecessary rather than secret:** `communityId`, `status`,
+`expirationDate`, `createdDate`, `contentType`, `tags`, `contentSource` — the
+last being constant (`first-step`) for every Original, with attribution carried
+by the byline.
+
+**The guarantee is structural, not procedural.** A record with fixed components
+has no field to serialize `editorialReview` into, so no mapping mistake can
+expose it — the same reason `body` has never leaked through `ContentItem` in the
+whole product. A serialization guard test defends against a FUTURE edit adding
+one, which is the only remaining way it could happen.
+
+### Four provenance questions, exactly one of them public
+
+| question | field | visibility |
+| --- | --- | --- |
+| how did the record enter the system? | `author` (news.json only) | not on Article at all |
+| who composed the prose? | `generatedBy` | **private** |
+| who evaluated it? | `editorialReview.reviewer` | **private** |
+| what is the reader told? | `byline` | **public** |
+
+### AI disclosure is a public editorial statement, not exposed provenance
+
+A reader seeing "Published by Admin" would otherwise have no way to learn an
+article was AI-generated, against the standing principles *"distinguish facts
+from AI-generated summaries"* and *"build trust through transparency"*.
+
+`disclosure` is therefore a public field carrying a **controlled key**, rendered
+as standard translated text. Three properties matter:
+
+- **It is authored, not derived.** Nothing computes it from `generatedBy`, which
+  stays private. It is a deliberate editorial statement about what the reader is
+  told.
+- **It is not folded into the byline.** Credit and disclosure are different
+  claims and must stay separately editable.
+- **It is a key, not prose.** `ai-assisted` resolves to standard wording through
+  the dictionary, so the disclosure is consistent across articles and exists in
+  both languages. Free text would have been English-only and different every
+  time.
+
+It follows `ReviewFlag.issue`'s precedent in staying a String rather than an enum
+while the vocabulary has one value and nothing branches on it.
+
+### An assumption recorded, not fixed
+
+`ArticleService.getPublishable()` filters on approval but **not** on
+`contentSource`, while the FAQ loop beside it does check `first-step`.
+
+The asymmetry rests on an assumption: **articles.json is single-producer by
+construction** — every record in it is First Step's own — whereas faq.json holds
+answers from several organizations and needs the filter. Nothing currently
+enforces the assumption, so an article authored with a different
+`contentSource.id` would appear as an Original. Recorded as a boundary
+assumption; deliberately not fixed in this slice.
+
+## Relationship to Decision 047 — two layers, not a dependency chain
+
+An earlier framing called citations "an implementation dependency" of this
+decision. That was wrong and is corrected here.
+
+| | |
+| --- | --- |
+| **Decision 047** | **Evidence architecture** — what sources an article can carry and associate |
+| **Decision 048** | **Editorial reasoning architecture** — what First Step may assert given that evidence |
+
+Neither reduces to the other:
+
+- **047 without 048** gives citations nobody is required to reason from.
+- **048 without 047** gives reasoning that cannot be evidenced at the passage
+  level.
+
+**048 is operable without 047, but not fully remediable.** A reviewer can flag
+"this claim has no supporting source" today; what it cannot do is *attach* that
+source to the claim, because `source_url` is a single field. So 047 does not gate
+048 — it determines whether a flag's recommended action can be carried out.
+Either may land first.
+
+## What Slice K must carry
+
+Slice K is **not blocked**, but it may not encode the assumption that successful
+generation equals publication approval. The boundary exists from the first
+commit, even while the review itself is a human setting a field.
+
+**Required:**
+
+- `editorialReview.status` on article records, controlled vocabulary
+- **The Originals query filters on `approved`** — the boundary lives in the query,
+  the same mechanism that keeps government flyers out of Community Notices. Not
+  discipline; selection.
+- An explicit test that an **unreviewed article is not served**
+- Separate generation-provenance and review-provenance fields
+
+**Prohibited:**
+
+- Defaulting `status` to `approved`
+- Any reading surface that bypasses the filter
+- Reusing `verified` as the gate — it is a different question, and it is
+  currently inert (nothing in the backend filters on it)
+- Adding `ai` to `author`
+
+The AI review workflow slots into this boundary later without reshaping it.

@@ -41,6 +41,7 @@
 }
 
 .appName {
+  composes: brand from '../../styles/typography.module.css';
   font-size: 1.55rem;
   font-weight: 700;
   letter-spacing: -0.015em;

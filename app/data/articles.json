@@ -1,0 +1,176 @@
+{
+  "_note": "First Step Original articles. Hand-authored editorial content written in First Step's own voice. Every record carries an editorialReview; ONLY status 'approved' is served publicly (Decision 048). Unapproved records are withheld, not deleted — they are the population a future administrative editorial queue acts on.",
+  "records": [
+    {
+      "id": "OR-001",
+      "communityId": "wilmington-de",
+      "title": "City of Wilmington's Voluntary Rent Escrow Program",
+      "summary": "The City of Wilmington has introduced a Voluntary Rent Escrow Program for renters whose landlords fail to provide essential services such as hot water, heat, water, or electricity. The program lets tenants deposit rent into a segregated escrow account while the service is restored.",
+      "whyItMatters": "The Voluntary Rent Escrow Program is crucial because it ensures that tenants can continue to pay rent without facing eviction while essential services are being restored. This program helps to stabilize the rental market and prevent further economic hardship for residents.",
+      "body": "The City of Wilmington has introduced a new program to help renters in unsafe housing conditions. Mayor John Carney announced the Voluntary Rent Escrow Program on July 22, 2026. The City has partnered with the First State Community Action Agency (FSCAA) to establish it. This program aims to provide a secure alternative for tenants when essential services are not provided by landlords.\n\nThe Voluntary Rent Escrow Program allows eligible residential tenants to temporarily deposit rent into a secure escrow account when a landlord fails to provide and/or restore hot water, heat, water, or electricity after receiving the notice required under Delaware law. The program provides tenants with a structured process while encouraging landlords to promptly restore essential services.\n\nADMINISTRATION\nThe program is administered through a partnership between the City of Wilmington's Department of Licenses & Inspections (L&I) and FSCAA. FSCAA manages tenant eligibility, escrow payment administration, financial counseling, case management, and reporting. L&I remains responsible for conducting inspections and verifying qualifying code violations.\n\nELIGIBILITY\nTo qualify, tenants must:\n- Occupy a residential rental property within the City of Wilmington.\n- Have provided the written notice required under 25 Del. C. 5308 to their landlord.\n- Allow the landlord at least 48 hours to restore the interrupted essential service.\n- Obtain an inspection from the Department of Licenses & Inspections confirming the property lacks hot water, heat, water, or electricity.\n- Submit all required program documentation, including a copy of the lease and notice provided to the landlord.\n\nENROLLMENT\nEligible tenants should contact FSCAA to begin the intake process. FSCAA will verify eligibility, collect the required documentation, establish the tenant's case file, provide financial counseling, and, once eligibility is confirmed, establish the tenant's rent escrow account.\n\nESCROW FUND MANAGEMENT\nEscrow payments are deposited into a dedicated, segregated escrow account administered by FSCAA. The funds are maintained separately from FSCAA's operating accounts, tracked individually for each household, and managed under strict financial controls to ensure transparency, accountability, and audit compliance.\n\nRELEASE OF ESCROW FUNDS\nEscrow funds may only be released in accordance with City Code Section 34-151(e) upon one of the following:\n- A court order directing how the funds should be distributed.\n- A joint written affidavit signed by both the landlord and tenant authorizing the release of funds.\n- Written proof that the tenant has legally terminated the rental agreement.\n\nCONTACT INFORMATION\nFor more information about the Voluntary Rent Escrow Program, tenants can contact FSCAA via phone at (302) 856-7761.\n\nCONCLUSION\nThe City of Wilmington's Voluntary Rent Escrow Program is designed to protect eligible renters by providing a secure alternative to withholding rent when essential services are not provided. Through this partnership between the city and FSCAA, tenants can gain a structured process to address housing issues and ensure their financial stability during repairs.\n\n---\nSOURCES (no structured home in the current model - see Decision 047):\n- City of Wilmington program page: https://www.wilmingtonde.gov/government/city-departments/licenses-and-inspections/rent-escrow-program\n- Delaware Code: 25 Del. C. 5308\n- Wilmington City Code Section 34-151(e)\n- Administering organization: First State Community Action Agency, (302) 856-7761",
+      "category_tags": [
+        "Housing",
+        "Community Support"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "tenant rights",
+        "landlord-tenant",
+        "escrow",
+        "essential services",
+        "housing"
+      ],
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "generatedBy": "ai",
+      "publishDate": null,
+      "createdDate": "2026-08-23",
+      "updatedDate": "2026-08-23",
+      "verified": false,
+      "editorialReview": {
+        "status": "flagged",
+        "reviewedDate": "2026-08-23",
+        "reviewer": "ai:claude-opus-5",
+        "flags": [
+          {
+            "passage": "it ensures that tenants can continue to pay rent without facing eviction while essential services are being restored",
+            "issue": "certainty-drift",
+            "reason": "States a legal guarantee First Step cannot make. Whether escrow is a complete defense to a nonpayment action is not settled by the source. A tenant who relies on 'ensures' and is sued anyway was misled by a civic information site.",
+            "recommendation": "qualify"
+          },
+          {
+            "passage": "This program helps to stabilize the rental market and prevent further economic hardship for residents.",
+            "issue": "advocacy",
+            "reason": "Two evaluative economic claims with no evidence and no source. Renders the article more positive and more consequential than the evidence supports.",
+            "recommendation": "remove"
+          },
+          {
+            "passage": "tenants can gain a structured process to address housing issues and ensure their financial stability during repairs",
+            "issue": "advocacy",
+            "reason": "Promotional closing restating the program's own framing as First Step's conclusion. Same pattern as the ChristianaCare draft's closing paragraph.",
+            "recommendation": "remove"
+          },
+          {
+            "passage": "https://www.wilmingtonde.gov/government/city-departments/licenses-and-inspections/rent-escrow-program",
+            "issue": "missing-citation",
+            "reason": "Source confirmed by the author as the origin of this article, but its CONTENTS remain unverified: the page returns HTTP 403 to automated retrieval, so the 48-hour window, the statute, the code section and the phone number could not be checked against it. Needs a human with a browser.",
+            "recommendation": "verify"
+          },
+          {
+            "passage": "Escrow funds may only be released in accordance with City Code Section 34-151(e) upon one of the following:",
+            "issue": "unattributed-claim",
+            "reason": "The eligibility rules, statutory citation and release conditions are the City's program terms, presented as First Step's own statement of the law.",
+            "recommendation": "attribute",
+            "disposition": {
+              "status": "withdrawn",
+              "date": "2026-08-23",
+              "actor": "human:editorial",
+              "reason": "The reviewer was wrong. 'In accordance with City Code Section 34-151(e)' and 'required under 25 Del. C. 5308' ARE the attribution - inline statutory citation is arguably its strongest form, since a reader can check it. Restating an ordinance while naming the section is not First Step asserting law on its own authority."
+            }
+          },
+          {
+            "passage": "Under Mayor John Carney's administration ... Published: 2023-04-01",
+            "issue": "attribution-mismatch",
+            "reason": "The date and the title contradict each other: John Carney was Governor of Delaware in April 2023 and did not become Mayor of Wilmington until January 2025. At least one is wrong and neither is established by a source on file.",
+            "recommendation": "verify",
+            "disposition": {
+              "status": "resolved",
+              "date": "2026-08-23",
+              "actor": "human:editorial",
+              "reason": "Mayor Carney announced the program on 2026-07-22. 'Mayor' was correct and the 2023 date was the error; the date is corrected in the body and the geographic dateline removed. Note the flagged passage no longer appears in the text - resolving a flag often means revising exactly the passage it named."
+            }
+          }
+        ]
+      },
+      "byline": "Admin",
+      "disclosure": "ai-assisted"
+    },
+    {
+      "id": "OR-002",
+      "communityId": "wilmington-de",
+      "title": "ChristianaCare acquires 20 acres near Delaware Park",
+      "summary": "ChristianaCare purchased about 20 acres of undeveloped land near Delaware Park. No development plans have been announced.",
+      "whyItMatters": "Placeholder — see flags. Whether this story serves a resident seeking help is itself unresolved.",
+      "body": "PLACEHOLDER — held pending editorial revision.\n\nThe draft is retained rather than discarded so the flags below stay attached to the text they describe.",
+      "category_tags": [
+        "Health"
+      ],
+      "subcategory": "Medical Care",
+      "tags": [
+        "development"
+      ],
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "generatedBy": "ai:draft",
+      "publishDate": "2026-07-22",
+      "createdDate": "2026-08-21",
+      "updatedDate": "2026-08-23",
+      "verified": false,
+      "editorialReview": {
+        "status": "flagged",
+        "reviewedDate": "2026-08-23",
+        "reviewer": "human:editorial",
+        "flags": [
+          {
+            "passage": "ChristianaCare plans to use the property for various purposes, including potential future development of healthcare facilities and community amenities.",
+            "issue": "unattributed-claim",
+            "reason": "A spokesperson's forward-looking statement is presented as First Step's own assertion, and it contradicts the sourced sentence above it stating that no plans have been announced.",
+            "recommendation": "attribute"
+          },
+          {
+            "passage": "The acquisition of this undeveloped property is expected to have a positive impact on the local community.",
+            "issue": "advocacy",
+            "reason": "Evaluative claim with no source and no evidence. Renders the article more positive than the evidence supports.",
+            "recommendation": "remove"
+          },
+          {
+            "passage": "WILMINGTON, DE -",
+            "issue": "scope-drift",
+            "reason": "The property is near Newark, not Wilmington. The dateline asserts a locality the evidence does not support.",
+            "recommendation": "verify"
+          }
+        ]
+      },
+      "byline": "Admin",
+      "disclosure": "ai-assisted"
+    },
+    {
+      "id": "OR-003",
+      "communityId": "wilmington-de",
+      "title": "How to read a Delaware eviction notice",
+      "summary": "What the dates on an eviction notice mean, and how long a tenant actually has to respond at each stage.",
+      "whyItMatters": "Tenants routinely miss the response window because the deadline on the notice is not the deadline that matters.",
+      "body": "PLACEHOLDER — approved fixture.\n\nThis record exists so the boundary test has an article that IS publicly servable, proving the filter admits as well as excludes.",
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "tenant rights",
+        "eviction"
+      ],
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "generatedBy": "human:editorial",
+      "publishDate": "2026-08-10",
+      "createdDate": "2026-08-10",
+      "updatedDate": "2026-08-10",
+      "verified": true,
+      "editorialReview": {
+        "status": "approved",
+        "reviewedDate": "2026-08-12",
+        "reviewer": "human:editorial",
+        "flags": []
+      },
+      "byline": "Admin",
+      "disclosure": null
+    }
+  ]
+}

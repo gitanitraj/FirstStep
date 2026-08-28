@@ -14,6 +14,9 @@ import org.firststep.backend.home.service.HomeService;
 import org.firststep.backend.home.service.PathwayService;
 import org.firststep.backend.legislation.service.LegislationService;
 import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.originals.model.Article;
+import org.firststep.backend.originals.repository.ArticleRepository;
+import org.firststep.backend.originals.service.ArticleService;
 import org.firststep.backend.shared.model.ContentSource;
 import org.firststep.backend.shared.web.GlobalExceptionHandler;
 import org.firststep.backend.shared.service.ContentSourceService;
@@ -101,7 +104,20 @@ class HomeControllerTest {
             TaxonomyService taxonomyService = new TaxonomyService("../app/data");
             PathwayService pathwayService = new PathwayService(taxonomyService, "../app/data");
             LegislationService legislationService = new LegislationService(() -> List.of(bill));
-            return new HomeService(pathwayService, faqService, legislationService, flyerService);
+            // An EMPTY article store, deliberately: this test predates articles and
+            // asserts the FAQ half of Originals. The article half has its own test.
+            ArticleService articleService = new ArticleService(new ArticleRepository() {
+                @Override
+                public List<Article> findAll() {
+                    return List.of();
+                }
+
+                @Override
+                public Optional<Article> findById(String id) {
+                    return Optional.empty();
+                }
+            });
+            return new HomeService(pathwayService, faqService, legislationService, flyerService, articleService);
         }
 
         private static ContentSource contentSource(String id, String name) {

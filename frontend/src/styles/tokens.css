@@ -53,6 +53,38 @@
      clears 4.5:1 on white, on the page ground AND on the green wash — the wash
      is the binding constraint, since that is where it is actually used. */
   --accent-ink: #8f4009;
+  /* ---- Typography (Phase 1) ----------------------------------------------
+     Two families, seven roles. The ROLES live in styles/typography.module.css
+     and are applied with CSS Modules `composes`; these tokens are what those
+     roles are built from, and are not meant to be combined ad hoc in components
+     — reconstructing a role from loose family + weight tokens is the scattering
+     this system exists to stop.
+
+     MONTSERRAT signals hierarchy, destination and brand.
+     OPEN SANS carries the working interface, reading and compact hierarchy.
+
+     Fallbacks are the previous system stack, so a face that fails to load
+     degrades to what the site already used rather than to Times. */
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Only these three are imported. 500 was used twice in the whole codebase and
+     is deliberately absent — requesting it would make the browser synthesize a
+     face rather than load one. */
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Leading tokens exist for components that need one. Phase 1 does NOT sweep
+     these through the site: existing explicit line-heights are preserved, and a
+     token is applied only where the new font metrics or readability require it. */
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.7;
+
   --transition: all 0.2s ease;
   --radius: 12px;
   /* Horizontal breathing room inside the container. Every top-level section

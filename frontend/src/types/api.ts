@@ -206,6 +206,43 @@ export interface ContentItem {
   imageUrl: string | null;
 }
 
+/**
+ * A First Step Original article, as a reader receives it.
+ *
+ * **This is deliberately NOT ContentItem.** ContentItem is the card shape shared
+ * by topic pages, search, notices and the homepage; adding `body` to it would put
+ * a full article on every card payload in the product. Two shapes, two jobs.
+ *
+ * Eleven fields, and the ones ABSENT are the point: no `generatedBy`, no
+ * `editorialReview`, no reviewer, flags or dispositions, no `verified`. The
+ * server's record type has no component for them, so they cannot arrive here —
+ * and nothing in this client may infer them.
+ */
+export interface ArticleDetail {
+  id: string;
+  title: string;
+  summary: string | null;
+  /** Why a resident should care. Authored for readers, so it is shown. */
+  whyItMatters: string | null;
+  /** The full text. Blank lines separate paragraphs. */
+  body: string | null;
+  /** The public credit. NOT who composed the prose — that stays server-side. */
+  byline: string | null;
+  /**
+   * A controlled disclosure key, or null. Currently only `ai-assisted`.
+   *
+   * Resolved through the dictionary to standard wording, so the statement reads
+   * identically across articles and exists in both languages. The client renders
+   * the key it is given and infers nothing.
+   */
+  disclosure: string | null;
+  /** Descriptive, never a gate — an approved article may carry no date. */
+  publishDate: string | null;
+  updatedDate: string | null;
+  categoryTags: string[] | null;
+  subcategory: string | null;
+}
+
 /** The five Community Notices routes. The URL is the source of truth for which is active. */
 export type NoticeView = 'OVERVIEW' | 'EVENTS' | 'MEETINGS' | 'ANNOUNCEMENTS' | 'FLYERS';
 

@@ -17,8 +17,10 @@ html {
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  /* Open Sans is the default for everything. Montserrat is opt-in through a
+     typography ROLE (styles/typography.module.css), never inherited — which is
+     what keeps display type to designated display and brand uses. */
+  font-family: var(--font-body);
   background-color: var(--bg-lighter);
   color: var(--text-primary);
   margin: 0;

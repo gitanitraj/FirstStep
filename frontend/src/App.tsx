@@ -4,6 +4,7 @@ import HomePage from './pages/HomePage';
 import CategoryPage from './pages/CategoryPage';
 import TopicPage from './pages/TopicPage/TopicPage';
 import UpdatesPage from './pages/UpdatesPage/UpdatesPage';
+import ArticlePage from './pages/ArticlePage/ArticlePage';
 import CommunityNoticesPage from './pages/CommunityNoticesPage/CommunityNoticesPage';
 import StubPage from './pages/StubPage';
 
@@ -43,6 +44,7 @@ export default function App() {
           {/* ONE page, five routes. The `:view` param is the source of truth for
               the active view, so every URL works when typed, shared or reached
               with the back button — no visit to the landing route required. */}
+          <Route path="/originals/:id" element={<ArticlePage />} />
           <Route path="/community-notices" element={<CommunityNoticesPage />} />
           <Route path="/community-notices/:view" element={<CommunityNoticesPage />} />
           <Route path="/community" element={<StubPage name="Community" />} />

@@ -1,0 +1,165 @@
+/*
+ * The reading surface. Its one job is sustained reading, which drives every
+ * choice here.
+ *
+ * COLOR COMES FROM TOKENS, NEVER FROM LITERALS. The first version of this file
+ * used `var(--brand-green, #1a5c38)` for the title and headings — a token that
+ * DOES NOT EXIST, so every rule silently fell through to the hardcoded fallback.
+ * It looked correct on the cream page and rendered dark green on black in high
+ * contrast, which is close to unreadable. A fallback literal defeats theming
+ * precisely when theming matters most, and the failure is invisible until
+ * someone looks at the other theme — most visibly the measure: --page-max is 1600px for browse
+ * layouts, and prose set that wide is unreadable. 68ch is roughly 70 characters
+ * a line, the range typography research keeps landing on.
+ */
+
+.main {
+  padding: clamp(28px, 5vw, 56px) var(--page-gutter) clamp(48px, 8vw, 96px);
+}
+
+.article {
+  max-width: 68ch;
+  margin: 0 auto;
+}
+
+.head {
+  margin-bottom: clamp(28px, 4vw, 40px);
+}
+
+.kicker {
+  font-size: 0.875rem;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 12px;
+}
+
+.title {
+  composes: displayPage from '../../styles/typography.module.css';
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.15;
+  color: var(--primary-color);
+  margin-bottom: 16px;
+}
+
+/* The summary reads as a standfirst — larger than body, lighter than the title. */
+.lede {
+  font-size: clamp(1.125rem, 2.4vw, 1.3125rem);
+  line-height: 1.55;
+  color: var(--text-secondary);
+  margin-bottom: 20px;
+}
+
+.meta {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+}
+
+/*
+ * The AI-assistance disclosure. Quiet but not hidden: a bordered note rather
+ * than fine print, because burying a transparency statement defeats it.
+ */
+.disclosure {
+  margin-top: 18px;
+  padding: 10px 14px;
+  border-left: 3px solid var(--accent-ink);
+  background: rgba(224, 123, 57, 0.08);
+  border-radius: 0 var(--radius) var(--radius) 0;
+  font-size: 0.9375rem;
+  color: var(--text-primary);
+}
+
+/* "Why it matters" is set apart because it answers a different question from
+   the article body — it is the resident's stake, not the reporting. */
+.why {
+  margin-bottom: clamp(28px, 4vw, 36px);
+  padding: 20px 22px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-brand-sm);
+}
+
+.whyTitle {
+  composes: uiLabel from '../../styles/typography.module.css';
+  font-size: 1.0625rem;
+  margin-bottom: 8px;
+  color: var(--primary-color);
+}
+
+.whyBody {
+  font-size: 1.0625rem;
+  line-height: 1.6;
+  color: var(--text-primary);
+}
+
+.body {
+  font-size: 1.0625rem;
+  line-height: 1.7;
+  color: var(--text-primary);
+}
+
+.body p + p {
+  margin-top: 1.15em;
+}
+
+.placeholder {
+  max-width: 68ch;
+  margin: 0 auto;
+  padding: clamp(32px, 6vw, 64px) 0;
+  color: var(--text-secondary);
+}
+
+.notFoundTitle {
+  composes: displayPage from '../../styles/typography.module.css';
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: 600;
+  color: var(--accent-ink);
+}
+
+/* ---- High contrast ----
+ *
+ * --primary-color is deliberately NOT flipped by the theme: it is overloaded as
+ * both a surface colour and an ink colour, and no single value satisfies both
+ * (see styles/themes.css). So every component that uses it as INK declares its
+ * own rules here, the same way CommunityNoticesPage does.
+ *
+ * Omitting this block is what left the title and headings dark green on black —
+ * 2.63:1, measured, on the most important text on the page.
+ */
+
+:global(body.high-contrast) .title,
+:global(body.high-contrast) .whyTitle,
+:global(body.high-contrast) .notFoundTitle {
+  color: #ff0;
+}
+
+/* The kicker and the back link both use --accent-ink, a mid orange that measures
+   badly on black. Yellow is the theme's single ink colour. */
+:global(body.high-contrast) .kicker,
+:global(body.high-contrast) .back {
+  color: #ff0;
+}
+
+/* The brand-green shadow is invisible on black, so the "Why it matters" card
+   loses its edge entirely. A border carries the separation instead. */
+:global(body.high-contrast) .why {
+  border: 2px solid #ff0;
+  box-shadow: none;
+}
+
+/* The disclosure keeps its left rule — the marker is doing real work — but the
+   orange wash behind it drops out, since a tinted background on black reduces
+   contrast for the text sitting on it. */
+:global(body.high-contrast) .disclosure {
+  border-left-color: #ff0;
+  background: #222;
+  color: #fff;
+}

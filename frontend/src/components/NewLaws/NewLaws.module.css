@@ -19,6 +19,7 @@
 }
 
 .title {
+  composes: displaySection from '../../styles/typography.module.css';
   margin: 0;
   font-size: 1.75rem;
   font-weight: 600;

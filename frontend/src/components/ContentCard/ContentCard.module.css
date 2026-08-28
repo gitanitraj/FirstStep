@@ -58,6 +58,7 @@
 }
 
 .title {
+  composes: contentTitle from '../../styles/typography.module.css';
   font-weight: 600;
   color: var(--text-primary);
   text-decoration: none;

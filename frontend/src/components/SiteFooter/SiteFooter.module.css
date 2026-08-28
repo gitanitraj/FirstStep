@@ -22,6 +22,7 @@
 }
 
 .brand {
+  composes: brand from '../../styles/typography.module.css';
   font-size: 1.3rem;
   font-weight: 700;
   color: var(--surface);
