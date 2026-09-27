@@ -146,7 +146,8 @@ public class TaxonomyService {
 
     /**
      * Slug used in topic URLs — "Child Care &amp; Early Learning" →
-     * "child-care-early-learning". Same rule as OrganizationService.slugify, kept
+     * "child-care-early-learning". The same lowercase-and-hyphenate rule the
+     * organization registry uses for its slugs, kept
      * local rather than shared: one is a topic slug, one an organization slug, and
      * coupling them would mean a change to either affects the other's URLs.
      */

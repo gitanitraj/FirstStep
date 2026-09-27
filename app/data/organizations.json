@@ -1,0 +1,337 @@
+{
+  "_note": "First Step organization registry. `id` is the canonical identity and never changes; `slug` is the public URL and may change with the name. Resources reference organizations by ID, never by slug or display name. Only facts that genuinely belong to the ORGANIZATION live here — service-specific phones, websites and locations stay on the resource (Decision 049).",
+  "organizations": [
+    {
+      "id": "ORG-001",
+      "name": "American Red Cross",
+      "slug": "american-red-cross"
+    },
+    {
+      "id": "ORG-002",
+      "name": "Barlow's Upholstery Inc.",
+      "slug": "barlow-s-upholstery-inc",
+      "website": "http://www.barlowupholstery.com"
+    },
+    {
+      "id": "ORG-003",
+      "name": "Be Ready CDC - Esther's Place",
+      "slug": "be-ready-cdc-esther-s-place",
+      "website": "https://www.bereadycdc.org/"
+    },
+    {
+      "id": "ORG-004",
+      "name": "Be Ready CDC - Lazarus House",
+      "slug": "be-ready-cdc-lazarus-house",
+      "website": "https://www.bereadycdc.org/"
+    },
+    {
+      "id": "ORG-005",
+      "name": "Beautiful Gate Outreach Center",
+      "slug": "beautiful-gate-outreach-center"
+    },
+    {
+      "id": "ORG-006",
+      "name": "Belvedere State Service Center",
+      "slug": "belvedere-state-service-center"
+    },
+    {
+      "id": "ORG-007",
+      "name": "Brandywine Counseling & Community Services, Inc. (BCCS)",
+      "slug": "brandywine-counseling-community-services-inc-bccs"
+    },
+    {
+      "id": "ORG-008",
+      "name": "Catholic Charities - Bayard House",
+      "slug": "catholic-charities-bayard-house"
+    },
+    {
+      "id": "ORG-009",
+      "name": "Catholic Charities - Diocese of Wilmington - Thrift Services Vouchers",
+      "slug": "catholic-charities-diocese-of-wilmington-thrift-services-vouchers"
+    },
+    {
+      "id": "ORG-010",
+      "name": "Central YMCA - Y Mission Market",
+      "slug": "central-ymca-y-mission-market"
+    },
+    {
+      "id": "ORG-011",
+      "name": "Child Inc - Domestic Violence Shelters",
+      "slug": "child-inc-domestic-violence-shelters"
+    },
+    {
+      "id": "ORG-012",
+      "name": "Child Inc. - Runaway and Homeless Youth Program",
+      "slug": "child-inc-runaway-and-homeless-youth-program"
+    },
+    {
+      "id": "ORG-057",
+      "name": "Community Legal Aid Society",
+      "slug": "community-legal-aid-society"
+    },
+    {
+      "id": "ORG-059",
+      "name": "Delaware Division for the Visually Impaired",
+      "slug": "delaware-division-for-the-visually-impaired"
+    },
+    {
+      "id": "ORG-063",
+      "name": "Delaware Health and Social Services",
+      "slug": "delaware-health-and-social-services"
+    },
+    {
+      "id": "ORG-013",
+      "name": "Delaware State Housing Authority - SRAP",
+      "slug": "delaware-state-housing-authority-srap",
+      "website": "http://www.destatehousing.com"
+    },
+    {
+      "id": "ORG-062",
+      "name": "Delaware Volunteer Legal Services",
+      "slug": "delaware-volunteer-legal-services"
+    },
+    {
+      "id": "ORG-014",
+      "name": "Family Promise of Northern New Castle County",
+      "slug": "family-promise-of-northern-new-castle-county",
+      "website": "https://www.familypromisede.org/"
+    },
+    {
+      "id": "ORG-015",
+      "name": "Friendship House",
+      "slug": "friendship-house"
+    },
+    {
+      "id": "ORG-016",
+      "name": "H and N Appliances",
+      "slug": "h-and-n-appliances"
+    },
+    {
+      "id": "ORG-017",
+      "name": "Habitat for Humanity",
+      "slug": "habitat-for-humanity"
+    },
+    {
+      "id": "ORG-018",
+      "name": "Habitat for Humanity - Restore",
+      "slug": "habitat-for-humanity-restore"
+    },
+    {
+      "id": "ORG-019",
+      "name": "Hanover Presbyterian Church",
+      "slug": "hanover-presbyterian-church",
+      "website": "https://www.hanoverchurch.org/"
+    },
+    {
+      "id": "ORG-020",
+      "name": "Hilda Davis Residence",
+      "slug": "hilda-davis-residence"
+    },
+    {
+      "id": "ORG-021",
+      "name": "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+      "slug": "housing-opportunities-of-northern-delaware-inc-hond",
+      "website": "https://www.hond.org/home/"
+    },
+    {
+      "id": "ORG-022",
+      "name": "Kingswood Community Center",
+      "slug": "kingswood-community-center"
+    },
+    {
+      "id": "ORG-023",
+      "name": "Latin American Community Center (LACC)",
+      "slug": "latin-american-community-center-lacc"
+    },
+    {
+      "id": "ORG-024",
+      "name": "Limen Recovery and Wellness",
+      "slug": "limen-recovery-and-wellness",
+      "website": "https://www.limende.org/"
+    },
+    {
+      "id": "ORG-025",
+      "name": "Maria Lorenza Longo House",
+      "slug": "maria-lorenza-longo-house",
+      "website": "https://www.ministryofcaring.org"
+    },
+    {
+      "id": "ORG-026",
+      "name": "Ministry of Caring Inc",
+      "slug": "ministry-of-caring-inc",
+      "website": "https://www.ministryofcaring.org/"
+    },
+    {
+      "id": "ORG-027",
+      "name": "Mother Mary of Hope House II",
+      "slug": "mother-mary-of-hope-house-ii"
+    },
+    {
+      "id": "ORG-028",
+      "name": "Mother Mary of Hope House III",
+      "slug": "mother-mary-of-hope-house-iii"
+    },
+    {
+      "id": "ORG-029",
+      "name": "Nazareth House Holistic Housing I",
+      "slug": "nazareth-house-holistic-housing-i"
+    },
+    {
+      "id": "ORG-030",
+      "name": "Nazareth House Holistic Housing II",
+      "slug": "nazareth-house-holistic-housing-ii"
+    },
+    {
+      "id": "ORG-031",
+      "name": "NeighborGood Partners: Wilmington",
+      "slug": "neighborgood-partners-wilmington",
+      "website": "https://www.neighborgoodpartners.org/"
+    },
+    {
+      "id": "ORG-032",
+      "name": "Neighborhood House",
+      "slug": "neighborhood-house"
+    },
+    {
+      "id": "ORG-033",
+      "name": "Network Connect - RACE (Reverse the ACES)",
+      "slug": "network-connect-race-reverse-the-aces"
+    },
+    {
+      "id": "ORG-034",
+      "name": "Northeast State Service Center",
+      "slug": "northeast-state-service-center"
+    },
+    {
+      "id": "ORG-035",
+      "name": "Oxford House - Browntown",
+      "slug": "oxford-house-browntown"
+    },
+    {
+      "id": "ORG-036",
+      "name": "Oxford Houses of Delaware",
+      "slug": "oxford-houses-of-delaware",
+      "website": "https://oxfordhouse.org/"
+    },
+    {
+      "id": "ORG-037",
+      "name": "Porter State Service Center",
+      "slug": "porter-state-service-center"
+    },
+    {
+      "id": "ORG-038",
+      "name": "Rosehill Community Center",
+      "slug": "rosehill-community-center"
+    },
+    {
+      "id": "ORG-039",
+      "name": "STEHM - Martha House I & II",
+      "slug": "stehm-martha-house-i-ii",
+      "website": "https://stehm.org/"
+    },
+    {
+      "id": "ORG-040",
+      "name": "STEHM - Motel Ministry",
+      "slug": "stehm-motel-ministry"
+    },
+    {
+      "id": "ORG-041",
+      "name": "Sacred Heart Village",
+      "slug": "sacred-heart-village",
+      "website": "https://www.sacredheartvillage.org"
+    },
+    {
+      "id": "ORG-042",
+      "name": "Salvation Army",
+      "slug": "salvation-army",
+      "website": "http://pa.salvationarmy.org/delaware-command"
+    },
+    {
+      "id": "ORG-043",
+      "name": "ServiceSource - Warrier Bridge",
+      "slug": "servicesource-warrier-bridge"
+    },
+    {
+      "id": "ORG-044",
+      "name": "St. Francis Holistic Housing",
+      "slug": "st-francis-holistic-housing"
+    },
+    {
+      "id": "ORG-045",
+      "name": "St. Patricks Center",
+      "slug": "st-patricks-center"
+    },
+    {
+      "id": "ORG-046",
+      "name": "Sunday Breakfast Mission",
+      "slug": "sunday-breakfast-mission"
+    },
+    {
+      "id": "ORG-047",
+      "name": "Sunday Breakfast Mission - Urban Vintage",
+      "slug": "sunday-breakfast-mission-urban-vintage"
+    },
+    {
+      "id": "ORG-048",
+      "name": "The Friendship House Clothing Bank",
+      "slug": "the-friendship-house-clothing-bank"
+    },
+    {
+      "id": "ORG-058",
+      "name": "United Way of Delaware",
+      "slug": "united-way-of-delaware"
+    },
+    {
+      "id": "ORG-056",
+      "name": "West End Neighborhood House",
+      "slug": "west-end-neighborhood-house"
+    },
+    {
+      "id": "ORG-049",
+      "name": "West End Neighborhood House - Life Lines Program",
+      "slug": "west-end-neighborhood-house-life-lines-program"
+    },
+    {
+      "id": "ORG-060",
+      "name": "Westside Family Healthcare",
+      "slug": "westside-family-healthcare"
+    },
+    {
+      "id": "ORG-050",
+      "name": "William Booth Emergency Housing Residence",
+      "slug": "william-booth-emergency-housing-residence"
+    },
+    {
+      "id": "ORG-051",
+      "name": "William Hicks Anderson Community Center",
+      "slug": "william-hicks-anderson-community-center"
+    },
+    {
+      "id": "ORG-061",
+      "name": "Wilmington Housing Authority",
+      "slug": "wilmington-housing-authority"
+    },
+    {
+      "id": "ORG-052",
+      "name": "Wilmington Housing Authority - Housing Choice Vouchers",
+      "slug": "wilmington-housing-authority-housing-choice-vouchers",
+      "website": "https://whadelaware.org/"
+    },
+    {
+      "id": "ORG-053",
+      "name": "Wilmington Housing Authority - Public Housing Units",
+      "slug": "wilmington-housing-authority-public-housing-units",
+      "website": "https://whadelaware.org/"
+    },
+    {
+      "id": "ORG-054",
+      "name": "Wilmington Senior Center - Lafayette Court Apartments",
+      "slug": "wilmington-senior-center-lafayette-court-apartments"
+    },
+    {
+      "id": "ORG-055",
+      "name": "YWCA Delaware - SCHE Joint Transitional Housing and Rapid Re-housing",
+      "slug": "ywca-delaware-sche-joint-transitional-housing-and-rapid-re-housing"
+    }
+  ]
+}

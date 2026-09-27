@@ -1,26 +1,57 @@
 /* =============================================================================
  * ANNOTATED REFERENCE — backend/.../organization/service/OrganizationService.java
- * Slice D (Resource Discovery), extended in Slice F5a.
- * See references/decisions.md Decisions 023 and 036.
- * Keep this mirror in sync with the source.
+ * Slice F5a originally; rewritten onto the registry in Slice G1a (Decision 049).
  * =============================================================================
  *
- * WHAT THIS CLASS IS
- *   Aggregates curated Organizations shortlists — for the homepage Resource
- *   Discovery column, and (F5a) for one category page's "Connect" column.
- *   Composes ONLY the existing ResourceService and TaxonomyService (no new
- *   repository) — a BFF-style aggregator, same shape as UpdatesService.
+ * WHAT IT DOES: ranks organizations for category shortlists, and assembles one
+ * organization page — the third step of the Front Door's Connect pathway
+ * (directory -> organization -> that organization's resources).
  *
- * WHY A CURATED SHORTLIST (not "all orgs")
- *   There are ~178 distinct organizations in the loaded data, most with 1–2
- *   resources — an unusable list. First Step is a CURATED selection, so this
- *   returns a capped, ranked shortlist and there is deliberately NO "see all".
- *   Ranking is by resource count FOR NOW (a placeholder); the intended metric is
- *   policy/news-driven and will replace the count later.
+ * WHAT CHANGED, AND WHY IT MATTERS MORE THAN IT LOOKS
+ * ---------------------------------------------------
+ * This class used to DERIVE organizations by grouping the display name off each
+ * resource and slugifying it. Identity was therefore a function of spelling, and
+ * the class that produced links was also the class that invented the identity
+ * those links pointed at.
  *
- * COMPANION DTO
- *   organization/dto/OrgSummary.java: record(name, slug, resourceCount). `slug`
- *   is for /organization/{slug} routing (the Organization landing page is Slice G).
+ * Now the registry owns identity and this class only composes. slugify() is
+ * DELETED from production code — the grep that proves it is worth re-running if
+ * anyone is tempted to add it back for convenience.
+ *
+ * SLUG IN, ID OUT
+ * ---------------
+ * getBySlug resolves the slug ONCE against the registry, then matches resources
+ * on organizationId. Matching on the display name instead would work today and
+ * silently reintroduce the exact fragility the registry removes — which is why
+ * the resolution happens at the boundary and never again.
+ *
+ * slugFor() RETURNS NULL RATHER THAN COMPUTING A FALLBACK
+ * ------------------------------------------------------
+ * When a shortlist meets an organization the registry does not know, the
+ * tempting fallback is slugify(name). That would produce a link that LOOKS live
+ * and 404s — the worst of both, because nothing surfaces it.
+ *
+ * Returning null and filtering the entry out means an unregistered organization
+ * is simply absent from the shortlist. Absence is visible; a broken link is not.
+ * Same never-guess rule as ContentSourceService and ReviewStatus, applied to
+ * links instead of sectors.
+ *
+ * WHY AN EMPTY ORGANIZATION STILL RETURNS A PAGE
+ * ----------------------------------------------
+ * getBySlug returns a page for a registered organization with zero resources,
+ * rather than empty. "This organization exists and lists nothing right now" and
+ * "there is no such organization" are different facts, and collapsing them into
+ * one 404 would tell a resident the organization does not exist when it does.
+ *
+ * WHY RESOURCES RENDER AS ContentItem
+ * -----------------------------------
+ * An organization page asks a different QUESTION — "who provides this?" — but
+ * the answer is still a list of resources. Same card shape as topic pages,
+ * search and notices; a new DTO would have been a new shape for the same thing.
+ *
+ * Note the per-resource website IS carried through. That is not an oversight:
+ * service-level contact belongs on the service, which is precisely why the
+ * organization record withholds it.
  * ============================================================================= */
 
 package org.firststep.backend.organization.service;
@@ -28,42 +59,114 @@ package org.firststep.backend.organization.service;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.firststep.backend.category.model.CategoryDefinition;
 import org.firststep.backend.category.service.TaxonomyService;
+import java.util.Optional;
+
 import org.firststep.backend.organization.dto.OrgSummary;
+import org.firststep.backend.organization.dto.OrganizationPage;
+import org.firststep.backend.organization.model.Organization;
+import org.firststep.backend.organization.repository.OrganizationRepository;
 import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.resource.service.ResourceService;
 import org.springframework.stereotype.Service;
 
+/**
+ * Aggregates curated shortlists of organizations — for the homepage Resource
+ * Discovery column, and (Slice F5a) for one category page's "Connect" column.
+ * First Step is a curated selection, so both are capped shortlists with NO
+ * "see all" — the browser just renders what it's handed.
+ *
+ * Ranking is by resource count FOR NOW (a placeholder); the intended metric is
+ * expected to be driven by policy updates / news. Kept server-side per the
+ * backend-aggregates / frontend-displays principle.
+ *
+ * <p><b>Slice G1a gave organizations an identity.</b> Before, this class derived
+ * one by grouping the display NAME off each resource and slugifying it, so an
+ * organization existed only as a string repeated N times and its URL was a
+ * function of its spelling. Renaming it would have broken every link with
+ * nothing to detect the break.
+ *
+ * <p>Shortlists still rank by counting resources — that is a ranking question,
+ * not an identity one — but the slug now comes from the REGISTRY rather than
+ * from {@code slugify(name)}, so what a shortlist links to is guaranteed to be a
+ * page that exists.
+ */
 @Service
 public class OrganizationService {
 
-    // Shortlist cap — keeps the discovery column above the fold. Shared by both
-    // shortlists deliberately: a category page's Connect column and the homepage's
-    // Organizations column are the same UI affordance at the same density, so a
-    // second constant would be a knob with no question behind it.
     private static final int MAX_ORGS = 8;
 
     private final ResourceService resourceService;
     private final TaxonomyService taxonomyService;
+    private final OrganizationRepository repository;
 
-    public OrganizationService(ResourceService resourceService, TaxonomyService taxonomyService) {
+    public OrganizationService(ResourceService resourceService, TaxonomyService taxonomyService,
+            OrganizationRepository repository) {
         this.resourceService = resourceService;
         this.taxonomyService = taxonomyService;
+        this.repository = repository;
+    }
+
+    /**
+     * One organization and everything First Step lists for it, or empty.
+     *
+     * <p><b>Slug in, ID out.</b> The slug resolves to a registry record once, and
+     * every resource is then matched on {@code organizationId}. Matching on the
+     * display name instead would work today and reintroduce exactly the fragility
+     * the registry removes.
+     *
+     * <p>An organization with no resources still returns a page rather than a
+     * 404: it is a real organization that happens to list nothing right now, and
+     * that is a different fact from "no such organization".
+     */
+    public Optional<OrganizationPage> getBySlug(String slug) {
+        return repository.findBySlug(slug).map(org -> new OrganizationPage(
+                org.id, org.name, org.slug, org.website, resourcesFor(org)));
+    }
+
+    private List<ContentItem> resourcesFor(Organization org) {
+        return resourceService.getAll().stream()
+                .filter(r -> org.id.equals(r.organizationId))
+                .map(OrganizationService::toContentItem)
+                .toList();
+    }
+
+    /**
+     * Resources render as the SAME card shape the rest of the product uses.
+     *
+     * <p>An organization page asks a different question — "who provides this?" —
+     * but the answer is still a list of resources, so it needs no card of its
+     * own. Note the per-resource website is carried through: service-level
+     * contact belongs on the service, which is precisely why the organization
+     * record withholds it.
+     */
+    private static ContentItem toContentItem(Resource r) {
+        return new ContentItem(
+                r.contentType, r.id, r.title,
+                r.summary != null ? r.summary : r.description,
+                r.organization,
+                r.locations != null && !r.locations.isEmpty() ? r.locations.get(0).city : null,
+                r.cost, r.urgency, null,
+                r.websites != null && !r.websites.isEmpty() ? r.websites.get(0).url : null,
+                null);
     }
 
     public List<OrgSummary> getCuratedShortlist() {
         return rank(resourceService.getAll());
     }
 
-    // F5a. Organizations offering resources in ONE category, ranked by how many
-    // they offer WITHIN that category. Scoping reads editorial classification
-    // only, the same matchesCategoryTags rule every other category-aware service
-    // uses. An unknown key yields an empty list rather than an exception — the
-    // caller has already established whether the category exists.
+    /**
+     * Organizations offering resources in one category, ranked by how many they
+     * offer <b>within that category</b> — a housing page should lead with the
+     * organizations that do housing, not with whoever is largest overall.
+     *
+     * <p>Scoping reads editorial classification only, the same rule every other
+     * category-aware service uses. An unknown key yields an empty list.
+     */
     public List<OrgSummary> getForCategory(String categoryKey) {
         CategoryDefinition definition = taxonomyService.findByKey(categoryKey).orElse(null);
         if (definition == null) {
@@ -74,65 +177,43 @@ public class OrganizationService {
                 .toList());
     }
 
-    // Extracted in F5a so both shortlists share one ranking implementation. The
-    // ONLY difference between the two public methods is which resources they hand
-    // in, which is the correct seam: "how do we rank organizations?" is one
-    // question with one answer, asked about two populations.
     private List<OrgSummary> rank(List<Resource> resources) {
-        // Count resources per organization. A LinkedHashMap preserves first-seen
-        // order, which only matters as a pre-sort baseline; the real ordering is
-        // the sort below. Blank/null org names are skipped (some records lack one).
+        // Count resources per organization, preserving first-seen order for stable
+        // tie-breaking before the final sort.
         Map<String, Integer> counts = new LinkedHashMap<>();
         for (Resource r : resources) {
             String org = r.organization;
             if (org == null || org.isBlank()) {
                 continue;
             }
-            counts.merge(org.trim(), 1, Integer::sum); // +1 per resource
+            counts.merge(org.trim(), 1, Integer::sum);
         }
 
         return counts.entrySet().stream()
-                // Rank by count DESC, then name ASC. The name tie-break makes the
-                // shortlist DETERMINISTIC — without it, orgs with equal counts could
-                // reorder between requests (flaky UI + flaky tests).
+                // Rank by count desc, then name asc for a deterministic order.
                 .sorted(Comparator.<Map.Entry<String, Integer>>comparingInt(Map.Entry::getValue).reversed()
                         .thenComparing(Map.Entry::getKey))
                 .limit(MAX_ORGS)
-                .map(e -> new OrgSummary(e.getKey(), slugify(e.getKey()), e.getValue()))
+                // The slug comes from the REGISTRY, never from slugify(name): a
+                // shortlist must link to a page that exists, and only the
+                // registry knows the current slug.
+                .map(e -> new OrgSummary(e.getKey(), slugFor(e.getKey()), e.getValue()))
+                .filter(o -> o.slug() != null)
                 .toList();
     }
 
-    // Name → URL-safe slug: lowercase, collapse each run of non-alphanumerics to a
-    // single hyphen, then trim leading/trailing hyphens. Enough to route
-    // /organization/{slug}; the Organization page (G) resolves back by matching.
-    // (Package-private so the test can exercise it directly.)
-    static String slugify(String name) {
-        String slug = name.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "-");
-        return slug.replaceAll("(^-+)|(-+$)", "");
+    /**
+     * The registry's current slug for a display name, or null if unregistered.
+     *
+     * <p>Returning null rather than falling back to {@code slugify(name)} is
+     * deliberate: a computed slug for an organization the registry does not know
+     * would produce a link to a 404 — a shortlist entry that looks live and is
+     * not. The caller filters those out instead.
+     */
+    private String slugFor(String name) {
+        return repository.findAll().stream()
+                .filter(o -> name.equals(o.name))
+                .map(o -> o.slug)
+                .findFirst().orElse(null);
     }
 }
-
-// =============================================================================
-// SLICE F5a — WHY COUNTS ARE SCOPED, NOT JUST THE MEMBERSHIP
-// =============================================================================
-// getForCategory could have filtered which organizations appear while still
-// ranking them by their TOTAL resource count. That would be wrong, and the test
-// shouldRankByCountWithinTheCategoryNotOverall pins the difference:
-//
-//   Big Generalist      2 food + 1 housing
-//   Housing Specialist  2 housing
-//
-// Ranked overall, the generalist leads a HOUSING page with three resources, only
-// one of which is about housing. Ranked within the category, the specialist leads
-// with two. A resident on the Housing page is asking "who does housing?", and the
-// count shown beside each name has to answer that same question or it is
-// misleading rather than merely imprecise.
-//
-// THE PLACEHOLDER STATUS IS UNCHANGED. Resource count is still a stand-in for the
-// intended policy/news-driven metric (Decision 023). F5a scoped the existing
-// metric correctly; it did not promote it.
-//
-// UNCLASSIFIED RESOURCES CONTRIBUTE NOTHING — no categoryTags, no placement, the
-// same rule NavigationService and UpdatesService follow. Pinned by
-// shouldNotPlaceOrganizationsFromUnclassifiedResources.
-// =============================================================================

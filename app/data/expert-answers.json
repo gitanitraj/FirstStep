@@ -45,7 +45,8 @@
         ],
         "email": "housing@dvls.org"
       },
-      "session_date": "2026-06-15"
+      "session_date": "2026-06-15",
+      "organization_id": "ORG-062"
     },
     {
       "id": "EA-002",
@@ -85,7 +86,8 @@
         ],
         "email": null
       },
-      "session_date": "2026-06-15"
+      "session_date": "2026-06-15",
+      "organization_id": "ORG-063"
     },
     {
       "id": "EA-003",
@@ -124,7 +126,8 @@
         ],
         "email": null
       },
-      "session_date": "2026-05-20"
+      "session_date": "2026-05-20",
+      "organization_id": "ORG-057"
     },
     {
       "id": "EA-004",
@@ -164,7 +167,8 @@
         ],
         "email": null
       },
-      "session_date": "2026-06-15"
+      "session_date": "2026-06-15",
+      "organization_id": "ORG-060"
     },
     {
       "id": "EA-005",
@@ -204,7 +208,8 @@
         ],
         "email": "housing@dvls.org"
       },
-      "session_date": "2026-06-15"
+      "session_date": "2026-06-15",
+      "organization_id": "ORG-062"
     },
     {
       "id": "EA-006",
@@ -244,7 +249,8 @@
         ],
         "email": null
       },
-      "session_date": "2026-06-15"
+      "session_date": "2026-06-15",
+      "organization_id": "ORG-063"
     }
   ]
 }

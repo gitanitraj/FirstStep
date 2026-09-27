@@ -3,8 +3,13 @@ package org.firststep.backend.category.service;
 import java.util.List;
 
 import org.firststep.backend.category.dto.TopicPage;
+import org.firststep.backend.expert.service.ExpertAnswerService;
+import org.firststep.backend.expert.service.FaqService;
 import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.service.FlyerService;
+import org.firststep.backend.news.service.NewsService;
+import org.firststep.backend.news.service.RssFeedSource;
+import org.firststep.backend.originals.service.ArticleService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.dto.ContentItem;
@@ -24,6 +29,12 @@ import static org.mockito.Mockito.when;
  * Wired with the REAL taxonomy over mocked content — the thing under test is how
  * editorial classification selects items for a topic, and the taxonomy IS that
  * vocabulary.
+ *
+ * <p><b>Every assertion below predates Decision 051 and none of them changed when
+ * content resolution moved into {@link CategoryContentService}.</b> That is the
+ * point: the delegation was a refactor, and a test that had to be rewritten to keep
+ * passing would have proved the opposite. Only the wiring moved — the same two
+ * mocked services now reach the topic page through the shared resolver.
  */
 class TopicPageServiceTest {
 
@@ -37,7 +48,25 @@ class TopicPageServiceTest {
         flyerService = mock(FlyerService.class);
         when(resourceService.getAll()).thenReturn(List.of());
         when(flyerService.getAll()).thenReturn(List.of());
-        service = new TopicPageService(new TaxonomyService("../app/data"), resourceService, flyerService);
+
+        // Only resources and flyers can carry a subcategory, so they are the only
+        // sources a topic page can ever read. The rest are stubbed empty rather
+        // than omitted, so this test fails loudly if that ever stops being true.
+        NewsService news = mock(NewsService.class);
+        RssFeedSource rss = mock(RssFeedSource.class);
+        ExpertAnswerService expert = mock(ExpertAnswerService.class);
+        FaqService faq = mock(FaqService.class);
+        ArticleService articles = mock(ArticleService.class);
+        when(news.getAll()).thenReturn(List.of());
+        when(rss.getRssItems()).thenReturn(List.of());
+        when(expert.getAll()).thenReturn(List.of());
+        when(faq.getAll()).thenReturn(List.of());
+        when(articles.getPublishable()).thenReturn(List.of());
+
+        TaxonomyService taxonomy = new TaxonomyService("../app/data");
+        CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
+                news, rss, flyerService, expert, faq, articles);
+        service = new TopicPageService(taxonomy, content);
     }
 
     private static Resource resource(String id, String title, List<String> categoryTags, String subcategory) {

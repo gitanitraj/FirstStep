@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
+import org.firststep.backend.category.dto.CategoryCollection;
 import org.firststep.backend.category.dto.CategoryMetadata;
 import org.firststep.backend.category.dto.CategoryPage;
+import org.firststep.backend.category.dto.CollectionLayer;
 import org.firststep.backend.category.dto.TopicMetadata;
 import org.firststep.backend.category.dto.TopicPage;
 import org.firststep.backend.category.service.CategoryPageService;
@@ -159,7 +161,12 @@ class CategoryControllerTest {
                         List.of(new TopicNavigation("Emergency Shelter", "emergency-shelter", 12,
                                 Map.of(ContentType.RESOURCE, 12))))),
                 List.of(),
-                List.of(new OrgSummary("Housing Alliance", "housing-alliance", 12)));
+                List.of(new OrgSummary("Housing Alliance", "housing-alliance", 12)),
+                List.of(new CategoryCollection("get-help", "collection.getHelp",
+                        CollectionLayer.ACTION, 1,
+                        List.of(new ContentItem(ContentType.RESOURCE, "R1", "A shelter", "Summary",
+                                "Housing Alliance", "Wilmington", "free", "standard", null,
+                                "https://example.org/R1", null)))));
     }
 
     @Test

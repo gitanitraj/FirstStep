@@ -27,10 +27,17 @@ import org.springframework.stereotype.Service;
  *
  * <pre>
  * CategoryPageService
- *   ├── NavigationService.getByKey()      → metadata + groups/topics   (Discover)
- *   ├── UpdatesService.getForCategory()   → news + law + flyer + expert (Stay Informed)
- *   └── OrganizationService.getForCategory() → organizations            (Connect)
+ *   ├── NavigationService.getByKey()          → metadata + groups/topics   (Discover)
+ *   ├── UpdatesService.getForCategory()       → news + law + flyer + expert (Stay Informed)
+ *   ├── OrganizationService.getForCategory()  → organizations              (Connect)
+ *   └── CategoryContentService.collectionsFor() → the destination collections (Decision 051)
  * </pre>
+ *
+ * <p>The fourth collaborator arrived with the category destination. It supplies
+ * purposeful collections shaped around resident jobs — help me act, help me
+ * understand — while the three pillars above keep their exact semantics. Retiring
+ * a pillar field is a deliberate act for a later slice, never a silent duplicate
+ * left in place.
  *
  * <p><b>{@link NavigationService} is untouched by this slice.</b> It remains a
  * pure read model producing resident navigation and nothing else. Composition
@@ -55,12 +62,14 @@ public class CategoryPageService {
     private final NavigationService navigationService;
     private final UpdatesService updatesService;
     private final OrganizationService organizationService;
+    private final CategoryContentService categoryContentService;
 
     public CategoryPageService(NavigationService navigationService, UpdatesService updatesService,
-            OrganizationService organizationService) {
+            OrganizationService organizationService, CategoryContentService categoryContentService) {
         this.navigationService = navigationService;
         this.updatesService = updatesService;
         this.organizationService = organizationService;
+        this.categoryContentService = categoryContentService;
     }
 
     /**
@@ -87,7 +96,8 @@ public class CategoryPageService {
                 updates,
                 navigation.groups(),
                 navigation.topics(),
-                organizationService.getForCategory(categoryKey));
+                organizationService.getForCategory(categoryKey),
+                categoryContentService.collectionsFor(categoryKey, communityId));
     }
 
     /**

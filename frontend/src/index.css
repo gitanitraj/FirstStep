@@ -156,7 +156,9 @@
   gap: 32px;
 }
 
-.category-header,
+/* .category-header moved to pages/CategoryPage/CategoryPage.module.css with the
+   category destination (Decision 051). .category-section stays: CategoryBrowse
+   and CategoryUpdates still use it, and they migrate when a slice touches them. */
 .category-section {
   background: var(--surface);
   border: 1px solid var(--border-color);
@@ -215,27 +217,11 @@
   text-align: center;
 }
 
-/* ===== Category page (Slice F5b) ===== */
-.category-title {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
-  font-size: 26px;
-  font-weight: 700;
-  color: var(--primary-color);
-}
-
-.category-icon {
-  font-size: 28px;
-}
-
-.category-counts {
-  margin: 6px 0 0 0;
-  color: var(--text-secondary);
-  font-size: 14px;
-}
-
+/* ===== Category page (Slice F5b) =====
+   .category-title, .category-icon and .category-counts moved to
+   pages/CategoryPage/CategoryPage.module.css with the category destination
+   (Decision 051). What remains below belongs to CategoryUpdates and
+   CategoryBrowse, which are still on globals. */
 .category-section-head {
   display: flex;
   align-items: baseline;

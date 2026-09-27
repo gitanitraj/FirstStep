@@ -1,10 +1,12 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { I18nProvider } from './i18n/I18nProvider';
 import HomePage from './pages/HomePage';
-import CategoryPage from './pages/CategoryPage';
+import CategoryPage from './pages/CategoryPage/CategoryPage';
 import TopicPage from './pages/TopicPage/TopicPage';
 import UpdatesPage from './pages/UpdatesPage/UpdatesPage';
 import ArticlePage from './pages/ArticlePage/ArticlePage';
+import FindHelpPage from './pages/FindHelpPage/FindHelpPage';
+import OrganizationPage from './pages/OrganizationPage/OrganizationPage';
 import CommunityNoticesPage from './pages/CommunityNoticesPage/CommunityNoticesPage';
 import StubPage from './pages/StubPage';
 
@@ -39,7 +41,7 @@ export default function App() {
           <Route path="/category/:key/:topic" element={<TopicPage />} />
           <Route path="/discover" element={<StubPage name="Discover" />} />
           <Route path="/discover/:facet" element={<StubPage name="Discovery pathway" />} />
-          <Route path="/find-help" element={<StubPage name="Find Help" />} />
+          <Route path="/find-help" element={<FindHelpPage />} />
           <Route path="/updates" element={<UpdatesPage sector="government" />} />
           {/* ONE page, five routes. The `:view` param is the source of truth for
               the active view, so every URL works when typed, shared or reached
@@ -49,7 +51,7 @@ export default function App() {
           <Route path="/community-notices/:view" element={<CommunityNoticesPage />} />
           <Route path="/community" element={<StubPage name="Community" />} />
           <Route path="/about" element={<StubPage name="About First Step" />} />
-          <Route path="/organization/:slug" element={<StubPage name="Organization" />} />
+          <Route path="/organization/:slug" element={<OrganizationPage />} />
           <Route path="*" element={<StubPage name="Page not found" />} />
         </Routes>
       </BrowserRouter>

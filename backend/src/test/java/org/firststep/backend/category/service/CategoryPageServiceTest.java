@@ -12,7 +12,10 @@ import org.firststep.backend.navigation.service.NavigationService;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.service.NewsService;
 import org.firststep.backend.news.service.RssFeedSource;
+import org.firststep.backend.organization.model.Organization;
+import org.firststep.backend.organization.repository.OrganizationRepository;
 import org.firststep.backend.organization.service.OrganizationService;
+import org.firststep.backend.originals.service.ArticleService;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.model.ContentType;
@@ -44,6 +47,7 @@ class CategoryPageServiceTest {
     private ExpertAnswerService expertAnswerService;
     private FaqService faqService;
     private RssFeedSource rssFeedSource;
+    private ArticleService articleService;
     private CategoryPageService service;
 
     @BeforeEach
@@ -53,6 +57,8 @@ class CategoryPageServiceTest {
         flyerService = mock(FlyerService.class);
         expertAnswerService = mock(ExpertAnswerService.class);
         faqService = mock(FaqService.class);
+        articleService = mock(ArticleService.class);
+        when(articleService.getPublishable()).thenReturn(List.of());
         rssFeedSource = List::of;
         rebuild();
     }
@@ -61,11 +67,15 @@ class CategoryPageServiceTest {
     private void rebuild() {
         TaxonomyService taxonomy = new TaxonomyService("../app/data");
         NavigationService navigation = new NavigationService("../app/data", taxonomy,
-                resourceService, newsService, flyerService, expertAnswerService, faqService, rssFeedSource);
+                resourceService, newsService, flyerService, expertAnswerService, faqService,
+                rssFeedSource, articleService);
         UpdatesService updates = new UpdatesService(newsService, rssFeedSource, flyerService,
                 expertAnswerService, faqService, taxonomy, new ContentSourceService("../app/data"));
-        OrganizationService organizations = new OrganizationService(resourceService, taxonomy);
-        service = new CategoryPageService(navigation, updates, organizations);
+        OrganizationService organizations = new OrganizationService(resourceService, taxonomy,
+                registryFor(resourceService.getAll()));
+        CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
+                newsService, rssFeedSource, flyerService, expertAnswerService, faqService, articleService);
+        service = new CategoryPageService(navigation, updates, organizations, content);
     }
 
     private static Resource resource(String id, String org, List<String> categoryTags, String subcategory) {
@@ -272,4 +282,46 @@ class CategoryPageServiceTest {
         assertEquals(2, page.metadata().totalCount());
         assertEquals(List.of("N1"), page.updates().stream().map(UpdateItem::id).toList());
     }
+
+    /**
+     * A registry containing exactly the organizations these FIXTURES name.
+     *
+     * <p>An earlier version loaded the real app/data registry, reasoning that
+     * category tests use the real taxonomy. That was wrong here: these fixtures
+     * invent organizations ("Housing Alliance") that the real registry has never
+     * heard of, so every one was filtered out and the assertion saw an empty
+     * list. The registry is the fixture's peer, not the environment.
+     */
+    static OrganizationRepository registryFor(List<org.firststep.backend.resource.model.Resource> resources) {
+        List<Organization> orgs = resources.stream()
+                .map(r -> r.organization)
+                .filter(n -> n != null && !n.isBlank())
+                .distinct()
+                .map(name -> {
+                    Organization o = new Organization();
+                    o.name = name;
+                    o.slug = name.toLowerCase(java.util.Locale.ROOT)
+                            .replaceAll("[^a-z0-9]+", "-").replaceAll("(^-+)|(-+$)", "");
+                    o.id = "ORG-" + String.format("%03d", Math.abs(name.hashCode()) % 1000);
+                    return o;
+                })
+                .toList();
+        return new OrganizationRepository() {
+            @Override
+            public List<Organization> findAll() {
+                return orgs;
+            }
+
+            @Override
+            public java.util.Optional<Organization> findById(String id) {
+                return orgs.stream().filter(o -> id.equals(o.id)).findFirst();
+            }
+
+            @Override
+            public java.util.Optional<Organization> findBySlug(String slug) {
+                return orgs.stream().filter(o -> slug.equals(o.slug)).findFirst();
+            }
+        };
+    }
+
 }

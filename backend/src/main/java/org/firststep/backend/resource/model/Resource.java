@@ -28,7 +28,22 @@ public class Resource extends CivicContent {
 
     /** Raw source category as published by the directory — NOT the canonical taxonomy label. */
     public String category;
+    /**
+     * The resident-facing organization NAME. Still the thing a person reads, and
+     * deliberately kept — but no longer the identity.
+     */
     public String organization;
+
+    /**
+     * Canonical reference into the organization registry — {@code ORG-001}.
+     *
+     * <p>This, not {@link #organization} and never a slug, is how a resource says
+     * who provides it. A display name can be corrected and a slug can change; an
+     * ID cannot, which is what keeps a resource attached to its organization
+     * across both (Decision 049).
+     */
+    @JsonProperty("organization_id")
+    public String organizationId;
     @JsonProperty("parent_organization")
     public String parentOrganization;
     public String description;

@@ -33,13 +33,34 @@ import org.firststep.backend.updates.dto.UpdateItem;
  * They are projected as siblings rather than nesting the whole
  * {@code CategoryNavigation}, which would repeat key, label, icon and the counts
  * in two places in one payload.
+ *
+ * <h2>{@code collections} — the destination composition (Decision 051)</h2>
+ *
+ * <p>The pillars above describe what the page KNOWS. They describe poorly what a
+ * resident WANTS: nobody arrives at Housing thinking "I would like to Discover."
+ * {@code collections} carries the destination's purposeful collections instead —
+ * ordered, each already shaped, each naming the resident job it serves through its
+ * {@link CollectionLayer}.
+ *
+ * <p><b>The pillars are preserved as information, retired as primary navigation.</b>
+ * {@code updates}, {@code groups}, {@code topics} and {@code organizations} keep
+ * their exact current semantics, so nothing that reads this payload today breaks. A
+ * field is retired only when the design demonstrates it obsolete, never by leaving
+ * a silent duplicate in place.
+ *
+ * <p><b>This is one additive field, not a UI data bag.</b> Each collection is a
+ * named projection the destination architecture requires. The payload carries no
+ * spatial information — whether collections render as columns, stacked sections or
+ * something responsive is a visual-design question, and a DTO that answered it
+ * would make the backend own the layout.
  */
 public record CategoryPage(
         CategoryMetadata metadata,
         List<UpdateItem> updates,
         List<TopicGroup> groups,
         List<TopicNavigation> topics,
-        List<OrgSummary> organizations
+        List<OrgSummary> organizations,
+        List<CategoryCollection> collections
 ) {
 
     /** True when navigation.json groups this category's topics. */

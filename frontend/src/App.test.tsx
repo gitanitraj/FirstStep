@@ -109,12 +109,13 @@ describe('The front door', () => {
 
 describe('App routing', () => {
   it('routes a global-nav destination to its stub page (under the /app-next basename)', () => {
-    // /updates and /community-notices are REAL pages now (Slice I), so this
-    // asserts the stub mechanism on a destination that is still one.
-    window.history.pushState({}, '', '/app-next/find-help');
+    // The set of stubs keeps shrinking as slices land — /updates and
+    // /community-notices in Slice I, /find-help in G1b — so this asserts the
+    // stub MECHANISM on whichever destination is still one. /discover is next.
+    window.history.pushState({}, '', '/app-next/discover');
     render(<App />);
 
-    expect(screen.getByRole('heading', { name: 'Find Help' })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Discover' })).toBeInTheDocument();
     expect(screen.getByText('Coming soon.')).toBeInTheDocument();
   });
 });

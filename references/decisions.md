@@ -4657,3 +4657,697 @@ commit, even while the review itself is a human setting a field.
 - Adding `ai` to `author`
 
 The AI review workflow slots into this boundary later without reshaping it.
+
+---
+
+# Decision 049 — Organizations get an identity (Slice G1a)
+
+**The Front Door spec settles what Find Help is**, and an earlier scope for this
+slice got it wrong:
+
+```
+Connect    Where do I go next?    → Find Help
+                                      ↓ Organization directory / search
+                                      ↓ Organization
+                                      ↓ that organization's First Step resources
+```
+
+**Find Help IS the organization directory.** Browsing resources by category is
+DISCOVER's pathway in the same diagram. A proposed "build Find Help as a resource
+browser first" was therefore not a smaller version of the slice — it was a
+different slice wearing its name. Recorded because the mistake is easy to repeat:
+when a destination is blocked, the tempting move is to redefine it into something
+buildable.
+
+## What was actually blocked
+
+Not the data. The 55 organizations in `resources.json` are real, named
+organizations with real contact details. What was missing was **identity**:
+
+| | before |
+| --- | --- |
+| Organizations with a record | **0** |
+| Identity | the display string on N resources |
+| URL | `slugify(that string)` |
+| `parentOrganization` populated | **0 times** |
+
+Rename an organization and every link to it breaks, silently, with nothing to
+detect the break. **This is the same failure ContentSource had before Slice I,
+and it takes the same remedy** (Decision 045): a registry of stable IDs, with
+content referencing the ID rather than the name.
+
+## The registry
+
+`app/data/organizations.json` — 55 records of `id`, `name`, `slug`, and
+`website` where one is genuinely established.
+
+**`id` is identity; `slug` is a URL.** Resources carry `organization_id` and
+never a slug or a name. The slug is public, derived from the name, and changes
+when the name does.
+
+**A renamed organization's old links will 404, and this decision claims no
+otherwise.** Historical slugs, aliases and redirects are out of scope. What the
+ID buys today is that the RECORD survives a rename intact — every resource stays
+attached and nothing is orphaned. Preserving old URLs is a separate capability,
+and implying it while not implementing it would be worse than the 404.
+
+`slugify()` is **deleted from production code.** The slug now comes from the
+registry, and `OrganizationService` omits any organization the registry does not
+know rather than computing a link to a page that cannot exist.
+
+## Organization facts vs service facts
+
+The instruction was explicit: do not manufacture organization-level contact
+information by selecting among conflicting service-level values.
+
+Measured before deciding, from the source data's own labels:
+
+| label | count | verdict |
+| --- | --- | --- |
+| website `"Organization website"` | 17 | **org-level** — the data declares what it is |
+| website `"Program page"` and similar | 38 | service-level, stays on the resource |
+| phone `"Main"` | 56 | **service-level** — the main line FOR THAT SERVICE |
+| phone `"Secondary"`, `"Wilmington"`, `"24-hour hotline"` | 5 | service-level |
+
+So: **17 organizations get a website; 38 get none; no organization gets a
+phone.** `Organization` has no phone field at all — a test asserts it never
+grows one.
+
+That asymmetry is the decision working. A single-resource organization's "Main"
+number *looks* promotable, and promoting it would be inference dressed as a fact.
+**A resident in crisis calling a number First Step guessed at is the failure this
+avoids**, and absence is the honest alternative — the service card below carries
+the number that is actually true.
+
+## Migration completeness is not a domain invariant
+
+`validate_organizations.py` warns when a registry entry has no resources, and
+**warns rather than errors**, because the rule is about THIS migration: the
+registry was generated from the resources, so an orphan means the generation
+dropped something.
+
+It is explicitly **not** a permanent rule that an organization may never exist
+without a currently served resource. A real registry will hold organizations
+whose listings lapsed or that were added ahead of their services. When that
+happens the rule is retired, not argued with. Rules 1–4 (unique well-formed IDs,
+unique URL-safe slugs, unique names, every reference resolves) are errors and
+each was verified to fire with its own diagnostic.
+
+## Two mistakes worth keeping
+
+**I mischaracterized the data, then corrected it.** The first read said the
+`organization` values were program names, based on the three organizations with
+more than one resource — which happen to be the messy ones. That was sampling the
+tail. The typical value is clean. The lesson is narrow and repeatable: *the
+records that stand out are the ones you notice, and they are not the population.*
+
+**A test's registry is the fixture's peer, not the environment.** Category tests
+use the REAL taxonomy, so it seemed consistent to give them the real registry —
+but those fixtures invent organizations ("Housing Alliance") the registry has
+never heard of, so every one was filtered out and the assertion saw an empty
+list. Real environment for real vocabulary; fixture registry for fixture data.
+
+## Out of scope, deliberately
+
+The Find Help directory page (G1b, next) · ingesting the 603-record
+`Service_Directory_cleaned.json`, whose 25 `typeOfService` values carry no
+editorial classification and cannot enter category navigation without their own
+slice · resource detail views · `parentOrganization` hierarchy, still populated
+zero times and left that way.
+
+## Verification
+
+352 backend · 96 frontend · `tsc` clean · **6 validators exit 0**, the new one
+negative-tested per rule · every category-page organization link resolves to a
+real page · both themes at 1280 and 375 · `index.css` ratchet unchanged.
+
+
+---
+
+## Decision 049 addendum — the registry was incomplete, and the validator could not see it
+
+Found by a question rather than by a test: *"did you count all forms of content
+including the flyers?"*
+
+**No.** The category counts that shaped the G1b scope came from
+`OrganizationService.getForCategory()`, which reads `resourceService.getAll()`
+and nothing else. Flyers and expert answers were never counted, so
+"only 3 of 10 categories have organizations" was an artifact of the measurement.
+
+### What was actually missing
+
+Organizations named anywhere in the served corpus: **63**, not 55. Eight had no
+record — and they sat precisely in the categories reported as empty:
+
+```
+Community Legal Aid Society            Delaware Volunteer Legal Services
+Westside Family Healthcare             Delaware Health and Social Services
+West End Neighborhood House            Delaware Division for the Visually Impaired
+United Way of Delaware                 Wilmington Housing Authority
+```
+
+### Why the validator did not catch it
+
+Rule 4 checked *resources → registry*. It was not wrong; it was **too narrow**,
+and narrowness is invisible: **a validator that passes tells you nothing about
+what it never looked at.** The registry could be complete with respect to
+resources and silently incomplete with respect to the corpus.
+
+The rule now checks every content type whose schema **explicitly** names a
+providing organization:
+
+| field | meaning | in scope? |
+| --- | --- | --- |
+| `resources[].organization` | the service provider | **yes** |
+| `flyers[].organization` | the organization running the thing | **yes** |
+| `expert-answers[].expert_organization` | the answering organization | **yes** |
+| `news[].source_id` | PRODUCER — who published it | no |
+| `*.contentSource` | PRODUCER, everywhere | no |
+| free text in descriptions and bodies | incidental mentions | **never** |
+
+That last exclusion matters as much as the inclusions. Prose names organizations
+constantly and incidentally; inferring identity from it would manufacture records
+out of mentions. **The schema says whether something is a provider reference —
+the validator reads that, and does not guess.**
+
+Note the distinction holds inside a single flyer: FL-002 carries
+`organization: "Community Legal Aid Society"` (the provider a resident would
+contact) **and** `contentSource.id: "community-legal-aid"` (the producer that
+published it). Same real-world body, two different questions, two registries —
+which is why they stay separate.
+
+### Registry state
+
+63 organizations. The 8 new records carry **no website**: neither flyers nor
+expert answers declare one, and inventing organization-level contact is what
+Decision 049 exists to prevent. 71 provider references across 3 content types all
+resolve.
+
+**ContentSource and Organization remain separate, with no relationship field.**
+No `contentSourceId` was added: the registry-completion work surfaced no current
+use case that requires one, and the correct time to add a link is when something
+needs to follow it.
+
+### The general lesson
+
+**A validator's boundary is a claim about the world, and it is the part nobody
+reviews.** This one silently asserted "resources are where organizations come
+from" for as long as it existed. Worth asking of any gate: *what does this not
+look at, and would I notice?*
+
+---
+
+# Decision 050 — Find Help is a gateway, not a filter (Slice G1b)
+
+## The distinction the slice exists to protect
+
+```
+Find Help          where should I start?
+Category page      what is available for this need?
+Organization page  who can I contact?
+```
+
+Three destinations, three questions. **Find Help hands off and never filters in
+place.**
+
+An earlier scope proposed filtering the directory in place when a category was
+chosen, on the reasoning that it "keeps Find Help's promise". That was wrong, and
+the reason is the whole information architecture: filtering would keep the
+resident inside the ORGANIZATION table, when a category page carries resources,
+flyers, FAQs, expert answers, First Step articles and updates. **A resident
+should start with a need and receive a broad, useful set of relevant information
+— not be trapped inside whichever data table happened to be queried first.**
+
+First Step Originals, Delaware's Newest Laws, Weekly Updates and Find Help are
+peers in the architecture, with different purposes.
+
+## Data populates the experience; it does not determine the architecture
+
+The gateway row shows every authored pathway regardless of registry depth.
+
+The tempting implementation — a door per category that HAS organizations — is
+wrong twice:
+
+1. It lets a thin registry silently shrink the site's navigation.
+2. It measures the wrong thing. A category page carries six content forms;
+   organizations are one of them, so a category with zero organizations can be
+   rich in flyers, FAQs and updates.
+
+That second point was nearly a real mistake: a measurement counting organizations
+from resources.json alone concluded "only 3 of 10 categories have organizations"
+and almost removed **Employment, Health and Legal** from the page. See Decision
+049's addendum.
+
+**Seniors renders visibly and non-interactively**, labelled "Coming soon", until
+Version 3's tag derivation exists. A door that says why is honest; a hidden one
+erases a real pathway. The `available` flag is COMPUTED from the pathway kind
+rather than authored, so it turns on by itself when `/discover/:facet` ships.
+
+## One authored list, shared with the homepage
+
+Gateways reuse `PathwayService.getCommunityResources()` — the same list the
+homepage's Community Resources row renders. Both pages ask "which needs are the
+ways in?", so a second list would be a copy that drifts.
+
+**One editorial delta to note:** that list carries `food` where the G1b brief
+listed `clothing`. The authored file won, because it is the artifact; flag it if
+the brief was the intent.
+
+## "The label is the disclosure"
+
+Both proposed starting-point headings were rejected on evidence:
+
+| proposed | why not |
+| --- | --- |
+| "Popular ways to get help" | First Step collects **no usage data**. Popularity would be an invented signal — the same failure class as promoting a service phone to the organization. |
+| "Recently added organizations" | Resources carry **no date field at all**. Recency is not expressible. |
+
+What shipped is **"Open to everyone"** — services with no age bound and no gender
+restriction. Because the heading states the criterion, the selection discloses
+itself and implies nothing about quality or endorsement.
+
+**A neutral selection is one whose heading states its rule.** That generalizes
+past this page.
+
+## The directory, and where alphabetical belongs
+
+Sorted by name, and **last on the page**. Alphabetical is right for the "I
+already know who I am looking for" path, where predictability is the value — and
+would have been wrong as the page's primary structure, which is the alphabetical
+database this page was scoped against.
+
+Organizations with **no services still appear**: eight are known only through a
+flyer or an expert answer, and are no less contactable for it.
+
+**Phone numbers stay on the service line.** A directory whose job is "who do I
+call" is exactly where the temptation lives to hoist a number up beside the
+organization name. Decision 049 forbids it, every phone in the corpus is
+service-scoped, and a test asserts the organization link never carries one.
+
+## A gap the rendered page exposed: resources have no service name
+
+The brief said service names should be the primary description. **They cannot
+be**, because resources do not have one.
+
+`JsonResourceRepository` sets `resource.title = resource.organization` — a
+long-standing derivation from when the old app rendered a resource's provider as
+its display title. Under an organization heading that renders the same words
+twice:
+
+```
+American Red Cross            <- the organization
+American Red Cross            <- its "service"
+Housing · Wilmington · 302-656-6420
+```
+
+Zero of 58 resources carry a title distinct from their organization, and it only
+became visible on the rendered page — the API response looked perfectly correct.
+
+**Interim handling:** the backend suppresses the title when it equals the
+organization name, and the line falls back to category, city and phone — which do
+distinguish services, including for the three organizations listing two. The
+judgement sits in the service rather than the client because "title is derived
+from organization" is a fact about the data, not about presentation.
+
+**The gap itself is recorded, not solved.** Resources need a real service name
+before "service name leads" is achievable. When they gain one, the same method
+passes it through unchanged.
+
+## Deferred to G1c
+
+Category-page previews (~5–10 per content type) with "See all" leading to a
+per-type results page. Scoped separately because it needs routes that do not
+exist and is comparable in size to G1b itself — and because G1b's promise is
+satisfied the moment the gateway navigates correctly.
+
+## Verification
+
+352 backend · 105 frontend · `tsc` clean · 6 validators exit 0 · EN/ES parity
+126 = 126 · mission card copy revised · `/find-help` stub route retired and the
+stub-mechanism test moved to `/discover`.
+
+---
+
+# Decision 052 — Approved articles enter category navigation
+
+> **On the number.** 051 is reserved for the Content Explorer, whose architecture
+> is still in Pass 1 review. This decision was settled first because it is a
+> boundary question that predates the Explorer and must not be resolved silently
+> inside it. The gap between 050 and 052 is deliberate.
+
+## The question
+
+An `Article` is `contentType = NEWS` with `contentSource.id = "first-step"`. It
+carries hand-authored `category_tags` and `subcategory`, and passes an editorial
+review gate. Approved articles were reachable only from the homepage Originals
+rail and `/originals/{id}`. Should they also be admitted to the category and topic
+navigation their own editorial classification names?
+
+## How the gap was found
+
+While mapping the Housing destination's content coverage, OR-003 — approved,
+`category_tags: ["Housing", "Legal"]`, `subcategory: "Eviction Prevention"` — was
+claimed to contribute to the Eviction Prevention topic count. It does not. The
+claim was checked against the code rather than assumed, and the check failed.
+
+`ArticleService` has exactly two consumers in the whole backend: `HomeService` and
+`OriginalsController`.
+
+| Union | Sources | Articles? |
+| --- | --- | --- |
+| `NavigationService.allClassifiedContent()` | resource · news · flyer · expert · faq · rss | no |
+| `TopicPageService` | resource · flyer | no |
+| `UpdatesService` | news · rss · flyer · expert · faq | no |
+| `SearchService` | resource · news · flyer | no |
+| `CommunityNoticesService` | flyer · news | no |
+
+An editor stated where OR-003 lives and every navigation surface ignored the
+statement.
+
+## Two objections that did not survive the code
+
+**The editorial gate is not endangered by a new consumer.** `HomeService`'s own
+javadoc states the design: *"`articleService.getPublishable()` has already applied
+the editorial review boundary, so this method cannot accidentally publish a draft
+by forgetting a condition (Decision 048). That is the point of putting the rule in
+the query rather than in every consumer."* The rule travels with the query. A
+seventh consumer is safe by construction provided it calls `getPublishable()` and
+never reaches the repository directly.
+
+**The pinned baseline does not move.** `EditorialStabilityTest` pins
+`EXPECTED_TOTAL = 238` — "229 resources + 9 flyer placements" — and loads only
+resources and flyers. Admitting articles changes none of its numbers.
+
+Both objections were raised in review and both were withdrawn. Recorded because
+they are the objections that will be raised again.
+
+## The one real objection, and why it fails
+
+Admitting articles makes a navigation count depend on **review state**: approving
+OR-001 would move Housing from 74 to 75 with no classification change. That reads
+as new count volatility.
+
+It dissolves under the Editorial Stability Invariant's own wording, which forbids
+counts moving from *classifier behavior* while explicitly permitting movement from
+*an intentional editorial decision*. Approving an article is exactly that. The
+invariant exists to stop the engine drifting, not to freeze editorial acts.
+
+## The decision
+
+**Approved, category-classified First Step articles enter category navigation.**
+
+**The review gate controls publication, not placement.** It answers *may this be
+published*; it must not silently also answer *where may this appear*. Editorial
+classification identifies the primary home — an article an editor placed in
+`Housing ▸ Eviction Prevention` and which is then unreachable from Housing means
+the field is being ignored by the only surface it exists to drive.
+
+Stated generally, so it governs the next content family too:
+
+> **A publication gate may decide whether content is served. It may never
+> constitute a second navigation universe for content that has passed it.**
+
+## The principle this establishes about counts
+
+> **A resident-facing count represents currently discoverable content, not
+> underlying inventory.**
+
+Housing shows 74 while OR-001 sits flagged and withheld. The count is honest: it
+promises what a resident can reach. The same reading already applies to
+`expirationDate` and `status`, and it is the correct default for anything else
+that gates delivery.
+
+## Scope
+
+**In:** category aggregates, topic counts, and the category destination's content
+projection.
+
+**Out, deliberately:**
+
+- **Search.** `SearchService` is a separate, narrower union that already omits
+  expert answers, FAQs and laws. That is a pre-existing gap with its own decision
+  to make, and admitting articles here does not admit them there. It must not be
+  absorbed quietly.
+- **`EditorialStabilityTest`.** Articles carry hand-authored `category_tags` and by
+  the invariant's own logic may belong in the protected class — but that is
+  evaluated as a separate decision *after* this navigation invariant is
+  established, not bundled into it.
+- **Presentation.** Whether an article belongs in a "what has changed" view is a
+  composition question for the Explorer, not a navigation question. An explainer is
+  not a dated change.
+
+## Implementation obligations, when it is built
+
+Not implemented by this decision. When it is:
+
+- `CategoryContentService` calls `ArticleService.getPublishable()`, never the
+  repository.
+- A test asserts a flagged article never appears in a category aggregate. Guard
+  the call site; the rule itself is already encapsulated.
+- Today the change moves exactly **one item**: OR-003, taking Housing from 73 to 74
+  and Eviction Prevention from 1 to 2 under both Housing and Legal, which share
+  that dual-placed topic. OR-001 and OR-002 stay withheld.
+
+---
+
+# Decision 051 — The Category Destination: purposeful collections, not a universal explorer
+
+> **On the ordering.** 051 was reserved while its architecture was still in review
+> and is therefore recorded *after* 052. The number was held deliberately; the file
+> is a log, not a sequence.
+
+## What this decides
+
+`/category/:key` remains the canonical category destination. No
+`/destination/:key`, no parallel DTO, no new domain concept named Destination.
+
+> **Category is the scope. Destination is the experience.** Content types, topics
+> and notice kinds are ways of exploring that scope.
+
+## The governing principle
+
+> **The destination's job is to provide meaningful resident discovery pathways —
+> not an exhaustive partition of the category's CivicContent.**
+
+Collections are purposeful editorial and presentation selections. **`ContentType`
+is controlled metadata and does not entail a corresponding collection.** The
+dataset is never forced into the collection labels to make a total reconcile.
+
+This corrects a premise carried through three drafts of the design: that a
+destination's sections must sum to the category. They need not. Decision 036's
+`browse ∪ updates == totalCount` identity governs the **category aggregate** — a
+statement about the model — not a page's layout.
+
+## The three pillars are preserved as information, retired as navigation
+
+Discover / Connect / Stay Informed correctly describe what the page *knows*. They
+describe poorly what a resident *wants*. Nobody arrives at Housing thinking "I
+would like to Discover"; they think "I need help paying my rent." The information
+each pillar supplied survives. Their role as the page's primary structure does not.
+
+## What was retired, and what survived
+
+An earlier draft proposed a universal **Content Explorer** — one collection viewed
+under switchable axes (content type, topic, recency, notice kind) — as the page's
+organizing concept. **That is retired.** A destination is a set of purposeful
+collections, not one collection under several axes.
+
+**The mechanism survives in narrower form.** A reusable switcher is retained for the
+*supporting informational destinations* inside WHAT TO KNOW — the single use it was
+always intended for.
+
+Worth recording because the failure was instructive: the Explorer's proposed view
+set ("All", "Programs & services", "What's changed", "Answers") mixed four
+conceptual axes — no axis, thing-type, temporality, form — and read as coherent only
+because each label was individually plausible. **Coherence in a collection set comes
+from a shared resident question, not a shared metadata field.**
+
+## The structure
+
+| Layer | Resident job | Contents |
+| --- | --- | --- |
+| Orientation | What is this? | title, purpose line, computed total, last-checked date |
+| Topic discovery | Where do I need help? | existing `groups` + `topics`, unchanged, **navigates** |
+| **Layer 1 — Get Help** | Help me act | programs, services, actionable opportunities |
+| **Layer 2 — What to Know** | Help me understand | four primary collections + supporting exploration |
+| **Layer 3 — Organizations** | Who is connected to these? | **deferred**, see below |
+
+**Layer 1** admits housing fairs, open houses and opportunities promoted by a
+separate organization — **regardless of whether the organization providing access is
+the underlying service provider.** Organizations are identified *within* resources
+where known, not as a block.
+
+**Layer 2 is an information layer, not a one-to-one projection of ContentType.**
+
+| Collection | Contents |
+| --- | --- |
+| **Policy Info** | External civic information: policy updates, official and community notices |
+| **Law** | Housing and rental law — RSS legislation plus government-published legal information, source distinctions preserved |
+| **Flyers** | Visual civic notices. **A flyer stays a flyer** — never converted to text to fit a layout |
+| **First Rate News** | First Step's editorial collection: journalism and original editorial work researched, reported, written or otherwise produced by First Step |
+
+Plus **supporting informational destinations** — FAQs and expert Q&As — which are
+supporting exploration, not primary collections and not a fifth one. This is where
+the retained switcher applies.
+
+## First Rate News is an editorial collection, not a source query
+
+**It is not inferred from `contentSource.id == "first-step"` alone.** An expert
+session is not First Rate News because First Step convened it; an interview
+qualifies only once worked into First Step editorial output.
+
+This was tested and got the right answer the hard way. Faced with two DVLS expert
+sessions and a First Step FAQ that no collection claimed, the design proposed
+widening First Rate News to `first-step OR type == "expert-session"` so the numbers
+would partition cleanly. **That was rejected: a collection's meaning is not a
+variable to tune until a total reconciles.** The correct response was that the
+premise — exhaustive partition — was wrong.
+
+OR-003 qualifies as approved First Step editorial work under Decision 052. **That
+says nothing about whether other first-step content belongs there.** An empty
+collection is not rendered; absence of qualifying material is never a reason to
+widen a definition.
+
+## Layer 3 is deferred, with evidence
+
+The conceptual distinction is sound — *what help is available* and *who provides it*
+are different questions. **The registry cannot yet express it.**
+
+- 37 distinct organizations across 44 Housing resources — essentially **1:1**
+- Names are program-shaped: "Mother Mary of Hope House II", "Be Ready CDC -
+  Esther's Place", "Nazareth House Holistic Housing I"
+- Only five parents split into program-level entries
+- With the recorded gap that `resource.title = resource.organization`, a Layer 3 row
+  and its Get Help card **render the same words**
+- 21 of 37 carry no website; 7 Housing resources carry no organization link
+
+A Layer 3 block today is a 37-row near-copy of the list above it. **Do not
+manufacture a parent-organization grouping to fill the layout.** Layer 3 returns
+when the relationship distinguishes who provides from what is offered.
+
+Note this is the second time a rendered-page perspective exposed the same data gap;
+Decision 050 found it from the organization page. A gap visible from two directions
+is a data problem, not a presentation problem.
+
+## Progressive disclosure
+
+Each collection shows a representative set with a **"See more"** action that expands
+or reveals the remainder of *that same collection* in place.
+
+- **No route per collection.** Four collections do not justify four routes. That is
+  Decision 050's deferred G1c and it is not what this needs.
+- **No new domain concept.** Expansion is presentation state over an existing
+  projection.
+- **URL addressability is not mandated.** The standing rule already covers it — the
+  URL is the source of truth *when view state needs to be shareable*. Which
+  expansions clear that bar, and by what mechanism, belongs to interaction design.
+  A rule that every "See more" must be URL-addressable would be an implementation
+  detail promoted to architecture.
+- **One generic component renders every collection.** A `LawSection` beside a
+  `FlyerSection` is the Decision 045 violation; the collection is data.
+- **Empty collections are not rendered.**
+
+## Ordering
+
+> **Do not introduce explicit presentation ordering unless the composition requires
+> it. Where an existing authored order has semantic meaning, preserve it. Where no
+> meaningful order exists, use a deterministic derived order rather than inventing
+> configuration.**
+
+This replaces a cruder "ordering is derived from data," which pretended every
+ordering is naturally derivable. **Resident-facing ordering is not data ordering** —
+and the codebase already proved it. `CategoryPage.tsx` carries a `TYPE_ORDER`
+constant whose own comment records that the enum's declaration order was wrong for
+residents and that presentation order lives in the component.
+
+Authored orders that carry meaning and must survive projection: taxonomy category
+and subcategory order; Housing's `navigation.json` groups, which are a **triage
+sequence** (Need Help Right Away → Find a Place to Live → Help Staying Housed); and
+`TYPE_ORDER` itself.
+
+## Configuration
+
+Declared in Java, for the category destination. It moves to a presentation artifact
+only when a genuine second use with meaningful configuration differences appears —
+Community Events is that test. **`navigation.json` is not extended**: navigation
+configuration and destination composition are separate concerns with separate
+lifecycles. No new presentation data file is created in anticipation of reuse.
+
+## What this decision does not decide
+
+**Spatial arrangement.** Whether Layer 2's collections appear as columns, stacked
+sections or a responsive arrangement is Pass 2 visual design. Pass 1 asserts only
+the top-level sequence: orientation → topic discovery → Get Help → What to Know →
+(Organizations, deferred).
+
+## Carried open items
+
+1. **Expiry is unenforced.** `expirationDate` is written by ingestion and read by
+   nothing — no service, no aggregate, no page. Three of six Housing Policy Info
+   items are past their own expiry, and they are precisely the "applications open"
+   and "waitlist opens" notices, the ones that mislead when stale. This also blocks
+   any temporal framing: a "what has changed" collection cannot promise currency
+   while the field that would guarantee it is inert. Needs its own decision.
+2. **Does an actionable flyer belong in Get Help, in Flyers, or both?** Layer 1
+   admits housing fairs; FL-002 is an info session. Overlapping views are precedent.
+3. **Expert and FAQ content carries no `category_tags`.** Placement in Housing is
+   classifier-assigned rather than editor-assigned — the Front Door's gap 2.
+4. **Community Events** is the generalization test, deliberately not designed yet.
+   The name is a known trap: the `community-events` taxonomy category (standing
+   recreation programs) and the `event` notice kind (a dated happening) are not the
+   same thing.
+
+## Decision 051 addendum — implementation status and two recorded exceptions
+
+Pass 1 is **implemented with one documented architectural exception**, which is not
+the same claim as "built and verified". Recording the distinction, and the debt it
+names, so neither is discovered later as a surprise.
+
+### Decision 052 is now complete
+
+`NavigationService.allClassifiedContent()` unions `ArticleService.getPublishable()`
+alongside its six existing sources. Until this change 052 was **half-implemented**:
+approved articles reached the destination's collections but not the navigation read
+model, so the category header undercounted by exactly the article and the Eviction
+Prevention tile read 1 where the decision said 2.
+
+The symptom was arithmetic a resident could do: `header total=75`,
+`collections sum=76`. A page whose own two numbers disagree is a page that has
+stopped being trustworthy about either.
+
+The resulting count movement is an **expected consequence of an already-approved
+decision, not a new scope decision**. `EditorialStabilityTest` is deliberately NOT
+modified: it pins resources and flyers, the two protected classes, and articles
+joining that protected set is its own separate decision — evaluated after this
+navigation invariant settles, not bundled into it.
+
+The gate still travels with the query. `getPublishable()` is the only route in, so
+a read model cannot publish a draft by forgetting a condition.
+
+### Recorded debt 1 — the same content in two shapes
+
+`CategoryPage.updates` and the Policy Info / Law collections now carry overlapping
+content in two DTOs (`UpdateItem` and `ContentItem`). The destination does not
+render `updates`, so no resident sees it twice — but the payload carries it twice.
+
+**Kept deliberately, not refactored now.** `CategoryUpdates` also stays in the tree
+though nothing renders it: existing aggregate capabilities are not deleted because a
+visual treatment changed. This is the strongest argument yet for the convergence
+Decision 040 named — `ContentItem` as the single display DTO, `UpdateItem` retired —
+and the category destination is where that will land. It is a slice of its own.
+
+### Recorded debt 2 — CategoryBrowse is the known CSS migration exception
+
+The standing rule is that **touching a component obliges migrating it off the
+`index.css` quarantine**. This slice changed one string in `CategoryBrowse` (its
+heading key) and did **not** migrate it. That is an exception, stated as one.
+
+The reason is specific rather than convenient: its `.discovery-list` /
+`.discovery-item` classes are **deliberately shared** with the homepage's
+organization rows, so the same affordance cannot drift apart in two places.
+Migrating them means first extracting a shared presentation component — real work
+with its own design question, and scope creep inside a slice that changed a string.
+
+**Extracting that shared presentation is deferred as separate work.**
+`CategoryBrowse` and `CategoryUpdates` remain on global classes; the quarantine went
+from 50 selectors to 47 in this slice, so the ratchet held.

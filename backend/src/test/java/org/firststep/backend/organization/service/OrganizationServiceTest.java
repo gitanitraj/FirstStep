@@ -5,6 +5,8 @@ import java.util.Optional;
 
 import org.firststep.backend.category.service.TaxonomyService;
 import org.firststep.backend.organization.dto.OrgSummary;
+import org.firststep.backend.organization.model.Organization;
+import org.firststep.backend.organization.repository.OrganizationRepository;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.repository.ResourceRepository;
 import org.firststep.backend.resource.service.ResourceService;
@@ -40,7 +42,49 @@ class OrganizationServiceTest {
                 return resources.stream().filter(r -> r.id.equals(id)).findFirst();
             }
         };
-        return new OrganizationService(new ResourceService(repo), new TaxonomyService("../app/data"));
+        return new OrganizationService(new ResourceService(repo), new TaxonomyService("../app/data"),
+                registryFor(resources));
+    }
+
+    /**
+     * A registry containing exactly the organizations these fixtures name.
+     *
+     * <p>Needed because shortlists now take their slug from the REGISTRY rather
+     * than from slugify(name) — an organization the registry does not know is
+     * omitted, since linking to a page that cannot exist is worse than not
+     * linking. Fixtures therefore have to be registered to appear at all, which
+     * is the behaviour under test as much as a setup detail.
+     */
+    private static OrganizationRepository registryFor(List<Resource> resources) {
+        List<Organization> orgs = resources.stream()
+                .map(r -> r.organization)
+                .filter(n -> n != null && !n.isBlank())
+                .distinct()
+                .map(name -> {
+                    Organization o = new Organization();
+                    o.name = name;
+                    o.slug = name.toLowerCase(java.util.Locale.ROOT)
+                            .replaceAll("[^a-z0-9]+", "-").replaceAll("(^-+)|(-+$)", "");
+                    o.id = "ORG-" + String.format("%03d", Math.abs(name.hashCode()) % 1000);
+                    return o;
+                })
+                .toList();
+        return new OrganizationRepository() {
+            @Override
+            public List<Organization> findAll() {
+                return orgs;
+            }
+
+            @Override
+            public Optional<Organization> findById(String id) {
+                return orgs.stream().filter(o -> o.id.equals(id)).findFirst();
+            }
+
+            @Override
+            public Optional<Organization> findBySlug(String slug) {
+                return orgs.stream().filter(o -> o.slug.equals(slug)).findFirst();
+            }
+        };
     }
 
     @Test
@@ -96,12 +140,15 @@ class OrganizationServiceTest {
     }
 
     @Test
-    void shouldSlugifyOrganizationName() {
+    void shouldTakeTheSlugFromTheRegistryRatherThanDerivingIt() {
         OrganizationService service = service(List.of(
                 resource("R1", "Be Ready CDC - Esther's Place")));
 
         OrgSummary org = service.getCuratedShortlist().get(0);
 
+        // The value is the registry's, not slugify(name)'s. They agree here
+        // because the registry was generated from these names — the point is
+        // WHERE it came from, which is what survives a rename.
         assertEquals("be-ready-cdc-esther-s-place", org.slug());
         assertTrue(org.slug().matches("[a-z0-9-]+"));
     }

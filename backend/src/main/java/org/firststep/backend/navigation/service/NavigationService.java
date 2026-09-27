@@ -19,6 +19,7 @@ import org.firststep.backend.navigation.dto.CategoryNavigation;
 import org.firststep.backend.navigation.dto.TopicGroup;
 import org.firststep.backend.navigation.dto.TopicNavigation;
 import org.firststep.backend.news.service.NewsService;
+import org.firststep.backend.originals.service.ArticleService;
 import org.firststep.backend.news.service.RssFeedSource;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.model.CivicContent;
@@ -82,6 +83,7 @@ public class NavigationService {
     private final ExpertAnswerService expertAnswerService;
     private final FaqService faqService;
     private final RssFeedSource rssFeedSource;
+    private final ArticleService articleService;
 
     public NavigationService(@Value("${app.data.dir:app/data}") String dataDir,
                              TaxonomyService taxonomyService,
@@ -90,7 +92,8 @@ public class NavigationService {
                              FlyerService flyerService,
                              ExpertAnswerService expertAnswerService,
                              FaqService faqService,
-                             RssFeedSource rssFeedSource) {
+                             RssFeedSource rssFeedSource,
+                             ArticleService articleService) {
         this.groupsByCategory = loadNavigation(dataDir);
         this.taxonomyService = taxonomyService;
         this.resourceService = resourceService;
@@ -99,6 +102,7 @@ public class NavigationService {
         this.expertAnswerService = expertAnswerService;
         this.faqService = faqService;
         this.rssFeedSource = rssFeedSource;
+        this.articleService = articleService;
     }
 
     /** Every category, in the taxonomy's authored order. */
@@ -181,6 +185,15 @@ public class NavigationService {
         all.addAll(expertAnswerService.getAll());
         all.addAll(faqService.getAll());
         all.addAll(rssFeedSource.getRssItems());
+        // Approved articles only, and reached through getPublishable() rather than
+        // the repository so the Decision 048 review boundary travels WITH THE
+        // QUERY — a read model cannot publish a draft by forgetting a condition.
+        //
+        // Decision 052: the review gate controls PUBLICATION, not PLACEMENT. An
+        // article an editor classified into Housing ▸ Eviction Prevention was
+        // previously absent from every count it belongs to, which meant the
+        // navigation model was ignoring the only field it exists to read.
+        all.addAll(articleService.getPublishable());
         if (communityId == null || communityId.isBlank()) {
             return all;
         }

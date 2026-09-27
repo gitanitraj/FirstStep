@@ -36,7 +36,7 @@ export default function CategoryBrowse({ categoryKey, groups, topics }: Props) {
   return (
     <section className="category-section category-topics" aria-labelledby="category-topics-title">
       <h2 id="category-topics-title" className="category-section-title">
-        {t('category.browse')}
+        {t('destination.topics')}
       </h2>
 
       {grouped

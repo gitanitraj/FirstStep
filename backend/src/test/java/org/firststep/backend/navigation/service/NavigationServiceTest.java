@@ -11,6 +11,8 @@ import org.firststep.backend.navigation.dto.CategoryNavigation;
 import org.firststep.backend.navigation.dto.TopicNavigation;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.service.NewsService;
+import org.firststep.backend.originals.model.Article;
+import org.firststep.backend.originals.service.ArticleService;
 import org.firststep.backend.news.service.RssFeedSource;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
@@ -36,6 +38,7 @@ class NavigationServiceTest {
     private FlyerService flyerService;
     private ExpertAnswerService expertAnswerService;
     private FaqService faqService;
+    private ArticleService articleService;
     private RssFeedSource rssFeedSource;
     private NavigationService service;
 
@@ -52,10 +55,13 @@ class NavigationServiceTest {
         when(newsService.getAll()).thenReturn(List.of());
         when(flyerService.getAll()).thenReturn(List.of());
         when(expertAnswerService.getAll()).thenReturn(List.of());
+        articleService = mock(ArticleService.class);
         when(faqService.getAll()).thenReturn(List.of());
+        when(articleService.getPublishable()).thenReturn(List.of());
 
         service = new NavigationService("../app/data", new TaxonomyService("../app/data"),
-                resourceService, newsService, flyerService, expertAnswerService, faqService, rssFeedSource);
+                resourceService, newsService, flyerService, expertAnswerService, faqService,
+                rssFeedSource, articleService);
     }
 
     private Resource resource(String id, List<String> categoryTags, String subcategory) {
@@ -147,6 +153,59 @@ class NavigationServiceTest {
         assertEquals(1, housing.countsByType().get(ContentType.FLYER));
     }
 
+    /**
+     * Decision 052: the editorial review gate controls PUBLICATION, not
+     * PLACEMENT. An approved article an editor classified into a category
+     * participates in that category's counts like any other classified content.
+     */
+    @Test
+    void shouldCountApprovedArticlesInTheirEditorialCategory() {
+        when(articleService.getPublishable()).thenReturn(List.of(article("Eviction Prevention")));
+
+        CategoryNavigation housing = find("housing");
+
+        assertEquals(1, housing.totalCount());
+        assertEquals(1, housing.countsByType().get(ContentType.NEWS));
+    }
+
+    @Test
+    void shouldCountAnApprovedArticleUnderItsTopic() {
+        // The count that was wrong before 052 was completed: an article carrying
+        // subcategory "Eviction Prevention" contributed to no topic tile at all.
+        when(articleService.getPublishable()).thenReturn(List.of(article("Eviction Prevention")));
+
+        assertEquals(1, topicCount("housing", "Eviction Prevention"));
+    }
+
+    @Test
+    void shouldNeverCountAnArticleTheReviewGateWithheld() {
+        // The guard on the call site, not on the rule: getPublishable() already
+        // applies the boundary, so a withheld article is simply never returned.
+        // If this service ever reached the repository instead, this test fails.
+        when(articleService.getPublishable()).thenReturn(List.of());
+
+        assertEquals(0, find("housing").totalCount());
+    }
+
+    private static Article article(String subcategory) {
+        Article a = new Article();
+        a.id = "OR-003";
+        a.title = "How to read a Delaware eviction notice";
+        a.categoryTags = List.of("Housing", "Legal");
+        a.subcategory = subcategory;
+        return a;
+    }
+
+    private int topicCount(String categoryKey, String topic) {
+        CategoryNavigation category = find(categoryKey);
+        return category.groups().stream()
+                .flatMap(g -> g.topics().stream())
+                .filter(t -> t.name().equals(topic))
+                .findFirst()
+                .map(t -> t.count())
+                .orElse(-1);
+    }
+
     @Test
     void shouldCountRelevantLawsFromTheDiscoveryFeed() {
         NewsItem bill = new NewsItem();
@@ -154,7 +213,7 @@ class NavigationServiceTest {
         bill.contentType = ContentType.LAW;
         service = new NavigationService("../app/data", new TaxonomyService("../app/data"),
                 resourceService, newsService, flyerService, expertAnswerService, faqService,
-                () -> List.of(bill));
+                () -> List.of(bill), articleService);
 
         assertEquals(1, find("housing").countsByType().get(ContentType.LAW));
     }

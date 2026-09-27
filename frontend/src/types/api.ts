@@ -243,6 +243,62 @@ export interface ArticleDetail {
   subcategory: string | null;
 }
 
+/** One door on Find Help. `destination` is null when the pathway is not built yet. */
+export interface CategoryGateway {
+  key: string;
+  label: string;
+  icon: string | null;
+  destination: string | null;
+  available: boolean;
+}
+
+/** One service under an organization. Contact belongs to the SERVICE, not the org. */
+export interface ServiceLine {
+  /** Null when the service has no name distinct from its organization. */
+  title: string | null;
+  category: string | null;
+  city: string | null;
+  phone: string | null;
+}
+
+export interface DirectoryEntry {
+  name: string;
+  slug: string;
+  services: ServiceLine[];
+}
+
+/**
+ * Find Help — where a resident works out where to begin.
+ *
+ * Three levels of engagement: gateways (I know what I need), openToEveryone
+ * (I need a starting point), directory (I know who I'm looking for).
+ */
+export interface FindHelpPage {
+  gateways: CategoryGateway[];
+  openToEveryone: ContentItem[];
+  directory: DirectoryEntry[];
+}
+
+/**
+ * One organization and the First Step resources it provides.
+ *
+ * `id` is canonical identity, `slug` is the public URL. The client links by slug
+ * and never constructs one — slugs come from the server, which is the only place
+ * that knows the registry's current spelling.
+ */
+export interface OrganizationPage {
+  id: string;
+  name: string;
+  slug: string;
+  /**
+   * The organization's own site, or null — and null is common and deliberate.
+   * Only a website the source data explicitly labels "Organization website" is
+   * promoted; a program page belongs to the service that runs it.
+   */
+  website: string | null;
+  resources: ContentItem[];
+}
+
 /** The five Community Notices routes. The URL is the source of truth for which is active. */
 export type NoticeView = 'OVERVIEW' | 'EVENTS' | 'MEETINGS' | 'ANNOUNCEMENTS' | 'FLYERS';
 
@@ -287,8 +343,46 @@ export interface TopicPage {
 }
 
 /**
- * The whole category page in one response. Three pillars: Discover (groups /
- * topics), Connect (organizations), Stay Informed (updates).
+ * Which resident job a collection serves (Decision 051).
+ *
+ *   ACTION       help me act        — programs, services, actionable opportunities
+ *   INFORMATION  help me understand — the WHAT TO KNOW collections
+ *   SUPPORTING   supporting exploration inside WHAT TO KNOW
+ *
+ * Presentation structure, not a domain concept — and deliberately carries no
+ * spatial meaning. Where a layer renders is the page's decision, not the payload's.
+ */
+export type CollectionLayer = 'ACTION' | 'INFORMATION' | 'SUPPORTING';
+
+/**
+ * One purposeful collection on the category destination.
+ *
+ * A collection is an editorial selection, NOT a projection of `contentType`:
+ * Policy Info and First Rate News are both NEWS, and the two supporting
+ * collections are both EXPERT. It follows that the collections do not partition
+ * the category — the destination provides discovery pathways, not an exhaustive
+ * accounting.
+ *
+ * `labelKey` is an i18n key, never a display string. All matching items are
+ * carried, so "See more" expands in place rather than fetching again. An empty
+ * collection is never sent.
+ */
+export interface CategoryCollection {
+  key: string;
+  labelKey: string;
+  layer: CollectionLayer;
+  count: number;
+  items: ContentItem[];
+}
+
+/**
+ * The whole category page in one response.
+ *
+ * The three pillars — Discover (groups / topics), Connect (organizations), Stay
+ * Informed (updates) — describe what the page KNOWS. `collections` carries what a
+ * resident WANTS: purposeful collections ordered by the destination composition
+ * (Decision 051). The pillars keep their exact semantics; a field is retired only
+ * when shown obsolete, never left as a silent duplicate.
  *
  * `groups` and `topics` are MUTUALLY EXCLUSIVE — a category grouped in
  * navigation.json returns groups and an empty topic list, one absent from it
@@ -300,4 +394,5 @@ export interface CategoryPage {
   groups: TopicGroup[];
   topics: TopicNavigation[];
   organizations: OrgSummary[];
+  collections: CategoryCollection[];
 }

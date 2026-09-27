@@ -20,6 +20,18 @@ import { Link } from 'react-router-dom';
 import { useI18n } from '../i18n/I18nProvider';
 import type { TopicGroup, TopicNavigation } from '../types/api';
 
+/**
+ * "Discover" — what is available in this category, by topic.
+ *
+ * GROUPED vs FLAT is the payload's invariant, not a choice made here: a category
+ * grouped in navigation.json arrives with `groups` populated and `topics` empty;
+ * one absent from it arrives the other way round. Branching on `groups.length`
+ * reads that invariant rather than re-deciding it (Decision 029/036).
+ *
+ * Topics with a count of 0 are rendered, not hidden. Suppressing them would
+ * conceal exactly what validate_navigation.py exists to surface — a canonical
+ * topic nothing can reach.
+ */
 interface Props {
   categoryKey: string;
   groups: TopicGroup[];
@@ -30,11 +42,6 @@ export default function CategoryBrowse({ categoryKey, groups, topics }: Props) {
   const { t } = useI18n();
   const grouped = groups.length > 0;
 
-  // One row shape for both branches, so a grouped and a flat category render
-  // identical topic rows. Reuses .discovery-item / .discovery-list from the
-  // homepage rather than inventing a parallel set of classes — a topic row and a
-  // category row are the same affordance, and sharing the CSS keeps them from
-  // drifting apart visually.
   const topicLink = (topic: TopicNavigation) => (
     <li key={topic.slug}>
       <Link className="discovery-item" to={`/category/${categoryKey}/${topic.slug}`}>
@@ -47,7 +54,7 @@ export default function CategoryBrowse({ categoryKey, groups, topics }: Props) {
   return (
     <section className="category-section category-topics" aria-labelledby="category-topics-title">
       <h2 id="category-topics-title" className="category-section-title">
-        {t('category.browse')}
+        {t('destination.topics')}
       </h2>
 
       {grouped
@@ -141,4 +148,24 @@ export default function CategoryBrowse({ categoryKey, groups, topics }: Props) {
 // The route is declared in App.tsx as a StubPage until F6 builds it, following
 // the precedent Slice D set: link to a declared stub, never to a URL that falls
 // through to the not-found route.
+// =============================================================================
+
+// =============================================================================
+// DECISION 051 — ONE STRING, AND WHY THE CSS DID NOT MOVE WITH IT
+// =============================================================================
+// The heading key changed from 'category.browse' ("Browse Resources") to
+// 'destination.topics' ("Where do you need help?"). Topic discovery on the
+// category destination asks the resident's question rather than naming the
+// mechanism.
+//
+// This component was NOT migrated to a CSS Module despite the rule that a
+// component moves when a slice touches it. The reason is specific rather than
+// convenient: its .discovery-list / .discovery-item classes are SHARED with the
+// homepage's organization rows, deliberately, so the same affordance cannot
+// drift apart in two places. Migrating them means first extracting a shared
+// component — real work with its own design question, and scope creep inside a
+// slice that changed one string here.
+//
+// Recorded as debt rather than done quietly: CategoryBrowse and CategoryUpdates
+// are two of the four remaining files on global classes.
 // =============================================================================

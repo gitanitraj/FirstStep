@@ -3,13 +3,18 @@ package org.firststep.backend.organization.service;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 import org.firststep.backend.category.model.CategoryDefinition;
 import org.firststep.backend.category.service.TaxonomyService;
+import java.util.Optional;
+
 import org.firststep.backend.organization.dto.OrgSummary;
+import org.firststep.backend.organization.dto.OrganizationPage;
+import org.firststep.backend.organization.model.Organization;
+import org.firststep.backend.organization.repository.OrganizationRepository;
 import org.firststep.backend.resource.model.Resource;
+import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.resource.service.ResourceService;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +27,17 @@ import org.springframework.stereotype.Service;
  * Ranking is by resource count FOR NOW (a placeholder); the intended metric is
  * expected to be driven by policy updates / news. Kept server-side per the
  * backend-aggregates / frontend-displays principle.
+ *
+ * <p><b>Slice G1a gave organizations an identity.</b> Before, this class derived
+ * one by grouping the display NAME off each resource and slugifying it, so an
+ * organization existed only as a string repeated N times and its URL was a
+ * function of its spelling. Renaming it would have broken every link with
+ * nothing to detect the break.
+ *
+ * <p>Shortlists still rank by counting resources — that is a ranking question,
+ * not an identity one — but the slug now comes from the REGISTRY rather than
+ * from {@code slugify(name)}, so what a shortlist links to is guaranteed to be a
+ * page that exists.
  */
 @Service
 public class OrganizationService {
@@ -30,10 +46,57 @@ public class OrganizationService {
 
     private final ResourceService resourceService;
     private final TaxonomyService taxonomyService;
+    private final OrganizationRepository repository;
 
-    public OrganizationService(ResourceService resourceService, TaxonomyService taxonomyService) {
+    public OrganizationService(ResourceService resourceService, TaxonomyService taxonomyService,
+            OrganizationRepository repository) {
         this.resourceService = resourceService;
         this.taxonomyService = taxonomyService;
+        this.repository = repository;
+    }
+
+    /**
+     * One organization and everything First Step lists for it, or empty.
+     *
+     * <p><b>Slug in, ID out.</b> The slug resolves to a registry record once, and
+     * every resource is then matched on {@code organizationId}. Matching on the
+     * display name instead would work today and reintroduce exactly the fragility
+     * the registry removes.
+     *
+     * <p>An organization with no resources still returns a page rather than a
+     * 404: it is a real organization that happens to list nothing right now, and
+     * that is a different fact from "no such organization".
+     */
+    public Optional<OrganizationPage> getBySlug(String slug) {
+        return repository.findBySlug(slug).map(org -> new OrganizationPage(
+                org.id, org.name, org.slug, org.website, resourcesFor(org)));
+    }
+
+    private List<ContentItem> resourcesFor(Organization org) {
+        return resourceService.getAll().stream()
+                .filter(r -> org.id.equals(r.organizationId))
+                .map(OrganizationService::toContentItem)
+                .toList();
+    }
+
+    /**
+     * Resources render as the SAME card shape the rest of the product uses.
+     *
+     * <p>An organization page asks a different question — "who provides this?" —
+     * but the answer is still a list of resources, so it needs no card of its
+     * own. Note the per-resource website is carried through: service-level
+     * contact belongs on the service, which is precisely why the organization
+     * record withholds it.
+     */
+    private static ContentItem toContentItem(Resource r) {
+        return new ContentItem(
+                r.contentType, r.id, r.title,
+                r.summary != null ? r.summary : r.description,
+                r.organization,
+                r.locations != null && !r.locations.isEmpty() ? r.locations.get(0).city : null,
+                r.cost, r.urgency, null,
+                r.websites != null && !r.websites.isEmpty() ? r.websites.get(0).url : null,
+                null);
     }
 
     public List<OrgSummary> getCuratedShortlist() {
@@ -75,14 +138,26 @@ public class OrganizationService {
                 .sorted(Comparator.<Map.Entry<String, Integer>>comparingInt(Map.Entry::getValue).reversed()
                         .thenComparing(Map.Entry::getKey))
                 .limit(MAX_ORGS)
-                .map(e -> new OrgSummary(e.getKey(), slugify(e.getKey()), e.getValue()))
+                // The slug comes from the REGISTRY, never from slugify(name): a
+                // shortlist must link to a page that exists, and only the
+                // registry knows the current slug.
+                .map(e -> new OrgSummary(e.getKey(), slugFor(e.getKey()), e.getValue()))
+                .filter(o -> o.slug() != null)
                 .toList();
     }
 
-    // Lowercase, collapse any run of non-alphanumerics to a single hyphen, trim
-    // leading/trailing hyphens. Enough for /organization/{slug} routing.
-    static String slugify(String name) {
-        String slug = name.toLowerCase(Locale.ROOT).replaceAll("[^a-z0-9]+", "-");
-        return slug.replaceAll("(^-+)|(-+$)", "");
+    /**
+     * The registry's current slug for a display name, or null if unregistered.
+     *
+     * <p>Returning null rather than falling back to {@code slugify(name)} is
+     * deliberate: a computed slug for an organization the registry does not know
+     * would produce a link to a 404 — a shortlist entry that looks live and is
+     * not. The caller filters those out instead.
+     */
+    private String slugFor(String name) {
+        return repository.findAll().stream()
+                .filter(o -> name.equals(o.name))
+                .map(o -> o.slug)
+                .findFirst().orElse(null);
     }
 }

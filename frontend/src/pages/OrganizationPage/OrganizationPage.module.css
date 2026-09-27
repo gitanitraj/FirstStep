@@ -1,0 +1,83 @@
+.main {
+  padding: clamp(28px, 5vw, 56px) var(--page-gutter) clamp(48px, 8vw, 96px);
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+.head {
+  margin-bottom: clamp(26px, 4vw, 38px);
+}
+
+.kicker {
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+  margin-bottom: 10px;
+}
+
+.title {
+  composes: displayPage from '../../styles/typography.module.css';
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+  text-wrap: balance;
+}
+
+.website a {
+  font-weight: var(--weight-semibold);
+  color: var(--accent-ink);
+}
+
+.sectionTitle {
+  composes: uiLabel from '../../styles/typography.module.css';
+  font-size: 1.15rem;
+  color: var(--primary-color);
+  margin-bottom: 14px;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.placeholder {
+  color: var(--text-secondary);
+  padding: clamp(24px, 5vw, 48px) 0;
+}
+
+.notFoundTitle {
+  composes: displayPage from '../../styles/typography.module.css';
+  font-size: clamp(1.5rem, 4vw, 2rem);
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.back {
+  display: inline-block;
+  margin-top: 18px;
+  font-weight: var(--weight-semibold);
+  color: var(--accent-ink);
+}
+
+/* ---- High contrast ----
+   --primary-color is not flipped by the theme (it is overloaded as surface and
+   ink), so any component using it as INK declares its own rules. */
+:global(body.high-contrast) .title,
+:global(body.high-contrast) .sectionTitle,
+:global(body.high-contrast) .notFoundTitle {
+  color: #ff0;
+}
+
+:global(body.high-contrast) .kicker,
+:global(body.high-contrast) .back,
+:global(body.high-contrast) .website a {
+  color: #ff0;
+}

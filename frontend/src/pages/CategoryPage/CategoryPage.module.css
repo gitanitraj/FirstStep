@@ -1,0 +1,127 @@
+/* CategoryPage — the category destination (Decision 051).
+   Locally scoped; class names are short and semantic because the filename
+   namespaces them (docs/frontend/css-architecture.md).
+
+   PASS 1 GIVES STRUCTURE, NOT VISUAL DESIGN. Whether the WHAT TO KNOW collections
+   ultimately sit in columns, stack, or reflow some other way is Pass 2. What is
+   here is the minimum that makes the composition legible and responsive: a single
+   reading column, collections that wrap rather than squeeze, and no fixed track
+   count that a redesign would have to fight. */
+
+.body {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 32px var(--page-gutter) 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ---- Orientation --------------------------------------------------------- */
+
+.header {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.crumbs {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.crumb {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.crumb:hover {
+  text-decoration: underline;
+}
+
+.title {
+  composes: displayPage from '../../styles/typography.module.css';
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 26px;
+  color: var(--primary-color);
+}
+
+.icon {
+  font-size: 28px;
+}
+
+.counts {
+  margin: 6px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ---- Layer 2 — WHAT TO KNOW ---------------------------------------------- */
+
+.whatToKnow {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionTitle {
+  composes: displaySection from '../../styles/typography.module.css';
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+/* auto-fit rather than a fixed count: a category with one collection should not
+   render three empty tracks, and Utilities genuinely has one. The min track is
+   what stops a card list from being squeezed unreadable. */
+.collections {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+/* Supporting collections sit apart from the primary four — they support the
+   information layer rather than standing beside it as peers. */
+.supporting {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+/* No .orgs rules: Layer 3's category-page presentation is deferred for Housing
+   (Decision 051), so the section does not render and its styles were removed
+   rather than left as a corpse. Dead CSS outliving its component is exactly how
+   a later component silently inherits styles it never asked for — the bug class
+   that produced the index.css quarantine rule in the first place. */
+
+@media (max-width: 700px) {
+  .body {
+    gap: 24px;
+  }
+
+  .whatToKnow,
+  .header {
+    padding: 16px;
+  }
+}
+
+/* --primary-color is deliberately NOT flipped by the high-contrast theme, so a
+   component using it as INK must state its own rule (docs/frontend/css-architecture.md,
+   ArticlePage.module.css is the canonical example). */
+:global(body.high-contrast) .title {
+  color: var(--text-primary);
+}

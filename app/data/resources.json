@@ -1,6 +1,6 @@
 {
   "meta": {
-    "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+    "source": "FIRST Community Services Directory — Delaware DSCYF",
     "retrieved": "2026-06-01",
     "coverage": "Wilmington, DE (New Castle County)",
     "version": "2.0",
@@ -53,10 +53,11 @@
         "HIV",
         "AIDS"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-005"
     },
     {
       "id": "CI-002",
@@ -104,10 +105,11 @@
         "state-service-center",
         "no-appointment"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Open 1st and 3rd Thursday only."
+      "notes": "Open 1st and 3rd Thursday only.",
+      "organization_id": "ORG-006"
     },
     {
       "id": "CI-003",
@@ -156,10 +158,11 @@
         "children",
         "adults"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-007"
     },
     {
       "id": "CI-004",
@@ -209,10 +212,11 @@
         "furniture",
         "catholic-charities"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-009"
     },
     {
       "id": "CI-005",
@@ -267,10 +271,11 @@
         "clothing",
         "YMCA"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-010"
     },
     {
       "id": "CI-006",
@@ -278,8 +283,8 @@
       "subcategory": "Clothing Closet",
       "organization": "Hanover Presbyterian Church",
       "parent_organization": null,
-      "summary": "Free clothing closet with children's and adult clothing, shoes, and outerwear. Open Wednesdays 10am\u201312:30pm. Closed in July.",
-      "description": "Free clothing closet with a variety of children and adult clothing, shoes and outerwear. Open Wednesdays from 10am\u201312:30pm. Closed during month of July.",
+      "summary": "Free clothing closet with children's and adult clothing, shoes, and outerwear. Open Wednesdays 10am–12:30pm. Closed in July.",
+      "description": "Free clothing closet with a variety of children and adult clothing, shoes and outerwear. Open Wednesdays from 10am–12:30pm. Closed during month of July.",
       "population": "All",
       "eligibility": "Open to all",
       "eligibility_age_min": null,
@@ -320,10 +325,11 @@
         "outerwear",
         "church"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Closed during July. Wednesdays only 10am\u201312:30pm."
+      "notes": "Closed during July. Wednesdays only 10am–12:30pm.",
+      "organization_id": "ORG-019"
     },
     {
       "id": "CI-007",
@@ -373,10 +379,11 @@
         "household-goods",
         "Riverside"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Serves Riverside neighborhood specifically."
+      "notes": "Serves Riverside neighborhood specifically.",
+      "organization_id": "ORG-022"
     },
     {
       "id": "CI-008",
@@ -426,10 +433,11 @@
         "Spanish-speaking",
         "intake-required"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Intake form required. Requests limited to once every three months."
+      "notes": "Intake form required. Requests limited to once every three months.",
+      "organization_id": "ORG-023"
     },
     {
       "id": "CI-009",
@@ -480,10 +488,11 @@
         "food",
         "toiletries"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-033"
     },
     {
       "id": "CI-010",
@@ -492,7 +501,7 @@
       "organization": "Rosehill Community Center",
       "parent_organization": null,
       "summary": "Free clothing closet (Bacon's Boutique) by appointment only. Items updated weekly. Gently used clothing donations welcomed.",
-      "description": "Bacon's Boutique \u2014 Due to COVID-19, the closet is by appointment only. FREE clothes are provided for anyone in need. The items are updated weekly. Donations are always welcomed, but we ask that contributions are gently used and clean.",
+      "description": "Bacon's Boutique — Due to COVID-19, the closet is by appointment only. FREE clothes are provided for anyone in need. The items are updated weekly. Donations are always welcomed, but we ask that contributions are gently used and clean.",
       "population": "All",
       "eligibility": "Open to all; appointment required",
       "eligibility_age_min": null,
@@ -531,10 +540,11 @@
         "appointment-required",
         "Bacons-Boutique"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Appointment required. Call ahead."
+      "notes": "Appointment required. Call ahead.",
+      "organization_id": "ORG-038"
     },
     {
       "id": "CI-011",
@@ -582,10 +592,11 @@
         "furniture",
         "thrift-store"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-042"
     },
     {
       "id": "CI-012",
@@ -594,7 +605,7 @@
       "organization": "St. Patricks Center",
       "parent_organization": null,
       "summary": "Weekday clothing bank for east Wilmington families. Also helps with medication co-pays for those who cannot afford them.",
-      "description": "Clothing bank available during weekdays (Monday\u2013Friday). The Center also assists people with co-pays for medication if they are unable to afford it. Serves families residing on the east side of Wilmington.",
+      "description": "Clothing bank available during weekdays (Monday–Friday). The Center also assists people with co-pays for medication if they are unable to afford it. Serves families residing on the east side of Wilmington.",
       "population": "Families",
       "eligibility": "Families on the east side of Wilmington",
       "eligibility_age_min": null,
@@ -635,10 +646,11 @@
         "east-Wilmington",
         "weekdays"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Monday\u2013Friday only. East Wilmington families prioritized."
+      "notes": "Monday–Friday only. East Wilmington families prioritized.",
+      "organization_id": "ORG-045"
     },
     {
       "id": "CI-013",
@@ -646,8 +658,8 @@
       "subcategory": "Thrift Store",
       "organization": "Sunday Breakfast Mission - Urban Vintage",
       "parent_organization": "Sunday Breakfast Mission",
-      "summary": "Thrift shop with clothing, household items, and furniture. Open Tuesday\u2013Saturday 12\u20136pm. Delaware residents only.",
-      "description": "Urban Vintage thrift shop includes items like clothing, household items and furniture. Store operates Tuesday\u2013Saturday 12\u20136pm. Must be Delaware resident.",
+      "summary": "Thrift shop with clothing, household items, and furniture. Open Tuesday–Saturday 12–6pm. Delaware residents only.",
+      "description": "Urban Vintage thrift shop includes items like clothing, household items and furniture. Store operates Tuesday–Saturday 12–6pm. Must be Delaware resident.",
       "population": "All",
       "eligibility": "Delaware residents only",
       "eligibility_age_min": null,
@@ -688,10 +700,11 @@
         "thrift-store",
         "Delaware-residents"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Tuesday\u2013Saturday 12\u20136pm. Delaware resident ID required."
+      "notes": "Tuesday–Saturday 12–6pm. Delaware resident ID required.",
+      "organization_id": "ORG-047"
     },
     {
       "id": "CI-014",
@@ -738,10 +751,11 @@
         "clothing",
         "community"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-048"
     },
     {
       "id": "CI-015",
@@ -788,10 +802,11 @@
         "clothing",
         "community-center"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-051"
     },
     {
       "id": "FH-001",
@@ -839,10 +854,11 @@
         "upholstery",
         "repair"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-002"
     },
     {
       "id": "FH-002",
@@ -892,10 +908,11 @@
         "clothing",
         "catholic-charities"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-009"
     },
     {
       "id": "FH-003",
@@ -938,10 +955,11 @@
         "repair",
         "resale"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "No website listed in source directory."
+      "notes": "No website listed in source directory.",
+      "organization_id": "ORG-016"
     },
     {
       "id": "FH-004",
@@ -950,7 +968,7 @@
       "organization": "Habitat for Humanity - Restore",
       "parent_organization": "Habitat for Humanity",
       "summary": "Thrift store selling new and gently used furniture, appliances, and building supplies. Refrigerator replacement program available for qualifying families.",
-      "description": "A thrift store that sells new and gently used furniture, appliances, home d\u00e9cor and building supplies. Also offered is a refrigerator replacement program for qualifying families. All items are donated by businesses, building contractors, suppliers, and individuals, and are available for sale to the public.",
+      "description": "A thrift store that sells new and gently used furniture, appliances, home décor and building supplies. Also offered is a refrigerator replacement program for qualifying families. All items are donated by businesses, building contractors, suppliers, and individuals, and are available for sale to the public.",
       "population": "All",
       "eligibility": "Open to all; refrigerator replacement program has qualifying criteria",
       "eligibility_age_min": null,
@@ -1007,10 +1025,11 @@
         "thrift-store",
         "refrigerator-replacement"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Two locations. Refrigerator replacement program for qualifying families."
+      "notes": "Two locations. Refrigerator replacement program for qualifying families.",
+      "organization_id": "ORG-018"
     },
     {
       "id": "FH-005",
@@ -1061,10 +1080,11 @@
         "disability",
         "transitional-housing"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-043"
     },
     {
       "id": "FH-006",
@@ -1072,8 +1092,8 @@
       "subcategory": "Thrift Store",
       "organization": "Sunday Breakfast Mission - Urban Vintage",
       "parent_organization": "Sunday Breakfast Mission",
-      "summary": "Thrift shop with clothing, household items, and furniture. Open Tuesday\u2013Saturday 12\u20136pm. Delaware residents only.",
-      "description": "Urban Vintage thrift shop includes items like clothing, household items and furniture. Store operates Tuesday\u2013Saturday 12\u20136pm. Must be Delaware resident.",
+      "summary": "Thrift shop with clothing, household items, and furniture. Open Tuesday–Saturday 12–6pm. Delaware residents only.",
+      "description": "Urban Vintage thrift shop includes items like clothing, household items and furniture. Store operates Tuesday–Saturday 12–6pm. Must be Delaware resident.",
       "population": "All",
       "eligibility": "Delaware residents only",
       "eligibility_age_min": null,
@@ -1114,10 +1134,11 @@
         "thrift-store",
         "Delaware-residents"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Tuesday\u2013Saturday 12\u20136pm. Delaware resident ID required."
+      "notes": "Tuesday–Saturday 12–6pm. Delaware resident ID required.",
+      "organization_id": "ORG-047"
     },
     {
       "id": "HA-001",
@@ -1167,10 +1188,11 @@
         "mental-health",
         "health-services"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-001"
     },
     {
       "id": "HA-002",
@@ -1219,10 +1241,11 @@
         "children",
         "west-Wilmington"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-003"
     },
     {
       "id": "HA-003",
@@ -1272,10 +1295,11 @@
         "formerly-incarcerated",
         "west-Wilmington"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-004"
     },
     {
       "id": "HA-004",
@@ -1326,10 +1350,11 @@
         "TANF",
         "SSI"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Email DHSS_DSSC@delaware.gov for eligibility questions."
+      "notes": "Email DHSS_DSSC@delaware.gov for eligibility questions.",
+      "organization_id": "ORG-006"
     },
     {
       "id": "HA-005",
@@ -1380,10 +1405,11 @@
         "parenting",
         "case-management"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-008"
     },
     {
       "id": "HA-006",
@@ -1434,10 +1460,11 @@
         "advocacy",
         "children"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Location is confidential. Call for placement."
+      "notes": "Location is confidential. Call for placement.",
+      "organization_id": "ORG-011"
     },
     {
       "id": "HA-007",
@@ -1488,10 +1515,11 @@
         "counseling",
         "emergency-shelter"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "24-hour hotline available."
+      "notes": "24-hour hotline available.",
+      "organization_id": "ORG-012"
     },
     {
       "id": "HA-008",
@@ -1542,10 +1570,11 @@
         "state-program",
         "Delaware-residents"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Must apply through a partnering agency. Eligibility varies."
+      "notes": "Must apply through a partnering agency. Eligibility varies.",
+      "organization_id": "ORG-013"
     },
     {
       "id": "HA-009",
@@ -1554,7 +1583,7 @@
       "organization": "Family Promise of Northern New Castle County",
       "parent_organization": null,
       "summary": "Comprehensive homeless family support including temporary shelter, rapid rehousing, and intensive case management across multiple programs to help families achieve housing independence.",
-      "description": "Family Promise assists families dealing with homelessness through multiple programs: The Hospitality Center provides temporary shelter for up to six families (20 people). The Hospitality Network rotates congregations for lodging and case management. Pathway to Diversion houses families 7\u201314 days. Pathway to Housing provides rapid rehousing with case management and financial assistance. Pathway to Independence connects families with community supports. The Hope Center provides shelter and case management.",
+      "description": "Family Promise assists families dealing with homelessness through multiple programs: The Hospitality Center provides temporary shelter for up to six families (20 people). The Hospitality Network rotates congregations for lodging and case management. Pathway to Diversion houses families 7–14 days. Pathway to Housing provides rapid rehousing with case management and financial assistance. Pathway to Independence connects families with community supports. The Hope Center provides shelter and case management.",
       "population": "Families",
       "eligibility": "Families experiencing homelessness",
       "eligibility_age_min": null,
@@ -1595,10 +1624,11 @@
         "rapid-rehousing",
         "case-management"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Call for street address. Multiple program tracks available."
+      "notes": "Call for street address. Multiple program tracks available.",
+      "organization_id": "ORG-014"
     },
     {
       "id": "HA-010",
@@ -1649,10 +1679,11 @@
         "men",
         "women"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Multiple house locations across Wilmington. Call for placement."
+      "notes": "Multiple house locations across Wilmington. Call for placement.",
+      "organization_id": "ORG-015"
     },
     {
       "id": "HA-011",
@@ -1701,10 +1732,11 @@
         "income-eligible",
         "HUD"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-017"
     },
     {
       "id": "HA-012",
@@ -1749,10 +1781,11 @@
         "homelessness",
         "YWCA"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "No website listed in source directory."
+      "notes": "No website listed in source directory.",
+      "organization_id": "ORG-020"
     },
     {
       "id": "HA-013",
@@ -1802,10 +1835,11 @@
         "foreclosure-prevention",
         "education"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-021"
     },
     {
       "id": "HA-014",
@@ -1856,10 +1890,11 @@
         "alcohol",
         "drugs"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-024"
     },
     {
       "id": "HA-015",
@@ -1908,10 +1943,11 @@
         "homelessness-prevention",
         "ministry-of-caring"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-025"
     },
     {
       "id": "HA-016",
@@ -1963,10 +1999,11 @@
         "seniors",
         "early-education"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Parent organization. See individual Ministry of Caring programs for specific services."
+      "notes": "Parent organization. See individual Ministry of Caring programs for specific services.",
+      "organization_id": "ORG-026"
     },
     {
       "id": "HA-017",
@@ -1974,8 +2011,8 @@
       "subcategory": "Emergency Shelter",
       "organization": "Mother Mary of Hope House II",
       "parent_organization": "Ministry of Caring Inc",
-      "summary": "Emergency shelter for homeless women with children. Stays of 30\u201345 days with case management included.",
-      "description": "Emergency housing for 30\u201345 days for homeless women with children. Case management included with stay.",
+      "summary": "Emergency shelter for homeless women with children. Stays of 30–45 days with case management included.",
+      "description": "Emergency housing for 30–45 days for homeless women with children. Case management included with stay.",
       "population": "Women and children",
       "eligibility": "Homeless women with children",
       "eligibility_age_min": null,
@@ -2016,10 +2053,11 @@
         "case-management",
         "ministry-of-caring"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "30\u201345 day stays. Case management included."
+      "notes": "30–45 day stays. Case management included.",
+      "organization_id": "ORG-027"
     },
     {
       "id": "HA-018",
@@ -2027,8 +2065,8 @@
       "subcategory": "Emergency Shelter",
       "organization": "Mother Mary of Hope House III",
       "parent_organization": "Ministry of Caring Inc",
-      "summary": "Emergency shelter for homeless women with children. Stays of 30\u201345 days with case management included.",
-      "description": "Emergency housing for 30\u201345 days for homeless women with children. Case management included with stay.",
+      "summary": "Emergency shelter for homeless women with children. Stays of 30–45 days with case management included.",
+      "description": "Emergency housing for 30–45 days for homeless women with children. Case management included with stay.",
       "population": "Women and children",
       "eligibility": "Homeless women with children",
       "eligibility_age_min": null,
@@ -2069,10 +2107,11 @@
         "case-management",
         "ministry-of-caring"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "30\u201345 day stays. Case management included."
+      "notes": "30–45 day stays. Case management included.",
+      "organization_id": "ORG-028"
     },
     {
       "id": "HA-019",
@@ -2121,10 +2160,11 @@
         "case-management",
         "ministry-of-caring"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-029"
     },
     {
       "id": "HA-020",
@@ -2173,10 +2213,11 @@
         "case-management",
         "ministry-of-caring"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-030"
     },
     {
       "id": "HA-021",
@@ -2227,10 +2268,11 @@
         "financial-coaching",
         "DEHAP"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Call for office address."
+      "notes": "Call for office address.",
+      "organization_id": "ORG-031"
     },
     {
       "id": "HA-022",
@@ -2288,10 +2330,11 @@
         "Spanish-speaking",
         "bilingual"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Workshops available in English and Spanish."
+      "notes": "Workshops available in English and Spanish.",
+      "organization_id": "ORG-032"
     },
     {
       "id": "HA-023",
@@ -2341,10 +2384,11 @@
         "low-income",
         "state-service-center"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-034"
     },
     {
       "id": "HA-024",
@@ -2394,10 +2438,11 @@
         "substance-abuse",
         "group-home"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Residents pay rent. Check oxfordvacancies.com for current openings."
+      "notes": "Residents pay rent. Check oxfordvacancies.com for current openings.",
+      "organization_id": "ORG-035"
     },
     {
       "id": "HA-025",
@@ -2447,10 +2492,11 @@
         "children",
         "group-home"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Call for current locations and vacancies."
+      "notes": "Call for current locations and vacancies.",
+      "organization_id": "ORG-036"
     },
     {
       "id": "HA-026",
@@ -2500,10 +2546,11 @@
         "low-income",
         "state-service-center"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-037"
     },
     {
       "id": "HA-027",
@@ -2552,10 +2599,11 @@
         "apartments",
         "income-eligible"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Income limits apply. Call for current availability."
+      "notes": "Income limits apply. Call for current availability.",
+      "organization_id": "ORG-041"
     },
     {
       "id": "HA-028",
@@ -2613,10 +2661,11 @@
         "life-skills",
         "ministry-of-caring"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Up to two years. Two locations."
+      "notes": "Up to two years. Two locations.",
+      "organization_id": "ORG-044"
     },
     {
       "id": "HA-029",
@@ -2668,10 +2717,11 @@
         "homelessness",
         "clothing-voucher"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Clothing voucher included for Urban Vintage thrift store."
+      "notes": "Clothing voucher included for Urban Vintage thrift store.",
+      "organization_id": "ORG-046"
     },
     {
       "id": "HA-030",
@@ -2722,10 +2772,11 @@
         "life-skills",
         "STEHM"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "No fixed public address. Call for placement."
+      "notes": "No fixed public address. Call for placement.",
+      "organization_id": "ORG-039"
     },
     {
       "id": "HA-031",
@@ -2775,10 +2826,11 @@
         "referral-required",
         "STEHM"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Referral from a social service agency required. One-week stay limit per calendar year."
+      "notes": "Referral from a social service agency required. One-week stay limit per calendar year.",
+      "organization_id": "ORG-040"
     },
     {
       "id": "HA-032",
@@ -2786,10 +2838,10 @@
       "subcategory": "Youth Housing",
       "organization": "West End Neighborhood House - Life Lines Program",
       "parent_organization": "West End Neighborhood House",
-      "summary": "Comprehensive support for foster care and unaccompanied youth ages 16\u201323, including LGBTQ+ youth, covering housing, education, employment, mental health, and life skills.",
+      "summary": "Comprehensive support for foster care and unaccompanied youth ages 16–23, including LGBTQ+ youth, covering housing, education, employment, mental health, and life skills.",
       "description": "Serves current and former foster care youth, unaccompanied youth, and those who identify as LGBTQ+. Youth benefit from intensive case management and assistance with educational programs, housing support, financial education, medication management, employment placement, mental health services, and life skills instruction.",
-      "population": "Ages 16\u201323",
-      "eligibility": "Foster care and unaccompanied youth ages 16\u201323, including LGBTQ+ youth",
+      "population": "Ages 16–23",
+      "eligibility": "Foster care and unaccompanied youth ages 16–23, including LGBTQ+ youth",
       "eligibility_age_min": 16,
       "eligibility_age_max": 23,
       "eligibility_gender": "any",
@@ -2830,10 +2882,11 @@
         "employment",
         "mental-health"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Ages 16\u201323 only."
+      "notes": "Ages 16–23 only.",
+      "organization_id": "ORG-049"
     },
     {
       "id": "HA-033",
@@ -2883,10 +2936,11 @@
         "90-days",
         "workshops"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "90-day maximum stay."
+      "notes": "90-day maximum stay.",
+      "organization_id": "ORG-050"
     },
     {
       "id": "HA-034",
@@ -2894,7 +2948,7 @@
       "subcategory": "Rental Assistance",
       "organization": "Wilmington Housing Authority - Housing Choice Vouchers",
       "parent_organization": "Wilmington Housing Authority",
-      "summary": "Federal housing vouchers helping eligible low-income residents pay rent in the community. Waitlist opens periodically \u2014 keep contact information current. WHA manages 1,976 vouchers.",
+      "summary": "Federal housing vouchers helping eligible low-income residents pay rent in the community. Waitlist opens periodically — keep contact information current. WHA manages 1,976 vouchers.",
       "description": "Housing Choice Vouchers can be used in public housing units or toward rental assistance in the community. Eligible households include those with disabilities and elderly persons with income not exceeding 80% of local median income. The voucher pays a portion of rent; the resident pays the remainder. Vouchers are transferrable to other jurisdictions. Waitlists are only open during certain times of the year.",
       "population": "Age 18 and older",
       "eligibility": "Income at or below 80% of local median income; includes elderly and disabled persons",
@@ -2938,10 +2992,11 @@
         "disability",
         "waitlist"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Waitlist opens periodically. Keep contact information current. 1,976 total vouchers managed."
+      "notes": "Waitlist opens periodically. Keep contact information current. 1,976 total vouchers managed.",
+      "organization_id": "ORG-052"
     },
     {
       "id": "HA-035",
@@ -2992,10 +3047,11 @@
         "disability",
         "waitlist"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Waitlist opens periodically. Keep contact information current."
+      "notes": "Waitlist opens periodically. Keep contact information current.",
+      "organization_id": "ORG-053"
     },
     {
       "id": "HA-036",
@@ -3044,10 +3100,11 @@
         "affordable-housing",
         "55-plus"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": ""
+      "notes": "",
+      "organization_id": "ORG-054"
     },
     {
       "id": "HA-037",
@@ -3098,10 +3155,11 @@
         "case-management",
         "YWCA"
       ],
-      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "source": "FIRST Community Services Directory — Delaware DSCYF",
       "retrieved": "2026-06-01",
       "verified": false,
-      "notes": "Call for intake. No fixed public address."
+      "notes": "Call for intake. No fixed public address.",
+      "organization_id": "ORG-055"
     }
   ]
 }
