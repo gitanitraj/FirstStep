@@ -1,0 +1,616 @@
+# First Step v2 — 2B-P4 Scope
+
+## 1. Purpose
+
+2B-P4 defines the implementation boundary for completing First Step v2.
+
+It translates the approved:
+
+- seven resident/editorial journeys;
+- five Epics;
+- Completion Contract;
+- reconciliation matrix;
+- and closure backlog
+
+into a finite scope classification.
+
+Every remaining item must be classified as one of:
+
+### V2 Required
+
+The item is directly necessary to satisfy a contracted resident/editorial journey or release acceptance condition.
+
+If it is not completed, v2 cannot close.
+
+### V2 Enabling Foundation
+
+The item is not itself a resident journey, but a narrowly bounded supporting change is necessary to make a required v2 behavior reliable.
+
+Only the minimum needed foundation belongs in v2.
+
+### V3 / Later
+
+The item may be useful, desirable, or strategically important, but it is not necessary to satisfy the Completion Contract.
+
+Its absence does not block v2.
+
+---
+
+# 2. Scope Rule
+
+After approval of this scope:
+
+**Newly discovered work does not automatically enter v2.**
+
+It enters only when:
+
+1. it is necessary to satisfy an existing v2 requirement;
+2. it is the minimum enabling foundation required by that requirement; or
+3. the Completion Contract and this scope are explicitly amended.
+
+Technical elegance, future usefulness, historical aspiration, or partial implementation are not sufficient reasons to expand v2.
+
+---
+
+# 3. Epic 1 — Civic Catalog Identity & Relationships
+
+## V2 Required
+
+### P4-1. Preserve offering / organization / producer distinctions
+
+First Step must continue to distinguish:
+
+- the civic offering;
+- the organization associated with it;
+- the content producer/source;
+- and the provenance through which First Step received the information.
+
+No completion work may collapse those identities.
+
+**Supports:** J3, J5, J7
+
+---
+
+### P4-2. Preserve community as explicit scope
+
+`communityId` or equivalent community ownership remains first-class.
+
+Remaining v2 work must not introduce Wilmington as an implicit universal constant.
+
+**Supports:** J7 and multi-community readiness
+
+---
+
+### P4-3. Maintain resident-meaningful classification
+
+Category, subcategory/topic, notice kind, content source, organization, and resident-facing collections must remain distinct concepts.
+
+Internal classifications must not leak directly into resident navigation.
+
+**Supports:** J1, J2, J4, J7
+
+---
+
+## V2 Enabling Foundation
+
+### P4-4. Targeted model changes required by remaining stories
+
+Small model changes are allowed only where required for:
+
+- expiry eligibility;
+- approaching-expiry detection;
+- Expert/FAQ category integrity;
+- deterministic featured selection;
+- Community Event generalization.
+
+This does not authorize a broad domain remodel.
+
+---
+
+## V3 / Later
+
+- sophisticated organization profiles;
+- Institution/Party cross-role identity;
+- generalized relationship graph;
+- Community administration system;
+- second-community launch;
+- organization history/alias system beyond existing needs.
+
+---
+
+# 4. Epic 2 — Resident Help & Topic Discovery
+
+## V2 Required
+
+### P4-5. Complete Category Destination
+
+The category destination must integrate:
+
+- featured topics;
+- Get Help;
+- What to Know;
+- Organizations;
+- accepted context rail behavior;
+- deeper collection paths.
+
+**Supports:** J1, J2, J4
+
+---
+
+### P4-6. Topic sub-destination
+
+A resident can select a topic and reach a deeper collection of relevant content.
+
+The experience must retain category context and avoid exposing raw taxonomy.
+
+**Supports:** J2
+
+---
+
+### P4-7. All-category help path
+
+Residents must be able to browse all eligible help in a category without choosing a featured topic first.
+
+Topics are discovery aids, not gates.
+
+**Supports:** J1
+
+---
+
+### P4-8. Featured topic selection
+
+Featured topics are selected from the strongest eligible category inventory.
+
+Expired content must not inflate topic counts.
+
+Selection must be deterministic.
+
+**Supports:** J2
+
+---
+
+### P4-9. Role-based featured item selection
+
+Each featured topic may show up to three role-based positions:
+
+1. **Timely / Actionable**
+2. **Durable Help**
+3. **Visual / Additional Discovery**
+
+Where multiple candidates satisfy a role, selection follows deterministic metadata-based tie-breaking.
+
+No universal relevance-score engine is required.
+
+**Supports:** J2
+
+---
+
+### P4-10. Direct source/content navigation
+
+Featured/topic content should take the resident directly to the relevant source or resident-facing content destination.
+
+**Supports:** J1, J2
+
+---
+
+## V2 Enabling Foundation
+
+### P4-11. Deterministic selection utility/service
+
+A narrowly bounded selector may be introduced to:
+
+- calculate eligible topic inventory;
+- assign candidates to featured roles;
+- apply stable tie-breaking.
+
+It must not become a generalized recommendation engine.
+
+---
+
+### P4-12. Eligible-content projection
+
+Get Help and topic collections need a reusable way to receive only resident-eligible content.
+
+This should build on the expiry rule rather than duplicate it.
+
+---
+
+## V3 / Later
+
+- editorial override UI for featured topics;
+- recommendation engine;
+- personalization;
+- demographic recommendation system;
+- automatic ranking based on engagement;
+- AI-generated content ranking.
+
+---
+
+# 5. Epic 3 — Civic Information Collections
+
+## V2 Required
+
+### P4-13. Preserve controlled What to Know collections
+
+For Housing:
+
+- Policy Info;
+- Law;
+- Flyers;
+- First Rate News.
+
+These remain controlled resident-facing projections.
+
+**Supports:** J4
+
+---
+
+### P4-14. Flyers / Get Help overlap rule
+
+A flyer may appear in Flyers and also in Get Help when the underlying opportunity genuinely represents access to help.
+
+No duplicate underlying record is required.
+
+**Supports:** J1, J4
+
+---
+
+### P4-15. Expert / FAQ category integrity
+
+Expert and FAQ content expected to participate in category navigation must have valid category relationships.
+
+Missing or invalid classification must be detectable.
+
+**Supports:** J4, J7
+
+---
+
+### P4-16. First Step editorial content remains admissible
+
+Approved First Step Originals, Expert material, and appropriate FAQ content must participate in category navigation according to the accepted First Rate News definition.
+
+**Supports:** J4
+
+---
+
+### P4-17. Community Events generalization
+
+The architecture must represent community events without treating them as Housing-style resources.
+
+The United Neighbors 2026 example is an accepted test candidate:
+
+- one underlying civic item;
+- notice kind = Event;
+- flyer media retained;
+- Community Notices → Events;
+- Community Notices → Flyers;
+- temporal eligibility after event conclusion;
+- no new `ContentType`.
+
+**Supports:** J7
+
+---
+
+## V2 Enabling Foundation
+
+### P4-18. Controlled projection rules
+
+Small shared projection rules may be introduced for:
+
+- Events;
+- Flyers;
+- Get Help;
+- First Rate News;
+- Policy Info.
+
+The backend must not auto-enumerate arbitrary values.
+
+---
+
+### P4-19. Human-origin editorial provenance
+
+Expert and FAQ content should preserve whether the material is:
+
+- First Step-created;
+- First Step-initiated;
+- based on an interview;
+- rewritten from source material;
+- or otherwise attributable.
+
+This does not require a generalized editorial provenance platform.
+
+---
+
+## V3 / Later
+
+- automatic FAQ import/publication;
+- generalized external-content republishing;
+- automated interview transcription pipeline;
+- content syndication system;
+- generalized event platform.
+
+---
+
+# 6. Epic 4 — Content Lifecycle & Editorial Stewardship
+
+## V2 Required
+
+### P4-20. Expiry eligibility
+
+Content must resolve into:
+
+- Active;
+- Approaching Expiry;
+- Expired.
+
+Resident eligibility rules must enforce those states where expiry is meaningful.
+
+**Supports:** J6
+
+---
+
+### P4-21. Expired-content exclusion
+
+Expired material must be excluded from resident-facing surfaces that imply current availability.
+
+Retention for editorial/history is allowed.
+
+**Supports:** J6
+
+---
+
+### P4-22. Approaching-expiry visibility
+
+Admins/editors need a repeatable mechanism to identify approaching-expiry records.
+
+For v2, a validator/report/diagnostic is sufficient.
+
+**Supports:** J6
+
+---
+
+### P4-23. Admin expiry guidance
+
+The separate Admin-facing expiry document becomes part of v2 operational documentation.
+
+It defines:
+
+- Active;
+- Approaching Expiry;
+- Expired;
+- editorial review expectations;
+- role-based featured behavior.
+
+**Supports:** J6 and documentation readiness
+
+---
+
+### P4-24. Public/private editorial boundaries
+
+Review state, generation provenance, flag disposition, and other internal editorial fields remain excluded from public DTOs where already established.
+
+**Supports:** J4 and quality gates
+
+---
+
+## V2 Enabling Foundation
+
+### P4-25. Shared eligibility function
+
+A single reusable eligibility rule should prevent Category, Search, Get Help, Events, and other projections from independently inventing expiry behavior.
+
+This should remain narrow.
+
+---
+
+### P4-26. Expiry diagnostics
+
+A report/validator may expose:
+
+- record ID;
+- title;
+- expiry date;
+- current expiry state;
+- content class;
+- enough identifying metadata for editorial review.
+
+---
+
+## V3 / Later — Editorial Operations & Stewardship
+
+The following are explicitly deferred:
+
+- Admin dashboard;
+- automated editorial queues;
+- workflow assignment;
+- email notifications;
+- automatic article creation;
+- editorial task routing;
+- editorial follow-up status;
+- richer lifecycle management.
+
+These should build on the v2 eligibility semantics rather than replace them.
+
+---
+
+# 7. Epic 5 — Catalog Integrity & Classification
+
+## V2 Required
+
+### P4-27. Validate required category relationships
+
+Expert/FAQ and other contracted content must not disappear because required category relationships are missing.
+
+---
+
+### P4-28. Validate organization/source identity
+
+Known invalid or missing references that can damage resident journeys must be caught.
+
+---
+
+### P4-29. Stable featured selection
+
+Given the same eligible catalog, featured-topic and featured-item results must be reproducible.
+
+No array-order dependency.
+
+---
+
+### P4-30. Protect fixed ContentType boundary
+
+Remaining v2 work must not add a new `ContentType` merely to represent:
+
+- Events;
+- FAQs;
+- Originals;
+- resident collections;
+- discovery concepts.
+
+---
+
+### P4-31. Validate controlled collection rules
+
+Resident-facing collections must follow explicit projection rules rather than arbitrary internal enumeration.
+
+---
+
+## V2 Enabling Foundation
+
+Additional validator rules are permitted when they protect:
+
+- expiry;
+- category integrity;
+- organization/source identity;
+- deterministic selection;
+- controlled projections.
+
+No generalized schema-governance framework is required.
+
+---
+
+# 8. Release Acceptance — Required but Not Major Build Work
+
+These items remain v2 requirements but should be tracked separately from implementation stories.
+
+## P4-32. Seven-journey regression
+
+J1–J7 demonstrated end to end.
+
+---
+
+## P4-33. Provenance audit
+
+Representative content classes remain traceable to their source.
+
+---
+
+## P4-34. Multi-community architecture audit
+
+No newly introduced Wilmington-only architectural dependency.
+
+---
+
+## P4-35. Accessibility and responsive verification
+
+Accepted desktop/mobile targets, keyboard behavior, accessible naming, loading/error semantics, high contrast, and responsive behavior pass.
+
+---
+
+## P4-36. Automated suites and validators
+
+Backend, frontend, TypeScript/build checks, validators, and newly added completion tests pass.
+
+---
+
+## P4-37. Documentation reconciliation
+
+No remaining:
+
+- Open — v2 required;
+- Verify;
+- ambiguous historical obligation.
+
+Every item must end as:
+
+- Satisfied;
+- Superseded / Reinterpreted;
+- Deferred.
+
+---
+
+# 9. Explicit V3 / Later Boundary
+
+The following are not v2 blockers:
+
+- full Admin UI / catalog CRUD;
+- Admin dashboard;
+- automated editorial queues;
+- workflow assignment;
+- email notifications;
+- automatic article creation;
+- sophisticated organization profiles;
+- Institution/Party identity;
+- generalized workflow management;
+- database migration;
+- PostgreSQL migration;
+- CI modernization;
+- formal performance budget;
+- personalization;
+- recommendations;
+- second-community launch;
+- richer population-based discovery;
+- generalized eligibility engine;
+- Video modeling;
+- Newsletter modeling;
+- generalized OCR/metadata extraction;
+- CivicAssistant/live AI search;
+- generalized pipeline orchestration.
+
+---
+
+# 10. P4 Scope Summary
+
+## Actual v2 build work
+
+The remaining substantive implementation is:
+
+1. expiry eligibility and exclusion;
+2. approaching-expiry reporting;
+3. Expert/FAQ category integrity;
+4. topic/Get Help collection behavior;
+5. deterministic featured-topic selection;
+6. role-based featured-item selection;
+7. final Category Destination integration;
+8. any small model/validator changes strictly necessary to support those behaviors.
+
+## V2 acceptance work
+
+Then:
+
+1. Community Events generalization test;
+2. provenance audit;
+3. multi-community audit;
+4. seven-journey regression;
+5. accessibility/responsive verification;
+6. automated test/validator pass;
+7. documentation reconciliation.
+
+## Not v2
+
+Everything else remains outside the release unless the Completion Contract is explicitly amended.
+
+---
+
+# 11. P4 Exit Criterion
+
+2B-P4 is complete when:
+
+- every remaining story is classified;
+- no story is simultaneously treated as v2 and future work;
+- each V2 Enabling Foundation item is bounded by a named resident/editorial requirement;
+- V3/Later work is explicitly recorded;
+- the remaining v2 build list is finite;
+- the scope is approved before logical ER/classification design begins.
+
+Once approved, **2B-P5 may model only what this scope authorizes.**

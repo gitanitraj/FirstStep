@@ -1,0 +1,541 @@
+# First Step v2 Completion Contract
+
+## 1. Purpose
+
+This Completion Contract defines the conditions under which **First Step v2 is complete**.
+
+v2 is complete when:
+
+1. the required **resident experiences work end to end**;
+2. the minimum **catalog and editorial foundations** required to support those experiences are reliable;
+3. the agreed **quality gates pass**;
+4. the original v2 promises and subsequent architectural decisions have been **reconciled in documentation**; and
+5. work intentionally deferred beyond v2 is **explicitly identified as outside the release boundary**.
+
+This Contract is a **release boundary**, not a list of everything First Step could eventually become.
+
+### Change-control rule
+
+**After approval, newly discovered work does not automatically enter v2. It must either be necessary to satisfy an existing Completion Contract requirement or require an explicit amendment to the Contract.**
+
+Discovery of technical debt, a desirable enhancement, a new abstraction opportunity, or a future administrative capability is not by itself sufficient to expand v2.
+
+---
+
+# 2. Completion Standard
+
+A feature, capability, or architectural concern belongs in v2 only when it falls into one of three classifications:
+
+### V2 Required
+
+The capability is directly necessary for one or more required resident journeys or for an explicit v2 product promise.
+
+Failure means the resident-facing v2 product is incomplete.
+
+### V2 Enabling Foundation
+
+The capability is not itself a resident journey, but the required journeys cannot be implemented reliably without it.
+
+The foundation must be only as broad as necessary to support v2. It must not become an excuse to build a generalized future platform.
+
+### V3 / Explicitly Deferred
+
+The capability may be valuable, and may even have appeared in earlier architectural aspirations, but it is not necessary to satisfy this Completion Contract.
+
+Deferred work does not block the v2 release.
+
+---
+
+# 3. Required Resident and Editorial Journeys
+
+v2 must support the following seven journeys end to end.
+
+## J1 — Resident finds help through a Category Destination
+
+A resident can enter a civic category such as Housing and understand what assistance is available without navigating the underlying content taxonomy.
+
+The Category Destination must provide a bounded, understandable experience rather than expose the entire catalog at once.
+
+For Housing this includes the accepted destination architecture:
+
+- featured topics;
+- Get Help;
+- What to Know;
+- Organizations;
+- progressive access to deeper collections through appropriate “See All” or equivalent paths.
+
+Growth in catalog size must increase the **depth of available content**, not cause the destination page itself to grow without bound.
+
+**Complete when:** a resident can enter the category, identify relevant assistance, and reach the underlying content or service without encountering taxonomy-driven dead ends.
+
+---
+
+## J2 — Resident explores a featured topic
+
+A resident can choose a featured topic such as Eviction Prevention, Emergency Shelter, Homeownership, or Rental Assistance and discover a meaningful subset of the category.
+
+Featured topics must come from the actual category inventory rather than arbitrary hard-coded editorial preference.
+
+The initial topic-selection rule is based on the most substantial relevant coverage within the category.
+
+The system must also deterministically choose among multiple eligible items competing for the limited featured positions.
+
+Selection must follow a defined sequence such as:
+
+**eligibility → role qualification → tie-break → presentation**
+
+Metadata may influence selection, including:
+
+- active versus expired status;
+- approaching-expiry status;
+- evergreen usefulness;
+- availability of a relevant flyer;
+- other already-established content metadata.
+
+The system must be capable of explaining why a topic and its featured items were selected from the available inventory.
+
+**Complete when:** topic selection and the occupants of limited featured positions are deterministic, inventory-driven, and testable rather than accidental array ordering or manual coincidence.
+
+---
+
+## J3 — Resident moves between an offering and its provider
+
+The resident's primary object is the **resource, program, service, event, or other civic offering**.
+
+The organization behind that offering is secondary but must remain identifiable and navigable where appropriate.
+
+First Step must preserve the distinction between:
+
+- what is being offered;
+- who provides or publishes it; and
+- the provenance source through which First Step obtained it.
+
+Organizations must not be manufactured merely to satisfy content records, and content producers must not be incorrectly treated as service providers.
+
+**Complete when:** required v2 experiences consistently preserve offering/provider/source identity and residents can move through those relationships without false organizational records or ambiguous identity.
+
+---
+
+## J4 — Resident discovers civic information rather than assistance
+
+First Step must support residents seeking information as well as direct help.
+
+Within a Category Destination, **What to Know** provides the information layer.
+
+For Housing, its accepted controlled collections are:
+
+- Policy Info;
+- Law;
+- Flyers;
+- First Rate News.
+
+These are resident-meaningful projections, not an exhaustive rendering of every internal `ContentType`, subtype, tag, or taxonomy value.
+
+First Rate News includes approved First Step editorial work and the approved Expert/FAQ material necessary to avoid a coverage hole.
+
+First Step Originals admitted under Decision 052 must participate correctly in category navigation.
+
+Topicless but otherwise relevant content must not disappear simply because it lacks a narrower topic assignment.
+
+**Complete when:** residents can discover the relevant informational material through the category experience without requiring knowledge of First Step's internal content model.
+
+---
+
+## J5 — Editor can add or update an offering without creating false identity
+
+The underlying catalog must permit an editor or maintainer to represent a new resource or modify an existing one without:
+
+- inventing an organization that does not exist;
+- conflating a producer with a provider;
+- corrupting existing category or search behavior;
+- requiring a new content type for ordinary variation;
+- exposing provenance defects as global application failures.
+
+This requirement concerns the **domain and data model**, not a full administrative UI.
+
+**Complete when:** the supported v2 data-maintenance path can represent the required catalog relationships correctly and validation detects identity defects.
+
+---
+
+## J6 — Editor can handle approaching-expiry content
+
+Expiry affects whether information remains safe and useful for residents and therefore cannot remain an undefined catalog property.
+
+v2 must distinguish at minimum between:
+
+- content still eligible for resident presentation;
+- content approaching expiry and needing editorial attention;
+- content no longer eligible because it has expired.
+
+Expired material must not continue appearing merely because expiry metadata exists but is ignored.
+
+Approaching expiry must be identifiable for editorial review.
+
+Possible editorial responses may include verification, renewal, replacement, an “If You Go” article, an interview, or another editorial action, but v2 does **not** require automated workflow management or automated editorial queues.
+
+**Complete when:** resident eligibility behavior for expired content is defined and enforced, and approaching-expiry content can be identified for human review.
+
+---
+
+## J7 — System protects catalog identity and classification
+
+The system must prevent known classification and identity defects from silently changing resident-facing behavior.
+
+This includes protecting distinctions among concepts such as:
+
+- category and subcategory/topic;
+- resource/offering and organization;
+- content source and organization/provider;
+- government and non-government producers;
+- First Step editorial content and externally produced civic information;
+- controlled resident-facing collections and internal content classifications.
+
+**Complete when:** validators, tests, and domain rules detect the classes of identity and classification defects that could invalidate the required v2 journeys.
+
+---
+
+# 4. The Five v2 Epics
+
+The seven journeys are supported by five bounded implementation Epics.
+
+## E1 — Civic Catalog Identity & Relationships
+
+Establish the minimum reliable model for:
+
+- civic offerings;
+- organizations;
+- content sources/producers;
+- category and subcategory relationships;
+- community ownership;
+- provenance.
+
+This Epic exists to support J3, J5, and J7.
+
+It does **not** require the future cross-role Institution/Party model or sophisticated organization profiles.
+
+---
+
+## E2 — Resident Help & Topic Discovery
+
+Complete the resident experience for finding assistance through:
+
+- Category Destinations;
+- featured topics;
+- Get Help;
+- deeper topic/help browsing;
+- bounded collection presentation.
+
+This Epic primarily supports J1 and J2.
+
+---
+
+## E3 — Civic Information Collections
+
+Complete the resident information experience across:
+
+- Policy Info;
+- Law;
+- Flyers;
+- First Rate News;
+- Community Notices;
+- Latest Updates;
+- First Step Originals;
+- FAQ/Expert material where required by the accepted information architecture.
+
+This Epic primarily supports J4.
+
+The seven historically distinct content journeys—
+
+**Get Help, Community Notices, Questions & Answers, Ask an Expert, First Step Originals, Latest Updates, and Delaware Laws**—
+
+do not require seven independent architectural systems. They must remain reachable through the final resident-facing architecture.
+
+---
+
+## E4 — Content Lifecycle & Editorial Stewardship
+
+Define and enforce the minimum lifecycle rules necessary for trustworthy resident presentation, including:
+
+- expiry eligibility;
+- approaching-expiry identification;
+- approved editorial content;
+- editorial review boundaries already established under Decision 048;
+- generation/review provenance separation;
+- public/private DTO boundaries.
+
+This Epic primarily supports J6 and trustworthy operation of J4.
+
+It does not require generalized workflow software or automated editorial queues.
+
+---
+
+## E5 — Catalog Integrity & Classification
+
+Complete the validation and classification rules that keep resident experiences dependable.
+
+This includes unresolved data-integrity matters such as:
+
+- required category relationships for Expert/FAQ content;
+- preservation of source/provider distinctions;
+- controlled collection projections;
+- detection of missing or invalid catalog relationships;
+- deterministic selection where resident surfaces have limited slots.
+
+This Epic primarily supports J7 and protects all other journeys.
+
+---
+
+# 5. Explicit Carried v2 Obligations
+
+The following issues are not to disappear into Category Destination visual implementation or general cleanup.
+
+They require explicit disposition under this Contract.
+
+### 5.1 Expiry enforcement
+
+Expiry changes **content eligibility**, not merely presentation.
+
+It therefore belongs to E4 and is a v2 requirement.
+
+---
+
+### 5.2 Flyers / Get Help overlap
+
+A flyer may represent an informational artifact while also pointing to an opportunity or access event relevant to Get Help.
+
+This is an **information-placement rule**, not justification for a new content type.
+
+The final rule must permit the appropriate resident surfaces without duplicating or misclassifying the underlying content.
+
+---
+
+### 5.3 Missing Expert / FAQ category relationships
+
+Missing `category_tags` or equivalent required category relationships are a **data-integrity issue**.
+
+Required Expert/FAQ material must not become invisible to Category Destinations because its classification data is incomplete.
+
+This belongs to E5.
+
+---
+
+### 5.4 Community Events generalization
+
+The treatment of Community Events must demonstrate that the architecture generalizes beyond Housing-specific assumptions.
+
+This is an architectural acceptance test, not a reason to create a generalized event-management platform.
+
+---
+
+### 5.5 Multiple candidates for one featured role
+
+Where several items satisfy the same featured-topic role, the choice must be deterministic.
+
+This remains unresolved until the system defines the tie-breaking rule from existing metadata and verifies it against actual inventory.
+
+It belongs to E2/E5.
+
+---
+
+# 6. Reconciliation of Original v2 Promises
+
+The Completion Contract does not require literal implementation of every implementation idea contained in early v2 planning.
+
+Instead, each original promise must receive one of three outcomes:
+
+**fulfilled, superseded/reinterpreted, or explicitly deferred.**
+
+## 6.1 Trusted public-information discovery
+
+**Required and retained.**
+
+The final Category Destination, updates, notices, editorial, search, and help experiences must collectively satisfy the original purpose of bringing trusted civic information together for resident discovery without changing the underlying facts.
+
+---
+
+## 6.2 Community as a first-class partition
+
+**Required as a domain principle.**
+
+`communityId` remains a first-class ownership/scope concept so the architecture is not permanently Wilmington-only.
+
+v2 does not require a generalized Community administration system or Community API unless one is proven necessary for a contracted resident journey.
+
+---
+
+## 6.3 Collect → Generate Metadata → Normalize → Enrich → Deliver
+
+**Retained as the information-pipeline architectural model.**
+
+v2 must not contradict this model, and documentation must accurately explain where the implemented system currently satisfies those responsibilities.
+
+The Contract does not require building a generalized orchestration framework merely to instantiate all five stages as independent software components.
+
+---
+
+## 6.4 JSON → SQLite → PostgreSQL evolution
+
+The original persistence direction is acknowledged, but **database migration is not a v2 completion requirement**.
+
+The existing storage mechanism may remain where it reliably supports the contracted v2 experiences.
+
+SQLite/PostgreSQL migration belongs beyond the v2 boundary unless an existing Contract requirement proves impossible without it.
+
+---
+
+## 6.5 Original Definition of Done
+
+The original v2 Definition of Done must be reconciled item by item before release.
+
+Each item must be marked:
+
+- satisfied by the final implementation;
+- superseded by a documented later decision; or
+- explicitly deferred by this Contract.
+
+No original obligation may simply disappear because the architecture evolved.
+
+---
+
+# 7. Quality Gates
+
+v2 cannot be declared complete solely because the screens appear finished.
+
+At release candidate, all applicable quality gates must pass.
+
+At minimum:
+
+### Automated tests
+
+- backend test suite passes;
+- frontend test suite passes;
+- accepted regression tests for the contracted journeys pass.
+
+### Data/catalog validation
+
+Existing validators and any additional validator required by this Contract must pass for the release catalog.
+
+Validation must cover the resident-impacting integrity rules established by E1 and E5.
+
+### Accessibility
+
+The accepted accessibility behavior must remain intact, including:
+
+- meaningful loading/error semantics;
+- keyboard-accessible interaction;
+- supported responsive layouts;
+- high-contrast behavior;
+- accessible names for view controls and resident navigation.
+
+### Responsive behavior
+
+Required resident journeys must work at the accepted desktop and mobile targets rather than merely render without crashing.
+
+### Public API / DTO boundaries
+
+Editorial and internal workflow state must not leak through resident-facing DTOs.
+
+Existing 404 and visibility parity rules for non-public editorial content must remain intact.
+
+### Architectural regression
+
+Completion work must not reintroduce retired architecture merely to satisfy a surface requirement, including unnecessary content types, arbitrary taxonomy enumeration, provenance as a global prerequisite, or uncontrolled component-per-type proliferation.
+
+---
+
+# 8. Documentation Reconciliation
+
+Before v2 closes, the documentation must describe the system that actually exists.
+
+This is not a demand to rewrite every historical decision.
+
+The documentation set must make it possible to determine:
+
+1. what v2 promised;
+2. what was actually implemented;
+3. which later decisions superseded earlier designs;
+4. how the seven required journeys are satisfied;
+5. how the five Epics map to the implemented system;
+6. which original obligations were fulfilled, reinterpreted, or deferred;
+7. what is intentionally outside v2.
+
+Historical decision records should remain historical. They should not be silently rewritten to make the evolution appear cleaner than it was.
+
+A final v2 status/reconciliation document should provide the authoritative crosswalk.
+
+---
+
+# 9. Explicitly Outside the v2 Boundary
+
+The following work is **parked for V3 or later** unless a later explicit amendment to this Completion Contract proves one item indispensable to an existing v2 requirement:
+
+- full Admin UI / catalog CRUD;
+- automated editorial queues;
+- sophisticated organization profiles;
+- cross-role Institution/Party identity;
+- generalized workflow management;
+- database migration;
+- PostgreSQL migration;
+- CI modernization;
+- personalization or recommendation systems;
+- speculative Video modeling;
+- speculative Newsletter modeling.
+
+Likewise, the Contract does not independently require:
+
+- a generalized pipeline/orchestration framework;
+- a Community administration API;
+- a new AI provider;
+- generalized OCR infrastructure;
+- arbitrary new content types;
+- speculative taxonomy expansion.
+
+These capabilities may become valid future projects. Their absence does not make v2 incomplete unless an approved Contract amendment establishes otherwise.
+
+---
+
+# 10. Scope-Control Test for Newly Discovered Work
+
+After this Contract is approved, every newly discovered issue must pass the following test.
+
+### Question 1
+
+Does the work correct a defect that prevents one of J1–J7 from satisfying its acceptance condition?
+
+If yes, it is v2 work.
+
+### Question 2
+
+Is the work the minimum enabling foundation necessary for E1–E5 to support those journeys reliably?
+
+If yes, the narrowly necessary portion is v2 work.
+
+### Question 3
+
+Is the work required to satisfy an explicit Quality Gate or Documentation Reconciliation requirement in this Contract?
+
+If yes, it is v2 work.
+
+### Otherwise
+
+The work is **not part of v2** unless the Completion Contract is explicitly amended.
+
+“Architecturally cleaner,” “useful later,” “already partially built,” “originally envisioned,” and “easy to add while we are here” are not sufficient reasons to expand the release.
+
+---
+
+# 11. v2 Release Declaration
+
+First Step v2 may be declared complete only when:
+
+- J1–J7 are demonstrated end to end;
+- E1–E5 contain no unresolved requirement needed by those journeys;
+- the explicitly carried obligations in Section 5 have received implemented and tested dispositions;
+- the Quality Gates in Section 7 pass;
+- the documentation reconciliation in Section 8 is complete;
+- every known unfinished item has been classified as either completed under this Contract or explicitly outside it;
+- no release-blocking requirement remains dependent on undefined behavior.
+
+At that point, remaining product ideas, architectural opportunities, technical debt, administrative capabilities, and future platform work transfer to the post-v2 backlog rather than keeping v2 permanently open.
+
+**v2 completion means the contracted product is complete. It does not mean First Step is finished evolving.**

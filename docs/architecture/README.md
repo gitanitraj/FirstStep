@@ -11,6 +11,19 @@ design* migrated into v1 incrementally. As of the vertical-slice migration
 now describe the real, current architecture for what's built, and remaining
 TODOs for what isn't yet.
 
+## Tech Stack
+
+| Layer | Technology |
+| --- | --- |
+| Backend | Java 17, Spring Boot 3.5, built with Maven |
+| AI assistant | Spring AI 1.1, backed by a local Ollama model |
+| RSS ingestion | ROME |
+| Data | JSON files under `app/data/` — no database |
+| Frontend | React 18, TypeScript, Vite |
+| Backend tests | JUnit 5 (`spring-boot-starter-test`) |
+| Frontend tests | Vitest, React Testing Library |
+| Deployment | Docker / Docker Compose |
+
 ## Documents
 
 | Doc | Purpose |

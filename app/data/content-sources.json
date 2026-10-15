@@ -73,6 +73,11 @@
       "sector": "community"
     },
     {
+      "id": "westside-grows-together",
+      "name": "West Side Grows Together",
+      "sector": "community"
+    },
+    {
       "id": "first-step",
       "name": "First Step",
       "sector": "first-step",

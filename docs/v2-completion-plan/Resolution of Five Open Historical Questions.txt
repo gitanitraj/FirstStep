@@ -1,0 +1,266 @@
+# Resolution of Five Open Historical Questions
+
+These decisions replace the five remaining **Verify** dispositions in the v2 Reconciliation Matrix.
+
+The governing principle is the Completion Contract:
+
+> After approval, newly discovered work does not automatically enter v2. It must either be necessary to satisfy an existing Completion Contract requirement or require an explicit amendment to the Contract.
+
+Historical architecture establishes intent, but an old class name, package diagram, example, or future capability does not by itself create a present-day release requirement.
+
+---
+
+## 1. Non-Wilmington / Multi-Community Promise
+
+### Historical obligation
+
+The original v2 direction included `Community` as a first-class domain concept and anticipated expansion beyond Wilmington.
+
+The original application architecture explicitly placed `Community` in the shared domain alongside `CivicContent` and `ContentSource`.
+
+### Resolution
+
+**v2 must be multi-community-capable, but v2 does not have to launch a second community.**
+
+The obligation is architectural:
+
+- community remains an explicit content boundary;
+- required domain and query behavior must not depend implicitly on Wilmington;
+- completion work must not introduce new Wilmington-only assumptions;
+- the implementation must retain a credible path for another community to use the same application architecture.
+
+Loading a production-quality second community would test that architecture, but it is not itself necessary to satisfy any of J1–J7.
+
+Likewise, a Community CRUD system, administrative interface, city onboarding workflow, or generalized multi-tenant platform is not required.
+
+### Final disposition
+
+**Satisfied as an architectural foundation, with a release regression check.**
+
+**Second-community content launch: explicitly deferred.**
+
+### Matrix replacement
+
+| Obligation | Final disposition |
+|---|---|
+| Community as a first-class domain concept | **Satisfied** |
+| Avoid Wilmington-only architectural assumptions | **Release verification required** |
+| Ship a second/non-Wilmington community | **Deferred explicitly** |
+| Community administration / onboarding system | **Deferred explicitly** |
+
+This prevents “scale by community” from quietly turning into “build multi-city operations before v2 may close.”
+
+---
+
+## 2. `Citation` Obligation
+
+### Historical obligation
+
+This one is real and explicit.
+
+The original shared-domain architecture names `Citation` as a model concept.
+
+More importantly, the editorial principles state that First Step must:
+
+- attribute information to its source;
+- distinguish facts from AI-generated summaries; and
+- preserve provenance through `ContentSource` and `Citation`.
+
+The information pipeline also identifies citations as part of enrichment.
+
+### Resolution
+
+The **provenance requirement survives; a particular `Citation` class does not.**
+
+The original architectural promise was not fundamentally “there must be a Java class named `Citation`.” It was that information presented by First Step must remain traceable to its source.
+
+For v2, the contract therefore requires enough provenance to support the actual resident and editorial experiences:
+
+**Externally sourced civic information must retain sufficient attribution/source information for First Step to identify where the represented facts came from.**
+
+For First Step editorial content, the existing editorial-review standard must continue to distinguish:
+
+- sourced facts;
+- First Step-generated explanation;
+- unsupported inference;
+- review provenance.
+
+A generalized citation graph, universal Citation entity, citation-management UI, or citation database is unnecessary unless an existing resident/editorial requirement proves it indispensable.
+
+### Final disposition
+
+**Superseded / reinterpreted.**
+
+The semantic requirement is **v2 required and substantially implemented**.
+
+The literal shared-domain `Citation` abstraction is **not independently required**.
+
+### Matrix replacement
+
+| Obligation | Final disposition |
+|---|---|
+| Information remains traceable to its originating source | **V2 required** |
+| Attribution preserved on relevant resident/editorial material | **V2 required** |
+| Literal universal `Citation` model | **Superseded / not independently required** |
+| General citation-management infrastructure | **Deferred** |
+
+The release check therefore asks **“Can this information be traced appropriately?”**, not **“Did we implement the old UML class?”**
+
+---
+
+## 3. Seniors / Derived Discovery
+
+### Historical question
+
+Earlier v2 work explored concepts such as **Seniors** as discovery pathways derived from eligibility information.
+
+The actual catalog later demonstrated that eligibility is richer than several other potential directory facets: structured age constraints exist for part of the resource corpus, while geography and access mode were comparatively flat.
+
+That establishes that age/eligibility metadata can be useful. It does not establish that “Seniors” must become its own v2 product surface.
+
+### Resolution
+
+**Seniors is an example of derived discovery, not a required taxonomy node or independent resident journey.**
+
+The architectural requirement is narrower:
+
+First Step may derive resident-meaningful discovery pathways from trustworthy underlying metadata **without turning every discovery concept into permanent taxonomy**.
+
+That principle is already compatible with the Category → Subcategory model and the controlled-projection rule.
+
+No `/seniors` experience, Seniors category, special Seniors data model, or demographic recommendation system is required for v2.
+
+If an existing contracted resident surface currently depends on a derived eligibility tag, that tag must work correctly. Otherwise the feature is future discovery work.
+
+### Final disposition
+
+**Superseded / illustrative capability.**
+
+No remaining v2 implementation work.
+
+### Matrix replacement
+
+| Obligation | Final disposition |
+|---|---|
+| Support resident-meaningful discovery derived from reliable metadata | **Satisfied as architectural capability/principle** |
+| “Seniors” as a specific v2 destination | **Not required** |
+| Expand demographic/eligibility discovery system | **Deferred** |
+| Add Seniors to core taxonomy | **Rejected unless future product evidence requires it** |
+
+This is important because otherwise a historical example could accidentally become an eighth resident journey.
+
+---
+
+## 4. Performance Budget
+
+### Historical question
+
+The reconciliation work recovered a reference to a performance-budget obligation, but we have not recovered an authoritative original threshold or acceptance criterion from the v2 source documents now available.
+
+The recovered foundational documents define philosophy, architecture, information flow, and editorial principles, but they do not state a measurable performance budget.  
+
+### Resolution
+
+**An unknown historical performance target cannot remain an undefined release blocker.**
+
+v2 still has a quality obligation: the required resident experiences must work at the accepted desktop/mobile targets without material functional or usability failure.
+
+But we should not invent a Lighthouse score, load-time threshold, bundle-size limit, API latency target, or Core Web Vitals threshold and then call it an “original requirement.”
+
+Therefore:
+
+- obvious performance regressions that prevent J1–J7 from functioning remain defects;
+- existing responsive and automated quality gates remain required;
+- no separate numerical performance-budget gate exists in this Contract.
+
+If the actual historical performance specification is later recovered, it becomes **newly discovered historical evidence**. After Contract approval, it does not automatically enlarge v2; it must be tested against the Contract's change-control rule.
+
+### Final disposition
+
+**No independent v2 requirement.**
+
+Resident-functional performance remains covered by the existing Quality Gates.
+
+### Matrix replacement
+
+| Obligation | Final disposition |
+|---|---|
+| Required experiences must remain practically usable | **Covered by Quality Gates** |
+| Specific historical numerical performance budget | **Not established; not a release blocker** |
+| New performance optimization program | **Outside v2 unless required to fix a contracted journey** |
+
+---
+
+## 5. The Recovered Eight-Point Definition of Done
+
+### Historical problem
+
+We have not recovered an authoritative source containing the supposed original eight-point Definition of Done.
+
+The foundational documents that are available do establish real principles and architecture, but they do **not** provide evidence sufficient to treat our reconstructed eight labels as verbatim historical requirements. 
+
+### Resolution
+
+**Do not preserve the reconstructed eight-point list as a parallel Definition of Done.**
+
+That would create exactly the ambiguity the Completion Contract is intended to eliminate: two overlapping definitions of when v2 is finished, one authoritative and one reconstructed from memory.
+
+Instead:
+
+### Historical treatment
+
+The reconciliation record should state:
+
+**“Project history refers to an earlier eight-point Definition of Done, but its authoritative wording was not recovered during v2 reconciliation. Recoverable underlying obligations have been reconciled individually into the Completion Contract.”**
+
+The principles that can actually be substantiated—architecture, provenance, accessibility, resident functionality, multi-community readiness, documentation, and testing—already appear in the Contract independently.
+
+### Release treatment
+
+The **First Step v2 Completion Contract becomes the authoritative Definition of Done for closing v2.**
+
+There is no second checklist sitting behind it.
+
+If the historical eight-point document is discovered after Contract approval, its contents receive the same treatment as any other newly discovered work:
+
+1. if an item is already represented by a Contract requirement, it changes nothing;
+2. if it is necessary to satisfy an existing requirement, the necessary work enters v2;
+3. otherwise it requires an explicit Contract amendment before it can become release-blocking.
+
+### Final disposition
+
+**Historical checklist superseded by the Completion Contract.**
+
+No unresolved release requirement remains merely because its exact wording has not been recovered.
+
+---
+
+# Final Reconciliation
+
+With these decisions, the five ambiguous items close as follows:
+
+| Question | Final status | Remaining v2 work |
+|---|---|---|
+| Non-Wilmington community | **Architecture required; second community deferred** | Audit for Wilmington-only assumptions |
+| Citation | **Provenance required; literal Citation abstraction not required** | Verify traceability on contracted surfaces |
+| Seniors discovery | **Illustrative/derived discovery, not a journey** | None |
+| Performance budget | **No substantiated independent gate** | Prevent performance defects through normal release gates |
+| Eight-point DoD | **Superseded by authoritative Completion Contract** | None beyond requirements already incorporated |
+
+## Consequence for the Completion Contract
+
+There are now **no unresolved historical “Verify” items that should hold the release boundary open**.
+
+Historical reconciliation can still discover evidence, but discovery alone cannot expand v2 after approval.
+
+The remaining work should therefore be derived from the Contract itself—not from another excavation of old aspirations.
+
+The active v2 remainder is:
+
+1. finish the contracted resident journeys;
+2. resolve the explicitly carried catalog/editorial obligations;
+3. pass the quality gates;
+4. finish the documentation crosswalk;
+5. classify every remaining known item as complete or deferred.
+
+Once those conditions are met, First Step v2 closes.
