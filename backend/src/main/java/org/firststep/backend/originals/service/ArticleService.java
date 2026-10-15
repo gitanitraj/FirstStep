@@ -7,6 +7,7 @@ import java.util.Optional;
 import org.firststep.backend.originals.dto.ArticleDetail;
 import org.firststep.backend.originals.model.Article;
 import org.firststep.backend.originals.repository.ArticleRepository;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 /**
@@ -38,14 +39,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArticleService {
 
+    private final EditorialLifecycle lifecycle;
+
     private final ArticleRepository repository;
 
-    public ArticleService(ArticleRepository repository) {
+    public ArticleService(ArticleRepository repository, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.repository = repository;
     }
 
     /**
-     * Articles a public reading surface may serve: <b>approved only</b>, newest
+     * Current article inventory: <b>approved and editorially eligible only</b>, newest
      * first.
      *
      * <p>Every other state — draft, in-review, flagged, and a record with no
@@ -57,6 +61,7 @@ public class ArticleService {
     public List<Article> getPublishable() {
         return repository.findAll().stream()
                 .filter(Article::isPublishable)
+                .filter(lifecycle::isCurrent)
                 .sorted(Comparator.comparing((Article a) -> a.publishDate,
                         Comparator.nullsLast(Comparator.reverseOrder())))
                 .toList();
@@ -65,13 +70,14 @@ public class ArticleService {
     /**
      * One article for a public reading surface, or empty.
      *
-     * <p>Applies the same rule as {@link #getPublishable()} — a direct link to an
+     * <p>Preserves approval and public status for historical reading, even after editorial
+     * expiry has removed the article from current collections. A direct link to an
      * unapproved article's id must not become the way around the boundary. An
      * unapproved article and a nonexistent one are the same answer HERE; telling
      * them apart is the future Admin layer's job, not the public reader's.
      */
     public Optional<Article> getPublishableById(String id) {
-        return repository.findById(id).filter(Article::isPublishable);
+        return repository.findById(id).filter(Article::isPublishable).filter(lifecycle::isPublicStatus);
     }
 
     /**

@@ -1,5 +1,7 @@
 package org.firststep.backend.home.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -98,8 +100,8 @@ class HomeControllerTest {
                 }
             };
 
-            FlyerService flyerService = new FlyerService(flyerRepo, new ContentSourceService("../app/data"));
-            FaqService faqService = new FaqService(faqRepo);
+            FlyerService flyerService = new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed());
+            FaqService faqService = new FaqService(faqRepo, LifecycleFixture.fixed());
 
             TaxonomyService taxonomyService = new TaxonomyService("../app/data");
             PathwayService pathwayService = new PathwayService(taxonomyService, "../app/data");
@@ -116,7 +118,7 @@ class HomeControllerTest {
                 public Optional<Article> findById(String id) {
                     return Optional.empty();
                 }
-            });
+            }, LifecycleFixture.fixed());
             return new HomeService(pathwayService, faqService, legislationService, flyerService, articleService);
         }
 

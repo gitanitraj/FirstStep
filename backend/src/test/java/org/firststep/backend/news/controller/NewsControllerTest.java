@@ -1,5 +1,7 @@
 package org.firststep.backend.news.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.repository.NewsRepository;
 import org.firststep.backend.news.service.NewsService;
@@ -61,7 +63,7 @@ class NewsControllerTest {
 
         @Bean
         NewsService newsService(NewsRepository newsRepository) {
-            return new NewsService(newsRepository);
+            return new NewsService(newsRepository, LifecycleFixture.fixed());
         }
     }
 

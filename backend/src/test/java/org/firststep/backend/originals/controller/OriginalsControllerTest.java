@@ -1,5 +1,7 @@
 package org.firststep.backend.originals.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -93,7 +95,7 @@ class OriginalsControllerTest {
                 public Optional<Article> findById(String id) {
                     return all.stream().filter(a -> a.id.equals(id)).findFirst();
                 }
-            });
+            }, LifecycleFixture.fixed());
         }
     }
 

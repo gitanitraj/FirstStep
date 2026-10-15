@@ -1,5 +1,7 @@
 package org.firststep.backend.expert.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ class FaqServiceTest {
     @BeforeEach
     void setUp() {
         repository = mock(FaqRepository.class);
-        service = new FaqService(repository);
+        service = new FaqService(repository, LifecycleFixture.fixed());
     }
 
     @Test

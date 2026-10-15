@@ -1,5 +1,7 @@
 package org.firststep.backend.expert.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ class ExpertAnswerServiceTest {
     @BeforeEach
     void setUp() {
         repository = mock(ExpertAnswerRepository.class);
-        service = new ExpertAnswerService(repository);
+        service = new ExpertAnswerService(repository, LifecycleFixture.fixed());
     }
 
     @Test

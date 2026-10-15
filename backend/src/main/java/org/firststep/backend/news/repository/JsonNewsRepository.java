@@ -87,8 +87,14 @@ public class JsonNewsRepository implements NewsRepository {
                 : null;
 
         item.publishDate = node.hasNonNull("published") ? node.get("published").asText() : null;
-        item.expirationDate = node.hasNonNull("expires") ? node.get("expires").asText() : null;
-        item.status = node.hasNonNull("active") && !node.get("active").asBoolean() ? "inactive" : "active";
+        if (node.hasNonNull("expires")) {
+            item.expirationDate = node.get("expires").asText();
+        }
+        if (node.hasNonNull("active") && !node.get("active").asBoolean()) {
+            item.status = "inactive";
+        } else if (item.status == null) {
+            item.status = "active";
+        }
 
         item.createdDate = item.publishDate;
         item.updatedDate = item.publishDate;

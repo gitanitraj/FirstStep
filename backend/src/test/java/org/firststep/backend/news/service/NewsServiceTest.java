@@ -1,5 +1,7 @@
 package org.firststep.backend.news.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 
 import org.firststep.backend.news.model.NewsItem;
@@ -19,7 +21,7 @@ class NewsServiceTest {
     @BeforeEach
     void setUp() {
         repository = mock(NewsRepository.class);
-        service = new NewsService(repository);
+        service = new NewsService(repository, LifecycleFixture.fixed());
     }
 
     @Test

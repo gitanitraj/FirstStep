@@ -1,0 +1,11 @@
+Command: bash /workspace/.firststep-tools/im01-mvn test
+Working directory: /workspace/FirstStep/backend
+JDK: Temurin 25+36; Maven: 3.9.9; compile target: Java 17
+
+[ERROR] org.firststep.backend.shared.classification.EditorialStabilityTest.shouldKeepEditorialAndSourceMappedCategoryCountsStable -- Time elapsed: 0.180 s <<< FAILURE!
+[ERROR] org.firststep.backend.shared.classification.EditorialStabilityTest.shouldKeepTheTotalStable -- Time elapsed: 0.053 s <<< FAILURE!
+[ERROR]   EditorialStabilityTest.shouldKeepEditorialAndSourceMappedCategoryCountsStable:90 Editorial Stability Invariant violated. Category counts for editorially classified and source-mapped content changed. If this was an intentional editorial or taxonomy decision, update EXPECTED_COUNTS and record it in references/decisions.md. If not, the classification engine has drifted into content it does not own. ==> expected: <{clothing=15, community-events=54, community-support=61, employment=6, food=12, furniture-household=7, health=33, housing=45, legal=5, utilities=0}> but was: <{clothing=15, community-events=54, community-support=62, employment=6, food=12, furniture-household=7, health=33, housing=45, legal=5, utilities=0}>
+[ERROR]   EditorialStabilityTest.shouldKeepTheTotalStable:102 expected: <238> but was: <239>
+[ERROR] Tests run: 371, Failures: 2, Errors: 0, Skipped: 0
+[INFO] BUILD FAILURE
+[INFO] Finished at: 2026-10-15T22:07:33Z

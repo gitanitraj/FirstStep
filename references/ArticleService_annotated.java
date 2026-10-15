@@ -1,69 +1,13 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — backend/.../originals/service/ArticleService.java
- * Slice K. See references/decisions.md Decision 048.
- * =============================================================================
+/*
+ * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/originals/service/ArticleService.java
  *
- * WHAT IT IS: the publication boundary. The single place that decides whether a
- * First Step Original article may reach a reader.
- *
- * THE BOUNDARY LIVES IN THE QUERY
- * -------------------------------
- * This is the central architectural choice and it has a precedent in this
- * codebase. Community Notices does not ask every consumer to remember that
- * government flyers do not belong there; isInSector filters them out, so the rule
- * cannot be forgotten because there is nothing to remember.
- *
- * Same move here. getPublishable() does not return drafts, so no reading surface
- * CAN serve one — not by oversight, not under deadline, not in a consumer written
- * next year by someone who never read Decision 048.
- *
- * The alternative is a convention: "remember to check the status." Conventions
- * hold until the first busy afternoon. A rule enforced by selection holds
- * because violating it requires writing new code that deliberately goes around
- * this class.
- *
- * TWO METHODS, ONE RULE
- * ---------------------
- * getPublishable()      the list
- * getPublishableById()  a single article
- *
- * The second exists because a boundary with one entrance is not a boundary. A
- * direct link to a draft's id must not become the way around the list filter, so
- * the id lookup applies the same test. To a public reader an unapproved article
- * and a nonexistent one give the same answer; telling them apart is the future
- * Admin layer's job.
- *
- * THE DIRECTION OF THE TEST
- * -------------------------
- * Both delegate to Article.isPublishable(), which asks for a RECORDED DECISION TO
- * RELEASE rather than for a reason to withhold. Fail-closed, not fail-open: a
- * missing review, an unfinished one, an unreadable status and a flagged article
- * all resolve to "not public", which is the right answer to "we do not know
- * whether a human cleared this."
- *
- * WHAT THIS CLASS DELIBERATELY LACKS
- * ----------------------------------
- * No getAwaitingReview(). It would have no caller today. Version 3 owns the
- * administrative layer and is not pulled forward; the seam is the repository's
- * unfiltered findAll(), and a future Admin service reads against that without
- * touching this class. Slice K's obligation was to make that future possible,
- * not to build it.
- *
- * SLICE K ADDITION — getPublishableDetail()
- * -----------------------------------------
- * The public projection lives HERE, beside the publication rule, and that
- * placement is the point. The class that decides WHETHER a reader may see an
- * article also decides WHAT they see. Splitting them would let a future endpoint
- * build its own projection and quietly include a field this one excludes.
- *
- * Note the ordering inside it: getPublishableById() applies the boundary FIRST,
- * so an unapproved article is never even mapped. The DTO's shape is then a
- * second, independent guarantee. Two mechanisms, neither relying on the other.
- *
- * toDetail() is private and static: it needs no state, and keeping it private
- * means there is exactly one way to produce an ArticleDetail.
- * ============================================================================= */
-
+ * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
+ * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
+ * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
+ * classification, Community selection and article approval retain their existing owners.
+ * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
+ * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ */
 package org.firststep.backend.originals.service;
 
 import java.util.Comparator;
@@ -73,6 +17,7 @@ import java.util.Optional;
 import org.firststep.backend.originals.dto.ArticleDetail;
 import org.firststep.backend.originals.model.Article;
 import org.firststep.backend.originals.repository.ArticleRepository;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 /**
@@ -104,14 +49,17 @@ import org.springframework.stereotype.Service;
 @Service
 public class ArticleService {
 
+    private final EditorialLifecycle lifecycle;
+
     private final ArticleRepository repository;
 
-    public ArticleService(ArticleRepository repository) {
+    public ArticleService(ArticleRepository repository, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.repository = repository;
     }
 
     /**
-     * Articles a public reading surface may serve: <b>approved only</b>, newest
+     * Current article inventory: <b>approved and editorially eligible only</b>, newest
      * first.
      *
      * <p>Every other state — draft, in-review, flagged, and a record with no
@@ -123,6 +71,7 @@ public class ArticleService {
     public List<Article> getPublishable() {
         return repository.findAll().stream()
                 .filter(Article::isPublishable)
+                .filter(lifecycle::isCurrent)
                 .sorted(Comparator.comparing((Article a) -> a.publishDate,
                         Comparator.nullsLast(Comparator.reverseOrder())))
                 .toList();
@@ -131,13 +80,14 @@ public class ArticleService {
     /**
      * One article for a public reading surface, or empty.
      *
-     * <p>Applies the same rule as {@link #getPublishable()} — a direct link to an
+     * <p>Preserves approval and public status for historical reading, even after editorial
+     * expiry has removed the article from current collections. A direct link to an
      * unapproved article's id must not become the way around the boundary. An
      * unapproved article and a nonexistent one are the same answer HERE; telling
      * them apart is the future Admin layer's job, not the public reader's.
      */
     public Optional<Article> getPublishableById(String id) {
-        return repository.findById(id).filter(Article::isPublishable);
+        return repository.findById(id).filter(Article::isPublishable).filter(lifecycle::isPublicStatus);
     }
 
     /**

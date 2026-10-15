@@ -1,5 +1,7 @@
 package org.firststep.backend.organization.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -42,7 +44,7 @@ class OrganizationServiceTest {
                 return resources.stream().filter(r -> r.id.equals(id)).findFirst();
             }
         };
-        return new OrganizationService(new ResourceService(repo), new TaxonomyService("../app/data"),
+        return new OrganizationService(new ResourceService(repo, LifecycleFixture.fixed()), new TaxonomyService("../app/data"),
                 registryFor(resources));
     }
 

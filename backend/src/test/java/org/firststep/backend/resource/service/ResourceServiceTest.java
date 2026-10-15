@@ -1,5 +1,7 @@
 package org.firststep.backend.resource.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -21,7 +23,7 @@ class ResourceServiceTest {
     @BeforeEach
     void setUp() {
         repository = mock(ResourceRepository.class);
-        service = new ResourceService(repository);
+        service = new ResourceService(repository, LifecycleFixture.fixed());
     }
 
     @Test

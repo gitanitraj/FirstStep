@@ -75,9 +75,9 @@ class EditorialStabilityTest {
             "legal", 5,
             "community-events", 54,
             "furniture-household", 7,
-            "community-support", 61));
+            "community-support", 62));
 
-    private static final int EXPECTED_TOTAL = 238;
+    private static final int EXPECTED_TOTAL = 239;
 
     private final ObjectMapper mapper = new ObjectMapper();
     private final TaxonomyService taxonomy = new TaxonomyService("../app/data");

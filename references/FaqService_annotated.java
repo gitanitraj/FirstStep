@@ -1,57 +1,42 @@
+/*
+ * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/expert/service/FaqService.java
+ *
+ * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
+ * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
+ * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
+ * classification, Community selection and article approval retain their existing owners.
+ * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
+ * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ */
 package org.firststep.backend.expert.service;
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// FaqService is the FAQ slice's thin service layer between FaqController
-// and FaqRepository — exposes getAll()/getById().
-// =============================================================================
 
 import java.util.List;
 import java.util.Optional;
 
 import org.firststep.backend.expert.model.FAQ;
 import org.firststep.backend.expert.repository.FaqRepository;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 @Service
 public class FaqService {
 
+    private final EditorialLifecycle lifecycle;
+
     private final FaqRepository repository;
 
-    public FaqService(FaqRepository repository) {
+    public FaqService(FaqRepository repository, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.repository = repository;
     }
 
+    /** Current resident inventory; the repository retains expired and withdrawn records. */
     public List<FAQ> getAll() {
-        return repository.findAll();
+        return repository.findAll().stream().filter(lifecycle::isCurrent).toList();
     }
 
+    /** Historical reading preserves the independent public-status restriction. */
     public Optional<FAQ> getById(String id) {
-        return repository.findById(id);
+        return repository.findById(id).filter(lifecycle::isPublicStatus);
     }
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN
-// =============================================================================
-// Direct mirror of FlyerService/ExpertAnswerService — thin delegation, no
-// business logic, no resolution of sourceExpertAnswerId (see
-// FAQ_annotated.java for why that link is deliberately left unresolved in
-// this pass).
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - FaqController calls getAll()/getById(id).
-// - No dependency on ExpertAnswerService — the two slices are independent.
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - Having getById also resolve and embed the linked ExpertAnswer:
-//   rejected as unneeded complexity for a stub pass — a client that wants
-//   the full ExpertAnswer can call /api/expert-answers/{id} itself.
-// =============================================================================

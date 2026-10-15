@@ -1,5 +1,7 @@
 package org.firststep.backend.expert.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +49,7 @@ class ExpertAnswerControllerTest {
 
         @Bean
         ExpertAnswerService expertAnswerService(ExpertAnswerRepository expertAnswerRepository) {
-            return new ExpertAnswerService(expertAnswerRepository);
+            return new ExpertAnswerService(expertAnswerRepository, LifecycleFixture.fixed());
         }
     }
 

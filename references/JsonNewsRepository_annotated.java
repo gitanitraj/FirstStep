@@ -1,13 +1,14 @@
+/*
+ * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/news/repository/JsonNewsRepository.java
+ *
+ * WHAT: Normalize legacy news metadata without overwriting explicit canonical expiry/status.
+ * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
+ * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
+ * classification, Community selection and article approval retain their existing owners.
+ * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
+ * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ */
 package org.firststep.backend.news.repository;
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// JsonNewsRepository is the JSON-file-backed implementation of
-// NewsRepository. It loads app/data/news.json (the "records" wrapper key
-// only — no bare-array/other-wrapper-key support, unlike Resource's loader)
-// at startup and holds the parsed NewsItem list in memory.
-// =============================================================================
 
 import java.nio.file.Path;
 import java.util.Collections;
@@ -16,6 +17,7 @@ import java.util.List;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.event.ApplicationReadyEvent;
 import org.springframework.context.event.EventListener;
@@ -29,9 +31,11 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 public class JsonNewsRepository implements NewsRepository {
 
     private final CivicContentClassifier classifier;
+    private final ContentSourceService contentSources;
 
-    public JsonNewsRepository(CivicContentClassifier classifier) {
+    public JsonNewsRepository(CivicContentClassifier classifier, ContentSourceService contentSources) {
         this.classifier = classifier;
+        this.contentSources = contentSources;
     }
 
     private final ObjectMapper mapper = new ObjectMapper();
@@ -63,10 +67,28 @@ public class JsonNewsRepository implements NewsRepository {
         }
     }
 
+    /**
+     * Normalize stage: map news.json's own key vocabulary onto the CivicContent
+     * contract. The data file keeps its historical names (headline, published,
+     * expires, active, resource_tags); this is where they become the canonical
+     * title / publishDate / expirationDate / status / tags every content type
+     * shares.
+     *
+     * <p>Note what is NOT here any more: category_tags used to be loaded into
+     * {@code item.tags}, which made one field mean "editorial classification"
+     * for news and "descriptive metadata" for everything else. category_tags now
+     * binds straight to {@code categoryTags} via CivicContent's @JsonProperty,
+     * and {@code tags} carries resource_tags — descriptive, as the contract says.
+     */
     private void applyContentSourceAndDefaults(NewsItem item, JsonNode node) {
+        // The record references its producer by ID; the NAME is resolved from
+        // content-sources.json rather than authored here, so "Delaware DHSS" and
+        // "Delaware Health and Social Services" cannot describe two agencies.
+        // `url` stays per-record — it is THIS item's link, not the producer's.
         ContentSource contentSource = new ContentSource();
-        contentSource.name = node.hasNonNull("source_name") ? node.get("source_name").asText() : null;
+        contentSource.id = node.hasNonNull("source_id") ? node.get("source_id").asText() : null;
         contentSource.url = node.hasNonNull("source_url") ? node.get("source_url").asText() : null;
+        contentSources.resolveName(contentSource);
         item.contentSource = contentSource;
 
         item.title = node.hasNonNull("headline") ? node.get("headline").asText() : null;
@@ -75,8 +97,14 @@ public class JsonNewsRepository implements NewsRepository {
                 : null;
 
         item.publishDate = node.hasNonNull("published") ? node.get("published").asText() : null;
-        item.expirationDate = node.hasNonNull("expires") ? node.get("expires").asText() : null;
-        item.status = node.hasNonNull("active") && !node.get("active").asBoolean() ? "inactive" : "active";
+        if (node.hasNonNull("expires")) {
+            item.expirationDate = node.get("expires").asText();
+        }
+        if (node.hasNonNull("active") && !node.get("active").asBoolean()) {
+            item.status = "inactive";
+        } else if (item.status == null) {
+            item.status = "active";
+        }
 
         item.createdDate = item.publishDate;
         item.updatedDate = item.publishDate;
@@ -84,6 +112,10 @@ public class JsonNewsRepository implements NewsRepository {
         if (item.communityId == null) {
             item.communityId = defaultCommunityId;
         }
+
+        // Curated news carries hand-authored category_tags, which are immutable
+        // here. What this CAN fill is the absent subcategory — the per-field rule
+        // in CivicContentClassifier, without which these items stay topic-less.
         classifier.classify(item);
     }
 
@@ -92,164 +124,3 @@ public class JsonNewsRepository implements NewsRepository {
         return Collections.unmodifiableList(staticItems);
     }
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN
-// =============================================================================
-// FIXED IN THIS PASS: v1's NewsService used a hardcoded relative path
-// (Path.of("app", "data", "news.json")) instead of the app.data.dir property
-// ResourceService already used — meaning it only worked when the process's
-// working directory happened to be the repo root (true for `mvn
-// spring-boot:run` locally, false inside the Docker container, whose
-// WORKDIR is /app with data baked at /data via APP_DATA_DIR). This was
-// confirmed empirically: running the real container showed "Failed to load
-// news.json: app/data/news.json (No such file or directory)" in the logs
-// while /api/resources and /api/news/rss both worked fine — see
-// references/decisions.md Decision 007 for the full investigation. The
-// user's report that "the RSS feed doesn't work in Docker" turned out to be
-// this bug (the static /api/news endpoint), not the actual RSS feed, which
-// was working the whole time.
-//
-// The fix: inject the same @Value("${app.data.dir:app/data}") property
-// JsonResourceRepository uses, and build the path from it
-// (Path.of(dataDir, "news.json")) instead of hardcoding "app"/"data".
-// Decision 007 explicitly scoped this fix to "when NewsService's
-// data-loading logic is being touched anyway" (this migration step) rather
-// than as an out-of-band hotfix — deferred to the natural point where this
-// code was already being rewritten, not left for a separate pass.
-//
-// Everything else about the loading mechanism is unchanged: still only
-// supports the {records:[...]} wrapper shape (unlike Resource's loader,
-// which also handles bare arrays / {resources:[...]} / single objects) —
-// that inconsistency between the two loaders' shape-flexibility is
-// pre-existing and NOT fixed here, since it doesn't block anything and
-// wasn't the reported bug.
-//
-// applyContentSourceAndDefaults mirrors JsonResourceRepository's approach:
-// a post-deserialization pass over the raw JsonNode array (index-aligned
-// with the freshly-parsed NewsItem list) to populate contentSource/title/
-// tags/createdDate/updatedDate/communityId from the v1 flat JSON keys
-// Jackson would otherwise silently ignore.
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - Implements NewsRepository; NewsService depends on the interface.
-// - Populates fields defined on the shared CivicContent base class.
-// - Independent of RssFeedService/RssFeedSource — static news and live RSS
-//   news are two separate data paths, both producing NewsItem, served by
-//   two separate endpoints (/api/news vs /api/news/rss).
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - Also adding the external-file/classpath-fallback and multi-shape
-//   parsing ResourceRepository has: rejected — out of scope for fixing the
-//   specific reported bug (the path), and would be an unrequested
-//   behavioral change beyond what Decision 007 committed to.
-// =============================================================================
-
-// =============================================================================
-// SLICE F1 UPDATE (Decision 032) — THIS METHOD IS THE NORMALIZE STAGE
-// =============================================================================
-// applyContentSourceAndDefaults() was always doing pipeline Normalize work
-// (mapping a heterogeneous source file onto the shared knowledge model). Slice
-// F1 made that its explicit job, because the CivicContent contract gave it a
-// canonical target to map ONTO:
-//
-//     news.json key      ->  CivicContent contract field
-//     ---------------        ---------------------------
-//     headline           ->  title
-//     source_name/_url   ->  contentSource
-//     category_tags      ->  categoryTags   (via @JsonProperty, automatic)
-//     resource_tags      ->  tags           (mapped here)
-//     published          ->  publishDate    (mapped here)
-//     expires            ->  expirationDate (mapped here)
-//     active             ->  status         (mapped here)
-//
-// news.json itself is UNCHANGED. Source files keep their own historical
-// vocabulary; translating it is the repository's job. See
-// CivicContent_annotated.java Section 4 for why renaming the data file was
-// rejected.
-//
-// THE LINE THAT CHANGED MEANING — and the bug it was causing:
-//
-//     BEFORE:  item.tags = node.get("category_tags")
-//     AFTER:   item.tags = node.get("resource_tags")
-//
-// The old line loaded EDITORIAL classification into the DESCRIPTIVE field. It
-// is the single line that made `tags` mean "which category is this" for a
-// NewsItem and "what words describe this" for a Resource or Flyer — one field,
-// two meanings, which every downstream consumer then had to disambiguate by
-// checking the type first.
-//
-// It is also why the field is now absent from this method for category_tags:
-// CivicContent declares @JsonProperty("category_tags") on categoryTags, so
-// Jackson binds it with no code at all. The mapping that needed a line of code
-// disappeared once the model named the concept correctly. That is usually the
-// sign a model change was the right one.
-//
-// ON status: mapped from `active` rather than read directly, because the
-// contract asks a lifecycle QUESTION ("when is it relevant?") and the file
-// answers with a boolean. Note the expression treats a MISSING `active` key as
-// "active" — absence of a deactivation flag means the item is live, which is
-// the safer default for civic information (failing closed would silently hide
-// content that no one marked either way).
-//
-// Deliberately NOT derived here: `status` does not consult expirationDate.
-// Computing "expired" at load time would bake the load timestamp into the data
-// and go stale in a long-running process. expirationDate is carried through as
-// a fact; whoever renders decides what to do about it.
-// =============================================================================
-
-// =============================================================================
-// SLICE F2 UPDATE (Decision 033) — CLASSIFICATION AT INGESTION
-// =============================================================================
-// This repository now injects CivicContentClassifier and calls classify() as
-// part of applying defaults. That single line is what "classification happens at
-// ingestion" means concretely — by the time anything leaves this repository it
-// carries canonical categoryTags, so no downstream service has to translate a
-// source vocabulary at request time. CategoryService used to do exactly that for
-// resources; it no longer does.
-//
-// All five Json*Repository classes and RssFeedService call the same method. That
-// was the goal of F2: a shared classification ENGINE, not per-caller fixes.
-//
-// WHAT classify() WILL AND WILL NOT DO HERE — the policy in one line:
-//
-//     It fills editorial fields ONLY when they are absent, per field.
-//
-// So for flyers and curated news, which carry hand-authored category_tags from
-// Decision 032, this is a no-op on the category field and can only ever fill an
-// absent subcategory. For resources it maps the raw source category through the
-// taxonomy's matchCategories (deterministic, tier 1). For expert content, which
-// has never been editorially classified, it is the first time that content
-// reaches the taxonomy at all — with no per-type code written for it.
-//
-// See CivicContentClassifier_annotated.java Section 1 for why the policy lives in
-// the classifier rather than being re-stated at each of these six call sites.
-//
-// TESTING NOTE: the constructor change rippled into every test that builds this
-// repository directly. They use shared/classification/ClassifierFixture.real(),
-// which wires a real classifier to the real app/data/taxonomy.json — a mock
-// would make these tests pass whether or not classification works at all.
-
-// =============================================================================
-// SLICE I — PRODUCER NAME IS RESOLVED HERE (Decision 045)
-// =============================================================================
-// The news record carries `contentSource.id` and NOT the producer's name.
-// This repository calls `contentSources.resolveName(...)` as it loads, which is
-// the Normalize stage — the same place other source vocabulary becomes the
-// CivicContent contract.
-//
-// Doing it at load rather than at each display site means every downstream
-// consumer sees a resolved name without knowing the registry exists. It is also
-// what collapses "Delaware DHSS" and "Delaware Health and Social Services" into
-// one agency.
-//
-// BEST-EFFORT AND NON-BLOCKING: an unresolvable id leaves the name null and logs.
-// The item is still loaded, still classified, still browsable — provenance
-// resolution is a capability, not a validity gate.
-// =============================================================================

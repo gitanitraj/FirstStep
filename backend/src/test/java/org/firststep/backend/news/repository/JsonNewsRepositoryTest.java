@@ -92,4 +92,31 @@ class JsonNewsRepositoryTest {
         assertEquals("de-department-of-education", item.contentSource.id);
         assertNull(item.contentSource.name, "an unknown producer must not be given a guessed name");
     }
+    @Test
+    void shouldPreserveCanonicalEditorialExpiryAndWithdrawnStatus(@TempDir Path tempDir) throws IOException {
+        Files.writeString(tempDir.resolve("news.json"), """
+                {"records":[{"id":"canonical", "headline":"Withdrawn policy", "active":true,
+                  "expirationDate":"2026-11-14", "status":"withdrawn", "published":"2000-01-01"}]}
+                """);
+        JsonNewsRepository repository = repositoryFor(tempDir.toString());
+        repository.init();
+        NewsItem item = repository.findAll().get(0);
+        assertEquals("2026-11-14", item.expirationDate);
+        assertEquals("withdrawn", item.status);
+    }
+
+    @Test
+    void shouldNormalizeLegacyExpiryAndInactiveFlagWithoutInferringFromPublication(@TempDir Path tempDir) throws IOException {
+        Files.writeString(tempDir.resolve("news.json"), """
+                {"records":[
+                  {"id":"legacy", "headline":"Inactive policy", "active":false,
+                   "expires":"2026-06-30", "published":"2000-01-01"},
+                  {"id":"undated", "headline":"No expiry", "published":"2000-01-01"}]}
+                """);
+        JsonNewsRepository repository = repositoryFor(tempDir.toString());
+        repository.init();
+        assertEquals("2026-06-30", repository.findAll().get(0).expirationDate);
+        assertEquals("inactive", repository.findAll().get(0).status);
+        assertNull(repository.findAll().get(1).expirationDate);
+    }
 }

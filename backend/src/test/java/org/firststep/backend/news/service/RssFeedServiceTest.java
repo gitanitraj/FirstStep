@@ -1,5 +1,7 @@
 package org.firststep.backend.news.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -50,7 +52,7 @@ class RssFeedServiceTest {
                                  "feedUrl": "%s" } ] }
                 """.formatted(feedUrl));
         RssFeedService service = new RssFeedService(
-                ClassifierFixture.real(), new ContentSourceService(dir.toString()));
+                ClassifierFixture.real(), new ContentSourceService(dir.toString()), LifecycleFixture.fixed());
         ReflectionTestUtils.setField(service, "defaultCommunityId", "wilmington-de");
         return service;
     }

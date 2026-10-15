@@ -1,5 +1,7 @@
 package org.firststep.backend.expert.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -47,7 +49,7 @@ class FaqControllerTest {
 
         @Bean
         FaqService faqService(FaqRepository faqRepository) {
-            return new FaqService(faqRepository);
+            return new FaqService(faqRepository, LifecycleFixture.fixed());
         }
     }
 

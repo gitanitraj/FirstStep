@@ -10,11 +10,14 @@ import org.firststep.backend.flyer.model.Flyer;
 import org.firststep.backend.flyer.repository.FlyerRepository;
 import org.firststep.backend.shared.model.Sector;
 import org.firststep.backend.shared.service.ContentSourceService;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 import org.springframework.web.util.UriUtils;
 
 @Service
 public class FlyerService {
+
+    private final EditorialLifecycle lifecycle;
 
     // Seasonal flyer images are served as static resources under this path.
     private static final String IMAGE_BASE = "/images/seasonal/";
@@ -22,17 +25,20 @@ public class FlyerService {
     private final FlyerRepository repository;
     private final ContentSourceService contentSources;
 
-    public FlyerService(FlyerRepository repository, ContentSourceService contentSources) {
+    public FlyerService(FlyerRepository repository, ContentSourceService contentSources, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.repository = repository;
         this.contentSources = contentSources;
     }
 
+    /** Current resident inventory; the repository retains expired and withdrawn records. */
     public List<Flyer> getAll() {
-        return repository.findAll();
+        return repository.findAll().stream().filter(lifecycle::isCurrent).toList();
     }
 
+    /** Historical reading preserves the independent public-status restriction. */
     public Optional<Flyer> getById(String id) {
-        return repository.findById(id);
+        return repository.findById(id).filter(lifecycle::isPublicStatus);
     }
 
     /**

@@ -5351,3 +5351,23 @@ with its own design question, and scope creep inside a slice that changed a stri
 **Extracting that shared presentation is deferred as separate work.**
 `CategoryBrowse` and `CategoryUpdates` remain on global classes; the quarantine went
 from 50 selectors to 47 in this slice, so the ratchet held.
+
+## IM-01 execution note — October 15, 2026
+
+Authority: approved IM-01-PC-01–PC-04, retained verbatim in
+`docs/v2-completion-plan/IM-01 Readiness Decisions PC-01 to PC-04 - Approved.md`.
+The intentional FL-008 catalog addition changes only the two protected stored
+classification-count pins: Community Support 61 → 62 and total 238 → 239.
+The original 371-test run reproduced those two failures; the pre-expiry rerun
+passed all 371 after that bounded correction. These totals count category
+placements, including multi-category items, rather than unique JSON records.
+
+IM-01 now calculates editorial lifecycle centrally using an injected Clock,
+Community-zone configuration and a configurable 30-calendar-day approaching
+window. The expiration date is inclusive; expiry starts on the following local
+date. Resident service inventories exclude expired and inactive/withdrawn items
+before existing projection and counting logic, while repositories retain history.
+Article approval remains independent; historical detail links retain publication
+and status guards. Event/session dates do not become editorial expiry (IM-10 owns
+occurrence). See `docs/v2-completion-plan/IM-01 Execution Report.md` for evidence,
+per-surface integration, downstream ownership and limitations.

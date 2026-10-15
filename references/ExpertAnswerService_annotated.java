@@ -1,59 +1,42 @@
+/*
+ * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/expert/service/ExpertAnswerService.java
+ *
+ * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
+ * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
+ * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
+ * classification, Community selection and article approval retain their existing owners.
+ * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
+ * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ */
 package org.firststep.backend.expert.service;
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// ExpertAnswerService is the expert-answer slice's thin service layer
-// between ExpertAnswerController and ExpertAnswerRepository — exposes
-// getAll()/getById().
-// =============================================================================
 
 import java.util.List;
 import java.util.Optional;
 
 import org.firststep.backend.expert.model.ExpertAnswer;
 import org.firststep.backend.expert.repository.ExpertAnswerRepository;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 @Service
 public class ExpertAnswerService {
 
+    private final EditorialLifecycle lifecycle;
+
     private final ExpertAnswerRepository repository;
 
-    public ExpertAnswerService(ExpertAnswerRepository repository) {
+    public ExpertAnswerService(ExpertAnswerRepository repository, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.repository = repository;
     }
 
+    /** Current resident inventory; the repository retains expired and withdrawn records. */
     public List<ExpertAnswer> getAll() {
-        return repository.findAll();
+        return repository.findAll().stream().filter(lifecycle::isCurrent).toList();
     }
 
+    /** Historical reading preserves the independent public-status restriction. */
     public Optional<ExpertAnswer> getById(String id) {
-        return repository.findById(id);
+        return repository.findById(id).filter(lifecycle::isPublicStatus);
     }
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN
-// =============================================================================
-// Direct mirror of FlyerService — thin delegation to the repository, no
-// business logic. No *ServiceLike marker interface implemented — not
-// wired into DecisionAgentService's AI retrieval or SearchService/
-// CategoryService in this pass, per direct instruction (see
-// references/decisions.md Decision 015).
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - ExpertAnswerController calls getAll()/getById(id).
-// - No other class depends on this one yet.
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - Implementing a marker interface now, anticipating future Search/AI
-//   integration: rejected as speculative, same reasoning FlyerService's
-//   annotated reference already documents.
-// =============================================================================

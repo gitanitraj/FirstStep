@@ -1,5 +1,7 @@
 package org.firststep.backend.originals.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -61,7 +63,7 @@ class ArticleServiceTest {
             public Optional<Article> findById(String id) {
                 return all.stream().filter(a -> a.id.equals(id)).findFirst();
             }
-        });
+        }, LifecycleFixture.fixed());
     }
 
     private static List<String> idsFrom(List<Article> articles) {
@@ -158,7 +160,7 @@ class ArticleServiceTest {
         };
 
         assertEquals(3, repository.findAll().size(), "unapproved articles must remain present");
-        assertEquals(List.of("OK"), idsFrom(new ArticleService(repository).getPublishable()));
+        assertEquals(List.of("OK"), idsFrom(new ArticleService(repository, LifecycleFixture.fixed()).getPublishable()));
     }
 
     // ---- provenance: generator is not reviewer -----------------------------

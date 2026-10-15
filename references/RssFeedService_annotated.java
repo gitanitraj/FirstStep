@@ -1,3 +1,13 @@
+/*
+ * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java
+ *
+ * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
+ * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
+ * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
+ * classification, Community selection and article approval retain their existing owners.
+ * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
+ * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ */
 package org.firststep.backend.news.service;
 
 // =============================================================================
@@ -19,11 +29,13 @@ import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.shared.classification.CivicContentClassifier;
 import org.firststep.backend.shared.classification.ClassificationResult;
 import org.firststep.backend.shared.model.ContentSource;
+import org.firststep.backend.shared.service.ContentSourceService;
 import org.firststep.backend.shared.model.ContentType;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
@@ -35,6 +47,8 @@ import java.util.stream.Collectors;
 @Service
 public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 
+    private final EditorialLifecycle lifecycle;
+
     private static final Logger log = LoggerFactory.getLogger(RssFeedService.class);
 
     // Slice F2: this service EXTRACTS content and no longer decides categories.
@@ -42,15 +56,22 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
     // shared/classification, where every source shares one implementation.
     private final CivicContentClassifier classifier;
 
-    public RssFeedService(CivicContentClassifier classifier) {
+    private final ContentSourceService contentSources;
+
+    public RssFeedService(CivicContentClassifier classifier, ContentSourceService contentSources, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.classifier = classifier;
+        this.contentSources = contentSources;
     }
 
-    // WHY: Comma-separated URL list from application.properties so URLs can be
-    // changed or added without recompiling.
-    // Configured as: news.rss.urls=https://legis.delaware.gov/rss/RssFeeds/GovernorSignedLegislation
-    @Value("${news.rss.urls:}")
-    private String rssFeedUrls;
+    // FEEDS COME FROM THE PRODUCER REGISTRY, NOT FROM A URL LIST.
+    //
+    // content-sources.json pairs each feedUrl with the producer id that publishes
+    // it, so a feed cannot be added without declaring who it belongs to, and the
+    // item's provenance is known before the first byte is parsed. The previous
+    // `news.rss.urls` property carried URLs alone, which left identity to be
+    // guessed at parse time from feed.getTitle() — a value the upstream publisher
+    // can change at will. See Decision 045.
 
     @Value("${app.default-community-id:wilmington-de}")
     private String defaultCommunityId;
@@ -94,24 +115,25 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
             initialDelayString = "${news.rss.initial-delay:500}"
     )
     public void fetchFeeds() {
-        if (rssFeedUrls == null || rssFeedUrls.isBlank()) {
-            log.warn("RSS: No feed URLs configured");
+        Map<String, String> feeds = contentSources.feedUrls();
+        if (feeds.isEmpty()) {
+            log.warn("RSS: No feeds declared in content-sources.json");
             return;
         }
 
         List<NewsItem> allBills = new ArrayList<>();
         List<NewsItem> relevant = new ArrayList<>();
 
-        for (String rawUrl : rssFeedUrls.split(",")) {
-            String url = rawUrl.trim();
-            if (url.isEmpty()) continue;
+        for (Map.Entry<String, String> feedEntry : feeds.entrySet()) {
+            String producerId = feedEntry.getKey();
+            String url = feedEntry.getValue();
 
             try {
                 SyndFeed feed = loadFeed(url);
                 if (feed == null) continue;
 
                 for (SyndEntry entry : feed.getEntries()) {
-                    ConvertedEntry converted = convertEntry(feed, entry);
+                    ConvertedEntry converted = convertEntry(producerId, entry);
                     allBills.add(converted.item());
 
                     // THE ADMISSION GATE. Branch on relevant() and never on
@@ -139,16 +161,16 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
         }
     }
 
-    /** Relevance-gated CivicContent. Discovery only. */
+    /** Relevance-gated, currently eligible CivicContent. The retained cache is unfiltered. */
     @Override
     public List<NewsItem> getRssItems() {
-        return rssItems;
+        return rssItems.stream().filter(lifecycle::isCurrent).toList();
     }
 
-    /** Every signed bill, ungated. Legislation presentation only. */
+    /** Every currently eligible signed bill, without relevance gating. No publication-age expiry. */
     @Override
     public List<NewsItem> getSignedBills() {
-        return signedBills;
+        return signedBills.stream().filter(lifecycle::isCurrent).toList();
     }
 
     // ------------------------------------------------------------
@@ -189,7 +211,7 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
     //    this clause (converted to Sentence Case) replaces both the bill-number
     //    headline and the generic why-it-matters text, giving users a readable,
     //    specific description of the law.
-    private ConvertedEntry convertEntry(SyndFeed feed, SyndEntry entry) {
+    private ConvertedEntry convertEntry(String producerId, SyndEntry entry) {
         NewsItem item = new NewsItem();
 
         item.id        = "rss-" + UUID.randomUUID();
@@ -197,9 +219,13 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
         item.summary   = extractSummary(entry);
         item.body      = item.summary;
 
+        // Identity is CONFIGURATION, stamped from the registry entry this feed
+        // came from. feed.getTitle() is never used as provenance — an upstream
+        // publisher renaming their feed must not silently re-attribute content.
         ContentSource contentSource = new ContentSource();
-        contentSource.name = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
+        contentSource.id   = producerId;
         contentSource.url  = entry.getLink();
+        contentSources.resolveName(contentSource);
         item.contentSource = contentSource;
 
         item.communityId = defaultCommunityId;
@@ -515,299 +541,3 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
                 .trim();
     }
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN (fallback-title addition)
-// =============================================================================
-// Added in response to real user feedback on the deployed "Delaware's Newest
-// Laws" feature: some titles were showing the bare bill number (e.g. "HB 14",
-// "SB 45") because their descriptions never contain "RELATING TO" — that
-// phrasing is specific to Acts that amend a Title of the Delaware Code.
-// Resolutions and several Act types (appropriations, bond/capital
-// improvements, one-off naming bills) use different formal structures
-// entirely. Investigated by pulling real live-feed data (19 items were
-// showing the generic fallback) and confirming every single one contained a
-// "This Bill/Act/Resolution/Joint Resolution …" self-description — see
-// references/decisions.md for the full investigation and the exact rules
-// confirmed with the user.
-//
-// The two branches (bill/act vs. resolution) are NOT symmetric on purpose:
-// the bill/act sentence is already normal-cased English lifted verbatim
-// (case-preserved), while the resolution branch extracts and title-cases the
-// ALL-CAPS formal title that precedes the "This Resolution" sentence — because
-// that's what the two source shapes actually look like in the raw feed data,
-// confirmed against real examples, not assumed.
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES (fallback-title addition)
-// =============================================================================
-// - Called from convertEntry only when extractRelatingTo returns null — the
-//   two extraction strategies are mutually exclusive per item, never both.
-// - Shares toTitleCase with extractRelatingTo (including the Delaware
-//   capitalization safety net) for the resolution branch only — the bill/act
-//   branch deliberately does NOT call toTitleCase, since that text is already
-//   correctly cased and running it through would incorrectly capitalize
-//   ordinary sentence words.
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED (fallback-title addition)
-// =============================================================================
-// - Keying the Resolution-vs-Bill branch off the bill NUMBER prefix (SJR/HJR
-//   vs SB/HB) instead of the matched "This X" phrase: rejected for detecting
-//   WHICH branch to use (the phrase itself is a more direct, robust signal —
-//   confirmed it correctly handles an irregular bill number like "SS 1 for SB
-//   119", which doesn't fit any clean prefix pattern but does contain "This
-//   Act"). The bill number IS still used, but only for the narrower job of
-//   choosing "Senate" vs "House" wording in the Resolution branch's prefix,
-//   per the user's explicit instruction.
-// - Leaving the "Purpose" AI-synopsis idea (reviewing a bill's full text and
-//   summarizing it once an AI provider exists) unbuilt: confirmed with the
-//   user as an intentional future item, not scaffolded here — no AI provider
-//   is configured yet (see ai/service/SpringAiAssistant.java), and building
-//   UI/data plumbing for it now would be speculative.
-// - Using "everything before the matched This-phrase" as the formal title,
-//   with no period check: this was the FIRST implementation, and it shipped
-//   a real bug — confirmed against live feed data (not a hypothetical): some
-//   resolutions have narrative background between the heading and their
-//   self-description, and some mention "This Joint Resolution" a second time
-//   later in the text, so the naive version matched the wrong occurrence and
-//   swept multiple sentences into the title. Fixed by taking whichever
-//   terminator (period or phrase start) comes first — see decisions.md
-//   Decision 010 for the two real examples that exposed this.
-// =============================================================================
-
-// =============================================================================
-// SLICE F1 UPDATE (Decision 032) — LAW CONTENT TYPE, AND AN ADMISSION
-// =============================================================================
-// WHAT CHANGED HERE
-// -----------------------------------------------------------------------------
-//   item.published      -> item.publishDate       (contract field name)
-//   item.active = true  -> item.status = "active" (contract lifecycle field)
-//   item.contentType = ContentType.LAW            (NEW)
-//   item.tags         = cls.categoryTags          -> item.categoryTags
-//   item.resourceTags = cls.resourceTags          -> item.tags
-//
-// The last two are the important pair. classifyLegislation() has always
-// produced BOTH an editorial classification and a set of descriptive keywords —
-// it just had nowhere correct to put them. categoryTags went into the shared
-// `tags` field (the descriptive one) and the descriptive keywords went into a
-// NewsItem-only `resourceTags` field. The contract gave each one its right home
-// and the two assignments simply swapped.
-//
-// contentType = LAW is what lets signed legislation classify into the ordinary
-// taxonomy (a housing bill is Housing content, on the Housing page) while still
-// rendering with its own treatment. There is no "Legislation" category and
-// there should not be one — see ContentType_annotated.java Section 1.
-//
-// WHAT IS STILL WRONG HERE (deliberately, until Slice F2)
-// -----------------------------------------------------------------------------
-// classifyLegislation() is doing EDITORIAL work inside a fetching service, and
-// it emits a vocabulary that is not the taxonomy's:
-//
-//     emits                canonical taxonomy says
-//     -----                -----------------------
-//     Housing/Food/         (same — these are fine)
-//     Employment/Utilities/
-//     Legal
-//     Healthcare            Health
-//     Disability            (no such category — nearest is legal ▸ Disability Advocacy)
-//     Benefits              (no such category — nearest is community-support ▸
-//                            Financial Assistance)
-//     Delaware Legislation  (not a category at all — it is a CONTENT TYPE,
-//                            which is now what ContentType.LAW expresses)
-//
-// and four canonical categories (clothing, community-events,
-// furniture-household, community-support) have no keywords at all, so RSS can
-// never reach them.
-//
-// Decision 031 papered over the first row by adding "Healthcare" as an alias in
-// the taxonomy. Slice F1 REMOVED that alias, on the principle that drift is
-// normalized at the source rather than absorbed downstream. That leaves a known
-// gap: as of F1, an RSS item tagged "Healthcare" matches no category.
-//
-// WHY THAT GAP IS SAFE TO CARRY: CategoryService reads newsService.getAll(),
-// which is CURATED news only. RSS items reach UpdatesService alone. So no
-// category page is affected — the drifted values are visible in /api/updates'
-// categoryTags and nowhere else, exactly as they were before.
-//
-// THE OTHER KNOWN DEFECT — greedy substring matching:
-//
-//     if (text.contains(kw))     // raw substring, no word boundary
-//
-// "aid" matches *said* and *paid*; "care" matches *careful*; "farm" matches any
-// *farmer*. This is why Decision 031 observed a wetlands bill coming back tagged
-// ["Housing", "Food", "Utilities", "Benefits", "Legal"]. A word-boundary regex
-// is the fix.
-//
-// ALL OF THE ABOVE IS SLICE F2's JOB, in shared/classification/:
-//
-//     RSS -> [extract] -> RssFeedService
-//                            |
-//                      CivicContentClassifier
-//                       /              \
-//              CategoryClassifier   TagClassifier
-//                            |
-//                   canonical taxonomy values
-//                            |
-//                     CategoryService
-//
-// After F2, RssFeedService EXTRACTS content and does not decide categories. The
-// keyword tables, the boundary matching and the canonical mapping all move into
-// the classifier, where every source (RSS, resources' raw directory categories,
-// future feeds) shares one implementation. That is the architectural principle
-// this slice is building toward:
-//
-//     Every CivicContent source classifies content using the SAME canonical
-//     taxonomy.
-// =============================================================================
-
-// =============================================================================
-// SLICE F2 UPDATE (Decision 033) — THIS SERVICE NO LONGER CLASSIFIES
-// =============================================================================
-// DELETED from this file: TAG_KEYWORDS (8 keyword arrays), TAG_WHY, the private
-// Classification class, and classifyLegislation(). Roughly 90 lines. What
-// replaced them at the call site is one line:
-//
-//     classifier.classify(item);
-//
-// The F1 annotation below predicted this and named the reason: "classifyLegislation()
-// is doing EDITORIAL work inside a fetching service". A service whose job is
-// network I/O and XML parsing had become the only place in the system that knew
-// what a category was — and it knew a DIFFERENT set of categories from the
-// taxonomy everything else used.
-//
-// Three defects went with it, all previously documented as known-and-deferred:
-//
-//   VOCABULARY DRIFT.  It emitted Healthcare / Disability / Benefits /
-//   "Delaware Legislation" — none canonical. Decision 031 had papered over the
-//   first by adding a "Healthcare" alias to the taxonomy; F1 removed the alias;
-//   F2 removed the cause. Verified live: no drifted value appears in /api/updates
-//   or /api/news/rss any more.
-//
-//   SUBSTRING MATCHING.  text.contains("aid") matched "said"/"paid". See
-//   Tokenizer_annotated.java Section 1. Live max categories on one bill went from
-//   5+ to 4, and that one bill (Office of Inspector General) plausibly does touch
-//   four.
-//
-//   FOUR UNREACHABLE CATEGORIES.  clothing, community-events,
-//   furniture-household and community-support had no keywords at all, so RSS
-//   could never classify into them. They have vocabulary now — Community Support
-//   picks up 44 live bills, Community Events 2.
-//
-// WHAT DELIBERATELY STAYED — and why it is not an inconsistency:
-//
-// WHY_BY_CATEGORY is law-specific EDITORIAL COPY ("This new law may affect your
-// rights as a renter…"). It is not taxonomy vocabulary: it is a sentence about
-// what a NEW LAW in that category means for a resident, which would make no
-// sense on a Resource or a Flyer. Moving it into taxonomy.json alongside the
-// shared vocabulary would put news-domain copy into the domain model. It was
-// re-keyed from the old lowercase bucket names onto canonical category LABELS,
-// and gained entries for the four categories that previously had none.
-//
-// THE FALLBACK CHANGED MEANING. "Delaware Legislation" is gone as a category
-// tag. It described a content TYPE, not a subject — and ContentType.LAW (added
-// in F1) expresses that properly. So an unclassifiable bill now carries EMPTY
-// categoryTags and contentType LAW, which is the honest statement "this is a
-// law, and we could not say what it is about". It keeps the generic
-// why-it-matters sentence.
-//
-// That honesty has a visible cost worth recording: of 428 live bills, 253 are
-// unclassified. Many genuinely are not civic-assistance content (pet stores,
-// animal cruelty, the state flag). Some are misses — a bill titled "Relating to
-// the Court of Chancery" scores 1 on "court", below MIN_SCORE, and is declined.
-// The alternative is lowering the threshold, which is precisely how the
-// five-category wetlands bill happened. Declining is the deliberate trade; the
-// startup summary exists so the vocabulary can be improved with evidence.
-//
-// ORDERING NOTE: classify() is called BEFORE the "RELATING TO" title rewrite, so
-// the classifier sees the raw bill text rather than the tidied clause. The raw
-// description carries more signal.
-
-// =============================================================================
-// SLICE F2.1 UPDATE (Decision 034) — TWO FEEDS, TWO QUESTIONS
-// =============================================================================
-// This service now implements TWO interfaces and maintains TWO lists:
-//
-//   RssFeedSource.getRssItems()             relevance-gated  -> DISCOVERY
-//   SignedLegislationSource.getSignedBills() ungated         -> PRESENTATION
-//
-// WHY THE SPLIT WAS NECESSARY, not merely tidy. Before it, one accessor served
-// both. Adding a relevance gate would therefore have emptied the "New Delaware
-// Laws" rotator of every bill the classifier could not categorize — roughly half
-// of them — turning a factual legislative feed into an editorial selection
-// without anyone deciding to. A discovery decision would have silently broken a
-// presentation feature.
-//
-// The two answer genuinely different questions:
-//
-//   "What civic content did we admit?"     Categories, updates, search, AI.
-//                                          Must exclude pet-store legislation.
-//   "What has the Governor signed?"        The rotator. Must NOT exclude it —
-//                                          the section is about legislation, not
-//                                          about curated help.
-//
-// This keeps editorial taxonomy, source adaptation and legislation presentation
-// as three independent concerns; none can change another by accident.
-//
-// THE GATE ITSELF is one line in fetchFeeds():
-//
-//     if (converted.classification().relevant()) { relevant.add(...); }
-//
-// Branching on relevant() and never on categoryTags — the engine owns the
-// admission decision so it cannot drift across ingestion points.
-//
-// WHY ConvertedEntry EXISTS. convertEntry() must return both the item and the
-// verdict, because classification has to happen exactly once: calling classify()
-// again in fetchFeeds would double-count the startup summary that the keyword
-// vocabulary is tuned from. A private two-field record is the honest way to
-// return two things.
-//
-// WHY THE KEEP-LAST-GOOD GUARD KEYS ON allBills. A fetch that returns only
-// irrelevant bills is a SUCCESSFUL fetch that admitted nothing — keying the
-// guard on the relevant list would treat it as a network failure and preserve
-// stale data indefinitely.
-//
-// TEST NOTE worth reading before editing RssFeedServiceTest: most fixtures there
-// (money transmission, appropriations, resolutions, the state flag) are bills a
-// resident has no use for, and they are CORRECTLY absent from getRssItems().
-// Those tests exercise title extraction — a presentation concern — and read
-// getSignedBills(). Only the two classification tests read the gated feed. That
-// the two lists differ is the point.
-//
-// LIVE: 175 of 428 bills admitted; the rotator still shows 7, including "Pet
-// Stores and Animal Welfare".
-
-// =============================================================================
-// SLICE I — FEEDS COME FROM THE PRODUCER REGISTRY (Decision 045)
-// =============================================================================
-// BEFORE: `news.rss.urls` in application.properties held URLs alone, and each
-// item's provenance was guessed at parse time:
-//
-//     contentSource.name = feed.getTitle() != null ? feed.getTitle() : "RSS Feed";
-//
-// That makes identity a RUNTIME value an upstream publisher can change. If
-// Delaware renamed its feed, every bill would silently re-attribute.
-//
-// AFTER: content-sources.json pairs each feedUrl with the producer id that
-// publishes it, and fetchFeeds() iterates contentSources.feedUrls():
-//
-//     contentSource.id = producerId;      // stamped by construction
-//     contentSources.resolveName(...);    // name from the registry
-//
-// A feed CANNOT be added without declaring who publishes it, and provenance is
-// known before the first byte is parsed. feed.getTitle() may still be logged; it
-// can no longer reach contentSource.id.
-//
-// `news.rss.urls` was retired — a DEPLOYMENT-VISIBLE change. The refresh schedule
-// stayed in properties, because that is deployment tuning rather than editorial
-// data.
-//
-// TEST IMPACT WORTH KEEPING: RssFeedServiceTest no longer injects a URL by
-// reflection. It writes a temp registry declaring one producer with a feedUrl —
-// so the test must declare a producer to have a feed at all, which is the point.
-// The last-good-result test now CORRUPTS THE FEED FILE in place rather than
-// re-pointing a private field, which is the real failure mode: the Delaware feed
-// has served malformed XML three times during development (tech-debt 5).
-// =============================================================================

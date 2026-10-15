@@ -1,5 +1,7 @@
 package org.firststep.backend.flyer.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -24,7 +26,7 @@ class FlyerServiceTest {
     @BeforeEach
     void setUp() {
         repository = mock(FlyerRepository.class);
-        service = new FlyerService(repository, new ContentSourceService("../app/data"));
+        service = new FlyerService(repository, new ContentSourceService("../app/data"), LifecycleFixture.fixed());
     }
 
     @Test

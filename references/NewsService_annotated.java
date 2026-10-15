@@ -1,66 +1,43 @@
+/*
+ * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/news/service/NewsService.java
+ *
+ * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
+ * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
+ * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
+ * classification, Community selection and article approval retain their existing owners.
+ * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
+ * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ */
 package org.firststep.backend.news.service;
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// NewsService is the news slice's thin service layer between NewsController
-// and NewsRepository — exposes getAll(), and implements
-// DecisionAgentService.NewsServiceLike so the AI slice can fetch news
-// without depending on this concrete class.
-// =============================================================================
 
 import java.util.List;
 
 import org.firststep.backend.ai.service.DecisionAgentService;
 import org.firststep.backend.news.model.NewsItem;
 import org.firststep.backend.news.repository.NewsRepository;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 @Service
 public class NewsService implements DecisionAgentService.NewsServiceLike {
 
+    private final EditorialLifecycle lifecycle;
+
     private final NewsRepository repository;
 
-    public NewsService(NewsRepository repository) {
+    public NewsService(NewsRepository repository, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.repository = repository;
     }
 
     @Override
+    /** Current resident inventory; the repository retains expired and withdrawn records. */
     public List<NewsItem> getAllNews() {
         return getAll();
     }
 
     public List<NewsItem> getAll() {
-        return repository.findAll();
+        return repository.findAll().stream().filter(lifecycle::isCurrent).toList();
     }
 
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN
-// =============================================================================
-// Same pattern as ResourceService: v1 did its own JSON loading directly;
-// this version delegates entirely to NewsRepository (constructor-injected).
-// Still implements DecisionAgentService.NewsServiceLike, the same
-// pre-existing ai-slice-owned coupling direction discussed in
-// ResourceService_annotated.java — carried over unchanged, not restructured
-// in this pass.
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - NewsController calls getAll() for the static /api/news endpoint.
-// - RssFeedService/RssFeedSource are a SEPARATE path for /api/news/rss —
-//   NewsService has no relationship to them; NewsController depends on both
-//   independently.
-// - DecisionAgentService calls getAllNews() through the NewsServiceLike
-//   interface.
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - None beyond what's covered in ResourceService_annotated.java — this
-//   class mirrors that one's shape and reasoning exactly.
-// =============================================================================

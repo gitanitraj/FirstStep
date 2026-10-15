@@ -1,5 +1,7 @@
 package org.firststep.backend.notices.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -69,7 +71,7 @@ class CommunityNoticesControllerTest {
                     return Optional.of(f).filter(x -> x.id.equals(id));
                 }
             };
-            return new CommunityNoticesService(new FlyerService(flyerRepo, new ContentSourceService("../app/data")), new NewsService(List::of),
+            return new CommunityNoticesService(new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed()), new NewsService(List::of, LifecycleFixture.fixed()),
                     new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
         }
     }

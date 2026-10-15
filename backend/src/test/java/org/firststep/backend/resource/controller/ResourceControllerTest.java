@@ -1,5 +1,7 @@
 package org.firststep.backend.resource.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -46,7 +48,7 @@ class ResourceControllerTest {
 
         @Bean
         ResourceService resourceService(ResourceRepository resourceRepository) {
-            return new ResourceService(resourceRepository);
+            return new ResourceService(resourceRepository, LifecycleFixture.fixed());
         }
     }
 

@@ -1,5 +1,7 @@
 package org.firststep.backend.flyer.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -49,7 +51,7 @@ class FlyerControllerTest {
 
         @Bean
         FlyerService flyerService(FlyerRepository flyerRepository) {
-            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"));
+            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"), LifecycleFixture.fixed());
         }
     }
 

@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.scheduling.annotation.Scheduled;
+import org.firststep.backend.shared.lifecycle.EditorialLifecycle;
 import org.springframework.stereotype.Service;
 
 import java.net.URL;
@@ -36,6 +37,8 @@ import java.util.stream.Collectors;
 @Service
 public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 
+    private final EditorialLifecycle lifecycle;
+
     private static final Logger log = LoggerFactory.getLogger(RssFeedService.class);
 
     // Slice F2: this service EXTRACTS content and no longer decides categories.
@@ -45,7 +48,8 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 
     private final ContentSourceService contentSources;
 
-    public RssFeedService(CivicContentClassifier classifier, ContentSourceService contentSources) {
+    public RssFeedService(CivicContentClassifier classifier, ContentSourceService contentSources, EditorialLifecycle lifecycle) {
+        this.lifecycle = lifecycle;
         this.classifier = classifier;
         this.contentSources = contentSources;
     }
@@ -147,16 +151,16 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
         }
     }
 
-    /** Relevance-gated CivicContent. Discovery only. */
+    /** Relevance-gated, currently eligible CivicContent. The retained cache is unfiltered. */
     @Override
     public List<NewsItem> getRssItems() {
-        return rssItems;
+        return rssItems.stream().filter(lifecycle::isCurrent).toList();
     }
 
-    /** Every signed bill, ungated. Legislation presentation only. */
+    /** Every currently eligible signed bill, without relevance gating. No publication-age expiry. */
     @Override
     public List<NewsItem> getSignedBills() {
-        return signedBills;
+        return signedBills.stream().filter(lifecycle::isCurrent).toList();
     }
 
     // ------------------------------------------------------------

@@ -1,0 +1,15 @@
+ Test Files  19 passed (19)
+      Tests  126 passed (126)
+   Duration  11.44s (transform 1.12s, setup 1.72s, collect 4.04s, tests 7.41s, environment 12.31s, prepare 2.31s)
+Post-implementation type check: npx tsc --noEmit — exit 0
+Frontend build: npm run build — exit 0
+Backend packaging: Maven -DskipTests package — exit 0 (separate 417-test run passed; packaging did not rerun tests)
+im01-final-validate_content_sources.log: exit 0
+im01-final-validate_homepage.log: exit 0
+im01-final-validate_navigation.log: exit 0
+im01-final-validate_news.log: exit 0
+im01-final-validate_organizations.log: exit 0
+im01-final-validate_schema.log: exit 0
+git diff --check: exit 0
+Catalog/frontend/dependency/lockfile diffs: empty
+Touched Java annotated mirror verification: 37 passed

@@ -1,5 +1,7 @@
 package org.firststep.backend.category.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -114,17 +116,17 @@ class CategoryControllerTest {
 
         @Bean
         ResourceService resourceService(ResourceRepository resourceRepository) {
-            return new ResourceService(resourceRepository);
+            return new ResourceService(resourceRepository, LifecycleFixture.fixed());
         }
 
         @Bean
         NewsService newsService(NewsRepository newsRepository) {
-            return new NewsService(newsRepository);
+            return new NewsService(newsRepository, LifecycleFixture.fixed());
         }
 
         @Bean
         FlyerService flyerService(FlyerRepository flyerRepository) {
-            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"));
+            return new FlyerService(flyerRepository, new ContentSourceService("../app/data"), LifecycleFixture.fixed());
         }
 
         @Bean

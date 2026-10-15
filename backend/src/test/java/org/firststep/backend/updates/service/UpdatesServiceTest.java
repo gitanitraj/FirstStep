@@ -1,5 +1,7 @@
 package org.firststep.backend.updates.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -71,7 +73,7 @@ class UpdatesServiceTest {
 
     private static UpdatesService service(List<NewsItem> curated, List<NewsItem> rss, List<Flyer> flyers,
             List<ExpertAnswer> experts, List<FAQ> faqs) {
-        NewsService newsService = new NewsService(() -> curated);
+        NewsService newsService = new NewsService(() -> curated, LifecycleFixture.fixed());
         RssFeedSource rssSource = () -> rss;
         FlyerRepository flyerRepo = new FlyerRepository() {
             @Override
@@ -108,8 +110,8 @@ class UpdatesServiceTest {
         };
         // The real taxonomy: category scoping IS the taxonomy's matchCategoryTags
         // rule, so a fixture would prove only that the filter loop runs.
-        return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo, new ContentSourceService("../app/data")),
-                new ExpertAnswerService(expertRepo), new FaqService(faqRepo),
+        return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed()),
+                new ExpertAnswerService(expertRepo, LifecycleFixture.fixed()), new FaqService(faqRepo, LifecycleFixture.fixed()),
                 new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
     }
 

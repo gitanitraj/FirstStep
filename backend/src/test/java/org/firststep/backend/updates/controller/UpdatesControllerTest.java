@@ -1,5 +1,7 @@
 package org.firststep.backend.updates.controller;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -51,7 +53,7 @@ class UpdatesControllerTest {
             cs.url = "https://example.gov/N1";
             n.contentSource = cs;
 
-            NewsService newsService = new NewsService(() -> List.of(n));
+            NewsService newsService = new NewsService(() -> List.of(n), LifecycleFixture.fixed());
             RssFeedSource rssSource = List::of;
             FlyerRepository flyerRepo = new FlyerRepository() {
                 @Override
@@ -64,7 +66,7 @@ class UpdatesControllerTest {
                     return Optional.empty();
                 }
             };
-            return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo, new ContentSourceService("../app/data")),
+            return new UpdatesService(newsService, rssSource, new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed()),
                     mock(ExpertAnswerService.class), mock(FaqService.class),
                     new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
         }

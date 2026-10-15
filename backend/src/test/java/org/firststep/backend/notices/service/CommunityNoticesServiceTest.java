@@ -1,5 +1,7 @@
 package org.firststep.backend.notices.service;
 
+import org.firststep.backend.shared.lifecycle.LifecycleFixture;
+
 import java.util.List;
 import java.util.Optional;
 
@@ -78,8 +80,8 @@ class CommunityNoticesServiceTest {
             }
         };
         return new CommunityNoticesService(
-                new FlyerService(flyerRepo, new ContentSourceService("../app/data")),
-                new NewsService(() -> news),
+                new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed()),
+                new NewsService(() -> news, LifecycleFixture.fixed()),
                 new TaxonomyService("../app/data"),
                 new ContentSourceService("../app/data"));
     }
