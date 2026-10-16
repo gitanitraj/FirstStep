@@ -1,0 +1,9 @@
+Command: bash /workspace/.firststep-tools/im01-mvn -Dtest=EditorialExpiryDiagnosticsTest,EditorialExpiryReportCommandTest test
+Maven working directory: /workspace/FirstStep/backend
+Temurin 25+36; Maven 3.9.9; Java 17 compile target
+
+[INFO] Tests run: 19, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.985 s -- in org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest
+[INFO] Tests run: 6, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.641 s -- in org.firststep.maintenance.EditorialExpiryReportCommandTest
+[INFO] Tests run: 25, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Finished at: 2026-10-15T22:51:23Z

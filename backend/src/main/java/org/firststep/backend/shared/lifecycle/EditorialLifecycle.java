@@ -4,6 +4,8 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Map;
+import java.util.OptionalLong;
+import java.time.temporal.ChronoUnit;
 
 import org.firststep.backend.shared.model.CivicContent;
 import org.springframework.stereotype.Service;
@@ -43,13 +45,26 @@ public class EditorialLifecycle {
         }
         // Local calendar arithmetic, rather than 30 * 24 hours, preserves DST boundaries.
         LocalDate expiry = LocalDate.parse(item.expirationDate);
-        ZoneId zone = item.communityId == null ? defaultZone
-                : communityZones.getOrDefault(item.communityId, defaultZone);
-        LocalDate today = LocalDate.now(clock.withZone(zone));
+        LocalDate today = todayFor(item.communityId);
         State state = today.isAfter(expiry) ? State.EXPIRED
                 : !today.isBefore(expiry.minusDays(approachingDays)) ? State.APPROACHING_EXPIRY
                 : State.ACTIVE;
         return new Assessment(state, state != State.EXPIRED, state != State.ACTIVE);
+    }
+
+    /** Signed Community-calendar distance: zero on the inclusive expiry date; negative after it. */
+    public OptionalLong daysUntilExpiry(CivicContent item) {
+        if (item.expirationDate == null || item.expirationDate.isBlank()) {
+            return OptionalLong.empty();
+        }
+        return OptionalLong.of(ChronoUnit.DAYS.between(todayFor(item.communityId),
+                LocalDate.parse(item.expirationDate)));
+    }
+
+    private LocalDate todayFor(String communityId) {
+        ZoneId zone = communityId == null ? defaultZone
+                : communityZones.getOrDefault(communityId, defaultZone);
+        return LocalDate.now(clock.withZone(zone));
     }
 
     /** Status is independent of editorial date state, including for historical links. */

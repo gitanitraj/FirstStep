@@ -1,12 +1,12 @@
 /*
- * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/shared/lifecycle/EditorialLifecycle.java
- *
- * WHAT: Shared configurable, Clock-driven editorial expiry.
- * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
- * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
- * classification, Community selection and article approval retain their existing owners.
- * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
- * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ * IM-02 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/shared/lifecycle/EditorialLifecycle.java
+ * WHAT: Read-only internal diagnostic/report integration; no persisted lifecycle state.
+ * WHY: stewardship must inspect retained records without changing resident eligibility.
+ * INTERACTION: diagnostics reuse IM-01 assessment and its Community calendar; status and
+ * Article approval remain separate. The CLI is outside resident component scanning.
+ * ALTERNATIVES: a second expiry algorithm, filtered resident inputs, live feed fetching,
+ * or an Admin dashboard would violate this package's narrow contract.
+ * See docs/v2-completion-plan/IM-02 Execution Report.md and the individual method comments.
  */
 package org.firststep.backend.shared.lifecycle;
 
@@ -14,6 +14,8 @@ import java.time.Clock;
 import java.time.LocalDate;
 import java.time.ZoneId;
 import java.util.Map;
+import java.util.OptionalLong;
+import java.time.temporal.ChronoUnit;
 
 import org.firststep.backend.shared.model.CivicContent;
 import org.springframework.stereotype.Service;
@@ -53,13 +55,26 @@ public class EditorialLifecycle {
         }
         // Local calendar arithmetic, rather than 30 * 24 hours, preserves DST boundaries.
         LocalDate expiry = LocalDate.parse(item.expirationDate);
-        ZoneId zone = item.communityId == null ? defaultZone
-                : communityZones.getOrDefault(item.communityId, defaultZone);
-        LocalDate today = LocalDate.now(clock.withZone(zone));
+        LocalDate today = todayFor(item.communityId);
         State state = today.isAfter(expiry) ? State.EXPIRED
                 : !today.isBefore(expiry.minusDays(approachingDays)) ? State.APPROACHING_EXPIRY
                 : State.ACTIVE;
         return new Assessment(state, state != State.EXPIRED, state != State.ACTIVE);
+    }
+
+    /** Signed Community-calendar distance: zero on the inclusive expiry date; negative after it. */
+    public OptionalLong daysUntilExpiry(CivicContent item) {
+        if (item.expirationDate == null || item.expirationDate.isBlank()) {
+            return OptionalLong.empty();
+        }
+        return OptionalLong.of(ChronoUnit.DAYS.between(todayFor(item.communityId),
+                LocalDate.parse(item.expirationDate)));
+    }
+
+    private LocalDate todayFor(String communityId) {
+        ZoneId zone = communityId == null ? defaultZone
+                : communityZones.getOrDefault(communityId, defaultZone);
+        return LocalDate.now(clock.withZone(zone));
     }
 
     /** Status is independent of editorial date state, including for historical links. */

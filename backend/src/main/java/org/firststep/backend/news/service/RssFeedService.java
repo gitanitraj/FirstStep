@@ -163,6 +163,14 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
         return signedBills.stream().filter(lifecycle::isCurrent).toList();
     }
 
+    /**
+     * Stored, relevance-admitted CivicContent for internal stewardship only.
+     * No fetch, expiry or status filter; never substitute the ungated signed-bill feed.
+     */
+    public List<NewsItem> getStoredRssItems() {
+        return List.copyOf(rssItems);
+    }
+
     // ------------------------------------------------------------
     // Helpers
     // ------------------------------------------------------------
