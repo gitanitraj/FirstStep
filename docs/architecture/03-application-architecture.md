@@ -1,0 +1,401 @@
+# 03 — Application Architecture
+
+*How the software implements the information flow.*
+
+## Layered view
+
+```
+React SPA
+  ↓
+REST Controllers
+  ↓
+ApiResponse<T> / PageResponse<T>  (shared/dto — the generic response envelope
+                                    every controller wraps its payload in;
+                                    PageResponse<T> is scaffolded, not yet
+                                    wired into any endpoint)
+  ↓
+Services
+  ↓
+Repository pattern
+  ↓
+Data (JSON / RSS / Flyers  →  SQLite / Postgres)
+  ↓
+AiAssistant / SpringAiAssistant
+```
+
+Errors are centralized through `shared/web/GlobalExceptionHandler`
+(`@RestControllerAdvice`), which maps thrown exceptions
+(`shared/exception/NotFoundException` → 404; anything else → 500) onto the
+same `ApiResponse` envelope shape as a successful response.
+
+
+## Classification is an ingestion concern, not a query concern
+
+**By the time content becomes CivicContent, its editorial classification has
+already been determined** — allowing every downstream service to operate on a
+unified domain model instead of reinterpreting source-specific data.
+
+This is the governing principle of the classification subsystem, and three
+things in the codebase are it applied:
+
+- **`CategoryService` no longer translates raw provider categories at request
+  time.** That was classification happening at query time, and it meant a query
+  layer had to know DSCYF's vocabulary (Decision 033).
+- **Source adaptation lives in the engine**, not in the taxonomy, so no
+  query-layer code ever sees an upstream vocabulary again (Decision 034).
+- **`NavigationService` is forbidden from classifying.** A read model over
+  already-classified content is only *possible* because of this principle.
+
+### The classification engine's four responsibilities
+
+`shared/classification` owns all four, and applies them **consistently to every
+ingestion source**. No source implements its own.
+
+1. **Adapt source vocabularies** into the canonical taxonomy —
+   `SourceMappingService`, reading `app/data/source-mappings.json`.
+2. **Determine editorial classification** — which category and subcategory
+   (`CategoryClassifier`).
+3. **Generate descriptive tags** — how residents find the content
+   (`TagClassifier`).
+4. **Determine whether automated content is relevant enough** to become
+   CivicContent at all — the admission gate, carried on
+   `ClassificationResult.relevant()`.
+
+Confidence is the *measure* supporting responsibility 4, not a fifth
+responsibility — which is why it lives on `ClassificationResult` and never on
+`CivicContent`. Content is a thing; confidence is a property of the act of
+judging it.
+
+Relevance is set by the engine and read by callers. **No ingestion point may
+inspect `categoryTags` to decide whether content belongs**, because the same
+business question answered in six places will eventually be answered six ways.
+
+### Two feeds, because two questions
+
+`RssFeedService` implements two single-method interfaces that must not be able
+to change each other:
+
+| Interface | Answers | Feeds |
+| --- | --- | --- |
+| `RssFeedSource` | "what civic content did we admit?" | discovery — updates, categories, search, AI |
+| `SignedLegislationSource` | "what has the Governor signed?" | the Delaware Laws rotator |
+
+Legislation **presentation** is deliberately ungated: the rotator shows what was
+signed, whether or not any of it is relevant to a resident seeking help. Before
+these were split, one accessor served both, so introducing a relevance gate
+would have silently emptied the rotator of every uncategorizable bill — a
+presentation feature broken by a discovery decision.
+
+The split pays off again in the category page: its "Stay Informed" feed reads
+`RssFeedSource`, and `SignedLegislationSource` **could not serve it even if
+asked** — an unclassified bill has no category to be scoped to.
+
+## `NavigationService` is a read model, not a business model
+
+Its responsibility is to transform the editorial taxonomy and classified
+CivicContent into a navigation structure optimized for the UI. **It must not
+classify content, infer relationships, or contain editorial rules.** All
+editorial decisions belong to the taxonomy and the classification pipeline;
+NavigationService only aggregates, counts, and shapes data for presentation.
+
+In practice it reads exactly two fields — `categoryTags` and `subcategory` —
+and never consults text, tags, keywords or content type to decide placement.
+Handed an unclassified item it counts nothing rather than inferring. There is no
+fallback, deliberately: a fallback would be an editorial rule wearing a
+convenience disguise, and the moment one exists, "where does this appear?" has
+two answers in two places.
+
+## The category page is an aggregate read model
+
+A category page serves **two complementary purposes**: helping residents browse
+resources, and helping them understand what has changed. Three pillars:
+
+| Pillar | Question | Source |
+| --- | --- | --- |
+| **Discover** | What is available? | topic groups / flat topics, with counts |
+| **Connect** | Where do I go or contact next? | organizations in this category |
+| **Stay Informed** | What has changed? | news, legislation, flyers, expert content |
+
+This exists because of a measured fact, not a preference. Resources and flyers
+carry a `subcategory`; news, legislation and expert content do not — **193 of the
+429 classified items have a category and no topic.** Topic tiles therefore reach
+only about half of a category (housing 45 of 73; utilities 0 of 22).
+
+The wrong fix is to make the classifier infer subcategories. That is deferred to
+**Version 3** and it would trade a conservative engine for a guessing one. The
+right frame is that those items are not a coverage gap — they are the *other
+half* of the page. **Coverage grows by composition, not by inference.** Measured
+across all ten categories, `browse ∪ updates == totalCount` exactly.
+
+`CategoryPageService` composes, and each collaborator keeps its own job:
+
+```
+CategoryPageService
+  ├── NavigationService.getByKey()         → metadata + groups/topics
+  ├── UpdatesService.getForCategory()      → news + law + flyer + expert
+  └── OrganizationService.getForCategory() → organizations
+```
+
+**NavigationService is unchanged by this.** It still produces resident navigation
+and nothing else; composition happens one layer up, so the read model never
+learns about pages.
+
+### When orchestration earns a service
+
+F4 and F5a are the same rule applied to different facts, and the pair is worth
+keeping as the worked example:
+
+- **F4 refused a `CategoryPageService`.** The endpoint had one source and an
+  empty composition step, so the service would have forwarded a call. A BFF gives
+  a page one page-shaped endpoint; it does not oblige every endpoint to have a
+  service.
+- **F5a introduced it.** Three sources and a real composition — the second use an
+  abstraction needs before it earns its name.
+
+The same test applies elsewhere: `HomeService` composes five aggregators plus
+static config, and earns its keep for the same reason.
+
+## Repository — per-slice interfaces, not one generic class
+
+**Decided** (resolves the previously-open question): each vertical slice owns
+its own repository interface — `resource/repository/ResourceRepository`,
+`news/repository/NewsRepository` — rather than a single generic
+`Repository<T>`. Each interface has only the methods its slice's
+service/controller actually call (e.g. `ResourceRepository` has no
+save/update/delete, since storage is still read-only JSON loaded at
+startup). Storage stays JSON-file-backed for this pass
+(`JsonResourceRepository`, `JsonNewsRepository`) — a future SQLite/Postgres
+swap only requires a new implementation of the same interface; services and
+controllers don't change.
+
+## AiAssistant (the AI seam)
+
+`AiAssistant` (interface, `ai/service/AiAssistant.java`) is the abstraction for
+AI assistance — one method, `generate(String prompt, double temperature)`.
+`SpringAiAssistant` (`ai/service/SpringAiAssistant.java`) is its implementation,
+using Spring AI's provider-agnostic `ChatClient` API. This replaces v1's direct
+Ollama HTTP calls (`OllamaService`, deleted in this pass).
+
+As of this pass, **no AI provider is configured** — no Spring AI model-provider
+starter (e.g. `spring-ai-starter-model-ollama`) is on the classpath, since none
+is available or subscribed to yet. `SpringAiAssistant` stays bootable by taking
+an `ObjectProvider<ChatClient.Builder>` rather than a hard dependency; it
+throws `AiProviderNotConfiguredException` only if actually called, which
+`DecisionAgentService`'s existing fallback handling absorbs — the same
+"AI guidance unavailable" behavior v1 had when Ollama was unreachable.
+
+What stays stable across a future provider swap: `DecisionAgentService` and
+every other caller depend only on the `AiAssistant` interface. Adding a
+provider (e.g. `spring-ai-starter-model-ollama`) to `backend/pom.xml` should be
+the only change needed to make `SpringAiAssistant` actually call out — its
+internal logic already uses Spring AI's generic `ChatOptions`, not any
+provider-specific options class.
+
+## Technical stack
+
+Intended implementations, reached through the service/repository patterns above —
+not hard-wired.
+
+| Concern | Intended implementation |
+| --- | --- |
+| Backend | Spring Boot 3.5.16 |
+| API | REST |
+| Frontend | React |
+| Storage (now) | JSON |
+| Storage (next) | SQLite → PostgreSQL |
+| AI | Spring AI 1.1.8 (via `AiAssistant`/`SpringAiAssistant`) — no model provider configured yet |
+| Mobile | Future |
+
+> TODO: Confirm/adjust; note anything explicitly rejected.
+
+## Milestone Roadmap
+
+Small, demonstrable increments. **Every milestone leaves First Step in a working,
+demoable state** and satisfies the [Definition of Done](00-philosophy.md#definition-of-done).
+
+- [x] **Milestone 1** — Introduce `Community`; introduce `ContentSource`; keep JSON
+  storage. → **Demo.** *(Completed — Steps 1-6 of the vertical-slice migration:
+  shared domain kernel, `ApiResponse<T>`, `AiAssistant` seam, Resource/News/AI
+  slices, real `Citation` → `ContentSource` resolution. Verified via a live
+  Docker deployment and headless-browser walkthrough, not just `mvn test`.)*
+- **Milestone 2** — Add flyer metadata extraction (unstructured → metadata while
+  preserving the original artifact). → **Demo.** *(Not started — this specific
+  milestone is about OCR/AI-driven extraction, still deferred. What DID land:
+  a Flyer backend slice (`flyer/` — model/repository/service/controller)
+  serving 7 real flyer images via `GET /api/flyers`, but with manually
+  AUTHORED metadata (`app/data/flyers.json`), not extracted — see
+  `references/decisions.md` Decision 011. `expert` and a `pipeline` package
+  with minimal per-stage marker interfaces — `Collector`, `MetadataExtractor`,
+  `Normalizer`, `Enricher`, `Deliverer` — remain scaffolding only, per the
+  vertical-slice migration's Step 7. Resource/News/Flyer ingestion is
+  deliberately NOT refactored to implement these interfaces yet — that
+  refactor is future work once a real case demands it.)*
+- [x] **Search MVP** — `GET /api/search?q=...&communityId=...` searching
+  across Resource/NewsItem/Flyer in one community-aware, ranked list. →
+  **Demo.** *(Completed — `search/` slice: `SearchService`/
+  `SearchController`, scoring via the newly-extracted `shared/util/
+  TextScore` (also adopted by `DecisionAgentService`). Backend only, no
+  `app.js` UI yet. See `references/decisions.md` Decision 012.)*
+- [x] **First non-Wilmington communities** — real `communityId` values
+  derived from actual location data, `/api/search?communityId=...`
+  meaningful across multiple towns. → **Demo.** *(Completed —
+  `shared/util/CommunitySlug` derives `communityId` from each resource's
+  location city; `resources.communities.json` (171 records, structurally
+  mapped from the real DSCYF directory) adds real data for Newark, New
+  Castle, Middletown, Bear, Claymont, and Hockessin alongside the existing
+  Wilmington-curated set. No new Community CRUD API — see
+  `references/decisions.md` Decision 013.)*
+
+### Homepage redesign — 8-step roadmap
+
+Redesigning the homepage/results pages into a trusted-civic-guide
+experience (`references/CSSforNewDesign.md`), built as a real React
+frontend. Each step gets its own dedicated design pass before being built,
+mirroring how the original vertical-slice migration was planned.
+
+- [x] **Step 1 — Category taxonomy + `GET /api/categories`.** → **Demo.**
+  *(Completed — 10-category taxonomy in `category/model/CategoryDefinition`
+  (100% resource coverage — see `references/decisions.md` Decision 014 for
+  why 2 categories were added beyond the original 7). `category/service/
+  CategoryService` aggregates counts, latest items (reusing `search/dto/
+  SearchResult`), and policy-update linkage per category, community-aware.)*
+- [x] **Step 2 — Expert stubs.** → **Demo.** *(Completed — two new
+  `CivicContent` subtypes, `expert/model/{ExpertAnswer,FAQ}`, backed by
+  hand-authored `app/data/{expert-answers,faq}.json`. `ExpertAnswer` is the
+  first real adopter of the shared `Contact` composite. `FAQ.
+  sourceExpertAnswerId` links back to the expert answer it was curated
+  from. `GET /api/expert-answers` and `GET /api/faqs` (+ `/{id}`). Not yet
+  wired into `Search`/`Category` — see `references/decisions.md`
+  Decision 015.)*
+- [x] **Step 3 — React frontend project scaffold.** → **Demo.**
+  *(Completed — `frontend/` (React + Vite + TypeScript, not Next.js —
+  Spring Boot already is the API). `backend/Dockerfile` gained a
+  `node:24-alpine` build stage; the React `dist/` output rides into the
+  jar at `static/app-next/` exactly like the existing hand-written static
+  files do — no runtime-stage or `docker-compose.yml` changes needed.
+  Served at `/app-next/`, NOT replacing the root demo yet (that flip is a
+  later step, once the new app is functionally ready). `App.tsx` is a
+  bare proof fetching real `/api/categories` data — no real UI yet, that's
+  Steps 4-6. See `references/decisions.md` Decision 016.)*
+- [x] **Step 4 — `AppLayout` + `Sidebar`.** → **Demo.**
+  *(Completed — the frontend's first CSS + visual shell: sticky header,
+  two-column (sidebar + main) grid, and a `Sidebar` of category-filter
+  checkboxes fed live from `/api/categories` (reusing the `apiGet` wrapper
+  and `CategorySummary` type). Existing warm green/orange/cream palette
+  (`frontend/src/index.css`, mirroring `static/styles.css`), NOT
+  `CSSforNewDesign.md`'s blue/purple. **Scope (confirmed with user):**
+  checkboxes are **local-toggle only** — they visibly toggle but drive
+  nothing downstream; real filtering is Step 7's shared filter context.
+  Routing + `SpaWebConfig` widening **deferred to Step 6** (no real routes
+  exist yet). `main` area is a Step-5 placeholder. **Deferred from this
+  step, not built:** `CommunitySelector` wiring (the `communityId` param on
+  `/api/categories`) and a toggle-driven mobile drawer — the responsive CSS
+  collapses the sidebar to a horizontal wrap, but there's no drawer control.
+  See `references/decisions.md` Decision 017.)*
+- **Step 5 — `MainContent`: Hero + AI widget merge, Important Updates,
+  `CategoryPreviewList`.** ("Important Updates," not "Trending Now" — see
+  Decision 014.) **Split into 5a / 5b / 5c** (per the small-sequential-prompts
+  preference — each planned/built/verified on its own):
+  - [x] **Step 5a — Hero + AI guidance widget (merged).** → **Demo.**
+    *(Completed — the old demo's text-only hero + separate AI section merged
+    into one green→orange gradient hero carrying the AI question flow inline:
+    question box, 🚨 Urgent / 🏠 Housing / 🛒 Essentials chips, Get Help →
+    `POST /api/decide`, result rendered below. New `frontend/src/components/
+    {HeroGuidance,MainContent}.tsx`, `apiPost` added to `api/client.ts`, AI DTO
+    types added to `types/api.ts`. The AI provider is a stub — `/api/decide`
+    returns a graceful degraded body — so the widget shows a friendly "AI
+    guidance is temporarily unavailable" notice (the raw provider error is
+    detected via its "AI call failed" prefix and suppressed; a legitimate
+    "no matches" `notes` is still shown). Verified live via Docker + a driven
+    submit. See `references/decisions.md` Decision 018.)*
+  - [x] **Step 5b — Important Updates.** → **Demo.**
+    *(Completed — new backend `updates/` package: `GET /api/updates` merges
+    curated News + live RSS + Flyers server-side into normalized `UpdateItem`s
+    (deduped by id, sorted date-desc nulls-last, capped 8). New
+    `ImportantUpdates.tsx` renders the feed and **live-refreshes via a 5-minute
+    poll with change-diffing** (a `useRef` serialized snapshot suppresses no-op
+    re-renders; effect cleanup `clearInterval`s — the app's first polling
+    pattern). Client-side polling, not WebSockets/SSE. Establishes the
+    **backend-aggregates / frontend-displays** principle (Decision 019) that
+    also governs Step 6+. Summary line-clamped after a long RSS body was found
+    to blow out a card in live verification. 7 backend + 10 frontend tests
+    green; verified live via Docker + Playwright driver. See Decision 019.)*
+  - [x] **Step 5c — `GET /api/home` consolidation + `CategoryPreviewList`.**
+    → **Demo. (Step 5 COMPLETE.)** *(Completed — new backend `home/` package:
+    `GET /api/home` = `{ aiConfig, updates, categories }`, composing
+    `UpdatesService` + `CategoryService` + static backend-owned `aiConfig`.
+    `MainContent` now fetches `/api/home` **once** and distributes: `aiConfig`
+    → `HeroGuidance` (refactored to backend-driven chips/prompts, default
+    fallback), `updates` → `ImportantUpdates` (seeded, no double-fetch; keeps
+    polling `/api/updates`), `categories` → new `CategoryPreviewList` (📢 policy
+    line + latest items; Browse inert until Step 6). Hero renders instantly with
+    defaults; data sections mount when `/api/home` resolves. 116 backend + 13
+    frontend tests green; verified live. Sidebar still fetches `/api/categories`
+    separately — consolidation deferred to Step 7. See Decision 020.)*
+**Steps 6–8 REPLACED by a civic-portal homepage rebuild (Decision 021).** The
+homepage was redesigned into a 5-section trusted-information portal (Utility Bar,
+Hero + primary nav, New Delaware Laws rotator, Resource Discovery
+[Organizations | Categories], Community Information carousel) feeding a multi-page
+app with a four-level nav hierarchy (Category → topic-groups → topic →
+CivicContent) and Organization landing pages. The Step-5 endpoints
+(`/api/home`, `/api/updates`, `/api/decide`, `/api/categories`) and the BFF
+principle carry forward; only the homepage presentation + forward roadmap changed.
+Decomposed **frame-first** into slices A–I:
+- [x] **A — Homepage frame + routing foundation.** → **Demo.** *(New `pages/
+  {HomePage,StubPage}` + `components/{UtilityBar,SiteHero,PrimaryNav,
+  DelawareLawsFeature,ResourceDiscovery,CommunityInformation}`; sections are
+  scaffolds. **React Router introduced** (`BrowserRouter basename="/app-next"`);
+  **`SpaWebConfig` widened** to a depth-agnostic `PathResourceResolver` SPA
+  fallback. Retired the superseded Step-4/5 homepage components; kept
+  `HeroGuidance`/`ImportantUpdates` to repurpose. 10 frontend tests + live
+  deep-link verification green. See Decision 021.)*
+- [x] **B — AI-search wiring.** → **Demo. (HOMEPAGE COMPLETE.)** *(Utility Bar
+  search posts to `/api/decide` and shows the answer in a dismissible dropdown
+  panel (close / Escape / click-outside). Repurposed the Step-5a hero AI logic
+  into a new `AiResultCard` (degraded → friendly "temporarily unavailable" notice,
+  since the provider is a stub); deleted the superseded `HeroGuidance`. Plain
+  query (no chips). i18n'd; high-contrast panel. 20 frontend tests; verified live.
+  See Decision 026.)*
+- [x] **C — New Delaware Laws rotator.** → **Demo.** *(New `legislation/`
+  package: `LegislationService.getRecentSignedBills()` → top 7 from the
+  GovernorSignedLegislation RSS feed as `LawItem`s, added to `/api/home`
+  (`delawareLaws`). `DelawareLawsFeature` rotates one bill at a time (5s
+  auto-advance, subtle fade, reduced-motion respected, dot nav, title links out);
+  reusable by the Important Notices page (H). 3 backend + 19 frontend tests;
+  verified live. See Decision 024.)*
+- **D0 — Data normalization** — enrich `resources.communities.json` (171 recs) to
+  `resources.json`'s schema (`subcategory` + curated fields). Prereq for D/F.
+- [x] **D — Resource Discovery.** → **Demo.** *(New `organization/` package:
+  `OrganizationService.getCuratedShortlist()` (group by org, rank by count
+  placeholder, cap 8, slugify) added to the `/api/home` BFF. `HomePage`
+  re-introduces the single `/api/home` fetch, distributing to `ResourceDiscovery`
+  (two-column Orgs | Categories nav, reusing the existing 10-category taxonomy).
+  On the current 229 records; D0 deferred. 6 backend + 15 frontend tests; verified
+  live. See Decision 023.)*
+- [x] **E — Community Information flyer carousel.** → **Demo.** *(Extended the
+  flyer domain: `FlyerService.getCarouselCards()` → `FlyerCard`s with a
+  server-resolved + URL-encoded `imageUrl` (`/images/seasonal/…`), image-less
+  flyers filtered, sorted by event date; added to `/api/home` (`communityFlyers`).
+  `CommunityInformation` renders a horizontal scroll-snap carousel of flyer image
+  cards (peeking next card; no auto-advance). 3 backend + 21 frontend tests;
+  verified live. See Decision 025.)*
+- **F — Category → topic-group → topic → CivicContent pages** (Housing full;
+  others skip the topic level until D0 lands).
+- **G — Organization landing pages** (aggregate all content by `organization`).
+- **H — Important Notices page** (renamed from Weekly Updates; Delaware-Laws RSS
+  column + Community Updates cards) + Community Info carousel page.
+- **I — Accessibility features, mobile adaptation, polish.**
+
+Also logged, explicitly deferred, not part of this sequence: real
+Exiftool/AI-based metadata extraction for Flyers (ties back to Decision
+011's original OCR/AI deferral).
+
+> TODO: Add further milestones (e.g. repository pattern, SQLite, Spring AI swap,
+> a real Community discovery API, full curation of the community-directory
+> resources' eligibility/cost/urgency/tags). Each must end in a working demo.
+
+## Future capabilities (backlog)
+
+> TODO: Map each to the stage/seam it extends — personalized alerts, saved
+> interests, multi-language support, voice assistance, SMS guidance, organization
+> dashboards.

@@ -1,0 +1,14 @@
+{
+  "version": 1,
+  "source": "hand-authored",
+  "note": "Presentation model: which discovery pathways the homepage's Community Resources column offers, and in what order. This is NOT the domain model. A pathway with kind='category' MUST reference a key that exists in taxonomy.json, which stays the single source of truth for the vocabulary -- its label and icon are resolved from there rather than repeated here, so the two can never drift. A pathway with kind='discovery' is a controlled query over existing CivicContent metadata and carries its own label/icon precisely because it is NOT a category and must not be added to taxonomy.json. The homepage deliberately shows a curated subset; every category remains reachable through Discover. Editors may reorder, add or remove entries here without a code change.",
+  "communityResources": [
+    { "key": "housing", "kind": "category" },
+    { "key": "employment", "kind": "category" },
+    { "key": "health", "kind": "category" },
+    { "key": "legal", "kind": "category" },
+    { "key": "furniture-household", "kind": "category" },
+    { "key": "seniors", "kind": "discovery", "label": "Seniors", "icon": "🧓" },
+    { "key": "food", "kind": "category" }
+  ]
+}

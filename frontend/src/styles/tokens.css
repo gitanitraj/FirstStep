@@ -1,0 +1,100 @@
+/* Design tokens — the ONLY place raw palette values live.
+   Mirrors backend/src/main/resources/static/styles.css so the React app and the
+   legacy static app share one warm civic identity (green/orange/cream). That
+   shared palette is why these are CSS custom properties rather than a framework
+   config: two stylesheets in two build systems can both read them.
+
+   RULE: this file contains :root and nothing else. No component classes.
+   Extracted from index.css in the Phase 0 CSS cleanup (Decision 039). */
+
+:root {
+  --primary-color: #1a5c38;
+  --primary-light: #2d7d4a;
+  --accent-color: #e07b39;
+  --warning-color: #d97706;
+  /* Raised panel/card background. Was a literal `white` in six rules; a token
+     because the high-contrast theme has to flip it. */
+  --surface: white;
+  --bg-light: #f7eadc;
+  --bg-lighter: #fbecd6;
+  --border-color: #e5ddd5;
+  --text-primary: #1c1917;
+  /* WARM greys, and darker than the originals. Two reasons, both measured:
+     #6b7280/#9ca3af are COOL blue-greys that fight a cream-and-green palette,
+     and --text-light measured 2.54:1 on white — a WCAG AA failure on every date
+     and meta line on the site. These pass AA on white, on the page ground and on
+     the Originals wash. */
+  --text-secondary: #57534e;
+  --text-light: #6f6a64;
+  /* Elevation. Two layers each — a tight contact shadow plus a soft ambient one
+     — because a single blurred shadow reads as a smudge while two read as a card
+     resting on a surface. The old values (a single 5% 1px shadow) were so faint
+     that every card looked painted on. */
+  --shadow-sm: 0 1px 3px rgba(28, 25, 23, 0.07), 0 1px 2px rgba(28, 25, 23, 0.04);
+  --shadow-md: 0 4px 12px rgba(28, 25, 23, 0.09), 0 2px 4px rgba(28, 25, 23, 0.05);
+  --shadow-lg: 0 14px 32px rgba(28, 25, 23, 0.13), 0 4px 8px rgba(28, 25, 23, 0.06);
+  /* BRAND-TINTED elevation, built from --primary-color rather than near-black.
+     A green shadow on a cream page reads as part of the identity instead of as
+     grey haze, and it carries more apparent contrast at the same opacity because
+     it differs from the background in HUE as well as value. */
+  --shadow-brand-sm: 0 3px 6px rgba(26, 92, 56, 0.22), 0 8px 20px rgba(26, 92, 56, 0.16);
+  --shadow-brand-md: 0 8px 18px rgba(26, 92, 56, 0.30), 0 18px 36px rgba(26, 92, 56, 0.20);
+  /* The Originals panel wash. rgba, not a flat colour, so the page background
+     genuinely shows through — it reads as an overlay rather than another opaque
+     card. Orange at 55%: a green wash was tried first and rejected on looks, and
+     a lighter orange washed out against a ground this warm. */
+  --surface-brand-wash: rgba(224, 123, 57, 0.55);
+  /* Body text sitting ON that wash. --text-secondary measures 3.97:1 there and
+     fails AA; this keeps the title/summary hierarchy and reaches 5.42:1. */
+  --text-on-wash: #443f3a;
+  /* Accent for TEXT on a light surface. --accent-color (#e07b39) is a fill and a
+     rule colour; as small text it measures 2.26:1 on the Originals panel, which
+     fails WCAG AA outright. This darker burnt orange keeps the editorial cue and
+     clears 4.5:1 on white, on the page ground AND on the green wash — the wash
+     is the binding constraint, since that is where it is actually used. */
+  --accent-ink: #8f4009;
+  /* ---- Typography (Phase 1) ----------------------------------------------
+     Two families, seven roles. The ROLES live in styles/typography.module.css
+     and are applied with CSS Modules `composes`; these tokens are what those
+     roles are built from, and are not meant to be combined ad hoc in components
+     — reconstructing a role from loose family + weight tokens is the scattering
+     this system exists to stop.
+
+     MONTSERRAT signals hierarchy, destination and brand.
+     OPEN SANS carries the working interface, reading and compact hierarchy.
+
+     Fallbacks are the previous system stack, so a face that fails to load
+     degrades to what the site already used rather than to Times. */
+  --font-display: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-body: 'Open Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  /* Only these three are imported. 500 was used twice in the whole codebase and
+     is deliberately absent — requesting it would make the browser synthesize a
+     face rather than load one. */
+  --weight-regular: 400;
+  --weight-semibold: 600;
+  --weight-bold: 700;
+
+  /* Leading tokens exist for components that need one. Phase 1 does NOT sweep
+     these through the site: existing explicit line-heights are preserved, and a
+     token is applied only where the new font metrics or readability require it. */
+  --leading-tight: 1.15;
+  --leading-snug: 1.35;
+  --leading-normal: 1.6;
+  --leading-relaxed: 1.7;
+
+  --transition: all 0.2s ease;
+  --radius: 12px;
+  /* Horizontal breathing room inside the container. Every top-level section
+     indents by this one value so they stay aligned down the page, and it scales
+     with the viewport so a wide monitor gets a generous margin while a phone
+     does not lose content to padding. */
+  --page-gutter: clamp(18px, 4vw, 64px);
+  /* Content stops here and centres. On a 1280-1512 laptop this IS full width;
+     past that it prevents card grids and paragraphs stretching to unreadable
+     line lengths. Both reference sites (Newark, San José) contain their content
+     the same way — it is a large part of why they read as considered. */
+  --page-max: 1600px;
+}

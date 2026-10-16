@@ -1,0 +1,9 @@
+{
+  "name": "run-firststep-app-driver",
+  "private": true,
+  "type": "module",
+  "description": "Playwright REPL driver for browser-testing the First Step app (see SKILL.md). Not part of the Java backend or the app/ React Native scaffold.",
+  "dependencies": {
+    "playwright": "^1.61.1"
+  }
+}

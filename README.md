@@ -2,15 +2,107 @@
 A decision aid that turns scattered public data into guidance residents can actually act on.
 
 # The problem
-Most civic and government information already exists — it just isn't easily found. Residents looking for housing assistance, food resources or local policy updates must piece together answers from scattered websites, social media posts and word of mouth. The information is there; the trustworthiness and stability of the sources is not.
+Most civic and government information already exists — it just isn't easily found. Residents looking for housing assistance, food resources or local policy updates must piece together answers from scattered websites, social media posts and word of mouth. The information is available, but finding trustworthy, up-to-date guidance can be difficult and time-consuming.
+
+The challenge is not access to information. The challenge is transforming information into action. The goal is to create a scalable civic guidance platform that can evolve as community needs change. 
 
 # What this project does
-This prototype reorganizes messy public data into structured, readable, actionable guidance for a single local area: Wilmington. The goal is to reduce friction between public information and real-world need — and to show what becomes possible when information architecture is designed to serve people, not just present data.
+First Step reorganizes public information into structured, readable, actionable guidance for residents of Wilmington, Delaware.
 
-It also demonstrates that a developer who understands why people seek information can design tools that everyday residents will actually use.
+Rather than functioning as a traditional resource directory, First Step acts as a decision aid. Resources are organized into meaningful categories and presented in a way that helps users identify practical next steps.
 
-# Why it matters
+Current categories include:
+
+Housing Help
+Free / Low-Cost Essentials
+Seasonal Resources
+Weekly Updates
+
+The application demonstrates how thoughtful information architecture can reduce friction between public information and real-world need.
+
+# Technical Architecture
 Building civic tools for low-resource communities requires more than technical skill. It requires judgment about what information to surface, when and how. This project demonstrates that capacity: taking existing public data but channeling it into an application that is genuinely useful, without noise or unnecessary complexity.
 
+   # Backend
+   
+   Spring Boot REST API
+   Three API endpoints
+   Java model classes aligned with a defined schema
+   Startup validation logging
+   
+   # Building the Backend
+
+   The backend is configured to compile to **Java 17 bytecode** while using a
+   **JDK 25** Maven toolchain for compilation and tests. This keeps the app on
+   a conservative language level while allowing builds to run on a newer JDK.
+   This requires a one-time, machine-local `~/.m2/toolchains.xml` registering a
+   JDK 25 install, for example:
+
+   ```xml
+   <toolchains xmlns="http://maven.apache.org/TOOLCHAINS/1.1.0">
+     <toolchain>
+       <type>jdk</type>
+       <provides><version>25</version></provides>
+       <configuration>
+         <jdkHome>/path/to/your/jdk-25</jdkHome>
+       </configuration>
+     </toolchain>
+   </toolchains>
+   ```
+
+   Find your JDK 25 path with `/usr/libexec/java_home -v 25` (macOS). Without a
+   matching toolchain entry, the build fails with "No toolchain found".
+
+   # Running with Docker
+
+   The whole app runs as a self-contained Docker Compose stack — the Spring
+   backend plus a local Ollama AI service — so you don't need Java, Maven, or a
+   toolchain installed. From the repo root:
+
+   ```
+   docker compose up --build
+   ```
+
+   Then open http://localhost:8080.
+
+   Two services start together:
+   * **app** — the Spring backend and static UI on port 8080.
+   * **ollama** — a local Ollama server. On first run it pulls the `gemma2:2b`
+     model (a few minutes); the model is cached in a named volume, so later
+     starts are fast. While the model is still downloading, the AI decision
+     endpoint returns a graceful fallback instead of erroring.
+
+   Runtime data (`app/data/` and the seasonal images) is baked into the image, so
+   updating that data means rebuilding (`docker compose up --build`). The stack
+   needs roughly 4 GB of RAM available for the AI model.
+
+   # Frontend
+   Lightweight static frontend
+   Mobile-first interface
+   Screen-based navigation
+   Resource filtering and detail views
+   
+   # Data Pipeline
+   Python preprocessing scripts
+   Schema validation
+   Data transformation and cleaning
+   JSON generation for application consumption
+   
+# Future Enhancements
+The project was intentionally designed to support future growth.
+
+Planned enhancements include:
+* Spanish-language support
+* Enhanced accessibility options
+* Reusable JSON loading utilities
+* Stronger filtering and ranking logic
+* Expanded civic data sources
+* Additional guidance workflows
+* Improved abstraction and generic-based architecture
+* Enhanced navigation patterns
+
 "Messy public data can become usable decisions. This prototype shows how." 
+
+1. Open demo:
+   http://localhost:8080
 

@@ -1,0 +1,119 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://firststep.app/schema/news.json",
+  "title": "Wilmington Civic News & Policy Update",
+  "description": "A manually authored news or policy update record for the Wilmington Civic Briefing app.",
+  "type": "object",
+  "required": [
+    "id",
+    "type",
+    "headline",
+    "summary",
+    "body",
+    "why_it_matters",
+    "published",
+    "expires",
+    "geography",
+    "source_name",
+    "source_url",
+    "category_tags",
+    "resource_tags",
+    "urgency",
+    "author",
+    "verified",
+    "active"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^NP-\\d{3}$",
+      "description": "Unique record ID. Format: NP-###.",
+      "examples": ["NP-001", "NP-012"]
+    },
+    "type": {
+      "type": "string",
+      "enum": ["policy-update", "program-change", "deadline", "new-resource", "general-news"],
+      "description": "Content type. Affects how the card is labeled in the digest."
+    },
+    "headline": {
+      "type": "string",
+      "maxLength": 120,
+      "description": "Short headline shown on the digest card. Max 120 chars."
+    },
+    "summary": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "One or two sentence summary shown on the digest card. Max 300 chars."
+    },
+    "body": {
+      "type": "string",
+      "description": "Full article text shown in the detail view."
+    },
+    "why_it_matters": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Plain-English explanation of why this update is relevant to residents. Max 300 chars."
+    },
+    "published": {
+      "type": "string",
+      "format": "date",
+      "description": "ISO date the record was published (YYYY-MM-DD)."
+    },
+    "expires": {
+      "type": ["string", "null"],
+      "format": "date",
+      "description": "ISO date after which this record should no longer display. Null means no expiry."
+    },
+    "geography": {
+      "type": "string",
+      "enum": ["wilmington", "delaware", "both"],
+      "description": "Geographic scope. 'wilmington' = city only; 'delaware' = statewide; 'both' = statewide but directly relevant to Wilmington residents."
+    },
+    "source_name": {
+      "type": "string",
+      "description": "Display name of the original source (e.g. 'City of Wilmington', 'Delaware DHSS')."
+    },
+    "source_url": {
+      "type": ["string", "null"],
+      "format": "uri",
+      "description": "URL to the original source. Null if no public URL exists."
+    },
+    "category_tags": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "Clothing & Incidentals",
+          "Furniture & Household Items",
+          "Housing Assistance",
+          "General"
+        ]
+      },
+      "description": "Which app categories this update relates to. Used for cross-linking."
+    },
+    "resource_tags": {
+      "type": "array",
+      "items": { "type": "string" },
+      "description": "Freeform tags linking to specific resource records or topics (e.g. 'rental-assistance', 'SRAP', 'vouchers')."
+    },
+    "urgency": {
+      "type": "string",
+      "enum": ["emergency", "time-limited", "standard"],
+      "description": "Urgency tier. Mirrors the resource schema urgency values."
+    },
+    "author": {
+      "type": "string",
+      "enum": ["manual", "rss", "api"],
+      "description": "Content origin. Always 'manual' for prototype."
+    },
+    "verified": {
+      "type": "boolean",
+      "description": "True once the information has been confirmed against the source."
+    },
+    "active": {
+      "type": "boolean",
+      "description": "False to suppress a record from display without deleting it."
+    }
+  },
+  "additionalProperties": false
+}

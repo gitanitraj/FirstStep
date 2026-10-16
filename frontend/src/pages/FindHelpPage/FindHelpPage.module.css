@@ -1,0 +1,160 @@
+.main {
+  padding: clamp(28px, 5vw, 56px) var(--page-gutter) clamp(48px, 8vw, 96px);
+  max-width: var(--page-max);
+  margin: 0 auto;
+}
+
+.head { margin-bottom: clamp(26px, 4vw, 38px); max-width: 68ch; }
+
+.title {
+  composes: displayPage from '../../styles/typography.module.css';
+  font-size: clamp(1.9rem, 4vw, 2.6rem);
+  line-height: 1.15;
+  color: var(--primary-color);
+  margin-bottom: 12px;
+}
+
+.intro { font-size: 1.0625rem; line-height: 1.6; color: var(--text-secondary); }
+
+.section { margin-bottom: clamp(34px, 5vw, 52px); }
+
+.sectionTitle {
+  composes: displaySection from '../../styles/typography.module.css';
+  font-size: clamp(1.3rem, 2.4vw, 1.6rem);
+  color: var(--primary-color);
+  margin-bottom: 6px;
+}
+
+.sectionNote {
+  font-size: 0.9375rem;
+  color: var(--text-secondary);
+  margin-bottom: 16px;
+  max-width: 68ch;
+}
+
+/* ---- gateways: the primary action on the page ---- */
+.gateways {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  gap: 12px;
+  list-style: none; margin: 10px 0 0; padding: 0;
+}
+
+.gateway {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 60px;
+  padding: 14px 18px;
+  background: var(--surface);
+  border: 2px solid transparent;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-brand-sm);
+  color: var(--text-primary);
+  font-family: var(--font-body);
+  font-weight: var(--weight-semibold);
+  font-size: 1.0625rem;
+  text-decoration: none;
+}
+
+a.gateway:hover, a.gateway:focus-visible { border-color: var(--primary-color); }
+
+/* Present, visibly not a door. Lower contrast is the signal, but the words
+   carry it too — colour alone would leave it ambiguous. */
+.unavailable {
+  box-shadow: none;
+  background: transparent;
+  border: 2px dashed var(--border-color);
+  color: var(--text-secondary);
+  cursor: default;
+}
+
+.soon {
+  margin-left: auto;
+  font-size: 0.75rem;
+  font-weight: var(--weight-semibold);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--accent-ink);
+}
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 16px; list-style: none; margin: 0; padding: 0;
+}
+
+/* ---- directory: last on the page, on purpose ---- */
+.searchLabel {
+  display: block;
+  font-weight: var(--weight-semibold);
+  font-size: 0.9375rem;
+  margin-bottom: 6px;
+}
+
+.search {
+  width: 100%;
+  max-width: 420px;
+  padding: 10px 14px;
+  font: inherit;
+  border: 2px solid var(--border-color);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text-primary);
+}
+
+.search:focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 1px; }
+
+.count { font-size: 0.875rem; color: var(--text-secondary); margin: 10px 0 14px; }
+
+.directory {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 14px; list-style: none; margin: 0; padding: 0;
+}
+
+.entry {
+  padding: 14px 16px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.entryName {
+  composes: contentTitle from '../../styles/typography.module.css';
+  font-size: 1.0625rem;
+  color: var(--primary-color);
+}
+
+.services { list-style: none; margin: 8px 0 0; padding: 0; }
+.service { margin-top: 6px; }
+.serviceTitle { display: block; font-size: 0.9375rem; color: var(--text-primary); }
+.serviceMeta { display: block; font-size: 0.8125rem; color: var(--text-secondary); }
+
+.placeholder { color: var(--text-secondary); padding: clamp(24px, 5vw, 48px) 0; }
+
+/* ---- High contrast ----
+   --primary-color is not flipped by the theme, so components using it as ink
+   declare their own rules. */
+:global(body.high-contrast) .title,
+:global(body.high-contrast) .sectionTitle,
+:global(body.high-contrast) .entryName {
+  color: #ff0;
+}
+
+:global(body.high-contrast) .soon { color: #ff0; }
+
+:global(body.high-contrast) .gateway {
+  border-color: #ff0;
+  background: #000;
+  color: #fff;
+}
+
+:global(body.high-contrast) .unavailable {
+  border-style: dashed;
+  color: #fff;
+}
+
+:global(body.high-contrast) .entry {
+  border: 2px solid #ff0;
+}

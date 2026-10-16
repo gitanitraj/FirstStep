@@ -1,0 +1,14 @@
+target/
+node_modules/
+.git/
+.venv/
+.expo/
+*.log
+.DS_Store
+references/
+data-cleaning/
+
+# Exclude everything under app/ except the runtime data the image bakes in
+app/**
+!app/data/
+!app/data/**

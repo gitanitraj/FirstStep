@@ -1,0 +1,86 @@
+/* ContentCollection — locally scoped. Class names are short and semantic because
+   the filename already namespaces them (docs/frontend/css-architecture.md).
+
+   Pass 1 gives this structure only: a heading, a list and an expand control.
+   Spatial arrangement — whether collections sit in columns, stack, or reflow —
+   belongs to the page that composes them and to Pass 2, so nothing here sets a
+   width, a column count or a grid. */
+
+.collection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-width: 0; /* so a long title cannot force a track wider than its share */
+}
+
+.head {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border-color);
+}
+
+/* uiLabel, not displaySection: typography.module.css assigns roles by FUNCTION,
+   and a collection heading is "a small functional label introducing a block — a
+   group heading", not a major page landmark. */
+.title {
+  composes: uiLabel from '../../styles/typography.module.css';
+  margin: 0;
+  font-size: 15px;
+  color: var(--text-primary);
+}
+
+/* The count states the collection's size before a resident starts scanning it —
+   the same disclosure the category header makes for the whole page. */
+.count {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--text-light);
+}
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.more {
+  align-self: flex-start;
+  padding: 6px 12px;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--primary-color);
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.more:hover {
+  border-color: var(--primary-color);
+}
+
+.more:focus-visible {
+  outline: 3px solid var(--accent-ink);
+  outline-offset: 2px;
+}
+
+/* The compact variant is declared but unused in Pass 1 — the prop exists so
+   placement stays the caller's decision. */
+.compact .list {
+  gap: 8px;
+}
+
+/* --primary-color is deliberately NOT flipped by the high-contrast theme, so any
+   component using it as INK must state its own rule (docs/frontend/css-architecture.md,
+   and ArticlePage.module.css as the canonical example). */
+:global(body.high-contrast) .more {
+  color: var(--text-primary);
+  border-color: var(--text-primary);
+}

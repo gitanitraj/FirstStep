@@ -1,0 +1,41 @@
+/* Base — element defaults, resets and accessibility utilities.
+
+   RULE: element selectors and documented global utilities only. No component
+   classes, no layout classes. Anything that styles one component belongs in that
+   component's .module.css (Decision 039). */
+
+* {
+  box-sizing: border-box;
+}
+
+/* 17px base, not 16. This is an accessibility decision before an aesthetic one:
+   First Step's audience skews older and lower-vision, and the whole page is rem
+   based, so one value lifts every module at once. Set as a percentage rather
+   than px so a resident who has raised their browser's default still wins. */
+html {
+  font-size: 106.25%;
+}
+
+body {
+  /* Open Sans is the default for everything. Montserrat is opt-in through a
+     typography ROLE (styles/typography.module.css), never inherited — which is
+     what keeps display type to designated display and brand uses. */
+  font-family: var(--font-body);
+  background-color: var(--bg-lighter);
+  color: var(--text-primary);
+  margin: 0;
+  padding: 0;
+  line-height: 1.6;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}

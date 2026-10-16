@@ -1,0 +1,63 @@
+/* HomePage — the vertical rhythm of the front door, and the two-column split.
+
+   Content caps at --page-max and centres; --page-gutter provides the inset. On a
+   laptop that is edge to edge, and on a wide monitor it stops lines running to
+   unreadable lengths — the same containment Newark and San José use. */
+
+.body {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 56px 0 0;
+}
+
+/* Community Resources | First Step Originals.
+   The sidebar is a FIXED track, not a fraction: a magazine sidebar should stay
+   the same width as the page grows, letting the main column absorb the extra
+   space. A fractional track would widen both and the sidebar would stop reading
+   as one.
+
+   380px, not the 340px first used. Moving from a fractional track to a fixed one
+   quietly took ~96px off the panel (it computed to ~436px before), and once the
+   panel gained a filled background and a border on all four sides it read even
+   narrower than it measured — a bounded box always does, because the eye reads
+   the edges rather than the content. The gap came back from 52px to 44px at the
+   same time, returning that space to the main column. */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: 44px;
+  padding: 0 var(--page-gutter);
+  /* Drops the sidebar to align its top with the first ROW OF CARDS rather than
+     with the "Community Resources" heading beside it — the two columns start
+     level, but the left one spends its first 66px on a heading.
+
+     The layout owns this, not the sidebar: FirstStepOriginals reads it with a
+     fallback of 0, so it still renders correctly anywhere else. The value is the
+     left heading's own box — font-size 1.75rem x line-height 1.6, plus its 18px
+     margin-bottom — and is verified by measuring both tops in the browser. */
+  --sidebar-top-offset: calc(1.75rem * 1.6 + 18px);
+}
+
+.error {
+  margin: 0;
+  padding: 0 var(--page-gutter);
+  color: var(--warning-color);
+}
+
+@media (max-width: 1000px) {
+  .body {
+    gap: 44px;
+    padding-top: 36px;
+  }
+
+  /* Stacked: there is nothing to align with, so the offset becomes ordinary
+     breathing room between the two sections. */
+  .split {
+    grid-template-columns: 1fr;
+    gap: 8px;
+    --sidebar-top-offset: 8px;
+  }
+}
