@@ -1,0 +1,15 @@
+
+EXPERT / FAQ EXPLICIT CLASSIFICATION (all stored Communities and statuses)
+[app/data/faq.json FAQ-001 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/faq.json FAQ-002 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/faq.json FAQ-003 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/faq.json FAQ-004 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/faq.json FAQ-005 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/faq.json FAQ-006 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/expert-answers.json EA-001 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/expert-answers.json EA-002 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/expert-answers.json EA-003 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/expert-answers.json EA-004 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/expert-answers.json EA-005 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+[app/data/expert-answers.json EA-006 community=wilmington-de] missing_category: category_tags must be a nonempty list of explicit controlled Categories
+Expert/FAQ records inspected: 12; classification failures: 12

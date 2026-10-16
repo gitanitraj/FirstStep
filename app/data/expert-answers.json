@@ -9,6 +9,9 @@
   "records": [
     {
       "id": "EA-001",
+      "category_tags": [
+        "Housing"
+      ],
       "communityId": "wilmington-de",
       "title": "What can I do if my landlord won't return my security deposit?",
       "summary": "Delaware law gives landlords 20 days to return a deposit or provide an itemized list of deductions.",
@@ -50,6 +53,9 @@
     },
     {
       "id": "EA-002",
+      "category_tags": [
+        "Food"
+      ],
       "communityId": "wilmington-de",
       "title": "How do I apply for SNAP benefits in Delaware?",
       "summary": "You can apply online through Delaware ASSIST, by mail, or in person at a State Service Center.",
@@ -91,6 +97,9 @@
     },
     {
       "id": "EA-003",
+      "category_tags": [
+        "Employment"
+      ],
       "communityId": "wilmington-de",
       "title": "What are my rights if I'm fired without notice in Delaware?",
       "summary": "Delaware is an at-will employment state, but there are important exceptions worth knowing.",
@@ -131,6 +140,9 @@
     },
     {
       "id": "EA-004",
+      "category_tags": [
+        "Health"
+      ],
       "communityId": "wilmington-de",
       "title": "Do I qualify for Medicaid if I'm unemployed?",
       "summary": "Delaware expanded Medicaid — eligibility is based on household income, not employment status.",
@@ -172,6 +184,9 @@
     },
     {
       "id": "EA-005",
+      "category_tags": [
+        "Housing"
+      ],
       "communityId": "wilmington-de",
       "title": "How much notice does my landlord have to give before eviction?",
       "summary": "Notice periods depend on the reason for eviction — from 5 days for nonpayment up to 60 days for no-cause termination of a year-to-year lease.",
@@ -213,6 +228,9 @@
     },
     {
       "id": "EA-006",
+      "category_tags": [
+        "Utilities"
+      ],
       "communityId": "wilmington-de",
       "title": "Is there help paying my winter heating bill?",
       "summary": "LIHEAP provides one-time heating assistance grants to income-eligible Delaware households.",

@@ -1,8 +1,8 @@
 """
 validate_schema.py
 ------------------
-Validates every record in app/data/resources.json against the
-Wilmington Civic App v2 schema.
+Validates resources plus stored Expert/FAQ explicit Category/Topic relationships.
+Expert checks use the same controlled taxonomy as the backend (IM-03).
 
 Usage:
     python data-cleaning/scripts/validate_schema.py
@@ -468,12 +468,79 @@ def print_report(results, total, dup_errors, dup_warnings, strict, input_file=IN
     return failure_count
 
 
+# IM-03: extend this existing catalog gate; no inferred placement or new taxonomy.
+def validate_expert_record(record, categories):
+    """Return actionable classification errors; status/expiry never conceal bad metadata."""
+    errors = []
+    labels = {c["label"].casefold(): c for c in categories}
+    assigned = []
+    tags = record.get("category_tags")
+    if not isinstance(tags, list) or not tags:
+        errors.append("missing_category: category_tags must be a nonempty list of explicit controlled Categories")
+    else:
+        seen = set()
+        for tag in tags:
+            if not isinstance(tag, str) or not tag.strip():
+                errors.append("malformed_category: Category tags must be nonblank strings")
+                continue
+            normalized = tag.casefold()
+            if normalized in seen:
+                errors.append(f"duplicate_category: {tag}")
+            seen.add(normalized)
+            if normalized not in labels:
+                errors.append(f"unknown_category: {tag}")
+            else:
+                assigned.append(labels[normalized])
+    topic = record.get("subcategory")
+    if topic is not None and (not isinstance(topic, str) or topic.strip()):
+        known = isinstance(topic, str) and any(
+            topic.casefold() == sub.casefold() for c in categories for sub in c.get("subcategories", []))
+        if not known:
+            errors.append(f"invalid_topic: {topic}")
+        elif not any(topic.casefold() == sub.casefold() for c in assigned for sub in c.get("subcategories", [])):
+            errors.append(f"parent_mismatch: Topic requires its explicitly assigned parent Category: {topic}")
+    return errors
+
+
+def validate_expert_files(paths):
+    categories = json.loads(TAXONOMY_FILE.read_text(encoding="utf-8"))["categories"]
+    failures = 0
+    inspected = 0
+    print("\nEXPERT / FAQ EXPLICIT CLASSIFICATION (all stored Communities and statuses)")
+    for path in paths:
+        try:
+            root = json.loads(Path(path).read_text(encoding="utf-8"))
+            records = root if isinstance(root, list) else next(
+                (root[k] for k in ("records", "faqs", "expertAnswers") if k in root), [root] if "id" in root else None)
+            if not isinstance(records, list):
+                raise ValueError("expected a records array")
+        except (OSError, ValueError, TypeError) as error:
+            print(f"[{path}] catalog_read_error: {error}")
+            failures += 1
+            continue
+        for i, record in enumerate(records):
+            inspected += 1
+            if not isinstance(record, dict):
+                print(f"[{path} index-{i}] malformed_record: expected an object")
+                failures += 1
+                continue
+            errors = validate_expert_record(record, categories)
+            if errors:
+                failures += 1
+                for error in errors:
+                    print(f"[{path} {record.get('id', 'index-' + str(i))} community={record.get('communityId', '(not recorded)')}] {error}")
+    print(f"Expert/FAQ records inspected: {inspected}; classification failures: {failures}")
+    return failures
+
+
 # ─────────────────────────────────────────
 # Main
 # ─────────────────────────────────────────
 
 def main():
     parser = argparse.ArgumentParser(description="Validate resources.json against the v2 schema.")
+    parser.add_argument("--expert-only", action="store_true", help="Run only the stored Expert/FAQ classification gate.")
+    parser.add_argument("--expert-input", action="append", help="Expert/FAQ JSON path; repeat for multiple files (default: both live catalog files).")
     parser.add_argument("--input", default=str(INPUT_FILE),
                         help="Resource JSON file to validate (default: app/data/resources.json).")
     parser.add_argument("--strict", action="store_true",
@@ -487,6 +554,10 @@ def main():
     if args.export_schema:
         export_json_schema()
         sys.exit(0)
+
+    expert_paths = args.expert_input or ["app/data/faq.json", "app/data/expert-answers.json"]
+    if args.expert_only:
+        sys.exit(1 if validate_expert_files(expert_paths) else 0)
 
     input_file = Path(args.input)
     if not input_file.exists():
@@ -521,6 +592,7 @@ def main():
     failure_count = print_report(results, len(records), dup_errors, dup_warnings,
                                  args.strict, input_file)
 
+    failure_count += validate_expert_files(expert_paths)
     # Exit with error code so CI/CD pipelines can detect failures
     sys.exit(1 if failure_count > 0 else 0)
 

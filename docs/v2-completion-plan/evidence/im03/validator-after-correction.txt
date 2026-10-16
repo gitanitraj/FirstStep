@@ -1,0 +1,3 @@
+
+EXPERT / FAQ EXPLICIT CLASSIFICATION (all stored Communities and statuses)
+Expert/FAQ records inspected: 12; classification failures: 0

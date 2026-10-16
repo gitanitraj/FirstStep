@@ -1,10 +1,13 @@
 /*
- * IM-01 annotated test reference — full mirror of backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java
- * WHAT: Lifecycle/projection regression evidence.
- * WHY: prove behavior using deterministic time and preserve unrelated test expectations.
- * INTERACTION: see individual test names and fixtures; only lifecycle dependencies were
- * added to existing service construction. No assertion was weakened to hide expiry failures.
- * ALTERNATIVE: machine-clock fixtures would make future runs depend on the date of execution.
+ * IM-03 annotated reference — complete mirror of backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java
+ * WHAT: Focused classification/projection regression evidence.
+ * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
+ * Topic is optional and must have an explicitly assigned parent when present.
+ * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
+ * validates relationships before Category/Topic collections, navigation and scoped Updates.
+ * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
+ * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
+ * See IM-03 execution report for editorial decisions, audit and regression evidence.
  */
 package org.firststep.backend.shared.lifecycle;
 
@@ -179,7 +182,10 @@ class EditorialProjectionTest {
     @Test
     void shouldFilterTopicInventoryAndDynamicTopicCounts() {
         var items = categories.forTopic(taxonomy.findByKey("housing").orElseThrow(), "Eviction Prevention", "wilmington-de");
-        assertEquals(4, items.size()); // Existing Topic inventory is RESOURCE + FLYER only.
+        assertEquals(8, items.size()); // IM-03 includes explicitly Topic-classified FAQ/Expert too.
+        assertEquals(List.of("expert-active", "expert-approaching", "faq-active", "faq-approaching",
+                "flyer-active", "flyer-approaching", "resource-active", "resource-approaching"),
+                items.stream().map(ContentItem::id).sorted().toList());
         assertCurrentIds(items.stream().map(ContentItem::id).toList());
         var nav = navigation.getByKey("housing", "wilmington-de").orElseThrow();
         var topic = nav.groups().stream().flatMap(g -> g.topics().stream())

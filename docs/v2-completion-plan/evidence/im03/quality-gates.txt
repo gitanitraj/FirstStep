@@ -1,0 +1,12 @@
+ Test Files  19 passed (19)
+      Tests  126 passed (126)
+   Duration  29.72s (transform 3.36s, setup 3.38s, collect 10.66s, tests 18.20s, environment 31.94s, prepare 7.11s)
+frontend/: npm test — exit 0
+frontend/: npx tsc --noEmit — exit 0
+frontend/: npm run build — exit 0
+python3 data-cleaning/scripts/validate_content_sources.py — exit 0
+python3 data-cleaning/scripts/validate_homepage.py — exit 0
+python3 data-cleaning/scripts/validate_navigation.py — exit 0
+python3 data-cleaning/scripts/validate_news.py — exit 0
+python3 data-cleaning/scripts/validate_organizations.py — exit 0
+python3 data-cleaning/scripts/validate_schema.py — exit 0

@@ -100,8 +100,8 @@ public class JsonExpertAnswerRepository implements ExpertAnswerRepository {
         // Normalize stage: the record carries only contentSource.id, so the
         // producer's display name is resolved from content-sources.json here.
         contentSources.resolveName(expertAnswer.contentSource);
-        // Expert content has never been editorially classified, so this is
-        // where it first reaches the taxonomy — no per-type code needed.
+        // IM-03: the shared classifier preserves explicit Expert classification;
+        // absent Category/Topic remains absent for stewardship, never inferred.
         classifier.classify(expertAnswer);
     }
 

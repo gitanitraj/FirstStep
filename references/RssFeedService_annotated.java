@@ -1,12 +1,12 @@
 /*
- * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java
- *
- * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
- * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
- * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
- * classification, Community selection and article approval retain their existing owners.
- * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
- * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ * IM-02 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java
+ * WHAT: Read-only internal diagnostic/report integration; no persisted lifecycle state.
+ * WHY: stewardship must inspect retained records without changing resident eligibility.
+ * INTERACTION: diagnostics reuse IM-01 assessment and its Community calendar; status and
+ * Article approval remain separate. The CLI is outside resident component scanning.
+ * ALTERNATIVES: a second expiry algorithm, filtered resident inputs, live feed fetching,
+ * or an Admin dashboard would violate this package's narrow contract.
+ * See docs/v2-completion-plan/IM-02 Execution Report.md and the individual method comments.
  */
 package org.firststep.backend.news.service;
 
@@ -171,6 +171,14 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
     @Override
     public List<NewsItem> getSignedBills() {
         return signedBills.stream().filter(lifecycle::isCurrent).toList();
+    }
+
+    /**
+     * Stored, relevance-admitted CivicContent for internal stewardship only.
+     * No fetch, expiry or status filter; never substitute the ungated signed-bill feed.
+     */
+    public List<NewsItem> getStoredRssItems() {
+        return List.copyOf(rssItems);
     }
 
     // ------------------------------------------------------------

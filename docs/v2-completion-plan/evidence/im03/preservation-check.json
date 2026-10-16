@@ -1,0 +1,11 @@
+{
+  "preexisting_im02_files_preserved_byte_for_byte": 23,
+  "approved_record_changes": 12,
+  "data_files_changed": [
+    "app/data/faq.json",
+    "app/data/expert-answers.json"
+  ],
+  "all_other_fields_preserved": true,
+  "taxonomy_unchanged": true,
+  "index_unchanged": true
+}

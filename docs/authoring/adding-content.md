@@ -255,3 +255,46 @@ thing to check** — that is the one failure the validators allow through by des
 | Broken image | Filename does not match the file exactly, including spaces and case |
 | Validator rejects `category_tags` | Not one of the ten categories, or wrong capitalization |
 | Validator rejects `geography` or `author` | Free text where a controlled vocabulary is required |
+
+## Expert Answer / FAQ classification — IM-03
+
+Stored FAQ and Expert Answer catalog entries require an explicit, nonempty
+`category_tags` list using controlled Category labels from `app/data/taxonomy.json`.
+Write an editorially supported Category decision into the record; titles, answers,
+producers, descriptive `tags`, source links and Topic values do not authorize runtime
+inference. The shared classifier now leaves missing Expert/FAQ Category and Topic
+fields missing so validation and stewardship can identify the defect.
+
+Category-only records are valid: `subcategory` is optional. If a Topic is explicitly
+assigned, it must be controlled and at least one assigned Category must be its
+parent. A Topic does not manufacture parent Category membership. Distinct multiple
+Categories are allowed; a single Topic need not belong to every additional Category,
+but a Topic-scoped request must use a matching parent. Case-insensitive label/Topic
+matching remains supported, as in existing TaxonomyService; prefer canonical display
+labels when authoring. Empty/unknown/duplicate Category entries, unknown Topics and
+missing parent relationships are rejected. Descriptive tags remain separate.
+
+Run the existing gate from the repository root:
+
+```sh
+python3 data-cleaning/scripts/validate_schema.py
+python3 data-cleaning/scripts/validate_schema.py --expert-only
+python3 -m unittest discover -s data-cleaning/tests -v
+```
+
+The default schema command checks resources plus **both** complete stored Expert/FAQ
+files across all Communities and statuses. `--expert-only --expert-input <path>`
+(repeatable) is available for isolated fixtures; it does not replace the default
+whole-catalog gate. Failures name the source file, record id, Community and defect.
+No draft-classification exemption is defined for the current curated FAQ/Expert
+catalog. Incomplete/historical records are still retained by the raw repositories
+for inspection, but cannot acquire Category participation through inference or
+bypass validation because of inactive/expired/draft metadata. This does not create
+an Expert approval workflow or impose Article review semantics on FAQ content.
+
+Category Destination supporting collections, Category-scoped Updates and navigation
+counts apply the same explicit relationship check. The existing Topic resolver can
+also return Expert/FAQ with an explicitly valid Topic/parent. IM-01 continues to
+control current expiry/status independently. The October 16, 2026 assignments for
+FAQ-001–006 and EA-001–006 were editorially approved and individually content-verified;
+see `docs/v2-completion-plan/IM-03 Editorial Classification Decision.md`.

@@ -1,0 +1,7 @@
+Command: bash /workspace/.firststep-tools/im01-mvn test
+Maven working directory: /workspace/FirstStep/backend
+Temurin 25+36; Maven 3.9.9; Java 17 compile target
+
+[INFO] Tests run: 417, Failures: 0, Errors: 0, Skipped: 0
+[INFO] BUILD SUCCESS
+[INFO] Finished at: 2026-10-15T22:47:05Z

@@ -1,0 +1,15 @@
+ Test Files  19 passed (19)
+      Tests  126 passed (126)
+   Duration  19.29s (transform 1.45s, setup 2.70s, collect 6.42s, tests 11.21s, environment 23.10s, prepare 3.35s)
+frontend/: npm test — exit 0
+frontend/: npx tsc --noEmit — exit 0
+frontend/: npm run build — exit 0
+python3 data-cleaning/scripts/validate_content_sources.py — exit 0
+python3 data-cleaning/scripts/validate_homepage.py — exit 0
+python3 data-cleaning/scripts/validate_navigation.py — exit 0
+python3 data-cleaning/scripts/validate_news.py — exit 0
+python3 data-cleaning/scripts/validate_organizations.py — exit 0
+python3 data-cleaning/scripts/validate_schema.py — exit 0
+Packaged CLI fixed-clock same-scope runs (2): exit 0; byte-identical stdout
+Packaged CLI controlled temporary malformed-date fixture: exit 1; valid findings retained
+Packaged CLI empty Community scope: exit 0; intelligible empty report

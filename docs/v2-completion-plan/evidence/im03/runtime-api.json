@@ -1,0 +1,31 @@
+{
+  "packaged_api_checks": "passed",
+  "routes_checked": 9,
+  "supporting_collections": {
+    "housing": [
+      "EA-001",
+      "EA-005",
+      "FAQ-002"
+    ],
+    "food": [
+      "EA-002",
+      "FAQ-001"
+    ],
+    "legal": [
+      "FAQ-003"
+    ],
+    "utilities": [
+      "EA-006",
+      "FAQ-004"
+    ],
+    "health": [
+      "EA-004",
+      "FAQ-005"
+    ],
+    "employment": [
+      "EA-003",
+      "FAQ-006"
+    ]
+  },
+  "real_expert_topics_fabricated": false
+}
