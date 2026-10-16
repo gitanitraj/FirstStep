@@ -1,0 +1,13 @@
+{
+  "backend/src/main/java/org/firststep/backend/category/selection/FeaturedRoleQualification.java": "references/FeaturedRoleQualification_annotated.java",
+  "backend/src/main/java/org/firststep/backend/category/selection/FeaturedTopicSelector.java": "references/FeaturedTopicSelector_annotated.java",
+  "backend/src/main/java/org/firststep/backend/category/selection/FeaturedTopicInventory.java": "references/FeaturedTopicInventory_annotated.java",
+  "backend/src/test/java/org/firststep/backend/category/selection/FeaturedTopicCatalogTest.java": "references/tests/FeaturedTopicCatalogTest_annotated.java",
+  "backend/src/test/java/org/firststep/backend/category/selection/FeaturedTopicOrderingTest.java": "references/tests/FeaturedTopicOrderingTest_annotated.java",
+  "backend/src/test/java/org/firststep/backend/category/selection/FeaturedRoleQualificationTest.java": "references/tests/FeaturedRoleQualificationTest_annotated.java",
+  "backend/src/test/java/org/firststep/backend/category/selection/FeaturedTopicSelectorIntegrationTest.java": "references/tests/FeaturedTopicSelectorIntegrationTest_annotated.java",
+  "frontend/src/App.test.tsx": "references/tests/AppTest_annotated.tsx",
+  "frontend/src/pages/TopicPage/HelpBrowse.test.tsx": "references/tests/HelpBrowseTest_annotated.tsx",
+  "backend/src/main/java/org/firststep/backend/category/selection/AuthoredTopicEvidence.java": "references/AuthoredTopicEvidence_annotated.java",
+  "backend/src/test/java/org/firststep/backend/category/selection/AuthoredTopicEvidenceTest.java": "references/tests/AuthoredTopicEvidenceTest_annotated.java"
+}

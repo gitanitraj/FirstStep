@@ -4,7 +4,7 @@
  * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
  * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
  */
-import { fireEvent, render, screen, within } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes, useNavigate } from 'react-router-dom';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 import TopicPage from './TopicPage';
@@ -27,7 +27,8 @@ afterEach(() => vi.unstubAllGlobals());
 describe('IM-05 help browse journey', () => {
   it('direct all-help preserves Community, focuses context and reaches every result', async () => {
     stub(); renderAt('/category/housing/help?communityId=second-community');
-    expect(await screen.findByRole('heading', { name: 'All Housing Help', level: 1 })).toHaveFocus();
+    const heading = await screen.findByRole('heading', { name: 'All Housing Help', level: 1 });
+    await waitFor(() => expect(heading).toHaveFocus());
     expect(fetch).toHaveBeenCalledWith('/api/category/housing/help?communityId=second-community');
     expect(screen.getAllByRole('link', { name: /^Programa José/ })).toHaveLength(4);
     expect(screen.queryByText('Programa José 54')).not.toBeInTheDocument();
@@ -45,7 +46,8 @@ describe('IM-05 help browse journey', () => {
     renderAt('/category/housing/help?communityId=second-community');
     fireEvent.click(await screen.findByText('Narrow by topic'));
     fireEvent.click(screen.getByRole('link', { name: 'Emergency Shelter (55)' }));
-    expect(await screen.findByRole('heading', { name: 'Emergency Shelter', level: 1 })).toHaveFocus();
+    const heading = await screen.findByRole('heading', { name: 'Emergency Shelter', level: 1 });
+    await waitFor(() => expect(heading).toHaveFocus());
     fireEvent.click(within(screen.getByRole('navigation', { name: 'Breadcrumb' })).getByRole('link', { name: 'All Housing Help' }));
     expect(await screen.findByRole('heading', { name: 'All Housing Help' })).toBeInTheDocument();
     fireEvent.click(screen.getByRole('button', { name: 'History back' }));

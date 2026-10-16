@@ -1,0 +1,12 @@
+{
+  "checked": 520,
+  "changed": [
+    "frontend/src/App.test.tsx",
+    "frontend/src/pages/TopicPage/HelpBrowse.test.tsx",
+    "references/tests/HelpBrowseTest_annotated.tsx"
+  ],
+  "reason": "Two frontend async test timing corrections plus touched existing mirror; all assertions preserved.",
+  "allExistingProductionCatalogAndDependencyFilesUnchanged": true,
+  "sourceMirrorsChecked": 11,
+  "allMirrorsExact": true
+}

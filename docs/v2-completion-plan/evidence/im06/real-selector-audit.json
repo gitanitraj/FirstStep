@@ -1,0 +1,390 @@
+{
+  "clock" : "2026-10-16T16:00:00Z",
+  "storedResourceCount" : 229,
+  "currentResourceCountAcrossCommunities" : 229,
+  "currentWilmingtonHousingHelpCount" : 36,
+  "housing" : {
+    "communityId" : "wilmington-de",
+    "categoryKey" : "housing",
+    "selectionDate" : "2026-10-16",
+    "selected" : [ {
+      "key" : "transitional-housing",
+      "name" : "Transitional Housing",
+      "actionableCount" : 11,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-002", "HA-003", "HA-005", "HA-010", "HA-012", "HA-015", "HA-019", "HA-020", "HA-028", "HA-030", "HA-037" ],
+      "availableRoles" : {
+        "HA-002" : [ "DURABLE" ],
+        "HA-003" : [ "DURABLE" ],
+        "HA-005" : [ "DURABLE" ],
+        "HA-010" : [ "DURABLE" ],
+        "HA-012" : [ "DURABLE" ],
+        "HA-015" : [ "DURABLE" ],
+        "HA-019" : [ "DURABLE" ],
+        "HA-020" : [ "DURABLE" ],
+        "HA-028" : [ "DURABLE" ],
+        "HA-030" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-002", "no_authentic_catalog_date:HA-003", "no_authentic_catalog_date:HA-005", "no_authentic_catalog_date:HA-010", "no_authentic_catalog_date:HA-012", "no_authentic_catalog_date:HA-015", "no_authentic_catalog_date:HA-019", "no_authentic_catalog_date:HA-020", "no_authentic_catalog_date:HA-028", "no_authentic_catalog_date:HA-030", "no_authentic_catalog_date:HA-037", "no_explicit_standard_urgency:HA-037" ]
+    }, {
+      "key" : "emergency-shelter",
+      "name" : "Emergency Shelter",
+      "actionableCount" : 9,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-001", "HA-006", "HA-009", "HA-016", "HA-017", "HA-018", "HA-029", "HA-031", "HA-033" ],
+      "availableRoles" : {
+        "HA-016" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-001", "no_authentic_catalog_date:HA-006", "no_authentic_catalog_date:HA-009", "no_authentic_catalog_date:HA-016", "no_authentic_catalog_date:HA-017", "no_authentic_catalog_date:HA-018", "no_authentic_catalog_date:HA-029", "no_authentic_catalog_date:HA-031", "no_authentic_catalog_date:HA-033", "no_explicit_standard_urgency:HA-001", "no_explicit_standard_urgency:HA-006", "no_explicit_standard_urgency:HA-009", "no_explicit_standard_urgency:HA-017", "no_explicit_standard_urgency:HA-018", "no_explicit_standard_urgency:HA-029", "no_explicit_standard_urgency:HA-031", "no_explicit_standard_urgency:HA-033" ]
+    }, {
+      "key" : "homeownership",
+      "name" : "Homeownership",
+      "actionableCount" : 4,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-011", "HA-013", "HA-021", "HA-022" ],
+      "availableRoles" : {
+        "HA-011" : [ "DURABLE" ],
+        "HA-013" : [ "DURABLE" ],
+        "HA-021" : [ "DURABLE" ],
+        "HA-022" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-011", "no_authentic_catalog_date:HA-013", "no_authentic_catalog_date:HA-021", "no_authentic_catalog_date:HA-022" ]
+    }, {
+      "key" : "rental-assistance",
+      "name" : "Rental Assistance",
+      "actionableCount" : 4,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-008", "HA-023", "HA-026", "HA-034" ],
+      "availableRoles" : {
+        "HA-008" : [ "DURABLE" ],
+        "HA-034" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-008", "no_authentic_catalog_date:HA-023", "no_authentic_catalog_date:HA-026", "no_authentic_catalog_date:HA-034", "no_explicit_standard_urgency:HA-023", "no_explicit_standard_urgency:HA-026" ]
+    } ],
+    "candidates" : [ {
+      "key" : "transitional-housing",
+      "name" : "Transitional Housing",
+      "actionableCount" : 11,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-002", "HA-003", "HA-005", "HA-010", "HA-012", "HA-015", "HA-019", "HA-020", "HA-028", "HA-030", "HA-037" ],
+      "availableRoles" : {
+        "HA-002" : [ "DURABLE" ],
+        "HA-003" : [ "DURABLE" ],
+        "HA-005" : [ "DURABLE" ],
+        "HA-010" : [ "DURABLE" ],
+        "HA-012" : [ "DURABLE" ],
+        "HA-015" : [ "DURABLE" ],
+        "HA-019" : [ "DURABLE" ],
+        "HA-020" : [ "DURABLE" ],
+        "HA-028" : [ "DURABLE" ],
+        "HA-030" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-002", "no_authentic_catalog_date:HA-003", "no_authentic_catalog_date:HA-005", "no_authentic_catalog_date:HA-010", "no_authentic_catalog_date:HA-012", "no_authentic_catalog_date:HA-015", "no_authentic_catalog_date:HA-019", "no_authentic_catalog_date:HA-020", "no_authentic_catalog_date:HA-028", "no_authentic_catalog_date:HA-030", "no_authentic_catalog_date:HA-037", "no_explicit_standard_urgency:HA-037" ]
+    }, {
+      "key" : "emergency-shelter",
+      "name" : "Emergency Shelter",
+      "actionableCount" : 9,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-001", "HA-006", "HA-009", "HA-016", "HA-017", "HA-018", "HA-029", "HA-031", "HA-033" ],
+      "availableRoles" : {
+        "HA-016" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-001", "no_authentic_catalog_date:HA-006", "no_authentic_catalog_date:HA-009", "no_authentic_catalog_date:HA-016", "no_authentic_catalog_date:HA-017", "no_authentic_catalog_date:HA-018", "no_authentic_catalog_date:HA-029", "no_authentic_catalog_date:HA-031", "no_authentic_catalog_date:HA-033", "no_explicit_standard_urgency:HA-001", "no_explicit_standard_urgency:HA-006", "no_explicit_standard_urgency:HA-009", "no_explicit_standard_urgency:HA-017", "no_explicit_standard_urgency:HA-018", "no_explicit_standard_urgency:HA-029", "no_explicit_standard_urgency:HA-031", "no_explicit_standard_urgency:HA-033" ]
+    }, {
+      "key" : "homeownership",
+      "name" : "Homeownership",
+      "actionableCount" : 4,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-011", "HA-013", "HA-021", "HA-022" ],
+      "availableRoles" : {
+        "HA-011" : [ "DURABLE" ],
+        "HA-013" : [ "DURABLE" ],
+        "HA-021" : [ "DURABLE" ],
+        "HA-022" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-011", "no_authentic_catalog_date:HA-013", "no_authentic_catalog_date:HA-021", "no_authentic_catalog_date:HA-022" ]
+    }, {
+      "key" : "rental-assistance",
+      "name" : "Rental Assistance",
+      "actionableCount" : 4,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-008", "HA-023", "HA-026", "HA-034" ],
+      "availableRoles" : {
+        "HA-008" : [ "DURABLE" ],
+        "HA-034" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-008", "no_authentic_catalog_date:HA-023", "no_authentic_catalog_date:HA-026", "no_authentic_catalog_date:HA-034", "no_explicit_standard_urgency:HA-023", "no_explicit_standard_urgency:HA-026" ]
+    }, {
+      "key" : "sober-living",
+      "name" : "Sober Living",
+      "actionableCount" : 3,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-014", "HA-024", "HA-025" ],
+      "availableRoles" : {
+        "HA-014" : [ "DURABLE" ],
+        "HA-024" : [ "DURABLE" ],
+        "HA-025" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-014", "no_authentic_catalog_date:HA-024", "no_authentic_catalog_date:HA-025" ]
+    }, {
+      "key" : "senior-housing",
+      "name" : "Senior Housing",
+      "actionableCount" : 2,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-027", "HA-036" ],
+      "availableRoles" : {
+        "HA-027" : [ "DURABLE" ],
+        "HA-036" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-027", "no_authentic_catalog_date:HA-036" ]
+    }, {
+      "key" : "youth-housing",
+      "name" : "Youth Housing",
+      "actionableCount" : 2,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-007", "HA-032" ],
+      "availableRoles" : {
+        "HA-032" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-007", "no_authentic_catalog_date:HA-032", "no_explicit_standard_urgency:HA-007" ]
+    }, {
+      "key" : "public-housing",
+      "name" : "Public Housing",
+      "actionableCount" : 1,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "HA-035" ],
+      "availableRoles" : {
+        "HA-035" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:HA-035" ]
+    }, {
+      "key" : "eviction-prevention",
+      "name" : "Eviction Prevention",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : "2026-08-12",
+      "actionableIds" : [ ],
+      "availableRoles" : {
+        "FL-002" : [ "VISUAL" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    } ],
+    "diagnostics" : [ {
+      "code" : "STABLE_TOPIC_KEY_FALLBACK",
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topicKeys" : [ "homeownership", "rental-assistance" ],
+      "explanation" : "Equal actionable count, distinct role coverage, direct actions, recent context and catalog/approval newness; stable key resolves order."
+    }, {
+      "code" : "STABLE_TOPIC_KEY_FALLBACK",
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topicKeys" : [ "senior-housing", "youth-housing" ],
+      "explanation" : "Equal actionable count, distinct role coverage, direct actions, recent context and catalog/approval newness; stable key resolves order."
+    } ]
+  },
+  "foodWilmington" : {
+    "communityId" : "wilmington-de",
+    "categoryKey" : "food",
+    "selectionDate" : "2026-10-16",
+    "selected" : [ ],
+    "candidates" : [ {
+      "key" : "farmers-market",
+      "name" : "Farmers Market",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    }, {
+      "key" : "food-pantry",
+      "name" : "Food Pantry",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    }, {
+      "key" : "home-delivered-meals",
+      "name" : "Home-Delivered Meals",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    }, {
+      "key" : "prepared-meals",
+      "name" : "Prepared Meals",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    } ],
+    "diagnostics" : [ ]
+  },
+  "foodPositiveCommunity" : {
+    "communityId" : "bear-de",
+    "categoryKey" : "food",
+    "selectionDate" : "2026-10-16",
+    "selected" : [ {
+      "key" : "food-pantry",
+      "name" : "Food Pantry",
+      "actionableCount" : 2,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "SD-032", "SD-042" ],
+      "availableRoles" : {
+        "SD-032" : [ "DURABLE" ],
+        "SD-042" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:SD-032", "no_authentic_catalog_date:SD-042" ]
+    } ],
+    "candidates" : [ {
+      "key" : "food-pantry",
+      "name" : "Food Pantry",
+      "actionableCount" : 2,
+      "distinctRoleCoverage" : 1,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ "SD-032", "SD-042" ],
+      "availableRoles" : {
+        "SD-032" : [ "DURABLE" ],
+        "SD-042" : [ "DURABLE" ]
+      },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ "no_authentic_catalog_date:SD-032", "no_authentic_catalog_date:SD-042" ]
+    }, {
+      "key" : "farmers-market",
+      "name" : "Farmers Market",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    }, {
+      "key" : "home-delivered-meals",
+      "name" : "Home-Delivered Meals",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    }, {
+      "key" : "prepared-meals",
+      "name" : "Prepared Meals",
+      "actionableCount" : 0,
+      "distinctRoleCoverage" : 0,
+      "directActionCount" : 0,
+      "recentContextCount" : 0,
+      "catalogOrApprovalNewness" : null,
+      "actionableIds" : [ ],
+      "availableRoles" : { },
+      "directActionIds" : [ ],
+      "contextIds" : [ ],
+      "metadataLimitations" : [ ]
+    } ],
+    "diagnostics" : [ ]
+  },
+  "scope" : "Current relevance-admitted RSS cache only; no remote refresh or complete-feed claim"
+}

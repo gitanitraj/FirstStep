@@ -1,0 +1,21 @@
+ M frontend/src/App.test.tsx
+ M frontend/src/pages/TopicPage/HelpBrowse.test.tsx
+ M references/tests/HelpBrowseTest_annotated.tsx
+?? backend/src/main/java/org/firststep/backend/category/selection/
+?? backend/src/test/java/org/firststep/backend/category/selection/
+?? "docs/v2-completion-plan/IM-06 Execution Report.md"
+?? "docs/v2-completion-plan/IM-06 Qualification Decision.md"
+?? docs/v2-completion-plan/evidence/im06/
+?? "docs/v2-completion-plan/v2 \342\200\224 IM-06 Coding-Agent Work Order.md"
+?? "docs/v2-completion-plan/v2 \342\200\224 Updated Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+?? references/AuthoredTopicEvidence_annotated.java
+?? references/FeaturedRoleQualification_annotated.java
+?? references/FeaturedTopicInventory_annotated.java
+?? references/FeaturedTopicSelector_annotated.java
+?? references/tests/AppTest_annotated.tsx
+?? references/tests/AuthoredTopicEvidenceTest_annotated.java
+?? references/tests/FeaturedRoleQualificationTest_annotated.java
+?? references/tests/FeaturedTopicCatalogTest_annotated.java
+?? references/tests/FeaturedTopicOrderingTest_annotated.java
+?? references/tests/FeaturedTopicSelectorIntegrationTest_annotated.java
+HEAD 6f7a9554ba3d01e86a3028f4d50fe8b774197cba
