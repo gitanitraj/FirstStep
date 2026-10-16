@@ -1,0 +1,24 @@
+
+══════════════════════════════════════════════════════════════
+  FIRST STEP — CONTENT SOURCE VALIDATOR
+══════════════════════════════════════════════════════════════
+  File       : app/data/content-sources.json
+  Source     : hand-authored
+  Producers  : 15
+  References : 41 across 5 files
+  Mode       : normal
+  ✅  Passed      : 15
+  ❌  Failed      : 0
+══════════════════════════════════════════════════════════════
+
+── REFERENCES PER FILE ───────────────────────────────────
+  news.json                10
+  flyers.json              8
+  expert-answers.json      6
+  faq.json                 6
+  community notices        11
+
+  All checks passed. ✅
+
+══════════════════════════════════════════════════════════════
+

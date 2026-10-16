@@ -1,0 +1,25 @@
+
+ RUN  v2.1.9 /workspace/FirstStep/frontend
+
+stderr | src/pages/TopicPage/TopicPage.test.tsx > TopicPage > lists the topic content from one request
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/TopicPage/HelpBrowse.test.tsx > IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/TopicPage/TopicPage.test.tsx (5 tests) 239ms
+ ✓ src/pages/TopicPage/HelpBrowse.test.tsx (7 tests) 607ms
+   ✓ IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result 385ms
+
+ Test Files  2 passed (2)
+      Tests  12 passed (12)
+   Start at  19:34:54
+   Duration  2.00s (transform 284ms, setup 203ms, collect 720ms, tests 846ms, environment 1.18s, prepare 180ms)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

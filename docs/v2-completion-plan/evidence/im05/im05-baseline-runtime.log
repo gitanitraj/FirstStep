@@ -1,0 +1,38 @@
+
+  .   ____          _            __ _ _
+ /\\ / ___'_ __ _ _(_)_ __  __ _ \ \ \ \
+( ( )\___ | '_ | '_| | '_ \/ _` | \ \ \ \
+ \\/  ___)| |_)| | | | | || (_| |  ) ) ) )
+  '  |____| .__|_| |_|_| |_\__, | / / / /
+ =========|_|==============|___/=/_/_/_/
+
+ :: Spring Boot ::               (v3.5.16)
+
+2026-10-16T19:31:08.344Z  INFO 104614 --- [           main] o.f.backend.FirstStepApplication         : Starting FirstStepApplication v0.1.0 using Java 25 with PID 104614 (/workspace/FirstStep/backend/target/firststep-backend-0.1.0.jar started by agent in /workspace/FirstStep)
+2026-10-16T19:31:08.364Z  INFO 104614 --- [           main] o.f.backend.FirstStepApplication         : No active profile set, falling back to 1 default profile: "default"
+2026-10-16T19:31:11.377Z  INFO 104614 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8097 (http)
+2026-10-16T19:31:11.414Z  INFO 104614 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-10-16T19:31:11.415Z  INFO 104614 --- [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.55]
+2026-10-16T19:31:11.456Z  INFO 104614 --- [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-10-16T19:31:11.458Z  INFO 104614 --- [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 2850 ms
+Loaded taxonomy (10 categories, 45 distinct subcategories, 3 notice kinds)
+Loaded source mappings (1 source(s), 24 category mappings)
+Loaded content sources (15 producers, 1 with feeds)
+Loaded navigation (2 grouped categories)
+Loaded homepage pathways (7)
+2026-10-16T19:31:12.312Z  INFO 104614 --- [           main] o.s.b.a.w.s.WelcomePageHandlerMapping    : Adding welcome page: class path resource [static/index.html]
+2026-10-16T19:31:12.827Z  INFO 104614 --- [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8097 (http) with context path '/'
+2026-10-16T19:31:12.855Z  INFO 104614 --- [           main] o.f.backend.FirstStepApplication         : Started FirstStepApplication in 6.164 seconds (process running for 8.083)
+Loaded expert answers from app/data/expert-answers.json (6 records)
+Loaded FAQs from app/data/faq.json (6 records)
+Loaded flyers from app/data/flyers.json (8 records)
+Loaded news items (10 records)
+Loaded organizations from app/data/organizations.json (64 records, 17 with an organization-level website)
+Loaded articles from app/data/articles.json (3 records, 1 approved for public serving)
+Loaded resources from app/data/resources.json (58 records)
+Loaded resources from app/data/resources.communities.json (171 records)
+Loaded 229 total resources (58 from resources.json, 171 from resources.communities.json)
+content-sources: 15 producers, all references resolved
+2026-10-16T19:31:21.934Z  INFO 104614 --- [nio-8097-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-10-16T19:31:21.934Z  INFO 104614 --- [nio-8097-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-10-16T19:31:21.935Z  INFO 104614 --- [nio-8097-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
