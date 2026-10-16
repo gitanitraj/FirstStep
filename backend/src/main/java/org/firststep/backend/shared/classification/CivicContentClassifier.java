@@ -15,6 +15,9 @@ import org.springframework.stereotype.Component;
  * The single entry point every ingestion path calls to normalize a piece of
  * content into the canonical taxonomy.
  *
+ * <p>IM-03 exception: FAQ and Expert Answer Category/Topic membership must be
+ * explicitly authored; neither missing field is inferred from prose or source identity.
+ *
  * <h2>The classification policy</h2>
  *
  * <blockquote>
@@ -75,6 +78,17 @@ public class CivicContentClassifier {
     public ClassificationResult classify(CivicContent item) {
         if (item == null) {
             return ClassificationResult.irrelevant("no content");
+        }
+
+        // IM-03 / P5: Expert/FAQ placement requires an explicit editorial decision.
+        // Keep raw unclassified records for audit, but never derive their Category or Topic.
+        if (item instanceof FAQ || item instanceof ExpertAnswer) {
+            if (isBlank(item.categoryTags)) {
+                unclassified.incrementAndGet();
+                return ClassificationResult.irrelevant("Expert/FAQ requires explicit Category classification");
+            }
+            editorial.incrementAndGet();
+            return ClassificationResult.editorial(item.categoryTags, item.subcategory);
         }
 
         boolean needsCategory = isBlank(item.categoryTags);

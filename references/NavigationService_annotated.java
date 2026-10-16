@@ -1,5 +1,14 @@
-
-
+/*
+ * IM-03 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/navigation/service/NavigationService.java
+ * WHAT: Bounded explicit classification enforcement; existing taxonomy and public shapes retained.
+ * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
+ * Topic is optional and must have an explicitly assigned parent when present.
+ * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
+ * validates relationships before Category/Topic collections, navigation and scoped Updates.
+ * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
+ * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
+ * See IM-03 execution report for editorial decisions, audit and regression evidence.
+ */
 package org.firststep.backend.navigation.service;
 
 import java.io.InputStream;
@@ -196,6 +205,7 @@ public class NavigationService {
         // previously absent from every count it belongs to, which meant the
         // navigation model was ignoring the only field it exists to read.
         all.addAll(articleService.getPublishable());
+        all.removeIf(item -> !taxonomyService.permitsExpertCategoryParticipation(item));
         if (communityId == null || communityId.isBlank()) {
             return all;
         }
@@ -241,158 +251,3 @@ public class NavigationService {
         }
     }
 }
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// NavigationService turns the editorial taxonomy plus already-classified
-// CivicContent into the structure a category page renders: groups, topics,
-// counts, and a per-content-type breakdown. Slice F3.
-// =============================================================================
-
-// =============================================================================
-// SECTION 1 — "READ MODEL, NOT BUSINESS MODEL" IS THE DESIGN CONSTRAINT
-// =============================================================================
-// The governing rule, stated before this class was written:
-//
-//     It must not classify content, infer relationships, or contain editorial
-//     rules. All editorial decisions belong to the taxonomy and the
-//     classification pipeline; NavigationService only aggregates, counts, and
-//     shapes data for presentation.
-//
-// Concretely: this class reads exactly TWO fields, categoryTags and subcategory.
-// It never looks at title, summary, description, tags, keywords or contentType
-// to decide where something goes. Handed an unclassified item it counts it
-// nowhere.
-//
-// The temptation this forbids is real and would look reasonable in review. A
-// resource with `category: "Housing Assistance"` and no categoryTags is
-// OBVIOUSLY housing — three lines here would place it, and a category page would
-// look more complete. Those three lines would be an editorial rule living in a
-// read model, and "where does this content appear?" would then have two answers
-// in two places that drift independently.
-//
-// The correct fix for such an item is upstream: classify it at ingestion. That
-// is what NavigationServiceTest.shouldNotClassifyUnclassifiedContent pins, using
-// a resource deliberately stuffed with housing language.
-//
-// A second test, shouldNotUseDescriptiveTagsToPlaceContent, covers the subtler
-// version: an item whose descriptive tags happen to include "Emergency Shelter"
-// is counted in its category but NOT under that topic. Descriptive metadata that
-// coincidentally matches a topic name is still descriptive metadata.
-//
-// SECTION 2 — WHY A READ MODEL IS EVEN POSSIBLE HERE
-// -----------------------------------------------------------------------------
-// Worth naming, because it is the payoff of two prior slices:
-//
-//     Classification is an INGESTION concern, not a QUERY concern.
-//
-// Because every item's editorial classification is settled before it reaches
-// any service, this class can be pure aggregation. Before Slice F2,
-// CategoryService had to translate raw DSCYF categories at request time — a
-// query-layer service that knew a vendor's vocabulary. Had that still been true,
-// NavigationService would have needed the same knowledge, and "read model" would
-// have been aspirational.
-//
-// SECTION 3 — GROUPED vs FLAT, ENFORCED RATHER THAN DOCUMENTED
-// -----------------------------------------------------------------------------
-// Decision 029 established: "a category absent from navigation.json renders a
-// flat topic list." Until now that was a sentence in a note and a rule in a
-// Python validator. Here it is structural — build() returns either groups or
-// topics, never both, and CategoryNavigation.isGrouped() is the single place a
-// caller asks.
-//
-// Housing (9 topics) and community-support (12) are grouped; the other eight
-// are flat, because a group header above one topic is noise rather than
-// hierarchy.
-//
-// Loading navigation.json is likewise NOT fatal when absent — unlike the
-// taxonomy. Navigation is presentation: without it every category renders a flat
-// topic list, which is a valid page. Without a taxonomy there is no vocabulary at
-// all. Same asymmetry, same reasoning, as SourceMappingService.
-//
-// SECTION 4 — WHY TOPIC COUNTS ARE SCOPED TO A CATEGORY
-// -----------------------------------------------------------------------------
-// topicNavigation() filters within `inCategory`, not across all content. This is
-// not an optimization — it is the only correct answer for a dual-declared topic.
-//
-// "Eviction Prevention" is a subcategory of BOTH housing and legal. A
-// housing-only resource under that topic must show on the Housing page and NOT
-// on the Legal one; flyer FL-002, editorially classified as both, must show on
-// both. Counting by topic name globally would give both pages the same number
-// and quietly overstate one of them. Two tests pin exactly this pair of cases.
-//
-// SECTION 5 — WHY EMPTY TOPICS ARE RETURNED
-// -----------------------------------------------------------------------------
-// A topic with count 0 is still in the response. Filtering them out would make
-// pages look tidier and would hide the thing validate_navigation.py exists to
-// surface: a canonical topic that no content can reach. An empty topic is
-// information — either content is missing or the taxonomy has a branch nobody
-// uses — and both are worth seeing. Presentation may choose to dim it; the read
-// model should not decide that.
-//
-// SECTION 6 — WHICH RSS FEED THIS READS, AND WHY IT MATTERS
-// -----------------------------------------------------------------------------
-// It injects RssFeedSource (relevance-gated) and NOT SignedLegislationSource
-// (every signed bill). Category pages are discovery, so they count the ~175
-// bills admitted as CivicContent, never the ~253 the engine turned away. Reading
-// the wrong interface here would drag pet-store and state-flag legislation into
-// residents' category pages — which is precisely the outcome the feed split was
-// introduced to make impossible.
-//
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - TaxonomyService supplies categories, subcategories and topicSlug().
-// - Six content sources supply already-classified CivicContent.
-// - Slice F4's GET /api/category/{key} will be a thin controller over getByKey();
-//   there is no endpoint in F3 on purpose, per the standing BFF pattern.
-// - /api/home is untouched: CategorySummary keeps its resources+flyers count
-//   until F4 reshapes the BFF, which is what keeps the Editorial Stability
-//   Invariant trivially checkable across this slice.
-//
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - Fold this into CategoryService. Rejected: that service answers "summarize
-//   every category for the homepage"; this one answers "shape one category for
-//   its page". Merging them would produce a service with two response shapes and
-//   two audiences.
-// - Precompute counts at load. Rejected: counts must reflect live content
-//   (RSS refreshes hourly), and Decision 029 already established that counts are
-//   computed at request time rather than stored — storing them in navigation.json
-//   was explicitly rejected there.
-// - Let NavigationService fall back to classification for unclassified items.
-//   Rejected — Section 1. This is the whole constraint.
-
-// =============================================================================
-// DECISION 052 — THE COUNT THAT WAS WRONG, AND HOW IT WAS FOUND
-// =============================================================================
-// For one slice, approved articles reached the category destination's
-// COLLECTIONS but not this read model. The result was a page whose own two
-// numbers disagreed:
-//
-//     housing   header total=75   collections sum=76
-//     legal     header total=49   collections sum=50
-//
-// The difference was exactly one record — OR-003, an approved article an editor
-// had classified into Housing ▸ Eviction Prevention and Legal ▸ Eviction
-// Prevention. Its topic tile read 1 where it should have read 2.
-//
-// WHY IT MATTERS MORE THAN THE ARITHMETIC. This service exists to read exactly
-// two fields, categoryTags and subcategory, and turn them into navigation. An
-// article carrying both and contributing to neither meant the read model was
-// ignoring the only fields it exists to read — for one content type, silently.
-//
-// HOW IT WAS FOUND: not by a test. Every unit test passed, and the API response
-// was structurally perfect. It surfaced from summing the rendered page's own
-// figures. That is the same class of bug as the "1 flyers" header and the
-// resource whose title equalled its organization name: correct JSON, wrong page.
-// Rendering the thing remains the check that catches what assertions do not.
-//
-// WHAT WAS DELIBERATELY NOT DONE: EditorialStabilityTest was left untouched. It
-// pins resources and flyers — the two protected classes — and whether articles
-// join that set is its own decision, taken after this invariant settles rather
-// than bundled into it. A test quietly re-pinned during an unrelated change is
-// a test that has stopped being a guard.
-// =============================================================================

@@ -1,0 +1,320 @@
+# IM-03 execution report
+
+**Package:** IM-03 — Expert / FAQ Category-Integrity Enforcement.
+**Starting disposition:** Implementation/Data Correction Required.
+**Ending disposition:** **Satisfied**, with the evidence below.
+**Execution date:** October 16, 2026 (America/New_York).
+**Journey/Epic:** J2, J4, J7; E5, with bounded downstream J5 authoring protection.
+This is not a declaration that First Step v2 or another IM package is complete.
+
+## 1. Actual repository baseline and predecessor preservation
+
+Initial branch: `copyofdev`. Initial full HEAD:
+`f66b3ceea346e53bab786d4022032342eece4c0d`.
+The checkout contained **23 preexisting modified/untracked IM-02 files**, including
+its lifecycle/RSS extensions, new diagnostics/renderer/CLI, tests, guidance,
+report/evidence and annotated mirrors. Those changes were not committed. IM-01
+was committed and present, including its lifecycle/API/projection tests.
+There were no starting diffs in `app/data`.
+
+Fetched the user-specified branch and inspected its actual remote changes: only
+the two newly supplied matrix/work-order documents. A fast-forward merge moved
+HEAD to **`0945c61b0e51074f4912b56c3bd130b6702379f3`** without replacing local work.
+Read the new **v2 — Authoritative IM-01–IM-14 Execution Matrix.md** first, then
+**v2 — IM-03 Coding-Agent Work Order.md** in `docs/v2-completion-plan/`.
+The updated matrix accepts IM-01/02 and authorizes this bounded IM-03 package.
+P4/P5, approved Architecture Resolutions and PC-01–PC-04 remain controlling.
+
+Before changes, SHA-256 fingerprints recorded all 23 preexisting IM-02 files.
+The final check confirms **every one is byte-for-byte unchanged**; see
+[evidence/im03/protected-im02-sha256.json](evidence/im03/protected-im02-sha256.json)
+and [preservation check](evidence/im03/preservation-check.json).
+No stash, reset, staging, commit or push was performed. IM-03 work remains
+reviewable alongside the protected IM-02 changes. No predecessor was recreated.
+
+## 2. Inspection and demonstrated gap
+
+Inspected:
+
+- `shared/model/CivicContent`, `ContentType`, `expert/model/FAQ`, `ExpertAnswer`;
+  concrete classes share EXPERT presentation while retaining separate models.
+- `app/data/faq.json`, `expert-answers.json`, `taxonomy.json`, relevant source
+  metadata and cross-record links.
+- `JsonFaqRepository`, `JsonExpertAnswerRepository` and raw repository interfaces;
+  `FaqService`, `ExpertAnswerService` and controllers; lifecycle/status filtering.
+- `CivicContentClassifier`, `CategoryClassifier`, `ClassificationResult`,
+  `TaxonomyService`, CategoryContent/CategoryPage/TopicPage services and DTOs,
+  NavigationService and category-scoped UpdatesService.
+- Existing classifier, repository, category/topic, navigation and lifecycle tests;
+  all six Python validators, authoring guidance, IM-01/02 evidence and the approved
+  matrix/work order.
+
+**Actual finding:** all 6 stored FAQs and all 6 stored Expert Answers lacked
+`category_tags`; all also lacked `subcategory`. `tags` contains descriptive terms,
+not an approved Category relationship. Both loaders call the shared classifier,
+which previously filled absent Category from prose in memory. This concealed the
+stored defect from Category delivery. Existing Category/Topic predicates read
+editorial fields but did not validate the complete Expert relationship; Topic
+inventory omitted Expert/FAQ even when explicitly Topic-classified.
+
+No established FAQ/Expert classification-draft exemption or separate Expert
+approval workflow exists. Missing/invalid historical entries must remain inspectable
+in raw storage, but cannot silently gain Category membership. Article approval
+semantics are not imposed on FAQ/Expert content.
+
+### Pre-change executable evidence
+
+| Check | Actual result before IM-03 correction |
+|---|---|
+| Full JDK 25 Maven `verify` with preexisting IM-02 work | **442 tests passed**, no failures/errors/skips |
+| All six existing Python validators | All exit 0; the existing schema gate did not check these Expert/FAQ relationships |
+| New focused reproduction against old classifier | 4 cases ran, **2 failed**: both concrete classes gained `[Housing]` despite null stored Category. The other 2 cases passed. |
+| Extended schema gate on unchanged live data, before approved correction | Exit **1**, **12 inspected / 12 classification failures**, each with record ID and `missing_category` |
+
+Evidence: [baseline](evidence/im03/baseline-backend.txt),
+[inference reproduction](evidence/im03/demonstrated-inference-gap.txt),
+[validator before correction](evidence/im03/validator-before-correction.txt).
+A green prior suite was not treated as proof that the missing relationship was sound.
+
+## 3. Editorial decision and full real-record audit
+
+No approved per-record assignment was present to copy. The work order prohibited
+inventing Categories from wording/source identity, so an editorial decision was
+requested while independent controls/tests continued.
+
+The user conditionally approved the proposed six-Category mapping, requiring
+verification of each actual title, question and substantive answer before writing.
+All twelve were read and checked; no ambiguous/unsupported assignment remained.
+The decision and individual content justifications are retained in
+[IM-03 Editorial Classification Decision.md](IM-03%20Editorial%20Classification%20Decision.md).
+The following corrections execute that explicit decision, not runtime keyword
+classification or a producer-based mapping.
+
+**Common stored context for every row:** `communityId=wilmington-de`, concrete
+ContentType EXPERT, no stored `subcategory` before or after, no `status` or
+`expirationDate`, and no applicable Article review/approval state. Under IM-01,
+missing expiry alone does not exclude the record or certify fresh verification.
+Before correction, Category validity failed regardless of in-memory classification;
+after correction, Category delivery additionally requires the unchanged Community,
+expiry/status and other applicable guards. All original source IDs remain intact.
+
+| Record ID / class | Actual title/question | Stored Category before → after | Original producer | Defect and verified justification |
+|---|---|---|---|---|
+| FAQ-001 / FAQ | How do I apply for SNAP benefits? | missing → Food | first-step | Missing Category. Answer describes applying for food benefits through ASSIST/DSS and application documents. |
+| FAQ-002 / FAQ | What is the eviction notice period in Delaware? | missing → Housing | first-step | Missing Category. Answer explains tenancy/eviction notice periods and court-ordered removal. |
+| FAQ-003 / FAQ | Where can I get free legal help in Wilmington? | missing → Legal | first-step | Missing Category. Answer describes access to free civil legal services across several subject areas. |
+| FAQ-004 / FAQ | Am I eligible for LIHEAP heating assistance? | missing → Utilities | first-step | Missing Category. Answer covers heating-bill assistance income criteria and application timing. |
+| FAQ-005 / FAQ | What documents do I need to apply for Medicaid? | missing → Health | first-step | Missing Category. Answer concerns documents and application channels for healthcare coverage. |
+| FAQ-006 / FAQ | How do I file an unemployment claim in Delaware? | missing → Employment | first-step | Missing Category. Answer covers unemployment insurance claims, employment history and filing timing. |
+| EA-001 / ExpertAnswer | What can I do if my landlord won't return my security deposit? | missing → Housing | de-volunteer-legal-services | Missing Category. Substantive answer is landlord deposit return/deductions and tenant remedies after moving out. |
+| EA-002 / ExpertAnswer | How do I apply for SNAP benefits in Delaware? | missing → Food | de-dhss | Missing Category. Answer covers SNAP application methods, household documents and expedited food benefits. |
+| EA-003 / ExpertAnswer | What are my rights if I'm fired without notice in Delaware? | missing → Employment | community-legal-aid | Missing Category. Answer concerns dismissal, unlawful employment termination, final pay and labor complaints; the legal producer does not determine placement. |
+| EA-004 / ExpertAnswer | Do I qualify for Medicaid if I'm unemployed? | missing → Health | westside-family-healthcare | Missing Category. Answer concerns Medicaid income/coverage eligibility, despite mentioning unemployment. |
+| EA-005 / ExpertAnswer | How much notice does my landlord have to give before eviction? | missing → Housing | de-volunteer-legal-services | Missing Category. Answer explains landlord notice, tenancy termination and court/lockout limits. |
+| EA-006 / ExpertAnswer | Is there help paying my winter heating bill? | missing → Utilities | de-dhss | Missing Category. Answer concerns LIHEAP heating grants, utility payment, income and applications. |
+
+| Audit count | Before | After |
+|---|---:|---:|
+| Stored records inspected | 12 (6 FAQ / 6 ExpertAnswer) | 12 (same identities) |
+| Fully valid explicit classification | 0 | **12** |
+| Missing/empty Category | **12** | **0** |
+| Unknown Category | 0 | 0 |
+| Duplicate/malformed Category entries | 0 | 0 |
+| Noncanonical case variants | 0 | 0 |
+| Invalid Topic | 0 | 0 |
+| Topic/parent-Category mismatch | 0 | 0 |
+| Topic assignments present | 0 | **0** |
+| Unresolved editorial assignments | 12 awaiting decision | **0** |
+
+Case-insensitive controlled label/Topic matching is retained from the existing
+TaxonomyService contract; case variants alone are not newly declared invalid.
+Duplicate labels, including case variants of the same label, are rejected.
+Distinct multiple Categories are supported; a Topic needs at least one explicitly
+assigned parent, not membership under every unrelated additional Category.
+
+The [before](evidence/im03/audit-before.json) and
+[after](evidence/im03/audit-after.json) machine-readable inventories include source
+paths, all twelve IDs, owning Community, concrete class, stored classification,
+status/expiry context and exact findings. They read stored records without resident
+filters. Before/after semantic comparison removes only the twelve inserted
+`category_tags` fields and proves equality of every other source field.
+
+## 4. Bounded changes
+
+### Production / projection code
+
+| File under backend/src/main/java/org/firststep/backend/ | Exact purpose |
+|---|---|
+| `shared/classification/CivicContentClassifier.java` | Explicit FAQ/ExpertAnswer exception: preserve authored Category/Topic unchanged; missing Category returns irrelevant and remains missing. No prose, tags, producer or Topic can manufacture placement. Other types' classifier behavior is unchanged. |
+| `category/service/TaxonomyService.java` | Central, read-only Expert classification diagnostics and category-participation guard: required controlled Category labels, distinct multiple Categories, optional controlled Topic and explicit parent. No Category/Topic inference or taxonomy edits. |
+| `category/service/CategoryContentService.java` | Apply the shared guard to Expert/FAQ Category collections. Existing Topic resolver also admits explicitly Topic/parent-classified FAQs and Expert Answers; rejects Topic requests outside the requested parent's taxonomy. No new destination/UI. |
+| `navigation/service/NavigationService.java` | Exclude invalid Expert classification from Category/navigation counts before shaping the read model. |
+| `updates/service/UpdatesService.java` | Same guard in Category-scoped Updates; independent unscoped/sector feed contracts were not redesigned. |
+| `expert/repository/JsonExpertAnswerRepository.java` | Comment correction only: the classifier now preserves explicit Expert membership rather than authoring it. Raw loading/storage retention remains unchanged. |
+| `category/dto/TopicPage.java` | Documentation correction only for permitted explicit Expert/FAQ Topic items; no DTO field/type changes. |
+
+No current-inventory status/expiry implementation, Article review guard or IM-02
+collector was altered. `FaqService`/`ExpertAnswerService` still use IM-01; raw
+repositories retain incomplete, inactive, expired and historical records for audit.
+There is no new global approval/workflow or arbitrary reassignment to conceal defects.
+
+### Data / validator / tests / documentation
+
+- `app/data/faq.json`, `app/data/expert-answers.json`: only twelve approved
+  `category_tags` fields inserted. No Topics, text, IDs, provenance, links, dates,
+  status, verification, organization or Community edits.
+- `data-cleaning/scripts/validate_schema.py`: extend the **existing** default
+  schema gate to both complete stored Expert/FAQ files, across all Communities
+  and statuses. Adds precise relationship diagnostics and isolated-fixture options
+  `--expert-only` / repeatable `--expert-input`. No general validator framework.
+- New Java tests: `shared/classification/ExpertIngestionTest` (4 parameterized
+  cases), `category/service/ExpertCategoryIntegrityTest` (5),
+  `expert/ExpertCategoryApiTest` (3) = **12 new backend cases**.
+- New `data-cleaning/tests/test_expert_classification.py`: **12 standard-library
+  unittest methods**, including real catalog regression and real CLI negative /
+  restored-positive fixtures; no testing dependency added.
+- Two existing tests were updated for explicitly changed requirements:
+  `CivicContentClassifierTest` now requires rejection of prose-derived Expert
+  placement; `EditorialProjectionTest` now expects exactly **8**, rather than 4,
+  eligible resource/flyer/FAQ/Expert Topic fixtures and asserts their exact IDs.
+  Navigation's existing 14 classified fixtures remain counted; the broader
+  news/law/Article Topic-list question remains IM-05. Stored-count pins were not changed.
+- `docs/authoring/adding-content.md`: explicit Category authoring/Topic contract,
+  validation commands, case/multi-Category policy and no inference/draft bypass.
+- This report, the editorial decision and `evidence/im03/` complete the audit trail.
+  Full touched-source/test mirrors are synchronized under `references/` and
+  `references/tests/`; protected IM-02 files were excluded from regeneration.
+
+## 5. Acceptance mapping (all final evidence passed)
+
+| ID | Named test / executed evidence |
+|---|---|
+| T01 Full stored audit | Twelve-row inventories above and audit-before/after JSON; `ExpertCategoryApiTest.shouldRetainAllTwelveApprovedCategoryOnlyRecordsAsExpertWithoutDerivedTopics`; Python real-catalog test |
+| T02 Category-only FAQ | `ExpertCategoryIntegrityTest.shouldDeliverExplicitCategoryOnlyFaqAndExpertWithoutFabricatingTopic`; real Category API for all corrected FAQ IDs |
+| T03 Category-only Expert Answer | Same service test and actual six-category supporting inventories; all remain EXPERT |
+| T04 Explicit valid Topic/parent | `shouldDeliverExplicitTopicsAndValidMultiCategoryIdentityOnlyUnderMatchingParents`; updated IM-01 Topic projection test lists all eight eligible fixture IDs |
+| T05 Topic without Category | `ExpertIngestionTest.shouldNotManufactureExpertCategoryFromProseOrTopic` (both classes); invalid-relationship service test; Python `test_topic_without_parent_cannot_manufacture_category` |
+| T06 Missing/empty Category | Python `test_missing_empty_and_malformed_category_are_identified`; old runtime reproduction and twelve real validator errors before correction; actual repository loader negative test preserves null classification |
+| T07 Unknown/mismatched values | `shouldRejectMissingUnknownAndMalformedRelationshipsBeforeCategoryCountsOrUpdates`, `shouldExplainExactValidationDefectsWhilePreservingCaseInsensitiveControlledMatching`; Python specific unknown/mismatch/invalid-topic tests |
+| T08 Legitimate multi-Category | Java explicit Housing+Legal fixture retains one identity across matching projections; Python supports distinct multiple Categories and a Topic with at least one assigned parent |
+| T09 Expired but sound classification | `shouldKeepClassificationIndependentOfExpiryStatusAndCommunityPartition`: raw expired record remains stored/valid, absent from current Category results |
+| T10 Approaching/inactive/withdrawn | Same fixed-clock service test; approaching retained, inactive/withdrawn omitted independently of valid Category; existing IM-01/02 tests rerun |
+| T11 Category service/API | `ExpertCategoryApiTest.shouldServeCorrectedRealFaqAndExpertSupportingCollectionsThroughCategoryApi`; packaged app checks six real Category destinations |
+| T12 Real validator injection | `test_real_cli_rejects_injected_missing_category_and_restored_input_passes`: temporary second-Community fixture exits 1 with exact ID, missing_category and parent_mismatch; explicit valid restoration exits 0 |
+| T13 Corrected real records | All twelve approved values pinned in Java/Python real-catalog regressions; zero defects after correction; decision source and substantive justification logged for every ID |
+| T14 Second Community | Synthetic test-community/another-community scoped results; temporary unclassified loader records preserve test-community; Python Community-independent classification fixture |
+| T15 Deterministic repeat | Python CLI restored-positive fixture runs twice with identical stdout; validator-after output repeated identically on unchanged live files; authored order/Category guards contain no random choice |
+| T16 Scope/preservation | All 23 IM-02 file hashes unchanged; only two data files changed; all non-Category fields equal; taxonomy, ContentType and dependency/lockfile diffs empty; no new destination/workflow/type |
+
+Negative tests assert the precise intended failure path, not merely any nonzero
+exit. Raw loader tests show that a missing relationship cannot be silently repaired
+by runtime keyword inference even when the title, answer and existing Topic contain
+strong subject cues. Category-only records never receive invented Topics.
+
+## 6. Executed commands, results and intermediate failures
+
+All backend commands used the repository's approved JDK 25 toolchain. The cloud
+wrapper `bash /workspace/.firststep-tools/im01-mvn <goals>` activates verified
+Temurin 25+36 and runs Maven 3.9.9 in `backend/`, with Java 17 compile target,
+existing proxy/CA configuration, toolchains XML and external Maven cache. Expanded
+final command (with JAVA_HOME/PATH activated by that wrapper):
+
+```sh
+/workspace/.firststep-tools/apache-maven-3.9.9/bin/mvn -B -ntp \
+  -s /workspace/.firststep-tools/settings.xml \
+  -t /workspace/.firststep-tools/toolchains25.xml \
+  -Dmaven.repo.local=/workspace/.firststep-tools/m2 verify
+```
+
+Outside this machine use standard `mvn verify` from `backend/` with its configured
+JDK 25 toolchain. No dependencies, lockfiles, checksums or TLS settings were weakened.
+
+| Actual command | Result |
+|---|---|
+| Wrapper `verify` before edits | **442 passed**, 0 failures/errors/skipped |
+| Wrapper `-Dtest=ExpertIngestionTest test` before correction | 4 executed, 2 failed (demonstrated missing-Category inference) |
+| Wrapper `-Dtest=ExpertIngestionTest,ExpertCategoryIntegrityTest,ExpertCategoryApiTest test` after correction | **12 passed**, 0 failures/errors/skipped |
+| First full wrapper `verify` | 454 executed, 1 failure / 1 error: the two superseded old test expectations described above; no unrelated baseline failure |
+| Final wrapper `verify` | **454 passed**, 0 failures/errors/skipped; executable JAR packaged |
+| `python3 -m unittest discover -s data-cleaning/tests -v` | **12 passed** |
+| `python3 data-cleaning/scripts/validate_schema.py --expert-only` on unchanged data before correction | Exit 1, 12 records / 12 classification failures |
+| Same on corrected live data, repeated | Exit 0, 12 records / 0 failures; identical output |
+| All six `python3 data-cleaning/scripts/validate_<name>.py` after correction | All exit 0: content_sources, homepage, navigation, news, organizations, schema |
+| Frontend `npm test` | **19 files / 126 tests passed** |
+| Frontend `npx tsc --noEmit` | Exit 0 |
+| Frontend `npm run build` | Exit 0; TypeScript and Vite production build |
+
+During the test-expectation update, one intermediate compile attempt caught a
+missing static assertFalse import; it was corrected before the final successful
+verify. Compilation was not counted as executed tests. No assertion, test, gate or
+catalog record was disabled to obtain the final pass.
+
+Baseline, original inference failures, first-full-run differences, final verify,
+Python output and validator before/after are separately retained in
+[evidence/im03](evidence/im03/final-backend.txt). Existing frontend/catalog gates
+were executed for this task rather than inherited from IM-02.
+
+## 7. Actual packaged runtime checks
+
+Started the freshly packaged application from the repository root using:
+
+```sh
+/workspace/.firststep-tools/jdk-25+36/bin/java \
+  -jar backend/target/firststep-backend-0.1.0.jar \
+  --server.port=8082 --news.rss.initial-delay=86400000 --ai.enabled=false
+```
+
+Nine local functional requests passed: six `/api/category/<key>?communityId=wilmington-de`
+requests, `/api/faqs`, `/api/expert-answers`, and Housing's eviction-prevention Topic.
+The actual supporting IDs are retained in [runtime-api.json](evidence/im03/runtime-api.json):
+
+- Housing: EA-001, EA-005, FAQ-002.
+- Food: EA-002, FAQ-001.
+- Legal: FAQ-003.
+- Utilities: EA-006, FAQ-004.
+- Health: EA-004, FAQ-005.
+- Employment: EA-003, FAQ-006.
+
+Both list endpoints return six records, all EXPERT with explicit Category and no
+Topic. None of the twelve Category-only records was fabricated into Housing's
+Topic through wording. Synthetic explicit-Topic behavior is tested separately,
+without changing live records merely to exercise that path. No live RSS or AI
+verification is claimed, nor manual responsive/accessibility release acceptance.
+
+## 8. Architecture, limits and downstream ownership
+
+- Fixed ContentTypes and concrete FAQ/Expert distinctions are preserved.
+  First Rate News remains a controlled presentation projection name, not a new
+  ContentType or Category; its composition was not changed by IM-03.
+- Existing Category → Topic taxonomy and all nodes are unchanged. Topic validity
+  and required explicit parent are enforced without inferring either field.
+- Original IDs, one Community owner, source/provenance, organization fields, dates,
+  status, Article review guards and IM-01 eligibility are preserved. No “freshly
+  verified” claim follows from adding a Category. Stored rows are retained.
+- IM-02's diagnostics, CLI, guidance, samples and all other preexisting changes
+  are byte-for-byte preserved, and its tests are included in the 454-test pass.
+- J2 gains trustworthy classified inputs for Topic discovery; J4 gains reachable
+  Expert/FAQ supporting content; J7/E5 gain intake/gate and projection protection.
+  J5 benefits from explicit authoring/validation instructions, without an Admin UI.
+- IM-05 can reuse the validated Category/Topic contract for its broader help/Topic
+  redesign; current resource/flyer/Expert Topic support is bounded to IM03-T04.
+  Broader NEWS/LAW/Article Topic integration is not pulled forward.
+- IM-06 uses sound classified candidate inventory; featured selection/ranking was
+  not implemented. IM-08/09 retain ownership of redesign and collection composition.
+  IM-12 retains the full identity/provenance/Community and 99-rule audit.
+- No IM-04 Flyer overlap, IM-10 occurrence logic, new taxonomic nodes, public DTO
+  fields, schema/domain rewrite, database migration or V3 operations were introduced.
+
+**Unresolved editorial records: none.** All twelve conditional assignments were
+supported and stored only after content verification. **Final disposition: Satisfied**
+for IM-03, supported by the complete audit and executed acceptance evidence above.
+Stop at this package boundary; later packages and final v2 closure remain outstanding.
+
+## Acceptance record — October 16, 2026
+
+The user recorded IM-03 as **Satisfied** and authorized attaching this execution
+report and the editorial classification decision as evidence, followed by commit
+and push. The authoritative execution matrix now links both documents in its
+IM-03 closure entry. The earlier no-staging/commit statements describe package
+execution before this separate acceptance authorization. The preserved IM-02
+predecessor is committed separately so the pushed branch is self-contained.

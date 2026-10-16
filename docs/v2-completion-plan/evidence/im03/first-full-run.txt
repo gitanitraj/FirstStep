@@ -1,0 +1,13 @@
+Command: bash /workspace/.firststep-tools/im01-mvn verify
+Working directory: backend/; Maven 3.9.9; Temurin 25+36 toolchain; release 17
+
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.309 s -- in org.firststep.backend.shared.classification.ExpertIngestionTest
+[ERROR] org.firststep.backend.shared.classification.CivicContentClassifierTest.shouldClassifyExpertContentThroughTheSamePathAsEverythingElse -- Time elapsed: 0.017 s <<< ERROR!
+[ERROR] org.firststep.backend.shared.lifecycle.EditorialProjectionTest.shouldFilterTopicInventoryAndDynamicTopicCounts -- Time elapsed: 0.010 s <<< FAILURE!
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.038 s -- in org.firststep.backend.ai.service.DecisionAgentServiceTest
+[INFO] Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 0.161 s -- in org.firststep.backend.notices.controller.CommunityNoticesControllerTest
+[ERROR]   EditorialProjectionTest.shouldFilterTopicInventoryAndDynamicTopicCounts:174 expected: <4> but was: <8>
+[ERROR]   CivicContentClassifierTest.shouldClassifyExpertContentThroughTheSamePathAsEverythingElse:212 NullPointer Cannot invoke "java.util.List.contains(Object)" because "expert.categoryTags" is null
+[ERROR] Tests run: 454, Failures: 1, Errors: 1, Skipped: 0
+[INFO] BUILD FAILURE
+[INFO] Finished at: 2026-10-16T13:30:20Z

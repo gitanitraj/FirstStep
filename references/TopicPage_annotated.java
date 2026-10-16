@@ -1,9 +1,14 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — backend/.../category/dto/TopicPage.java  (Slice F6)
- * See references/decisions.md Decision 040.
- * NB: references/TopicPage_annotated.tsx is the FRONTEND page of the same name.
- * ============================================================================= */
-
+/*
+ * IM-03 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/category/dto/TopicPage.java
+ * WHAT: Bounded explicit classification enforcement; existing taxonomy and public shapes retained.
+ * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
+ * Topic is optional and must have an explicitly assigned parent when present.
+ * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
+ * validates relationships before Category/Topic collections, navigation and scoped Updates.
+ * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
+ * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
+ * See IM-03 execution report for editorial decisions, audit and regression evidence.
+ */
 package org.firststep.backend.category.dto;
 
 import java.util.List;
@@ -19,11 +24,10 @@ import org.firststep.backend.shared.dto.ContentItem;
  * questions and needs three sections; a topic page answers one — <i>what is
  * available under this topic?</i> — so it is a header and a list.
  *
- * <p><b>Only resources and flyers reach a topic page</b>, because they are the
- * only content types that carry a {@code subcategory} (229/229 and 7/7; news,
- * legislation and expert answers carry none). That is not a limitation of this
- * endpoint — it is the same fact that made the category page an aggregate, seen
- * from the other side.
+ * <p>Resources and flyers retain their existing Topic inventory. IM-03 also admits
+ * explicitly Category/Topic-classified FAQ and Expert Answers through the same
+ * collection service. Category-only Expert content remains on the Category page;
+ * broad Topic/help expansion remains IM-05.
  */
 public record TopicPage(
         TopicMetadata metadata,

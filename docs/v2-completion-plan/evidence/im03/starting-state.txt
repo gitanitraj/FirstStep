@@ -1,0 +1,31 @@
+Initial branch: copyofdev
+Initial HEAD: f66b3ceea346e53bab786d4022032342eece4c0d
+Initial app/data diff: empty
+Expanded per-file tracked/untracked preexisting IM-02 inventory:
+ M backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java
+?? backend/src/main/java/org/firststep/backend/shared/lifecycle/EditorialExpiryDiagnostics.java
+?? backend/src/main/java/org/firststep/backend/shared/lifecycle/EditorialExpiryReport.java
+ M backend/src/main/java/org/firststep/backend/shared/lifecycle/EditorialLifecycle.java
+?? backend/src/main/java/org/firststep/maintenance/EditorialExpiryReportCommand.java
+?? backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialExpiryDiagnosticsTest.java
+?? backend/src/test/java/org/firststep/maintenance/EditorialExpiryReportCommandTest.java
+?? docs/authoring/editorial-expiry-supplement.md
+?? docs/v2-completion-plan/IM-02 Coding Agent Work Order.md
+?? docs/v2-completion-plan/IM-02 Execution Report.md
+?? docs/v2-completion-plan/evidence/im02/baseline-backend.txt
+?? docs/v2-completion-plan/evidence/im02/controlled-invalid-date-report.txt
+?? docs/v2-completion-plan/evidence/im02/final-backend.txt
+?? docs/v2-completion-plan/evidence/im02/focused-tests.txt
+?? docs/v2-completion-plan/evidence/im02/quality-gates.txt
+?? docs/v2-completion-plan/evidence/im02/real-wilmington-report.txt
+?? references/EditorialExpiryDiagnostics_annotated.java
+?? references/EditorialExpiryReportCommand_annotated.java
+?? references/EditorialExpiryReport_annotated.java
+ M references/EditorialLifecycle_annotated.java
+ M references/RssFeedService_annotated.java
+?? references/tests/EditorialExpiryDiagnosticsTest_annotated.java
+?? references/tests/EditorialExpiryReportCommandTest_annotated.java
+
+Fast-forward after inspection: 0945c61b0e51074f4912b56c3bd130b6702379f3
+Remote fast-forward introduced only the two supplied matrix/work-order documents.
+Final SHA-256 check: all 23 preexisting IM-02 files unchanged.

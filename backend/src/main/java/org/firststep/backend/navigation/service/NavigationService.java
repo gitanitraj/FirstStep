@@ -194,6 +194,7 @@ public class NavigationService {
         // previously absent from every count it belongs to, which meant the
         // navigation model was ignoring the only field it exists to read.
         all.addAll(articleService.getPublishable());
+        all.removeIf(item -> !taxonomyService.permitsExpertCategoryParticipation(item));
         if (communityId == null || communityId.isBlank()) {
             return all;
         }

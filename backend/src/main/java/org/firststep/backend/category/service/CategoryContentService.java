@@ -156,12 +156,13 @@ public class CategoryContentService {
     }
 
     /**
-     * Every item under one topic, alphabetically. Only resources and flyers carry a
-     * {@code subcategory}, so only they can ever appear — news, legislation and
-     * expert content are fully classified with a category and no topic, and reaching
-     * them is the category page's job, not this one's.
+     * Existing Topic inventory, alphabetically: resources/flyers plus Expert/FAQ
+     * with an explicit valid Topic and matching Category (IM-03). Category-only
+     * Expert/FAQ stays in the category supporting collection; no Topic is inferred.
+     * Broader Topic/help redesign remains IM-05.
      */
     public List<ContentItem> forTopic(CategoryDefinition definition, String topic, String communityId) {
+        if (!taxonomyService.isTopicOf(definition.key(), topic)) return List.of();
         List<ContentItem> items = new ArrayList<>();
         for (Resource r : resourceService.getAll()) {
             if (inCategory(definition, r, communityId) && topic.equalsIgnoreCase(r.subcategory)) {
@@ -171,6 +172,16 @@ public class CategoryContentService {
         for (Flyer f : flyerService.getAll()) {
             if (inCategory(definition, f, communityId) && topic.equalsIgnoreCase(f.subcategory)) {
                 items.add(toContentItem(f));
+            }
+        }
+        for (FAQ faq : faqService.getAll()) {
+            if (inCategory(definition, faq, communityId) && topic.equalsIgnoreCase(faq.subcategory)) {
+                items.add(toContentItem(faq));
+            }
+        }
+        for (ExpertAnswer answer : expertAnswerService.getAll()) {
+            if (inCategory(definition, answer, communityId) && topic.equalsIgnoreCase(answer.subcategory)) {
+                items.add(toContentItem(answer));
             }
         }
         items.sort(ALPHABETICAL);
@@ -285,6 +296,7 @@ public class CategoryContentService {
     // ---- classification --------------------------------------------------
 
     private boolean inCategory(CategoryDefinition definition, CivicContent item, String communityId) {
+        if (!taxonomyService.permitsExpertCategoryParticipation(item)) return false;
         if (communityId != null && !communityId.isBlank() && !communityId.equals(item.communityId)) {
             return false;
         }

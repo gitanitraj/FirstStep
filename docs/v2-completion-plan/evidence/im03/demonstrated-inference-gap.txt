@@ -1,0 +1,11 @@
+Command: bash /workspace/.firststep-tools/im01-mvn -Dtest=ExpertIngestionTest test
+Working directory: backend/; Maven 3.9.9; Temurin 25+36 toolchain; release 17
+
+[ERROR] Tests run: 4, Failures: 2, Errors: 0, Skipped: 0, Time elapsed: 0.494 s <<< FAILURE! -- in org.firststep.backend.shared.classification.ExpertIngestionTest
+[ERROR] org.firststep.backend.shared.classification.ExpertIngestionTest.shouldNotManufactureExpertCategoryFromProseOrTopic(CivicContent)[1] -- Time elapsed: 0.335 s <<< FAILURE!
+[ERROR] org.firststep.backend.shared.classification.ExpertIngestionTest.shouldNotManufactureExpertCategoryFromProseOrTopic(CivicContent)[2] -- Time elapsed: 0.039 s <<< FAILURE!
+[ERROR]   ExpertIngestionTest.shouldNotManufactureExpertCategoryFromProseOrTopic:23 Topic/prose are not editorial Category authorization ==> expected: <null> but was: <[Housing]>
+[ERROR]   ExpertIngestionTest.shouldNotManufactureExpertCategoryFromProseOrTopic:23 Topic/prose are not editorial Category authorization ==> expected: <null> but was: <[Housing]>
+[ERROR] Tests run: 4, Failures: 2, Errors: 0, Skipped: 0
+[INFO] BUILD FAILURE
+[INFO] Finished at: 2026-10-16T13:23:38Z

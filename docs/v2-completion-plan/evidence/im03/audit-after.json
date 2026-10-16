@@ -1,0 +1,206 @@
+{
+  "counts": {
+    "inspected": 12,
+    "valid": 12,
+    "missing_category": 0,
+    "unknown_category": 0,
+    "duplicate_category": 0,
+    "noncanonical_case": 0,
+    "invalid_topic": 0,
+    "parent_mismatch": 0
+  },
+  "records": [
+    {
+      "id": "FAQ-001",
+      "class": "FAQ",
+      "path": "app/data/faq.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Food"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "first-step",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "FAQ-002",
+      "class": "FAQ",
+      "path": "app/data/faq.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "first-step",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "FAQ-003",
+      "class": "FAQ",
+      "path": "app/data/faq.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Legal"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "first-step",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "FAQ-004",
+      "class": "FAQ",
+      "path": "app/data/faq.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Utilities"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "first-step",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "FAQ-005",
+      "class": "FAQ",
+      "path": "app/data/faq.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Health"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "first-step",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "FAQ-006",
+      "class": "FAQ",
+      "path": "app/data/faq.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Employment"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "first-step",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "EA-001",
+      "class": "ExpertAnswer",
+      "path": "app/data/expert-answers.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "de-volunteer-legal-services",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "EA-002",
+      "class": "ExpertAnswer",
+      "path": "app/data/expert-answers.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Food"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "de-dhss",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "EA-003",
+      "class": "ExpertAnswer",
+      "path": "app/data/expert-answers.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Employment"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "community-legal-aid",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "EA-004",
+      "class": "ExpertAnswer",
+      "path": "app/data/expert-answers.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Health"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "westside-family-healthcare",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "EA-005",
+      "class": "ExpertAnswer",
+      "path": "app/data/expert-answers.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "de-volunteer-legal-services",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    },
+    {
+      "id": "EA-006",
+      "class": "ExpertAnswer",
+      "path": "app/data/expert-answers.json",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Utilities"
+      ],
+      "subcategory": null,
+      "status": null,
+      "expirationDate": null,
+      "articleReview": "not applicable",
+      "contentSourceId": "de-dhss",
+      "defects": [],
+      "editorialExpiryContext": "missing expiry: no expiry exclusion; status/publication separate"
+    }
+  ]
+}

@@ -3,6 +3,7 @@ package org.firststep.backend.category.service;
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
@@ -10,6 +11,9 @@ import java.util.Optional;
 import java.util.Set;
 
 import org.firststep.backend.category.model.CategoryDefinition;
+import org.firststep.backend.expert.model.ExpertAnswer;
+import org.firststep.backend.expert.model.FAQ;
+import org.firststep.backend.shared.model.CivicContent;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -128,6 +132,49 @@ public class TaxonomyService {
             }
         }
         return false;
+    }
+
+    /**
+     * IM-03: explicit Expert/FAQ Category is required; Topic is optional, but when
+     * present must have at least one explicitly assigned parent. Case-insensitive
+     * labels preserve existing matching behavior; duplicate labels are invalid.
+     * This validates metadata, never infers or rewrites it.
+     */
+    public List<String> expertClassificationErrors(List<String> categoryTags, String topic) {
+        List<String> errors = new ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        List<CategoryDefinition> assigned = new ArrayList<>();
+        if (categoryTags == null || categoryTags.isEmpty()) {
+            errors.add("missing_category: category_tags must contain an explicit controlled Category");
+        } else {
+            for (String tag : categoryTags) {
+                if (tag == null || tag.isBlank()) {
+                    errors.add("malformed_category: Category tags must be nonblank strings");
+                    continue;
+                }
+                if (!seen.add(tag.toLowerCase(Locale.ROOT))) {
+                    errors.add("duplicate_category: " + tag);
+                }
+                Optional<CategoryDefinition> category = categories.stream()
+                        .filter(c -> c.label().equalsIgnoreCase(tag)).findFirst();
+                if (category.isPresent()) assigned.add(category.get());
+                else errors.add("unknown_category: " + tag);
+            }
+        }
+        if (topic != null && !topic.isBlank()) {
+            if (categories.stream().noneMatch(c -> isTopicOf(c.key(), topic))) {
+                errors.add("invalid_topic: " + topic);
+            } else if (assigned.stream().noneMatch(c -> isTopicOf(c.key(), topic))) {
+                errors.add("parent_mismatch: Topic requires its explicitly assigned parent Category: " + topic);
+            }
+        }
+        return List.copyOf(errors);
+    }
+
+    /** Only FAQ/ExpertAnswer receives this narrow guard; other content contracts are unchanged. */
+    public boolean permitsExpertCategoryParticipation(CivicContent item) {
+        return !(item instanceof FAQ || item instanceof ExpertAnswer)
+                || expertClassificationErrors(item.categoryTags, item.subcategory).isEmpty();
     }
 
     /** Every distinct subcategory across all categories. A topic may appear under several. */

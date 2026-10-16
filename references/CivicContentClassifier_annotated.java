@@ -1,3 +1,14 @@
+/*
+ * IM-03 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/shared/classification/CivicContentClassifier.java
+ * WHAT: Bounded explicit classification enforcement; existing taxonomy and public shapes retained.
+ * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
+ * Topic is optional and must have an explicitly assigned parent when present.
+ * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
+ * validates relationships before Category/Topic collections, navigation and scoped Updates.
+ * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
+ * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
+ * See IM-03 execution report for editorial decisions, audit and regression evidence.
+ */
 package org.firststep.backend.shared.classification;
 
 import java.util.List;
@@ -14,6 +25,9 @@ import org.springframework.stereotype.Component;
 /**
  * The single entry point every ingestion path calls to normalize a piece of
  * content into the canonical taxonomy.
+ *
+ * <p>IM-03 exception: FAQ and Expert Answer Category/Topic membership must be
+ * explicitly authored; neither missing field is inferred from prose or source identity.
  *
  * <h2>The classification policy</h2>
  *
@@ -75,6 +89,17 @@ public class CivicContentClassifier {
     public ClassificationResult classify(CivicContent item) {
         if (item == null) {
             return ClassificationResult.irrelevant("no content");
+        }
+
+        // IM-03 / P5: Expert/FAQ placement requires an explicit editorial decision.
+        // Keep raw unclassified records for audit, but never derive their Category or Topic.
+        if (item instanceof FAQ || item instanceof ExpertAnswer) {
+            if (isBlank(item.categoryTags)) {
+                unclassified.incrementAndGet();
+                return ClassificationResult.irrelevant("Expert/FAQ requires explicit Category classification");
+            }
+            editorial.incrementAndGet();
+            return ClassificationResult.editorial(item.categoryTags, item.subcategory);
         }
 
         boolean needsCategory = isBlank(item.categoryTags);
@@ -203,187 +228,3 @@ public class CivicContentClassifier {
         return values == null || values.isEmpty();
     }
 }
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// CivicContentClassifier is the ONE entry point every ingestion path calls to
-// normalize content into the canonical taxonomy. Six callers use it:
-// JsonResourceRepository, JsonNewsRepository, JsonFlyerRepository,
-// JsonExpertAnswerRepository, JsonFaqRepository and RssFeedService.
-//
-// The point of Slice F2 was a shared ENGINE, not six fixed callers. Before it,
-// exactly one source classified anything (RssFeedService, with its own private
-// keyword tables and its own private vocabulary) and resources were translated
-// at query time inside CategoryService. Two classifiers, neither reusable,
-// disagreeing about what a category even was.
-// =============================================================================
-
-// =============================================================================
-// SECTION 1 — THE POLICY THIS CLASS EXISTS TO ENFORCE
-// =============================================================================
-// The engine could have been written without this class: each repository could
-// call CategoryClassifier directly. It exists because a POLICY has to live
-// somewhere, and a policy re-implemented in six places is a policy that will be
-// wrong in at least one of them.
-//
-//     The classifier only classifies when editorial classification is absent.
-//     Hand-authored editorial classifications are authoritative and IMMUTABLE
-//     DURING INGESTION. Automated classification exists SOLELY to normalize
-//     unclassified content.
-//
-// Three deliberate precisions in that wording:
-//
-// 1. "immutable DURING INGESTION" — not "immutable". Editorial classification
-//    can and should change; an editor edits the data file. What is forbidden is
-//    the PIPELINE mutating it. Without this, F2 would silently overwrite the
-//    flyer and curated-news classification F1 hand-authored, and the failure
-//    would be invisible until someone noticed a category page looked wrong.
-//
-// 2. "SOLELY to normalize unclassified content" — this bounds the classifier's
-//    PURPOSE, not just its behavior. It rules out a tempting future feature: a
-//    classifier that "improves" or second-guesses an editor's placement. It has
-//    no such mandate.
-//
-// 3. PER FIELD, not per item. Curated news item NP-001 carries category_tags but
-//    no subcategory. Per-item logic would skip it entirely and leave it
-//    permanently topic-less; per-field, its present categoryTags are untouchable
-//    while its absent subcategory stays eligible. This distinction is subtle
-//    enough to be worth the test that locks it in
-//    (shouldApplyThePolicyPerFieldNotPerItem).
-//
-// THE COROLLARY, which is what makes the system predictable:
-//
-//     Changes to how content is classified must result from intentional
-//     editorial decisions, never from classifier behavior.
-//
-// This was verified empirically, not just asserted. Midway through F2 the
-// keyword vocabulary was tuned (legal and community-support gained terms) and
-// the live category counts did not move by a single record — 238 before, 238
-// after — because every editorially-placed item was immutable. Only previously
-// unclassified RSS bills moved, 134 -> 175 of 428. That is the invariant
-// demonstrating itself.
-//
-// =============================================================================
-// SECTION 2 — WHY THE TAG MERGE IS ASYMMETRIC WITH THE EDITORIAL FIELDS
-// =============================================================================
-// Note the deliberate asymmetry in classify():
-//
-//     categoryTags / subcategory   filled ONLY when absent  (replace-never)
-//     tags                         MERGED with what is there (additive-always)
-//
-// That is not an inconsistency. Editorial classification is a PLACEMENT — an
-// item has one home, and a second opinion is a conflict. Descriptive tags are
-// METADATA — more of them is strictly better for search, and a hand-authored tag
-// and a machine-derived tag do not compete. The two fields answer different
-// questions, so they get different merge rules.
-//
-// =============================================================================
-// SECTION 3 — WHY TEXT EXTRACTION IS A TYPE SWITCH (and why that is acceptable)
-// =============================================================================
-// classifiableText() is the only place in the engine that branches on content
-// type, which sits uneasily beside the CivicContent contract's whole purpose of
-// removing per-type branching. It is justified because the thing that varies is
-// genuinely type-specific: a Resource keeps its prose in description/population/
-// notes, a NewsItem in body/whyItMatters, an ExpertAnswer in question/answer.
-// No amount of contract design makes those the same field.
-//
-// The alternative — a classifiableText() method on each model class — was
-// rejected because the model classes are deliberately dumb data carriers.
-// Giving them behavior for one consumer's convenience inverts that, and the next
-// consumer would want its own method.
-//
-// Written as an instanceof chain rather than switch-over-patterns because the
-// project targets Java 17 (maven.compiler.release); pattern matching in switch
-// is 21+. A future type matching nothing still gets title + summary, which is
-// the sensible floor rather than an exception.
-//
-// =============================================================================
-// SECTION 4 — WHY THE COUNTERS EXIST
-// =============================================================================
-// summary() reports what a load actually produced. It exists because the keyword
-// vocabulary is hand-authored and therefore WRONG in ways nobody can predict
-// from reading it — the only way to tune it is to see what it does to real data.
-// The first run on live legislation classified 134 of 428 bills; inspecting the
-// most common words among the UNCLASSIFIED titles showed "court" appearing six
-// times (a legal keyword that scored 1, below MIN_SCORE) and a cluster of
-// education/student/school terms that community-support had no vocabulary for at
-// all. That diagnosis came from the counters, not from re-reading the list.
-//
-// AtomicInteger rather than plain int because repositories load on
-// ApplicationReadyEvent and there is no guarantee they are all on one thread.
-//
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - CategoryClassifier does the actual category/subcategory determination.
-// - TagClassifier merges evidence into descriptive tags.
-// - All five Json*Repository classes and RssFeedService call classify() during
-//   their load, which is what "classification happens at ingestion" means
-//   concretely.
-// - CategoryService no longer classifies anything: by the time content reaches
-//   it, every item already carries canonical categoryTags.
-//
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - Persist classification back into the data files (the way D0.3's enrichment
-//   did), so it is reviewable in git. Rejected: it creates a second write path,
-//   and re-running after a keyword change becomes a data migration that can
-//   silently clobber hand-authored editorial classification — the one thing the
-//   policy above forbids. Runtime classification means a vocabulary change takes
-//   effect on restart with nothing to migrate.
-// - Let each repository call CategoryClassifier directly, without this facade.
-//   Rejected: see Section 1 — the policy would be re-implemented six times.
-// - Have this class return a new object rather than mutating in place. Cleaner
-//   functionally, but every caller would then have to rebuild its list, and the
-//   models are mutable public-field POJOs throughout; a lone immutable seam here
-//   would be inconsistent without being safer.
-
-// =============================================================================
-// SLICE F2.1 UPDATE (Decision 034) — THE ADMISSION DECISION
-// =============================================================================
-// classify() returns ClassificationResult instead of void. That is the whole
-// change, and it exists so ingestion can act on ONE question:
-//
-//     Should this content enter First Step at all?
-//
-// First Step is not a legislative tracker or a directory mirror. Of 428 signed
-// Delaware bills, ~175 are civic information a resident might need and ~253 are
-// about pet stores, animal cruelty and the state flag. Before this, all 428
-// entered and flowed into /api/updates.
-//
-// THE RULE CALLERS MUST FOLLOW:
-//
-//     Branch on result.relevant(). Never on categoryTags.
-//
-// Every caller could compute `!categoryTags.isEmpty()` and be correct today.
-// It is forbidden because relevance is a BUSINESS question, and a business
-// question answered independently at six ingestion points will eventually be
-// answered six ways — the first time the rule gains a nuance, five of the six
-// will not hear about it. RssFeedService is the only caller that acts on it,
-// because it is the only automated source; hand-authored content is relevant by
-// definition, since an editor placing content IS the relevance decision.
-//
-// TWO SUBTLETIES IN THE RETURN PATH, both worth their tests:
-//
-//   EDITORIAL CONTENT RETURNS relevant=true VIA A DIFFERENT PATH. An item that
-//   arrives already classified never reaches the classifier at all — it returns
-//   ClassificationResult.editorial() immediately. The engine has no mandate to
-//   re-judge an editor.
-//
-//   AN ITEM WITH category_tags BUT NO subcategory IS STILL RELEVANT. Curated
-//   news (NP-001) has this shape. Topic resolution may decline — no
-//   subcategoryKeywords are authored yet — and the method still returns
-//   editorial(), because relevance is about ADMISSION, not completeness. Getting
-//   this backwards would have quietly dropped every curated news item.
-//
-// SOURCE IDENTITY NOW COMES FROM THE DATA. sourceIdOf() reads
-// contentSource.id — a field ContentSource has always declared for exactly this
-// and never populated. JsonResourceRepository stamps "dscyf-directory" at load.
-//
-// The alternative was a sourceId parameter on classify(), which five of the six
-// ingestion points would pass null to forever. Reading it from provenance keeps
-// the call single-argument AND makes the provider visible in the API response,
-// where it is genuinely useful. The repository that knows what it is loading
-// declares it; the classifier just reads it.

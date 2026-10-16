@@ -171,7 +171,10 @@ class EditorialProjectionTest {
     @Test
     void shouldFilterTopicInventoryAndDynamicTopicCounts() {
         var items = categories.forTopic(taxonomy.findByKey("housing").orElseThrow(), "Eviction Prevention", "wilmington-de");
-        assertEquals(4, items.size()); // Existing Topic inventory is RESOURCE + FLYER only.
+        assertEquals(8, items.size()); // IM-03 includes explicitly Topic-classified FAQ/Expert too.
+        assertEquals(List.of("expert-active", "expert-approaching", "faq-active", "faq-approaching",
+                "flyer-active", "flyer-approaching", "resource-active", "resource-approaching"),
+                items.stream().map(ContentItem::id).sorted().toList());
         assertCurrentIds(items.stream().map(ContentItem::id).toList());
         var nav = navigation.getByKey("housing", "wilmington-de").orElseThrow();
         var topic = nav.groups().stream().flatMap(g -> g.topics().stream())

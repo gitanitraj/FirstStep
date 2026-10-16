@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -202,14 +203,16 @@ class CivicContentClassifierTest {
     }
 
     @Test
-    void shouldClassifyExpertContentThroughTheSamePathAsEverythingElse() {
+    void shouldRequireExplicitExpertCategoryInsteadOfDerivingItFromProse() {
         ExpertAnswer expert = new ExpertAnswer();
         expert.question = "How do I get help with my electric bill?";
         expert.answer = "LIHEAP and weatherization cover heating and energy costs.";
 
-        classifier.classify(expert);
+        ClassificationResult result = classifier.classify(expert);
 
-        assertTrue(expert.categoryTags.contains("Utilities"));
+        assertFalse(result.relevant());
+        assertNull(expert.categoryTags);
+        assertNull(expert.subcategory);
     }
 
     @Test

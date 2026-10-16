@@ -1,76 +1,14 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — backend/.../category/service/CategoryContentService.java
- * Category destination. See references/decisions.md Decision 051.
- * Keep this mirror in sync whenever the production file changes.
- * =============================================================================
- *
- * WHAT THIS CLASS IS
- *   A category's content, resolved once and shaped into the destination's
- *   collections. It is the widest content reader in the codebase — seven
- *   sources — and deliberately so: it exists precisely to be the one place that
- *   knows how to turn any CivicContent into a ContentItem.
- *
- * WHY IT EXISTS (the F4/F5a rule, third application)
- *   TopicPageService already had private CivicContent -> ContentItem mappers.
- *   The destination needed the same mapping over more sources. TWO callers, one
- *   behaviour: that is the second use an abstraction needs before it earns its
- *   name. The same rule that REFUSED CategoryPageService in F4 and CREATED it
- *   in F5a creates this one now.
- *
- *   And it cuts the other way in the same file: there is no separate
- *   "composition service", because that would have one caller and would forward
- *   a call.
- *
- * THE COLLECTIONS ARE NOT A ContentType PROJECTION
- *   Policy Info and First Rate News are BOTH ContentType.NEWS. The two
- *   supporting collections are BOTH ContentType.EXPERT. If you read the
- *   collection list expecting one per enum value you will misread it entirely.
- *   The set is chosen because each answers a resident question.
- *
- * THE THREE-WAY SPLIT OF `NEWS`
- *   news + rss are merged, deduplicated, then partitioned by contentType and
- *   producer:
- *     contentType == LAW                  -> the Law collection
- *     contentType == NEWS, external       -> Policy Info
- *     approved Article (a separate source) -> First Rate News
- *   Policy Info means EXTERNAL civic information; First Step's own byline
- *   appearing there would misrepresent who is speaking. That is why the
- *   `isFirstStep` filter is definitional rather than defensive — it encodes
- *   what the collection MEANS, and it holds even though no first-step news
- *   record exists today.
- *
- * WHY A CURATED FAQ IS NOT FIRST RATE NEWS
- *   FAQ-002 carries `contentSource.id = "first-step"` and is still not First
- *   Rate News. The collection means First Step's JOURNALISM — researched,
- *   reported, written — not every record whose producer id happens to be ours.
- *   A test pins this, because it is exactly the rule a future reader will
- *   "simplify" into a one-line source check.
- *
- * ARTICLES AND THE REVIEW GATE (Decision 052)
- *   Reached through ArticleService.getPublishable() and never the repository,
- *   so the Decision 048 boundary travels WITH THE QUERY. That is the whole
- *   point of putting the rule there: a seventh consumer is safe by
- *   construction, and this service cannot publish a draft by forgetting a
- *   condition. Their admission to category navigation was its own decision —
- *   the review gate controls publication, not placement.
- *
- * ORDERING — WHERE AUTHORED ORDER SURVIVES
- *   Three different orders, each for a stated reason, none of them arbitrary:
- *     resources        alphabetical  — no editorial date exists; updatedDate is
- *                                      a load-date proxy and must not imply
- *                                      recency
- *     dated content    newest first  — the UpdatesService precedent
- *     supporting       FILE ORDER    — a curated question list is sequenced by
- *                                      whoever curated it, and that ordering
- *                                      carries meaning no derived sort improves
- *   The governing rule: do not introduce explicit presentation ordering unless
- *   the composition requires it; where an authored order has semantic meaning,
- *   preserve it; otherwise use a deterministic derived order. Resident-facing
- *   ordering is NOT data ordering — CategoryPage.tsx's TYPE_ORDER constant is
- *   the codebase's own proof, since the ContentType enum order was wrong for
- *   residents and a presentation order had to be authored beside it.
- * ============================================================================= */
-
+/*
+ * IM-03 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/category/service/CategoryContentService.java
+ * WHAT: Bounded explicit classification enforcement; existing taxonomy and public shapes retained.
+ * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
+ * Topic is optional and must have an explicitly assigned parent when present.
+ * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
+ * validates relationships before Category/Topic collections, navigation and scoped Updates.
+ * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
+ * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
+ * See IM-03 execution report for editorial decisions, audit and regression evidence.
+ */
 package org.firststep.backend.category.service;
 
 import java.util.ArrayList;
@@ -229,12 +167,13 @@ public class CategoryContentService {
     }
 
     /**
-     * Every item under one topic, alphabetically. Only resources and flyers carry a
-     * {@code subcategory}, so only they can ever appear — news, legislation and
-     * expert content are fully classified with a category and no topic, and reaching
-     * them is the category page's job, not this one's.
+     * Existing Topic inventory, alphabetically: resources/flyers plus Expert/FAQ
+     * with an explicit valid Topic and matching Category (IM-03). Category-only
+     * Expert/FAQ stays in the category supporting collection; no Topic is inferred.
+     * Broader Topic/help redesign remains IM-05.
      */
     public List<ContentItem> forTopic(CategoryDefinition definition, String topic, String communityId) {
+        if (!taxonomyService.isTopicOf(definition.key(), topic)) return List.of();
         List<ContentItem> items = new ArrayList<>();
         for (Resource r : resourceService.getAll()) {
             if (inCategory(definition, r, communityId) && topic.equalsIgnoreCase(r.subcategory)) {
@@ -244,6 +183,16 @@ public class CategoryContentService {
         for (Flyer f : flyerService.getAll()) {
             if (inCategory(definition, f, communityId) && topic.equalsIgnoreCase(f.subcategory)) {
                 items.add(toContentItem(f));
+            }
+        }
+        for (FAQ faq : faqService.getAll()) {
+            if (inCategory(definition, faq, communityId) && topic.equalsIgnoreCase(faq.subcategory)) {
+                items.add(toContentItem(faq));
+            }
+        }
+        for (ExpertAnswer answer : expertAnswerService.getAll()) {
+            if (inCategory(definition, answer, communityId) && topic.equalsIgnoreCase(answer.subcategory)) {
+                items.add(toContentItem(answer));
             }
         }
         items.sort(ALPHABETICAL);
@@ -358,6 +307,7 @@ public class CategoryContentService {
     // ---- classification --------------------------------------------------
 
     private boolean inCategory(CategoryDefinition definition, CivicContent item, String communityId) {
+        if (!taxonomyService.permitsExpertCategoryParticipation(item)) return false;
         if (communityId != null && !communityId.isBlank() && !communityId.equals(item.communityId)) {
             return false;
         }
@@ -483,54 +433,3 @@ public class CategoryContentService {
                 .orElse(null);
     }
 }
-
-// =============================================================================
-// WHY COMPOSITION IS DECLARED HERE IN JAVA AND NOT IN A DATA FILE
-// =============================================================================
-// The order of the `add(...)` calls in collectionsFor IS the destination
-// composition. It is code, not configuration, and that is deliberate.
-//
-// navigation.json was NOT extended: navigation configuration and destination
-// presentation are separate concerns with separate lifecycles, and merging them
-// would give one file two unrelated jobs. Nor was a new presentation data file
-// created — "an abstraction earns its name at the second use", and a
-// configuration format invented for its first and only consumer is a schema, a
-// loader, a validator and a failure policy bought before anything needs them.
-//
-// The trigger to externalize is named rather than left to taste: a SECOND
-// destination that needs a genuinely DIFFERENT composition. Community Events is
-// that test. If it turns out to want the same collections in the same order,
-// the right answer was code all along.
-// =============================================================================
-
-// =============================================================================
-// WHY HOUSING AND COMMUNITY EVENTS LOOK DIFFERENT WITH NO PER-CATEGORY CODE
-// =============================================================================
-// Every category asks for the same seven collections in the same order. They
-// render differently because CategoryCollection.of() refuses to build an empty
-// one, so a category's shape falls out of its COUNTS rather than a template:
-//
-//   housing    get-help, policy-info, law, flyers, first-rate-news, faqs,
-//              expert-qa
-//   utilities  law only — no resources, no topics, nothing else classified
-//
-// This is worth stating because the design nearly acquired a per-topic
-// arrangement config to achieve exactly what empty-suppression already gives
-// for free.
-// =============================================================================
-
-// =============================================================================
-// EIGHT DEPENDENCIES — WHEN A WIDE CONSTRUCTOR IS THE RIGHT ANSWER
-// =============================================================================
-// This is the widest constructor in the codebase and it should stay contained
-// here. The alternative was CategoryPageService injecting all seven content
-// services alongside its three existing collaborators, which would have made
-// the page service know about every content type in the system just to hand
-// them onward.
-//
-// The seam is honest: this class's single responsibility is "a category's
-// content", and a class whose job is to see everything must be handed
-// everything. What it must NOT grow is judgement — it classifies nothing,
-// infers nothing, and applies no editorial rule. Classification is an ingestion
-// concern; by the time a request arrives there is nothing left to decide.
-// =============================================================================

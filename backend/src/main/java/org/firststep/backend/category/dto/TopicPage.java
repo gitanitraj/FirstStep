@@ -13,11 +13,10 @@ import org.firststep.backend.shared.dto.ContentItem;
  * questions and needs three sections; a topic page answers one — <i>what is
  * available under this topic?</i> — so it is a header and a list.
  *
- * <p><b>Only resources and flyers reach a topic page</b>, because they are the
- * only content types that carry a {@code subcategory} (229/229 and 7/7; news,
- * legislation and expert answers carry none). That is not a limitation of this
- * endpoint — it is the same fact that made the category page an aggregate, seen
- * from the other side.
+ * <p>Resources and flyers retain their existing Topic inventory. IM-03 also admits
+ * explicitly Category/Topic-classified FAQ and Expert Answers through the same
+ * collection service. Category-only Expert content remains on the Category page;
+ * broad Topic/help expansion remains IM-05.
  */
 public record TopicPage(
         TopicMetadata metadata,
