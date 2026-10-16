@@ -83,6 +83,14 @@ public abstract class CivicContent {
      */
     public String subcategory;
 
+    /**
+     * IM-04 editorial semantic: only exact ACTIONABLE_HELP_ACCESS admits a Flyer
+     * to Get Help. Optional; never inferred. Other ContentTypes do not use it.
+     * Catalog validation rejects any present value other than that exact string.
+     */
+    @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
+    public String helpAccess;
+
     // ---- How can it be found? (DESCRIPTIVE metadata — never navigation) --
     public List<String> tags;
 

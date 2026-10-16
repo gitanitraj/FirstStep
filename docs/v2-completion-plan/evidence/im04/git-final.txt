@@ -1,0 +1,14 @@
+ M backend/src/main/java/org/firststep/backend/category/service/CategoryContentService.java
+ M backend/src/main/java/org/firststep/backend/shared/model/CivicContent.java
+ M data-cleaning/scripts/validate_schema.py
+ M references/CategoryContentService_annotated.java
+ M references/CivicContent_annotated.java
+ M references/validate_schema_annotated.py
+?? backend/src/test/java/org/firststep/backend/category/service/FlyerHelpProjectionTest.java
+?? data-cleaning/tests/test_flyer_help.py
+?? "docs/v2-completion-plan/IM-04 Execution Report.md"
+?? "docs/v2-completion-plan/IM-04 Semantic Decision.md"
+?? docs/v2-completion-plan/evidence/im04/
+?? references/tests/FlyerHelpProjectionTest_annotated.java
+?? references/tests/test_flyer_help_annotated.py
+3b8c3d6d4496c8321a4cb5f5c067661b1533c103

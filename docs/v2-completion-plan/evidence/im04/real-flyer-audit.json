@@ -1,0 +1,252 @@
+[
+  {
+    "id": "FL-001",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Summer Youth Enrichment Program \u2014 Registration Open",
+    "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
+    "categoryTags": [
+      "Community Events"
+    ],
+    "topic": "Youth Programs",
+    "producer": {
+      "id": "west-end-neighborhood-house",
+      "type": "manual"
+    },
+    "organizationLabel": "West End Neighborhood House",
+    "storedOrganizationId": "ORG-056",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-09-07",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Youth.jpg",
+    "detailPath": "/api/flyers/FL-001",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-002",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Know Your Rights: Eviction Prevention Info Session",
+    "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+    "categoryTags": [
+      "Housing",
+      "Legal"
+    ],
+    "topic": "Eviction Prevention",
+    "producer": {
+      "id": "community-legal-aid",
+      "type": "manual"
+    },
+    "organizationLabel": "Community Legal Aid Society",
+    "storedOrganizationId": "ORG-057",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-08-30",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Eviction Help.png",
+    "detailPath": "/api/flyers/FL-002",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-003",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Community Volunteer Recruitment Drive",
+    "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+    "categoryTags": [
+      "Community Support"
+    ],
+    "topic": "Volunteer Opportunities",
+    "producer": {
+      "id": "united-way-delaware",
+      "type": "manual"
+    },
+    "organizationLabel": "United Way of Delaware",
+    "storedOrganizationId": "ORG-058",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-09-15",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Volunteer.jpg",
+    "detailPath": "/api/flyers/FL-003",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-004",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Back-to-School Supply Drive Fundraiser",
+    "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+    "categoryTags": [
+      "Community Support"
+    ],
+    "topic": "School Supplies",
+    "producer": {
+      "id": "ministry-of-caring",
+      "type": "manual"
+    },
+    "organizationLabel": "Ministry of Caring Inc",
+    "storedOrganizationId": "ORG-026",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-08-26",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Fundraiser.jpg",
+    "detailPath": "/api/flyers/FL-004",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-005",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Disability Services & Benefits Info Fair",
+    "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+    "categoryTags": [
+      "Legal",
+      "Community Support"
+    ],
+    "topic": "Disability Advocacy",
+    "producer": {
+      "id": "de-visually-impaired",
+      "type": "manual"
+    },
+    "organizationLabel": "Delaware Division for the Visually Impaired",
+    "storedOrganizationId": "ORG-059",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-07-30",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Disablility Info.jpg",
+    "detailPath": "/api/flyers/FL-005",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-006",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Free Community Health Fair",
+    "summary": "Free health screenings, vaccinations, and dental checkups \u2014 no insurance or ID required.",
+    "categoryTags": [
+      "Health"
+    ],
+    "topic": "Medical Care",
+    "producer": {
+      "id": "westside-family-healthcare",
+      "type": "manual"
+    },
+    "organizationLabel": "Westside Family Healthcare",
+    "storedOrganizationId": "ORG-060",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-09-02",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Health Fair.jpg",
+    "detailPath": "/api/flyers/FL-006",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-007",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "Free Furniture Giveaway",
+    "summary": "Free gently-used furniture available for families moving into new housing \u2014 first come, first served.",
+    "categoryTags": [
+      "Furniture & Household"
+    ],
+    "topic": "Furniture & Household Goods",
+    "producer": {
+      "id": "wilmington-housing-authority",
+      "type": "manual"
+    },
+    "organizationLabel": "Wilmington Housing Authority",
+    "storedOrganizationId": "ORG-061",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-08-15",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "Furniture.jpg",
+    "detailPath": "/api/flyers/FL-007",
+    "canonicalRecordCount": 1
+  },
+  {
+    "id": "FL-008",
+    "concreteClass": "Flyer",
+    "contentType": "FLYER",
+    "communityId": "wilmington-de",
+    "title": "United Neighbors 2026",
+    "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+    "categoryTags": [
+      "Community Support"
+    ],
+    "topic": "Community Celebrations",
+    "producer": {
+      "id": "westside-grows-together",
+      "type": "manual"
+    },
+    "organizationLabel": "West Side Grows Together",
+    "storedOrganizationId": "ORG-064",
+    "relationshipRole": "not explicitly stored/modelled; do not infer PROVIDER or HOST",
+    "eventDate": "2026-10-17",
+    "expirationDate": null,
+    "status": null,
+    "structuredHelpSignal": "absent",
+    "currentFlyers": true,
+    "currentGetHelp": false,
+    "targetFlyers": true,
+    "targetGetHelp": "excluded until explicit approved semantic and record classification",
+    "assessment": "requires editorial/semantic decision",
+    "image": "United Neighbors 2026.jpg",
+    "detailPath": "/api/flyers/FL-008",
+    "canonicalRecordCount": 1
+  }
+]

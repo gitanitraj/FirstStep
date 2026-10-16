@@ -1,0 +1,25 @@
+{
+  "status": "passed",
+  "browser": "154.0.8037.57",
+  "realHousingTotal": 36,
+  "widthChecks": [
+    1440,
+    375
+  ],
+  "allResultsReachable": true,
+  "refreshBackForward": true,
+  "keyboardExpansion": true,
+  "keyboardTopicDisclosure": true,
+  "spanishSwitch": true,
+  "focus": true,
+  "highContrast": {
+    "color": "rgb(255, 255, 255)",
+    "background": "rgb(0, 0, 0)"
+  },
+  "loadingEmptyInvalidNetworkDistinct": true,
+  "realFoodEmpty": true,
+  "syntheticFoodPositive": true,
+  "syntheticCommunity": true,
+  "diacritics": true,
+  "pageErrors": []
+}

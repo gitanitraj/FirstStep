@@ -1,0 +1,51 @@
+{
+  "path": "/api/flyers/FL-002",
+  "response": {
+    "success": true,
+    "data": {
+      "id": "FL-002",
+      "title": "Know Your Rights: Eviction Prevention Info Session",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "contentType": "FLYER",
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "name": null,
+        "type": "manual",
+        "url": null,
+        "retrieved": null
+      },
+      "communityId": "wilmington-de",
+      "publishDate": null,
+      "expirationDate": null,
+      "status": null,
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Community Legal Aid Society",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801",
+        "confidential": null
+      },
+      "image": "Eviction Help.png",
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "event_date": "2026-08-30"
+    },
+    "errorCode": null,
+    "errorMessage": null,
+    "timestamp": "2026-10-16T14:11:44.035981016Z"
+  }
+}

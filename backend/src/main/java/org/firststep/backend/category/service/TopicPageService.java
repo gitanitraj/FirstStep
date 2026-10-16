@@ -1,5 +1,6 @@
 package org.firststep.backend.category.service;
 
+import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
@@ -8,37 +9,22 @@ import java.util.Optional;
 import org.firststep.backend.category.dto.TopicMetadata;
 import org.firststep.backend.category.dto.TopicPage;
 import org.firststep.backend.category.model.CategoryDefinition;
+import org.firststep.backend.navigation.dto.TopicNavigation;
 import org.firststep.backend.shared.dto.ContentItem;
 import org.firststep.backend.shared.model.ContentType;
 import org.springframework.stereotype.Service;
+import org.firststep.backend.resource.service.ResourceService;
 
-/**
- * The topic page's BFF (Slice F6) — the fourth level of the navigation
- * hierarchy, where CivicContent is finally listed.
- *
- * <p>Like every other read path here it reads <b>editorial classification
- * only</b>: an item appears under a topic when its {@code categoryTags} match the
- * category AND its {@code subcategory} equals the topic. No text matching, no
- * tags, no inference. Classification is an ingestion concern.
- *
- * <p><b>Content resolution moved to {@link CategoryContentService} (Decision
- * 051).</b> This service previously held private {@code CivicContent -> ContentItem}
- * mappers and queried ResourceService and FlyerService itself. The category
- * destination needed the same mapping over more sources, which is the second use an
- * abstraction needs before it earns its name. What remains here is what was always
- * this service's own: resolving a slug to a canonical topic, and shaping the page.
- *
- * <p>The behaviour is unchanged by that move — same predicate, same alphabetical
- * order, same items — and TopicPageServiceTest needed no edits, which is the
- * empirical check on the claim.
- */
+/** IM-05: controlled Topic and Category-wide help browsing over the IM-04 seam. */
 @Service
 public class TopicPageService {
 
     private final TaxonomyService taxonomyService;
     private final CategoryContentService categoryContentService;
+    private final ResourceService resourceService;
 
-    public TopicPageService(TaxonomyService taxonomyService, CategoryContentService categoryContentService) {
+    public TopicPageService(TaxonomyService taxonomyService, CategoryContentService categoryContentService, ResourceService resourceService) {
+        this.resourceService = resourceService;
         this.taxonomyService = taxonomyService;
         this.categoryContentService = categoryContentService;
     }
@@ -62,13 +48,44 @@ public class TopicPageService {
         return Optional.of(build(definition, topic.get(), topicSlug, communityId));
     }
 
+    /** Complete inventory, never capped; the client progressively discloses the list. */
+    public Optional<TopicPage> getAllHelp(String categoryKey, String communityId) {
+        return taxonomyService.findByKey(categoryKey)
+                .map(definition -> build(definition, null, "help", communityId));
+    }
+
     private TopicPage build(CategoryDefinition definition, String topic, String slug, String communityId) {
-        List<ContentItem> items = categoryContentService.forTopic(definition, topic, communityId);
+        List<ContentItem> items = categoryContentService.helpFor(definition.key(), topic, communityId).stream()
+                // Browse alphabetically as before; equal titles use stable identity, never attention/ranking.
+                .sorted(Comparator.comparing(ContentItem::title,
+                        Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER))
+                        .thenComparing(ContentItem::id, Comparator.nullsLast(String::compareTo)))
+                .map(this::withAvailableContact)
+                .toList();
 
         TopicMetadata metadata = new TopicMetadata(
                 definition.key(), definition.label(), definition.icon(),
-                topic, slug, items.size(), countByType(items));
-        return new TopicPage(metadata, items);
+                topic == null ? definition.label() : topic, slug, items.size(), countByType(items));
+        List<TopicNavigation> topics = definition.subcategories().stream()
+                .map(name -> {
+                    List<ContentItem> help = categoryContentService.helpFor(definition.key(), name, communityId);
+                    return new TopicNavigation(name,
+                            TaxonomyService.topicSlug(name), help.size(), countByType(help));
+                }).toList();
+        return new TopicPage(metadata, items, topics);
+    }
+
+    /** A missing website is not a license to invent a URL: use an explicitly stored phone. */
+    private ContentItem withAvailableContact(ContentItem item) {
+        if (item.url() != null || item.contentType() != ContentType.RESOURCE) return item;
+        String telephone = resourceService.getById(item.id()).stream()
+                .flatMap(resource -> resource.phones == null ? java.util.stream.Stream.empty() : resource.phones.stream())
+                .filter(phone -> phone != null && phone.number != null && !phone.number.isBlank())
+                .map(phone -> "tel:" + phone.number.replaceAll("[^+0-9]", ""))
+                .filter(value -> !value.equals("tel:"))
+                .findFirst().orElse(null);
+        return new ContentItem(item.contentType(), item.id(), item.title(), item.summary(), item.organization(),
+                item.location(), item.cost(), item.urgency(), item.date(), telephone, item.imageUrl());
     }
 
     private static Map<ContentType, Integer> countByType(List<ContentItem> items) {

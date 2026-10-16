@@ -34,6 +34,8 @@ export default function ContentCard({ item }: { item: ContentItem }) {
   // check ImportantUpdates already makes.
   const urgency = item.urgency && item.urgency.toLowerCase() !== 'standard' ? item.urgency : null;
 
+  const destination = item.url ?? (item.contentType === 'FLYER' ? item.imageUrl : null);
+
   return (
     <li className={styles.card}>
       <div className={styles.head}>
@@ -43,8 +45,8 @@ export default function ContentCard({ item }: { item: ContentItem }) {
         {/* Link out when the provider gave us somewhere to go. Editorial
             standard: connect residents to the originating organization rather
             than replacing it. */}
-        {item.url ? (
-          <a className={styles.title} href={item.url} target="_blank" rel="noopener noreferrer">
+        {destination ? (
+          <a className={styles.title} href={destination} target={destination.startsWith('tel:') ? undefined : '_blank'} rel="noopener noreferrer">
             {item.title}
           </a>
         ) : (

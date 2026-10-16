@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
 import SiteFooter from '../../components/SiteFooter/SiteFooter';
@@ -42,18 +42,23 @@ const TYPE_ORDER: ContentType[] = ['RESOURCE', 'LAW', 'NEWS', 'EXPERT', 'FLYER']
 export default function CategoryPage() {
   const { key } = useParams<{ key: string }>();
   const { t } = useI18n();
+  const [search] = useSearchParams();
+  const community = search.get('communityId');
+  const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
   const [page, setPage] = useState<CategoryPagePayload | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
     // Reset on key change so navigating between categories doesn't briefly show
     // the previous category's content under the new one's name.
+    let active = true;
     setPage(null);
     setError(null);
-    apiGet<CategoryPagePayload>(`/api/category/${key}`)
-      .then(setPage)
-      .catch((err: Error) => setError(err.message));
-  }, [key]);
+    apiGet<CategoryPagePayload>(`/api/category/${key}${query}`)
+      .then((result) => { if (active) setPage(result); })
+      .catch((err: Error) => { if (active) setError(err.message); });
+    return () => { active = false; };
+  }, [key, query]);
 
   const action = page?.collections.filter((c) => c.layer === 'ACTION') ?? [];
   const information = page?.collections.filter((c) => c.layer === 'INFORMATION') ?? [];
@@ -110,8 +115,12 @@ export default function CategoryPage() {
               </p>
             </header>
 
+            <Link className="discovery-item" to={`/category/${page.metadata.key}/help${query}`}>
+              {t('help.all')} {page.metadata.label} {t('help.help')}
+            </Link>
             <CategoryBrowse
               categoryKey={page.metadata.key}
+              query={query}
               groups={page.groups}
               topics={page.topics}
             />

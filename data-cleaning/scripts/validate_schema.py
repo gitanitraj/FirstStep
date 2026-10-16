@@ -537,8 +537,31 @@ def validate_expert_files(paths):
 # Main
 # ─────────────────────────────────────────
 
+def validate_flyer_help_file(path):
+    """IM-04: absence is valid; every present value must be the exact token."""
+    try:
+        data = json.loads(Path(path).read_text(encoding="utf-8"))
+        records = data if isinstance(data, list) else data.get("records", data.get("flyers"))
+        if not isinstance(records, list):
+            raise ValueError("expected Flyer array or records/flyers wrapper")
+        failures = 0
+        for record in records:
+            if not isinstance(record, dict):
+                raise ValueError("expected Flyer object")
+            if "helpAccess" in record and record["helpAccess"] != "ACTIONABLE_HELP_ACCESS":
+                print(f"{record.get('id', '<missing-id>')}: invalid_help_access: expected exact ACTIONABLE_HELP_ACCESS or absent field")
+                failures += 1
+        print(f"Flyer helpAccess records inspected: {len(records)}; failures: {failures}")
+        return failures
+    except (OSError, ValueError, TypeError, AttributeError) as exc:
+        print(f"invalid_flyer_catalog: {path}: {exc}")
+        return 1
+
+
 def main():
     parser = argparse.ArgumentParser(description="Validate resources.json against the v2 schema.")
+    parser.add_argument("--flyer-help-only", action="store_true", help="Run only IM-04 controlled Flyer helpAccess validation.")
+    parser.add_argument("--flyer-input", default="app/data/flyers.json", help="Flyer catalog path for IM-04 validation.")
     parser.add_argument("--expert-only", action="store_true", help="Run only the stored Expert/FAQ classification gate.")
     parser.add_argument("--expert-input", action="append", help="Expert/FAQ JSON path; repeat for multiple files (default: both live catalog files).")
     parser.add_argument("--input", default=str(INPUT_FILE),
@@ -554,6 +577,9 @@ def main():
     if args.export_schema:
         export_json_schema()
         sys.exit(0)
+
+    if args.flyer_help_only:
+        sys.exit(1 if validate_flyer_help_file(args.flyer_input) else 0)
 
     expert_paths = args.expert_input or ["app/data/faq.json", "app/data/expert-answers.json"]
     if args.expert_only:
@@ -593,6 +619,7 @@ def main():
                                  args.strict, input_file)
 
     failure_count += validate_expert_files(expert_paths)
+    failure_count += validate_flyer_help_file(args.flyer_input)
     # Exit with error code so CI/CD pipelines can detect failures
     sys.exit(1 if failure_count > 0 else 0)
 

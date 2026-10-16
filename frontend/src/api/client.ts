@@ -5,11 +5,16 @@ interface ApiResponse<T> {
   errorMessage: string | null;
 }
 
+/** Preserve the server error code so browse pages distinguish invalid routes from outages. */
+export class ApiError extends Error {
+  constructor(public readonly code: string | null, message: string) { super(message); }
+}
+
 export async function apiGet<T>(path: string): Promise<T> {
   const res = await fetch(path);
   const body = (await res.json()) as ApiResponse<T>;
   if (!body.success) {
-    throw new Error(body.errorMessage ?? 'Request failed');
+    throw new ApiError(body.errorCode, body.errorMessage ?? 'Request failed');
   }
   return body.data;
 }
@@ -22,7 +27,7 @@ export async function apiPost<TReq, TRes>(path: string, payload: TReq): Promise<
   });
   const body = (await res.json()) as ApiResponse<TRes>;
   if (!body.success) {
-    throw new Error(body.errorMessage ?? 'Request failed');
+    throw new ApiError(body.errorCode, body.errorMessage ?? 'Request failed');
   }
   return body.data;
 }

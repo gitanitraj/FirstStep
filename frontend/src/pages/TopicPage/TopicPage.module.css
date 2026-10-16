@@ -25,26 +25,18 @@
 }
 
 .title {
+  overflow-wrap: anywhere;
   composes: displayPage from '../../styles/typography.module.css';
   margin: 6px 0 0 0;
   font-size: 26px;
   font-weight: 700;
-  color: var(--primary-color);
+  color: var(--text-primary);
 }
 
 .count {
   margin: 4px 0 0 0;
   font-size: 14px;
   color: var(--text-secondary);
-}
-
-.list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
 }
 
 @media (max-width: 768px) {
@@ -55,4 +47,25 @@
   .title {
     font-size: 22px;
   }
+}
+
+/* Controlled narrowing stays compact; full inventory uses existing progressive disclosure. */
+.topics ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-left: 20px;
+}
+
+.topics a {
+  color: var(--primary-color);
+  overflow-wrap: anywhere;
+}
+
+
+.topics summary {
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 0;
 }

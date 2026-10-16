@@ -59,7 +59,7 @@ import org.springframework.stereotype.Service;
  * <h2>The collections are not a projection of ContentType</h2>
  *
  * <pre>
- *   get-help          ACTION       RESOURCE
+ *   get-help          ACTION       RESOURCE + explicitly actionable FLYER
  *   policy-info       INFORMATION  NEWS, external producers only
  *   law               INFORMATION  LAW
  *   flyers            INFORMATION  FLYER
@@ -139,7 +139,7 @@ public class CategoryContentService {
 
         List<CategoryCollection> collections = new ArrayList<>();
         add(collections, CategoryCollection.of("get-help", "collection.getHelp",
-                CollectionLayer.ACTION, resources(definition, communityId)));
+                CollectionLayer.ACTION, helpFor(categoryKey, null, communityId)));
         add(collections, CategoryCollection.of("policy-info", "collection.policyInfo",
                 CollectionLayer.INFORMATION, policyInfo(news)));
         add(collections, CategoryCollection.of("law", "collection.law",
@@ -190,12 +190,33 @@ public class CategoryContentService {
 
     // ---- collection builders --------------------------------------------
 
-    private List<ContentItem> resources(CategoryDefinition definition, String communityId) {
-        return resourceService.getAll().stream()
-                .filter(r -> inCategory(definition, r, communityId))
-                .map(CategoryContentService::toContentItem)
-                .sorted(ALPHABETICAL)
-                .toList();
+    /**
+     * IM-04 reusable help seam for IM-05/08. Null Topic means all help in this
+     * Category; a supplied Topic must belong to it. Services retain lifecycle
+     * gates. One ID per result, Resource first on an invalid cross-type collision.
+     * Projection memberships are not additive unique-inventory counts.
+     */
+    public List<ContentItem> helpFor(String categoryKey, String topic, String communityId) {
+        CategoryDefinition definition = taxonomyService.findByKey(categoryKey).orElse(null);
+        if (definition == null || (topic != null && !taxonomyService.isTopicOf(categoryKey, topic))) {
+            return List.of();
+        }
+        List<ContentItem> items = new ArrayList<>();
+        Set<String> seen = new LinkedHashSet<>();
+        for (Resource resource : resourceService.getAll()) {
+            if (inCategory(definition, resource, communityId)
+                    && (topic == null || topic.equalsIgnoreCase(resource.subcategory))
+                    && seen.add(resource.id)) items.add(toContentItem(resource));
+        }
+        for (Flyer flyer : flyerService.getAll()) {
+            if (flyer.contentType == ContentType.FLYER
+                    && "ACTIONABLE_HELP_ACCESS".equals(flyer.helpAccess)
+                    && inCategory(definition, flyer, communityId)
+                    && (topic == null || topic.equalsIgnoreCase(flyer.subcategory))
+                    && seen.add(flyer.id)) items.add(toContentItem(flyer));
+        }
+        items.sort(ALPHABETICAL);
+        return List.copyOf(items);
     }
 
     /**
@@ -245,9 +266,11 @@ public class CategoryContentService {
     }
 
     private List<ContentItem> flyers(CategoryDefinition definition, String communityId) {
+        Set<String> seen = new LinkedHashSet<>();
         return flyerService.getAll().stream()
                 .filter(f -> inCategory(definition, f, communityId))
-                .map(CategoryContentService::toContentItem)
+                .filter(f -> seen.add(f.id))
+                .map(this::toContentItem)
                 .sorted(NEWEST_FIRST)
                 .toList();
     }
@@ -325,17 +348,15 @@ public class CategoryContentService {
                 null);                      // resources carry no image
     }
 
-    private static ContentItem toContentItem(Flyer f) {
+    private ContentItem toContentItem(Flyer f) {
         return new ContentItem(
                 f.contentType, f.id, f.title, f.summary,
                 f.organization,
                 null, null, null,
                 f.eventDate,
                 sourceUrl(f.contentSource),
-                // Browse cards stay text — the flyer GALLERY is where the image is
-                // the content (Slice J). Passing it here would change every browse
-                // card's shape for one view's benefit.
-                null);
+                // Preserve visual navigation in both projections; encoding has one owner.
+                flyerService.imageUrlFor(f));
     }
 
     private static ContentItem toContentItem(NewsItem n) {

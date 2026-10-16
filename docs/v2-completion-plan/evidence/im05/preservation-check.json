@@ -1,0 +1,14 @@
+{
+  "protected-im04-sha256.json": {
+    "checked": 25,
+    "changed": []
+  },
+  "protected-catalog-sha256.json": {
+    "checked": 19,
+    "changed": []
+  },
+  "annotatedMirrors": {
+    "checked": 16,
+    "allMirrorSourceExactly": true
+  }
+}

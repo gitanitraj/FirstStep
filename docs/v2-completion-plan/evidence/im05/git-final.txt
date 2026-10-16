@@ -1,0 +1,48 @@
+ M backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java
+ M backend/src/main/java/org/firststep/backend/category/dto/TopicPage.java
+ M backend/src/main/java/org/firststep/backend/category/service/CategoryContentService.java
+ M backend/src/main/java/org/firststep/backend/category/service/CategoryPageService.java
+ M backend/src/main/java/org/firststep/backend/category/service/TopicPageService.java
+ M backend/src/main/java/org/firststep/backend/shared/model/CivicContent.java
+ M backend/src/test/java/org/firststep/backend/category/service/TopicPageServiceTest.java
+ M data-cleaning/scripts/validate_schema.py
+ M frontend/src/api/client.ts
+ M frontend/src/components/CategoryBrowse.tsx
+ M frontend/src/components/ContentCard/ContentCard.tsx
+ M frontend/src/i18n/dictionary.ts
+ M frontend/src/pages/CategoryPage/CategoryPage.tsx
+ M frontend/src/pages/TopicPage/TopicPage.module.css
+ M frontend/src/pages/TopicPage/TopicPage.test.tsx
+ M frontend/src/pages/TopicPage/TopicPage.tsx
+ M frontend/src/types/api.ts
+ M references/CategoryBrowse_annotated.tsx
+ M references/CategoryContentService_annotated.java
+ M references/CategoryController_annotated.java
+ M references/CategoryPageService_annotated.java
+ M references/CategoryPage_annotated.tsx
+ M references/CivicContent_annotated.java
+ M references/ContentCard_annotated.tsx
+ M references/TopicPageService_annotated.java
+ M references/TopicPage_annotated.java
+ M references/TopicPage_annotated.tsx
+ M references/validate_schema_annotated.py
+?? backend/src/test/java/org/firststep/backend/category/controller/HelpBrowseApiTest.java
+?? backend/src/test/java/org/firststep/backend/category/service/FlyerHelpProjectionTest.java
+?? data-cleaning/tests/test_flyer_help.py
+?? "docs/v2-completion-plan/IM-04 Execution Report.md"
+?? "docs/v2-completion-plan/IM-04 Semantic Decision.md"
+?? "docs/v2-completion-plan/IM-05 Execution Report.md"
+?? docs/v2-completion-plan/evidence/im04/
+?? docs/v2-completion-plan/evidence/im05/
+?? frontend/src/pages/TopicPage/HelpBrowse.test.tsx
+?? references/TopicPage.module_annotated.css
+?? references/api_annotated.ts
+?? references/client_annotated.ts
+?? references/dictionary_annotated.ts
+?? references/tests/FlyerHelpProjectionTest_annotated.java
+?? references/tests/HelpBrowseApiTest_annotated.java
+?? references/tests/HelpBrowseTest_annotated.tsx
+?? references/tests/TopicPageServiceTest_annotated.java
+?? references/tests/TopicPageTest_annotated.tsx
+?? references/tests/test_flyer_help_annotated.py
+26ad4cd6b3e339a58b010dbfd1dbfdb8bf4bd3ca

@@ -1,13 +1,18 @@
 package org.firststep.backend.category.service;
 
+import java.util.EnumMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import org.firststep.backend.category.dto.CategoryMetadata;
 import org.firststep.backend.category.dto.CategoryPage;
 import org.firststep.backend.navigation.dto.CategoryNavigation;
+import org.firststep.backend.navigation.dto.TopicGroup;
+import org.firststep.backend.navigation.dto.TopicNavigation;
 import org.firststep.backend.navigation.service.NavigationService;
 import org.firststep.backend.organization.service.OrganizationService;
+import org.firststep.backend.shared.model.ContentType;
 import org.firststep.backend.updates.dto.UpdateItem;
 import org.firststep.backend.updates.service.UpdatesService;
 import org.springframework.stereotype.Service;
@@ -94,10 +99,24 @@ public class CategoryPageService {
         return new CategoryPage(
                 metadata,
                 updates,
-                navigation.groups(),
-                navigation.topics(),
+                navigation.groups().stream().map(group -> new TopicGroup(
+                        group.label(), helpTopics(categoryKey, group.topics(), communityId))).toList(),
+                helpTopics(categoryKey, navigation.topics(), communityId),
                 organizationService.getForCategory(categoryKey),
                 categoryContentService.collectionsFor(categoryKey, communityId));
+    }
+
+    /** Navigation toward help pages reports help-only counts; generic navigation keeps its own semantics. */
+    private List<TopicNavigation> helpTopics(String key,
+            List<TopicNavigation> topics, String communityId) {
+        return topics.stream().map(topic -> {
+            var items = categoryContentService.helpFor(key, topic.name(), communityId);
+            Map<ContentType, Integer> counts =
+                    new EnumMap<>(ContentType.class);
+            items.forEach(item -> counts.merge(item.contentType(), 1, Integer::sum));
+            return new TopicNavigation(topic.name(), topic.slug(),
+                    items.size(), counts);
+        }).toList();
     }
 
     /**

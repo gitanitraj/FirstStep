@@ -1,0 +1,77 @@
+/* IM-05 annotated mirror.
+ * What: controlled help-only Category/Topic browsing and its resident contract.
+ * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
+ * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
+ * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+ */
+/* TopicPage — locally scoped (docs/frontend/css-architecture.md).
+   All colours are tokens, so high contrast applies by redefinition. */
+
+.header {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.crumbs {
+  font-size: 13px;
+  color: var(--text-secondary);
+}
+
+.crumb {
+  color: var(--primary-color);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.crumb:hover {
+  text-decoration: underline;
+}
+
+.title {
+  overflow-wrap: anywhere;
+  composes: displayPage from '../../styles/typography.module.css';
+  margin: 6px 0 0 0;
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.count {
+  margin: 4px 0 0 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 16px;
+  }
+
+  .title {
+    font-size: 22px;
+  }
+}
+
+/* Controlled narrowing stays compact; full inventory uses existing progressive disclosure. */
+.topics ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  padding-left: 20px;
+}
+
+.topics a {
+  color: var(--primary-color);
+  overflow-wrap: anywhere;
+}
+
+
+.topics summary {
+  color: var(--text-primary);
+  cursor: pointer;
+  font-weight: 600;
+  padding: 10px 0;
+}

@@ -16,19 +16,20 @@ import type { TopicGroup, TopicNavigation } from '../types/api';
  */
 interface Props {
   categoryKey: string;
+  query?: string;
   groups: TopicGroup[];
   topics: TopicNavigation[];
 }
 
-export default function CategoryBrowse({ categoryKey, groups, topics }: Props) {
+export default function CategoryBrowse({ categoryKey, groups, topics, query = '' }: Props) {
   const { t } = useI18n();
   const grouped = groups.length > 0;
 
   const topicLink = (topic: TopicNavigation) => (
     <li key={topic.slug}>
-      <Link className="discovery-item" to={`/category/${categoryKey}/${topic.slug}`}>
+      <Link className="discovery-item" to={`/category/${categoryKey}/${topic.slug}${query}`}>
         <span className="discovery-item-name">{topic.name}</span>
-        <span className="discovery-item-count">{topic.count}</span>
+        <span className="discovery-item-count">{topic.count} <span className="visually-hidden">{t(topic.count === 1 ? 'help.result.one' : 'help.results')}</span></span>
       </Link>
     </li>
   );

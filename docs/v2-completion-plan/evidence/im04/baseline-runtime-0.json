@@ -1,0 +1,339 @@
+{
+  "path": "/api/flyers",
+  "response": {
+    "success": true,
+    "data": [
+      {
+        "id": "FL-001",
+        "title": "Summer Youth Enrichment Program \u2014 Registration Open",
+        "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Youth Programs",
+        "tags": [
+          "Youth",
+          "Youth Programs",
+          "event"
+        ],
+        "contentSource": {
+          "id": "west-end-neighborhood-house",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-10",
+        "updatedDate": "2026-06-10",
+        "organization": "West End Neighborhood House",
+        "location": {
+          "label": "West End Neighborhood House",
+          "address": "710 N. Lincoln Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": null
+        },
+        "image": "Youth.jpg",
+        "category_tags": [
+          "Community Events"
+        ],
+        "event_date": "2026-09-07"
+      },
+      {
+        "id": "FL-002",
+        "title": "Know Your Rights: Eviction Prevention Info Session",
+        "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Eviction Prevention",
+        "tags": [
+          "Housing Assistance",
+          "Rental Assistance",
+          "Eviction Prevention",
+          "meeting"
+        ],
+        "contentSource": {
+          "id": "community-legal-aid",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-12",
+        "updatedDate": "2026-06-12",
+        "organization": "Community Legal Aid Society",
+        "location": {
+          "label": "Wilmington Public Library",
+          "address": "10 E. 10th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": null
+        },
+        "image": "Eviction Help.png",
+        "category_tags": [
+          "Housing",
+          "Legal"
+        ],
+        "event_date": "2026-08-30"
+      },
+      {
+        "id": "FL-003",
+        "title": "Community Volunteer Recruitment Drive",
+        "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Volunteer Opportunities",
+        "tags": [
+          "Community",
+          "Volunteer Opportunities",
+          "announcement"
+        ],
+        "contentSource": {
+          "id": "united-way-delaware",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-08",
+        "updatedDate": "2026-06-08",
+        "organization": "United Way of Delaware",
+        "location": {
+          "label": "Rodney Square",
+          "address": "1000 N. King Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": null
+        },
+        "image": "Volunteer.jpg",
+        "category_tags": [
+          "Community Support"
+        ],
+        "event_date": "2026-09-15"
+      },
+      {
+        "id": "FL-004",
+        "title": "Back-to-School Supply Drive Fundraiser",
+        "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "School Supplies",
+        "tags": [
+          "Community",
+          "Free",
+          "Student Support",
+          "event"
+        ],
+        "contentSource": {
+          "id": "ministry-of-caring",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-15",
+        "updatedDate": "2026-06-15",
+        "organization": "Ministry of Caring Inc",
+        "location": {
+          "label": "Ministry of Caring",
+          "address": "115 East 14th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": null
+        },
+        "image": "Fundraiser.jpg",
+        "category_tags": [
+          "Community Support"
+        ],
+        "event_date": "2026-08-26"
+      },
+      {
+        "id": "FL-005",
+        "title": "Disability Services & Benefits Info Fair",
+        "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Disability Advocacy",
+        "tags": [
+          "Disability Assistance",
+          "Disability Advocacy",
+          "Information & Referral",
+          "announcement"
+        ],
+        "contentSource": {
+          "id": "de-visually-impaired",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-11",
+        "updatedDate": "2026-06-11",
+        "organization": "Delaware Division for the Visually Impaired",
+        "location": {
+          "label": "Porter State Service Center",
+          "address": "509 W. 8th Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": null
+        },
+        "image": "Disablility Info.jpg",
+        "category_tags": [
+          "Legal",
+          "Community Support"
+        ],
+        "event_date": "2026-07-30"
+      },
+      {
+        "id": "FL-006",
+        "title": "Free Community Health Fair",
+        "summary": "Free health screenings, vaccinations, and dental checkups \u2014 no insurance or ID required.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Medical Care",
+        "tags": [
+          "Medical Assistance",
+          "Free",
+          "Medical Care",
+          "event"
+        ],
+        "contentSource": {
+          "id": "westside-family-healthcare",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-09",
+        "updatedDate": "2026-06-09",
+        "organization": "Westside Family Healthcare",
+        "location": {
+          "label": "Eden Park Recreation Center",
+          "address": "601 N. Van Buren Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19805",
+          "confidential": null
+        },
+        "image": "Health Fair.jpg",
+        "category_tags": [
+          "Health"
+        ],
+        "event_date": "2026-09-02"
+      },
+      {
+        "id": "FL-007",
+        "title": "Free Furniture Giveaway",
+        "summary": "Free gently-used furniture available for families moving into new housing \u2014 first come, first served.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Furniture & Household Goods",
+        "tags": [
+          "Free",
+          "Housing Assistance",
+          "Furniture/Household Goods",
+          "announcement"
+        ],
+        "contentSource": {
+          "id": "wilmington-housing-authority",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-06-14",
+        "updatedDate": "2026-06-14",
+        "organization": "Wilmington Housing Authority",
+        "location": {
+          "label": "WHA Community Room",
+          "address": "1500 Bowers Street",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19802",
+          "confidential": null
+        },
+        "image": "Furniture.jpg",
+        "category_tags": [
+          "Furniture & Household"
+        ],
+        "event_date": "2026-08-15"
+      },
+      {
+        "id": "FL-008",
+        "title": "United Neighbors 2026",
+        "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+        "verified": true,
+        "contentType": "FLYER",
+        "subcategory": "Community Celebrations",
+        "tags": [
+          "Free",
+          "Arts & Music",
+          "Community Celebrations",
+          "event"
+        ],
+        "contentSource": {
+          "id": "westside-grows-together",
+          "name": null,
+          "type": "manual",
+          "url": null,
+          "retrieved": null
+        },
+        "communityId": "wilmington-de",
+        "publishDate": null,
+        "expirationDate": null,
+        "status": null,
+        "createdDate": "2026-10-15",
+        "updatedDate": "2026-10-15",
+        "organization": "West Side Grows Together",
+        "location": {
+          "label": "7th Street Bridge",
+          "address": "7th Street between Adams St and Jackson St",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": null,
+          "confidential": null
+        },
+        "image": "United Neighbors 2026.jpg",
+        "category_tags": [
+          "Community Support"
+        ],
+        "event_date": "2026-10-17"
+      }
+    ],
+    "errorCode": null,
+    "errorMessage": null,
+    "timestamp": "2026-10-16T14:11:43.844068656Z"
+  }
+}

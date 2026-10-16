@@ -67,7 +67,7 @@ describe('TopicPage', () => {
     // "Housing Assistance" primary-nav link, and an unscoped /Housing/ query
     // matches that one first.
     const crumbs = await screen.findByRole('navigation', { name: 'Breadcrumb' });
-    const crumb = within(crumbs).getByRole('link', { name: /Housing/ });
+    const crumb = within(crumbs).getByRole('link', { name: 'Housing' });
     expect(crumb).toHaveAttribute('href', '/category/housing');
   });
 
@@ -79,7 +79,7 @@ describe('TopicPage', () => {
     });
     renderAt('housing', 'emergency-shelter');
 
-    expect(await screen.findByText(/1 listing\b/)).toBeInTheDocument();
+    expect(await screen.findByText(/1 help listing\b/)).toBeInTheDocument();
     expect(screen.queryByText(/1 listings/)).not.toBeInTheDocument();
   });
 
@@ -91,7 +91,7 @@ describe('TopicPage', () => {
     });
     renderAt('housing', 'emergency-shelter');
 
-    expect(await screen.findByText(/Nothing is listed under this topic yet/)).toBeInTheDocument();
+    expect(await screen.findByText(/No current help is listed here yet/)).toBeInTheDocument();
   });
 
   it('offers a way back to the category when the topic is unknown', async () => {

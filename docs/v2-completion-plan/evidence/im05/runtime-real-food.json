@@ -1,0 +1,38 @@
+{
+  "metadata": {
+    "categoryKey": "food",
+    "categoryLabel": "Food",
+    "categoryIcon": "\ud83c\udf4e",
+    "name": "Food",
+    "slug": "help",
+    "totalCount": 0,
+    "countsByType": {}
+  },
+  "items": [],
+  "topics": [
+    {
+      "name": "Food Pantry",
+      "slug": "food-pantry",
+      "count": 0,
+      "countsByType": {}
+    },
+    {
+      "name": "Prepared Meals",
+      "slug": "prepared-meals",
+      "count": 0,
+      "countsByType": {}
+    },
+    {
+      "name": "Home-Delivered Meals",
+      "slug": "home-delivered-meals",
+      "count": 0,
+      "countsByType": {}
+    },
+    {
+      "name": "Farmers Market",
+      "slug": "farmers-market",
+      "count": 0,
+      "countsByType": {}
+    }
+  ]
+}

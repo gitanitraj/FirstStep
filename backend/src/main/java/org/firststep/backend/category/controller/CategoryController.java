@@ -55,6 +55,15 @@ public class CategoryController {
         return ResponseEntity.ok(ApiResponse.success(page));
     }
 
+    /** Static route takes precedence over the existing controlled Topic slug route. */
+    @GetMapping("/category/{key}/help")
+    public ResponseEntity<ApiResponse<TopicPage>> getAllHelp(
+            @PathVariable String key, @RequestParam(required = false) String communityId) {
+        TopicPage page = topicPageService.getAllHelp(key, communityId)
+                .orElseThrow(() -> new NotFoundException("Category not found: " + key));
+        return ResponseEntity.ok(ApiResponse.success(page));
+    }
+
     /**
      * The topic page's BFF (Slice F6) — the fourth level of the hierarchy, where
      * CivicContent is finally listed.

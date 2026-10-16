@@ -1,0 +1,555 @@
+{
+  "metadata": {
+    "categoryKey": "housing",
+    "categoryLabel": "Housing",
+    "categoryIcon": "\ud83c\udfe0",
+    "name": "Housing",
+    "slug": "help",
+    "totalCount": 36,
+    "countsByType": {
+      "RESOURCE": 36
+    }
+  },
+  "items": [
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-001",
+      "title": "American Red Cross",
+      "summary": "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+      "organization": "American Red Cross",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-002",
+      "title": "Be Ready CDC - Esther's Place",
+      "summary": "Long-term transitional housing for women and their children on Wilmington's west side to support recovery and stability.",
+      "organization": "Be Ready CDC - Esther's Place",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.bereadycdc.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-003",
+      "title": "Be Ready CDC - Lazarus House",
+      "summary": "Long-term transitional housing for men recently released from prison on Wilmington's west side.",
+      "organization": "Be Ready CDC - Lazarus House",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.bereadycdc.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-005",
+      "title": "Catholic Charities - Bayard House",
+      "summary": "Residential program with housing, case management, healthcare access, and life skills support for at-risk, homeless, or pregnant and parenting teens.",
+      "organization": "Catholic Charities - Bayard House",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.ccwilm.org/bayard-house/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-006",
+      "title": "Child Inc - Domestic Violence Shelters",
+      "summary": "Confidential emergency shelter for domestic violence survivors. Includes safety planning, advocacy, and case management. Emergency hotel placement may be available.",
+      "organization": "Child Inc - Domestic Violence Shelters",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.childinc.com/domestic-violence-services/shelters/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-007",
+      "title": "Child Inc. - Runaway and Homeless Youth Program",
+      "summary": "24-hour hotline plus free counseling, temporary emergency shelter, and support services for runaway and homeless youth and their families.",
+      "organization": "Child Inc. - Runaway and Homeless Youth Program",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.childinc.com/services/services-for-children/#24",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-008",
+      "title": "Delaware State Housing Authority - SRAP",
+      "summary": "State-funded rental voucher program covering a portion of rent for eligible Delaware residents. Applications must go through a partnering agency.",
+      "organization": "Delaware State Housing Authority - SRAP",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "http://www.destatehousing.com",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-009",
+      "title": "Family Promise of Northern New Castle County",
+      "summary": "Comprehensive homeless family support including temporary shelter, rapid rehousing, and intensive case management across multiple programs to help families achieve housing independence.",
+      "organization": "Family Promise of Northern New Castle County",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.familypromisede.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-010",
+      "title": "Friendship House",
+      "summary": "Transitional housing combining subsidized housing with holistic programming for adults recovering from substance abuse, domestic violence, or incarceration. Multiple houses across Wilmington for men and women.",
+      "organization": "Friendship House",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.friendshiphousede.org/delaware-homeless/our-programs/transitional-housing/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-011",
+      "title": "Habitat for Humanity",
+      "summary": "Homeownership preparation and education program for income-eligible individuals, helping residents achieve homeownership through Habitat's program.",
+      "organization": "Habitat for Humanity",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.habitatncc.org/our-programs/homeownership/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-012",
+      "title": "Hilda Davis Residence",
+      "summary": "Permanent housing for low-income women experiencing homelessness who are employable. Operated by YWCA Delaware.",
+      "organization": "Hilda Davis Residence",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "tel:3026587161",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-013",
+      "title": "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+      "summary": "Fair housing advocacy, credit counseling, homebuyer education, and foreclosure prevention counseling for northern Delaware residents.",
+      "organization": "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.hond.org/home/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-014",
+      "title": "Limen Recovery and Wellness",
+      "summary": "Sober living for adults recovering from drug or alcohol addiction using a 12-step recovery model.",
+      "organization": "Limen Recovery and Wellness",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.limende.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-015",
+      "title": "Maria Lorenza Longo House",
+      "summary": "Long-term housing for women who need ongoing support to avoid becoming homeless.",
+      "organization": "Maria Lorenza Longo House",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.ministryofcaring.org",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-016",
+      "title": "Ministry of Caring Inc",
+      "summary": "Comprehensive nonprofit serving Wilmington's most vulnerable through meals, shelter, transitional housing, job assistance, dental care, early childhood education, and senior housing.",
+      "organization": "Ministry of Caring Inc",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.ministryofcaring.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-017",
+      "title": "Mother Mary of Hope House II",
+      "summary": "Emergency shelter for homeless women with children. Stays of 30\u201345 days with case management included.",
+      "organization": "Mother Mary of Hope House II",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.ministryofcaring.org/services/emergency-shelters/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-018",
+      "title": "Mother Mary of Hope House III",
+      "summary": "Emergency shelter for homeless women with children. Stays of 30\u201345 days with case management included.",
+      "organization": "Mother Mary of Hope House III",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.ministryofcaring.org/services/emergency-shelters/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-019",
+      "title": "Nazareth House Holistic Housing I",
+      "summary": "Transitional family housing with case management to help families address challenges, build skills, and prepare for independent living.",
+      "organization": "Nazareth House Holistic Housing I",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.ministryofcaring.org/services/housing-options/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-020",
+      "title": "Nazareth House Holistic Housing II",
+      "summary": "Transitional family housing with case management to help families address challenges, build skills, and prepare for independent living.",
+      "organization": "Nazareth House Holistic Housing II",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.ministryofcaring.org/services/housing-options/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-021",
+      "title": "NeighborGood Partners: Wilmington",
+      "summary": "Homeownership education, foreclosure prevention, DEHAP rental assistance, and one-on-one financial coaching to strengthen housing stability.",
+      "organization": "NeighborGood Partners: Wilmington",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.neighborgoodpartners.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-022",
+      "title": "Neighborhood House",
+      "summary": "Housing advice, rental and homebuying assistance, and homebuyer education workshops in English and Spanish. Two locations serving Wilmington.",
+      "organization": "Neighborhood House",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.neighborhoodhse.org/post/what-we-do-housing-1",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-023",
+      "title": "Northeast State Service Center",
+      "summary": "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+      "organization": "Northeast State Service Center",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-024",
+      "title": "Oxford House - Browntown",
+      "summary": "Self-run recovery house for men recovering from alcoholism or drug addiction. Residents share rent and expenses. Multiple Oxford House locations exist in Wilmington.",
+      "organization": "Oxford House - Browntown",
+      "location": "Wilmington",
+      "cost": "low-cost",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.oxfordvacancies.com/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-025",
+      "title": "Oxford Houses of Delaware",
+      "summary": "Self-run sober living homes for individuals in recovery. Residents share rent and expenses. Women with children are eligible.",
+      "organization": "Oxford Houses of Delaware",
+      "location": "Wilmington",
+      "cost": "low-cost",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://oxfordhouse.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-026",
+      "title": "Porter State Service Center",
+      "summary": "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+      "organization": "Porter State Service Center",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-027",
+      "title": "Sacred Heart Village",
+      "summary": "77 affordable apartments for income-eligible seniors age 62 and older.",
+      "organization": "Sacred Heart Village",
+      "location": "Wilmington",
+      "cost": "low-cost",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.sacredheartvillage.org",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-028",
+      "title": "St. Francis Holistic Housing",
+      "summary": "Up to two years of transitional family housing with a private unit and case management to address root causes of homelessness and build toward independent living.",
+      "organization": "St. Francis Holistic Housing",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://www.ministryofcaring.org/services/housing-options/#",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-030",
+      "title": "STEHM - Martha House I & II",
+      "summary": "Long-term transitional housing for women and their children with counseling and life skills training to prevent recurring homelessness.",
+      "organization": "STEHM - Martha House I & II",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://stehm.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-031",
+      "title": "STEHM - Motel Ministry",
+      "summary": "Short-term emergency motel placement for displaced individuals. Referrals accepted from social service agencies, schools, and hospitals. One-week stay, once per calendar year.",
+      "organization": "STEHM - Motel Ministry",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://stehm.org/newsite/2021/motel-ministry/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-029",
+      "title": "Sunday Breakfast Mission",
+      "summary": "Shelter for men experiencing homelessness and substance abuse, plus women and women with children. Clothing vouchers provided for the Urban Vintage thrift store.",
+      "organization": "Sunday Breakfast Mission",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://sundaybreakfastmission.org/programs-and-services",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-032",
+      "title": "West End Neighborhood House - Life Lines Program",
+      "summary": "Comprehensive support for foster care and unaccompanied youth ages 16\u201323, including LGBTQ+ youth, covering housing, education, employment, mental health, and life skills.",
+      "organization": "West End Neighborhood House - Life Lines Program",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://westendnh.org/programs/life-lines/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-033",
+      "title": "William Booth Emergency Housing Residence",
+      "summary": "90-day emergency shelter for women and children focused on preventing recurring homelessness through workshops and support groups.",
+      "organization": "William Booth Emergency Housing Residence",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.homelessshelterdirectory.org/cgi-bin/id/shelter.cgi?shelter=13820",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-034",
+      "title": "Wilmington Housing Authority - Housing Choice Vouchers",
+      "summary": "Federal housing vouchers helping eligible low-income residents pay rent in the community. Waitlist opens periodically \u2014 keep contact information current. WHA manages 1,976 vouchers.",
+      "organization": "Wilmington Housing Authority - Housing Choice Vouchers",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://whadelaware.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-035",
+      "title": "Wilmington Housing Authority - Public Housing Units",
+      "summary": "Affordable public housing units for low-income residents including seniors and people with disabilities. Income must not exceed 80% of local median income. Apply directly through WHA.",
+      "organization": "Wilmington Housing Authority - Public Housing Units",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://whadelaware.org/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-036",
+      "title": "Wilmington Senior Center - Lafayette Court Apartments",
+      "summary": "Affordable efficiency and one-bedroom apartments for residents age 55 and older, located next to the Wilmington Senior Center.",
+      "organization": "Wilmington Senior Center - Lafayette Court Apartments",
+      "location": "Wilmington",
+      "cost": "low-cost",
+      "urgency": "standard",
+      "date": null,
+      "url": "https://wilmingtonseniorcenter.org/lafayette-court-apartments/",
+      "imageUrl": null
+    },
+    {
+      "contentType": "RESOURCE",
+      "id": "HA-037",
+      "title": "YWCA Delaware - SCHE Joint Transitional Housing and Rapid Re-housing",
+      "summary": "Transitional and rapid re-housing for survivors of domestic violence, sexual assault, stalking, and dating violence, with wraparound case management and financial assistance toward stable permanent housing.",
+      "organization": "YWCA Delaware - SCHE Joint Transitional Housing and Rapid Re-housing",
+      "location": "Wilmington",
+      "cost": "free",
+      "urgency": "emergency",
+      "date": null,
+      "url": "https://www.ywcade.org/what-we-do/housing/",
+      "imageUrl": null
+    }
+  ],
+  "topics": [
+    {
+      "name": "Emergency Shelter",
+      "slug": "emergency-shelter",
+      "count": 9,
+      "countsByType": {
+        "RESOURCE": 9
+      }
+    },
+    {
+      "name": "Transitional Housing",
+      "slug": "transitional-housing",
+      "count": 11,
+      "countsByType": {
+        "RESOURCE": 11
+      }
+    },
+    {
+      "name": "Sober Living",
+      "slug": "sober-living",
+      "count": 3,
+      "countsByType": {
+        "RESOURCE": 3
+      }
+    },
+    {
+      "name": "Rental Assistance",
+      "slug": "rental-assistance",
+      "count": 4,
+      "countsByType": {
+        "RESOURCE": 4
+      }
+    },
+    {
+      "name": "Public Housing",
+      "slug": "public-housing",
+      "count": 1,
+      "countsByType": {
+        "RESOURCE": 1
+      }
+    },
+    {
+      "name": "Homeownership",
+      "slug": "homeownership",
+      "count": 4,
+      "countsByType": {
+        "RESOURCE": 4
+      }
+    },
+    {
+      "name": "Senior Housing",
+      "slug": "senior-housing",
+      "count": 2,
+      "countsByType": {
+        "RESOURCE": 2
+      }
+    },
+    {
+      "name": "Youth Housing",
+      "slug": "youth-housing",
+      "count": 2,
+      "countsByType": {
+        "RESOURCE": 2
+      }
+    },
+    {
+      "name": "Eviction Prevention",
+      "slug": "eviction-prevention",
+      "count": 0,
+      "countsByType": {}
+    }
+  ]
+}
