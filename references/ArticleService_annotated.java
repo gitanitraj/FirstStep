@@ -1,13 +1,11 @@
 /*
- * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/originals/service/ArticleService.java
- *
- * WHAT: Preserve the existing slice while enforcing the shared current-inventory boundary.
- * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
- * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
- * classification, Community selection and article approval retain their existing owners.
- * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
- * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ * Annotated reference: backend/src/main/java/org/firststep/backend/originals/service/ArticleService.java
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
  */
+// BEGIN MIRRORED SOURCE
 package org.firststep.backend.originals.service;
 
 import java.util.Comparator;
@@ -103,7 +101,13 @@ public class ArticleService {
      * the second, independent guarantee — see {@link ArticleDetail}.
      */
     public Optional<ArticleDetail> getPublishableDetail(String id) {
-        return getPublishableById(id).map(ArticleService::toDetail);
+        return getPublishableDetail(id, null);
+    }
+
+    public Optional<ArticleDetail> getPublishableDetail(String id, String communityId) {
+        return getPublishableById(id)
+                .filter(a -> communityId == null || communityId.equals(a.communityId))
+                .map(ArticleService::toDetail);
     }
 
     private static ArticleDetail toDetail(Article a) {

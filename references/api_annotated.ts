@@ -1,17 +1,16 @@
 /*
- * WHAT: Complete annotated mirror of frontend/src/types/api.ts for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ * Annotated reference: frontend/src/types/api.ts
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
  */
+// BEGIN MIRRORED SOURCE
 export interface CivicContentSummary {
   id: string;
   communityId: string;
   title: string;
   summary: string;
-  verified: boolean;
 }
 
 export interface SearchResult {
@@ -36,7 +35,6 @@ export interface ContentSource {
   name: string;
   type: string;
   url: string;
-  retrieved: string;
 }
 
 export interface DecisionRequest {

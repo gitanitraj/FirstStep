@@ -1,0 +1,16 @@
+test_im12_t03_explicit_unknown_supplementary_reference_is_rejected (test_im12_organization_references.Im12OrganizationReferences.test_im12_t03_explicit_unknown_supplementary_reference_is_rejected) ... FAIL
+test_im12_t05_missing_optional_reference_does_not_invent_identity (test_im12_organization_references.Im12OrganizationReferences.test_im12_t05_missing_optional_reference_does_not_invent_identity) ... ok
+
+======================================================================
+FAIL: test_im12_t03_explicit_unknown_supplementary_reference_is_rejected (test_im12_organization_references.Im12OrganizationReferences.test_im12_t03_explicit_unknown_supplementary_reference_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/tests/test_im12_organization_references.py", line 30, in test_im12_t03_explicit_unknown_supplementary_reference_is_rejected
+    self.assertEqual(1, result)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^
+AssertionError: 1 != 0
+
+----------------------------------------------------------------------
+Ran 2 tests in 0.004s
+
+FAILED (failures=1)

@@ -9,6 +9,8 @@ import java.util.stream.Collectors;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.dto.ApiResponse;
+import org.firststep.backend.shared.dto.ResidentContent;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.firststep.backend.shared.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -36,15 +38,18 @@ public class ResourceController {
     }
 
     @GetMapping("/resources")
-    public ResponseEntity<ApiResponse<List<Resource>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll()));
+    public ResponseEntity<ApiResponse<List<Object>>> getAll(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream()
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
+                .map(ResidentContent::from).toList()));
     }
 
     @GetMapping("/resources/{id}")
-    public ResponseEntity<ApiResponse<Resource>> getById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<Object>> getById(@PathVariable String id, @RequestParam(required = false) String communityId) {
         Resource resource = service.getById(id)
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
                 .orElseThrow(() -> new NotFoundException("Resource not found: " + id));
-        return ResponseEntity.ok(ApiResponse.success(resource));
+        return ResponseEntity.ok(ApiResponse.success(ResidentContent.from(resource)));
     }
 
     @GetMapping("/seasonal-images")

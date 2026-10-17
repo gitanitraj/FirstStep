@@ -1,0 +1,49 @@
+{
+  "communities": {
+    "bear-de": {
+      "Resource": 10
+    },
+    "claymont-de": {
+      "Resource": 8
+    },
+    "hockessin-de": {
+      "Resource": 7
+    },
+    "middletown-de": {
+      "Resource": 29
+    },
+    "new-castle-de": {
+      "Resource": 41
+    },
+    "newark-de": {
+      "Resource": 79
+    },
+    "newport-de": {
+      "Resource": 2
+    },
+    "wilmington-de": {
+      "Article": 3,
+      "ExpertAnswer": 6,
+      "FAQ": 6,
+      "Flyer": 8,
+      "NewsItem": 10,
+      "Resource": 53
+    }
+  },
+  "kindCounts": {
+    "Resource": 229,
+    "Flyer": 8,
+    "NewsItem": 10,
+    "Article": 3,
+    "FAQ": 6,
+    "ExpertAnswer": 6
+  },
+  "states": {
+    "ACTIVE": 256,
+    "EXPIRED": 5,
+    "APPROACHING_EXPIRY": 1
+  },
+  "providerKnown": 58,
+  "rawCurrentProjectionBeforeAfterEqual": true,
+  "housingResourcesAllOwners": 44
+}

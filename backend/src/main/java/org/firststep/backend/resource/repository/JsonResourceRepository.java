@@ -188,6 +188,8 @@ private void applyContentSourceAndDefaults(Resource resource, JsonNode node) {
  * when no location/city is available.
  */
 private String communityIdFor(Resource resource) {
+    // Explicit editorial ownership wins over a provider's physical office. Legacy rows retain normalization.
+    if (resource.communityId != null && !resource.communityId.isBlank()) return resource.communityId;
     if (resource.locations != null && !resource.locations.isEmpty()) {
         String slug = CommunitySlug.forCity(resource.locations.get(0).city);
         if (slug != null) {

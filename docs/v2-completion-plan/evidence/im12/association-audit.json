@@ -1,0 +1,200 @@
+{
+  "resourceProviderLinks": "catalog-after.json.providerTraces",
+  "otherExplicitStoredReferences": [
+    {
+      "id": "FL-001",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-056",
+      "displayOrganization": "West End Neighborhood House",
+      "producer": {
+        "id": "west-end-neighborhood-house",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-002",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-057",
+      "displayOrganization": "Community Legal Aid Society",
+      "producer": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-003",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-058",
+      "displayOrganization": "United Way of Delaware",
+      "producer": {
+        "id": "united-way-delaware",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-004",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-026",
+      "displayOrganization": "Ministry of Caring Inc",
+      "producer": {
+        "id": "ministry-of-caring",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-005",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-059",
+      "displayOrganization": "Delaware Division for the Visually Impaired",
+      "producer": {
+        "id": "de-visually-impaired",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-006",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-060",
+      "displayOrganization": "Westside Family Healthcare",
+      "producer": {
+        "id": "westside-family-healthcare",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-007",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-061",
+      "displayOrganization": "Wilmington Housing Authority",
+      "producer": {
+        "id": "wilmington-housing-authority",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "FL-008",
+      "kind": "Flyer",
+      "storedOrganizationId": "ORG-064",
+      "displayOrganization": "West Side Grows Together",
+      "producer": {
+        "id": "westside-grows-together",
+        "type": "manual"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "EA-001",
+      "kind": "ExpertAnswer",
+      "storedOrganizationId": "ORG-062",
+      "displayOrganization": "Delaware Volunteer Legal Services",
+      "producer": {
+        "id": "de-volunteer-legal-services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "EA-002",
+      "kind": "ExpertAnswer",
+      "storedOrganizationId": "ORG-063",
+      "displayOrganization": "Delaware Health and Social Services",
+      "producer": {
+        "id": "de-dhss",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "EA-003",
+      "kind": "ExpertAnswer",
+      "storedOrganizationId": "ORG-057",
+      "displayOrganization": "Community Legal Aid Society",
+      "producer": {
+        "id": "community-legal-aid",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "EA-004",
+      "kind": "ExpertAnswer",
+      "storedOrganizationId": "ORG-060",
+      "displayOrganization": "Westside Family Healthcare",
+      "producer": {
+        "id": "westside-family-healthcare",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "EA-005",
+      "kind": "ExpertAnswer",
+      "storedOrganizationId": "ORG-062",
+      "displayOrganization": "Delaware Volunteer Legal Services",
+      "producer": {
+        "id": "de-volunteer-legal-services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    },
+    {
+      "id": "EA-006",
+      "kind": "ExpertAnswer",
+      "storedOrganizationId": "ORG-063",
+      "displayOrganization": "Delaware Health and Social Services",
+      "producer": {
+        "id": "de-dhss",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "communityId": "wilmington-de",
+      "typedProviderOrHostPersisted": false,
+      "meaning": "stored organizer/affiliation reference; not a typed PROVIDER or independent HOST assertion"
+    }
+  ],
+  "hostAssessment": "No typed HOST persistence and no independent actual host fact supplied. Location/source/name do not establish HOST. No actionable Flyer activation or required blocked v2 journey demonstrated."
+}

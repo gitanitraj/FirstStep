@@ -1,11 +1,11 @@
 /*
- * WHAT: Complete annotated IM-10 mirror of backend/src/main/java/org/firststep/backend/flyer/controller/FlyerController.java.
- * WHY: Explicit occurrence eligibility must not expire Flyer media or alter canonical identity.
- * INTERACTION: Events alone intersects the injected-clock assessment with current inventory,
- * controlled notice kind, producer sector and optional exact Community scope; DTOs allowlist facts.
- * ALTERNATIVES: Prose-derived end times, global Flyer cutoffs and a new Event entity/type were rejected.
- * Tests separately prove nanosecond/end-of-day/DST boundaries, supporting visibility and privacy.
+ * Annotated reference: backend/src/main/java/org/firststep/backend/flyer/controller/FlyerController.java
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
  */
+// BEGIN MIRRORED SOURCE
 package org.firststep.backend.flyer.controller;
 
 import java.util.List;
@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api")
@@ -32,13 +33,14 @@ public class FlyerController {
     }
 
     @GetMapping("/flyers")
-    public ResponseEntity<ApiResponse<List<FlyerSummary>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream().map(f -> FlyerSummary.from(f, service)).toList()));
+    public ResponseEntity<ApiResponse<List<FlyerSummary>>> getAll(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream().filter(c -> communityId == null || communityId.equals(c.communityId)).map(f -> FlyerSummary.from(f, service)).toList()));
     }
 
     @GetMapping("/flyers/{id}")
-    public ResponseEntity<ApiResponse<FlyerSummary>> getById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<FlyerSummary>> getById(@PathVariable String id, @RequestParam(required = false) String communityId) {
         Flyer flyer = service.getById(id)
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
                 .orElseThrow(() -> new NotFoundException("Flyer not found: " + id));
         return ResponseEntity.ok(ApiResponse.success(FlyerSummary.from(flyer, service)));
     }

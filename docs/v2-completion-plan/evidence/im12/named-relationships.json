@@ -1,0 +1,123 @@
+[
+  {
+    "associationMeaning": "explicit_resource_provider_id",
+    "communityId": "bear-de",
+    "display": "Beautiful Gate Outreach Center",
+    "organizationId": "ORG-005",
+    "parentDisplayOnly": null,
+    "registry": {
+      "id": "ORG-005",
+      "name": "Beautiful Gate Outreach Center",
+      "slug": "beautiful-gate-outreach-center",
+      "website": null
+    },
+    "resourceId": "CI-001",
+    "scopedProviderResourceIds": [
+      "CI-001"
+    ],
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "explicit_resource_provider_id",
+    "communityId": "wilmington-de",
+    "display": "American Red Cross",
+    "organizationId": "ORG-001",
+    "parentDisplayOnly": null,
+    "registry": {
+      "id": "ORG-001",
+      "name": "American Red Cross",
+      "slug": "american-red-cross",
+      "website": null
+    },
+    "resourceId": "HA-001",
+    "scopedProviderResourceIds": [
+      "HA-001"
+    ],
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "explicit_resource_provider_id",
+    "communityId": "wilmington-de",
+    "display": "Be Ready CDC - Esther's Place",
+    "organizationId": "ORG-003",
+    "parentDisplayOnly": "Be Ready CDC (Community Development Center)",
+    "registry": {
+      "id": "ORG-003",
+      "name": "Be Ready CDC - Esther's Place",
+      "slug": "be-ready-cdc-esther-s-place",
+      "website": "https://www.bereadycdc.org/"
+    },
+    "resourceId": "HA-002",
+    "scopedProviderResourceIds": [
+      "HA-002"
+    ],
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "explicit_resource_provider_id",
+    "communityId": "newport-de",
+    "display": "Belvedere State Service Center",
+    "organizationId": "ORG-006",
+    "parentDisplayOnly": null,
+    "registry": {
+      "id": "ORG-006",
+      "name": "Belvedere State Service Center",
+      "slug": "belvedere-state-service-center",
+      "website": null
+    },
+    "resourceId": "HA-004",
+    "scopedProviderResourceIds": [
+      "CI-002",
+      "HA-004"
+    ],
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "explicit_resource_provider_id",
+    "communityId": "wilmington-de",
+    "display": "Child Inc - Domestic Violence Shelters",
+    "organizationId": "ORG-011",
+    "parentDisplayOnly": "Child Inc",
+    "registry": {
+      "id": "ORG-011",
+      "name": "Child Inc - Domestic Violence Shelters",
+      "slug": "child-inc-domestic-violence-shelters",
+      "website": null
+    },
+    "resourceId": "HA-006",
+    "scopedProviderResourceIds": [
+      "HA-006"
+    ],
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "missing_explicit_provider_reference",
+    "communityId": "bear-de",
+    "display": "Alpha Worship Center - Pantry of Hope",
+    "organizationId": null,
+    "parentDisplayOnly": null,
+    "registry": null,
+    "resourceId": "SD-032",
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "missing_explicit_provider_reference",
+    "communityId": "bear-de",
+    "display": "Red Lion United Methodist Church",
+    "organizationId": null,
+    "parentDisplayOnly": null,
+    "registry": null,
+    "resourceId": "SD-042",
+    "sourceId": "dscyf-directory"
+  },
+  {
+    "associationMeaning": "missing_explicit_provider_reference",
+    "communityId": "bear-de",
+    "display": "Aquila Behavioral Health of Delaware",
+    "organizationId": null,
+    "parentDisplayOnly": null,
+    "registry": null,
+    "resourceId": "SD-048",
+    "sourceId": "dscyf-directory"
+  }
+]

@@ -1,0 +1,32 @@
+[
+  {
+    "classification": "data stewardship",
+    "fact": "229 Resource rows omit stored communityId; existing adapter provides eight non-null runtime owners",
+    "action": "Confirm explicit owners in future authorized authoring, independent of office/catchment; no data migration in IM12"
+  },
+  {
+    "classification": "data stewardship",
+    "fact": "171 supplementary Resources lack organization_id; 28 Resource parent_organization strings are display-only",
+    "action": "Verify responsible provider IDs and parent meanings through editorial process; never name/source match"
+  },
+  {
+    "classification": "data stewardship",
+    "fact": "Legacy directory producer dscyf-directory is attached by Resource adapter but has no registered sector",
+    "action": "Keep directory attribution; do not assign a sector/provider from its name. Governed producer validators cover stored News/Flyer/Expert/FAQ/Article refs; directory is separate adapter provenance"
+  },
+  {
+    "classification": "data stewardship",
+    "fact": "NP-003 occurrence missing; seven Flyer events concluded, FL008 date-only; source URLs/organization websites/venues/service areas vary or are missing",
+    "action": "Human verify optional facts; no inferred event end, host, eligibility or invented link"
+  },
+  {
+    "classification": "V3 partial logical model",
+    "fact": "No generalized ContentOrganizationAssociation or typed HOST persistence, no alias/hierarchy/Institution/Party",
+    "action": "No demonstrated required v2 journey blocked; retain narrow explicit Resource provider links. Approval required before schema expansion for a specific future required relation"
+  },
+  {
+    "classification": "IM14 handoff",
+    "fact": "Original Admin Guide and historical decisions require reconciliation, while existing CLI supplies v2 diagnostics",
+    "action": "Do not close IM14 or implement dashboard/queue/notification here"
+  }
+]

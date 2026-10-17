@@ -1,18 +1,20 @@
+/*
+ * Annotated reference: backend/src/main/java/org/firststep/backend/expert/controller/ExpertAnswerController.java
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
+ */
+// BEGIN MIRRORED SOURCE
 package org.firststep.backend.expert.controller;
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// ExpertAnswerController exposes GET /api/expert-answers and
-// /api/expert-answers/{id}, wrapped in ApiResponse<T> — mirroring
-// FlyerController exactly.
-// =============================================================================
 
 import java.util.List;
 
 import org.firststep.backend.expert.model.ExpertAnswer;
 import org.firststep.backend.expert.service.ExpertAnswerService;
 import org.firststep.backend.shared.dto.ApiResponse;
+import org.firststep.backend.shared.dto.ResidentContent;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.firststep.backend.shared.exception.NotFoundException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -31,35 +33,17 @@ public class ExpertAnswerController {
     }
 
     @GetMapping("/expert-answers")
-    public ResponseEntity<ApiResponse<List<ExpertAnswer>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll()));
+    public ResponseEntity<ApiResponse<List<Object>>> getAll(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream()
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
+                .map(ResidentContent::from).toList()));
     }
 
     @GetMapping("/expert-answers/{id}")
-    public ResponseEntity<ApiResponse<ExpertAnswer>> getById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<Object>> getById(@PathVariable String id, @RequestParam(required = false) String communityId) {
         ExpertAnswer expertAnswer = service.getById(id)
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
                 .orElseThrow(() -> new NotFoundException("Expert answer not found: " + id));
-        return ResponseEntity.ok(ApiResponse.success(expertAnswer));
+        return ResponseEntity.ok(ApiResponse.success(ResidentContent.from(expertAnswer)));
     }
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN
-// =============================================================================
-// Same ApiResponse<T>/NotFoundException wiring as every other controller —
-// no new response pattern introduced.
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - Depends on ExpertAnswerService (constructor-injected).
-// - Relies on GlobalExceptionHandler (shared.web) to turn a thrown
-//   NotFoundException into a 404 ApiResponse envelope.
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - None — direct mirror of FlyerController.
-// =============================================================================

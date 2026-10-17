@@ -3,7 +3,6 @@ export interface CivicContentSummary {
   communityId: string;
   title: string;
   summary: string;
-  verified: boolean;
 }
 
 export interface SearchResult {
@@ -28,7 +27,6 @@ export interface ContentSource {
   name: string;
   type: string;
   url: string;
-  retrieved: string;
 }
 
 export interface DecisionRequest {

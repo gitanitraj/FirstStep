@@ -1,11 +1,11 @@
 /*
- * WHAT: Complete annotated mirror of backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ * Annotated reference: backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
  */
+// BEGIN MIRRORED SOURCE
 package org.firststep.backend.organization.service;
 
 import java.util.Comparator;
@@ -23,6 +23,7 @@ import org.firststep.backend.organization.model.Organization;
 import org.firststep.backend.organization.repository.OrganizationRepository;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.dto.ContentItem;
+import org.firststep.backend.shared.dto.ResidentContent;
 import org.firststep.backend.resource.service.ResourceService;
 import org.springframework.stereotype.Service;
 
@@ -77,12 +78,12 @@ public class OrganizationService {
      */
     public Optional<OrganizationPage> getBySlug(String slug) {
         return repository.findBySlug(slug).map(org -> new OrganizationPage(
-                org.id, org.name, org.slug, org.website, resourcesFor(org)));
+                org.id, org.name, org.slug, ResidentContent.safeUrl(org.website), resourcesFor(org)));
     }
 
     /** Explicit scoped destination path; historical directory overload remains unchanged. */
     public Optional<OrganizationPage> getBySlug(String slug, String communityId) {
-        return repository.findBySlug(slug).map(org -> new OrganizationPage(org.id, org.name, org.slug, org.website,
+        return repository.findBySlug(slug).map(org -> new OrganizationPage(org.id, org.name, org.slug, ResidentContent.safeUrl(org.website),
                 resourceService.getAll().stream().filter(r -> communityId.equals(r.communityId))
                         .filter(r -> org.id.equals(r.organizationId)).map(OrganizationService::toContentItem).toList()));
     }

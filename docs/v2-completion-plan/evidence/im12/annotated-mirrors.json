@@ -1,0 +1,182 @@
+[
+  {
+    "source": "backend/src/main/java/org/firststep/backend/ai/controller/DecisionController.java",
+    "mirror": "references/DecisionController_annotated.java",
+    "sourceSha256": "b16aa7c7b1d1a7edf36e1edb2eb3e4095c968c962aafb1efadff841f6a84525e",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/ai/dto/DecisionSummary.java",
+    "mirror": "references/DecisionSummary_annotated.java",
+    "sourceSha256": "4b1e0a091816e311e839bc69021ac4893fa81ed8ebe788284c5952e2a878d9f4",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/ai/service/DecisionAgentService.java",
+    "mirror": "references/DecisionAgentService_annotated.java",
+    "sourceSha256": "c9490c9da4c5a9eabf179777bb1cf829e626c3e09cd7f7f8cbc35b0e878dc396",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java",
+    "mirror": "references/CategoryController_annotated.java",
+    "sourceSha256": "21eca91ca2699420a099f2a5785f383dfce6ae49d2598e69ec6cddaa6937584d",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/dto/PublicCategorySummary.java",
+    "mirror": "references/PublicCategorySummary_annotated.java",
+    "sourceSha256": "03290bb9caa00ddc4f1e1c33a9cd38fdb07fc3ddd9dcc760de926e2ff8faf719",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/expert/controller/ExpertAnswerController.java",
+    "mirror": "references/ExpertAnswerController_annotated.java",
+    "sourceSha256": "c485b3d30a4a27f031bffbdfe852cb637a8e2f9a41ca1bdd2d082af61151def6",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/expert/controller/FaqController.java",
+    "mirror": "references/FaqController_annotated.java",
+    "sourceSha256": "cd5ccc29936d2f825fe078bb433afebb92be8b0011d93bf36526ed0d9e53b5a7",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/flyer/controller/FlyerController.java",
+    "mirror": "references/FlyerController_annotated.java",
+    "sourceSha256": "74660e433d002b0b771bcdf55694977058b1c3e7d7e044f31f2e08be791c237d",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java",
+    "mirror": "references/OrganizationService_annotated.java",
+    "sourceSha256": "d0ad9c1f0849de3a432b338df611ce9a36c6febbdaceaff4c11cefceb1bbcc2b",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/originals/controller/OriginalsController.java",
+    "mirror": "references/OriginalsController_annotated.java",
+    "sourceSha256": "cf4444800f5c5d5a5b62b2598837b2fa79f18d584534fd44472c4b501ddf931e",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/originals/service/ArticleService.java",
+    "mirror": "references/ArticleService_annotated.java",
+    "sourceSha256": "bc9322db68ebda0244ea4cabea3420502cb50ebb589e5094cda5b8aef9d1f4be",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/resource/controller/ResourceController.java",
+    "mirror": "references/ResourceController_annotated.java",
+    "sourceSha256": "127d4994d84f1c72495079d15e3eb2c2107312c85fe7d1a796ebead4bdd497f0",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/resource/repository/JsonResourceRepository.java",
+    "mirror": "references/JsonResourceRepository_annotated.java",
+    "sourceSha256": "9e4a377ea7c44b4f0ac6c6a34b129d731ee1d62299052bf653be0acf8526c18a",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/search/controller/SearchController.java",
+    "mirror": "references/SearchController_annotated.java",
+    "sourceSha256": "251111e58307bc6c008b32d6acebb000ea4ba43f570cf3b68c923cc200253841",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/search/dto/PublicSearchResult.java",
+    "mirror": "references/PublicSearchResult_annotated.java",
+    "sourceSha256": "109974d45aefc5a2526653925829b5ed134067fbbb1a0d2ea8ad150a7e0c02ed",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/shared/dto/ResidentContent.java",
+    "mirror": "references/ResidentContent_annotated.java",
+    "sourceSha256": "95e9b46f02cdd9beef3cd8847bf0e6e45d6365ea541b93f1af23cdc123059535",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/shared/web/GlobalExceptionHandler.java",
+    "mirror": "references/GlobalExceptionHandler_annotated.java",
+    "sourceSha256": "64a75b2ddf8ec379faae4abd9059971e1eb4905e38aa5868392443a8c8ea6c98",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/audit/Im12AdditionalBoundaryTest.java",
+    "mirror": "references/tests/Im12AdditionalBoundaryTest_annotated.java",
+    "sourceSha256": "47e80d465c50e3cd8bc7cb0f72a8a40f5cf236e9a394735f177964646a7f202f",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/audit/Im12BoundaryRegressionTest.java",
+    "mirror": "references/tests/Im12BoundaryRegressionTest_annotated.java",
+    "sourceSha256": "6947beed309c3f89244c8a74ae82e040eb93adf90ff433ba282596e6e7e7f3a7",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/audit/Im12CatalogAuditTest.java",
+    "mirror": "references/tests/Im12CatalogAuditTest_annotated.java",
+    "sourceSha256": "0ff50fb11d9887fe9afe062814aa3c4cd3716c3b89b69a92da72d00063ad9bd5",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/audit/Im12OwnershipAndErrorTest.java",
+    "mirror": "references/tests/Im12OwnershipAndErrorTest_annotated.java",
+    "sourceSha256": "10e2b21fb4f1c890371055aa9859faa59ca907c4416ab21925f49cdc3f23c52f",
+    "completeExactBody": true
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/audit/Im12RelationshipTest.java",
+    "mirror": "references/tests/Im12RelationshipTest_annotated.java",
+    "sourceSha256": "659a8e85b27476b72b30940882570168aadbc9dcdd1eb2757f6646fe43bbf314",
+    "completeExactBody": true
+  },
+  {
+    "source": "data-cleaning/scripts/validate_organizations.py",
+    "mirror": "references/validate_organizations_annotated.py",
+    "sourceSha256": "c1df054ffe8bae5f4ba48a6be2742f7de58e7415313560525d80798155b08cd9",
+    "completeExactBody": true
+  },
+  {
+    "source": "data-cleaning/tests/test_im12_organization_references.py",
+    "mirror": "references/tests/test_im12_organization_references_annotated.py",
+    "sourceSha256": "cd42654925794adc75c7a6001a4f38f2e39ad73bce74dfa6fa4c0e8495ecabc0",
+    "completeExactBody": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im12/browser-check.mjs",
+    "mirror": "references/im12/browser-check_annotated.mjs",
+    "sourceSha256": "b62a6170c5409ec1021b42fbcf35f292000e5fe2d4f31898de1a5b9150326725",
+    "completeExactBody": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im12/packaged-check.py",
+    "mirror": "references/im12/packaged-check_annotated.py",
+    "sourceSha256": "f257364df2b3033aa279d4ef7e0032da78b4bcb02504ff5162e18a01388956ff",
+    "completeExactBody": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im12/serve-built.py",
+    "mirror": "references/im12/serve-built_annotated.py",
+    "sourceSha256": "a2f618edd55026c88a538fc3c47c64202d8a831a79012e56e2168ff44aef420f",
+    "completeExactBody": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im12/summarize-audit.py",
+    "mirror": "references/im12/summarize-audit_annotated.py",
+    "sourceSha256": "e30dbfef4992c08803a46f4298cbe852a781f19119cd40bc93c30324d7bbfeec",
+    "completeExactBody": true
+  },
+  {
+    "source": "frontend/src/components/ContentCard/Im12PublicNavigation.test.tsx",
+    "mirror": "references/Im12PublicNavigation.test_annotated.tsx",
+    "sourceSha256": "e0272fcc32b0928fedb20497ae8008f36574f8d8c67180f6355f51e0df7cb502",
+    "completeExactBody": true
+  },
+  {
+    "source": "frontend/src/types/api.ts",
+    "mirror": "references/api_annotated.ts",
+    "sourceSha256": "cf9c514088d871fc860c6b91c90a41c9e20977a2371ca4ae90b8b762ed0655d5",
+    "completeExactBody": true
+  }
+]

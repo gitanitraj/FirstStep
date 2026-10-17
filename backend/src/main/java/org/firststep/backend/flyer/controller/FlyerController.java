@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api")
@@ -24,13 +25,14 @@ public class FlyerController {
     }
 
     @GetMapping("/flyers")
-    public ResponseEntity<ApiResponse<List<FlyerSummary>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream().map(f -> FlyerSummary.from(f, service)).toList()));
+    public ResponseEntity<ApiResponse<List<FlyerSummary>>> getAll(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream().filter(c -> communityId == null || communityId.equals(c.communityId)).map(f -> FlyerSummary.from(f, service)).toList()));
     }
 
     @GetMapping("/flyers/{id}")
-    public ResponseEntity<ApiResponse<FlyerSummary>> getById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<FlyerSummary>> getById(@PathVariable String id, @RequestParam(required = false) String communityId) {
         Flyer flyer = service.getById(id)
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
                 .orElseThrow(() -> new NotFoundException("Flyer not found: " + id));
         return ResponseEntity.ok(ApiResponse.success(FlyerSummary.from(flyer, service)));
     }

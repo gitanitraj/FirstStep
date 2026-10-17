@@ -3,7 +3,8 @@ package org.firststep.backend.category.controller;
 import java.util.List;
 
 import org.firststep.backend.category.dto.CategoryPage;
-import org.firststep.backend.category.dto.CategorySummary;
+import org.firststep.backend.category.dto.PublicCategorySummary;
+import org.firststep.backend.flyer.service.FlyerService;
 import org.firststep.backend.category.dto.TopicPage;
 import org.firststep.backend.category.service.CategoryPageService;
 import org.firststep.backend.category.service.CategoryService;
@@ -22,20 +23,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
     private final CategoryService service;
+    private final FlyerService flyers;
     private final CategoryPageService categoryPageService;
     private final TopicPageService topicPageService;
 
     public CategoryController(CategoryService service, CategoryPageService categoryPageService,
-            TopicPageService topicPageService) {
+            TopicPageService topicPageService, FlyerService flyers) {
         this.service = service;
+        this.flyers = flyers;
         this.categoryPageService = categoryPageService;
         this.topicPageService = topicPageService;
     }
 
     @GetMapping("/categories")
-    public ResponseEntity<ApiResponse<List<CategorySummary>>> getAll(
+    public ResponseEntity<ApiResponse<List<PublicCategorySummary>>> getAll(
             @RequestParam(required = false) String communityId) {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll(communityId)));
+        return ResponseEntity.ok(ApiResponse.success(service.getAll(communityId).stream().map(c -> PublicCategorySummary.from(c, flyers)).toList()));
     }
 
     /**

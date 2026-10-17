@@ -1,0 +1,4483 @@
+[
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-001",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newport-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-002",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-003",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-004",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-005",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-006",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-007",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-008",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-009",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-010",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-011",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-012",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-013",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-014",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "CI-015",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FH-001",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FH-002",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FH-003",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FH-004",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FH-005",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FH-006",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-001",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-002",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-003",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newport-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-004",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-005",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-006",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-007",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-008",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-009",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-010",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-011",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-012",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-013",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-014",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-015",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-016",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-017",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-018",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-019",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-020",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-021",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-022",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-023",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-024",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-025",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-026",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-027",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-028",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-029",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-030",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-031",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-032",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-033",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-034",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-035",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-036",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "HA-037",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-001",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-002",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-003",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-004",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-005",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-006",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-007",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-008",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-009",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-010",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-011",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-012",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-013",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-014",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-015",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-016",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-017",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-018",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-019",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-020",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-021",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-022",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-023",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-024",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-025",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-026",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-027",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-028",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-029",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-030",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-031",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-032",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-033",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-034",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-035",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-036",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-037",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-038",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-039",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-040",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-041",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-042",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-043",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-044",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-045",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-046",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-047",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-048",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-049",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-050",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-051",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-052",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-053",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-054",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-055",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-056",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-057",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-058",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-059",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-060",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-061",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-062",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-063",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-064",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-065",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-066",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-067",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-068",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-069",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-070",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-071",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-072",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-073",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-074",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-075",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-076",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-077",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-078",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-079",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-080",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-081",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-082",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-083",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-084",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-085",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-086",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-087",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-088",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-089",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-090",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-091",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-092",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-093",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-094",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-095",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-096",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-097",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-098",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-099",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-100",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-101",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "claymont-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-102",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-103",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-104",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-105",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-106",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-107",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-108",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-109",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-110",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-111",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-112",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-113",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-114",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-115",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-116",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-117",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-118",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-119",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-120",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-121",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-122",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "bear-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-123",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-124",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-125",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-126",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-127",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-128",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-129",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-130",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-131",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-132",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-133",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-134",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-135",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-136",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-137",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-138",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-139",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-140",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-141",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-142",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-143",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-144",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-145",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-146",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-147",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-148",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-149",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-150",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-151",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-152",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-153",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-154",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-155",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-156",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "middletown-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-157",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-158",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-159",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-160",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-161",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-162",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-163",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-164",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "hockessin-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-165",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-166",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-167",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-168",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-169",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "new-castle-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-170",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "newark-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "SD-171",
+    "kind": "Resource",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-09-07",
+    "helpAccess": null,
+    "id": "FL-001",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-08-30",
+    "helpAccess": null,
+    "id": "FL-002",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-09-15",
+    "helpAccess": null,
+    "id": "FL-003",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-08-26",
+    "helpAccess": null,
+    "id": "FL-004",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-07-30",
+    "helpAccess": null,
+    "id": "FL-005",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-09-02",
+    "helpAccess": null,
+    "id": "FL-006",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-08-15",
+    "helpAccess": null,
+    "id": "FL-007",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CONCLUDED"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": "2026-10-17",
+    "helpAccess": null,
+    "id": "FL-008",
+    "kind": "Flyer",
+    "occurrence": {
+      "diagnostic": "event_local_date",
+      "state": "CURRENT_OR_UPCOMING"
+    },
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": true,
+      "editorialExpiryEligible": false,
+      "state": "EXPIRED"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-001",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-06-01",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": true,
+      "editorialExpiryEligible": false,
+      "state": "EXPIRED"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-002",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-06-02",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": true,
+      "editorialExpiryEligible": true,
+      "state": "APPROACHING_EXPIRY"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-003",
+    "kind": "NewsItem",
+    "occurrence": {
+      "diagnostic": "missing_occurrence",
+      "state": "UNKNOWN"
+    },
+    "publicStatus": true,
+    "published": "2026-06-01",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-004",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-06-02",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-005",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-05-30",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": true,
+      "editorialExpiryEligible": false,
+      "state": "EXPIRED"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-006",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-06-03",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-007",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-06-01",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-008",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-05-28",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": true,
+      "editorialExpiryEligible": false,
+      "state": "EXPIRED"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-009",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-08-18",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": true,
+      "editorialExpiryEligible": false,
+      "state": "EXPIRED"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "NP-010",
+    "kind": "NewsItem",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-08-20",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "OR-001",
+    "kind": "Article",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "OR-002",
+    "kind": "Article",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-07-22",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "OR-003",
+    "kind": "Article",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": "2026-08-10",
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FAQ-001",
+    "kind": "FAQ",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FAQ-002",
+    "kind": "FAQ",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FAQ-003",
+    "kind": "FAQ",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FAQ-004",
+    "kind": "FAQ",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FAQ-005",
+    "kind": "FAQ",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "FAQ-006",
+    "kind": "FAQ",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "EA-001",
+    "kind": "ExpertAnswer",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "EA-002",
+    "kind": "ExpertAnswer",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "EA-003",
+    "kind": "ExpertAnswer",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "EA-004",
+    "kind": "ExpertAnswer",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "EA-005",
+    "kind": "ExpertAnswer",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  },
+  {
+    "communityId": "wilmington-de",
+    "editorial": {
+      "editorialAttentionRequired": false,
+      "editorialExpiryEligible": true,
+      "state": "ACTIVE"
+    },
+    "endsAt": null,
+    "eventDate": null,
+    "helpAccess": null,
+    "id": "EA-006",
+    "kind": "ExpertAnswer",
+    "occurrence": null,
+    "publicStatus": true,
+    "published": null,
+    "startsAt": null
+  }
+]

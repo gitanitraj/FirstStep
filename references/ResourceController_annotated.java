@@ -1,14 +1,12 @@
+/*
+ * Annotated reference: backend/src/main/java/org/firststep/backend/resource/controller/ResourceController.java
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
+ */
+// BEGIN MIRRORED SOURCE
 package org.firststep.backend.resource.controller;
-
-// =============================================================================
-// WHAT THIS CLASS DOES
-// =============================================================================
-// ResourceController exposes the resource slice's REST endpoints:
-// GET /api/health, /api/resources, /api/resources/{id}, /api/seasonal-images.
-// Moved here unchanged in behavior from the flat controller/ package, aside
-// from the ApiResponse<T>/NotFoundException wiring already introduced in
-// Step 2.
-// =============================================================================
 
 import java.io.File;
 import java.util.Arrays;
@@ -19,6 +17,8 @@ import java.util.stream.Collectors;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.resource.service.ResourceService;
 import org.firststep.backend.shared.dto.ApiResponse;
+import org.firststep.backend.shared.dto.ResidentContent;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.firststep.backend.shared.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -46,15 +46,18 @@ public class ResourceController {
     }
 
     @GetMapping("/resources")
-    public ResponseEntity<ApiResponse<List<Resource>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll()));
+    public ResponseEntity<ApiResponse<List<Object>>> getAll(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream()
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
+                .map(ResidentContent::from).toList()));
     }
 
     @GetMapping("/resources/{id}")
-    public ResponseEntity<ApiResponse<Resource>> getById(@PathVariable String id) {
+    public ResponseEntity<ApiResponse<Object>> getById(@PathVariable String id, @RequestParam(required = false) String communityId) {
         Resource resource = service.getById(id)
+                .filter(c -> communityId == null || communityId.equals(c.communityId))
                 .orElseThrow(() -> new NotFoundException("Resource not found: " + id));
-        return ResponseEntity.ok(ApiResponse.success(resource));
+        return ResponseEntity.ok(ApiResponse.success(ResidentContent.from(resource)));
     }
 
     @GetMapping("/seasonal-images")
@@ -71,35 +74,3 @@ public class ResourceController {
         return ResponseEntity.ok(files);
     }
 }
-
-// =============================================================================
-// WHY THIS IMPLEMENTATION WAS CHOSEN
-// =============================================================================
-// Purely a package move (org.firststep.backend.controller ->
-// org.firststep.backend.resource.controller) plus updated imports for
-// Resource/ResourceService's new locations. No endpoint, method signature,
-// or behavior changed in this step — Step 2 already did the ApiResponse/
-// NotFoundException wiring; this step only relocates the class into its
-// vertical slice.
-//
-// /api/health and /api/seasonal-images stay unwrapped in ApiResponse — they
-// aren't part of the resource/news/decide response-envelope pattern (see
-// ApiResponse_annotated.java's Alternatives section).
-// =============================================================================
-
-// =============================================================================
-// HOW IT INTERACTS WITH OTHER CLASSES
-// =============================================================================
-// - Depends on ResourceService (constructor-injected).
-// - Relies on GlobalExceptionHandler (shared.web) to turn a thrown
-//   NotFoundException into a 404 ApiResponse envelope.
-// =============================================================================
-
-// =============================================================================
-// ALTERNATIVES CONSIDERED
-// =============================================================================
-// - Wrapping /api/seasonal-images in ApiResponse too, for full consistency:
-//   considered and rejected in Step 2 — it isn't part of the pattern the
-//   user named (resource/news/search), and app.js's seasonal-images consumer
-//   was left reading the raw array on purpose.
-// =============================================================================

@@ -1,0 +1,56 @@
+[
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "data-cleaning/tests",
+      "-v"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_content_sources.py"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_homepage.py"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_navigation.py"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_news.py"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_organizations.py"
+    ],
+    "exitCode": 0
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_schema.py"
+    ],
+    "exitCode": 0
+  }
+]

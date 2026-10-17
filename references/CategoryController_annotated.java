@@ -1,17 +1,18 @@
 /*
- * WHAT: Complete annotated mirror of backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ * Annotated reference: backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java
+ * WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+ * WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+ * INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+ * ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
  */
+// BEGIN MIRRORED SOURCE
 package org.firststep.backend.category.controller;
 
 import java.util.List;
 
 import org.firststep.backend.category.dto.CategoryPage;
-import org.firststep.backend.category.dto.CategorySummary;
+import org.firststep.backend.category.dto.PublicCategorySummary;
+import org.firststep.backend.flyer.service.FlyerService;
 import org.firststep.backend.category.dto.TopicPage;
 import org.firststep.backend.category.service.CategoryPageService;
 import org.firststep.backend.category.service.CategoryService;
@@ -30,20 +31,22 @@ import org.springframework.web.bind.annotation.RestController;
 public class CategoryController {
 
     private final CategoryService service;
+    private final FlyerService flyers;
     private final CategoryPageService categoryPageService;
     private final TopicPageService topicPageService;
 
     public CategoryController(CategoryService service, CategoryPageService categoryPageService,
-            TopicPageService topicPageService) {
+            TopicPageService topicPageService, FlyerService flyers) {
         this.service = service;
+        this.flyers = flyers;
         this.categoryPageService = categoryPageService;
         this.topicPageService = topicPageService;
     }
 
     @GetMapping("/categories")
-    public ResponseEntity<ApiResponse<List<CategorySummary>>> getAll(
+    public ResponseEntity<ApiResponse<List<PublicCategorySummary>>> getAll(
             @RequestParam(required = false) String communityId) {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll(communityId)));
+        return ResponseEntity.ok(ApiResponse.success(service.getAll(communityId).stream().map(c -> PublicCategorySummary.from(c, flyers)).toList()));
     }
 
     /**

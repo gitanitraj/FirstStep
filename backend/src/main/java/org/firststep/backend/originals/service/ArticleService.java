@@ -93,7 +93,13 @@ public class ArticleService {
      * the second, independent guarantee — see {@link ArticleDetail}.
      */
     public Optional<ArticleDetail> getPublishableDetail(String id) {
-        return getPublishableById(id).map(ArticleService::toDetail);
+        return getPublishableDetail(id, null);
+    }
+
+    public Optional<ArticleDetail> getPublishableDetail(String id, String communityId) {
+        return getPublishableById(id)
+                .filter(a -> communityId == null || communityId.equals(a.communityId))
+                .map(ArticleService::toDetail);
     }
 
     private static ArticleDetail toDetail(Article a) {

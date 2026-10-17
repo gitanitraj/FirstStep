@@ -1,73 +1,9 @@
-"""
-=============================================================================
-ANNOTATED REFERENCE — data-cleaning/scripts/validate_organizations.py
-Slice G1a. See references/decisions.md Decision 049.
-=============================================================================
-
-WHAT IT GUARDS
-    The organization registry and every resource reference into it. Six
-    validators now; this is the one that keeps identity and content in step.
-
-RULE 5 IS A MIGRATION RULE, NOT A DOMAIN INVARIANT — the distinction to keep
-    It warns when a registry entry has no resources, and WARNS rather than
-    ERRORS, deliberately.
-
-    The reason it exists at all: the registry was GENERATED from the resources
-    in this migration, so an entry with no resources means the generation
-    dropped something. That is worth catching today.
-
-    The reason it is not an error: a real registry will legitimately hold
-    organizations whose listings lapsed, or that were added ahead of their
-    services. "An organization must have a currently served resource" is FALSE
-    as a domain rule, and encoding it as one would eventually force someone to
-    delete a real organization to make a script happy.
-
-    When that day comes, this rule is retired rather than argued with. Writing
-    that down is the point — a validator whose rationale is lost gets defended
-    instead of removed.
-
-THE BOUNDARY WAS WRONG ONCE, AND THAT IS THE LESSON HERE
-    The first version checked resources.json alone. It passed, and the registry
-    was missing EIGHT organizations named by flyers and expert answers — in the
-    very categories a scope built on its numbers reported as empty.
-
-    The check was not incorrect. It was TOO NARROW, and narrowness is invisible:
-    A VALIDATOR THAT PASSES TELLS YOU NOTHING ABOUT WHAT IT NEVER LOOKED AT.
-
-    PROVIDER_SOURCES now names every content type whose schema explicitly says
-    "this is provided by an organization". Equally important is what it excludes:
-    news[].source_id and every contentSource are PRODUCER identity, answered by
-    a different registry; and free text is never scanned, because prose names
-    organizations incidentally and inferring identity from it would manufacture
-    records out of mentions.
-
-    Worth asking of any gate: what does this not look at, and would I notice?
-
-WHY UNRESOLVABLE REFERENCES ARE ERRORS HERE, UNLIKE ContentSource
-    ContentSource tolerates an unknown id at runtime: the item is excluded from
-    sector views and stays valid everywhere else, because provenance resolution
-    is a CAPABILITY and not a validity gate (Decision 045).
-
-    An organization reference is different in consequence. A resource whose
-    organization cannot be resolved still renders — but its provider link points
-    nowhere, and a resident who clicks it lands on a 404 from a page that looked
-    complete. So this is caught at author time.
-
-EACH RULE WAS VERIFIED TO FIRE WITH ITS OWN DIAGNOSTIC
-    Per the standing testing rule, injected one at a time:
-      duplicate id             -> "duplicate id 'ORG-001', already used by..."
-      duplicate slug           -> "duplicate slug ... one becomes unreachable"
-      malformed slug           -> "not URL-safe. Expected lowercase..."
-      unknown organization_id  -> "resource CI-001 references unknown ... 'ORG-999'"
-      orphan registry entry    -> WARNING, exit 0 (Rule 5)
-
-    The unknown-reference case is the one worth noting: it exits 1, but the
-    FIRST line of output is a Rule 5 warning, because warnings print before
-    errors. A check that grepped the first message would have "passed" on the
-    wrong rule — exactly the failure the testing rule was written about.
-=============================================================================
-"""
-
+# Annotated reference: data-cleaning/scripts/validate_organizations.py
+# WHAT: Preserves the complete source below; see the explicit allowlists and optional exact-owner filters in the source.
+# WHY: IM-12 fixes demonstrated identity/public-boundary gaps while keeping catalog data, selectors and internal ranking unchanged.
+# INTERACTIONS: Controllers adapt internal models only at the resident boundary; tests and evidence exercise real repositories plus labeled synthetic counterexamples.
+# ALTERNATIVES: A generalized relationship graph, blanket field blacklist, inferred provider/host or universal default Community would exceed or violate the approved contract.
+# BEGIN MIRRORED SOURCE
 #!/usr/bin/env python3
 """
 Validates app/data/organizations.json — the organization registry — and every
@@ -120,6 +56,11 @@ PROVIDER_SOURCES = [
     (Path("app/data/flyers.json"), "flyers", "organization"),
     (Path("app/data/expert-answers.json"), "expert-answers", "expert_organization"),
 ]
+# Supplementary imported rows may omit a provider ID. Any supplied reference must resolve.
+# This checks identity only: a Flyer organizer or Expert affiliation is not a typed PROVIDER/HOST.
+OPTIONAL_REFERENCE_SOURCES = [
+    (Path("app/data/resources.communities.json"), "resources.communities", "organization"),
+]
 ID_RE = re.compile(r"^ORG-\d{3}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -144,6 +85,12 @@ def main():
     for path, label, name_field in PROVIDER_SOURCES:
         for r in records(path, label):
             referring.append((label, r.get("id"), r.get("organization_id"), r.get(name_field)))
+
+    for path, label, name_field in OPTIONAL_REFERENCE_SOURCES:
+        if path.exists():
+            for r in records(path, label):
+                if r.get("organization_id"):
+                    referring.append((label, r.get("id"), r["organization_id"], r.get(name_field)))
 
     seen_ids, seen_slugs, seen_names = {}, {}, {}
     for i, o in enumerate(orgs):

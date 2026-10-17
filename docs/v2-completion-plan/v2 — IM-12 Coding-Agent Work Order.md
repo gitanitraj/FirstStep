@@ -1,0 +1,92 @@
+# First Step v2 — IM-12 Coding-Agent Work Order
+
+**Package:** IM-12 — Identity, provenance, public-boundary & Community audits  
+**Disposition:** **Verification Required — authorized next**  
+**Authority:** Authoritative IM-01–IM-14 matrix §3 and controlling §14C (IM-11 closure); approved v2 Completion Contract; 2B-P4 / approved 2B-P5 logical schema and limited PROVIDER/HOST association; approved Architecture Resolutions; Decisions 048, 051, 052; accepted IM-01–IM-11 execution reports.  
+**Primary journeys:** J3/J5/J7, with J1/J2/J4/J6 integration checks; **Epics:** E1/E5.  
+**Start condition:** IM-09, IM-10 and implementation foundations accepted; IM-11 now closed. **Do not begin IM-13/14 or declare v2 finished.**
+
+## 1. Objective and nonnegotiable boundary
+
+Conduct a **complete, repeatable audit of the delivered First Step v2 identity, relationship, provenance, Community and resident-public boundary**. Verify the current Java and JSON catalog/repository/DTO/UI behavior against approved P5 and Completion Contract; record actual counterexamples and correct only demonstrated v2 breaches. A successful audit with honest partial-model coverage and nonblocking stewardship gaps is a legitimate result. Do not force the present code to implement every part of the logical ER design as new storage if no v2 resident acceptance contract requires it. Do not downgrade a real contractual failure merely because a fuller model is V3.
+
+**Fundamental separations:** CivicContent identity ≠ Resource/Program ≠ Organization ≠ producer/ContentSource ≠ HOST ≠ geographic service area. One CivicContent record has an explicit owning Community; a producer publishes it but is not automatically its service provider or host. Canonical content IDs must survive all legal controlled projections, provenance must remain attributable and source metadata must not fabricate Provider relations. Approved `ContentOrganizationAssociation` has narrow **PROVIDER** versus **HOST** meanings: assess against real supported associations and user journeys; do not invent a generalized relationship graph, alias system, organization hierarchy, or Institution/Party identity.
+
+## 2. Inspect-first and protected starting state
+
+1. Read actual `claude.md`, controlling supplied §14C matrix, this work order, approved P4/P5 (especially organization association, Community partition, controlled classification, public projection), original Completion Contract, source registry/organization rules, Decision 051/052, IM-03/04/05, IM-08–11 reports and accepted editorial decisions. **Do not substitute an abbreviated historical logical-model summary for the approved text.**
+2. Capture full branch/HEAD, tracked/untracked/ignored relevant worktree and exact baseline file hashes, including all catalogs in `app.data.dir`, `resources.communities.json`, `organizations.json`, `content-sources.json`, taxonomy, the **three-entry First Rate News admission manifest**, source/repository normalization, selectors, DTOs, tests, config and guide. IM-11 reported new uncommitted source/tests/evidence; inspect actual state, protect preexisting work. Do not stash/reset/stage/commit/push without explicit authorization.
+3. Inspect schema types and file loaders, real content IDs and `communityId`, organizations/organizationId/parentOrganization, ContentSource and producer sectors, narrow PROVIDER/HOST representation if any, resource/event `HOST` relationships, Category/Topic normalization and authoring proof, Article/FAQ/Expert source/review identity, public controllers and frontend consumers. Map **actual call paths**, not only declarations.
+4. Execute untouched baseline: repository-specific JDK25 Maven verify/package, frontend tests/TypeScript/build, Python unit tests and all six validators. Record environment workarounds separately from product defects. Produce a **read-only raw-vs-current-vs-projection audit** before changing production code.
+5. Write `docs/v2-completion-plan/evidence/im12/inspect-first.md` and an explicit field-by-field/endpoint-by-endpoint **identity-and-data-flow map** with missing/conflicting facts, possible public leaks and severity. Prefer actual catalog records plus narrow synthetic counterexamples to generic speculation.
+
+## 3. Record-level audit contracts
+
+### A. Canonical catalog identity and association semantics
+
+Audit Resource, NewsItem/LAW, Flyer, Article/NEWS, FAQ and ExpertAnswer/EXPERT identities across storage, normalization, Category, Topic, Get Help, Policy Info, Law, Flyers, First Rate News, News/Notices/Originals and Search where applicable. Confirm projection duplicates retain one canonical ID and one source provenance; display counts deduplicate **within** each collection while legitimate cross-view overlap remains allowed. Confirm fixed five ContentTypes, approved subtype distinctions, Article approval and Expert classification. Resource/program/service is resident's actionable item; the Organization remains distinct even if registry rows sometimes represent programs.
+
+For a reproducible Resource set, trace `organizationId` → registry ID → provider-facing link → exact Community-filtered detail resources. Flag missing/unknown IDs, duplicate registry identities, ambiguous parentOrganization, stale name matching and source-as-provider errors separately. Check associations: where an approved **PROVIDER** link exists it must mean the responsible offering provider; **HOST** means the location/event host only when explicitly supported; one may not be substituted for the other. Do not infer HOST from event location, `contentSource.id`, photo or displayed organizer name, nor infer PROVIDER from producer. Where no association table/class exists, assess whether existing `organizationId` suffices for v2 J3/J5 and document the bounded gap rather than demanding schema expansion without journey proof.
+
+### B. Producer provenance / authored classification
+
+Inspect real stored authorship/import/producer fields for all relevant kinds, source registry sector and publication provenance. Recheck IM-03 Expert/FAQ controlled Category-only tags, IM-06 authored Topic proof, IM-09 LAW authored Category/Topic snapshots and RSS source/sector eligibility, IM-09 three exact independent FAQ/Expert admissions, Article approved-only publication. A runtime keyword, RSS title, producer sector, URL, content type or FAQ derivation is not an independent editorial approval or Topic association. Distinguish unknown/missing producer from content invalidity and state which views legitimately exclude unknown producers.
+
+### C. Community ownership versus place/eligibility
+
+Audit **every actual owning Community** represented in data, not just Wilmington; use supported current test fixtures for sparse Communities. Distinguish source Community, controlled Category scope, physical office/location, service availability/catchment and geographic display. Wilmington resources must not leak into bear-de/newark-de etc. through Category/Help/Topic/Organizations/Search/Notices/News/Feed/Article/Expert/FAQ endpoints. Where an intentionally unscoped existing API returns an aggregate, document that contractual distinction rather than silently changing it to default Wilmington. For resident Category endpoints, preserve configured explicit default and query/canonical-URL continuity. Community timezone selection must use owning Community rather than host/source geography. Do not launch a second Community or invent service-area eligibility.
+
+### D. Public DTO / navigation boundaries
+
+Inventory **all externally reachable resident endpoints** and their concrete serialized field sets, including Category aggregate/destination, Topic and All Help, Organization listing/detail, `/api/news`, `/api/news/rss`, Flyers listing/by-ID, Community Notices, Search, Article detail, supported Expert/FAQ/source cards and error/404. Inspect any legacy controller or direct model response bypassing allowlisted DTOs. Reject private fields such as lifecycle status/expiration internals, verified/review decisions/flags/override/approval diagnostics, `helpAccess`, raw authored-proof snapshots, service selection candidates/tie-stage evidence, ingestion secrets and internal relationship diagnostics unless expressly resident-public in an approved DTO. Preserve approved ArticleDetail `updatedDate`, legitimate location `state`, publication and public Why It Matters: **do not blindly blacklist field names**. Prove 404 parity for flagged/unapproved/missing Articles, safe HTTP(S)/tel navigation and media, no fabricated `/originals/EA-*` links; source-less cards must remain truthfully unlinked or route to an approved internal destination.
+
+### E. Deployment/config and stewardship inputs
+
+Verify `app/data/first-rate-news-membership.json` three exact scoped entries (FAQ-002, EA-001, EA-005, Wilmington Housing), its packaging or documented deployment alongside `app.data.dir` catalog files, startup behavior when missing/malformed, and that runtime file selection does not bypass original Article approval or create blanket EXPERT collection membership. Prove reproducible execution in packaged mode, not only tests with default classpath fixtures. Inspect existing expiry state/diagnostic CLI behavior (ACTIVE/APPROACHING/EXPIRED), Community zone config, optional `startsAt/endsAt`, `event_date` and UNKNOWN occurrence diagnoses such as NP-003. Distinguish unresolved metadata/stewardship actions from hard product defects; carry original Admin Guide reconciliation to IM-14 and dashboard/queues/notifications to V3.
+
+## 4. Required real-catalog deliverables
+
+Provide machine-readable, deterministic inventories: (a) all current Community IDs, per-kind counts and missing/duplicate/unscoped source rows; (b) a small **named actual-record relationship table** from stored Resource→organizationId→Organization plus any independently supported host association; (c) sample actual ContentSource producer→source record→public attribution, including Flyer/community-government producer-sector contrasts; (d) end-to-end Community and original Category/Topic provenance matrix; (e) endpoint/DTO field allowlist and prohibited-field leak audit; (f) packaged manifest/config reproduction including missing/malformed cases; (g) time/expiry/event separation; (h) bounded correction ledger if necessary.
+
+Include **current Wilmington Housing36 Help** and 44 cross-Community Housing Resource baseline only when verified on the actual audit Clock, plus bear-de Food and other inhabited Communities and original eight Flyer zero-activation status. Do not hard-code a historical count into production. Preserve OR-003 / FAQ-002 / EA-001 / EA-005 First Rate News approvals, original multi-Community counts and source provenance. Report any unrepresentable v2 relation **with a specific journey failure** and request the narrowest approval before new fields/schema; otherwise keep the observation for IM-14 or V3.
+
+## 5. Named acceptance matrix — IM12-T01–T20
+
+| ID | Required executed evidence |
+|---|---|
+| **T01** | True HEAD/working tree/authority/version inspection; full protected hashes and untouched baseline quality gates. |
+| **T02** | Every concrete CivicContent kind and five fixed ContentTypes audited from stored rows through current/projections without loss or fabricated identity; same ID across legitimate views. |
+| **T03** | Actual Resource/Organization linkage uses explicit IDs; provider detail/navigation within requested Community; missing ID, duplicate name and source-name counterexamples not silently matched. |
+| **T04** | PROVIDER/HOST distinction checked using approved meaning, existing real supported relationships and synthetic negative/positive evidence; no source/organizer/location-as-provider/host inference. |
+| **T05** | Parent organization and ambiguous organization registry rows assessed without automatic profile/graph/alias modeling; J5 creation/update scenario never invents organization identity. |
+| **T06** | Original producer/source metadata, curated vs RSS duplication, government/community sectors and unknown producer handled independently of provider and membership. |
+| **T07** | Original authored Category and controlled Topic proof across Resource, News/LAW, Flyer, Expert/FAQ/Article; runtime keyword cannot create approved Topic or law relevance. |
+| **T08** | First Rate News exactly OR-003 + FAQ-002 + EA-001 + EA-005 for eligible Housing snapshot; no generic session/verified/derived FAQ promotion; supporting membership and Article 404 parity intact. |
+| **T09** | All observed Community partitions, including Wilmington and second inhabited scopes, isolated across Category, Topic, Get Help, Search/News/Notices/Organizations where supported; explicit vs intentionally aggregate behavior described. |
+| **T10** | Owning Community timezone and canonical navigation/state remain distinct from provider physical location/service area; no Wilmington-only hard-coding or guessed eligibility. |
+| **T11** | Complete external resident API endpoint inventory and field-level response audit, including overlooked direct entity serialization. |
+| **T12** | NewsSummary, FlyerSummary, ArticleDetail, Category/Topic, Organization/Notices/Search public allowlists exclude true editorial/ingestion/selection internals while retaining approved public fields; safe link/media guard. |
+| **T13** | Status-safe historical by-ID and unapproved/flagged Article 404 parity; no review-flag or approval internals leak via failures or nested objects. |
+| **T14** | Three-entry manifest `app.data.dir` packaged/deployment-positive path plus missing/malformed and cross-Community/kind/category deny cases; no accidental blanket Expert membership. |
+| **T15** | ACTIVE/APPROACHING/EXPIRED stewardship diagnosis and Community-local editorial expiry; approaching stays resident-eligible; stored expired records retained and excluded from current views. |
+| **T16** | Event occurrence independent from editorial expiry and Flyer/Help/History; FL-008 true date-only, NP-003 unknown, optional start/end and DST; no inferred provider/host/expiry. |
+| **T17** | Controlled category/collection/read-model cross-view dedup; same source provenance/media/identity; current housing, Food and Flyers snapshots reconcile. |
+| **T18** | Missing metadata (org/provider/source, event occurrence, venue, provenance, URL, service area) produces documented, reproducible noninvented facts; classify data stewardship vs bounded v2 defect vs V3 deferral. |
+| **T19** | Full Maven verify/package, frontend test/typecheck/build, Python + six validators, actual packaged HTTP privacy/scope/provenance cases and focused browser navigation if touched. |
+| **T20** | Exact preservation hashes, source/test annotated mirrors for changes, before-failure/after-fix where needed, no unauthorized model changes and complete evidence-to-J3/J5/J7 and E1/E5 mapping. |
+
+## 6. Decision and change control
+
+If a required test fails, isolate a real contractual defect with a failing-before test and minimum sufficient correction. Do not repair by broadening Community queries, inventing `organizationId`, adopting implicit source-as-provider, granting editorial approvals, marking Flyers actionable, adding ContentTypes, moving event occurrence into editorial expiry, changing selectors' approved hierarchy, or dropping a public field without checking its contractual consumer. Re-run regression and public JSON snapshots.
+
+A fully generalized many-to-many `ContentOrganizationAssociation` persistence layer, sophisticated organization profile/alias, Institution/Party union, service-area/eligibility engine, DB migration, Admin workflow/dashboard, automatic notifications, automatic content publishing and relationship graph remain **V3/Later unless a demonstrated v2 acceptance journey genuinely cannot function with existing narrow relationships**. If truly unrepresentable required v2 fact arises, document exact row, resident/editor journey, proof that current structure fails and smallest approval choice **before coding**. Do not use missing implementation of aspirational v3 modeling as a blanket IM-12 failure.
+
+IM-12 must not certify complete remote provider accuracy, feed exhaustiveness or factual legal interpretation without source evidence. It must not conclude IM-13 release/WCAG or IM-14 documentation/v2 completion.
+
+## 7. Evidence folder, report contract and exit criteria
+
+Create `docs/v2-completion-plan/evidence/im12/` containing inspect-first/design, actual baseline results, raw/normalized/current/projection audit tables, controlled identity/association/Community traces, endpoint serialization allowlists with actual HTTP JSON, a packaged manifest/deployment reproduction, negative fixtures (source/provider, host, unknown Community, unapproved FAQ/Expert, public-field leaks), accepted preservation manifests, final commands and reproducibility script/README, and annotated mirrors for all changed source/tests. Link test names precisely to IM12-T01–T20; label synthetic cases as synthetic and keep original catalogs byte-identical unless a specific, approved correction requires otherwise.
+
+**Required execution report headings:** Starting state and authority; untouched baseline and audit design; canonical CivicContent/content-kind inventory; Organization/PROVIDER/HOST association findings; ContentSource and authored provenance; Community partition/physical-place distinctions; public endpoint DTO/privacy audit; membership manifest/deployment; lifecycle/occurrence/stewardship findings; exact changed files and bounded corrections; acceptance T01–T20; backend/frontend/validators/packaged HTTP/browser evidence; preserved hashes and limitations; IM-13/14 handoff; proposed final disposition. Include full starting/ending HEAD, failed runs and final reruns, record-level examples, explicit pass/fail/unknown statuses and unresolved v2 blockers if any.
+
+**Done when:** the existing v2 identity and provenance relationships are audited against all delivered resident/editor paths, concrete v2 violations (if discovered) are minimally corrected and tested, all 20 scenarios have reproducible evidence, security/serialization and Community isolation do not leak, deployment manifest behavior is verified, and any legitimate metadata or V3 gaps are explicitly classified. Submit the report for reviewer acceptance **without self-editing the authoritative disposition, staging, committing or pushing**.

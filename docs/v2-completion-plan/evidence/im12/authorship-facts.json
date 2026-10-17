@@ -1,0 +1,281 @@
+[
+  {
+    "file": "faq.json",
+    "id": "FAQ-001",
+    "contentSource": {
+      "id": "first-step",
+      "type": "faq",
+      "url": null,
+      "retrieved": "2026-07-11"
+    },
+    "source_expert_answer_id": "EA-002",
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "faq.json",
+    "id": "FAQ-002",
+    "contentSource": {
+      "id": "first-step",
+      "type": "faq",
+      "url": null,
+      "retrieved": "2026-07-11"
+    },
+    "source_expert_answer_id": "EA-005",
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "faq.json",
+    "id": "FAQ-003",
+    "contentSource": {
+      "id": "first-step",
+      "type": "faq",
+      "url": null,
+      "retrieved": "2026-07-11"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "faq.json",
+    "id": "FAQ-004",
+    "contentSource": {
+      "id": "first-step",
+      "type": "faq",
+      "url": null,
+      "retrieved": "2026-07-11"
+    },
+    "source_expert_answer_id": "EA-006",
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "faq.json",
+    "id": "FAQ-005",
+    "contentSource": {
+      "id": "first-step",
+      "type": "faq",
+      "url": null,
+      "retrieved": "2026-07-11"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "faq.json",
+    "id": "FAQ-006",
+    "contentSource": {
+      "id": "first-step",
+      "type": "faq",
+      "url": null,
+      "retrieved": "2026-07-11"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "expert-answers.json",
+    "id": "EA-001",
+    "contentSource": {
+      "id": "de-volunteer-legal-services",
+      "type": "expert-session",
+      "url": null,
+      "retrieved": "2026-07-01"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": "Maria Alvarez",
+    "expert_credentials": "Staff Attorney, Housing Unit",
+    "expert_organization": "Delaware Volunteer Legal Services",
+    "session_date": "2026-06-15",
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "expert-answers.json",
+    "id": "EA-002",
+    "contentSource": {
+      "id": "de-dhss",
+      "type": "expert-session",
+      "url": null,
+      "retrieved": "2026-07-01"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": "Denise Coleman",
+    "expert_credentials": "Case Worker, Division of Social Services",
+    "expert_organization": "Delaware Health and Social Services",
+    "session_date": "2026-06-15",
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "expert-answers.json",
+    "id": "EA-003",
+    "contentSource": {
+      "id": "community-legal-aid",
+      "type": "expert-session",
+      "url": null,
+      "retrieved": "2026-07-01"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": "Thomas Reyes",
+    "expert_credentials": "Employment Law Attorney",
+    "expert_organization": "Community Legal Aid Society",
+    "session_date": "2026-05-20",
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "expert-answers.json",
+    "id": "EA-004",
+    "contentSource": {
+      "id": "westside-family-healthcare",
+      "type": "expert-session",
+      "url": null,
+      "retrieved": "2026-07-01"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": "Angela Ruiz",
+    "expert_credentials": "Certified Healthcare Navigator",
+    "expert_organization": "Westside Family Healthcare",
+    "session_date": "2026-06-15",
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "expert-answers.json",
+    "id": "EA-005",
+    "contentSource": {
+      "id": "de-volunteer-legal-services",
+      "type": "expert-session",
+      "url": null,
+      "retrieved": "2026-07-01"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": "Maria Alvarez",
+    "expert_credentials": "Staff Attorney, Housing Unit",
+    "expert_organization": "Delaware Volunteer Legal Services",
+    "session_date": "2026-06-15",
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "expert-answers.json",
+    "id": "EA-006",
+    "contentSource": {
+      "id": "de-dhss",
+      "type": "expert-session",
+      "url": null,
+      "retrieved": "2026-07-01"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": "Denise Coleman",
+    "expert_credentials": "Case Worker, Division of Social Services",
+    "expert_organization": "Delaware Health and Social Services",
+    "session_date": "2026-06-15",
+    "byline": null,
+    "disclosure": null,
+    "hasInternalGenerationMarker": false,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "articles.json",
+    "id": "OR-001",
+    "contentSource": {
+      "id": "first-step",
+      "type": "manual"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": "Admin",
+    "disclosure": "ai-assisted",
+    "hasInternalGenerationMarker": true,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "articles.json",
+    "id": "OR-002",
+    "contentSource": {
+      "id": "first-step",
+      "type": "manual"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": "Admin",
+    "disclosure": "ai-assisted",
+    "hasInternalGenerationMarker": true,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  },
+  {
+    "file": "articles.json",
+    "id": "OR-003",
+    "contentSource": {
+      "id": "first-step",
+      "type": "manual"
+    },
+    "source_expert_answer_id": null,
+    "expert_name": null,
+    "expert_credentials": null,
+    "expert_organization": null,
+    "session_date": null,
+    "byline": "Admin",
+    "disclosure": null,
+    "hasInternalGenerationMarker": true,
+    "independentHumanInitiatedInterviewWorkflowFact": "not separately represented; do not infer from session label or source"
+  }
+]

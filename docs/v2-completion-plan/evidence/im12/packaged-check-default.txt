@@ -1,0 +1,5 @@
+Traceback (most recent call last):
+  File "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im12/packaged-check.py", line 62, in <module>
+    assert ready,scenario
+           ^^^^^
+AssertionError: positive

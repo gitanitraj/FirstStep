@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * The reading surface for First Step Original articles.
@@ -42,8 +43,8 @@ public class OriginalsController {
     }
 
     @GetMapping("/originals/{id}")
-    public ResponseEntity<ApiResponse<ArticleDetail>> getArticle(@PathVariable String id) {
-        ArticleDetail article = articleService.getPublishableDetail(id)
+    public ResponseEntity<ApiResponse<ArticleDetail>> getArticle(@PathVariable String id, @RequestParam(required = false) String communityId) {
+        ArticleDetail article = articleService.getPublishableDetail(id, communityId)
                 .orElseThrow(() -> new NotFoundException("Article not found: " + id));
         return ResponseEntity.ok(ApiResponse.success(article));
     }

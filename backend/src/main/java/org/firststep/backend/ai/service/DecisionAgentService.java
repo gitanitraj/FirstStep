@@ -51,6 +51,11 @@ public class DecisionAgentService {
      * Main entry: retrieve relevant local items, then ask the AI to return STRICT JSON.
      */
     public DecisionResponse decide(DecisionRequest request) {
+        return decide(request, null);
+    }
+
+    /** Explicit ownership scope intersects retrieval; omitted scope retains the legacy aggregate. */
+    public DecisionResponse decide(DecisionRequest request, String communityId) {
         String q = TextScore.lower(request == null ? null : request.userQuery);
         boolean urgent = request != null && Boolean.TRUE.equals(request.urgent);
         List<String> preferredCategories = request == null ? List.of() : request.preferredCategories;
@@ -66,6 +71,12 @@ public class DecisionAgentService {
 
         List<Resource> resources = resourceService.getAllResources();
         List<NewsItem> news = newsService.getAllNews();
+        if (communityId != null) {
+            resources = resources == null ? List.of() : resources.stream()
+                    .filter(r -> communityId.equals(r.communityId)).toList();
+            news = news == null ? List.of() : news.stream()
+                    .filter(n -> communityId.equals(n.communityId)).toList();
+        }
 
         // Lightweight retrieval (use existing in-memory lists as the cache)
         List<Resource> topResources = selectTopResources(resources, q, urgent, preferredCategories);
@@ -83,7 +94,8 @@ public class DecisionAgentService {
             fallback.answerTitle = "Unable to generate guidance";
             fallback.steps = List.of();
             fallback.citations = List.of();
-            fallback.notes = "AI call failed: " + e.getMessage();
+            log.warn("AI guidance failed", e);
+            fallback.notes = "AI call failed. Please try again later.";
             return fallback;
         }
     }
@@ -183,7 +195,7 @@ public class DecisionAgentService {
         ctx.append(mapperToTrimmedNewsJson(topNews)).append("\n\n");
 
         // Strict schema-first output
-        return "You are a Decision Aid assistant for Wilmington residents. " +
+        return "You are a Decision Aid assistant for local residents. " +
                 "You MUST ONLY use the provided LOCAL_RESOURCES and LOCAL_NEWS context. " +
                 "If the context is missing some user-specific details, do NOT ask for external contact unless necessary. Instead, provide best-effort next actions using the closest matching resources from LOCAL_RESOURCES/LOCAL_NEWS. " +
                 "Return STRICT JSON with exactly these keys: " +

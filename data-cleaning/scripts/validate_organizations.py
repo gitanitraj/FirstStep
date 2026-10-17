@@ -50,6 +50,11 @@ PROVIDER_SOURCES = [
     (Path("app/data/flyers.json"), "flyers", "organization"),
     (Path("app/data/expert-answers.json"), "expert-answers", "expert_organization"),
 ]
+# Supplementary imported rows may omit a provider ID. Any supplied reference must resolve.
+# This checks identity only: a Flyer organizer or Expert affiliation is not a typed PROVIDER/HOST.
+OPTIONAL_REFERENCE_SOURCES = [
+    (Path("app/data/resources.communities.json"), "resources.communities", "organization"),
+]
 ID_RE = re.compile(r"^ORG-\d{3}$")
 SLUG_RE = re.compile(r"^[a-z0-9]+(?:-[a-z0-9]+)*$")
 
@@ -74,6 +79,12 @@ def main():
     for path, label, name_field in PROVIDER_SOURCES:
         for r in records(path, label):
             referring.append((label, r.get("id"), r.get("organization_id"), r.get(name_field)))
+
+    for path, label, name_field in OPTIONAL_REFERENCE_SOURCES:
+        if path.exists():
+            for r in records(path, label):
+                if r.get("organization_id"):
+                    referring.append((label, r.get("id"), r["organization_id"], r.get(name_field)))
 
     seen_ids, seen_slugs, seen_names = {}, {}, {}
     for i, o in enumerate(orgs):

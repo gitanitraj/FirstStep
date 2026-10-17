@@ -1,0 +1,12 @@
+HEAD 932030b11cfd13a2eb275f7bab4e453ddbbf9cde
+BRANCH copyofdev
+ D "docs/v2-completion-plan/New v2 \342\200\224 Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+?? docs/v2-completion-plan/evidence/im12/
+?? "docs/v2-completion-plan/v2 \342\200\224 IM-12 Coding-Agent Work Order.md"
+?? "docs/v2-completion-plan/v2.12 \342\200\224 Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+?? "docs/v2-completion-plan/v2.5 \342\200\224 Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+
+Ignored relevant outputs:
+!! backend/target/
+!! frontend/dist/
+!! frontend/node_modules/

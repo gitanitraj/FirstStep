@@ -15,6 +15,7 @@ import org.firststep.backend.organization.model.Organization;
 import org.firststep.backend.organization.repository.OrganizationRepository;
 import org.firststep.backend.resource.model.Resource;
 import org.firststep.backend.shared.dto.ContentItem;
+import org.firststep.backend.shared.dto.ResidentContent;
 import org.firststep.backend.resource.service.ResourceService;
 import org.springframework.stereotype.Service;
 
@@ -69,12 +70,12 @@ public class OrganizationService {
      */
     public Optional<OrganizationPage> getBySlug(String slug) {
         return repository.findBySlug(slug).map(org -> new OrganizationPage(
-                org.id, org.name, org.slug, org.website, resourcesFor(org)));
+                org.id, org.name, org.slug, ResidentContent.safeUrl(org.website), resourcesFor(org)));
     }
 
     /** Explicit scoped destination path; historical directory overload remains unchanged. */
     public Optional<OrganizationPage> getBySlug(String slug, String communityId) {
-        return repository.findBySlug(slug).map(org -> new OrganizationPage(org.id, org.name, org.slug, org.website,
+        return repository.findBySlug(slug).map(org -> new OrganizationPage(org.id, org.name, org.slug, ResidentContent.safeUrl(org.website),
                 resourceService.getAll().stream().filter(r -> communityId.equals(r.communityId))
                         .filter(r -> org.id.equals(r.organizationId)).map(OrganizationService::toContentItem).toList()));
     }
