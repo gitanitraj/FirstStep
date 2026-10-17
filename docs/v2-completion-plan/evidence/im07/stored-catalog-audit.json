@@ -1,0 +1,1817 @@
+{
+  "scope": "Stored rows are NOT resident eligibility; join to real-item-audit.json for current selection.",
+  "files": {
+    "resources.json": {
+      "sha256": "40cfa5481e033538aef3cefb71c9e569d65120a1d490788ccc65e24330d99a02",
+      "storedCount": 58,
+      "records": [
+        {
+          "id": "CI-001",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-002",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-003",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-004",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Vouchers",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-005",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-006",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-007",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-008",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-009",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-010",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-011",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Thrift Store",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-012",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-013",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Thrift Store",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-014",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "CI-015",
+          "category": "Clothing & Incidentals",
+          "subcategory": "Clothing Closet",
+          "urgency": "standard"
+        },
+        {
+          "id": "FH-001",
+          "category": "Furniture & Household Items",
+          "subcategory": "Thrift Store",
+          "urgency": "standard"
+        },
+        {
+          "id": "FH-002",
+          "category": "Furniture & Household Items",
+          "subcategory": "Vouchers",
+          "urgency": "standard"
+        },
+        {
+          "id": "FH-003",
+          "category": "Furniture & Household Items",
+          "subcategory": "Appliances",
+          "urgency": "standard"
+        },
+        {
+          "id": "FH-004",
+          "category": "Furniture & Household Items",
+          "subcategory": "Thrift Store",
+          "urgency": "standard"
+        },
+        {
+          "id": "FH-005",
+          "category": "Furniture & Household Items",
+          "subcategory": "Furniture & Household Goods",
+          "urgency": "standard"
+        },
+        {
+          "id": "FH-006",
+          "category": "Furniture & Household Items",
+          "subcategory": "Thrift Store",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-001",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-002",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-003",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-004",
+          "category": "Housing Assistance",
+          "subcategory": "Rental Assistance",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-005",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-006",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-007",
+          "category": "Housing Assistance",
+          "subcategory": "Youth Housing",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-008",
+          "category": "Housing Assistance",
+          "subcategory": "Rental Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-009",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-010",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-011",
+          "category": "Housing Assistance",
+          "subcategory": "Homeownership",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-012",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-013",
+          "category": "Housing Assistance",
+          "subcategory": "Homeownership",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-014",
+          "category": "Housing Assistance",
+          "subcategory": "Sober Living",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-015",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-016",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-017",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-018",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-019",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-020",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-021",
+          "category": "Housing Assistance",
+          "subcategory": "Homeownership",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-022",
+          "category": "Housing Assistance",
+          "subcategory": "Homeownership",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-023",
+          "category": "Housing Assistance",
+          "subcategory": "Rental Assistance",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-024",
+          "category": "Housing Assistance",
+          "subcategory": "Sober Living",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-025",
+          "category": "Housing Assistance",
+          "subcategory": "Sober Living",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-026",
+          "category": "Housing Assistance",
+          "subcategory": "Rental Assistance",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-027",
+          "category": "Housing Assistance",
+          "subcategory": "Senior Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-028",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-029",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-030",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-031",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-032",
+          "category": "Housing Assistance",
+          "subcategory": "Youth Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-033",
+          "category": "Housing Assistance",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "HA-034",
+          "category": "Housing Assistance",
+          "subcategory": "Rental Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-035",
+          "category": "Housing Assistance",
+          "subcategory": "Public Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-036",
+          "category": "Housing Assistance",
+          "subcategory": "Senior Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "HA-037",
+          "category": "Housing Assistance",
+          "subcategory": "Transitional Housing",
+          "urgency": "emergency"
+        }
+      ]
+    },
+    "resources.communities.json": {
+      "sha256": "441fcd86afb74a2be334310f49d1f3418c085e25b7b1b2003adb088025756141",
+      "storedCount": 171,
+      "records": [
+        {
+          "id": "SD-001",
+          "category": "Advocacy",
+          "subcategory": "Disability Advocacy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-002",
+          "category": "Advocacy",
+          "subcategory": "Disability Advocacy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-003",
+          "category": "Advocacy",
+          "subcategory": "Disability Advocacy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-004",
+          "category": "Before/After School Care",
+          "subcategory": "Child Care & Early Learning",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-005",
+          "category": "Child Care",
+          "subcategory": "Child Care & Early Learning",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-006",
+          "category": "Early Childhood/Pre-K",
+          "subcategory": "Child Care & Early Learning",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-007",
+          "category": "Early Childhood/Pre-K",
+          "subcategory": "Child Care & Early Learning",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-008",
+          "category": "Early Childhood/Pre-K",
+          "subcategory": "Child Care & Early Learning",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-009",
+          "category": "Early Childhood/Pre-K",
+          "subcategory": "Child Care & Early Learning",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-010",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-011",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-012",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-013",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-014",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-015",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-016",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-017",
+          "category": "Education/Training",
+          "subcategory": "Education & Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-018",
+          "category": "Employment",
+          "subcategory": "Job Search Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-019",
+          "category": "Employment",
+          "subcategory": "Vocational Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-020",
+          "category": "Employment",
+          "subcategory": "Job Search Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-021",
+          "category": "Employment",
+          "subcategory": "Youth Employment",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-022",
+          "category": "Employment",
+          "subcategory": "Job Search Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-023",
+          "category": "Employment",
+          "subcategory": "Vocational Training",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-024",
+          "category": "Entertainment",
+          "subcategory": "Community Celebrations",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-025",
+          "category": "Entertainment",
+          "subcategory": "Community Celebrations",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-026",
+          "category": "Financial Support",
+          "subcategory": "Financial Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-027",
+          "category": "Financial Support",
+          "subcategory": "Financial Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-028",
+          "category": "Financial Support",
+          "subcategory": "Financial Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-029",
+          "category": "Financial Support",
+          "subcategory": "Financial Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-030",
+          "category": "Financial Support",
+          "subcategory": "Financial Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-031",
+          "category": "Financial Support",
+          "subcategory": "Financial Assistance",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-032",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-033",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-034",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-035",
+          "category": "Food Program",
+          "subcategory": "Prepared Meals",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-036",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-037",
+          "category": "Food Program",
+          "subcategory": "Farmers Market",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-038",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-039",
+          "category": "Food Program",
+          "subcategory": "Home-Delivered Meals",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-040",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-041",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-042",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-043",
+          "category": "Food Program",
+          "subcategory": "Food Pantry",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-044",
+          "category": "Healthcare/Medical",
+          "subcategory": "Medical Care",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-045",
+          "category": "Healthcare/Medical",
+          "subcategory": "Medical Care",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-046",
+          "category": "Healthcare/Medical",
+          "subcategory": "Medical Care",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-047",
+          "category": "Housing",
+          "subcategory": "Rental Assistance",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-048",
+          "category": "Housing",
+          "subcategory": "Sober Living",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-049",
+          "category": "Housing",
+          "subcategory": "Emergency Shelter",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-050",
+          "category": "Housing",
+          "subcategory": "Rental Assistance",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-051",
+          "category": "Housing",
+          "subcategory": "Public Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-052",
+          "category": "Housing",
+          "subcategory": "Public Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-053",
+          "category": "Housing",
+          "subcategory": "Public Housing",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-054",
+          "category": "Life Skills",
+          "subcategory": "Life Skills",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-055",
+          "category": "Life Skills",
+          "subcategory": "Life Skills",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-056",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-057",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-058",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-059",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-060",
+          "category": "Mental Health",
+          "subcategory": "Substance Use Treatment",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-061",
+          "category": "Mental Health",
+          "subcategory": "Crisis Services",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-062",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-063",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-064",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-065",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-066",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-067",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-068",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-069",
+          "category": "Mental Health",
+          "subcategory": "Substance Use Treatment",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-070",
+          "category": "Mental Health",
+          "subcategory": "Substance Use Treatment",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-071",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-072",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-073",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-074",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-075",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-076",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-077",
+          "category": "Mental Health",
+          "subcategory": "Trauma & Grief Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-078",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-079",
+          "category": "Mental Health",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-080",
+          "category": "Mental Health",
+          "subcategory": "Crisis Services",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-081",
+          "category": "Mentor",
+          "subcategory": "Mentoring",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-082",
+          "category": "Mentor",
+          "subcategory": "Mentoring",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-083",
+          "category": "Mentor",
+          "subcategory": "Mentoring",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-084",
+          "category": "Parenting Education",
+          "subcategory": "Parenting Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-085",
+          "category": "Parenting Education",
+          "subcategory": "Parenting Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-086",
+          "category": "Parenting Education",
+          "subcategory": "Parenting Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-087",
+          "category": "Parenting Education",
+          "subcategory": "Parenting Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-088",
+          "category": "Parenting Education",
+          "subcategory": "Parenting Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-089",
+          "category": "Parenting Education",
+          "subcategory": "Parenting Support",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-090",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-091",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-092",
+          "category": "Recreational",
+          "subcategory": "Libraries",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-093",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-094",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-095",
+          "category": "Recreational",
+          "subcategory": "Senior Activities",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-096",
+          "category": "Recreational",
+          "subcategory": "Libraries",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-097",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-098",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-099",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-100",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-101",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-102",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-103",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-104",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-105",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-106",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-107",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-108",
+          "category": "Recreational",
+          "subcategory": "Parks & Outdoors",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-109",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-110",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-111",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-112",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-113",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-114",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-115",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-116",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-117",
+          "category": "Recreational",
+          "subcategory": "Parks & Outdoors",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-118",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-119",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-120",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-121",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-122",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-123",
+          "category": "Recreational",
+          "subcategory": "Parks & Outdoors",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-124",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-125",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-126",
+          "category": "Recreational",
+          "subcategory": "Parks & Outdoors",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-127",
+          "category": "Recreational",
+          "subcategory": "Senior Activities",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-128",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-129",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-130",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-131",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-132",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-133",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-134",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-135",
+          "category": "Recreational",
+          "subcategory": "Libraries",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-136",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-137",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-138",
+          "category": "Recreational",
+          "subcategory": "Youth Programs",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-139",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-140",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-141",
+          "category": "Recreational",
+          "subcategory": "Sports & Fitness",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-142",
+          "category": "Recreational",
+          "subcategory": "Arts & Music",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-143",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-144",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-145",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-146",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-147",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-148",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-149",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-150",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-151",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-152",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-153",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-154",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-155",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-156",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-157",
+          "category": "Resource Information",
+          "subcategory": "Information & Referral",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-158",
+          "category": "Substance Use",
+          "subcategory": "Counseling & Therapy",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-159",
+          "category": "Substance Use",
+          "subcategory": "Substance Use Treatment",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-160",
+          "category": "Substance Use",
+          "subcategory": "Substance Use Treatment",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-161",
+          "category": "Substance Use",
+          "subcategory": "Substance Use Treatment",
+          "urgency": "emergency"
+        },
+        {
+          "id": "SD-162",
+          "category": "Support Group",
+          "subcategory": "Support Groups",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-163",
+          "category": "Support Group",
+          "subcategory": "Support Groups",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-164",
+          "category": "Support Group",
+          "subcategory": "Support Groups",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-165",
+          "category": "Support Group",
+          "subcategory": "Support Groups",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-166",
+          "category": "Support Group",
+          "subcategory": "Support Groups",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-167",
+          "category": "Transportation",
+          "subcategory": "Transportation",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-168",
+          "category": "Volunteer",
+          "subcategory": "Volunteer Opportunities",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-169",
+          "category": "Volunteer",
+          "subcategory": "Volunteer Opportunities",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-170",
+          "category": "Volunteer",
+          "subcategory": "Volunteer Opportunities",
+          "urgency": "standard"
+        },
+        {
+          "id": "SD-171",
+          "category": "Volunteer",
+          "subcategory": "Volunteer Opportunities",
+          "urgency": "standard"
+        }
+      ]
+    },
+    "flyers.json": {
+      "sha256": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa",
+      "storedCount": 8,
+      "records": [
+        {
+          "id": "FL-001",
+          "category_tags": [
+            "Community Events"
+          ],
+          "subcategory": "Youth Programs",
+          "communityId": "wilmington-de",
+          "event_date": "2026-09-07",
+          "createdDate": "2026-06-10",
+          "image": "Youth.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Youth.jpg"
+          ],
+          "contentSource": {
+            "id": "west-end-neighborhood-house",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-002",
+          "category_tags": [
+            "Housing",
+            "Legal"
+          ],
+          "subcategory": "Eviction Prevention",
+          "communityId": "wilmington-de",
+          "event_date": "2026-08-30",
+          "createdDate": "2026-06-12",
+          "image": "Eviction Help.png",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Eviction Help.png"
+          ],
+          "contentSource": {
+            "id": "community-legal-aid",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-003",
+          "category_tags": [
+            "Community Support"
+          ],
+          "subcategory": "Volunteer Opportunities",
+          "communityId": "wilmington-de",
+          "event_date": "2026-09-15",
+          "createdDate": "2026-06-08",
+          "image": "Volunteer.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Volunteer.jpg"
+          ],
+          "contentSource": {
+            "id": "united-way-delaware",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-004",
+          "category_tags": [
+            "Community Support"
+          ],
+          "subcategory": "School Supplies",
+          "communityId": "wilmington-de",
+          "event_date": "2026-08-26",
+          "createdDate": "2026-06-15",
+          "image": "Fundraiser.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Fundraiser.jpg"
+          ],
+          "contentSource": {
+            "id": "ministry-of-caring",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-005",
+          "category_tags": [
+            "Legal",
+            "Community Support"
+          ],
+          "subcategory": "Disability Advocacy",
+          "communityId": "wilmington-de",
+          "event_date": "2026-07-30",
+          "createdDate": "2026-06-11",
+          "image": "Disablility Info.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Disablility Info.jpg"
+          ],
+          "contentSource": {
+            "id": "de-visually-impaired",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-006",
+          "category_tags": [
+            "Health"
+          ],
+          "subcategory": "Medical Care",
+          "communityId": "wilmington-de",
+          "event_date": "2026-09-02",
+          "createdDate": "2026-06-09",
+          "image": "Health Fair.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Health Fair.jpg"
+          ],
+          "contentSource": {
+            "id": "westside-family-healthcare",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-007",
+          "category_tags": [
+            "Furniture & Household"
+          ],
+          "subcategory": "Furniture & Household Goods",
+          "communityId": "wilmington-de",
+          "event_date": "2026-08-15",
+          "createdDate": "2026-06-14",
+          "image": "Furniture.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/Furniture.jpg"
+          ],
+          "contentSource": {
+            "id": "wilmington-housing-authority",
+            "type": "manual"
+          }
+        },
+        {
+          "id": "FL-008",
+          "category_tags": [
+            "Community Support"
+          ],
+          "subcategory": "Community Celebrations",
+          "communityId": "wilmington-de",
+          "event_date": "2026-10-17",
+          "createdDate": "2026-10-15",
+          "image": "United Neighbors 2026.jpg",
+          "mediaExistsLocallyAt": [
+            "backend/src/main/resources/static/images/seasonal/United Neighbors 2026.jpg"
+          ],
+          "contentSource": {
+            "id": "westside-grows-together",
+            "type": "manual"
+          }
+        }
+      ]
+    },
+    "news.json": {
+      "sha256": "a5583939dfe604951c9c0cdbed86a27b9510c5ed09821d6a5e72cc41b5003e2e",
+      "storedCount": 10,
+      "records": [
+        {
+          "id": "NP-001",
+          "category_tags": [
+            "Housing"
+          ],
+          "active": true,
+          "expires": "2026-06-30",
+          "published": "2026-06-01",
+          "urgency": "time-limited",
+          "source_id": "city-of-wilmington",
+          "source_url": "https://www.wilmingtonde.gov"
+        },
+        {
+          "id": "NP-002",
+          "category_tags": [
+            "Housing"
+          ],
+          "active": true,
+          "expires": "2026-07-14",
+          "published": "2026-06-02",
+          "urgency": "time-limited",
+          "source_id": "de-housing-authority",
+          "source_url": "http://www.destatehousing.com"
+        },
+        {
+          "id": "NP-003",
+          "category_tags": [
+            "Food"
+          ],
+          "active": true,
+          "expires": "2026-10-31",
+          "published": "2026-06-01",
+          "urgency": "standard",
+          "source_id": "wilmington-farmers-market",
+          "source_url": "https://www.wilmingtonfarmersmarket.org"
+        },
+        {
+          "id": "NP-004",
+          "category_tags": [
+            "Housing",
+            "Utilities",
+            "Rental Assistance"
+          ],
+          "active": true,
+          "expires": null,
+          "published": "2026-06-02",
+          "urgency": "standard",
+          "source_id": "de-dhss",
+          "source_url": "https://dhss.delaware.gov"
+        },
+        {
+          "id": "NP-005",
+          "category_tags": [
+            "Housing"
+          ],
+          "active": true,
+          "expires": null,
+          "published": "2026-05-30",
+          "urgency": "standard",
+          "source_id": "west-end-neighborhood-house",
+          "source_url": "https://westendnh.org/programs/life-lines/"
+        },
+        {
+          "id": "NP-006",
+          "category_tags": [
+            "Housing"
+          ],
+          "active": true,
+          "expires": "2026-08-07",
+          "published": "2026-06-03",
+          "urgency": "time-limited",
+          "source_id": "wilmington-housing-authority",
+          "source_url": "https://whadelaware.org/"
+        },
+        {
+          "id": "NP-007",
+          "category_tags": [
+            "Food"
+          ],
+          "active": true,
+          "expires": null,
+          "published": "2026-06-01",
+          "urgency": "standard",
+          "source_id": "ministry-of-caring",
+          "source_url": "https://www.ministryofcaring.org/"
+        },
+        {
+          "id": "NP-008",
+          "category_tags": [
+            "Health"
+          ],
+          "active": true,
+          "expires": null,
+          "published": "2026-05-28",
+          "urgency": "standard",
+          "source_id": "de-dhss",
+          "source_url": "https://dhss.delaware.gov"
+        },
+        {
+          "id": "NP-009",
+          "category_tags": [
+            "Housing"
+          ],
+          "active": true,
+          "expires": "2026-09-10",
+          "published": "2026-08-18",
+          "urgency": "standard",
+          "source_id": "west-end-neighborhood-house",
+          "source_url": "https://www.westendnh.org"
+        },
+        {
+          "id": "NP-010",
+          "category_tags": [
+            "Community Support"
+          ],
+          "active": true,
+          "expires": "2026-09-15",
+          "published": "2026-08-20",
+          "urgency": "standard",
+          "source_id": "united-way-delaware",
+          "source_url": "https://www.uwde.org"
+        }
+      ]
+    },
+    "articles.json": {
+      "sha256": "0bec5d60ab274863e8d7a1c5435cdc30fa84f72165fafe4fe17f594e34c6b8cd",
+      "storedCount": 3,
+      "records": [
+        {
+          "id": "OR-001",
+          "category_tags": [
+            "Housing",
+            "Community Support"
+          ],
+          "subcategory": "Eviction Prevention",
+          "communityId": "wilmington-de",
+          "publishDate": null,
+          "createdDate": "2026-08-23"
+        },
+        {
+          "id": "OR-002",
+          "category_tags": [
+            "Health"
+          ],
+          "subcategory": "Medical Care",
+          "communityId": "wilmington-de",
+          "publishDate": "2026-07-22",
+          "createdDate": "2026-08-21"
+        },
+        {
+          "id": "OR-003",
+          "category_tags": [
+            "Housing",
+            "Legal"
+          ],
+          "subcategory": "Eviction Prevention",
+          "communityId": "wilmington-de",
+          "publishDate": "2026-08-10",
+          "createdDate": "2026-08-10"
+        }
+      ]
+    },
+    "faq.json": {
+      "sha256": "8d4a7a134eed167998bd0b19a2fba7186f8cb2d24643389128e9b4ef6482d899",
+      "storedCount": 6,
+      "records": [
+        {
+          "id": "FAQ-001",
+          "category_tags": [
+            "Food"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-11"
+        },
+        {
+          "id": "FAQ-002",
+          "category_tags": [
+            "Housing"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-11"
+        },
+        {
+          "id": "FAQ-003",
+          "category_tags": [
+            "Legal"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-11"
+        },
+        {
+          "id": "FAQ-004",
+          "category_tags": [
+            "Utilities"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-11"
+        },
+        {
+          "id": "FAQ-005",
+          "category_tags": [
+            "Health"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-11"
+        },
+        {
+          "id": "FAQ-006",
+          "category_tags": [
+            "Employment"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-11"
+        }
+      ]
+    },
+    "expert-answers.json": {
+      "sha256": "7505231145e2218ab671b6b3ad209d33bf96edea38920770242ca8927e37ea53",
+      "storedCount": 6,
+      "records": [
+        {
+          "id": "EA-001",
+          "category_tags": [
+            "Housing"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-01"
+        },
+        {
+          "id": "EA-002",
+          "category_tags": [
+            "Food"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-01"
+        },
+        {
+          "id": "EA-003",
+          "category_tags": [
+            "Employment"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-01"
+        },
+        {
+          "id": "EA-004",
+          "category_tags": [
+            "Health"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-01"
+        },
+        {
+          "id": "EA-005",
+          "category_tags": [
+            "Housing"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-01"
+        },
+        {
+          "id": "EA-006",
+          "category_tags": [
+            "Utilities"
+          ],
+          "communityId": "wilmington-de",
+          "createdDate": "2026-07-01"
+        }
+      ]
+    }
+  }
+}

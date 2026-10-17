@@ -1,0 +1,1253 @@
+
+> firststep-frontend@0.1.0 test
+> vitest run
+
+
+ RUN  v2.1.9 /Users/composedmedia/Documents/Projects/FirstStep/frontend
+
+ ✓ src/components/ImportantUpdates.test.tsx (2 tests) 150ms
+stderr | src/components/CategoryBrowse.test.tsx > CategoryBrowse > renders group labels for a grouped category
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/CategoryBrowse.test.tsx (5 tests) 193ms
+(node:92131) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:92125) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:92129) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+(node:92128) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ src/components/CategoryUpdates.test.tsx (5 tests) 238ms
+(node:92124) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ src/components/ContentCard/ContentCard.test.tsx (9 tests) 299ms
+stderr | src/components/NewLaws/NewLaws.test.tsx > NewLaws > should use the renamed heading
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/NewLaws/NewLaws.test.tsx (6 tests) 318ms
+(node:92127) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/ArticlePage/ArticlePage.test.tsx > ArticlePage > should request the article named in the URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/TopicPage/TopicPage.test.tsx > TopicPage > lists the topic content from one request
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/OrganizationPage/OrganizationPage.test.tsx > OrganizationPage > should request the organization named by the slug in the URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/FindHelpPage/FindHelpPage.test.tsx > FindHelpPage > should send a category gateway to the category page, not filter in place
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/TopicPage/HelpBrowse.test.tsx > IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+(node:92133) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/CategoryPage/CategoryPage.test.tsx > CategoryPage > with a loaded category > orients the resident before offering anything to explore
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+(node:92126) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/pages/CommunityNoticesPage/CommunityNoticesPage.test.tsx > CommunityNoticesPage > should request the view named in the URL, not the landing route
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/UpdatesPage/UpdatesPage.test.tsx > UpdatesPage > should render one section per group, in payload order
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/TopicPage/TopicPage.test.tsx (5 tests) 601ms
+   ✓ TopicPage > lists the topic content from one request 362ms
+ ✓ src/components/ContentCollection/ContentCollection.test.tsx (12 tests) 663ms
+ ✓ src/pages/UpdatesPage/UpdatesPage.test.tsx (5 tests) 672ms
+   ✓ UpdatesPage > should render one section per group, in payload order 426ms
+ ✓ src/pages/OrganizationPage/OrganizationPage.test.tsx (9 tests) 778ms
+   ✓ OrganizationPage > should request the organization named by the slug in the URL 329ms
+(node:92132) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/App.test.tsx > The front door > renders the header, the AI question and every section in order
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Warning: An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at HomePage (/Users/composedmedia/Documents/Projects/FirstStep/frontend/src/pages/HomePage.tsx:24:49)
+    at Router (/Users/composedmedia/Documents/Projects/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1203:17)
+    at MemoryRouter (/Users/composedmedia/Documents/Projects/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1097:7)
+
+ ✓ src/pages/ArticlePage/ArticlePage.test.tsx (14 tests) 979ms
+   ✓ ArticlePage > should request the article named in the URL 324ms
+ ✓ src/pages/CommunityNoticesPage/CommunityNoticesPage.test.tsx (10 tests) 1023ms
+   ✓ CommunityNoticesPage > should request the view named in the URL, not the landing route 393ms
+ ✓ src/App.test.tsx (4 tests) 803ms
+   ✓ The front door > renders the header, the AI question and every section in order 562ms
+ ✓ src/pages/FindHelpPage/FindHelpPage.test.tsx (10 tests) 1260ms
+   ✓ FindHelpPage > should send a category gateway to the category page, not filter in place 336ms
+ ✓ src/pages/CategoryPage/CategoryPage.test.tsx (12 tests) 1303ms
+   ✓ CategoryPage > with a loaded category > orients the resident before offering anything to explore 408ms
+ ✓ src/pages/TopicPage/HelpBrowse.test.tsx (7 tests) 1437ms
+   ✓ IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result 1094ms
+stderr | src/components/CommunityResources/CommunityResources.test.tsx > CommunityResources > should render one card per authored pathway in file order
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/CommunityResources/CommunityResources.test.tsx (5 tests) 229ms
+(node:92210) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ ✓ src/components/AiResultCard.test.tsx (3 tests) 137ms
+(node:92209) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should render the brand and the accessibility controls
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/components/CommunityInformation/CommunityInformation.test.tsx > CommunityInformation > should cap the flyer preview at three even when more are available
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/CommunityInformation/CommunityInformation.test.tsx (4 tests) 184ms
+ ❯ src/components/SiteHeader/SiteHeader.test.tsx (4 tests | 4 failed) 248ms
+   × SiteHeader > should render the brand and the accessibility controls 187ms
+     → Cannot read properties of undefined (reading 'clear')
+   × SiteHeader > should not offer an AI entry point 14ms
+     → Cannot read properties of undefined (reading 'clear')
+   × SiteHeader > should not label the accessibility controls "ARIA" 12ms
+     → Cannot read properties of undefined (reading 'clear')
+   × SiteHeader > should render exactly the four global nav items 33ms
+     → Found multiple elements with the role "navigation" and name "Primary"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</body>[39m
+     → Cannot read properties of undefined (reading 'clear')
+(node:92212) ExperimentalWarning: localStorage is not available because --localstorage-file was not provided.
+(Use `node --trace-warnings ...` to show where the warning was created)
+stderr | src/Accessibility.test.tsx > Accessibility controls > toggles the UI language between English and Spanish
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Warning: An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at HomePage (/Users/composedmedia/Documents/Projects/FirstStep/frontend/src/pages/HomePage.tsx:24:49)
+    at Router (/Users/composedmedia/Documents/Projects/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1203:17)
+    at MemoryRouter (/Users/composedmedia/Documents/Projects/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1097:7)
+    at I18nProvider (/Users/composedmedia/Documents/Projects/FirstStep/frontend/src/i18n/I18nProvider.tsx:17:25)
+
+stderr | src/Accessibility.test.tsx > Accessibility controls > toggles the high-contrast body class
+Warning: An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at HomePage (/Users/composedmedia/Documents/Projects/FirstStep/frontend/src/pages/HomePage.tsx:24:49)
+    at Router (/Users/composedmedia/Documents/Projects/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1203:17)
+    at MemoryRouter (/Users/composedmedia/Documents/Projects/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1097:7)
+    at I18nProvider (/Users/composedmedia/Documents/Projects/FirstStep/frontend/src/i18n/I18nProvider.tsx:17:25)
+
+ ❯ src/Accessibility.test.tsx (2 tests | 2 failed) 286ms
+   × Accessibility controls > toggles the UI language between English and Spanish 235ms
+     → Cannot read properties of undefined (reading 'clear')
+   × Accessibility controls > toggles the high-contrast body class 48ms
+     → Cannot read properties of undefined (reading 'clear')
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/Accessibility.test.tsx > Accessibility controls > toggles the UI language between English and Spanish
+ FAIL  src/Accessibility.test.tsx > Accessibility controls > toggles the high-contrast body class
+TypeError: Cannot read properties of undefined (reading 'clear')
+ ❯ src/Accessibility.test.tsx:19:18
+     17| describe('Accessibility controls', () => {
+     18|   afterEach(() => {
+     19|     localStorage.clear();
+       |                  ^
+     20|     document.body.className = '';
+     21|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/7]⎯
+
+ FAIL  src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should render the brand and the accessibility controls
+ FAIL  src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should not offer an AI entry point
+ FAIL  src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should not label the accessibility controls "ARIA"
+ FAIL  src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should render exactly the four global nav items
+TypeError: Cannot read properties of undefined (reading 'clear')
+ ❯ src/components/SiteHeader/SiteHeader.test.tsx:19:18
+     17| describe('SiteHeader', () => {
+     18|   afterEach(() => {
+     19|     localStorage.clear();
+       |                  ^
+     20|     document.body.className = '';
+     21|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/7]⎯
+
+ FAIL  src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should render exactly the four global nav items
+TestingLibraryElementError: Found multiple elements with the role "navigation" and name "Primary"
+
+Here are the matching elements:
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+Ignored nodes: comments, script, style
+[36m<nav[39m
+  [33maria-label[39m=[32m"Primary"[39m
+  [33mclass[39m=[32m"_nav_fbfd7d"[39m
+[36m>[39m
+  [36m<div[39m
+    [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+  [36m>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/about"[39m
+    [36m>[39m
+      [0mAbout[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/category/housing"[39m
+    [36m>[39m
+      [0mHousing[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/community"[39m
+    [36m>[39m
+      [0mCommunity[0m
+    [36m</a>[39m
+    [36m<a[39m
+      [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+      [33mhref[39m=[32m"/updates"[39m
+    [36m>[39m
+      [0mUpdates[0m
+    [36m</a>[39m
+  [36m</div>[39m
+[36m</nav>[39m
+
+(If this is intentional, then use the `*AllBy*` variant of the query (like `queryAllByText`, `getAllByText`, or `findAllByText`)).
+
+Ignored nodes: comments, script, style
+[36m<body>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+  [36m<div>[39m
+    [36m<header[39m
+      [33mclass[39m=[32m"_header_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33maria-label[39m=[32m"First Step home"[39m
+          [33mclass[39m=[32m"_brand_fbfd7d"[39m
+          [33mhref[39m=[32m"/"[39m
+        [36m>[39m
+          [36m<img[39m
+            [33malt[39m=[32m""[39m
+            [33mclass[39m=[32m"_logo_fbfd7d"[39m
+            [33mheight[39m=[32m"44"[39m
+            [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+            [33mwidth[39m=[32m"44"[39m
+          [36m/>[39m
+          [36m<span[39m
+            [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_appName_fbfd7d"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</span>[39m
+        [36m</a>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+        [36m>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Switch language"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Switch language"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0mES[0m
+          [36m</button>[39m
+          [36m<button[39m
+            [33maria-label[39m=[32m"Toggle high contrast"[39m
+            [33maria-pressed[39m=[32m"false"[39m
+            [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+            [33mtitle[39m=[32m"Toggle high contrast"[39m
+            [33mtype[39m=[32m"button"[39m
+          [36m>[39m
+            [0m⊕[0m
+          [36m</button>[39m
+        [36m</div>[39m
+      [36m</div>[39m
+    [36m</header>[39m
+    [36m<nav[39m
+      [33maria-label[39m=[32m"Primary"[39m
+      [33mclass[39m=[32m"_nav_fbfd7d"[39m
+    [36m>[39m
+      [36m<div[39m
+        [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+      [36m>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/about"[39m
+        [36m>[39m
+          [0mAbout[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/category/housing"[39m
+        [36m>[39m
+          [0mHousing[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/community"[39m
+        [36m>[39m
+          [0mCommunity[0m
+        [36m</a>[39m
+        [36m<a[39m
+          [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+          [33mhref[39m=[32m"/updates"[39m
+        [36m>[39m
+          [0mUpdates[0m
+        [36m</a>[39m
+      [36m</div>[39m
+    [36m</nav>[39m
+  [36m</div>[39m
+[36m</body>[39m
+ ❯ Object.getElementError node_modules/@testing-library/dom/dist/config.js:37:19
+ ❯ getElementError node_modules/@testing-library/dom/dist/query-helpers.js:20:35
+ ❯ getMultipleElementsFoundError node_modules/@testing-library/dom/dist/query-helpers.js:23:10
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:55:13
+ ❯ node_modules/@testing-library/dom/dist/query-helpers.js:95:19
+ ❯ src/components/SiteHeader/SiteHeader.test.tsx:53:24
+     51|     renderAt('/');
+     52| 
+     53|     const nav = screen.getByRole('navigation', { name: 'Primary' });
+       |                        ^
+     54| 
+     55|     expect(within(nav).getAllByRole('link').map((link) => link.textCon…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/7]⎯
+
+ Test Files  2 failed | 18 passed (20)
+      Tests  6 failed | 127 passed (133)
+   Start at  11:31:28
+   Duration  5.78s (transform 2.64s, setup 3.86s, collect 11.46s, tests 11.80s, environment 28.55s, prepare 4.54s)
+

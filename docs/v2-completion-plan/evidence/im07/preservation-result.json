@@ -1,0 +1,10 @@
+{
+  "trackedFilesChecked": 824,
+  "changed": [],
+  "flyerCatalog": {
+    "path": "app/data/flyers.json",
+    "before": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa",
+    "after": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa"
+  },
+  "gitDiffCheck": 0
+}

@@ -1,0 +1,2492 @@
+{
+  "clock" : "2026-10-16T16:00:00Z",
+  "storedResources" : 229,
+  "storedFlyers" : 8,
+  "approvedFlyers" : 0,
+  "featuredTopics" : [ "Transitional Housing", "Emergency Shelter", "Homeownership", "Rental Assistance" ],
+  "housing" : {
+    "Emergency Shelter" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Emergency Shelter",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-016",
+            "title" : "Ministry of Caring Inc",
+            "summary" : "Comprehensive nonprofit serving Wilmington's most vulnerable through meals, shelter, transitional housing, job assistance, dental care, early childhood education, and senior housing.",
+            "organization" : "Ministry of Caring Inc",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.ministryofcaring.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-016", "no_positive_resident_timely_evidence:HA-016", "no_positive_visual_media_source_evidence:HA-016" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-001",
+            "title" : "American Red Cross",
+            "summary" : "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+            "organization" : "American Red Cross",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "emergency",
+            "date" : null,
+            "url" : "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ ],
+          "limitations" : [ "no_explicit_standard_urgency:HA-001", "no_authentic_catalog_date:HA-001", "no_positive_resident_timely_evidence:HA-001", "no_positive_durable_evidence:HA-001", "no_positive_visual_media_source_evidence:HA-001" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-006",
+            "title" : "Child Inc - Domestic Violence Shelters",
+            "summary" : "Confidential emergency shelter for domestic violence survivors. Includes safety planning, advocacy, and case management. Emergency hotel placement may be available.",
+            "organization" : "Child Inc - Domestic Violence Shelters",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "emergency",
+            "date" : null,
+            "url" : "https://www.childinc.com/domestic-violence-services/shelters/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ ],
+          "limitations" : [ "no_explicit_standard_urgency:HA-006", "no_authentic_catalog_date:HA-006", "no_positive_resident_timely_evidence:HA-006", "no_positive_durable_evidence:HA-006", "no_positive_visual_media_source_evidence:HA-006" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-001",
+          "title" : "American Red Cross",
+          "summary" : "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+          "organization" : "American Red Cross",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-001", "no_authentic_catalog_date:HA-001", "no_positive_resident_timely_evidence:HA-001", "no_positive_durable_evidence:HA-001", "no_positive_visual_media_source_evidence:HA-001" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-006",
+          "title" : "Child Inc - Domestic Violence Shelters",
+          "summary" : "Confidential emergency shelter for domestic violence survivors. Includes safety planning, advocacy, and case management. Emergency hotel placement may be available.",
+          "organization" : "Child Inc - Domestic Violence Shelters",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.childinc.com/domestic-violence-services/shelters/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-006", "no_authentic_catalog_date:HA-006", "no_positive_resident_timely_evidence:HA-006", "no_positive_durable_evidence:HA-006", "no_positive_visual_media_source_evidence:HA-006" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-009",
+          "title" : "Family Promise of Northern New Castle County",
+          "summary" : "Comprehensive homeless family support including temporary shelter, rapid rehousing, and intensive case management across multiple programs to help families achieve housing independence.",
+          "organization" : "Family Promise of Northern New Castle County",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.familypromisede.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-009", "no_authentic_catalog_date:HA-009", "no_positive_resident_timely_evidence:HA-009", "no_positive_durable_evidence:HA-009", "no_positive_visual_media_source_evidence:HA-009" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-016",
+          "title" : "Ministry of Caring Inc",
+          "summary" : "Comprehensive nonprofit serving Wilmington's most vulnerable through meals, shelter, transitional housing, job assistance, dental care, early childhood education, and senior housing.",
+          "organization" : "Ministry of Caring Inc",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-016", "no_positive_resident_timely_evidence:HA-016", "no_positive_visual_media_source_evidence:HA-016" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-017",
+          "title" : "Mother Mary of Hope House II",
+          "summary" : "Emergency shelter for homeless women with children. Stays of 30–45 days with case management included.",
+          "organization" : "Mother Mary of Hope House II",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org/services/emergency-shelters/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-017", "no_authentic_catalog_date:HA-017", "no_positive_resident_timely_evidence:HA-017", "no_positive_durable_evidence:HA-017", "no_positive_visual_media_source_evidence:HA-017" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-018",
+          "title" : "Mother Mary of Hope House III",
+          "summary" : "Emergency shelter for homeless women with children. Stays of 30–45 days with case management included.",
+          "organization" : "Mother Mary of Hope House III",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org/services/emergency-shelters/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-018", "no_authentic_catalog_date:HA-018", "no_positive_resident_timely_evidence:HA-018", "no_positive_durable_evidence:HA-018", "no_positive_visual_media_source_evidence:HA-018" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-029",
+          "title" : "Sunday Breakfast Mission",
+          "summary" : "Shelter for men experiencing homelessness and substance abuse, plus women and women with children. Clothing vouchers provided for the Urban Vintage thrift store.",
+          "organization" : "Sunday Breakfast Mission",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://sundaybreakfastmission.org/programs-and-services",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-029", "no_authentic_catalog_date:HA-029", "no_positive_resident_timely_evidence:HA-029", "no_positive_durable_evidence:HA-029", "no_positive_visual_media_source_evidence:HA-029" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-031",
+          "title" : "STEHM - Motel Ministry",
+          "summary" : "Short-term emergency motel placement for displaced individuals. Referrals accepted from social service agencies, schools, and hospitals. One-week stay, once per calendar year.",
+          "organization" : "STEHM - Motel Ministry",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://stehm.org/newsite/2021/motel-ministry/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-031", "no_authentic_catalog_date:HA-031", "no_positive_resident_timely_evidence:HA-031", "no_positive_durable_evidence:HA-031", "no_positive_visual_media_source_evidence:HA-031" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-033",
+          "title" : "William Booth Emergency Housing Residence",
+          "summary" : "90-day emergency shelter for women and children focused on preventing recurring homelessness through workshops and support groups.",
+          "organization" : "William Booth Emergency Housing Residence",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.homelessshelterdirectory.org/cgi-bin/id/shelter.cgi?shelter=13820",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-033", "no_authentic_catalog_date:HA-033", "no_positive_resident_timely_evidence:HA-033", "no_positive_durable_evidence:HA-033", "no_positive_visual_media_source_evidence:HA-033" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-001", "HA-006", "HA-009", "HA-017", "HA-018", "HA-029", "HA-031", "HA-033" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-006", "HA-009", "HA-017", "HA-018", "HA-029", "HA-031", "HA-033" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-001" ],
+        "explanation" : "no_explicit_standard_urgency:HA-001;no_authentic_catalog_date:HA-001;no_positive_resident_timely_evidence:HA-001;no_positive_durable_evidence:HA-001;no_positive_visual_media_source_evidence:HA-001"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-006" ],
+        "explanation" : "no_explicit_standard_urgency:HA-006;no_authentic_catalog_date:HA-006;no_positive_resident_timely_evidence:HA-006;no_positive_durable_evidence:HA-006;no_positive_visual_media_source_evidence:HA-006"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-009" ],
+        "explanation" : "no_explicit_standard_urgency:HA-009;no_authentic_catalog_date:HA-009;no_positive_resident_timely_evidence:HA-009;no_positive_durable_evidence:HA-009;no_positive_visual_media_source_evidence:HA-009"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-016" ],
+        "explanation" : "no_authentic_catalog_date:HA-016;no_positive_resident_timely_evidence:HA-016;no_positive_visual_media_source_evidence:HA-016"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-017" ],
+        "explanation" : "no_explicit_standard_urgency:HA-017;no_authentic_catalog_date:HA-017;no_positive_resident_timely_evidence:HA-017;no_positive_durable_evidence:HA-017;no_positive_visual_media_source_evidence:HA-017"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-018" ],
+        "explanation" : "no_explicit_standard_urgency:HA-018;no_authentic_catalog_date:HA-018;no_positive_resident_timely_evidence:HA-018;no_positive_durable_evidence:HA-018;no_positive_visual_media_source_evidence:HA-018"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-029" ],
+        "explanation" : "no_explicit_standard_urgency:HA-029;no_authentic_catalog_date:HA-029;no_positive_resident_timely_evidence:HA-029;no_positive_durable_evidence:HA-029;no_positive_visual_media_source_evidence:HA-029"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-031" ],
+        "explanation" : "no_explicit_standard_urgency:HA-031;no_authentic_catalog_date:HA-031;no_positive_resident_timely_evidence:HA-031;no_positive_durable_evidence:HA-031;no_positive_visual_media_source_evidence:HA-031"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Emergency Shelter",
+        "itemIds" : [ "HA-033" ],
+        "explanation" : "no_explicit_standard_urgency:HA-033;no_authentic_catalog_date:HA-033;no_positive_resident_timely_evidence:HA-033;no_positive_durable_evidence:HA-033;no_positive_visual_media_source_evidence:HA-033"
+      } ]
+    },
+    "Transitional Housing" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Transitional Housing",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-002",
+            "title" : "Be Ready CDC - Esther's Place",
+            "summary" : "Long-term transitional housing for women and their children on Wilmington's west side to support recovery and stability.",
+            "organization" : "Be Ready CDC - Esther's Place",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.bereadycdc.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-002", "no_positive_resident_timely_evidence:HA-002", "no_positive_visual_media_source_evidence:HA-002" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-003",
+            "title" : "Be Ready CDC - Lazarus House",
+            "summary" : "Long-term transitional housing for men recently released from prison on Wilmington's west side.",
+            "organization" : "Be Ready CDC - Lazarus House",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.bereadycdc.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-003", "no_positive_resident_timely_evidence:HA-003", "no_positive_visual_media_source_evidence:HA-003" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-005",
+            "title" : "Catholic Charities - Bayard House",
+            "summary" : "Residential program with housing, case management, healthcare access, and life skills support for at-risk, homeless, or pregnant and parenting teens.",
+            "organization" : "Catholic Charities - Bayard House",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.ccwilm.org/bayard-house/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-005", "no_positive_resident_timely_evidence:HA-005", "no_positive_visual_media_source_evidence:HA-005" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-002",
+          "title" : "Be Ready CDC - Esther's Place",
+          "summary" : "Long-term transitional housing for women and their children on Wilmington's west side to support recovery and stability.",
+          "organization" : "Be Ready CDC - Esther's Place",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.bereadycdc.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-002", "no_positive_resident_timely_evidence:HA-002", "no_positive_visual_media_source_evidence:HA-002" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-003",
+          "title" : "Be Ready CDC - Lazarus House",
+          "summary" : "Long-term transitional housing for men recently released from prison on Wilmington's west side.",
+          "organization" : "Be Ready CDC - Lazarus House",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.bereadycdc.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-003", "no_positive_resident_timely_evidence:HA-003", "no_positive_visual_media_source_evidence:HA-003" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-005",
+          "title" : "Catholic Charities - Bayard House",
+          "summary" : "Residential program with housing, case management, healthcare access, and life skills support for at-risk, homeless, or pregnant and parenting teens.",
+          "organization" : "Catholic Charities - Bayard House",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.ccwilm.org/bayard-house/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-005", "no_positive_resident_timely_evidence:HA-005", "no_positive_visual_media_source_evidence:HA-005" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-010",
+          "title" : "Friendship House",
+          "summary" : "Transitional housing combining subsidized housing with holistic programming for adults recovering from substance abuse, domestic violence, or incarceration. Multiple houses across Wilmington for men and women.",
+          "organization" : "Friendship House",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.friendshiphousede.org/delaware-homeless/our-programs/transitional-housing/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-010", "no_positive_resident_timely_evidence:HA-010", "no_positive_visual_media_source_evidence:HA-010" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-012",
+          "title" : "Hilda Davis Residence",
+          "summary" : "Permanent housing for low-income women experiencing homelessness who are employable. Operated by YWCA Delaware.",
+          "organization" : "Hilda Davis Residence",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : null,
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-012", "no_positive_resident_timely_evidence:HA-012", "no_positive_visual_media_source_evidence:HA-012" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-015",
+          "title" : "Maria Lorenza Longo House",
+          "summary" : "Long-term housing for women who need ongoing support to avoid becoming homeless.",
+          "organization" : "Maria Lorenza Longo House",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-015", "no_positive_resident_timely_evidence:HA-015", "no_positive_visual_media_source_evidence:HA-015" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-019",
+          "title" : "Nazareth House Holistic Housing I",
+          "summary" : "Transitional family housing with case management to help families address challenges, build skills, and prepare for independent living.",
+          "organization" : "Nazareth House Holistic Housing I",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org/services/housing-options/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-019", "no_positive_resident_timely_evidence:HA-019", "no_positive_visual_media_source_evidence:HA-019" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-020",
+          "title" : "Nazareth House Holistic Housing II",
+          "summary" : "Transitional family housing with case management to help families address challenges, build skills, and prepare for independent living.",
+          "organization" : "Nazareth House Holistic Housing II",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org/services/housing-options/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-020", "no_positive_resident_timely_evidence:HA-020", "no_positive_visual_media_source_evidence:HA-020" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-028",
+          "title" : "St. Francis Holistic Housing",
+          "summary" : "Up to two years of transitional family housing with a private unit and case management to address root causes of homelessness and build toward independent living.",
+          "organization" : "St. Francis Holistic Housing",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.ministryofcaring.org/services/housing-options/#",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-028", "no_positive_resident_timely_evidence:HA-028", "no_positive_visual_media_source_evidence:HA-028" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-030",
+          "title" : "STEHM - Martha House I & II",
+          "summary" : "Long-term transitional housing for women and their children with counseling and life skills training to prevent recurring homelessness.",
+          "organization" : "STEHM - Martha House I & II",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://stehm.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-030", "no_positive_resident_timely_evidence:HA-030", "no_positive_visual_media_source_evidence:HA-030" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-037",
+          "title" : "YWCA Delaware - SCHE Joint Transitional Housing and Rapid Re-housing",
+          "summary" : "Transitional and rapid re-housing for survivors of domestic violence, sexual assault, stalking, and dating violence, with wraparound case management and financial assistance toward stable permanent housing.",
+          "organization" : "YWCA Delaware - SCHE Joint Transitional Housing and Rapid Re-housing",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.ywcade.org/what-we-do/housing/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-037", "no_authentic_catalog_date:HA-037", "no_positive_resident_timely_evidence:HA-037", "no_positive_durable_evidence:HA-037", "no_positive_visual_media_source_evidence:HA-037" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-002", "HA-003", "HA-005", "HA-010", "HA-012", "HA-015", "HA-019", "HA-020", "HA-028", "HA-030" ],
+        "explanation" : "DURABLE: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-003", "HA-005", "HA-010", "HA-012", "HA-015", "HA-019", "HA-020", "HA-028", "HA-030", "HA-037" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-005", "HA-010", "HA-012", "HA-015", "HA-019", "HA-020", "HA-028", "HA-030", "HA-037" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-002" ],
+        "explanation" : "no_authentic_catalog_date:HA-002;no_positive_resident_timely_evidence:HA-002;no_positive_visual_media_source_evidence:HA-002"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-003" ],
+        "explanation" : "no_authentic_catalog_date:HA-003;no_positive_resident_timely_evidence:HA-003;no_positive_visual_media_source_evidence:HA-003"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-005" ],
+        "explanation" : "no_authentic_catalog_date:HA-005;no_positive_resident_timely_evidence:HA-005;no_positive_visual_media_source_evidence:HA-005"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-010" ],
+        "explanation" : "no_authentic_catalog_date:HA-010;no_positive_resident_timely_evidence:HA-010;no_positive_visual_media_source_evidence:HA-010"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-012" ],
+        "explanation" : "no_authentic_catalog_date:HA-012;no_positive_resident_timely_evidence:HA-012;no_positive_visual_media_source_evidence:HA-012"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-015" ],
+        "explanation" : "no_authentic_catalog_date:HA-015;no_positive_resident_timely_evidence:HA-015;no_positive_visual_media_source_evidence:HA-015"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-019" ],
+        "explanation" : "no_authentic_catalog_date:HA-019;no_positive_resident_timely_evidence:HA-019;no_positive_visual_media_source_evidence:HA-019"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-020" ],
+        "explanation" : "no_authentic_catalog_date:HA-020;no_positive_resident_timely_evidence:HA-020;no_positive_visual_media_source_evidence:HA-020"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-028" ],
+        "explanation" : "no_authentic_catalog_date:HA-028;no_positive_resident_timely_evidence:HA-028;no_positive_visual_media_source_evidence:HA-028"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-030" ],
+        "explanation" : "no_authentic_catalog_date:HA-030;no_positive_resident_timely_evidence:HA-030;no_positive_visual_media_source_evidence:HA-030"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Transitional Housing",
+        "itemIds" : [ "HA-037" ],
+        "explanation" : "no_explicit_standard_urgency:HA-037;no_authentic_catalog_date:HA-037;no_positive_resident_timely_evidence:HA-037;no_positive_durable_evidence:HA-037;no_positive_visual_media_source_evidence:HA-037"
+      } ]
+    },
+    "Sober Living" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Sober Living",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-014",
+            "title" : "Limen Recovery and Wellness",
+            "summary" : "Sober living for adults recovering from drug or alcohol addiction using a 12-step recovery model.",
+            "organization" : "Limen Recovery and Wellness",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.limende.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-014", "no_positive_resident_timely_evidence:HA-014", "no_positive_visual_media_source_evidence:HA-014" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-024",
+            "title" : "Oxford House - Browntown",
+            "summary" : "Self-run recovery house for men recovering from alcoholism or drug addiction. Residents share rent and expenses. Multiple Oxford House locations exist in Wilmington.",
+            "organization" : "Oxford House - Browntown",
+            "location" : "Wilmington",
+            "cost" : "low-cost",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.oxfordvacancies.com/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-024", "no_positive_resident_timely_evidence:HA-024", "no_positive_visual_media_source_evidence:HA-024" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-025",
+            "title" : "Oxford Houses of Delaware",
+            "summary" : "Self-run sober living homes for individuals in recovery. Residents share rent and expenses. Women with children are eligible.",
+            "organization" : "Oxford Houses of Delaware",
+            "location" : "Wilmington",
+            "cost" : "low-cost",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://oxfordhouse.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-025", "no_positive_resident_timely_evidence:HA-025", "no_positive_visual_media_source_evidence:HA-025" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-014",
+          "title" : "Limen Recovery and Wellness",
+          "summary" : "Sober living for adults recovering from drug or alcohol addiction using a 12-step recovery model.",
+          "organization" : "Limen Recovery and Wellness",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.limende.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-014", "no_positive_resident_timely_evidence:HA-014", "no_positive_visual_media_source_evidence:HA-014" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-024",
+          "title" : "Oxford House - Browntown",
+          "summary" : "Self-run recovery house for men recovering from alcoholism or drug addiction. Residents share rent and expenses. Multiple Oxford House locations exist in Wilmington.",
+          "organization" : "Oxford House - Browntown",
+          "location" : "Wilmington",
+          "cost" : "low-cost",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.oxfordvacancies.com/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-024", "no_positive_resident_timely_evidence:HA-024", "no_positive_visual_media_source_evidence:HA-024" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-025",
+          "title" : "Oxford Houses of Delaware",
+          "summary" : "Self-run sober living homes for individuals in recovery. Residents share rent and expenses. Women with children are eligible.",
+          "organization" : "Oxford Houses of Delaware",
+          "location" : "Wilmington",
+          "cost" : "low-cost",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://oxfordhouse.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-025", "no_positive_resident_timely_evidence:HA-025", "no_positive_visual_media_source_evidence:HA-025" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ "HA-014", "HA-024", "HA-025" ],
+        "explanation" : "DURABLE: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ "HA-024", "HA-025" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ "HA-014" ],
+        "explanation" : "no_authentic_catalog_date:HA-014;no_positive_resident_timely_evidence:HA-014;no_positive_visual_media_source_evidence:HA-014"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ "HA-024" ],
+        "explanation" : "no_authentic_catalog_date:HA-024;no_positive_resident_timely_evidence:HA-024;no_positive_visual_media_source_evidence:HA-024"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Sober Living",
+        "itemIds" : [ "HA-025" ],
+        "explanation" : "no_authentic_catalog_date:HA-025;no_positive_resident_timely_evidence:HA-025;no_positive_visual_media_source_evidence:HA-025"
+      } ]
+    },
+    "Rental Assistance" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Rental Assistance",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-008",
+            "title" : "Delaware State Housing Authority - SRAP",
+            "summary" : "State-funded rental voucher program covering a portion of rent for eligible Delaware residents. Applications must go through a partnering agency.",
+            "organization" : "Delaware State Housing Authority - SRAP",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "http://www.destatehousing.com",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-008", "no_positive_resident_timely_evidence:HA-008", "no_positive_visual_media_source_evidence:HA-008" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-023",
+            "title" : "Northeast State Service Center",
+            "summary" : "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+            "organization" : "Northeast State Service Center",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "emergency",
+            "date" : null,
+            "url" : "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ ],
+          "limitations" : [ "no_explicit_standard_urgency:HA-023", "no_authentic_catalog_date:HA-023", "no_positive_resident_timely_evidence:HA-023", "no_positive_durable_evidence:HA-023", "no_positive_visual_media_source_evidence:HA-023" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-026",
+            "title" : "Porter State Service Center",
+            "summary" : "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+            "organization" : "Porter State Service Center",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "emergency",
+            "date" : null,
+            "url" : "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ ],
+          "limitations" : [ "no_explicit_standard_urgency:HA-026", "no_authentic_catalog_date:HA-026", "no_positive_resident_timely_evidence:HA-026", "no_positive_durable_evidence:HA-026", "no_positive_visual_media_source_evidence:HA-026" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-008",
+          "title" : "Delaware State Housing Authority - SRAP",
+          "summary" : "State-funded rental voucher program covering a portion of rent for eligible Delaware residents. Applications must go through a partnering agency.",
+          "organization" : "Delaware State Housing Authority - SRAP",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "http://www.destatehousing.com",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-008", "no_positive_resident_timely_evidence:HA-008", "no_positive_visual_media_source_evidence:HA-008" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-023",
+          "title" : "Northeast State Service Center",
+          "summary" : "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+          "organization" : "Northeast State Service Center",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-023", "no_authentic_catalog_date:HA-023", "no_positive_resident_timely_evidence:HA-023", "no_positive_durable_evidence:HA-023", "no_positive_visual_media_source_evidence:HA-023" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-026",
+          "title" : "Porter State Service Center",
+          "summary" : "Emergency financial assistance for rent, utilities, and shelter for eligible low-income individuals facing an unforeseen crisis.",
+          "organization" : "Porter State Service Center",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-026", "no_authentic_catalog_date:HA-026", "no_positive_resident_timely_evidence:HA-026", "no_positive_durable_evidence:HA-026", "no_positive_visual_media_source_evidence:HA-026" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-034",
+          "title" : "Wilmington Housing Authority - Housing Choice Vouchers",
+          "summary" : "Federal housing vouchers helping eligible low-income residents pay rent in the community. Waitlist opens periodically — keep contact information current. WHA manages 1,976 vouchers.",
+          "organization" : "Wilmington Housing Authority - Housing Choice Vouchers",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://whadelaware.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-034", "no_positive_resident_timely_evidence:HA-034", "no_positive_visual_media_source_evidence:HA-034" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-008", "HA-034" ],
+        "explanation" : "DURABLE: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-023", "HA-026", "HA-034" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-026", "HA-034" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-008" ],
+        "explanation" : "no_authentic_catalog_date:HA-008;no_positive_resident_timely_evidence:HA-008;no_positive_visual_media_source_evidence:HA-008"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-023" ],
+        "explanation" : "no_explicit_standard_urgency:HA-023;no_authentic_catalog_date:HA-023;no_positive_resident_timely_evidence:HA-023;no_positive_durable_evidence:HA-023;no_positive_visual_media_source_evidence:HA-023"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-026" ],
+        "explanation" : "no_explicit_standard_urgency:HA-026;no_authentic_catalog_date:HA-026;no_positive_resident_timely_evidence:HA-026;no_positive_durable_evidence:HA-026;no_positive_visual_media_source_evidence:HA-026"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Rental Assistance",
+        "itemIds" : [ "HA-034" ],
+        "explanation" : "no_authentic_catalog_date:HA-034;no_positive_resident_timely_evidence:HA-034;no_positive_visual_media_source_evidence:HA-034"
+      } ]
+    },
+    "Public Housing" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Public Housing",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-035",
+            "title" : "Wilmington Housing Authority - Public Housing Units",
+            "summary" : "Affordable public housing units for low-income residents including seniors and people with disabilities. Income must not exceed 80% of local median income. Apply directly through WHA.",
+            "organization" : "Wilmington Housing Authority - Public Housing Units",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://whadelaware.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-035", "no_positive_resident_timely_evidence:HA-035", "no_positive_visual_media_source_evidence:HA-035" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-035",
+          "title" : "Wilmington Housing Authority - Public Housing Units",
+          "summary" : "Affordable public housing units for low-income residents including seniors and people with disabilities. Income must not exceed 80% of local median income. Apply directly through WHA.",
+          "organization" : "Wilmington Housing Authority - Public Housing Units",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://whadelaware.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-035", "no_positive_resident_timely_evidence:HA-035", "no_positive_visual_media_source_evidence:HA-035" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Public Housing",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Public Housing",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Public Housing",
+        "itemIds" : [ "HA-035" ],
+        "explanation" : "no_authentic_catalog_date:HA-035;no_positive_resident_timely_evidence:HA-035;no_positive_visual_media_source_evidence:HA-035"
+      } ]
+    },
+    "Homeownership" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Homeownership",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-011",
+            "title" : "Habitat for Humanity",
+            "summary" : "Homeownership preparation and education program for income-eligible individuals, helping residents achieve homeownership through Habitat's program.",
+            "organization" : "Habitat for Humanity",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.habitatncc.org/our-programs/homeownership/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-011", "no_positive_resident_timely_evidence:HA-011", "no_positive_visual_media_source_evidence:HA-011" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-013",
+            "title" : "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+            "summary" : "Fair housing advocacy, credit counseling, homebuyer education, and foreclosure prevention counseling for northern Delaware residents.",
+            "organization" : "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.hond.org/home/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-013", "no_positive_resident_timely_evidence:HA-013", "no_positive_visual_media_source_evidence:HA-013" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-021",
+            "title" : "NeighborGood Partners: Wilmington",
+            "summary" : "Homeownership education, foreclosure prevention, DEHAP rental assistance, and one-on-one financial coaching to strengthen housing stability.",
+            "organization" : "NeighborGood Partners: Wilmington",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.neighborgoodpartners.org/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-021", "no_positive_resident_timely_evidence:HA-021", "no_positive_visual_media_source_evidence:HA-021" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-011",
+          "title" : "Habitat for Humanity",
+          "summary" : "Homeownership preparation and education program for income-eligible individuals, helping residents achieve homeownership through Habitat's program.",
+          "organization" : "Habitat for Humanity",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.habitatncc.org/our-programs/homeownership/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-011", "no_positive_resident_timely_evidence:HA-011", "no_positive_visual_media_source_evidence:HA-011" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-013",
+          "title" : "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+          "summary" : "Fair housing advocacy, credit counseling, homebuyer education, and foreclosure prevention counseling for northern Delaware residents.",
+          "organization" : "Housing Opportunities of Northern Delaware, Inc. (HOND)",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.hond.org/home/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-013", "no_positive_resident_timely_evidence:HA-013", "no_positive_visual_media_source_evidence:HA-013" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-021",
+          "title" : "NeighborGood Partners: Wilmington",
+          "summary" : "Homeownership education, foreclosure prevention, DEHAP rental assistance, and one-on-one financial coaching to strengthen housing stability.",
+          "organization" : "NeighborGood Partners: Wilmington",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.neighborgoodpartners.org/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-021", "no_positive_resident_timely_evidence:HA-021", "no_positive_visual_media_source_evidence:HA-021" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-022",
+          "title" : "Neighborhood House",
+          "summary" : "Housing advice, rental and homebuying assistance, and homebuyer education workshops in English and Spanish. Two locations serving Wilmington.",
+          "organization" : "Neighborhood House",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.neighborhoodhse.org/post/what-we-do-housing-1",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-022", "no_positive_resident_timely_evidence:HA-022", "no_positive_visual_media_source_evidence:HA-022" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-011", "HA-013", "HA-021", "HA-022" ],
+        "explanation" : "DURABLE: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-013", "HA-021", "HA-022" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-021", "HA-022" ],
+        "explanation" : "FALLBACK: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-011" ],
+        "explanation" : "no_authentic_catalog_date:HA-011;no_positive_resident_timely_evidence:HA-011;no_positive_visual_media_source_evidence:HA-011"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-013" ],
+        "explanation" : "no_authentic_catalog_date:HA-013;no_positive_resident_timely_evidence:HA-013;no_positive_visual_media_source_evidence:HA-013"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-021" ],
+        "explanation" : "no_authentic_catalog_date:HA-021;no_positive_resident_timely_evidence:HA-021;no_positive_visual_media_source_evidence:HA-021"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Homeownership",
+        "itemIds" : [ "HA-022" ],
+        "explanation" : "no_authentic_catalog_date:HA-022;no_positive_resident_timely_evidence:HA-022;no_positive_visual_media_source_evidence:HA-022"
+      } ]
+    },
+    "Senior Housing" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Senior Housing",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-027",
+            "title" : "Sacred Heart Village",
+            "summary" : "77 affordable apartments for income-eligible seniors age 62 and older.",
+            "organization" : "Sacred Heart Village",
+            "location" : "Wilmington",
+            "cost" : "low-cost",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://www.sacredheartvillage.org",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-027", "no_positive_resident_timely_evidence:HA-027", "no_positive_visual_media_source_evidence:HA-027" ]
+        },
+        "tieStage" : "STABLE_CANONICAL_ID"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-036",
+            "title" : "Wilmington Senior Center - Lafayette Court Apartments",
+            "summary" : "Affordable efficiency and one-bedroom apartments for residents age 55 and older, located next to the Wilmington Senior Center.",
+            "organization" : "Wilmington Senior Center - Lafayette Court Apartments",
+            "location" : "Wilmington",
+            "cost" : "low-cost",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://wilmingtonseniorcenter.org/lafayette-court-apartments/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-036", "no_positive_resident_timely_evidence:HA-036", "no_positive_visual_media_source_evidence:HA-036" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-027",
+          "title" : "Sacred Heart Village",
+          "summary" : "77 affordable apartments for income-eligible seniors age 62 and older.",
+          "organization" : "Sacred Heart Village",
+          "location" : "Wilmington",
+          "cost" : "low-cost",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.sacredheartvillage.org",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-027", "no_positive_resident_timely_evidence:HA-027", "no_positive_visual_media_source_evidence:HA-027" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-036",
+          "title" : "Wilmington Senior Center - Lafayette Court Apartments",
+          "summary" : "Affordable efficiency and one-bedroom apartments for residents age 55 and older, located next to the Wilmington Senior Center.",
+          "organization" : "Wilmington Senior Center - Lafayette Court Apartments",
+          "location" : "Wilmington",
+          "cost" : "low-cost",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://wilmingtonseniorcenter.org/lafayette-court-apartments/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-036", "no_positive_resident_timely_evidence:HA-036", "no_positive_visual_media_source_evidence:HA-036" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Senior Housing",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "STABLE_ITEM_ID_FALLBACK",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Senior Housing",
+        "itemIds" : [ "HA-027", "HA-036" ],
+        "explanation" : "DURABLE: materially equal feasible candidates; canonical String.compareTo identity order"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Senior Housing",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Senior Housing",
+        "itemIds" : [ "HA-027" ],
+        "explanation" : "no_authentic_catalog_date:HA-027;no_positive_resident_timely_evidence:HA-027;no_positive_visual_media_source_evidence:HA-027"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Senior Housing",
+        "itemIds" : [ "HA-036" ],
+        "explanation" : "no_authentic_catalog_date:HA-036;no_positive_resident_timely_evidence:HA-036;no_positive_visual_media_source_evidence:HA-036"
+      } ]
+    },
+    "Youth Housing" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Youth Housing",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "DURABLE",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-032",
+            "title" : "West End Neighborhood House - Life Lines Program",
+            "summary" : "Comprehensive support for foster care and unaccompanied youth ages 16–23, including LGBTQ+ youth, covering housing, education, employment, mental health, and life skills.",
+            "organization" : "West End Neighborhood House - Life Lines Program",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "standard",
+            "date" : null,
+            "url" : "https://westendnh.org/programs/life-lines/",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ "DURABLE" ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+          "limitations" : [ "no_authentic_catalog_date:HA-032", "no_positive_resident_timely_evidence:HA-032", "no_positive_visual_media_source_evidence:HA-032" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      }, {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "RESOURCE",
+            "id" : "HA-007",
+            "title" : "Child Inc. - Runaway and Homeless Youth Program",
+            "summary" : "24-hour hotline plus free counseling, temporary emergency shelter, and support services for runaway and homeless youth and their families.",
+            "organization" : "Child Inc. - Runaway and Homeless Youth Program",
+            "location" : "Wilmington",
+            "cost" : "free",
+            "urgency" : "emergency",
+            "date" : null,
+            "url" : "https://www.childinc.com/services/services-for-children/#24",
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "dscyf-directory",
+            "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+            "sourceType" : null,
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : true,
+          "roles" : [ ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : null,
+          "evidence" : [ ],
+          "limitations" : [ "no_explicit_standard_urgency:HA-007", "no_authentic_catalog_date:HA-007", "no_positive_resident_timely_evidence:HA-007", "no_positive_durable_evidence:HA-007", "no_positive_visual_media_source_evidence:HA-007" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-007",
+          "title" : "Child Inc. - Runaway and Homeless Youth Program",
+          "summary" : "24-hour hotline plus free counseling, temporary emergency shelter, and support services for runaway and homeless youth and their families.",
+          "organization" : "Child Inc. - Runaway and Homeless Youth Program",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "emergency",
+          "date" : null,
+          "url" : "https://www.childinc.com/services/services-for-children/#24",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ ],
+        "limitations" : [ "no_explicit_standard_urgency:HA-007", "no_authentic_catalog_date:HA-007", "no_positive_resident_timely_evidence:HA-007", "no_positive_durable_evidence:HA-007", "no_positive_visual_media_source_evidence:HA-007" ]
+      }, {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "HA-032",
+          "title" : "West End Neighborhood House - Life Lines Program",
+          "summary" : "Comprehensive support for foster care and unaccompanied youth ages 16–23, including LGBTQ+ youth, covering housing, education, employment, mental health, and life skills.",
+          "organization" : "West End Neighborhood House - Life Lines Program",
+          "location" : "Wilmington",
+          "cost" : "free",
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://westendnh.org/programs/life-lines/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "FIRST Community Services Directory — Delaware DSCYF",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:HA-032", "no_positive_resident_timely_evidence:HA-032", "no_positive_visual_media_source_evidence:HA-032" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Youth Housing",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Youth Housing",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Youth Housing",
+        "itemIds" : [ "HA-007" ],
+        "explanation" : "no_explicit_standard_urgency:HA-007;no_authentic_catalog_date:HA-007;no_positive_resident_timely_evidence:HA-007;no_positive_durable_evidence:HA-007;no_positive_visual_media_source_evidence:HA-007"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Youth Housing",
+        "itemIds" : [ "HA-032" ],
+        "explanation" : "no_authentic_catalog_date:HA-032;no_positive_resident_timely_evidence:HA-032;no_positive_visual_media_source_evidence:HA-032"
+      } ]
+    },
+    "Eviction Prevention" : {
+      "communityId" : "wilmington-de",
+      "categoryKey" : "housing",
+      "topic" : "Eviction Prevention",
+      "selectionDate" : "2026-10-16",
+      "positions" : [ {
+        "type" : "FALLBACK",
+        "item" : {
+          "card" : {
+            "contentType" : "NEWS",
+            "id" : "OR-003",
+            "title" : "How to read a Delaware eviction notice",
+            "summary" : "What the dates on an eviction notice mean, and how long a tenant actually has to respond at each stage.",
+            "organization" : "Admin",
+            "location" : null,
+            "cost" : null,
+            "urgency" : null,
+            "date" : "2026-08-10",
+            "url" : null,
+            "imageUrl" : null
+          },
+          "provenance" : {
+            "communityId" : "wilmington-de",
+            "sourceId" : "first-step",
+            "sourceName" : null,
+            "sourceType" : "manual",
+            "sourceUrl" : null,
+            "originalImage" : null
+          },
+          "actionable" : false,
+          "roles" : [ ],
+          "meaningfulDate" : null,
+          "catalogOrApprovalDate" : "2026-08-12",
+          "evidence" : [ ],
+          "limitations" : [ "no_positive_resident_timely_evidence:OR-003", "no_positive_durable_evidence:OR-003", "no_positive_visual_media_source_evidence:OR-003" ]
+        },
+        "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+      } ],
+      "candidates" : [ {
+        "card" : {
+          "contentType" : "NEWS",
+          "id" : "OR-003",
+          "title" : "How to read a Delaware eviction notice",
+          "summary" : "What the dates on an eviction notice mean, and how long a tenant actually has to respond at each stage.",
+          "organization" : "Admin",
+          "location" : null,
+          "cost" : null,
+          "urgency" : null,
+          "date" : "2026-08-10",
+          "url" : null,
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "wilmington-de",
+          "sourceId" : "first-step",
+          "sourceName" : null,
+          "sourceType" : "manual",
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : false,
+        "roles" : [ ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : "2026-08-12",
+        "evidence" : [ ],
+        "limitations" : [ "no_positive_resident_timely_evidence:OR-003", "no_positive_durable_evidence:OR-003", "no_positive_visual_media_source_evidence:OR-003" ]
+      } ],
+      "diagnostics" : [ {
+        "code" : "FLYER_HELP_ACCESS_REQUIRED",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Eviction Prevention",
+        "itemIds" : [ "FL-002" ],
+        "explanation" : "Context-only Flyer remains in browse; no IM-07 role or fallback admission"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Eviction Prevention",
+        "itemIds" : [ ],
+        "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Eviction Prevention",
+        "itemIds" : [ ],
+        "explanation" : "DURABLE: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "MISSING_ROLE",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Eviction Prevention",
+        "itemIds" : [ ],
+        "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+      }, {
+        "code" : "METADATA_LIMITATION",
+        "communityId" : "wilmington-de",
+        "categoryKey" : "housing",
+        "topic" : "Eviction Prevention",
+        "itemIds" : [ "OR-003" ],
+        "explanation" : "no_positive_resident_timely_evidence:OR-003;no_positive_durable_evidence:OR-003;no_positive_visual_media_source_evidence:OR-003"
+      } ]
+    }
+  },
+  "foodBear" : {
+    "communityId" : "bear-de",
+    "categoryKey" : "food",
+    "topic" : "Food Pantry",
+    "selectionDate" : "2026-10-16",
+    "positions" : [ {
+      "type" : "DURABLE",
+      "item" : {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "SD-032",
+          "title" : "Alpha Worship Center - Pantry of Hope",
+          "summary" : "Weekly food distribution and emergency food closet.",
+          "organization" : "Alpha Worship Center - Pantry of Hope",
+          "location" : "Bear",
+          "cost" : null,
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://alphaworship.org/pantry-hope/",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "bear-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "Delaware DSCYF Service Directory (raw, structurally mapped)",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:SD-032", "no_positive_resident_timely_evidence:SD-032", "no_positive_visual_media_source_evidence:SD-032" ]
+      },
+      "tieStage" : "STABLE_CANONICAL_ID"
+    }, {
+      "type" : "FALLBACK",
+      "item" : {
+        "card" : {
+          "contentType" : "RESOURCE",
+          "id" : "SD-042",
+          "title" : "Red Lion United Methodist Church",
+          "summary" : "Food closet is open Wednesdays from 9am-12pm. No referral required; can come in once per month and no more than three times.",
+          "organization" : "Red Lion United Methodist Church",
+          "location" : "Bear",
+          "cost" : null,
+          "urgency" : "standard",
+          "date" : null,
+          "url" : "https://www.redlionumc.org",
+          "imageUrl" : null
+        },
+        "provenance" : {
+          "communityId" : "bear-de",
+          "sourceId" : "dscyf-directory",
+          "sourceName" : "Delaware DSCYF Service Directory (raw, structurally mapped)",
+          "sourceType" : null,
+          "sourceUrl" : null,
+          "originalImage" : null
+        },
+        "actionable" : true,
+        "roles" : [ "DURABLE" ],
+        "meaningfulDate" : null,
+        "catalogOrApprovalDate" : null,
+        "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+        "limitations" : [ "no_authentic_catalog_date:SD-042", "no_positive_resident_timely_evidence:SD-042", "no_positive_visual_media_source_evidence:SD-042" ]
+      },
+      "tieStage" : "SOLE_FEASIBLE_CANDIDATE"
+    } ],
+    "candidates" : [ {
+      "card" : {
+        "contentType" : "RESOURCE",
+        "id" : "SD-032",
+        "title" : "Alpha Worship Center - Pantry of Hope",
+        "summary" : "Weekly food distribution and emergency food closet.",
+        "organization" : "Alpha Worship Center - Pantry of Hope",
+        "location" : "Bear",
+        "cost" : null,
+        "urgency" : "standard",
+        "date" : null,
+        "url" : "https://alphaworship.org/pantry-hope/",
+        "imageUrl" : null
+      },
+      "provenance" : {
+        "communityId" : "bear-de",
+        "sourceId" : "dscyf-directory",
+        "sourceName" : "Delaware DSCYF Service Directory (raw, structurally mapped)",
+        "sourceType" : null,
+        "sourceUrl" : null,
+        "originalImage" : null
+      },
+      "actionable" : true,
+      "roles" : [ "DURABLE" ],
+      "meaningfulDate" : null,
+      "catalogOrApprovalDate" : null,
+      "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+      "limitations" : [ "no_authentic_catalog_date:SD-032", "no_positive_resident_timely_evidence:SD-032", "no_positive_visual_media_source_evidence:SD-032" ]
+    }, {
+      "card" : {
+        "contentType" : "RESOURCE",
+        "id" : "SD-042",
+        "title" : "Red Lion United Methodist Church",
+        "summary" : "Food closet is open Wednesdays from 9am-12pm. No referral required; can come in once per month and no more than three times.",
+        "organization" : "Red Lion United Methodist Church",
+        "location" : "Bear",
+        "cost" : null,
+        "urgency" : "standard",
+        "date" : null,
+        "url" : "https://www.redlionumc.org",
+        "imageUrl" : null
+      },
+      "provenance" : {
+        "communityId" : "bear-de",
+        "sourceId" : "dscyf-directory",
+        "sourceName" : "Delaware DSCYF Service Directory (raw, structurally mapped)",
+        "sourceType" : null,
+        "sourceUrl" : null,
+        "originalImage" : null
+      },
+      "actionable" : true,
+      "roles" : [ "DURABLE" ],
+      "meaningfulDate" : null,
+      "catalogOrApprovalDate" : null,
+      "evidence" : [ "current_resource_explicit_standard_urgency_proxy" ],
+      "limitations" : [ "no_authentic_catalog_date:SD-042", "no_positive_resident_timely_evidence:SD-042", "no_positive_visual_media_source_evidence:SD-042" ]
+    } ],
+    "diagnostics" : [ {
+      "code" : "MISSING_ROLE",
+      "communityId" : "bear-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ ],
+      "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+    }, {
+      "code" : "STABLE_ITEM_ID_FALLBACK",
+      "communityId" : "bear-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ "SD-032", "SD-042" ],
+      "explanation" : "DURABLE: materially equal feasible candidates; canonical String.compareTo identity order"
+    }, {
+      "code" : "MISSING_ROLE",
+      "communityId" : "bear-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ ],
+      "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+    }, {
+      "code" : "METADATA_LIMITATION",
+      "communityId" : "bear-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ "SD-032" ],
+      "explanation" : "no_authentic_catalog_date:SD-032;no_positive_resident_timely_evidence:SD-032;no_positive_visual_media_source_evidence:SD-032"
+    }, {
+      "code" : "METADATA_LIMITATION",
+      "communityId" : "bear-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ "SD-042" ],
+      "explanation" : "no_authentic_catalog_date:SD-042;no_positive_resident_timely_evidence:SD-042;no_positive_visual_media_source_evidence:SD-042"
+    } ]
+  },
+  "foodWilmington" : {
+    "communityId" : "wilmington-de",
+    "categoryKey" : "food",
+    "topic" : "Food Pantry",
+    "selectionDate" : "2026-10-16",
+    "positions" : [ ],
+    "candidates" : [ ],
+    "diagnostics" : [ {
+      "code" : "MISSING_ROLE",
+      "communityId" : "wilmington-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ ],
+      "explanation" : "TIMELY: no distinct candidate in the chosen maximum-coverage assignment"
+    }, {
+      "code" : "MISSING_ROLE",
+      "communityId" : "wilmington-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ ],
+      "explanation" : "DURABLE: no distinct candidate in the chosen maximum-coverage assignment"
+    }, {
+      "code" : "MISSING_ROLE",
+      "communityId" : "wilmington-de",
+      "categoryKey" : "food",
+      "topic" : "Food Pantry",
+      "itemIds" : [ ],
+      "explanation" : "VISUAL: no distinct candidate in the chosen maximum-coverage assignment"
+    } ]
+  },
+  "currentAuthoredHousingIds" : [ "FL-002", "HA-001", "HA-002", "HA-003", "HA-005", "HA-006", "HA-007", "HA-008", "HA-009", "HA-010", "HA-011", "HA-012", "HA-013", "HA-014", "HA-015", "HA-016", "HA-017", "HA-018", "HA-019", "HA-020", "HA-021", "HA-022", "HA-023", "HA-024", "HA-025", "HA-026", "HA-027", "HA-028", "HA-029", "HA-030", "HA-031", "HA-032", "HA-033", "HA-034", "HA-035", "HA-036", "HA-037", "OR-003" ],
+  "housingHelpIds" : [ "HA-001", "HA-002", "HA-003", "HA-005", "HA-006", "HA-007", "HA-008", "HA-009", "HA-010", "HA-011", "HA-012", "HA-013", "HA-014", "HA-015", "HA-016", "HA-017", "HA-018", "HA-019", "HA-020", "HA-021", "HA-022", "HA-023", "HA-024", "HA-025", "HA-026", "HA-027", "HA-028", "HA-029", "HA-030", "HA-031", "HA-032", "HA-033", "HA-034", "HA-035", "HA-036", "HA-037" ],
+  "scope" : "Local stored catalog and admitted RSS cache; no remote feed or URL reachability claim"
+}

@@ -1,0 +1,63 @@
+[
+  {
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "data-cleaning/tests",
+      "-v"
+    ],
+    "exit": 0,
+    "log": "final-python-0.txt"
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_content_sources.py"
+    ],
+    "exit": 0,
+    "log": "final-python-1.txt"
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_homepage.py"
+    ],
+    "exit": 0,
+    "log": "final-python-2.txt"
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_navigation.py"
+    ],
+    "exit": 0,
+    "log": "final-python-3.txt"
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_news.py"
+    ],
+    "exit": 0,
+    "log": "final-python-4.txt"
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_organizations.py"
+    ],
+    "exit": 0,
+    "log": "final-python-5.txt"
+  },
+  {
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_schema.py"
+    ],
+    "exit": 0,
+    "log": "final-python-6.txt"
+  }
+]

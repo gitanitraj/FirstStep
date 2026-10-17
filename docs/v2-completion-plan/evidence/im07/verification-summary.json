@@ -1,0 +1,102 @@
+{
+  "head": "d3375b3f25078cb4c86b8efc94a4c4c6cc6b1425",
+  "branch": "copyofdev",
+  "im06AncestorExit": 0,
+  "preexistingTrackedFilesUnchanged": 824,
+  "completeMirrorsVerified": 4,
+  "newFileWhitespaceChecks": [
+    {
+      "file": "backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/FeaturedItemSelector_annotated.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemSelectorTest.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/FeaturedItemSelectorTest_annotated.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemAssignmentTest.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/FeaturedItemAssignmentTest_annotated.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemCatalogTest.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/FeaturedItemCatalogTest_annotated.java",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/IM-07 Execution Report.md",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im07/inspect-first-design.md",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im07/reproduce.md",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im07/audit-stored.py",
+      "noIndexExit": 1,
+      "whitespaceErrors": 0
+    }
+  ],
+  "finalBackend": {
+    "tests": 529,
+    "failures": 0,
+    "errors": 0,
+    "skips": 0,
+    "verifyExit": 0
+  },
+  "originalHeadBaseline": {
+    "tests": 502,
+    "verifyExit": 0
+  },
+  "focused": {
+    "tests": 28,
+    "exit": 0
+  },
+  "frontend": {
+    "tests": 133,
+    "exit": 0,
+    "typecheckExit": 0,
+    "buildExit": 0
+  },
+  "python": {
+    "tests": 14,
+    "exit": 0
+  },
+  "validatorExits": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ]
+}

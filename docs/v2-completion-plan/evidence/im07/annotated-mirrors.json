@@ -1,0 +1,26 @@
+[
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java",
+    "mirror": "references/FeaturedItemSelector_annotated.java",
+    "sourceSha256": "a3d6420b0edc507d9bfdccc06ffbda217ce70c17877c2e5cd56bdb8e1ad7456e",
+    "headerBytes": 541
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemSelectorTest.java",
+    "mirror": "references/tests/FeaturedItemSelectorTest_annotated.java",
+    "sourceSha256": "ec7efc4c3cf564228d81d26152acf8e2475abb4046465d0815645ff95525b544",
+    "headerBytes": 545
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemAssignmentTest.java",
+    "mirror": "references/tests/FeaturedItemAssignmentTest_annotated.java",
+    "sourceSha256": "5d5774f76ca94924e23c62559dafb6b2c476a9cc037d4ff4a18200c1704cfc36",
+    "headerBytes": 547
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemCatalogTest.java",
+    "mirror": "references/tests/FeaturedItemCatalogTest_annotated.java",
+    "sourceSha256": "b7db7044b0a1ff4dfd38cdc203a28fcf2d0dc7cd1059143963bfe881ec667b35",
+    "headerBytes": 544
+  }
+]

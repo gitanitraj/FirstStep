@@ -1,0 +1,10 @@
+?? backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java
+?? backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemAssignmentTest.java
+?? backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemCatalogTest.java
+?? backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemSelectorTest.java
+?? "docs/v2-completion-plan/IM-07 Execution Report.md"
+?? docs/v2-completion-plan/evidence/im07/
+?? references/FeaturedItemSelector_annotated.java
+?? references/tests/FeaturedItemAssignmentTest_annotated.java
+?? references/tests/FeaturedItemCatalogTest_annotated.java
+?? references/tests/FeaturedItemSelectorTest_annotated.java
