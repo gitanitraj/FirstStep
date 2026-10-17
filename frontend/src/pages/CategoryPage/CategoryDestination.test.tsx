@@ -90,6 +90,22 @@ describe('IM-08 integrated destination', () => {
     expect(within(section).getByRole('link', { name: 'Approved article' })).toHaveAttribute('href', '/originals/OR?communityId=second-community');
   });
 
+  it('im09t13 preserves Expert and FAQ identities without fabricating Article links', async () => {
+    const page = fixture();
+    const collection = page.collections.find(c => c.key === 'first-rate-news')!;
+    collection.items.push({ ...card('EA-001'), contentType: 'EXPERT', title: 'Approved session', url: null },
+      { ...card('FAQ-002'), contentType: 'EXPERT', title: 'Approved FAQ', url: 'https://example.org/faq' });
+    collection.count = 3;
+    stub(page); open(); await screen.findByRole('heading', { name: 'Featured topics' });
+    fireEvent.click(screen.getByRole('button', { name: 'First Rate News' }));
+    const section = screen.getByRole('region', { name: 'What to know' });
+    fireEvent.click(within(section).getByRole('button', { name: /more$/ }));
+    expect(within(section).getByText('Approved session')).toBeInTheDocument();
+    expect(within(section).queryByRole('link', { name: 'Approved session' })).not.toBeInTheDocument();
+    expect(within(section).getByRole('link', { name: 'Approved FAQ' })).toHaveAttribute('href', 'https://example.org/faq');
+    expect(within(section).getByRole('link', { name: 'Approved article' })).toHaveAttribute('href', '/originals/OR?communityId=second-community');
+  });
+
   it('t14 organization click uses scoped API and real associated resource cards', async () => {
     stub(); open(); fireEvent.click(await screen.findByRole('link', { name: 'Linked Org' }));
     await screen.findByRole('heading', { level: 1, name: 'Linked Org' });

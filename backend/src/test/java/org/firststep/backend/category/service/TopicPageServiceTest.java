@@ -62,7 +62,7 @@ class TopicPageServiceTest {
 
         TaxonomyService taxonomy = new TaxonomyService("../app/data");
         CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
-                news, rss, flyerService, expert, faq, articles);
+                news, rss, flyerService, expert, faq, articles, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         service = new TopicPageService(taxonomy, content, resourceService);
     }
 

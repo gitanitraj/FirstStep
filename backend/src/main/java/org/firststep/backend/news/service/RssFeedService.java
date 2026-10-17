@@ -228,15 +228,11 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 
         item.communityId = defaultCommunityId;
 
-        Date published = entry.getPublishedDate() != null
-                ? entry.getPublishedDate()
-                : entry.getUpdatedDate() != null
-                    ? entry.getUpdatedDate()
-                    : new Date();
-
-        item.publishDate = DATE_FMT.format(published);
-        item.createdDate = item.publishDate;
-        item.updatedDate = item.publishDate;
+        // A missing publication fact stays unknown; retrieval/updated time is not publication.
+        Date published = entry.getPublishedDate();
+        item.publishDate = published == null ? null : DATE_FMT.format(published);
+        item.createdDate = item.publishDate; // Existing derived loader field, never catalog newness.
+        item.updatedDate = entry.getUpdatedDate() == null ? item.publishDate : DATE_FMT.format(entry.getUpdatedDate());
 
         item.status  = "active";
         item.type    = "legislation";

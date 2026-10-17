@@ -106,6 +106,8 @@ public class JsonNewsRepository implements NewsRepository {
         // Curated news carries hand-authored category_tags, which are immutable
         // here. What this CAN fill is the absent subcategory — the per-field rule
         // in CivicContentClassifier, without which these items stay topic-less.
+        item.authoredSubcategory = item.subcategory;
+        item.authoredCategoryTags = item.categoryTags == null ? null : List.copyOf(item.categoryTags);
         classifier.classify(item);
     }
 

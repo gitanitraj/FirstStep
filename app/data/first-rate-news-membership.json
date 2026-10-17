@@ -1,0 +1,20 @@
+[
+  {
+    "recordKind": "ExpertAnswer",
+    "recordId": "EA-001",
+    "communityId": "wilmington-de",
+    "categoryKey": "housing"
+  },
+  {
+    "recordKind": "ExpertAnswer",
+    "recordId": "EA-005",
+    "communityId": "wilmington-de",
+    "categoryKey": "housing"
+  },
+  {
+    "recordKind": "FAQ",
+    "recordId": "FAQ-002",
+    "communityId": "wilmington-de",
+    "categoryKey": "housing"
+  }
+]

@@ -1,0 +1,170 @@
+[
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/dto/CategoryCollection.java",
+    "mirror": "references/CategoryCollection_annotated.java",
+    "headerBytes": 614,
+    "sha256": "d636ae02d558b35ec5bc635b48f9b4c1b156a059f4cb183fa33819cd0715e3e3"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/service/CategoryContentService.java",
+    "mirror": "references/CategoryContentService_annotated.java",
+    "headerBytes": 622,
+    "sha256": "1a1d73bf61db9185ef0dff839c7f7d3a2182edb5faf37a06f79d0cbfae5b997d"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/service/FirstRateNewsMembership.java",
+    "mirror": "references/FirstRateNewsMembership_annotated.java",
+    "headerBytes": 623,
+    "sha256": "9c58355fbef8f414b57988901c0306a89183529d53bb99a4bdf7fa4ead02a0b7"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/navigation/service/NavigationService.java",
+    "mirror": "references/NavigationService_annotated.java",
+    "headerBytes": 619,
+    "sha256": "921c555b0fef26fb0254a61f4d02aee053242d21ac030dfbe9d5c1a300ca7977"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/news/controller/NewsController.java",
+    "mirror": "references/NewsController_annotated.java",
+    "headerBytes": 613,
+    "sha256": "ec6a151adbefe79f45b8f7e713620906912467952bb4cbf99ac33b2b67da35e0"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/news/dto/NewsSummary.java",
+    "mirror": "references/NewsSummary_annotated.java",
+    "headerBytes": 603,
+    "sha256": "b821f731db30fca1f71232209ede75f71fdf59da8302263e7a578d7e95631fc5"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/news/model/NewsItem.java",
+    "mirror": "references/NewsItem_annotated.java",
+    "headerBytes": 602,
+    "sha256": "879bb60e2b5bec82c3cae14d6a970e85a8e98cfab64000a24f21c043aa1130f1"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/news/repository/JsonNewsRepository.java",
+    "mirror": "references/JsonNewsRepository_annotated.java",
+    "headerBytes": 617,
+    "sha256": "1732fedd34c1bbcc3be28a04640339aa575ca9e1632cdfae044f911edada8378"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java",
+    "mirror": "references/RssFeedService_annotated.java",
+    "headerBytes": 610,
+    "sha256": "949a548dddb831f74832ca2997705f9a30d75c5f31bc91e8106d10af267ece04"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/updates/service/UpdatesService.java",
+    "mirror": "references/UpdatesService_annotated.java",
+    "headerBytes": 613,
+    "sha256": "b0b9669be7e78a5bb5b793a6f99d9dd177d052fefc4c0f85cb8fa604a03ef886"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemSelectorTest.java",
+    "mirror": "references/tests/FeaturedItemSelectorTest_annotated.java",
+    "headerBytes": 626,
+    "sha256": "a8f5ad97b2ff1e8d4bcdff02e15eb82a2d0338aa723434e1ab235aa8d07b10ae"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/FeaturedTopicSelectorIntegrationTest.java",
+    "mirror": "references/tests/FeaturedTopicSelectorIntegrationTest_annotated.java",
+    "headerBytes": 638,
+    "sha256": "ba2f03a8828667584f714504f4cb536081c3c282fc345d924c083760a7b069ea"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CategoryContentServiceTest.java",
+    "mirror": "references/tests/CategoryContentServiceTest_annotated.java",
+    "headerBytes": 626,
+    "sha256": "54be048a1bca212605995957a2328a8786138a8f2ed10d535c3a07dd54fceed6"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CategoryPageServiceTest.java",
+    "mirror": "references/tests/CategoryPageServiceTest_annotated.java",
+    "headerBytes": 623,
+    "sha256": "ab95363e812097c7227939636ade9bd0337b9dd6b04a007b640b8e3ce64c2a74"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CivicCollectionCatalogTest.java",
+    "mirror": "references/tests/CivicCollectionCatalogTest_annotated.java",
+    "headerBytes": 626,
+    "sha256": "39cb40eae0d84659ed1e9aafd7c3470b414ca75f8258e2a3ad16d7bf9a650ad1"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CivicCollectionContractTest.java",
+    "mirror": "references/tests/CivicCollectionContractTest_annotated.java",
+    "headerBytes": 627,
+    "sha256": "8b9a4bb028137deccf357f7351e29ae7010ba293d3b0f4f6aa7f95617e5a4904"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/ExpertCategoryIntegrityTest.java",
+    "mirror": "references/tests/ExpertCategoryIntegrityTest_annotated.java",
+    "headerBytes": 627,
+    "sha256": "e153fb59945518f127a1eff26245b66457eaca1bd43eda52e2aba5e71d8f8f7b"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/FirstRateNewsMembershipTest.java",
+    "mirror": "references/tests/FirstRateNewsMembershipTest_annotated.java",
+    "headerBytes": 627,
+    "sha256": "f28db8c509fdfed075bfe6d7ba3f97212971bdc6b5afb2117376655fe7a3a23f"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/FlyerHelpProjectionTest.java",
+    "mirror": "references/tests/FlyerHelpProjectionTest_annotated.java",
+    "headerBytes": 623,
+    "sha256": "3a23608fbabbb8412a17bf133ee91da10f60468f706965ccfc3f108048eee84e"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/TopicPageServiceTest.java",
+    "mirror": "references/tests/TopicPageServiceTest_annotated.java",
+    "headerBytes": 620,
+    "sha256": "c4b738f600347930d68da1c9517f4298a7a7548c7eba2dcdd92082f32b74c416"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/navigation/service/NavigationServiceTest.java",
+    "mirror": "references/tests/NavigationServiceTest_annotated.java",
+    "headerBytes": 623,
+    "sha256": "f7368b286ea8846fbe714f03180f1b19176bf8a5ee7aa546eddfe53cc9b83099"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/news/controller/NewsControllerTest.java",
+    "mirror": "references/tests/NewsControllerTest_annotated.java",
+    "headerBytes": 617,
+    "sha256": "0de6cf15cec3906c69522091b065f221650e14d5f5f3fdb01846fe60041462e6"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/news/dto/NewsSummaryTest.java",
+    "mirror": "references/tests/NewsSummaryTest_annotated.java",
+    "headerBytes": 607,
+    "sha256": "0780481b27c1879e6b3d34cd797b2afdcac04c9726d65c0c20bc300c5fa118fd"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java",
+    "mirror": "references/tests/RssFeedServiceTest_annotated.java",
+    "headerBytes": 614,
+    "sha256": "9af38532618700daadbd2676667fde3dd9335c4ae9fb19d4de38ff2b3443cd92"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java",
+    "mirror": "references/tests/EditorialProjectionTest_annotated.java",
+    "headerBytes": 623,
+    "sha256": "de32b3db7977e9ed3e448b71921cd19ae1de080e98537a98ad1b8beae82d5428"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/updates/service/UpdatesServiceTest.java",
+    "mirror": "references/tests/UpdatesServiceTest_annotated.java",
+    "headerBytes": 617,
+    "sha256": "926fe70360df1911bfc06b1ebd1c1a39f5668e5e65aac1b1bd1aec953318847b"
+  },
+  {
+    "source": "frontend/src/pages/CategoryPage/CategoryDestination.test.tsx",
+    "mirror": "references/tests/CategoryDestination.test_annotated.tsx",
+    "headerBytes": 594,
+    "sha256": "4c7700076f6db57b1a8e3a0aafb0d5d5cfb8b1d8174db87f7125ba46dabf59b0"
+  },
+  {
+    "source": "frontend/src/pages/CategoryPage/CategoryPage.tsx",
+    "mirror": "references/CategoryPage_annotated.tsx",
+    "headerBytes": 582,
+    "sha256": "43210824e9814c77cb9464b7aa5f2247fd4b82cc416844c3ac9c374df765190f"
+  }
+]

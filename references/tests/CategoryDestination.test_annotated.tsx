@@ -1,10 +1,10 @@
 /*
- * WHAT: Complete annotated mirror of frontend/src/pages/CategoryPage/CategoryDestination.test.tsx for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ * WHAT: Complete IM-09 annotated mirror of frontend/src/pages/CategoryPage/CategoryDestination.test.tsx.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
 import { MemoryRouter, Route, Routes } from 'react-router-dom';
@@ -95,6 +95,22 @@ describe('IM-08 integrated destination', () => {
     expect(screen.getByRole('status')).toHaveTextContent('No current items in this collection.');
     fireEvent.click(screen.getByRole('button', { name: 'First Rate News' }));
     const section = screen.getByRole('region', { name: 'What to know' });
+    expect(within(section).getByRole('link', { name: 'Approved article' })).toHaveAttribute('href', '/originals/OR?communityId=second-community');
+  });
+
+  it('im09t13 preserves Expert and FAQ identities without fabricating Article links', async () => {
+    const page = fixture();
+    const collection = page.collections.find(c => c.key === 'first-rate-news')!;
+    collection.items.push({ ...card('EA-001'), contentType: 'EXPERT', title: 'Approved session', url: null },
+      { ...card('FAQ-002'), contentType: 'EXPERT', title: 'Approved FAQ', url: 'https://example.org/faq' });
+    collection.count = 3;
+    stub(page); open(); await screen.findByRole('heading', { name: 'Featured topics' });
+    fireEvent.click(screen.getByRole('button', { name: 'First Rate News' }));
+    const section = screen.getByRole('region', { name: 'What to know' });
+    fireEvent.click(within(section).getByRole('button', { name: /more$/ }));
+    expect(within(section).getByText('Approved session')).toBeInTheDocument();
+    expect(within(section).queryByRole('link', { name: 'Approved session' })).not.toBeInTheDocument();
+    expect(within(section).getByRole('link', { name: 'Approved FAQ' })).toHaveAttribute('href', 'https://example.org/faq');
     expect(within(section).getByRole('link', { name: 'Approved article' })).toHaveAttribute('href', '/originals/OR?communityId=second-community');
   });
 

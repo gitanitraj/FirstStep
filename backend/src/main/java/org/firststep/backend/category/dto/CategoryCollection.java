@@ -60,7 +60,12 @@ public record CategoryCollection(
         if (items == null || items.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(
-                new CategoryCollection(key, labelKey, layer, items.size(), List.copyOf(items)));
+        // A projection counts canonical identities, not repeated appearances in its source list.
+        var distinct = new java.util.LinkedHashMap<String, ContentItem>();
+        items.stream().filter(item -> item.id() != null && !item.id().isBlank())
+                .forEach(item -> distinct.putIfAbsent(item.id(), item));
+        if (distinct.isEmpty()) return Optional.empty();
+        var unique = List.copyOf(distinct.values());
+        return Optional.of(new CategoryCollection(key, labelKey, layer, unique.size(), unique));
     }
 }

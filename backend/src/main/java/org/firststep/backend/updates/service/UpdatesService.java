@@ -233,6 +233,8 @@ public class UpdatesService {
 
     private boolean matches(CategoryDefinition definition, CivicContent item, String communityId) {
         if (!taxonomyService.permitsExpertCategoryParticipation(item)) return false;
+        if (item instanceof NewsItem news && item.contentType == ContentType.LAW
+                && !taxonomyService.matchesCategoryTags(definition, news.authoredCategoryTags)) return false;
         if (communityId != null && !communityId.isBlank() && !communityId.equals(item.communityId)) {
             return false;
         }

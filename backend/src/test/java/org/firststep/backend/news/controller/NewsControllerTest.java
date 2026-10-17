@@ -31,6 +31,7 @@ class NewsControllerTest {
     static NewsItem testItem() {
         NewsItem item = new NewsItem();
         item.id = "rss-123";
+        item.communityId = "wilmington-de";
         item.title = "Test Headline";
         item.summary = "Test Summary";
         item.body = "Test Summary";
@@ -79,11 +80,25 @@ class NewsControllerTest {
                 .andExpect(jsonPath("$.data[0].contentSource.name").value("Test Source"))
                 .andExpect(jsonPath("$.data[0].contentSource.url").value("http://example.com"))
                 .andExpect(jsonPath("$.data[0].publishDate").value("2024-01-01"))
-                .andExpect(jsonPath("$.data[0].status").value("active"))
+                .andExpect(jsonPath("$.data[0].status").doesNotExist())
+                .andExpect(jsonPath("$.data[0].verified").doesNotExist())
+                .andExpect(jsonPath("$.data[0].createdDate").doesNotExist())
+                .andExpect(jsonPath("$.data[0].authoredCategoryTags").doesNotExist())
                 .andExpect(jsonPath("$.data[0].type").value("general-news"))
                 .andExpect(jsonPath("$.data[0].urgency").value("standard"))
                 .andExpect(jsonPath("$.data[0].tags[0]").value("Community"))
                 .andExpect(jsonPath("$.data[0].tags[1]").value("Updates"))
                 .andExpect(jsonPath("$.data[0].why_it_matters").value("Testing"));
     }
+    @Test void im09T16ExplicitScopeAndInternalFieldsStayOutOfNewsEndpoint() throws Exception {
+        mockMvc.perform(get("/api/news/rss").param("communityId", "other"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.data.length()").value(0));
+        mockMvc.perform(get("/api/news/rss").param("communityId", "wilmington-de"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.data.length()").value(1))
+                .andExpect(jsonPath("$.data[0].status").doesNotExist())
+                .andExpect(jsonPath("$.data[0].expirationDate").doesNotExist())
+                .andExpect(jsonPath("$.data[0].updatedDate").doesNotExist())
+                .andExpect(jsonPath("$.data[0].contentSource.retrieved").doesNotExist());
+    }
+
 }

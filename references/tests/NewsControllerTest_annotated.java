@@ -1,10 +1,10 @@
 /*
- * IM-01 annotated test reference — full mirror of backend/src/test/java/org/firststep/backend/news/controller/NewsControllerTest.java
- * WHAT: Existing regression test with explicit fixed-clock service dependency.
- * WHY: prove behavior using deterministic time and preserve unrelated test expectations.
- * INTERACTION: see individual test names and fixtures; only lifecycle dependencies were
- * added to existing service construction. No assertion was weakened to hide expiry failures.
- * ALTERNATIVE: machine-clock fixtures would make future runs depend on the date of execution.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/news/controller/NewsControllerTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.news.controller;
 
@@ -39,6 +39,7 @@ class NewsControllerTest {
     static NewsItem testItem() {
         NewsItem item = new NewsItem();
         item.id = "rss-123";
+        item.communityId = "wilmington-de";
         item.title = "Test Headline";
         item.summary = "Test Summary";
         item.body = "Test Summary";
@@ -87,11 +88,25 @@ class NewsControllerTest {
                 .andExpect(jsonPath("$.data[0].contentSource.name").value("Test Source"))
                 .andExpect(jsonPath("$.data[0].contentSource.url").value("http://example.com"))
                 .andExpect(jsonPath("$.data[0].publishDate").value("2024-01-01"))
-                .andExpect(jsonPath("$.data[0].status").value("active"))
+                .andExpect(jsonPath("$.data[0].status").doesNotExist())
+                .andExpect(jsonPath("$.data[0].verified").doesNotExist())
+                .andExpect(jsonPath("$.data[0].createdDate").doesNotExist())
+                .andExpect(jsonPath("$.data[0].authoredCategoryTags").doesNotExist())
                 .andExpect(jsonPath("$.data[0].type").value("general-news"))
                 .andExpect(jsonPath("$.data[0].urgency").value("standard"))
                 .andExpect(jsonPath("$.data[0].tags[0]").value("Community"))
                 .andExpect(jsonPath("$.data[0].tags[1]").value("Updates"))
                 .andExpect(jsonPath("$.data[0].why_it_matters").value("Testing"));
     }
+    @Test void im09T16ExplicitScopeAndInternalFieldsStayOutOfNewsEndpoint() throws Exception {
+        mockMvc.perform(get("/api/news/rss").param("communityId", "other"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.data.length()").value(0));
+        mockMvc.perform(get("/api/news/rss").param("communityId", "wilmington-de"))
+                .andExpect(status().isOk()).andExpect(jsonPath("$.data.length()").value(1))
+                .andExpect(jsonPath("$.data[0].status").doesNotExist())
+                .andExpect(jsonPath("$.data[0].expirationDate").doesNotExist())
+                .andExpect(jsonPath("$.data[0].updatedDate").doesNotExist())
+                .andExpect(jsonPath("$.data[0].contentSource.retrieved").doesNotExist());
+    }
+
 }

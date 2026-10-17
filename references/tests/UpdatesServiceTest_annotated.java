@@ -1,10 +1,10 @@
 /*
- * IM-01 annotated test reference — full mirror of backend/src/test/java/org/firststep/backend/updates/service/UpdatesServiceTest.java
- * WHAT: Existing regression test with explicit fixed-clock service dependency.
- * WHY: prove behavior using deterministic time and preserve unrelated test expectations.
- * INTERACTION: see individual test names and fixtures; only lifecycle dependencies were
- * added to existing service construction. No assertion was weakened to hide expiry failures.
- * ALTERNATIVE: machine-clock fixtures would make future runs depend on the date of execution.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/updates/service/UpdatesServiceTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.updates.service;
 
@@ -268,6 +268,7 @@ class UpdatesServiceTest {
         curated.categoryTags = List.of("Housing");
         NewsItem bill = news("L1", "A signed bill", "2026-05-02", null);
         bill.categoryTags = List.of("Housing");
+        bill.authoredCategoryTags = bill.categoryTags; // Explicit authored Category proof.
         bill.contentType = ContentType.LAW;
         Flyer f = flyer("F1", "Housing fair", "2026-05-03", "2026-05-01");
         f.categoryTags = List.of("Housing");
@@ -287,6 +288,7 @@ class UpdatesServiceTest {
         // category page has to badge a law differently from a news item.
         NewsItem bill = news("L1", "A signed bill", "2026-05-02", null);
         bill.categoryTags = List.of("Housing");
+        bill.authoredCategoryTags = bill.categoryTags; // Explicit authored Category proof.
         bill.contentType = ContentType.LAW;
 
         UpdateItem item = service(List.of(), List.of(bill), List.of())

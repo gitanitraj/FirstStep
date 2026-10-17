@@ -80,7 +80,7 @@ class FeaturedTopicSelectorIntegrationTest {
         RssFeedSource rssSource = () -> rss;
         var taxonomy = new TaxonomyService("../app/data");
         var content = new CategoryContentService(taxonomy, resourceService, newsService, rssSource,
-                flyerService, expertService, faqService, articleService);
+                flyerService, expertService, faqService, articleService, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         AuthoredTopicEvidence authored = mock(AuthoredTopicEvidence.class);
         when(authored.loadLimitations()).thenReturn(List.of());
         when(authored.permits(any(), any())).thenAnswer(call -> {

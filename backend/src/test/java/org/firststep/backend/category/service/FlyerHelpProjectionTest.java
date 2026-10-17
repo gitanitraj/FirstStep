@@ -40,7 +40,7 @@ class FlyerHelpProjectionTest {
         when(resources.getAll()).thenReturn(List.of());
         service = new CategoryContentService(new TaxonomyService("../app/data"), resources,
                 mock(NewsService.class), List::of, flyers, mock(ExpertAnswerService.class),
-                mock(FaqService.class), mock(ArticleService.class));
+                mock(FaqService.class), mock(ArticleService.class), new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
     }
 
     private Flyer flyer(String id, String signal) {

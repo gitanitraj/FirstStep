@@ -74,7 +74,7 @@ class CategoryPageServiceTest {
         OrganizationService organizations = new OrganizationService(resourceService, taxonomy,
                 registryFor(resourceService.getAll()));
         CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
-                newsService, rssFeedSource, flyerService, expertAnswerService, faqService, articleService);
+                newsService, rssFeedSource, flyerService, expertAnswerService, faqService, articleService, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         service = new CategoryPageService(navigation, updates, organizations, content, mock(CategoryDestinationService.class));
     }
 
@@ -94,6 +94,7 @@ class CategoryPageServiceTest {
         n.publishDate = date;
         n.contentType = type;
         n.categoryTags = categoryTags;
+        n.authoredCategoryTags = categoryTags; // Authored law fixture, not runtime keyword placement.
         return n;
     }
 

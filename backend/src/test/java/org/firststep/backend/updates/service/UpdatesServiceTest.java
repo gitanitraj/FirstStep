@@ -260,6 +260,7 @@ class UpdatesServiceTest {
         curated.categoryTags = List.of("Housing");
         NewsItem bill = news("L1", "A signed bill", "2026-05-02", null);
         bill.categoryTags = List.of("Housing");
+        bill.authoredCategoryTags = bill.categoryTags; // Explicit authored Category proof.
         bill.contentType = ContentType.LAW;
         Flyer f = flyer("F1", "Housing fair", "2026-05-03", "2026-05-01");
         f.categoryTags = List.of("Housing");
@@ -279,6 +280,7 @@ class UpdatesServiceTest {
         // category page has to badge a law differently from a news item.
         NewsItem bill = news("L1", "A signed bill", "2026-05-02", null);
         bill.categoryTags = List.of("Housing");
+        bill.authoredCategoryTags = bill.categoryTags; // Explicit authored Category proof.
         bill.contentType = ContentType.LAW;
 
         UpdateItem item = service(List.of(), List.of(bill), List.of())

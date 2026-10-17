@@ -1,0 +1,57 @@
+[INFO] Scanning for projects...
+[INFO] 
+[INFO] ------------------< org.firststep:firststep-backend >-------------------
+[INFO] Building firststep-backend 0.1.0
+[INFO]   from pom.xml
+[INFO] --------------------------------[ jar ]---------------------------------
+[INFO] 
+[INFO] --- toolchains:3.1.0:toolchain (default) @ firststep-backend ---
+[INFO] Required toolchain: jdk [ version='25' ]
+[INFO] Found matching toolchain for type jdk: JDK[/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home]
+[INFO] 
+[INFO] --- resources:3.3.1:resources (default-resources) @ firststep-backend ---
+[INFO] Copying 1 resource from src/main/resources to target/classes
+[INFO] Copying 24 resources from src/main/resources to target/classes
+[INFO] 
+[INFO] --- compiler:3.13.0:compile (default-compile) @ firststep-backend ---
+[INFO] Toolchain in maven-compiler-plugin: JDK[/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home]
+[INFO] Nothing to compile - all classes are up to date.
+[INFO] 
+[INFO] --- resources:3.3.1:testResources (default-testResources) @ firststep-backend ---
+[INFO] Copying 1 resource from src/test/resources to target/test-classes
+[INFO] 
+[INFO] --- compiler:3.13.0:testCompile (default-testCompile) @ firststep-backend ---
+[INFO] Toolchain in maven-compiler-plugin: JDK[/Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home]
+[INFO] Recompiling the module because of added or removed source files.
+[INFO] Compiling 77 source files with javac [forked debug parameters release 17] to target/test-classes
+[INFO] -------------------------------------------------------------
+[ERROR] COMPILATION ERROR : 
+[INFO] -------------------------------------------------------------
+[ERROR] /Users/composedmedia/Documents/Projects/FirstStep/backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java:[278,35] error: cannot find symbol
+  symbol:   variable tempDir
+  location: class RssFeedServiceTest
+[ERROR] /Users/composedmedia/Documents/Projects/FirstStep/backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java:[281,44] error: cannot find symbol
+  symbol:   variable tempDir
+  location: class RssFeedServiceTest
+[INFO] 2 errors 
+[INFO] -------------------------------------------------------------
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD FAILURE
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time:  4.975 s
+[INFO] Finished at: 2026-10-17T13:15:20-04:00
+[INFO] ------------------------------------------------------------------------
+[ERROR] Failed to execute goal org.apache.maven.plugins:maven-compiler-plugin:3.13.0:testCompile (default-testCompile) on project firststep-backend: Compilation failure: Compilation failure: 
+[ERROR] /Users/composedmedia/Documents/Projects/FirstStep/backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java:[278,35] error: cannot find symbol
+[ERROR]   symbol:   variable tempDir
+[ERROR]   location: class RssFeedServiceTest
+[ERROR] /Users/composedmedia/Documents/Projects/FirstStep/backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java:[281,44] error: cannot find symbol
+[ERROR]   symbol:   variable tempDir
+[ERROR]   location: class RssFeedServiceTest
+[ERROR] -> [Help 1]
+[ERROR] 
+[ERROR] To see the full stack trace of the errors, re-run Maven with the -e switch.
+[ERROR] Re-run Maven using the -X switch to enable full debug logging.
+[ERROR] 
+[ERROR] For more information about the errors and possible solutions, please read the following articles:
+[ERROR] [Help 1] http://cwiki.apache.org/confluence/display/MAVEN/MojoFailureException

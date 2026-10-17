@@ -2,7 +2,7 @@ package org.firststep.backend.news.controller;
 
 import java.util.List;
 
-import org.firststep.backend.news.model.NewsItem;
+import org.firststep.backend.news.dto.NewsSummary;
 import org.firststep.backend.news.service.NewsService;
 import org.firststep.backend.news.service.RssFeedSource;
 import org.firststep.backend.shared.dto.ApiResponse;
@@ -10,6 +10,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
 @RequestMapping("/api")
@@ -24,12 +25,12 @@ public class NewsController {
     }
 
     @GetMapping("/news")
-    public ResponseEntity<ApiResponse<List<NewsItem>>> getAll() {
-        return ResponseEntity.ok(ApiResponse.success(service.getAll()));
+    public ResponseEntity<ApiResponse<List<NewsSummary>>> getAll(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getAll().stream().filter(item -> communityId == null || communityId.equals(item.communityId)).map(NewsSummary::from).toList()));
     }
 
     @GetMapping("/news/rss")
-    public ResponseEntity<ApiResponse<List<NewsItem>>> getRssNews() {
-        return ResponseEntity.ok(ApiResponse.success(rssFeedService.getRssItems()));
+    public ResponseEntity<ApiResponse<List<NewsSummary>>> getRssNews(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(rssFeedService.getRssItems().stream().filter(item -> communityId == null || communityId.equals(item.communityId)).map(NewsSummary::from).toList()));
     }
 }

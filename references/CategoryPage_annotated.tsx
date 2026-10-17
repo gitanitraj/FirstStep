@@ -1,10 +1,10 @@
 /*
- * WHAT: Complete annotated mirror of frontend/src/pages/CategoryPage/CategoryPage.tsx for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ * WHAT: Complete IM-09 annotated mirror of frontend/src/pages/CategoryPage/CategoryPage.tsx.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
@@ -64,7 +64,7 @@ export default function CategoryPage() {
   const featured = page?.destination?.featuredTopics ?? [];
   // An approved Article collection owns internal reading navigation; no source URL is invented.
   const contextual = selected?.key === 'first-rate-news' ? { ...selected, items: selected.items.map(item => ({
-    ...item, url: `/originals/${encodeURIComponent(item.id)}${query}`,
+    ...item, url: item.contentType === 'NEWS' ? `/originals/${encodeURIComponent(item.id)}${query}` : item.url,
   })) } : selected;
 
   const links = (items: ContextLink[]) => items.length ? <ul className={styles.headlines}>

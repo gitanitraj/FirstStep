@@ -63,12 +63,12 @@ import org.springframework.stereotype.Service;
  *   policy-info       INFORMATION  NEWS, external producers only
  *   law               INFORMATION  LAW
  *   flyers            INFORMATION  FLYER
- *   first-rate-news   INFORMATION  approved Articles
+ *   first-rate-news   INFORMATION  approved Articles + explicitly admitted Expert/FAQ records
  *   faqs              SUPPORTING   FAQ
  *   expert-qa         SUPPORTING   ExpertAnswer
  * </pre>
  *
- * <p>Policy Info and First Rate News are both {@code NEWS}; the two supporting
+ * <p>Policy Info is {@code NEWS}; First Rate News includes {@code NEWS} and {@code EXPERT}. The two supporting
  * collections are both {@code EXPERT}. The set is chosen because each answers a
  * resident question, <b>not</b> because the enum has five values — and it therefore
  * does not partition the category. That is deliberate: the destination provides
@@ -94,11 +94,13 @@ public class CategoryContentService {
      * and must not imply recency.
      */
     private static final Comparator<ContentItem> ALPHABETICAL =
-            Comparator.comparing(ContentItem::title, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER));
+            Comparator.comparing(ContentItem::title, Comparator.nullsLast(String.CASE_INSENSITIVE_ORDER))
+                    .thenComparing(ContentItem::id, Comparator.nullsLast(String::compareTo));
 
     /** Dated collections lead with the most recent; undated items sink to the end. */
     private static final Comparator<ContentItem> NEWEST_FIRST =
-            Comparator.comparing(ContentItem::date, Comparator.nullsLast(Comparator.reverseOrder()));
+            Comparator.comparing(ContentItem::date, Comparator.nullsLast(Comparator.reverseOrder()))
+                    .thenComparing(ContentItem::id, Comparator.nullsLast(String::compareTo));
 
     private final TaxonomyService taxonomyService;
     private final ResourceService resourceService;
@@ -108,10 +110,12 @@ public class CategoryContentService {
     private final ExpertAnswerService expertAnswerService;
     private final FaqService faqService;
     private final ArticleService articleService;
+    private final FirstRateNewsMembership firstRateNewsMembership;
 
     public CategoryContentService(TaxonomyService taxonomyService, ResourceService resourceService,
             NewsService newsService, RssFeedSource rssFeedSource, FlyerService flyerService,
-            ExpertAnswerService expertAnswerService, FaqService faqService, ArticleService articleService) {
+            ExpertAnswerService expertAnswerService, FaqService faqService, ArticleService articleService,
+            FirstRateNewsMembership firstRateNewsMembership) {
         this.taxonomyService = taxonomyService;
         this.resourceService = resourceService;
         this.newsService = newsService;
@@ -120,6 +124,7 @@ public class CategoryContentService {
         this.expertAnswerService = expertAnswerService;
         this.faqService = faqService;
         this.articleService = articleService;
+        this.firstRateNewsMembership = firstRateNewsMembership;
     }
 
     /**
@@ -268,6 +273,7 @@ public class CategoryContentService {
     private List<ContentItem> flyers(CategoryDefinition definition, String communityId) {
         Set<String> seen = new LinkedHashSet<>();
         return flyerService.getAll().stream()
+                .filter(f -> f.contentType == ContentType.FLYER)
                 .filter(f -> inCategory(definition, f, communityId))
                 .filter(f -> seen.add(f.id))
                 .map(this::toContentItem)
@@ -275,22 +281,22 @@ public class CategoryContentService {
                 .toList();
     }
 
-    /**
-     * First Step's editorial collection.
-     *
-     * <p><b>Not every record whose producer is First Step.</b> The collection means
-     * journalism and original editorial work First Step researched, reported or
-     * wrote — approved {@link Article}s today. A curated FAQ also carries
-     * {@code contentSource.id = "first-step"} and is NOT First Rate News; it is
-     * supporting reference material with its own collection. Widening this rule to
-     * make a total reconcile is precisely what Decision 051 rejected.
-     */
+    /** Approved Originals plus exact editorial Expert/FAQ admissions; all other gates remain independent. */
     private List<ContentItem> firstRateNews(CategoryDefinition definition, String communityId) {
-        return articleService.getPublishable().stream()
+        List<ContentItem> items = new ArrayList<>();
+        articleService.getPublishable().stream()
                 .filter(a -> inCategory(definition, a, communityId))
-                .map(CategoryContentService::toContentItem)
-                .sorted(NEWEST_FIRST)
-                .toList();
+                .map(CategoryContentService::toContentItem).forEach(items::add);
+        expertAnswerService.getAll().stream()
+                .filter(e -> firstRateNewsMembership.admits(e, definition.key()))
+                .filter(e -> inCategory(definition, e, communityId))
+                .map(CategoryContentService::toContentItem).forEach(items::add);
+        faqService.getAll().stream()
+                .filter(f -> firstRateNewsMembership.admits(f, definition.key()))
+                .filter(f -> inCategory(definition, f, communityId))
+                .map(CategoryContentService::toContentItem).forEach(items::add);
+        items.sort(NEWEST_FIRST);
+        return List.copyOf(items);
     }
 
     /**
@@ -320,6 +326,8 @@ public class CategoryContentService {
 
     private boolean inCategory(CategoryDefinition definition, CivicContent item, String communityId) {
         if (!taxonomyService.permitsExpertCategoryParticipation(item)) return false;
+        if (item instanceof NewsItem news && item.contentType == ContentType.LAW
+                && !taxonomyService.matchesCategoryTags(definition, news.authoredCategoryTags)) return false;
         if (communityId != null && !communityId.isBlank() && !communityId.equals(item.communityId)) {
             return false;
         }

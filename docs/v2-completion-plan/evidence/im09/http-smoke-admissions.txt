@@ -1,0 +1,1 @@
+PASS: 9 packaged HTTP requests, four current collection memberships, public privacy and Article404 guards

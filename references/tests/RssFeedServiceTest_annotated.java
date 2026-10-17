@@ -1,10 +1,10 @@
 /*
- * IM-01 annotated test reference — full mirror of backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java
- * WHAT: Existing regression test with explicit fixed-clock service dependency.
- * WHY: prove behavior using deterministic time and preserve unrelated test expectations.
- * INTERACTION: see individual test names and fixtures; only lifecycle dependencies were
- * added to existing service construction. No assertion was weakened to hide expiry failures.
- * ALTERNATIVE: machine-clock fixtures would make future runs depend on the date of execution.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.news.service;
 
@@ -23,6 +23,7 @@ import org.junit.jupiter.api.io.TempDir;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 /**
@@ -280,4 +281,15 @@ class RssFeedServiceTest {
         assertEquals(1, service.getSignedBills().size());
         assertEquals("Relating to Food Assistance.", service.getSignedBills().get(0).title);
     }
+    @Test
+    void im09T07MissingPublicationNeverBecomesRetrievalToday(@TempDir Path tempDir) throws Exception {
+        String feedUrl = writeFeed(tempDir, "undated.xml", "HB 1", "AN ACT RELATING TO HOUSING.");
+        Path file = Path.of(java.net.URI.create(feedUrl));
+        Files.writeString(file, Files.readString(file).replace("<pubDate>Mon, 01 Jan 2024 00:00:00 GMT</pubDate>", ""));
+        RssFeedService service = serviceFor(tempDir, feedUrl); service.fetchFeeds();
+        assertEquals(1, service.getSignedBills().size());
+        assertNull(service.getSignedBills().get(0).publishDate);
+        assertNull(service.getSignedBills().get(0).createdDate);
+    }
+
 }

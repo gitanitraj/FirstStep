@@ -52,7 +52,7 @@ class ExpertCategoryIntegrityTest {
         when(flyers.getAll()).thenReturn(List.of());
         when(articles.getPublishable()).thenReturn(List.of());
         RssFeedSource rss = List::of;
-        content = new CategoryContentService(taxonomy, resources, news, rss, flyers, experts, faqs, articles);
+        content = new CategoryContentService(taxonomy, resources, news, rss, flyers, experts, faqs, articles, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         navigation = new NavigationService("../app/data", taxonomy, resources, news, flyers, experts, faqs, rss, articles);
         updates = new UpdatesService(news, rss, flyers, experts, faqs, taxonomy, new ContentSourceService("../app/data"));
     }

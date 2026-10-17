@@ -1,12 +1,10 @@
 /*
- * IM-01 annotated reference — full mirror of backend/src/main/java/org/firststep/backend/news/repository/JsonNewsRepository.java
- *
- * WHAT: Normalize legacy news metadata without overwriting explicit canonical expiry/status.
- * WHY: PC-01 requires one editorial lifecycle interpretation; repositories retain history.
- * INTERACTION: current service queries apply EditorialLifecycle before projection/counting;
- * classification, Community selection and article approval retain their existing owners.
- * ALTERNATIVE: filtering separately in every destination would duplicate date/status policy.
- * Event occurrence is deliberately separate (PC-02 / IM-10). See the IM-01 execution report.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/main/java/org/firststep/backend/news/repository/JsonNewsRepository.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.news.repository;
 
@@ -116,6 +114,8 @@ public class JsonNewsRepository implements NewsRepository {
         // Curated news carries hand-authored category_tags, which are immutable
         // here. What this CAN fill is the absent subcategory — the per-field rule
         // in CivicContentClassifier, without which these items stay topic-less.
+        item.authoredSubcategory = item.subcategory;
+        item.authoredCategoryTags = item.categoryTags == null ? null : List.copyOf(item.categoryTags);
         classifier.classify(item);
     }
 

@@ -56,7 +56,7 @@ export default function CategoryPage() {
   const featured = page?.destination?.featuredTopics ?? [];
   // An approved Article collection owns internal reading navigation; no source URL is invented.
   const contextual = selected?.key === 'first-rate-news' ? { ...selected, items: selected.items.map(item => ({
-    ...item, url: `/originals/${encodeURIComponent(item.id)}${query}`,
+    ...item, url: item.contentType === 'NEWS' ? `/originals/${encodeURIComponent(item.id)}${query}` : item.url,
   })) } : selected;
 
   const links = (items: ContextLink[]) => items.length ? <ul className={styles.headlines}>

@@ -1,0 +1,25 @@
+python3 data-cleaning/scripts/validate_homepage.py
+
+══════════════════════════════════════════════════════════════
+  FIRST STEP — HOMEPAGE VALIDATOR
+══════════════════════════════════════════════════════════════
+  File       : app/data/homepage.json
+  Taxonomy   : app/data/taxonomy.json
+  Source     : hand-authored
+  Pathways   : 7
+  Mode       : normal
+  ✅  Passed      : 7
+  ❌  Failed      : 0
+══════════════════════════════════════════════════════════════
+
+── CATEGORIES NOT ON THE HOMEPAGE ────────────────────────
+  (informational — the homepage is a curated front door, not an
+   index. These stay reachable through Discover.)
+  clothing, community-events, community-support, utilities
+
+  All checks passed. ✅
+
+══════════════════════════════════════════════════════════════
+
+
+EXIT 0

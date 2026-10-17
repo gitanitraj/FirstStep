@@ -1,4 +1,11 @@
-/* What: IM-04 explicit Flyer help/access contract. Why: preserve P5 identity without inference. Interaction: catalog validation, current inventory services and scoped help projection. Alternative rejected: classify from prose or create duplicate Resources. */
+/*
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/category/service/FlyerHelpProjectionTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
+ */
 package org.firststep.backend.category.service;
 
 import java.util.List;
@@ -41,7 +48,7 @@ class FlyerHelpProjectionTest {
         when(resources.getAll()).thenReturn(List.of());
         service = new CategoryContentService(new TaxonomyService("../app/data"), resources,
                 mock(NewsService.class), List::of, flyers, mock(ExpertAnswerService.class),
-                mock(FaqService.class), mock(ArticleService.class));
+                mock(FaqService.class), mock(ArticleService.class), new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
     }
 
     private Flyer flyer(String id, String signal) {

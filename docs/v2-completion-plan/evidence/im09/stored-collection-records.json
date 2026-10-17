@@ -1,0 +1,438 @@
+{
+  "news.json": {
+    "sha256": "a5583939dfe604951c9c0cdbed86a27b9510c5ed09821d6a5e72cc41b5003e2e",
+    "storedCount": 10,
+    "records": [
+      {
+        "id": "NP-001",
+        "category_tags": [
+          "Housing"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "deadline",
+        "source_id": "city-of-wilmington",
+        "source_url": "https://www.wilmingtonde.gov",
+        "contentSource": null,
+        "published": "2026-06-01",
+        "expires": "2026-06-30",
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "Eviction filings in New Castle County have risen 18% this year. This program can pause the eviction process and buy time to stabilize. Funds are limited and historically run out fast — apply now."
+      },
+      {
+        "id": "NP-002",
+        "category_tags": [
+          "Housing"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "policy-update",
+        "source_id": "de-housing-authority",
+        "source_url": "http://www.destatehousing.com",
+        "contentSource": null,
+        "published": "2026-06-02",
+        "expires": "2026-07-14",
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "SRAP vouchers are one of the most significant housing stabilization tools available to low-income Delaware residents. With the waitlist closed for over a year, this reopening is a rare and urgent opportunity — especially for residents currently on the edge of housing instability."
+      },
+      {
+        "id": "NP-003",
+        "category_tags": [
+          "Food"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "program-change",
+        "source_id": "wilmington-farmers-market",
+        "source_url": "https://www.wilmingtonfarmersmarket.org",
+        "contentSource": null,
+        "published": "2026-06-01",
+        "expires": "2026-10-31",
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "Rodney Square sits in a zip code with limited full-service grocery access. The market's SNAP acceptance and Double Up Food Bucks matching effectively doubles the purchasing power of food assistance benefits for fresh produce."
+      },
+      {
+        "id": "NP-004",
+        "category_tags": [
+          "Housing",
+          "Utilities",
+          "Rental Assistance"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "policy-update",
+        "source_id": "de-dhss",
+        "source_url": "https://dhss.delaware.gov",
+        "contentSource": null,
+        "published": "2026-06-02",
+        "expires": null,
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "This is a meaningful expansion. Many working families in Wilmington earn just above the old 100% FPL cutoff and have historically been ineligible for Emergency Assistance even during a genuine crisis. The new threshold brings more households into eligibility starting July 1."
+      },
+      {
+        "id": "NP-005",
+        "category_tags": [
+          "Housing"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "new-resource",
+        "source_id": "west-end-neighborhood-house",
+        "source_url": "https://westendnh.org/programs/life-lines/",
+        "contentSource": null,
+        "published": "2026-05-30",
+        "expires": null,
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "Youth aging out of foster care face some of the highest rates of homelessness of any population. Extending the program by two years directly addresses the gap between structured support and true independence — a period when most young adults still need guidance."
+      },
+      {
+        "id": "NP-006",
+        "category_tags": [
+          "Housing"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "policy-update",
+        "source_id": "wilmington-housing-authority",
+        "source_url": "https://whadelaware.org/",
+        "contentSource": null,
+        "published": "2026-06-03",
+        "expires": "2026-08-07",
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "With an 18–24 month wait and infrequent openings, getting on this waitlist now is the first step toward stable housing assistance. Missing this window means waiting for the next opening — which could be another year or more away."
+      },
+      {
+        "id": "NP-007",
+        "category_tags": [
+          "Food"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "general-news",
+        "source_id": "ministry-of-caring",
+        "source_url": "https://www.ministryofcaring.org/",
+        "contentSource": null,
+        "published": "2026-06-01",
+        "expires": null,
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "Sunday is historically the hardest day to find a hot meal in Wilmington. Many other food programs are closed on weekends, making this expansion directly address a documented gap in the city's food access network."
+      },
+      {
+        "id": "NP-008",
+        "category_tags": [
+          "Health"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "policy-update",
+        "source_id": "de-dhss",
+        "source_url": "https://dhss.delaware.gov",
+        "contentSource": null,
+        "published": "2026-05-28",
+        "expires": null,
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "Dental care has been one of the most significant unmet health needs for low-income Delawareans. Untreated dental problems lead to missed work, school absences, and serious health complications. This expansion removes a major barrier — particularly for residents who've relied on Ministry of Caring's clinic for years."
+      },
+      {
+        "id": "NP-009",
+        "category_tags": [
+          "Housing"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "general-news",
+        "source_id": "west-end-neighborhood-house",
+        "source_url": "https://www.westendnh.org",
+        "contentSource": null,
+        "published": "2026-08-18",
+        "expires": "2026-09-10",
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "Residents who use or live near youth housing services can shape how the programme grows before decisions are final."
+      },
+      {
+        "id": "NP-010",
+        "category_tags": [
+          "Community Support"
+        ],
+        "subcategory": null,
+        "communityId": null,
+        "contentType": null,
+        "type": "general-news",
+        "source_id": "united-way-delaware",
+        "source_url": "https://www.uwde.org",
+        "contentSource": null,
+        "published": "2026-08-20",
+        "expires": "2026-09-15",
+        "active": true,
+        "status": null,
+        "expirationDate": null,
+        "event_date": null,
+        "image": null,
+        "helpAccess": null,
+        "why_it_matters": "It gives residents a direct, low-commitment route into volunteering without needing to know which organization to approach first."
+      }
+    ]
+  },
+  "flyers.json": {
+    "sha256": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa",
+    "storedCount": 8,
+    "records": [
+      {
+        "id": "FL-001",
+        "category_tags": [
+          "Community Events"
+        ],
+        "subcategory": "Youth Programs",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "west-end-neighborhood-house",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-09-07",
+        "image": "Youth.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-002",
+        "category_tags": [
+          "Housing",
+          "Legal"
+        ],
+        "subcategory": "Eviction Prevention",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "community-legal-aid",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-08-30",
+        "image": "Eviction Help.png",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-003",
+        "category_tags": [
+          "Community Support"
+        ],
+        "subcategory": "Volunteer Opportunities",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "united-way-delaware",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-09-15",
+        "image": "Volunteer.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-004",
+        "category_tags": [
+          "Community Support"
+        ],
+        "subcategory": "School Supplies",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "ministry-of-caring",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-08-26",
+        "image": "Fundraiser.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-005",
+        "category_tags": [
+          "Legal",
+          "Community Support"
+        ],
+        "subcategory": "Disability Advocacy",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "de-visually-impaired",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-07-30",
+        "image": "Disablility Info.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-006",
+        "category_tags": [
+          "Health"
+        ],
+        "subcategory": "Medical Care",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "westside-family-healthcare",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-09-02",
+        "image": "Health Fair.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-007",
+        "category_tags": [
+          "Furniture & Household"
+        ],
+        "subcategory": "Furniture & Household Goods",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "wilmington-housing-authority",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-08-15",
+        "image": "Furniture.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      },
+      {
+        "id": "FL-008",
+        "category_tags": [
+          "Community Support"
+        ],
+        "subcategory": "Community Celebrations",
+        "communityId": "wilmington-de",
+        "contentType": null,
+        "type": null,
+        "source_id": null,
+        "source_url": null,
+        "contentSource": {
+          "id": "westside-grows-together",
+          "type": "manual"
+        },
+        "published": null,
+        "expires": null,
+        "active": null,
+        "status": null,
+        "expirationDate": null,
+        "event_date": "2026-10-17",
+        "image": "United Neighbors 2026.jpg",
+        "helpAccess": null,
+        "why_it_matters": null
+      }
+    ]
+  }
+}

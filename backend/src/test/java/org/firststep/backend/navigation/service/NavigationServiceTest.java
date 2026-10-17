@@ -207,9 +207,10 @@ class NavigationServiceTest {
     }
 
     @Test
-    void shouldCountRelevantLawsFromTheDiscoveryFeed() {
+    void shouldCountAuthoredRelevantLawsFromTheDiscoveryFeed() {
         NewsItem bill = new NewsItem();
         bill.categoryTags = List.of("Housing");
+        bill.authoredCategoryTags = bill.categoryTags; // Explicit authored Category proof.
         bill.contentType = ContentType.LAW;
         service = new NavigationService("../app/data", new TaxonomyService("../app/data"),
                 resourceService, newsService, flyerService, expertAnswerService, faqService,

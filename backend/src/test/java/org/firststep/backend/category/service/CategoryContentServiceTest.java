@@ -67,7 +67,7 @@ class CategoryContentServiceTest {
 
     private void rebuild() {
         service = new CategoryContentService(new TaxonomyService("../app/data"), resourceService,
-                newsService, rssFeedSource, flyerService, expertAnswerService, faqService, articleService);
+                newsService, rssFeedSource, flyerService, expertAnswerService, faqService, articleService, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
     }
 
     private List<CategoryCollection> housing() {
@@ -92,6 +92,7 @@ class CategoryContentServiceTest {
         n.id = id;
         n.title = title;
         n.categoryTags = List.of("Housing");
+        n.authoredCategoryTags = n.categoryTags; // Synthetic stored authoring evidence.
         n.publishDate = published;
         n.contentSource = new ContentSource();
         n.contentSource.id = producerId;
@@ -192,10 +193,9 @@ class CategoryContentServiceTest {
     }
 
     @Test
-    void shouldNotPutACuratedFaqInFirstRateNewsEvenThoughFirstStepProducedIt() {
-        // The collection means First Step's JOURNALISM, not every record whose
-        // producer id is first-step. Widening it to make a total reconcile is
-        // exactly what Decision 051 rejected.
+    void shouldNotInferFaqEditorialMembershipFromFirstStepProducerAlone() {
+        // No record-level editorial membership is established in this fixture.
+        // This is not an Originals-only definition; inclusive FAQ eligibility remains decision-gated.
         FAQ faq = new FAQ();
         faq.id = "FAQ-2";
         faq.title = "What is the eviction notice period?";

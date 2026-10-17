@@ -1,10 +1,10 @@
-/* IM-06 annotated reference.
- * What: scoped current inventory, authored classification proof, approved role facts and lexicographic Topic selection.
- * Why: retain identity and all seven P5 stages without accepting keyword inference or counting one ID in two roles.
- * Interaction: current services and helpFor supply eligibility; metadata proof establishes stored classification;
- * qualification and maximum matching feed ordered internal evidence and nonblocking diagnostics.
- * Alternatives rejected: raw-record eligibility, inferred Topic relevance, persisted scores/flags,
- * retrieval as catalog newness, final item selection and public featured UI owned by IM-07/08.
+/*
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/category/selection/FeaturedTopicSelectorIntegrationTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.category.selection;
 
@@ -88,7 +88,7 @@ class FeaturedTopicSelectorIntegrationTest {
         RssFeedSource rssSource = () -> rss;
         var taxonomy = new TaxonomyService("../app/data");
         var content = new CategoryContentService(taxonomy, resourceService, newsService, rssSource,
-                flyerService, expertService, faqService, articleService);
+                flyerService, expertService, faqService, articleService, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         AuthoredTopicEvidence authored = mock(AuthoredTopicEvidence.class);
         when(authored.loadLimitations()).thenReturn(List.of());
         when(authored.permits(any(), any())).thenAnswer(call -> {

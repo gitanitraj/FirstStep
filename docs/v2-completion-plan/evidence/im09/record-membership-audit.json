@@ -1,0 +1,446 @@
+{
+  "scope": "Stored structured facts only; verified/session label is not editorial membership approval. No legal-content accuracy assessment.",
+  "records": [
+    {
+      "id": "OR-001",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing",
+        "Community Support"
+      ],
+      "subcategory": "Eviction Prevention",
+      "verified": false,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "session_date": null,
+      "source_expert_answer_id": null,
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-08-23",
+      "publishDate": null,
+      "concreteKind": "Article",
+      "contentType": "NEWS",
+      "articleReview": {
+        "status": "flagged",
+        "reviewedDate": "2026-08-23"
+      },
+      "firstRateNewsEligibility": "not publishable"
+    },
+    {
+      "id": "OR-002",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Health"
+      ],
+      "subcategory": "Medical Care",
+      "verified": false,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "session_date": null,
+      "source_expert_answer_id": null,
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-08-21",
+      "publishDate": "2026-07-22",
+      "concreteKind": "Article",
+      "contentType": "NEWS",
+      "articleReview": {
+        "status": "flagged",
+        "reviewedDate": "2026-08-23"
+      },
+      "firstRateNewsEligibility": "not publishable"
+    },
+    {
+      "id": "OR-003",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "session_date": null,
+      "source_expert_answer_id": null,
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-08-10",
+      "publishDate": "2026-08-10",
+      "concreteKind": "Article",
+      "contentType": "NEWS",
+      "articleReview": {
+        "status": "approved",
+        "reviewedDate": "2026-08-12"
+      },
+      "firstRateNewsEligibility": "approved Original"
+    },
+    {
+      "id": "EA-001",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "de-volunteer-legal-services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "session_date": "2026-06-15",
+      "source_expert_answer_id": null,
+      "expert_name": "Maria Alvarez",
+      "expert_credentials": "Staff Attorney, Housing Unit",
+      "expert_organization": "Delaware Volunteer Legal Services",
+      "organization_id": "ORG-062",
+      "createdDate": "2026-07-01",
+      "publishDate": null,
+      "concreteKind": "ExpertAnswer",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "explicit editorial admission: Housing / wilmington-de, subject to independent gates"
+    },
+    {
+      "id": "EA-002",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Food"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "de-dhss",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "session_date": "2026-06-15",
+      "source_expert_answer_id": null,
+      "expert_name": "Denise Coleman",
+      "expert_credentials": "Case Worker, Division of Social Services",
+      "expert_organization": "Delaware Health and Social Services",
+      "organization_id": "ORG-063",
+      "createdDate": "2026-07-01",
+      "publishDate": null,
+      "concreteKind": "ExpertAnswer",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "not authorized by explicit editorial decision; supporting Expert membership retained"
+    },
+    {
+      "id": "EA-003",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Employment"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "session_date": "2026-05-20",
+      "source_expert_answer_id": null,
+      "expert_name": "Thomas Reyes",
+      "expert_credentials": "Employment Law Attorney",
+      "expert_organization": "Community Legal Aid Society",
+      "organization_id": "ORG-057",
+      "createdDate": "2026-07-01",
+      "publishDate": null,
+      "concreteKind": "ExpertAnswer",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "not authorized by explicit editorial decision; supporting Expert membership retained"
+    },
+    {
+      "id": "EA-004",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Health"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "westside-family-healthcare",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "session_date": "2026-06-15",
+      "source_expert_answer_id": null,
+      "expert_name": "Angela Ruiz",
+      "expert_credentials": "Certified Healthcare Navigator",
+      "expert_organization": "Westside Family Healthcare",
+      "organization_id": "ORG-060",
+      "createdDate": "2026-07-01",
+      "publishDate": null,
+      "concreteKind": "ExpertAnswer",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "not authorized by explicit editorial decision; supporting Expert membership retained"
+    },
+    {
+      "id": "EA-005",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "de-volunteer-legal-services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "session_date": "2026-06-15",
+      "source_expert_answer_id": null,
+      "expert_name": "Maria Alvarez",
+      "expert_credentials": "Staff Attorney, Housing Unit",
+      "expert_organization": "Delaware Volunteer Legal Services",
+      "organization_id": "ORG-062",
+      "createdDate": "2026-07-01",
+      "publishDate": null,
+      "concreteKind": "ExpertAnswer",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "explicit editorial admission: Housing / wilmington-de, subject to independent gates"
+    },
+    {
+      "id": "EA-006",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Utilities"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "de-dhss",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      },
+      "session_date": "2026-06-15",
+      "source_expert_answer_id": null,
+      "expert_name": "Denise Coleman",
+      "expert_credentials": "Case Worker, Division of Social Services",
+      "expert_organization": "Delaware Health and Social Services",
+      "organization_id": "ORG-063",
+      "createdDate": "2026-07-01",
+      "publishDate": null,
+      "concreteKind": "ExpertAnswer",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "not authorized by explicit editorial decision; supporting Expert membership retained"
+    },
+    {
+      "id": "FAQ-001",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Food"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "session_date": null,
+      "source_expert_answer_id": "EA-002",
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-07-11",
+      "publishDate": null,
+      "concreteKind": "FAQ",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "no admission authorized; supporting FAQ only"
+    },
+    {
+      "id": "FAQ-002",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "session_date": null,
+      "source_expert_answer_id": "EA-005",
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-07-11",
+      "publishDate": null,
+      "concreteKind": "FAQ",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "explicit editorial admission: Housing / wilmington-de, subject to independent gates"
+    },
+    {
+      "id": "FAQ-003",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Legal"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "session_date": null,
+      "source_expert_answer_id": null,
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-07-11",
+      "publishDate": null,
+      "concreteKind": "FAQ",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "no admission authorized; supporting FAQ only"
+    },
+    {
+      "id": "FAQ-004",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Utilities"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "session_date": null,
+      "source_expert_answer_id": "EA-006",
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-07-11",
+      "publishDate": null,
+      "concreteKind": "FAQ",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "no admission authorized; supporting FAQ only"
+    },
+    {
+      "id": "FAQ-005",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Health"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "session_date": null,
+      "source_expert_answer_id": null,
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-07-11",
+      "publishDate": null,
+      "concreteKind": "FAQ",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "no admission authorized; supporting FAQ only"
+    },
+    {
+      "id": "FAQ-006",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Employment"
+      ],
+      "subcategory": null,
+      "verified": true,
+      "status": null,
+      "expirationDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "session_date": null,
+      "source_expert_answer_id": null,
+      "expert_name": null,
+      "expert_credentials": null,
+      "expert_organization": null,
+      "organization_id": null,
+      "createdDate": "2026-07-11",
+      "publishDate": null,
+      "concreteKind": "FAQ",
+      "contentType": "EXPERT",
+      "articleReview": null,
+      "firstRateNewsEligibility": "no admission authorized; supporting FAQ only"
+    }
+  ],
+  "decisionAuthority": "Explicit user record-level decision, 2026-10-17; never derived from metadata"
+}

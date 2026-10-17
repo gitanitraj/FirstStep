@@ -124,6 +124,9 @@ public class NavigationService {
     private CategoryNavigation build(CategoryDefinition definition, List<CivicContent> content) {
         List<CivicContent> inCategory = content.stream()
                 .filter(item -> taxonomyService.matchesCategoryTags(definition, item.categoryTags))
+                .filter(item -> !(item instanceof org.firststep.backend.news.model.NewsItem news)
+                        || item.contentType != ContentType.LAW
+                        || taxonomyService.matchesCategoryTags(definition, news.authoredCategoryTags))
                 .toList();
 
         List<NavGroup> authoredGroups = groupsByCategory.get(definition.key());
@@ -156,6 +159,8 @@ public class NavigationService {
     private TopicNavigation topicNavigation(String topic, List<CivicContent> inCategory) {
         List<CivicContent> inTopic = inCategory.stream()
                 .filter(item -> topic.equalsIgnoreCase(item.subcategory))
+                .filter(item -> !(item instanceof org.firststep.backend.news.model.NewsItem news)
+                        || item.contentType != ContentType.LAW || topic.equalsIgnoreCase(news.authoredSubcategory))
                 .toList();
         return new TopicNavigation(topic, TaxonomyService.topicSlug(topic),
                 inTopic.size(), countByType(inTopic));

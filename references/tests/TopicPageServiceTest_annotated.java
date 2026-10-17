@@ -1,8 +1,10 @@
-/* IM-05 annotated mirror.
- * What: controlled help-only Category/Topic browsing and its resident contract.
- * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
- * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
- * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+/*
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/category/service/TopicPageServiceTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.category.service;
 
@@ -68,7 +70,7 @@ class TopicPageServiceTest {
 
         TaxonomyService taxonomy = new TaxonomyService("../app/data");
         CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
-                news, rss, flyerService, expert, faq, articles);
+                news, rss, flyerService, expert, faq, articles, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         service = new TopicPageService(taxonomy, content, resourceService);
     }
 

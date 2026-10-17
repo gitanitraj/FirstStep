@@ -85,7 +85,7 @@ class FeaturedItemSelectorTest {
         RssFeedSource rssSource = () -> rss;
         var taxonomy = new TaxonomyService("../app/data");
         var content = new CategoryContentService(taxonomy, resourceService, newsService, rssSource,
-                flyerService, expertService, faqService, articleService);
+                flyerService, expertService, faqService, articleService, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         AuthoredTopicEvidence authored = mock(AuthoredTopicEvidence.class);
         when(authored.loadLimitations()).thenReturn(List.of());
         when(authored.permits(any(), any())).thenAnswer(call -> {
@@ -113,6 +113,7 @@ class FeaturedItemSelectorTest {
     private NewsItem law(String id, String topic) {
         NewsItem n = new NewsItem(); n.id = id; n.contentType = ContentType.LAW;
         n.communityId = community; n.categoryTags = List.of("Housing"); n.subcategory = topic;
+        n.authoredCategoryTags = n.categoryTags; // Same explicit stored proof as authoredTopics fixture.
         n.publishDate = "2026-10-16"; authoredTopics.put(id, topic); news.add(n); return n;
     }
     private Article article(String id, String topic, String date) {

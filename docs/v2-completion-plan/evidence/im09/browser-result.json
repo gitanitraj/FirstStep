@@ -1,0 +1,23 @@
+{
+  "status": "PASS",
+  "browser": "151.0.7922.34",
+  "membership": [
+    "OR-003",
+    "FAQ-002",
+    "EA-001",
+    "EA-005"
+  ],
+  "checks": [
+    {
+      "width": 375,
+      "scroll": 375
+    },
+    {
+      "width": 1280,
+      "scroll": 1280
+    }
+  ],
+  "articleUrl": "http://127.0.0.1:4179/app-next/originals/OR-003?communityId=wilmington-de",
+  "errors": [],
+  "limitation": "Focused built-app keyboard, membership, navigation and layout smoke; not exhaustive accessibility verification."
+}

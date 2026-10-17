@@ -1,13 +1,10 @@
 /*
- * IM-03 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/navigation/service/NavigationService.java
- * WHAT: Bounded explicit classification enforcement; existing taxonomy and public shapes retained.
- * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
- * Topic is optional and must have an explicitly assigned parent when present.
- * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
- * validates relationships before Category/Topic collections, navigation and scoped Updates.
- * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
- * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
- * See IM-03 execution report for editorial decisions, audit and regression evidence.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/main/java/org/firststep/backend/navigation/service/NavigationService.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.navigation.service;
 
@@ -135,6 +132,9 @@ public class NavigationService {
     private CategoryNavigation build(CategoryDefinition definition, List<CivicContent> content) {
         List<CivicContent> inCategory = content.stream()
                 .filter(item -> taxonomyService.matchesCategoryTags(definition, item.categoryTags))
+                .filter(item -> !(item instanceof org.firststep.backend.news.model.NewsItem news)
+                        || item.contentType != ContentType.LAW
+                        || taxonomyService.matchesCategoryTags(definition, news.authoredCategoryTags))
                 .toList();
 
         List<NavGroup> authoredGroups = groupsByCategory.get(definition.key());
@@ -167,6 +167,8 @@ public class NavigationService {
     private TopicNavigation topicNavigation(String topic, List<CivicContent> inCategory) {
         List<CivicContent> inTopic = inCategory.stream()
                 .filter(item -> topic.equalsIgnoreCase(item.subcategory))
+                .filter(item -> !(item instanceof org.firststep.backend.news.model.NewsItem news)
+                        || item.contentType != ContentType.LAW || topic.equalsIgnoreCase(news.authoredSubcategory))
                 .toList();
         return new TopicNavigation(topic, TaxonomyService.topicSlug(topic),
                 inTopic.size(), countByType(inTopic));

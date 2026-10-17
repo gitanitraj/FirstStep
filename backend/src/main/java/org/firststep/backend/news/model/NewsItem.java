@@ -5,6 +5,8 @@ import org.firststep.backend.shared.model.ContentType;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import java.util.List;
 
 /**
  * Curated news and policy updates, and — with {@code contentType} switched to
@@ -29,6 +31,12 @@ public class NewsItem extends CivicContent {
     public NewsItem() {
         this.contentType = ContentType.NEWS;
     }
+
+    /** Original stored Category evidence, captured before keyword normalization; not a catalog field or DTO. */
+    @JsonIgnore
+    public List<String> authoredCategoryTags;
+    @JsonIgnore
+    public String authoredSubcategory;
 
     public String type;
     public String body;

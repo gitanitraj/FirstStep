@@ -1,13 +1,10 @@
 /*
- * IM-03 annotated reference — complete mirror of backend/src/test/java/org/firststep/backend/category/service/ExpertCategoryIntegrityTest.java
- * WHAT: Focused classification/projection regression evidence.
- * WHY: Expert/FAQ Category participation requires explicit valid editorial membership;
- * Topic is optional and must have an explicitly assigned parent when present.
- * INTERACTION: the classifier never manufactures Expert placement. TaxonomyService
- * validates relationships before Category/Topic collections, navigation and scoped Updates.
- * IM-01 status/expiry remains independent; IM-02 stored diagnostics remain untouched.
- * ALTERNATIVE: deriving membership from prose, producer or Topic would conceal missing data.
- * See IM-03 execution report for editorial decisions, audit and regression evidence.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/category/service/ExpertCategoryIntegrityTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.category.service;
 
@@ -63,7 +60,7 @@ class ExpertCategoryIntegrityTest {
         when(flyers.getAll()).thenReturn(List.of());
         when(articles.getPublishable()).thenReturn(List.of());
         RssFeedSource rss = List::of;
-        content = new CategoryContentService(taxonomy, resources, news, rss, flyers, experts, faqs, articles);
+        content = new CategoryContentService(taxonomy, resources, news, rss, flyers, experts, faqs, articles, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         navigation = new NavigationService("../app/data", taxonomy, resources, news, flyers, experts, faqs, rss, articles);
         updates = new UpdatesService(news, rss, flyers, experts, faqs, taxonomy, new ContentSourceService("../app/data"));
     }

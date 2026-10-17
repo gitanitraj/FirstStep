@@ -1,12 +1,10 @@
 /*
- * IM-02 annotated reference — complete mirror of backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java
- * WHAT: Read-only internal diagnostic/report integration; no persisted lifecycle state.
- * WHY: stewardship must inspect retained records without changing resident eligibility.
- * INTERACTION: diagnostics reuse IM-01 assessment and its Community calendar; status and
- * Article approval remain separate. The CLI is outside resident component scanning.
- * ALTERNATIVES: a second expiry algorithm, filtered resident inputs, live feed fetching,
- * or an Admin dashboard would violate this package's narrow contract.
- * See docs/v2-completion-plan/IM-02 Execution Report.md and the individual method comments.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.news.service;
 
@@ -238,15 +236,11 @@ public class RssFeedService implements RssFeedSource, SignedLegislationSource {
 
         item.communityId = defaultCommunityId;
 
-        Date published = entry.getPublishedDate() != null
-                ? entry.getPublishedDate()
-                : entry.getUpdatedDate() != null
-                    ? entry.getUpdatedDate()
-                    : new Date();
-
-        item.publishDate = DATE_FMT.format(published);
-        item.createdDate = item.publishDate;
-        item.updatedDate = item.publishDate;
+        // A missing publication fact stays unknown; retrieval/updated time is not publication.
+        Date published = entry.getPublishedDate();
+        item.publishDate = published == null ? null : DATE_FMT.format(published);
+        item.createdDate = item.publishDate; // Existing derived loader field, never catalog newness.
+        item.updatedDate = entry.getUpdatedDate() == null ? item.publishDate : DATE_FMT.format(entry.getUpdatedDate());
 
         item.status  = "active";
         item.type    = "legislation";

@@ -1,50 +1,11 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — backend/.../category/dto/CategoryCollection.java
- * Category destination. See references/decisions.md Decision 051.
- * Keep this mirror in sync whenever the production file changes.
- * =============================================================================
- *
- * WHAT THIS RECORD IS
- *   One purposeful collection on a category destination: a stable key, an i18n
- *   label key, the resident job it serves, a count, and its items.
- *
- * THE IDEA THAT TOOK THREE DRAFTS TO GET RIGHT
- *   A COLLECTION IS AN EDITORIAL SELECTION, NOT A METADATA PROJECTION.
- *
- *   Earlier drafts of this design assumed the page's sections had to partition
- *   the category — every record landing in exactly one section, the totals
- *   reconciling. That assumption produced two bad moves in a row:
- *
- *     1. A view set that mixed four conceptual axes ("All", "Programs &
- *        services", "What's changed", "Answers") and only LOOKED coherent
- *        because each label was individually plausible.
- *     2. A proposal to widen "First Rate News" to `first-step OR
- *        type == expert-session` so three stranded records would have a home.
- *
- *   The second was rejected outright: a collection's MEANING is not a variable
- *   to tune until a total reconciles. The real error was the premise. The
- *   destination's job is to provide meaningful discovery pathways, not an
- *   exhaustive accounting — and Decision 036's `browse U updates == totalCount`
- *   identity was always a statement about the category AGGREGATE, never a
- *   requirement on a page's layout.
- *
- * WHY `of()` RETURNS Optional
- *   "Empty collections are not rendered" is a rule about what may EXIST in the
- *   payload, not about what a client chooses to draw. Enforcing it at
- *   construction means no caller can forget it, and the client needs no empty
- *   branch at all. Compare the alternative — build it, then filter later —
- *   which puts the rule in every consumer and eventually in none.
- *
- * WHY ALL ITEMS, NOT A CAPPED PREVIEW
- *   Progressive disclosure expands the collection IN PLACE, so a cap would mean
- *   a second request for content the first request already knew. Housing's
- *   largest collection is 44 items.
- *
- * WHY labelKey AND NOT label
- *   A display string in a payload is how English leaks into a Spanish page.
- *   The same rule ContentType's badge labels follow.
- * ============================================================================= */
-
+/*
+ * WHAT: Complete IM-09 annotated mirror of backend/src/main/java/org/firststep/backend/category/dto/CategoryCollection.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
+ */
 package org.firststep.backend.category.dto;
 
 import java.util.List;
@@ -107,7 +68,12 @@ public record CategoryCollection(
         if (items == null || items.isEmpty()) {
             return Optional.empty();
         }
-        return Optional.of(
-                new CategoryCollection(key, labelKey, layer, items.size(), List.copyOf(items)));
+        // A projection counts canonical identities, not repeated appearances in its source list.
+        var distinct = new java.util.LinkedHashMap<String, ContentItem>();
+        items.stream().filter(item -> item.id() != null && !item.id().isBlank())
+                .forEach(item -> distinct.putIfAbsent(item.id(), item));
+        if (distinct.isEmpty()) return Optional.empty();
+        var unique = List.copyOf(distinct.values());
+        return Optional.of(new CategoryCollection(key, labelKey, layer, unique.size(), unique));
     }
 }

@@ -78,7 +78,9 @@ class EditorialProjectionTest {
             item.title = item.id;
             item.summary = "housing help";
             item.categoryTags = List.of("Housing");
+            if (item instanceof NewsItem news) news.authoredCategoryTags = item.categoryTags; // Authored lifecycle fixture.
             item.subcategory = "Eviction Prevention";
+            if (item instanceof NewsItem news) news.authoredSubcategory = item.subcategory;
             item.communityId = "wilmington-de";
             item.contentSource = new ContentSource();
             item.contentSource.id = "first-step";
@@ -139,7 +141,7 @@ class EditorialProjectionTest {
         laws.forEach(n -> n.contentType = ContentType.LAW);
         ReflectionTestUtils.setField(rss, "rssItems", laws);
         ReflectionTestUtils.setField(rss, "signedBills", laws);
-        categories = new CategoryContentService(taxonomy, resources, news, rss, flyers, experts, faqs, articles);
+        categories = new CategoryContentService(taxonomy, resources, news, rss, flyers, experts, faqs, articles, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         navigation = new NavigationService("../app/data", taxonomy, resources, news, flyers, experts, faqs, rss, articles);
         organizations = mock(OrganizationRepository.class);
         Organization org = new Organization();

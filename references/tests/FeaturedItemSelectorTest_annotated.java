@@ -1,10 +1,10 @@
 /*
- * WHAT: Complete annotated mirror of FeaturedItemSelectorTest.java.
- * WHY: IM-07 selects distinct item roles without changing resident eligibility or public DTOs.
- * INTERACTION: Current authored inventory intersects existing projections before role matching.
- * ALTERNATIVES: Greedy slots lose role coverage; weighted scores obscure approved tie stages.
- * TEST STRATEGY: Service fixtures exercise gates; exhaustive oracle checks assignments;
- * real catalog integration pins actual collisions. Production remains internal, read-only.
+ * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemSelectorTest.java.
+ * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
+ * INTERACTION: Current inventory and Article approval remain independent of exact editorial
+ * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
+ * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
+ * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
  */
 package org.firststep.backend.category.selection;
 
@@ -93,7 +93,7 @@ class FeaturedItemSelectorTest {
         RssFeedSource rssSource = () -> rss;
         var taxonomy = new TaxonomyService("../app/data");
         var content = new CategoryContentService(taxonomy, resourceService, newsService, rssSource,
-                flyerService, expertService, faqService, articleService);
+                flyerService, expertService, faqService, articleService, new org.firststep.backend.category.service.FirstRateNewsMembership("../app/data"));
         AuthoredTopicEvidence authored = mock(AuthoredTopicEvidence.class);
         when(authored.loadLimitations()).thenReturn(List.of());
         when(authored.permits(any(), any())).thenAnswer(call -> {
@@ -121,6 +121,7 @@ class FeaturedItemSelectorTest {
     private NewsItem law(String id, String topic) {
         NewsItem n = new NewsItem(); n.id = id; n.contentType = ContentType.LAW;
         n.communityId = community; n.categoryTags = List.of("Housing"); n.subcategory = topic;
+        n.authoredCategoryTags = n.categoryTags; // Same explicit stored proof as authoredTopics fixture.
         n.publishDate = "2026-10-16"; authoredTopics.put(id, topic); news.add(n); return n;
     }
     private Article article(String id, String topic, String date) {

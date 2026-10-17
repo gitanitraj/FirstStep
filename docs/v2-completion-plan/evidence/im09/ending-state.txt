@@ -1,0 +1,138 @@
+HEAD ba767eadd33e571441861f7fd5c4d47b98acca4c
+BRANCH copyofdev
+
+ M backend/src/main/java/org/firststep/backend/category/dto/CategoryCollection.java
+ M backend/src/main/java/org/firststep/backend/category/service/CategoryContentService.java
+ M backend/src/main/java/org/firststep/backend/navigation/service/NavigationService.java
+ M backend/src/main/java/org/firststep/backend/news/controller/NewsController.java
+ M backend/src/main/java/org/firststep/backend/news/model/NewsItem.java
+ M backend/src/main/java/org/firststep/backend/news/repository/JsonNewsRepository.java
+ M backend/src/main/java/org/firststep/backend/news/service/RssFeedService.java
+ M backend/src/main/java/org/firststep/backend/updates/service/UpdatesService.java
+ M backend/src/test/java/org/firststep/backend/category/selection/FeaturedItemSelectorTest.java
+ M backend/src/test/java/org/firststep/backend/category/selection/FeaturedTopicSelectorIntegrationTest.java
+ M backend/src/test/java/org/firststep/backend/category/service/CategoryContentServiceTest.java
+ M backend/src/test/java/org/firststep/backend/category/service/CategoryPageServiceTest.java
+ M backend/src/test/java/org/firststep/backend/category/service/ExpertCategoryIntegrityTest.java
+ M backend/src/test/java/org/firststep/backend/category/service/FlyerHelpProjectionTest.java
+ M backend/src/test/java/org/firststep/backend/category/service/TopicPageServiceTest.java
+ M backend/src/test/java/org/firststep/backend/navigation/service/NavigationServiceTest.java
+ M backend/src/test/java/org/firststep/backend/news/controller/NewsControllerTest.java
+ M backend/src/test/java/org/firststep/backend/news/service/RssFeedServiceTest.java
+ M backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java
+ M backend/src/test/java/org/firststep/backend/updates/service/UpdatesServiceTest.java
+ M frontend/src/pages/CategoryPage/CategoryDestination.test.tsx
+ M frontend/src/pages/CategoryPage/CategoryPage.tsx
+ M references/CategoryCollection_annotated.java
+ M references/CategoryContentService_annotated.java
+ M references/CategoryPage_annotated.tsx
+ M references/JsonNewsRepository_annotated.java
+ M references/NavigationService_annotated.java
+ M references/NewsController_annotated.java
+ M references/NewsItem_annotated.java
+ M references/RssFeedService_annotated.java
+ M references/UpdatesService_annotated.java
+ M references/tests/CategoryDestination.test_annotated.tsx
+ M references/tests/CategoryPageServiceTest_annotated.java
+ M references/tests/EditorialProjectionTest_annotated.java
+ M references/tests/ExpertCategoryIntegrityTest_annotated.java
+ M references/tests/FeaturedItemSelectorTest_annotated.java
+ M references/tests/FeaturedTopicSelectorIntegrationTest_annotated.java
+ M references/tests/FlyerHelpProjectionTest_annotated.java
+ M references/tests/NewsControllerTest_annotated.java
+ M references/tests/RssFeedServiceTest_annotated.java
+ M references/tests/TopicPageServiceTest_annotated.java
+ M references/tests/UpdatesServiceTest_annotated.java
+?? app/data/first-rate-news-membership.json
+?? backend/src/main/java/org/firststep/backend/category/service/FirstRateNewsMembership.java
+?? backend/src/main/java/org/firststep/backend/news/dto/NewsSummary.java
+?? backend/src/test/java/org/firststep/backend/category/service/CivicCollectionCatalogTest.java
+?? backend/src/test/java/org/firststep/backend/category/service/CivicCollectionContractTest.java
+?? backend/src/test/java/org/firststep/backend/category/service/FirstRateNewsMembershipTest.java
+?? backend/src/test/java/org/firststep/backend/news/dto/NewsSummaryTest.java
+?? "docs/v2-completion-plan/IM-09 Execution Report.md"
+?? docs/v2-completion-plan/evidence/im09/annotated-mirrors.json
+?? docs/v2-completion-plan/evidence/im09/baseline-backend.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-build.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-frontend.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-0.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-1.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-2.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-3.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-4.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-5.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-python-6.txt
+?? docs/v2-completion-plan/evidence/im09/baseline-typecheck.txt
+?? docs/v2-completion-plan/evidence/im09/before-catalog.txt
+?? docs/v2-completion-plan/evidence/im09/browser-check-approved.txt
+?? docs/v2-completion-plan/evidence/im09/browser-check-final.txt
+?? docs/v2-completion-plan/evidence/im09/browser-check.mjs
+?? docs/v2-completion-plan/evidence/im09/browser-check.txt
+?? docs/v2-completion-plan/evidence/im09/browser-result.json
+?? docs/v2-completion-plan/evidence/im09/built-server-approved.txt
+?? docs/v2-completion-plan/evidence/im09/built-server.txt
+?? docs/v2-completion-plan/evidence/im09/collection-audit-after.json
+?? docs/v2-completion-plan/evidence/im09/collection-audit-before.json
+?? docs/v2-completion-plan/evidence/im09/collection-audit-pre-admission.json
+?? docs/v2-completion-plan/evidence/im09/demonstrated-gaps.txt
+?? docs/v2-completion-plan/evidence/im09/final-backend-accepted.txt
+?? docs/v2-completion-plan/evidence/im09/final-backend-admissions.txt
+?? docs/v2-completion-plan/evidence/im09/final-backend-clean.txt
+?? docs/v2-completion-plan/evidence/im09/final-backend-first.txt
+?? docs/v2-completion-plan/evidence/im09/final-backend.txt
+?? docs/v2-completion-plan/evidence/im09/final-build-admissions.txt
+?? docs/v2-completion-plan/evidence/im09/final-build.txt
+?? docs/v2-completion-plan/evidence/im09/final-frontend-admissions-accepted.txt
+?? docs/v2-completion-plan/evidence/im09/final-frontend-admissions.txt
+?? docs/v2-completion-plan/evidence/im09/final-frontend.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-0.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-1.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-2.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-3.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-4.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-5.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-6.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-0.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-1.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-2.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-3.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-4.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-5.txt
+?? docs/v2-completion-plan/evidence/im09/final-python-admissions-6.txt
+?? docs/v2-completion-plan/evidence/im09/final-typecheck-admissions.txt
+?? docs/v2-completion-plan/evidence/im09/final-typecheck.txt
+?? docs/v2-completion-plan/evidence/im09/first-rate-news-1280.png
+?? docs/v2-completion-plan/evidence/im09/first-rate-news-375.png
+?? docs/v2-completion-plan/evidence/im09/first-rate-news-decision.md
+?? docs/v2-completion-plan/evidence/im09/focused-first.txt
+?? docs/v2-completion-plan/evidence/im09/focused-second.txt
+?? docs/v2-completion-plan/evidence/im09/focused-third.txt
+?? docs/v2-completion-plan/evidence/im09/http-smoke-admissions.txt
+?? docs/v2-completion-plan/evidence/im09/http-smoke-approved.txt
+?? docs/v2-completion-plan/evidence/im09/http-smoke.py
+?? docs/v2-completion-plan/evidence/im09/http-smoke.txt
+?? docs/v2-completion-plan/evidence/im09/inspect-first-truth-table.md
+?? docs/v2-completion-plan/evidence/im09/packaged-http.json
+?? docs/v2-completion-plan/evidence/im09/packaged-server-admissions.txt
+?? docs/v2-completion-plan/evidence/im09/packaged-server-approved.txt
+?? docs/v2-completion-plan/evidence/im09/packaged-server.txt
+?? docs/v2-completion-plan/evidence/im09/preservation-after.json
+?? docs/v2-completion-plan/evidence/im09/preservation-before.json
+?? docs/v2-completion-plan/evidence/im09/preservation-result.json
+?? docs/v2-completion-plan/evidence/im09/python-gates.json
+?? docs/v2-completion-plan/evidence/im09/record-membership-audit.json
+?? docs/v2-completion-plan/evidence/im09/reproduce.md
+?? docs/v2-completion-plan/evidence/im09/serve-built.py
+?? docs/v2-completion-plan/evidence/im09/starting-state.txt
+?? docs/v2-completion-plan/evidence/im09/stored-collection-records.json
+?? docs/v2-completion-plan/evidence/im09/verification-summary.json
+?? "docs/v2-completion-plan/v2 \342\200\224 IM-09 Coding-Agent Work Order.md"
+?? "docs/v2-completion-plan/v2.9 \342\200\224 Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+?? references/FirstRateNewsMembership_annotated.java
+?? references/NewsSummary_annotated.java
+?? references/tests/CategoryContentServiceTest_annotated.java
+?? references/tests/CivicCollectionCatalogTest_annotated.java
+?? references/tests/CivicCollectionContractTest_annotated.java
+?? references/tests/FirstRateNewsMembershipTest_annotated.java
+?? references/tests/NavigationServiceTest_annotated.java
+?? references/tests/NewsSummaryTest_annotated.java
