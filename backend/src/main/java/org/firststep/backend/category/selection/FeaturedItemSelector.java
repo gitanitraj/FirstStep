@@ -116,7 +116,7 @@ public class FeaturedItemSelector {
                     && originalImage != null && !originalImage.isBlank()
                     && card.imageUrl() != null && !card.imageUrl().isBlank()
                     && source != null && source.id != null && !source.id.isBlank()
-                    && source.url != null && !source.url.isBlank();
+                    && safeVisualSource(source.url);
             roles.remove(Role.VISUAL);
             if (visual) { roles.add(Role.VISUAL); evidence.add("actionable_flyer_original_media_and_source"); }
             else limitations.add("no_positive_visual_media_source_evidence:" + item.id);
@@ -127,6 +127,18 @@ public class FeaturedItemSelector {
                     facts.catalogOrApprovalDate(), evidence, limitations));
         }
         return order(communityId, categoryKey, canonical, today, candidates, diagnostics);
+    }
+
+    /** IM-11: executable/relative text is not safe original source evidence for VISUAL. */
+    private static boolean safeVisualSource(String value) {
+        if (value == null) return false;
+        try {
+            var uri = java.net.URI.create(value);
+            return ("https".equalsIgnoreCase(uri.getScheme()) || "http".equalsIgnoreCase(uri.getScheme()))
+                    && uri.getHost() != null;
+        } catch (IllegalArgumentException invalid) {
+            return false;
+        }
     }
 
     /** Pure assignment seam for synthetic collision fixtures; production callers use select. */

@@ -1,0 +1,163 @@
+{
+  "proposedDisposition": "Satisfied \u2014 submitted for review; authority unedited",
+  "head": "140bfe53161f87729545a785d597c90d87e63737",
+  "backend": {
+    "tests": 602,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "package": "PASS",
+    "log": "final-backend-accepted.txt"
+  },
+  "frontend": {
+    "tests": 146,
+    "files": 21,
+    "typecheck": "PASS",
+    "build": "PASS"
+  },
+  "python": {
+    "tests": 14,
+    "validators": 6,
+    "allExitZero": true
+  },
+  "packagedHttp": {
+    "status": "PASS",
+    "requests": 15,
+    "featuredIds": [
+      [
+        "HA-002",
+        "HA-003",
+        "HA-005"
+      ],
+      [
+        "HA-016",
+        "HA-001",
+        "HA-006"
+      ],
+      [
+        "HA-011",
+        "HA-013",
+        "HA-021"
+      ],
+      [
+        "HA-008",
+        "HA-023",
+        "HA-026"
+      ]
+    ]
+  },
+  "browser": {
+    "status": "PASS",
+    "browser": "151.0.7922.34",
+    "checks": [
+      {
+        "width": 375,
+        "scroll": 375
+      },
+      {
+        "width": 1280,
+        "scroll": 1280
+      }
+    ],
+    "ids": [
+      "HA-002",
+      "HA-003",
+      "HA-005",
+      "HA-016",
+      "HA-001",
+      "HA-006",
+      "HA-011",
+      "HA-013",
+      "HA-021",
+      "HA-008",
+      "HA-023",
+      "HA-026"
+    ],
+    "roles": [
+      "DURABLE",
+      "FALLBACK",
+      "FALLBACK",
+      "DURABLE",
+      "FALLBACK",
+      "FALLBACK",
+      "DURABLE",
+      "FALLBACK",
+      "FALLBACK",
+      "DURABLE",
+      "FALLBACK",
+      "FALLBACK"
+    ],
+    "hrefs": [
+      "https://www.bereadycdc.org/",
+      "https://www.bereadycdc.org/",
+      "https://www.ccwilm.org/bayard-house/",
+      "https://www.ministryofcaring.org/",
+      "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+      "https://www.childinc.com/domestic-violence-services/shelters/",
+      "https://www.habitatncc.org/our-programs/homeownership/",
+      "https://www.hond.org/home/",
+      "https://www.neighborgoodpartners.org/",
+      "http://www.destatehousing.com",
+      "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+      "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm"
+    ],
+    "keyboardTopicNavigation": true,
+    "refreshAndBack": true,
+    "communityPreserved": true,
+    "noSemanticRoleBadges": true,
+    "errors": [],
+    "limitation": "Focused built-app integration; not exhaustive WCAG, physical devices or external source reachability."
+  },
+  "housing": {
+    "storedResourcesAcrossCommunities": 44,
+    "currentWilmingtonHelpIds": 36,
+    "controlledTopics": 9,
+    "storedHousingRows": 56,
+    "productionFlyers": 8,
+    "authorizedFlyers": 0
+  },
+  "fixedComparison": {
+    "equalBeforeAfter": true,
+    "productionSelectionChanged": false,
+    "clock": "2026-10-16T16:00:00Z",
+    "comparison": "Entire captured fixed-clock audit JSON, including raw/current inventory, role/collision diagnostics and Category DTO"
+  },
+  "runtimeComparison": {
+    "equalExceptCapturedInstant": true,
+    "beforeClock": "2026-10-17T20:26:26.168224Z",
+    "afterClock": "2026-10-17T20:30:23.441011Z",
+    "comparison": "All runtime audit JSON fields other than capture Instant are equal; same Community-local date"
+  },
+  "algorithmProof": {
+    "featuredItemAssignmentComparatorCoverageFallbackDiagnosticsUnchanged": true,
+    "originalAlgorithmTailSha256": "2bd706f2c3ab0ad387b968b7a46405c083ae14aa0339533616cae2f534decd98",
+    "finalAlgorithmTailSha256": "2bd706f2c3ab0ad387b968b7a46405c083ae14aa0339533616cae2f534decd98",
+    "onlyProductionChange": "VISUAL source URL must parse as absolute HTTP(S) with a host; no provenance rewrite, other-role/fallback removal or ranking change"
+  },
+  "protection": {
+    "startingFiles": 1126,
+    "unchanged": 1124,
+    "authorizedExistingFileChanges": [
+      "backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java",
+      "references/FeaturedItemSelector_annotated.java"
+    ],
+    "noUnexpectedChanges": true,
+    "originalCatalogsUnchanged": true,
+    "originalMediaUnchanged": true,
+    "allEightFlyersUnchanged": true,
+    "approvedFlyerHelpAccessAssignments": 0,
+    "im09AdmissionManifestUnchanged": true,
+    "modelsTaxonomyLifecycleOccurrenceAndCompositionUnchanged": true,
+    "featuredTopicSelectorInventoryAuthoredEvidenceAndQualificationUnchanged": true,
+    "featuredItemComparatorMatchingFallbackDiagnosticsUnchanged": true,
+    "frontendDependenciesLocksAndAuthorityUnchanged": true,
+    "flyerSha256": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa",
+    "annotatedMirrors": 4,
+    "head": "140bfe53161f87729545a785d597c90d87e63737",
+    "stagedFiles": []
+  },
+  "acceptanceIds": 20,
+  "allAcceptanceEvidencePassed": true,
+  "serversStopped": true,
+  "noStagingCommitOrPush": true
+}

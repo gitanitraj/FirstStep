@@ -1,0 +1,687 @@
+[
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-001",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-002",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-003",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-004",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-005",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-006",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-007",
+      "category": "Housing Assistance",
+      "subcategory": "Youth Housing",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-008",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-009",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-010",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-011",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-012",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-013",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-014",
+      "category": "Housing Assistance",
+      "subcategory": "Sober Living",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-015",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-016",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-017",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-018",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-019",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-020",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-021",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-022",
+      "category": "Housing Assistance",
+      "subcategory": "Homeownership",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-023",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-024",
+      "category": "Housing Assistance",
+      "subcategory": "Sober Living",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-025",
+      "category": "Housing Assistance",
+      "subcategory": "Sober Living",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-026",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-027",
+      "category": "Housing Assistance",
+      "subcategory": "Senior Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-028",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-029",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-030",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-031",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-032",
+      "category": "Housing Assistance",
+      "subcategory": "Youth Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-033",
+      "category": "Housing Assistance",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-034",
+      "category": "Housing Assistance",
+      "subcategory": "Rental Assistance",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-035",
+      "category": "Housing Assistance",
+      "subcategory": "Public Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-036",
+      "category": "Housing Assistance",
+      "subcategory": "Senior Housing",
+      "urgency": "standard",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.json",
+    "facts": {
+      "id": "HA-037",
+      "category": "Housing Assistance",
+      "subcategory": "Transitional Housing",
+      "urgency": "emergency",
+      "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+      "retrieved": "2026-06-01"
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-047",
+      "category": "Housing",
+      "subcategory": "Rental Assistance",
+      "urgency": "emergency",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-048",
+      "category": "Housing",
+      "subcategory": "Sober Living",
+      "urgency": "standard",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-049",
+      "category": "Housing",
+      "subcategory": "Emergency Shelter",
+      "urgency": "emergency",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-050",
+      "category": "Housing",
+      "subcategory": "Rental Assistance",
+      "urgency": "emergency",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-051",
+      "category": "Housing",
+      "subcategory": "Public Housing",
+      "urgency": "standard",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-052",
+      "category": "Housing",
+      "subcategory": "Public Housing",
+      "urgency": "standard",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/resources.communities.json",
+    "facts": {
+      "id": "SD-053",
+      "category": "Housing",
+      "subcategory": "Public Housing",
+      "urgency": "standard",
+      "source": "Delaware DSCYF Service Directory (raw, structurally mapped)",
+      "retrieved": null
+    }
+  },
+  {
+    "file": "app/data/flyers.json",
+    "facts": {
+      "id": "FL-002",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "event_date": "2026-08-30",
+      "image": "Eviction Help.png",
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      }
+    }
+  },
+  {
+    "file": "app/data/news.json",
+    "facts": {
+      "id": "NP-001",
+      "category_tags": [
+        "Housing"
+      ],
+      "urgency": "time-limited",
+      "published": "2026-06-01",
+      "expires": "2026-06-30",
+      "active": true
+    }
+  },
+  {
+    "file": "app/data/news.json",
+    "facts": {
+      "id": "NP-002",
+      "category_tags": [
+        "Housing"
+      ],
+      "urgency": "time-limited",
+      "published": "2026-06-02",
+      "expires": "2026-07-14",
+      "active": true
+    }
+  },
+  {
+    "file": "app/data/news.json",
+    "facts": {
+      "id": "NP-004",
+      "category_tags": [
+        "Housing",
+        "Utilities",
+        "Rental Assistance"
+      ],
+      "urgency": "standard",
+      "published": "2026-06-02",
+      "expires": null,
+      "active": true
+    }
+  },
+  {
+    "file": "app/data/news.json",
+    "facts": {
+      "id": "NP-005",
+      "category_tags": [
+        "Housing"
+      ],
+      "urgency": "standard",
+      "published": "2026-05-30",
+      "expires": null,
+      "active": true
+    }
+  },
+  {
+    "file": "app/data/news.json",
+    "facts": {
+      "id": "NP-006",
+      "category_tags": [
+        "Housing"
+      ],
+      "urgency": "time-limited",
+      "published": "2026-06-03",
+      "expires": "2026-08-07",
+      "active": true
+    }
+  },
+  {
+    "file": "app/data/news.json",
+    "facts": {
+      "id": "NP-009",
+      "category_tags": [
+        "Housing"
+      ],
+      "urgency": "standard",
+      "published": "2026-08-18",
+      "expires": "2026-09-10",
+      "active": true
+    }
+  },
+  {
+    "file": "app/data/articles.json",
+    "facts": {
+      "id": "OR-001",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing",
+        "Community Support"
+      ],
+      "subcategory": "Eviction Prevention",
+      "createdDate": "2026-08-23",
+      "updatedDate": "2026-08-23",
+      "publishDate": null,
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "articleReview": {
+        "status": "flagged",
+        "reviewedDate": "2026-08-23"
+      }
+    }
+  },
+  {
+    "file": "app/data/articles.json",
+    "facts": {
+      "id": "OR-003",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "createdDate": "2026-08-10",
+      "updatedDate": "2026-08-10",
+      "publishDate": "2026-08-10",
+      "contentSource": {
+        "id": "first-step",
+        "type": "manual"
+      },
+      "articleReview": {
+        "status": "approved",
+        "reviewedDate": "2026-08-12"
+      }
+    }
+  },
+  {
+    "file": "app/data/faq.json",
+    "facts": {
+      "id": "FAQ-002",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "createdDate": "2026-07-11",
+      "updatedDate": "2026-07-11",
+      "contentSource": {
+        "id": "first-step",
+        "type": "faq",
+        "url": null,
+        "retrieved": "2026-07-11"
+      },
+      "source_expert_answer_id": "EA-005"
+    }
+  },
+  {
+    "file": "app/data/expert-answers.json",
+    "facts": {
+      "id": "EA-001",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "contentSource": {
+        "id": "de-volunteer-legal-services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      }
+    }
+  },
+  {
+    "file": "app/data/expert-answers.json",
+    "facts": {
+      "id": "EA-005",
+      "communityId": "wilmington-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "createdDate": "2026-07-01",
+      "updatedDate": "2026-07-01",
+      "contentSource": {
+        "id": "de-volunteer-legal-services",
+        "type": "expert-session",
+        "url": null,
+        "retrieved": "2026-07-01"
+      }
+    }
+  }
+]

@@ -1,0 +1,2908 @@
+{
+  "tests": 602,
+  "failures": 0,
+  "errors": 0,
+  "skipped": 0,
+  "suites": [
+    {
+      "name": "org.firststep.backend.ai.controller.DecisionControllerTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.ai.controller.DecisionControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeWhenDecideCalled"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.ai.service.DecisionAgentServiceTest",
+      "tests": 4,
+      "cases": [
+        {
+          "className": "org.firststep.backend.ai.service.DecisionAgentServiceTest",
+          "name": "shouldParseWellFormedResponseUnchanged"
+        },
+        {
+          "className": "org.firststep.backend.ai.service.DecisionAgentServiceTest",
+          "name": "shouldAttachContentSourceToCitationWhenMatchingResourceExists"
+        },
+        {
+          "className": "org.firststep.backend.ai.service.DecisionAgentServiceTest",
+          "name": "shouldLeaveCitationSourceNullWhenNoMatchingIdFound"
+        },
+        {
+          "className": "org.firststep.backend.ai.service.DecisionAgentServiceTest",
+          "name": "shouldSalvageCompleteStepsWhenModelOutputIsTruncatedMidArray"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.ai.service.SpringAiAssistantTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.ai.service.SpringAiAssistantTest",
+          "name": "shouldThrowAiProviderNotConfiguredExceptionWhenNoChatClientBuilderAvailable"
+        },
+        {
+          "className": "org.firststep.backend.ai.service.SpringAiAssistantTest",
+          "name": "shouldDelegateToChatClientWhenBuilderAvailable"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.controller.CategoryControllerTest",
+      "tests": 8,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldReflectSeedResourceInHousingCategoryCount"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldPassCommunityIdThroughToTheTopicPage"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeContainingTenCategories"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldReturn404WhenCategoryKeyIsNotInTheTaxonomy"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldReturn404ForAnUnknownTopic"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldReturnAllThreePillarsInOneResponse"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldReturnTheTopicPageWithItsBreadcrumbAndItems"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.CategoryControllerTest",
+          "name": "shouldPassCommunityIdThroughToTheAggregate"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+      "tests": 7,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "categoryNavigationTopicCountMatchesItsHelpDestination"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "categoryWideRetainsTopiclessResourcesAndCompleteDeduplicatedStableInventory"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "realCategoryOnlyExpertRecordsNeverBecomeHelpAndEmptyTopicRemainsValid"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "exactSignalPreservesFlyerIdentityMediaAndSourceWhileUnknownAndAbsentStayOut"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "lifecycleExcludesExpiredInactiveWithdrawnAndKeepsApproachingWithoutPriority"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "communityCategoryAndControlledTopicAreIndependentGates"
+        },
+        {
+          "className": "org.firststep.backend.category.controller.HelpBrowseApiTest",
+          "name": "missingWebsiteUsesOnlyExplicitStoredTelephoneWithoutInventingDetailRoute"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.AuthoredTopicEvidenceTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.AuthoredTopicEvidenceTest",
+          "name": "conflictingDuplicateAuthoredClassificationDoesNotChooseAnArbitraryWinner"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.AuthoredTopicEvidenceTest",
+          "name": "runtimeKeywordPlacementIsNotAuthoredNewsOrRssClassification"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.AuthoredTopicEvidenceTest",
+          "name": "resourceSourceMappingCountsAsExplicitCategoryButTopicMustBeStored"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedItemAssignmentTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemAssignmentTest",
+          "name": "t11GlobalMaximumAndLexicographicTupleMatchExhaustiveOracleAcrossRoleGraphs"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedItemCatalogTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemCatalogTest",
+          "name": "t19ActualAllNineHousingTopicsAndFourFeaturedWinnersRemainTruthfulAndNonmutating"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemCatalogTest",
+          "name": "t19RealHomeownershipDurableCollisionUsesStableIdentityAndMissingNewnessDiagnostic"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemCatalogTest",
+          "name": "t20ResidentCardSerializationContainsNoInternalDiagnosticsOrReviewFields"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+      "tests": 23,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t18DuplicateProjectionsAndCommunityCannotInflate"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "otherCategoryAndContextDateDirection"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t08VisualRequiresMediaSourceAndRetainsOriginalPresentation"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t04ExactFlyerHelpAccessControlsAdmissionWithoutMutation"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t01ControlledScopeDistinctImmutableResults"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t02CategoryOnlyExpertFaqAndRuntimeInferredRssCannotGainTopicProof"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t17EmptyOneTwoAndLargeInventoryWithoutCap"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t13ContextWindowDiffersAcrossCommunitiesAtSameInstant"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t14GenuineVisualNewnessButCopiedResourceDatesCannotDiscriminate"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t09MultiRoleFlyerAppearsOnce"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t07DurableRequiresAffirmativeExactStandardNotUndated"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t10IndependentTimelyPreservesFlyerVisualCoverage"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t06AuthoredContextLocalWindowAndPolicyType"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t05DirectLocalWindowBoundariesDoNotExcludeOrdinaryInventory"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t13MeaningfulDatesPrecedeNewnessAndCommunityLocalDayChanges"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t15StableIdDiagnosticsSurviveRepositoryReorder"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t12DirectHelpPrecedesNewerContextAndExpiryCannotQualify"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t16FallbackTruthfulAndHelpPrecedesNewerContext"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t03LifecycleApprovalAndApproachingWithoutTimelyBoost"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t13DstFallBackRepeatedHourKeepsLocalCalendarBoundaries"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "approvalNewnessFallbackAndFutureDatesUnknown"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t11CoveragePrecedesHigherRankedDirectTimely"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedItemSelectorTest",
+          "name": "t03RejectionReasonsAreIndependentlyLifecycleStatusAndApproval"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+      "tests": 8,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "currentVisualDoesNotAutomaticallyEstablishActionableOrDurable"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "actualFlyerCreationAndApprovedReviewSupportNewnessWithoutFutureInvention"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "directNeedsExactSignalAndStructuredDateNotTitlePublishOrExpiry"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "contextualWindowIncludesTodayAndDayMinus30OnlyForLawOrPolicyType"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "directWindowIncludesTodayAndDay30ButNotYesterdayOrDay31"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "aSingleMultiRoleFlyerCannotFillTwoSlotsButIndependentTimelyAllowsBoth"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "loaderDerivedSourceDatesAndEditorialExpiryNeverBecomeCatalogNewness"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedRoleQualificationTest",
+          "name": "durableRequiresExplicitStandardServiceProxyNotSimplyUndatedOrEmergency"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedTopicCatalogTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicCatalogTest",
+          "name": "actualHousingSelectionIsScopedRepeatableNonmutatingAndReconcilesEveryHelpCount"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+      "tests": 9,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "shuffledInputsProduceExactlyEqualEvidenceAndCutoffDiagnostics"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "oneMultiTopicFixtureExercisesTheEntireHierarchyAndTechnicalDiagnostic"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "relevantContextIsLateButPrecedesNewness"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "distinctRoleCoveragePrecedesDirectActionsContextAndNewness"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "authenticNewnessIsConsideredOnlyAfterFourStagesTieAndMissingFallsThrough"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "actionableCountPrecedesEveryLaterSignalIncludingContextVolume"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "directActionPrecedesContextAndNewness"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "fewerThanFourNonzeroHelpTopicsAreNeverPaddedWithContextOnlyTopics"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicOrderingTest",
+          "name": "stableKeyTieEmitsScopedDiagnosticAndDoesNotBlockDelivery"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+      "tests": 11,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "realLifecycleRejectsExpiredInactiveWithdrawnButApproachingIsNotPriority"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "explicitParentsTopicsAndExpertGuardBlockNarrativeAndInvalidMembership"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "helpHeavyBeatsContextHeavyEvenWithStrongerRoleCoverageAndMoreRecentLaws"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "directActionDiscriminatesBeforeContextWithoutChangingEventEligibility"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "approvedNewnessBreaksLateTieButDraftOrCopiedSourceDatesCannot"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "roleCoverageMatchesDistinctIdsAndDoesNotCountTheFlyerTwice"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "explicitRecentContextBreaksTieOnlyAfterEqualActionAndRoleEvidence"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "twoCommunitiesHaveIndependentLocalCalendarWindowsAndNoInventoryLeakage"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "nonHousingAndEmptyCategoryUseSameContractAndRequireExplicitCommunity"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "rawRssFreshnessWithoutExplicitTopicNeverCreatesRelevanceOrNewness"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.FeaturedTopicSelectorIntegrationTest",
+          "name": "duplicateProjectionMembershipAndInputShufflesDoNotChangeSelectionOrDiagnostics"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+      "tests": 8,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T12UnsafeSourceCannotSupplyPositiveVisualEvidence"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T09T16IndependentCommunityDaysControlDayThirtyWithoutChangingHelpOrOccurrence"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T18UnknownOccurrenceAndMissingVisualFactsProduceDeterministicSeparateDiagnostics"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T15ExplicitEndConclusionDoesNotGloballyDeleteHelpOrOverrideIndependentDateTimelyRule"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T09T16SelectorWindowUsesCalendarDaysAcrossBothDstTransitions(String, String, String, String)[1]"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T09T16SelectorWindowUsesCalendarDaysAcrossBothDstTransitions(String, String, String, String)[2]"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T09T16SelectorWindowUsesCalendarDaysAcrossBothDstTransitions(String, String, String, String)[3]"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11InteractionRegressionTest",
+          "name": "im11T09T16SelectorWindowUsesCalendarDaysAcrossBothDstTransitions(String, String, String, String)[4]"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.Im11RealCatalogAuditTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCatalogAuditTest",
+          "name": "im11T02T04T05T17ReadOnlyAllHousingCandidatesFixedOrRuntimeAudit"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCatalogAuditTest",
+          "name": "im11T14ActualMockMvcCategoryPreservesExactSelectorOrderAndRolesWithoutPrivateEvidence"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCatalogAuditTest",
+          "name": "im11T06PersistedRealCollisionCandidatesMatchTheThenCurrentCatalog"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.selection.Im11RealCollisionRegressionTest",
+      "tests": 4,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCollisionRegressionTest",
+          "name": "im11T13RepeatedProjectionOfRealCanonicalIdCannotCreateExtraSlotsOrFalseRoles"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCollisionRegressionTest",
+          "name": "im11T03T07RealTopicTiesStrictTopFourCutoffAndAllEvidenceSurviveOneHundredShuffles"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCollisionRegressionTest",
+          "name": "im11T06RealFourWayHomeownershipDurableCollisionReachesCanonicalIdAndScopedDiagnostic"
+        },
+        {
+          "className": "org.firststep.backend.category.selection.Im11RealCollisionRegressionTest",
+          "name": "im11T05T07AllNineRealItemSelectionsAndFallbackCollisionsSurviveOneHundredShuffles"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CategoryContentServiceTest",
+      "tests": 16,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldOmitCollectionsEntirelyWhenTheyHaveNoContent"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldExcludeFirstStepReportingFromPolicyInfo"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldPutApprovedArticlesInFirstRateNewsAndNotInPolicyInfo"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldOrderCollectionsByCompositionNotByContentVolume"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldMarkExpertContentAsSupportingRatherThanPrimary"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldFilterByCommunityWhenRequested"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldNotSelectContentClassifiedIntoADifferentCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldOmitOnlyTheEmptyCollectionsWhenSomeHaveContent"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldSplitNewsBetweenPolicyInfoAndLawByContentType"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldReturnNoCollectionsForAnUnknownCategoryKey"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldPreserveAuthoredFileOrderForSupportingCollections"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldOrderResourcesAlphabeticallyBecauseTheyCarryNoEditorialDate"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldNotSelectUnclassifiedContent"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldNotInferFaqEditorialMembershipFromFirstStepProducerAlone"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldOrderDatedCollectionsNewestFirst"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryContentServiceTest",
+          "name": "shouldPlaceFlyersInTheirOwnCollectionRatherThanFoldingThemIntoPolicyInfo"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CategoryDestinationCatalogTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationCatalogTest",
+          "name": "t09t10ScopeDefaultsZeroHelpAndOtherCategoryAreIsolated"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationCatalogTest",
+          "name": "t13t14t15ApprovedHeadlinesAndScopedOrganizationLinksOnly"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationCatalogTest",
+          "name": "t04RealHousingHttpHasExactTwelveWinnersAndNoPrivateFields"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CategoryDestinationServiceTest",
+      "tests": 4,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationServiceTest",
+          "name": "t15RailRejectsUnprovenLawAndInventsNoExpertOrVideoLinks"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationServiceTest",
+          "name": "t07ExecutableUrlCannotBecomeNavigationAndExplicitCommunityIsRequired"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationServiceTest",
+          "name": "t06RoleCompleteFixtureRetainsTrueRolesAndDistinctIds"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryDestinationServiceTest",
+          "name": "t02t03PassesThroughInjectedTopicAndItemOrderWithoutHousingRanking"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CategoryPageServiceTest",
+      "tests": 13,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldCarryGroupedNavigationThroughToThePage"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldReportMostRecentUpdateDate"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldCarryFlatNavigationThroughToThePage"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldListOrganizationsScopedToTheCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldComposeEveryUpdateContentTypeOntoOnePage"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldFilterEveryPillarByCommunityWhenRequested"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldNotReportALastUpdatedDateWhenNothingHasChanged"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldReachTopiclessContentThroughUpdatesRatherThanTopics"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldBuildMetadataFromTheNavigationReadModel"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldCapUpdatesToKeepThePageADashboard"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldReturnEmptyForUnknownCategoryKey"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldNotPutResourcesInTheUpdatesFeed"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryPageServiceTest",
+          "name": "shouldReturnAUsablePageForACategoryWithNoResources"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CategoryServiceTest",
+      "tests": 16,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldReturnZeroCountAndNullPolicyUpdateForUtilitiesWithNoData"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldCapLatestItemsAtThreeSortedByUpdatedDateDescending"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldCatchLeftoverCategoriesInCommunitySupport"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldReturnAllTenCategories"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldExcludeResourcesFromNonMatchingCommunity"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldNotCountFlyerInCategoryItIsNotClassifiedUnder"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldMatchCanonicalCategoryLabelCaseInsensitively"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldNotMatchNonCanonicalCategoryLabel"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldNotCountFlyerWithNoEditorialClassification"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldReturnNullPolicyUpdateWhenOnlySubcategoryTagIsPresent"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldPlaceFlyerInEveryCategoryItIsEditoriallyClassifiedUnder"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldReturnNullPolicyUpdateWhenNoNewsMatches"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldCountResourcesMatchingCategoryString"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldCountFlyersMatchingTheirEditorialCategoryTags"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldIgnoreDescriptiveTagsWhenAssociatingNewsWithCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CategoryServiceTest",
+          "name": "shouldFindMostRecentMatchingPolicyUpdate"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CivicCollectionCatalogTest",
+      "tests": 4,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionCatalogTest",
+          "name": "t01t08t11t12RealFourCollectionAndInclusiveMembershipAudit"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionCatalogTest",
+          "name": "t04RealExpiredNewsStoredButNotCurrentPolicyAndCommunityIsolation"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionCatalogTest",
+          "name": "t12t13ApprovedAdmissionsDoNotAdmitOtherSessionsOrRemoveSupportingMembership"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionCatalogTest",
+          "name": "t16PublicCategoryAndArticle404ParityProtectInternals"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.CivicCollectionContractTest",
+      "tests": 8,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t06AuthoredCategoryCannotAuthorizeRuntimeInferredTopic"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t03t06InferredLawCannotReachCategoryCountsOrUpdatesButBroaderSectorStillWorks"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t02PolicyIsExternalNewsNotLawOriginalOrUnknownNewCollection"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t17ApprovedArticleRepeatedProjectionKeepsOneCanonicalIdentity"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t17EqualDatePolicyOrderUsesCanonicalIdNotInputIteration"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t13AdmissionCannotBypassCurrentInventoryOrAuthoredTaxonomy"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t06AuthoredCategoryOnlyLawIsValidWithoutInventingTopic"
+        },
+        {
+          "className": "org.firststep.backend.category.service.CivicCollectionContractTest",
+          "name": "t06RuntimeKeywordLawCannotPopulateCategoryCollection"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.ExpertCategoryIntegrityTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.ExpertCategoryIntegrityTest",
+          "name": "shouldDeliverExplicitTopicsAndValidMultiCategoryIdentityOnlyUnderMatchingParents"
+        },
+        {
+          "className": "org.firststep.backend.category.service.ExpertCategoryIntegrityTest",
+          "name": "shouldExplainExactValidationDefectsWhilePreservingCaseInsensitiveControlledMatching"
+        },
+        {
+          "className": "org.firststep.backend.category.service.ExpertCategoryIntegrityTest",
+          "name": "shouldKeepClassificationIndependentOfExpiryStatusAndCommunityPartition"
+        },
+        {
+          "className": "org.firststep.backend.category.service.ExpertCategoryIntegrityTest",
+          "name": "shouldDeliverExplicitCategoryOnlyFaqAndExpertWithoutFabricatingTopic"
+        },
+        {
+          "className": "org.firststep.backend.category.service.ExpertCategoryIntegrityTest",
+          "name": "shouldRejectMissingUnknownAndMalformedRelationshipsBeforeCategoryCountsOrUpdates"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.FirstRateNewsMembershipTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.FirstRateNewsMembershipTest",
+          "name": "absentManifestFailsClosed"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FirstRateNewsMembershipTest",
+          "name": "unsupportedRecordKindCannotBecomeAnAdmission"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FirstRateNewsMembershipTest",
+          "name": "malformedManifestCannotSilentlyAdmitOrIgnoreDecisions"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FirstRateNewsMembershipTest",
+          "name": "t13ExactApprovalRequiresIdentityKindCommunityAndCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FirstRateNewsMembershipTest",
+          "name": "t13DerivedFaqRequiresItsOwnApproval"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+      "tests": 9,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "inactiveAndWithdrawnAreExcludedIndependentlyOfExpiry"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "jacksonRetainsExactSignalAndNeverPromotesMalformedStrings"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "exactSemanticEnablesDualProjectionWithIdentityMediaAndProducerIntact"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "duplicateMembershipsDoNotDuplicateIdentityWithinACollection"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "categoryTopicAndCommunityScopeAreRequired"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "expiredIsRetainedInRawCatalogAndHistoricalDetailButExcludedFromBoth"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "approachingAndInclusiveExpiryRemainEligibleWithoutAttentionRanking"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "absenceAndUnknownValuesCannotUseProseImageCategoryOrTopicToQualify"
+        },
+        {
+          "className": "org.firststep.backend.category.service.FlyerHelpProjectionTest",
+          "name": "resourceEligibilityDoesNotRequireOrUseTheNewField"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.TaxonomyServiceTest",
+      "tests": 13,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldMatchCategoryTagsCaseInsensitively"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldRecognizeTopicBelongingToCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldPopulateEveryFieldOfALoadedCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldNotMatchDriftedVocabularyThatIsNotInTheTaxonomy"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldCollectDistinctSubcategoriesAcrossCategories"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldNotMatchWhenCategoryTagsAreNull"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldReturnEmptyWhenTopicSlugIsUnknownInCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldSlugifyTopicsContainingPunctuation"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldResolveTopicSlugBackToCanonicalName"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldLoadAllTenCategoriesFromTaxonomyFile"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldFailFastWhenTaxonomyFileIsMissing"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldPreserveAuthoredOrderAsDisplayOrder"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TaxonomyServiceTest",
+          "name": "shouldReturnEmptyWhenCategoryKeyIsUnknown"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.category.service.TopicPageServiceTest",
+      "tests": 15,
+      "cases": [
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldReturnEmptyForUnknownTopicSlug"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldNormalizeAResourceOntoTheCard"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldExposeTheCityButNeverTheStreetAddress"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldReturnEmptyWhenTheTopicBelongsToADifferentCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldNotListUnclassifiedContent"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldFilterByCommunityWhenRequested"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldReturnAValidPageForATopicWithNoContent"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldFallBackToTheDescriptionWhenAResourceHasNoSummary"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldReturnEmptyForUnknownCategory"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldScopeADualDeclaredTopicToTheCategoryAsked"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldResolveTheSlugToItsCanonicalTopicName"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldListOnlyContentClassifiedIntoThisCategoryAndTopic"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldSortAlphabeticallyIgnoringCase"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldCarryTheParentCategoryForABreadcrumb"
+        },
+        {
+          "className": "org.firststep.backend.category.service.TopicPageServiceTest",
+          "name": "shouldIncludeOnlyExplicitlyActionableFlyersAlongsideResources"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.ExpertCategoryApiTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.ExpertCategoryApiTest",
+          "name": "shouldKeepMissingClassificationVisibleInRawRepositoriesWithoutRuntimeManufacture(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.ExpertCategoryApiTest",
+          "name": "shouldServeCorrectedRealFaqAndExpertSupportingCollectionsThroughCategoryApi"
+        },
+        {
+          "className": "org.firststep.backend.expert.ExpertCategoryApiTest",
+          "name": "shouldRetainAllTwelveApprovedCategoryOnlyRecordsAsExpertWithoutDerivedTopics"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.controller.ExpertAnswerControllerTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.controller.ExpertAnswerControllerTest",
+          "name": "shouldReturn404WithApiResponseEnvelopeWhenExpertAnswerIdNotFound"
+        },
+        {
+          "className": "org.firststep.backend.expert.controller.ExpertAnswerControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeWhenExpertAnswersRequested"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.controller.FaqControllerTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.controller.FaqControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeWhenFaqsRequested"
+        },
+        {
+          "className": "org.firststep.backend.expert.controller.FaqControllerTest",
+          "name": "shouldReturn404WithApiResponseEnvelopeWhenFaqIdNotFound"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.repository.JsonExpertAnswerRepositoryTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.repository.JsonExpertAnswerRepositoryTest",
+          "name": "shouldReturnEmptyListWhenFileMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonExpertAnswerRepositoryTest",
+          "name": "shouldFindExpertAnswerByIdAfterLoad(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonExpertAnswerRepositoryTest",
+          "name": "shouldLoadExpertAnswersFromRecordsWrapperKey(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonExpertAnswerRepositoryTest",
+          "name": "shouldNotOverrideCommunityIdWhenPresentInJson(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonExpertAnswerRepositoryTest",
+          "name": "shouldDefaultCommunityIdWhenNotPresentInJson(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.repository.JsonFaqRepositoryTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.repository.JsonFaqRepositoryTest",
+          "name": "shouldReturnEmptyListWhenFileMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonFaqRepositoryTest",
+          "name": "shouldNotOverrideCommunityIdWhenPresentInJson(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonFaqRepositoryTest",
+          "name": "shouldFindFaqByIdAfterLoad(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonFaqRepositoryTest",
+          "name": "shouldLoadFaqsFromRecordsWrapperKey(Path)"
+        },
+        {
+          "className": "org.firststep.backend.expert.repository.JsonFaqRepositoryTest",
+          "name": "shouldDefaultCommunityIdWhenNotPresentInJson(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.service.ExpertAnswerServiceTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.service.ExpertAnswerServiceTest",
+          "name": "shouldReturnAllExpertAnswersFromRepositoryWhenGetAllIsCalled"
+        },
+        {
+          "className": "org.firststep.backend.expert.service.ExpertAnswerServiceTest",
+          "name": "shouldReturnExpertAnswerByIdFromRepositoryWhenGetByIdIsCalled"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.expert.service.FaqServiceTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.expert.service.FaqServiceTest",
+          "name": "shouldReturnAllFaqsFromRepositoryWhenGetAllIsCalled"
+        },
+        {
+          "className": "org.firststep.backend.expert.service.FaqServiceTest",
+          "name": "shouldReturnFaqByIdFromRepositoryWhenGetByIdIsCalled"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.flyer.controller.FlyerControllerTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.flyer.controller.FlyerControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeWhenFlyersRequested"
+        },
+        {
+          "className": "org.firststep.backend.flyer.controller.FlyerControllerTest",
+          "name": "shouldReturn404WithApiResponseEnvelopeWhenFlyerIdNotFound"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.flyer.repository.JsonFlyerRepositoryTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.flyer.repository.JsonFlyerRepositoryTest",
+          "name": "shouldReturnEmptyListWhenFileMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.flyer.repository.JsonFlyerRepositoryTest",
+          "name": "shouldNotOverrideCommunityIdWhenPresentInJson(Path)"
+        },
+        {
+          "className": "org.firststep.backend.flyer.repository.JsonFlyerRepositoryTest",
+          "name": "shouldFindFlyerByIdAfterLoad(Path)"
+        },
+        {
+          "className": "org.firststep.backend.flyer.repository.JsonFlyerRepositoryTest",
+          "name": "shouldDefaultCommunityIdWhenNotPresentInJson(Path)"
+        },
+        {
+          "className": "org.firststep.backend.flyer.repository.JsonFlyerRepositoryTest",
+          "name": "shouldLoadFlyersFromRecordsWrapperKey(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.flyer.service.FlyerServiceTest",
+      "tests": 7,
+      "cases": [
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldReturnFlyerByIdFromRepositoryWhenGetByIdIsCalled"
+        },
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldSkipFlyersWithoutAnImage"
+        },
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldSkipFlyerWhoseProducerCannotBeResolved"
+        },
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldSortCarouselByEventDateSoonestFirst"
+        },
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldReturnAllFlyersFromRepositoryWhenGetAllIsCalled"
+        },
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldResolveAndUrlEncodeImagePathForCarouselCards"
+        },
+        {
+          "className": "org.firststep.backend.flyer.service.FlyerServiceTest",
+          "name": "shouldSkipGovernmentFlyersBecauseTheCarouselIsTheCommunityNoticesPreview"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.home.controller.HomeControllerTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.home.controller.HomeControllerTest",
+          "name": "shouldReturnAggregatedHomePayload"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.home.service.PathwayServiceTest",
+      "tests": 6,
+      "cases": [
+        {
+          "className": "org.firststep.backend.home.service.PathwayServiceTest",
+          "name": "shouldKeepAuthoredLabelAndIconForADiscoveryPathway(Path)"
+        },
+        {
+          "className": "org.firststep.backend.home.service.PathwayServiceTest",
+          "name": "shouldSkipAnUnknownCategoryRatherThanFailingToStart(Path)"
+        },
+        {
+          "className": "org.firststep.backend.home.service.PathwayServiceTest",
+          "name": "shouldLoadTheAuthoredPathwaysInFileOrder"
+        },
+        {
+          "className": "org.firststep.backend.home.service.PathwayServiceTest",
+          "name": "shouldReturnAnEmptyListWhenTheFileIsMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.home.service.PathwayServiceTest",
+          "name": "shouldNotInventALabelForADiscoveryPathwayThatOmitsOne(Path)"
+        },
+        {
+          "className": "org.firststep.backend.home.service.PathwayServiceTest",
+          "name": "shouldResolveCategoryLabelAndIconFromTheTaxonomy(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.legislation.service.LegislationServiceTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.legislation.service.LegislationServiceTest",
+          "name": "shouldReturnBillsNewestFirstMappedToLawItem"
+        },
+        {
+          "className": "org.firststep.backend.legislation.service.LegislationServiceTest",
+          "name": "shouldCapAtSevenBills"
+        },
+        {
+          "className": "org.firststep.backend.legislation.service.LegislationServiceTest",
+          "name": "shouldTolerateMissingContentSourceUrl"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.navigation.service.NavigationServiceTest",
+      "tests": 17,
+      "cases": [
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldReturnTopicsWithNoContentRatherThanHidingThem"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldNeverCountAnArticleTheReviewGateWithheld"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldCoverEverySubcategoryOfAGroupedCategory"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldCountAuthoredRelevantLawsFromTheDiscoveryFeed"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldCountApprovedArticlesInTheirEditorialCategory"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldFilterByCommunityWhenRequested"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldExposeSlugsForTopicRouting"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldScopeTopicCountsToTheirOwnCategory"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldNotClassifyUnclassifiedContent"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldNotUseDescriptiveTagsToPlaceContent"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldCountAllClassifiedContentTypesNotJustResources"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldCountAnApprovedArticleUnderItsTopic"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldReturnEmptyForUnknownCategoryKey"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldGroupTopicsForCategoriesDeclaredInNavigationFile"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldReturnEveryCategoryInTaxonomyOrder"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldCountDualClassifiedContentUnderEveryCategoryItBelongsTo"
+        },
+        {
+          "className": "org.firststep.backend.navigation.service.NavigationServiceTest",
+          "name": "shouldReturnFlatTopicListForCategoriesAbsentFromNavigationFile"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.news.controller.NewsControllerTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.news.controller.NewsControllerTest",
+          "name": "testGetRssNews"
+        },
+        {
+          "className": "org.firststep.backend.news.controller.NewsControllerTest",
+          "name": "im09T16ExplicitScopeAndInternalFieldsStayOutOfNewsEndpoint"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.news.dto.NewsSummaryTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.news.dto.NewsSummaryTest",
+          "name": "t18MissingOrUnsafeSourceUrlsStayAbsentRatherThanInvented"
+        },
+        {
+          "className": "org.firststep.backend.news.dto.NewsSummaryTest",
+          "name": "t05t16PublicNewsKeepsLawIdentityAndPublicationButOmitsInternalFacts"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+      "tests": 6,
+      "cases": [
+        {
+          "className": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+          "name": "shouldNormalizeLegacyExpiryAndInactiveFlagWithoutInferringFromPublication(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+          "name": "shouldPreserveCanonicalEditorialExpiryAndWithdrawnStatus(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+          "name": "shouldReturnEmptyListWhenFileMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+          "name": "shouldLoadTheItemAnywayWhenItsProducerIsUnknown(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+          "name": "shouldResolveTheProducerNameFromTheRegistryRatherThanTheRecord(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.repository.JsonNewsRepositoryTest",
+          "name": "shouldLoadNewsFromRecordsWrapperKey(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.news.service.NewsServiceTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.news.service.NewsServiceTest",
+          "name": "shouldReturnAllNewsFromRepositoryWhenGetAllIsCalled"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.news.service.RssFeedServiceTest",
+      "tests": 13,
+      "cases": [
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldExtractRelatingToClauseWhenPresent(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldCapitalizeDelawareAndUseTitleCaseInExtractedClause(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldClassifyHousingKeywordsIntoHousingTag(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldNotOverMatchWhenSelfDescriptionHasHouseOrSenateInfixAndAppearsTwice(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldUseBillSelfDescriptionWhenNoRelatingToClause(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldFallBackToGenericClassificationWhenNoKeywordsMatch(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldUseFormalTitleForSenateJointResolution(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldTruncateRelatingToClauseAtCharacterCap(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "im09T07MissingPublicationNeverBecomesRetrievalToday(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldUseFormalTitleForHouseJointResolutionWithoutPeriodBeforePhrase(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldStopAtFormalTitlePeriodWhenNarrativeTextPrecedesSelfDescription(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldMarkSignedLegislationWithLawContentType(Path)"
+        },
+        {
+          "className": "org.firststep.backend.news.service.RssFeedServiceTest",
+          "name": "shouldKeepLastGoodResultWhenFetchFails(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.notices.controller.CommunityNoticesControllerTest",
+      "tests": 4,
+      "cases": [
+        {
+          "className": "org.firststep.backend.notices.controller.CommunityNoticesControllerTest",
+          "name": "shouldAnswerAViewRouteDirectlyWithoutVisitingTheLandingRouteFirst"
+        },
+        {
+          "className": "org.firststep.backend.notices.controller.CommunityNoticesControllerTest",
+          "name": "shouldReturnLandingStateWithCountsAndPreviewsWhenNoViewIsGiven"
+        },
+        {
+          "className": "org.firststep.backend.notices.controller.CommunityNoticesControllerTest",
+          "name": "shouldReturnNotFoundNamingTheUnknownViewRatherThanFallingBackToLanding"
+        },
+        {
+          "className": "org.firststep.backend.notices.controller.CommunityNoticesControllerTest",
+          "name": "shouldReturnEmptyItemsWithHttpOkWhenAViewExistsButHasNothingInIt"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+      "tests": 14,
+      "cases": [
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldLeaveImageUrlNullForNewsBecauseNewsCarriesNoPoster"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldPlaceOneItemInBothEventsAndFlyersBecauseViewsAreLensesNotBuckets"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldExcludeItemCarryingTwoNoticeKindsRatherThanGuessingWhichWins"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldCarryCountsForEveryViewOnEveryResponse"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldResolveImageUrlForFlyersSoTheGalleryHasSomethingToShow"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldReturnPreviewsWithFullCountsWhenViewIsOverview"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldExcludeItemCarryingNoNoticeKindFromEveryKindView"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldReturnItemsAndNoPreviewsWhenViewIsNotOverview"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldSelectFlyersByContentTypeRegardlessOfKind"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldExcludeUnresolvableProducerFromEveryView"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldSelectEventsByKindTagRegardlessOfContentType"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldExcludeGovernmentProducedNoticeEvenWhenCorrectlyTagged"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldOrderAnnouncementsNewestFirst"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.CommunityNoticesServiceTest",
+          "name": "shouldOrderEventsSoonestFirst"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.notices.service.EventOccurrenceCatalogTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceCatalogTest",
+          "name": "t01t10t17RealFl008ConcludesAtNextLocalMidnightButRetainsIndependentFlyersAndHistory"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.notices.service.EventOccurrenceTest",
+      "tests": 17,
+      "cases": [
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t07ExplicitFallFoldOffsetsAndSpringTransitionRemainInstants"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t05StartOnlyUsesOwningCommunityDateNotOffsetDateOrInventedDuration"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t03ExplicitEndInclusiveToNanosecondAndOffsetsAreEquivalent"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t07IndependentCommunityZonesAndClockZoneCannotChangeOwnership"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t08MissingDateCannotUsePublicationAuditExpiryOrMedia"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t04t07DateOnlyLocalMidnightAndSpringFallDst(String, String, State)[1]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t04t07DateOnlyLocalMidnightAndSpringFallDst(String, String, State)[2]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t04t07DateOnlyLocalMidnightAndSpringFallDst(String, String, State)[3]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t04t07DateOnlyLocalMidnightAndSpringFallDst(String, String, State)[4]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t04t07DateOnlyLocalMidnightAndSpringFallDst(String, String, State)[5]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t04t07DateOnlyLocalMidnightAndSpringFallDst(String, String, State)[6]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t08DateOnlyEndAndAmbiguousLocalTimestampAreDiagnosedWithoutInventingTime"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t08MalformedDateNeverNormalizesOrUsesProse(String, String)[1]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t08MalformedDateNeverNormalizesOrUsesProse(String, String)[2]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t08MalformedDateNeverNormalizesOrUsesProse(String, String)[3]"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t06FutureOccurrenceRemainsUpcoming"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventOccurrenceTest",
+          "name": "t08EndBeforeStartIsAnExactDiagnostic"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.notices.service.EventProjectionTest",
+      "tests": 11,
+      "cases": [
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t12OnlyFiveCanonicalContentTypesAndNoEventConversion"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t08NewsPublicationCannotBecomeEventOccurrence"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t14CountsPreviewsDedupAndInstantOrderingAgree"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t02OptionalTimestampFieldsBindInExistingFlyerAndNewsParsers"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t08t13UnknownOccurrenceDoesNotMassFilterOtherViews"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t09EditorialExpiryIsIndependentOfOccurrenceAndStewardshipState"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t17RealFl008HasNoStructuredEndAndUsesItsActualCalendarBoundary"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t15UnsafeSourceIsAbsentWhileOriginalMediaAndSafeSourceSurvive"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t02t03t10t15t17SyntheticScheduledEndKeepsSameIdentityMediaSourceAndHistory"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t11t16CommunityProducerAndControlledKindAreIndependentGates"
+        },
+        {
+          "className": "org.firststep.backend.notices.service.EventProjectionTest",
+          "name": "t18PublicHttpFactsKeepHistoricalFlyerButOmitPrivateFields"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+      "tests": 6,
+      "cases": [
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+          "name": "shouldWithholdOrganizationWebsiteWhenTheDataDoesNotEstablishOne"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+          "name": "shouldKeepIdentityDistinctFromTheUrl"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+          "name": "shouldNotPromoteAnyPhoneToOrganizationLevel"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+          "name": "shouldNotIssueTheSameIdOrSlugTwice"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+          "name": "shouldGiveEveryOrganizationAStableIdAndAPublicSlug"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationIdentityTest",
+          "name": "shouldResolveEveryResourceToARegisteredOrganization"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.organization.service.OrganizationServiceTest",
+      "tests": 9,
+      "cases": [
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldGroupByOrganizationAndCount"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldCapAtEightOrganizations"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldSkipBlankOrganizations"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldTakeTheSlugFromTheRegistryRatherThanDerivingIt"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldRankByCountWithinTheCategoryNotOverall"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldRankByCountThenNameForStableOrder"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldReturnOnlyOrganizationsWithResourcesInTheCategory"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldReturnEmptyForUnknownCategoryKey"
+        },
+        {
+          "className": "org.firststep.backend.organization.service.OrganizationServiceTest",
+          "name": "shouldNotPlaceOrganizationsFromUnclassifiedResources"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.organization.service.ScopedOrganizationPreviewTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.organization.service.ScopedOrganizationPreviewTest",
+          "name": "t14ExplicitAssociationIdsAndCommunityExcludeSourceAndNameOnlyInference"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.originals.controller.OriginalsControllerTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.originals.controller.OriginalsControllerTest",
+          "name": "shouldReturnNotFoundForAnUnapprovedArticle"
+        },
+        {
+          "className": "org.firststep.backend.originals.controller.OriginalsControllerTest",
+          "name": "shouldExposeExactlyTheAgreedPublicFieldsAndNoOthers"
+        },
+        {
+          "className": "org.firststep.backend.originals.controller.OriginalsControllerTest",
+          "name": "shouldGiveIdenticalResponsesForUnapprovedAndNonexistentArticles"
+        },
+        {
+          "className": "org.firststep.backend.originals.controller.OriginalsControllerTest",
+          "name": "shouldNotSerializeAnyEditorialReviewDataInThePublicPayload"
+        },
+        {
+          "className": "org.firststep.backend.originals.controller.OriginalsControllerTest",
+          "name": "shouldServeApprovedArticleWithItsFullText"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+      "tests": 6,
+      "cases": [
+        {
+          "className": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+          "name": "shouldReadFlagDispositionsFromAuthoredData"
+        },
+        {
+          "className": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+          "name": "shouldPreserveTheOriginalFindingOnDispositionedFlags"
+        },
+        {
+          "className": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+          "name": "shouldReadEditorialReviewStatusFromAuthoredData"
+        },
+        {
+          "className": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+          "name": "shouldDeserializeEveryAuthoredArticleOntoTheModel"
+        },
+        {
+          "className": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+          "name": "shouldDistinguishWithdrawnFromResolvedInAuthoredData"
+        },
+        {
+          "className": "org.firststep.backend.originals.model.ArticleDeserializationTest",
+          "name": "shouldCarryCompleteDispositionsForEveryDispositionedFlag"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.originals.service.ArticleServiceTest",
+      "tests": 26,
+      "cases": [
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldKeepUnapprovedArticlesInTheRepositoryForFutureEditorialHandling"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldPreserveTheOriginalFindingWhenAFlagIsDispositioned"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldLeaveFlagOpenWhenDispositionHasNoDate"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotLetFlagDispositionAffectPublicationEligibility"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldKeepWithdrawnDistinctFromOverridden"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotServeDraftArticleBecauseGenerationIsNotPublicationApproval"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldTreatFullyRecordedDispositionAsClosingTheFlag"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldTreatFlagWithNoDispositionAsOpen"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldLeaveFlagOpenWhenDispositionStatusIsUnrecognized"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldOrderPublishableArticlesNewestFirst"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldCarryBylineAndDisclosureIntoThePublicDetailShape"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldLeaveFlagOpenWhenDispositionHasNoReason"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldServeApprovedArticleDatedInTheFuture"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldServeApprovedArticleToPublicReadingSurface"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldServeApprovedArticleByDirectIdLookup"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotServeUnapprovedArticleByDirectIdLookup"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotServeArticleWhoseReviewStatusIsUnrecognized"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotServeArticleStillInReview"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotServeArticleWithNoReviewRecordAtAll"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldSortUndatedApprovedArticlesLastRatherThanDroppingThem"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldLeaveFlagOpenWhenDispositionHasNoActor"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldServeApprovedArticleThatHasNoPublishDate"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldServeApprovedArticleThatStillCarriesADispositionedFlag"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotProjectAnUnapprovedArticleIntoThePublicDetailShape"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldNotServeFlaggedArticleThroughAnyPublicPath"
+        },
+        {
+          "className": "org.firststep.backend.originals.service.ArticleServiceTest",
+          "name": "shouldRecordGenerationProvenanceSeparatelyFromReviewProvenance"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.resource.controller.ResourceControllerTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.resource.controller.ResourceControllerTest",
+          "name": "shouldReturn404WithApiResponseEnvelopeWhenResourceIdNotFound"
+        },
+        {
+          "className": "org.firststep.backend.resource.controller.ResourceControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeWhenResourcesRequested"
+        },
+        {
+          "className": "org.firststep.backend.resource.controller.ResourceControllerTest",
+          "name": "shouldReturnSeasonalImagesFromConfiguredDirectory"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+      "tests": 9,
+      "cases": [
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldMapFlatSourceAndRetrievedIntoContentSource(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldLoadNormallyWhenResourcesCommunitiesJsonIsAbsent(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldDeriveCommunityIdFromLocationCityWhenPresent(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldFallBackToClasspathWhenExternalFileMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldDefaultCommunityIdWhenNotPresentInJson(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldMergeResourcesJsonAndResourcesCommunitiesJson(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldLoadResourcesFromExternalFileWhenPresent(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldFindResourceByIdAfterLoad(Path)"
+        },
+        {
+          "className": "org.firststep.backend.resource.repository.JsonResourceRepositoryTest",
+          "name": "shouldFallBackToDefaultCommunityIdWhenNoLocationPresent(Path)"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.resource.service.ResourceServiceTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.resource.service.ResourceServiceTest",
+          "name": "shouldReturnResourceByIdFromRepositoryWhenGetByIdIsCalled"
+        },
+        {
+          "className": "org.firststep.backend.resource.service.ResourceServiceTest",
+          "name": "shouldReturnAllResourcesFromRepositoryWhenGetAllIsCalled"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.search.controller.SearchControllerTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.search.controller.SearchControllerTest",
+          "name": "shouldReturn200WithApiResponseEnvelopeWhenQueryMatches"
+        },
+        {
+          "className": "org.firststep.backend.search.controller.SearchControllerTest",
+          "name": "shouldReturn200WithEmptyDataWhenNoMatch"
+        },
+        {
+          "className": "org.firststep.backend.search.controller.SearchControllerTest",
+          "name": "shouldReturn400WhenQueryParamMissing"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.search.service.SearchServiceTest",
+      "tests": 7,
+      "cases": [
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldReturnUnifiedListSortedByScoreDescendingAcrossTypes"
+        },
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldReturnEmptyListWhenQueryIsBlank"
+        },
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldReturnMatchingFlyerWhenQueryMatchesTitle"
+        },
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldExcludeRecordsFromNonMatchingCommunity"
+        },
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldFallBackToDefaultCommunityWhenCommunityIdNotProvided"
+        },
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldReturnMatchingResourceWhenQueryMatchesOrganization"
+        },
+        {
+          "className": "org.firststep.backend.search.service.SearchServiceTest",
+          "name": "shouldReturnMatchingNewsItemWhenQueryMatchesTitle"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+      "tests": 17,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldClassifyByExactSourceCategoryWithFullConfidence"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldShortCircuitKeywordScoringWhenSourceCategoryMatches"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldMatchSourceCategoryCaseInsensitivelyAndTrimmed"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldExplainItselfInTheReason"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldClassifyNothingWhenTextHasNoRelevantKeywords"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldMarkSourceMappedAndKeywordClassifiedContentRelevant"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldReportConfidenceProportionalToEvidence"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldSuppressWeakIncidentalCategoriesBesideAStrongOne"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldDeclineRatherThanClassifyOnASingleWeakHit"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldKeepBothCategoriesWhenEvidenceIsGenuinelyBalanced"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldRankStrongestCategoryFirst"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldIgnoreSourceMappingsFromAnUnknownSource"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldFallThroughToKeywordsWhenSourceCategoryIsUnknown"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldEmitOnlyCanonicalLabelsNeverDriftedVocabulary"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldClassifyLegislationTextIntoCanonicalCategory"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldReturnNullSubcategoryWhenNoSubcategoryKeywordsAreAuthored"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CategoryClassifierTest",
+          "name": "shouldReturnIrrelevantForEmptyText"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+      "tests": 14,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldTreatEmptyCategoryTagsAsUnclassified"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldRequireExplicitExpertCategoryInsteadOfDerivingItFromProse"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldNotLeakUpstreamSourceVocabularyIntoDescriptiveTags"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldLeaveContentUnclassifiedWhenThereIsNoEvidence"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldReportASummaryOfWhatWasClassified"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldClassifyResourceWhoseSourceCategoryIsUnknownUsingItsText"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldNotOverwriteHandAuthoredEditorialClassification"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldAddEvidenceTermsToDescriptiveTagsWithoutReplacingAuthoredOnes"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldApplyThePolicyPerFieldNotPerItem"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldClassifyResourceFromItsRawSourceCategory"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldNotPutCategoryNamesIntoDescriptiveTags"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldTolerateNullItem"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldNormalizeUnclassifiedContent"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.CivicContentClassifierTest",
+          "name": "shouldReadClassifiableTextFromEachContentTypesOwnFields"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.classification.EditorialStabilityTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.classification.EditorialStabilityTest",
+          "name": "shouldKeepEditorialAndSourceMappedCategoryCountsStable"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.EditorialStabilityTest",
+          "name": "shouldPlaceEveryResourceByDeterministicSourceMappingNotByKeywords"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.EditorialStabilityTest",
+          "name": "shouldKeepTheTotalStable"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.classification.ExpertIngestionTest",
+      "tests": 4,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.classification.ExpertIngestionTest",
+          "name": "shouldNotManufactureExpertCategoryFromProseOrTopic(CivicContent)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.ExpertIngestionTest",
+          "name": "shouldNotManufactureExpertCategoryFromProseOrTopic(CivicContent)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.ExpertIngestionTest",
+          "name": "shouldPreserveExplicitCategoryWithoutInventingATopic(CivicContent)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.ExpertIngestionTest",
+          "name": "shouldPreserveExplicitCategoryWithoutInventingATopic(CivicContent)[2]"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.classification.TagClassifierTest",
+      "tests": 7,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldNeverBeHandedCategoryNames"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldAppendEvidenceAfterExistingTags"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldDeduplicateCaseInsensitively"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldHandleNullExistingTags"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldSkipBlankAndNullEntries"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldPreserveExistingTagsWhenThereIsNoEvidence"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TagClassifierTest",
+          "name": "shouldNotDuplicateATermThatWasAlreadyAuthored"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.classification.TokenizerTest",
+      "tests": 15,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldDropStopwords"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldWeightPhrasesHigherThanSingleWords"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldNotMatchKeywordAsSubstringOfAnotherWord"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldSplitOnNonAlphanumericsAndLowercase"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldMatchMultiWordPhraseOnlyWhenContiguous"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldNotOverStemShortOrNonPluralWords"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldNotMatchCareInsideCareful"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldMatchWholeWord"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldNotMatchFarmInsideFarmer"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldNotMatchPhraseWhenWordsAppearSeparately"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldMatchPhraseAcrossDroppedStopwords"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldSingularizeIesToY"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldStripEsAfterSibilant"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldMatchPluralTextAgainstSingularKeyword"
+        },
+        {
+          "className": "org.firststep.backend.shared.classification.TokenizerTest",
+          "name": "shouldReturnEmptyForNullOrBlankText"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.dto.ApiResponseTest",
+      "tests": 2,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.dto.ApiResponseTest",
+          "name": "shouldSetErrorFieldsWhenError"
+        },
+        {
+          "className": "org.firststep.backend.shared.dto.ApiResponseTest",
+          "name": "shouldWrapDataWhenSuccess"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+      "tests": 6,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+          "name": "shouldRetainAllTenStoredNewsButDeliverFiveCurrentlyEligibleItems"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+          "name": "shouldCountOnlyCurrentHousingNewsInNavigationAndCollections"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+          "name": "shouldApplyBoundCommunityTimezoneConfiguration"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+          "name": "shouldExcludeRealExpiredHousingPolicyFixturesFromCategoryAndGovernmentUpdates"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+          "name": "shouldPreservePastEventFlyersAndTheirHistoricalDetailLinks"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryApiTest",
+          "name": "shouldExcludeExpiredCommunityMeetingsAndUpdateTheirCurrentCounts"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+      "tests": 19,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldReadAllSevenContentClassesWithOriginalIdentityTypeAndProvenance"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldIsolateMalformedExpiryWithoutAssigningAStateOrHidingValidRecords"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldProduceIdenticalFindingsAndOrderingForTheSameClockAndReorderedStoredRows"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldNotInventFindingsOrExpiryFromMissingBlankAndUnrelatedDates"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldKeepInactiveWithdrawnAndUnapprovedContextIndependentOfExpiry"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldRenderEmptyResultsAndMissingMetadataIntelligiblyWithoutTraces"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldReportOnlyAttentionAtExactCommunityCalendarBoundaries(String, int, String, long)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldReportOnlyAttentionAtExactCommunityCalendarBoundaries(String, int, String, long)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldReportOnlyAttentionAtExactCommunityCalendarBoundaries(String, int, String, long)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldReportOnlyAttentionAtExactCommunityCalendarBoundaries(String, int, String, long)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldHonorTheExistingConfiguredApproachingWindow"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldUseOwningCommunityZonesAndExactScope"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldRetainStoredRecordsAndResidentExpiryBehaviorWithoutMutation"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldCalculateCalendarDistanceAcrossDaylightSaving(String, String, long)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldCalculateCalendarDistanceAcrossDaylightSaving(String, String, long)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldCalculateCalendarDistanceAcrossDaylightSaving(String, String, long)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldCalculateCalendarDistanceAcrossDaylightSaving(String, String, long)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldCalculateCalendarDistanceAcrossDaylightSaving(String, String, long)[5]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialExpiryDiagnosticsTest",
+          "name": "shouldCalculateCalendarDistanceAcrossDaylightSaving(String, String, long)[6]"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+      "tests": 31,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossSpringDaylightSaving(String, State)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossSpringDaylightSaving(String, State)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossSpringDaylightSaving(String, State)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossSpringDaylightSaving(String, State)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldUseConfiguredDeploymentZoneForUnlistedCommunities"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldResolveEachCommunityZoneWithoutChangingTheAlgorithm"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[5]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[6]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldKeepStatusIndependentOfExpiryState(CivicContent)[7]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldUseThirtyCalendarDaysAndInclusiveNewYorkExpiry(String, State)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldUseThirtyCalendarDaysAndInclusiveNewYorkExpiry(String, State)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldUseThirtyCalendarDaysAndInclusiveNewYorkExpiry(String, State)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldUseThirtyCalendarDaysAndInclusiveNewYorkExpiry(String, State)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldUseThirtyCalendarDaysAndInclusiveNewYorkExpiry(String, State)[5]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossAutumnDaylightSaving(String, State)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossAutumnDaylightSaving(String, State)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossAutumnDaylightSaving(String, State)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldPreserveLocalExpiryAcrossAutumnDaylightSaving(String, State)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[1]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[2]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[3]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[4]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[5]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[6]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldAllowMissingExpiryForEveryContentClassWithoutInventingDates(CivicContent)[7]"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldHonorConfiguredWindow"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialLifecycleTest",
+          "name": "shouldNotSilentlyTreatMalformedEditorialExpiryAsMissing"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+      "tests": 7,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldFilterUpdatesNoticesAndTheirCounts"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldFilterFindHelpAndOrganizationOfferingsWhileRetainingOrganizationIdentity"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldRetainHistoricalRecordsAndKeepPublicationStatusIndependent"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldFilterSearchAndCategorySummaryPreviews"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldFilterHomepageOriginalsLawsAndFlyerPreviews"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldFilterTopicInventoryAndDynamicTopicCounts"
+        },
+        {
+          "className": "org.firststep.backend.shared.lifecycle.EditorialProjectionTest",
+          "name": "shouldFilterAllCategoryCollectionsAndCountsIncludingLawAndApprovedArticles"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.model.CivicContentTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.model.CivicContentTest",
+          "name": "shouldReportItsOwnContentTypeForEverySubclass"
+        },
+        {
+          "className": "org.firststep.backend.shared.model.CivicContentTest",
+          "name": "shouldBindCategoryTagsFromSnakeCaseJsonKey"
+        },
+        {
+          "className": "org.firststep.backend.shared.model.CivicContentTest",
+          "name": "shouldKeepEditorialAndDescriptiveClassificationInSeparateFields"
+        },
+        {
+          "className": "org.firststep.backend.shared.model.CivicContentTest",
+          "name": "shouldAllowNewsItemToPresentAsLawWithoutChangingItsClass"
+        },
+        {
+          "className": "org.firststep.backend.shared.model.CivicContentTest",
+          "name": "shouldLeaveSubcategoryNullWhenSourceDoesNotClassifyToTopicLevel"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+      "tests": 11,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldRecordUnknownIdsSoTheyCanBeSurfaced"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldPairEveryFeedWithThePublisherThatDeclaresIt(Path)"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldPlaceOneProducerInOneSectorRegardlessOfWhatTheyPublish"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldLeaveTheNameNullWhenTheProducerIsUnknown"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldIgnoreAnUnrecognisedSectorRatherThanCoercingIt(Path)"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldDegradeToNoSectorsWhenTheRegistryIsMissing(Path)"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldNotOverwriteANameThatIsAlreadySet"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldResolveAProducerNameFromItsId"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldResolveAProducerSectorFromItsId"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldReportNoSectorForContentWithNoSourceAtAll"
+        },
+        {
+          "className": "org.firststep.backend.shared.service.ContentSourceServiceTest",
+          "name": "shouldReportNoSectorForAnUnknownIdRatherThanGuessingOne"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.util.CommunitySlugTest",
+      "tests": 5,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.util.CommunitySlugTest",
+          "name": "shouldSlugifySingleWordCity"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.CommunitySlugTest",
+          "name": "shouldReturnNullForNullOrBlankCity"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.CommunitySlugTest",
+          "name": "shouldSlugifyMultiWordCity"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.CommunitySlugTest",
+          "name": "shouldTrimAndLowercase"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.CommunitySlugTest",
+          "name": "shouldStripPunctuationWhenSlugifying"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.util.TextScoreTest",
+      "tests": 12,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnZeroWhenQueryIsNullOrBlank"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnZeroForArrayOfFieldsWithNoMatch"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldLowercaseAndTrimNonNullString"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnZeroWhenFieldIsNullOrBlank"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnZeroForListOfFieldsWithNoMatch"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnFirstMatchingScoreForArrayOfFields"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnEmptyStringWhenLoweringNull"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldMatchCaseInsensitively"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnFivePointsWhenFieldContainsQuery"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnZeroForNullOrEmptyListOfFields"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnFirstMatchingScoreForListOfFields"
+        },
+        {
+          "className": "org.firststep.backend.shared.util.TextScoreTest",
+          "name": "shouldReturnZeroWhenFieldDoesNotContainQuery"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.shared.web.GlobalExceptionHandlerTest",
+      "tests": 3,
+      "cases": [
+        {
+          "className": "org.firststep.backend.shared.web.GlobalExceptionHandlerTest",
+          "name": "shouldReturn400WhenRequiredRequestParamMissing"
+        },
+        {
+          "className": "org.firststep.backend.shared.web.GlobalExceptionHandlerTest",
+          "name": "shouldReturn404WhenNotFoundExceptionThrown"
+        },
+        {
+          "className": "org.firststep.backend.shared.web.GlobalExceptionHandlerTest",
+          "name": "shouldReturn500WhenUnexpectedExceptionThrown"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.updates.controller.UpdatesControllerTest",
+      "tests": 1,
+      "cases": [
+        {
+          "className": "org.firststep.backend.updates.controller.UpdatesControllerTest",
+          "name": "shouldReturnNormalizedUpdatesFeed"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.backend.updates.service.UpdatesServiceTest",
+      "tests": 17,
+      "cases": [
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldCapAtEightItems"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldNormalizeNewsItemFields"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldSortNullDatesLast"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldRespectTheCallersLimitOnACategoryFeed"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldLeaveCategoryTagsNullForUnclassifiedFlyer"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldNotIncludeExpertContentInTheHomepageFeed"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldCarryEditorialCategoryTagsForFlyers"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldDedupeNewsByIdAcrossCuratedAndRss"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldReturnEmptyFeedForUnknownCategoryKey"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldCarryEditorialCategoryTagsForNewsItems"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldNotIncludeUnclassifiedContentInACategoryFeed"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldIncludeEveryNonResourceContentTypeInACategoryFeed"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldScopeCategoryFeedToItsEditorialClassification"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldDistinguishSignedLegislationFromCuratedNews"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldFilterCategoryFeedByCommunityWhenRequested"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldUseEventDateForFlyerAndFallBackToUpdatedDate"
+        },
+        {
+          "className": "org.firststep.backend.updates.service.UpdatesServiceTest",
+          "name": "shouldMergeNewsAndFlyersSortedByDateDescending"
+        }
+      ]
+    },
+    {
+      "name": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+      "tests": 6,
+      "cases": [
+        {
+          "className": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+          "name": "shouldOfferUsageWithoutStartingTheApplication"
+        },
+        {
+          "className": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+          "name": "shouldRejectPartialRepositoryLoadingRatherThanReportAFalseEmptySuccess(Path)"
+        },
+        {
+          "className": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+          "name": "shouldRejectInvalidClockOrOptionsWithoutStackTraces"
+        },
+        {
+          "className": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+          "name": "shouldReportRealStoredExpiredPoliciesAndApproachingItemRepeatably"
+        },
+        {
+          "className": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+          "name": "shouldRenderAnIntelligibleEmptyCommunityReport"
+        },
+        {
+          "className": "org.firststep.maintenance.EditorialExpiryReportCommandTest",
+          "name": "shouldIsolateAnInvalidStoredDateInTheCommandWithoutLosingOtherFindings(Path)"
+        }
+      ]
+    }
+  ]
+}

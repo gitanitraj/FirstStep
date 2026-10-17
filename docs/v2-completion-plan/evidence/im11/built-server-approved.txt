@@ -1,0 +1,23 @@
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/category/housing?communityId=wilmington-de HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/index-1YENe893.js HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/index-B9K62z1K.css HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/logo-feet-CFx0DpSv.png HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2 HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /api/category/housing?communityId=wilmington-de HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:29] "GET /api/category/housing?communityId=wilmington-de HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:30] "GET /api/category/housing/transitional-housing?communityId=wilmington-de HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:30] "GET /app-next/category/housing/transitional-housing?communityId=wilmington-de HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:30] "GET /api/category/housing/transitional-housing?communityId=wilmington-de HTTP/1.1" 200 -
+127.0.0.1 - - [17/Oct/2026 16:36:30] "GET /api/category/housing?communityId=wilmington-de HTTP/1.1" 200 -
+Traceback (most recent call last):
+  File "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im11/serve-built.py", line 25, in <module>
+    ThreadingHTTPServer(('127.0.0.1', 4181), Handler).serve_forever()
+    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/socketserver.py", line 235, in serve_forever
+    ready = selector.select(poll_interval)
+  File "/Library/Frameworks/Python.framework/Versions/3.14/lib/python3.14/selectors.py", line 398, in select
+    fd_event_list = self._selector.poll(timeout)
+KeyboardInterrupt

@@ -1,0 +1,6 @@
+{
+  "featuredItemAssignmentComparatorCoverageFallbackDiagnosticsUnchanged": true,
+  "originalAlgorithmTailSha256": "2bd706f2c3ab0ad387b968b7a46405c083ae14aa0339533616cae2f534decd98",
+  "finalAlgorithmTailSha256": "2bd706f2c3ab0ad387b968b7a46405c083ae14aa0339533616cae2f534decd98",
+  "onlyProductionChange": "VISUAL source URL must parse as absolute HTTP(S) with a host; no provenance rewrite, other-role/fallback removal or ranking change"
+}

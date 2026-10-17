@@ -1,0 +1,26 @@
+[
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java",
+    "mirror": "references/FeaturedItemSelector_annotated.java",
+    "headerBytes": 645,
+    "sha256": "c81acfb2f1a5be4483f620f0e0f8a272e656b4ab3f7297136d1b8e19f49394ee"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/Im11InteractionRegressionTest.java",
+    "mirror": "references/tests/Im11InteractionRegressionTest_annotated.java",
+    "headerBytes": 654,
+    "sha256": "8cc3c30595dab923477b2ffa5f6e4dc991205bc18f3a33146ced8f18f3dc8f46"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/Im11RealCatalogAuditTest.java",
+    "mirror": "references/tests/Im11RealCatalogAuditTest_annotated.java",
+    "headerBytes": 649,
+    "sha256": "9c44884aded2ce87a8cbd6e76ed8eb7608c102b8f004b4cd3053dc2dd579e074"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/selection/Im11RealCollisionRegressionTest.java",
+    "mirror": "references/tests/Im11RealCollisionRegressionTest_annotated.java",
+    "headerBytes": 656,
+    "sha256": "0f05b457683daf6cc2fb39ca41320346696508feed80b70011bbeaa8eabb9ead"
+  }
+]

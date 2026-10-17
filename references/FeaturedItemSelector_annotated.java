@@ -1,10 +1,10 @@
 /*
- * WHAT: Complete annotated mirror of FeaturedItemSelector.java.
- * WHY: IM-07 selects distinct item roles without changing resident eligibility or public DTOs.
- * INTERACTION: Current authored inventory intersects existing projections before role matching.
- * ALTERNATIVES: Greedy slots lose role coverage; weighted scores obscure approved tie stages.
- * TEST STRATEGY: Service fixtures exercise gates; exhaustive oracle checks assignments;
- * real catalog integration pins actual collisions. Production remains internal, read-only.
+ * WHAT: Complete IM-11 annotated mirror of backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java.
+ * WHY: Lock actual catalog collisions and preserve deterministic selection under explicit evidence.
+ * INTERACTION: Existing selectors consume unchanged current authored inventory and controlled projections.
+ * The sole production correction rejects unsafe URLs as positive VISUAL source evidence; matching,
+ * comparator order, role windows, fallback, occurrence and diagnostics remain independent.
+ * ALTERNATIVES: Re-ranking, fabricated catalog dates, Flyer activation and a new model were rejected.
  */
 package org.firststep.backend.category.selection;
 
@@ -124,7 +124,7 @@ public class FeaturedItemSelector {
                     && originalImage != null && !originalImage.isBlank()
                     && card.imageUrl() != null && !card.imageUrl().isBlank()
                     && source != null && source.id != null && !source.id.isBlank()
-                    && source.url != null && !source.url.isBlank();
+                    && safeVisualSource(source.url);
             roles.remove(Role.VISUAL);
             if (visual) { roles.add(Role.VISUAL); evidence.add("actionable_flyer_original_media_and_source"); }
             else limitations.add("no_positive_visual_media_source_evidence:" + item.id);
@@ -135,6 +135,18 @@ public class FeaturedItemSelector {
                     facts.catalogOrApprovalDate(), evidence, limitations));
         }
         return order(communityId, categoryKey, canonical, today, candidates, diagnostics);
+    }
+
+    /** IM-11: executable/relative text is not safe original source evidence for VISUAL. */
+    private static boolean safeVisualSource(String value) {
+        if (value == null) return false;
+        try {
+            var uri = java.net.URI.create(value);
+            return ("https".equalsIgnoreCase(uri.getScheme()) || "http".equalsIgnoreCase(uri.getScheme()))
+                    && uri.getHost() != null;
+        } catch (IllegalArgumentException invalid) {
+            return false;
+        }
     }
 
     /** Pure assignment seam for synthetic collision fixtures; production callers use select. */

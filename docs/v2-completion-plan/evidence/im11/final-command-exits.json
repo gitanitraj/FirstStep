@@ -1,0 +1,20 @@
+{
+  "backendVerify": 0,
+  "frontendTests": 0,
+  "typecheck": 0,
+  "productionBuild": 0,
+  "python": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "packagedHttp": 0,
+  "browser": 0,
+  "demonstratedUnsafeSourceBefore": 1,
+  "focusedAfter": 0,
+  "explanation": "The isolated before failure is retained as defect proof; sandbox bind/loopback/Chromium denials are recorded separately in logs."
+}

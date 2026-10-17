@@ -1,0 +1,102 @@
+[
+  {
+    "id": "IM11-T01",
+    "result": "PASS",
+    "evidence": "Starting state, baseline commands/full logs, inspect-first and SHA inventory; actual HEAD/ignored build outputs inspected."
+  },
+  {
+    "id": "IM11-T02",
+    "result": "PASS",
+    "evidence": "Im11RealCatalogAuditTest.im11T02T04T05T17ReadOnlyAllHousingCandidatesFixedOrRuntimeAudit;56 stored Housing rows, nine Topics and36 scoped Help IDs; stored raw facts and origin table."
+  },
+  {
+    "id": "IM11-T03",
+    "result": "PASS",
+    "evidence": "Im11RealCollisionRegressionTest.im11T03T07RealTopicTiesStrictTopFourCutoffAndAllEvidenceSurviveOneHundredShuffles; FeaturedTopicOrderingTest's nine seven-stage fixtures."
+  },
+  {
+    "id": "IM11-T04",
+    "result": "PASS",
+    "evidence": "AuditTest.im11T02T04T05T17; FeaturedTopicOrderingTest.fewerThanFourNonzeroHelpTopicsAreNeverPaddedWithContextOnlyTopics. Exact real4/9 and Food scopes."
+  },
+  {
+    "id": "IM11-T05",
+    "result": "PASS",
+    "evidence": "CollisionTest.im11T05T07AllNineRealItemSelectionsAndFallbackCollisionsSurviveOneHundredShuffles; exact12 winners/roles/rivals/provenance; actual API/browser proof."
+  },
+  {
+    "id": "IM11-T06",
+    "result": "PASS",
+    "evidence": "CollisionTest.im11T06RealFourWayHomeownershipDurableCollisionReachesCanonicalIdAndScopedDiagnostic; AuditTest.im11T06PersistedRealCollisionCandidatesMatchTheThenCurrentCatalog."
+  },
+  {
+    "id": "IM11-T07",
+    "result": "PASS",
+    "evidence": "CollisionTest.im11T03T07 and im11T05T07; actual Rental4/Sober3 strict cutoff and Senior/Youth tie; FeaturedTopicOrderingTest.shuffledInputsProduceExactlyEqualEvidenceAndCutoffDiagnostics for synthetic equal-rank cutoff."
+  },
+  {
+    "id": "IM11-T08",
+    "result": "PASS",
+    "evidence": "FeaturedItemAssignmentTest.t11GlobalMaximumAndLexicographicTupleMatchExhaustiveOracleAcrossRoleGraphs; FeaturedItemSelectorTest.t10IndependentTimelyPreservesFlyerVisualCoverage and t11CoveragePrecedesHigherRankedDirectTimely."
+  },
+  {
+    "id": "IM11-T09",
+    "result": "PASS",
+    "evidence": "FeaturedItemSelectorTest.t04ExactFlyerHelpAccessControlsAdmissionWithoutMutation and t05DirectLocalWindowBoundariesDoNotExcludeOrdinaryInventory; Im11InteractionRegressionTest.im11T09T16IndependentCommunityDaysControlDayThirtyWithoutChangingHelpOrOccurrence and four DST rows."
+  },
+  {
+    "id": "IM11-T10",
+    "result": "PASS",
+    "evidence": "FeaturedItemSelectorTest.t06AuthoredContextLocalWindowAndPolicyType, t12DirectHelpPrecedesNewerContextAndExpiryCannotQualify; FeaturedTopicSelectorIntegrationTest.rawRssFreshnessWithoutExplicitTopicNeverCreatesRelevanceOrNewness; IM-09 authored-law counterexamples rerun."
+  },
+  {
+    "id": "IM11-T11",
+    "result": "PASS",
+    "evidence": "FeaturedItemSelectorTest.t07DurableRequiresAffirmativeExactStandardNotUndated, t03LifecycleApprovalAndApproachingWithoutTimelyBoost, t14GenuineVisualNewnessButCopiedResourceDatesCannotDiscriminate; all real urgency/newness facts captured."
+  },
+  {
+    "id": "IM11-T12",
+    "result": "PASS",
+    "evidence": "InteractionTest.im11T12UnsafeSourceCannotSupplyPositiveVisualEvidence failing-before/passing-after; existing t08VisualRequiresMediaSourceAndRetainsOriginalPresentation and t04 exact Help token; real0/8 preserved."
+  },
+  {
+    "id": "IM11-T13",
+    "result": "PASS",
+    "evidence": "CollisionTest.im11T13RepeatedProjectionOfRealCanonicalIdCannotCreateExtraSlotsOrFalseRoles; FeaturedItemSelectorTest.t16FallbackTruthfulAndHelpPrecedesNewerContext and t17EmptyOneTwoAndLargeInventoryWithoutCap; Public Housing1/Youth2 real outputs."
+  },
+  {
+    "id": "IM11-T14",
+    "result": "PASS",
+    "evidence": "AuditTest.im11T14ActualMockMvcCategoryPreservesExactSelectorOrderAndRolesWithoutPrivateEvidence; CategoryDestinationServiceTest.t02t03PassesThroughInjectedTopicAndItemOrderWithoutHousingRanking;15 packaged API requests and built-app12-card comparison."
+  },
+  {
+    "id": "IM11-T15",
+    "result": "PASS",
+    "evidence": "InteractionTest.im11T15ExplicitEndConclusionDoesNotGloballyDeleteHelpOrOverrideIndependentDateTimelyRule; EventProjectionTest.t17RealFl008HasNoStructuredEndAndUsesItsActualCalendarBoundary; EventOccurrenceCatalogTest real next-midnight/independent Flyers; all IM-10 end/DST tests rerun."
+  },
+  {
+    "id": "IM11-T16",
+    "result": "PASS",
+    "evidence": "InteractionTest.im11T09T16SelectorWindowUsesCalendarDaysAcrossBothDstTransitions (four rows), independent Community test; retained IM-06/07 lifecycle/zone fixtures and IM-10 DST scenarios."
+  },
+  {
+    "id": "IM11-T17",
+    "result": "PASS",
+    "evidence": "AuditTest.im11T02T04T05T17 and actual public API memberships; CivicCollectionCatalogTest exact approved/denied admissions and publication/privacy; CivicCollectionContractTest authored LAW/Topic counterexamples; Article/News/Flyer DTO tests rerun."
+  },
+  {
+    "id": "IM11-T18",
+    "result": "PASS",
+    "evidence": "InteractionTest.im11T18UnknownOccurrenceAndMissingVisualFactsProduceDeterministicSeparateDiagnostics; existing missing urgency/source/media/dates/Article approval/authored proof/newness diagnostics; no inferred facts."
+  },
+  {
+    "id": "IM11-T19",
+    "result": "PASS",
+    "evidence": "Final602 backend verify/package,146 frontend/type/build,14 Python/six validators; fixed/runtime before/after;15 HTTP requests;375/1280 keyboard/scoped browser checks."
+  },
+  {
+    "id": "IM11-T20",
+    "result": "PASS",
+    "evidence": "All original file hashes compared; only the independently demonstrated guard/mirror change; four complete mirrors; unchanged authoritative matrix, original Flyers, models, taxonomy, selectors' ranking implementation and package boundary."
+  }
+]

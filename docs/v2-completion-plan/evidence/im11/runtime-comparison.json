@@ -1,0 +1,6 @@
+{
+  "equalExceptCapturedInstant": true,
+  "beforeClock": "2026-10-17T20:26:26.168224Z",
+  "afterClock": "2026-10-17T20:30:23.441011Z",
+  "comparison": "All runtime audit JSON fields other than capture Instant are equal; same Community-local date"
+}

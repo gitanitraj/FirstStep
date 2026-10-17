@@ -1,0 +1,27 @@
+# IM-11 inspect-first analysis
+
+Starting branch copyofdev; HEAD140bfe53161f87729545a785d597c90d87e63737. Tracked baseline clean; only two supplied IM-11 authority documents untracked. IM-10 changes are now committed in this actual checkout. Initial SHA inventory protects all tracked/untracked files, including models, selectors, current services, catalogs, original media, tests, manifests, IM-09 exact admissions and IM-10 occurrence helper. Relevant ignored target/dist/node_modules state is recorded separately. No staging/commit/push/reset/stash/catalog edit is authorized.
+
+Read claude.md, current IM-11 work order, v2.11 matrix §14B, approved P5 §§18–28/R6a–R6d, Architecture Resolutions featured-topic hierarchy, Decisions051/052 and IM-06 qualification/IM-06–10 reports and evidence. Current production seams inspected: FeaturedTopicSelector/Inventory, AuthoredTopicEvidence, FeaturedRoleQualification, FeaturedItemSelector; CategoryContentService/DestinationService/PageService/API/UI; EditorialLifecycle/Community zones; EventOccurrence/Notices/FlyerSummary; Article approval, NewsSummary and exact First Rate News manifest.
+
+## Contracts retained
+
+Topics rank lexicographically by distinct current authored actionable Help count, maximum distinct-ID role coverage, direct actions, recent authored context, genuine catalog/approval newness, canonical Topic key, scoped technical diagnostic. Zero-help Topics never pad selection. Items maximize distinct-role matching before TIMELY/DURABLE/VISUAL priority; one identity per position; fallbacks remain explicitly FALLBACK. Resource urgency must be exact standard for DURABLE; copied source dates never establish Resource/News catalog newness. Item VISUAL admission requires actionable Flyer token, original media, projected media and source evidence. The lower-level IM-06 image proxy is not itself an IM-07 item admission or positive editorial help assignment.
+
+IM-10 conclusion applies only at current Events. It does not rewrite Help eligibility or the independent IM-06/07 event_date TIMELY window, and does not expire contextual media. No live Flyer has approved helpAccess. FL-002 remains contextual Housing; real FL-008 has only event_date2026-10-17 and no structured end. IM-09 exact First Rate News admissions remain independent of Help counts; Category-only Expert/FAQ cannot acquire a Topic.
+
+## Verification plan and bounded uncertainty
+
+Run untouched offline Maven/JDK25/Mockito verify+package, frontend tests/type/build, Python tests/six validators. New read-only test captures all Housing raw/current rows, authored proof, exact help IDs, proxy facts versus admitted item roles, Topic/item diagnostics, Category DTO, Food/Wilmington, Food/bear-de, Housing/bear-de, real event/Flyer inventory and all source provenance. Capture frozen2026-10-16T16:00Z and a separate frozen-at-runtime Instant before changing existing code. RSS refresh is delayed, no complete-feed or external-source reachability claim.
+
+Persist actual collision candidates after that audit, then test real Homeownership four-DURABLE collision, other actual ties/fallbacks, strict top-four cutoff and shuffled repeated evidence. A synthetic five-way cutoff tie and multi-role assignment oracle remain distinct from real collisions. New synthetic tests exercise EventOccurrence conclusion versus unchanged Help/selector membership and safe/weak/missing VISUAL source evidence. Existing selector tests already cover direct/context date windows, absent metadata/newness, canonical identity, lifecycle/Community and seven-stage hierarchy; they will be rerun and mapped to IM11-T01–T20.
+
+Potential defect to isolate, not yet presumed: the current item VISUAL predicate checks source.url only for nonblank text, while IM11-T12 explicitly requires safe source facts. A fully otherwise-qualified synthetic Flyer with an executable URL must be tested independently of other gates before deciding whether correction is necessary. No production selector rank/coverage/hierarchy or Topic proxy change is authorized merely because a catalog is sparse.
+
+Only a failing-before test demonstrating a current contract breach can justify a minimal production correction. Otherwise this is verification-only. No weighted scores, new status/type/entity, inferred facts, source/provider relationship, Flyer approval or IM-12/13/14 work.
+
+## Demonstrated bounded defect — after both before snapshots
+
+The isolated im11T12UnsafeSourceCannotSupplyPositiveVisualEvidence test failed specifically because `javascript:alert(1)` conferred VISUAL on an otherwise fully admitted, explicitly actionable, authored synthetic Flyer. The test first proves actionable and TIMELY remain positive, isolating URL source safety rather than another rejection gate. IM11-T12 requires safe source facts; a nonblank executable string cannot supply that evidence. The test and failing log were retained before correction.
+
+Correction authorized by that demonstrated breach: replace only the item VISUAL source URL nonblank check with parseable absolute HTTP(S) URL with host. Preserve original source text/provenance/card mapping, all other admission predicates, Topic proxies, comparator priority, assignment/coverage, fallback, diagnostics and canonical order. Unsafe source removes only positive VISUAL evidence; other legitimate roles/fallback membership remain independently eligible. No catalog/source URL is rewritten. Both actual before snapshots and the fixture are already captured, so unchanged real results can be compared exactly after correction.

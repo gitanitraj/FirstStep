@@ -1,0 +1,62 @@
+{
+  "status": "PASS",
+  "browser": "151.0.7922.34",
+  "checks": [
+    {
+      "width": 375,
+      "scroll": 375
+    },
+    {
+      "width": 1280,
+      "scroll": 1280
+    }
+  ],
+  "ids": [
+    "HA-002",
+    "HA-003",
+    "HA-005",
+    "HA-016",
+    "HA-001",
+    "HA-006",
+    "HA-011",
+    "HA-013",
+    "HA-021",
+    "HA-008",
+    "HA-023",
+    "HA-026"
+  ],
+  "roles": [
+    "DURABLE",
+    "FALLBACK",
+    "FALLBACK",
+    "DURABLE",
+    "FALLBACK",
+    "FALLBACK",
+    "DURABLE",
+    "FALLBACK",
+    "FALLBACK",
+    "DURABLE",
+    "FALLBACK",
+    "FALLBACK"
+  ],
+  "hrefs": [
+    "https://www.bereadycdc.org/",
+    "https://www.bereadycdc.org/",
+    "https://www.ccwilm.org/bayard-house/",
+    "https://www.ministryofcaring.org/",
+    "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+    "https://www.childinc.com/domestic-violence-services/shelters/",
+    "https://www.habitatncc.org/our-programs/homeownership/",
+    "https://www.hond.org/home/",
+    "https://www.neighborgoodpartners.org/",
+    "http://www.destatehousing.com",
+    "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+    "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm"
+  ],
+  "keyboardTopicNavigation": true,
+  "refreshAndBack": true,
+  "communityPreserved": true,
+  "noSemanticRoleBadges": true,
+  "errors": [],
+  "limitation": "Focused built-app integration; not exhaustive WCAG, physical devices or external source reachability."
+}

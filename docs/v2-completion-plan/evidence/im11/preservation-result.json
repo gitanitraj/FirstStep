@@ -1,0 +1,22 @@
+{
+  "startingFiles": 1126,
+  "unchanged": 1124,
+  "authorizedExistingFileChanges": [
+    "backend/src/main/java/org/firststep/backend/category/selection/FeaturedItemSelector.java",
+    "references/FeaturedItemSelector_annotated.java"
+  ],
+  "noUnexpectedChanges": true,
+  "originalCatalogsUnchanged": true,
+  "originalMediaUnchanged": true,
+  "allEightFlyersUnchanged": true,
+  "approvedFlyerHelpAccessAssignments": 0,
+  "im09AdmissionManifestUnchanged": true,
+  "modelsTaxonomyLifecycleOccurrenceAndCompositionUnchanged": true,
+  "featuredTopicSelectorInventoryAuthoredEvidenceAndQualificationUnchanged": true,
+  "featuredItemComparatorMatchingFallbackDiagnosticsUnchanged": true,
+  "frontendDependenciesLocksAndAuthorityUnchanged": true,
+  "flyerSha256": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa",
+  "annotatedMirrors": 4,
+  "head": "140bfe53161f87729545a785d597c90d87e63737",
+  "stagedFiles": []
+}
