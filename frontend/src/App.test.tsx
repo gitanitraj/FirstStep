@@ -90,7 +90,7 @@ describe('The front door', () => {
       'href',
       '/category/housing',
     );
-    expect(screen.getByRole('link', { name: /Seniors/ })).toHaveAttribute(
+    expect(await screen.findByRole('link', { name: /Seniors/ })).toHaveAttribute(
       'href',
       '/discover/seniors',
     );

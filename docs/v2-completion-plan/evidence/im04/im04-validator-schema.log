@@ -1,0 +1,160 @@
+
+════════════════════════════════════════════════════════════
+  WILMINGTON CIVIC APP — SCHEMA VALIDATOR
+════════════════════════════════════════════════════════════
+  File:    app/data/resources.json
+  Records: 58
+  ✅ Passed:    58
+  ❌ Failed:    0
+  ⚠️  Warnings:  42
+════════════════════════════════════════════════════════════
+
+── WARNINGS ──────────────────────────────────────────
+
+  [CI-001] Beautiful Gate Outreach Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [CI-002] Belvedere State Service Center
+    ! parent_organization is null — confirm this is intentional.
+
+  [CI-003] Brandywine Counseling & Community Services, Inc. (BCCS)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [CI-004] Catholic Charities - Diocese of Wilmington - Thrift Services Vouchers
+    ! notes field is empty.
+
+  [CI-005] Central YMCA - Y Mission Market
+    ! notes field is empty.
+
+  [CI-006] Hanover Presbyterian Church
+    ! parent_organization is null — confirm this is intentional.
+
+  [CI-007] Kingswood Community Center
+    ! parent_organization is null — confirm this is intentional.
+
+  [CI-008] Latin American Community Center (LACC)
+    ! parent_organization is null — confirm this is intentional.
+
+  [CI-009] Network Connect - RACE (Reverse the ACES)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [CI-010] Rosehill Community Center
+    ! parent_organization is null — confirm this is intentional.
+
+  [CI-011] Salvation Army
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [CI-012] St. Patricks Center
+    ! parent_organization is null — confirm this is intentional.
+
+  [CI-014] The Friendship House Clothing Bank
+    ! notes field is empty.
+
+  [CI-015] William Hicks Anderson Community Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [FH-001] Barlow's Upholstery Inc.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [FH-002] Catholic Charities - Diocese of Wilmington - Thrift Services Vouchers
+    ! notes field is empty.
+
+  [FH-003] H and N Appliances
+    ! parent_organization is null — confirm this is intentional.
+    ! No websites listed.
+
+  [FH-005] ServiceSource - Warrier Bridge
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-001] American Red Cross
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-002] Be Ready CDC - Esther's Place
+    ! notes field is empty.
+
+  [HA-003] Be Ready CDC - Lazarus House
+    ! notes field is empty.
+
+  [HA-004] Belvedere State Service Center
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-005] Catholic Charities - Bayard House
+    ! notes field is empty.
+
+  [HA-009] Family Promise of Northern New Castle County
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-010] Friendship House
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-011] Habitat for Humanity
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-012] Hilda Davis Residence
+    ! No websites listed.
+
+  [HA-013] Housing Opportunities of Northern Delaware, Inc. (HOND)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-014] Limen Recovery and Wellness
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-015] Maria Lorenza Longo House
+    ! notes field is empty.
+
+  [HA-016] Ministry of Caring Inc
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-019] Nazareth House Holistic Housing I
+    ! notes field is empty.
+
+  [HA-020] Nazareth House Holistic Housing II
+    ! notes field is empty.
+
+  [HA-021] NeighborGood Partners: Wilmington
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-022] Neighborhood House
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-023] Northeast State Service Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-025] Oxford Houses of Delaware
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-026] Porter State Service Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [HA-027] Sacred Heart Village
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-029] Sunday Breakfast Mission
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-033] William Booth Emergency Housing Residence
+    ! parent_organization is null — confirm this is intentional.
+
+  [HA-036] Wilmington Senior Center - Lafayette Court Apartments
+    ! notes field is empty.
+
+  All records passed schema validation. ✅
+
+════════════════════════════════════════════════════════════
+
+
+EXPERT / FAQ EXPLICIT CLASSIFICATION (all stored Communities and statuses)
+Expert/FAQ records inspected: 12; classification failures: 0

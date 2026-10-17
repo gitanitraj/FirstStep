@@ -30,11 +30,8 @@ import static org.mockito.Mockito.when;
  * editorial classification selects items for a topic, and the taxonomy IS that
  * vocabulary.
  *
- * <p><b>Every assertion below predates Decision 051 and none of them changed when
- * content resolution moved into {@link CategoryContentService}.</b> That is the
- * point: the delegation was a refactor, and a test that had to be rewritten to keep
- * passing would have proved the opposite. Only the wiring moved — the same two
- * mocked services now reach the topic page through the shared resolver.
+ * <p>IM-05 changes Topic delivery to help-only through the unchanged IM-04 seam.
+ * Flyer fixtures must therefore carry the explicit approved semantic.
  */
 class TopicPageServiceTest {
 
@@ -66,7 +63,7 @@ class TopicPageServiceTest {
         TaxonomyService taxonomy = new TaxonomyService("../app/data");
         CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
                 news, rss, flyerService, expert, faq, articles);
-        service = new TopicPageService(taxonomy, content);
+        service = new TopicPageService(taxonomy, content, resourceService);
     }
 
     private static Resource resource(String id, String title, List<String> categoryTags, String subcategory) {
@@ -152,11 +149,12 @@ class TopicPageServiceTest {
     }
 
     @Test
-    void shouldIncludeFlyersAlongsideResources() {
+    void shouldIncludeOnlyExplicitlyActionableFlyersAlongsideResources() {
         when(resourceService.getAll()).thenReturn(List.of(
                 resource("R1", "A shelter", List.of("Housing"), "Emergency Shelter")));
         Flyer f = new Flyer();
         f.id = "F1";
+        f.helpAccess = "ACTIONABLE_HELP_ACCESS";
         f.title = "B flyer";
         f.categoryTags = List.of("Housing");
         f.subcategory = "Emergency Shelter";

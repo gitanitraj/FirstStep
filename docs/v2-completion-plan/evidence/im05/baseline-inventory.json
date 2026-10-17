@@ -1,0 +1,131 @@
+{
+  "housing": {
+    "currentHelpCount": 36,
+    "currentIds": [
+      "HA-001",
+      "HA-002",
+      "HA-003",
+      "HA-005",
+      "HA-006",
+      "HA-007",
+      "HA-008",
+      "HA-009",
+      "HA-010",
+      "HA-011",
+      "HA-012",
+      "HA-013",
+      "HA-014",
+      "HA-015",
+      "HA-016",
+      "HA-017",
+      "HA-018",
+      "HA-019",
+      "HA-020",
+      "HA-021",
+      "HA-022",
+      "HA-023",
+      "HA-024",
+      "HA-025",
+      "HA-026",
+      "HA-027",
+      "HA-028",
+      "HA-029",
+      "HA-030",
+      "HA-031",
+      "HA-032",
+      "HA-033",
+      "HA-034",
+      "HA-035",
+      "HA-036",
+      "HA-037"
+    ],
+    "missingTopicIds": [],
+    "topics": [
+      {
+        "name": "Emergency Shelter",
+        "slug": "emergency-shelter",
+        "oldAllContentCount": 9,
+        "helpCount": 9
+      },
+      {
+        "name": "Transitional Housing",
+        "slug": "transitional-housing",
+        "oldAllContentCount": 11,
+        "helpCount": 11
+      },
+      {
+        "name": "Sober Living",
+        "slug": "sober-living",
+        "oldAllContentCount": 3,
+        "helpCount": 3
+      },
+      {
+        "name": "Public Housing",
+        "slug": "public-housing",
+        "oldAllContentCount": 1,
+        "helpCount": 1
+      },
+      {
+        "name": "Senior Housing",
+        "slug": "senior-housing",
+        "oldAllContentCount": 2,
+        "helpCount": 2
+      },
+      {
+        "name": "Youth Housing",
+        "slug": "youth-housing",
+        "oldAllContentCount": 2,
+        "helpCount": 2
+      },
+      {
+        "name": "Rental Assistance",
+        "slug": "rental-assistance",
+        "oldAllContentCount": 4,
+        "helpCount": 4
+      },
+      {
+        "name": "Eviction Prevention",
+        "slug": "eviction-prevention",
+        "oldAllContentCount": 2,
+        "helpCount": 0
+      },
+      {
+        "name": "Homeownership",
+        "slug": "homeownership",
+        "oldAllContentCount": 4,
+        "helpCount": 4
+      }
+    ]
+  },
+  "food": {
+    "currentHelpCount": 0,
+    "currentIds": [],
+    "missingTopicIds": [],
+    "topics": [
+      {
+        "name": "Food Pantry",
+        "slug": "food-pantry",
+        "oldAllContentCount": 0,
+        "helpCount": 0
+      },
+      {
+        "name": "Prepared Meals",
+        "slug": "prepared-meals",
+        "oldAllContentCount": 0,
+        "helpCount": 0
+      },
+      {
+        "name": "Home-Delivered Meals",
+        "slug": "home-delivered-meals",
+        "oldAllContentCount": 0,
+        "helpCount": 0
+      },
+      {
+        "name": "Farmers Market",
+        "slug": "farmers-market",
+        "oldAllContentCount": 0,
+        "helpCount": 0
+      }
+    ]
+  }
+}

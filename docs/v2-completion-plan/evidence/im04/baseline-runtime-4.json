@@ -1,0 +1,241 @@
+{
+  "path": "/api/category/community-support?communityId=wilmington-de",
+  "response": {
+    "success": true,
+    "data": {
+      "metadata": {
+        "key": "community-support",
+        "label": "Community Support",
+        "icon": "\ud83e\udd1d",
+        "totalCount": 4,
+        "countsByType": {
+          "FLYER": 4
+        },
+        "lastUpdated": "2026-10-17"
+      },
+      "updates": [
+        {
+          "contentType": "FLYER",
+          "id": "FL-008",
+          "title": "United Neighbors 2026",
+          "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+          "date": "2026-10-17",
+          "source": "West Side Grows Together",
+          "url": null,
+          "urgency": null,
+          "categoryTags": [
+            "Community Support"
+          ]
+        },
+        {
+          "contentType": "FLYER",
+          "id": "FL-003",
+          "title": "Community Volunteer Recruitment Drive",
+          "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+          "date": "2026-09-15",
+          "source": "United Way of Delaware",
+          "url": null,
+          "urgency": null,
+          "categoryTags": [
+            "Community Support"
+          ]
+        },
+        {
+          "contentType": "FLYER",
+          "id": "FL-004",
+          "title": "Back-to-School Supply Drive Fundraiser",
+          "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+          "date": "2026-08-26",
+          "source": "Ministry of Caring Inc",
+          "url": null,
+          "urgency": null,
+          "categoryTags": [
+            "Community Support"
+          ]
+        },
+        {
+          "contentType": "FLYER",
+          "id": "FL-005",
+          "title": "Disability Services & Benefits Info Fair",
+          "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+          "date": "2026-07-30",
+          "source": "Delaware Division for the Visually Impaired",
+          "url": null,
+          "urgency": null,
+          "categoryTags": [
+            "Legal",
+            "Community Support"
+          ]
+        }
+      ],
+      "groups": [
+        {
+          "label": "Get Help",
+          "topics": [
+            {
+              "name": "Information & Referral",
+              "slug": "information-referral",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Financial Assistance",
+              "slug": "financial-assistance",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Transportation",
+              "slug": "transportation",
+              "count": 0,
+              "countsByType": {}
+            }
+          ]
+        },
+        {
+          "label": "Family and Children",
+          "topics": [
+            {
+              "name": "Child Care & Early Learning",
+              "slug": "child-care-early-learning",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Parenting Support",
+              "slug": "parenting-support",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Mentoring",
+              "slug": "mentoring",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "School Supplies",
+              "slug": "school-supplies",
+              "count": 1,
+              "countsByType": {
+                "FLYER": 1
+              }
+            }
+          ]
+        },
+        {
+          "label": "Learning and Skills",
+          "topics": [
+            {
+              "name": "Education & Training",
+              "slug": "education-training",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Life Skills",
+              "slug": "life-skills",
+              "count": 0,
+              "countsByType": {}
+            }
+          ]
+        },
+        {
+          "label": "Connect with Others",
+          "topics": [
+            {
+              "name": "Support Groups",
+              "slug": "support-groups",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Volunteer Opportunities",
+              "slug": "volunteer-opportunities",
+              "count": 1,
+              "countsByType": {
+                "FLYER": 1
+              }
+            },
+            {
+              "name": "Community Celebrations",
+              "slug": "community-celebrations",
+              "count": 1,
+              "countsByType": {
+                "FLYER": 1
+              }
+            }
+          ]
+        }
+      ],
+      "topics": [],
+      "organizations": [],
+      "collections": [
+        {
+          "key": "flyers",
+          "labelKey": "collection.flyers",
+          "layer": "INFORMATION",
+          "count": 4,
+          "items": [
+            {
+              "contentType": "FLYER",
+              "id": "FL-008",
+              "title": "United Neighbors 2026",
+              "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+              "organization": "West Side Grows Together",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-10-17",
+              "url": null,
+              "imageUrl": null
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-003",
+              "title": "Community Volunteer Recruitment Drive",
+              "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+              "organization": "United Way of Delaware",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-09-15",
+              "url": null,
+              "imageUrl": null
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-004",
+              "title": "Back-to-School Supply Drive Fundraiser",
+              "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+              "organization": "Ministry of Caring Inc",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-08-26",
+              "url": null,
+              "imageUrl": null
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-005",
+              "title": "Disability Services & Benefits Info Fair",
+              "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+              "organization": "Delaware Division for the Visually Impaired",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-07-30",
+              "url": null,
+              "imageUrl": null
+            }
+          ]
+        }
+      ],
+      "grouped": true
+    },
+    "errorCode": null,
+    "errorMessage": null,
+    "timestamp": "2026-10-16T14:11:44.158631467Z"
+  }
+}

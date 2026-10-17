@@ -1,0 +1,514 @@
+{
+  "housing/wilmington-de": {
+    "currentHelpTotal": 36,
+    "topics": [
+      {
+        "name": "Emergency Shelter",
+        "key": "emergency-shelter",
+        "currentDistinctExplicitTopicCount": 9,
+        "currentDistinctTopicIds": [
+          "HA-001",
+          "HA-006",
+          "HA-009",
+          "HA-016",
+          "HA-017",
+          "HA-018",
+          "HA-029",
+          "HA-031",
+          "HA-033"
+        ],
+        "actionableCount": 9,
+        "actionableIds": [
+          "HA-001",
+          "HA-006",
+          "HA-009",
+          "HA-016",
+          "HA-017",
+          "HA-018",
+          "HA-029",
+          "HA-031",
+          "HA-033"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Transitional Housing",
+        "key": "transitional-housing",
+        "currentDistinctExplicitTopicCount": 11,
+        "currentDistinctTopicIds": [
+          "HA-002",
+          "HA-003",
+          "HA-005",
+          "HA-010",
+          "HA-012",
+          "HA-015",
+          "HA-019",
+          "HA-020",
+          "HA-028",
+          "HA-030",
+          "HA-037"
+        ],
+        "actionableCount": 11,
+        "actionableIds": [
+          "HA-002",
+          "HA-003",
+          "HA-005",
+          "HA-010",
+          "HA-012",
+          "HA-015",
+          "HA-019",
+          "HA-020",
+          "HA-028",
+          "HA-030",
+          "HA-037"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Sober Living",
+        "key": "sober-living",
+        "currentDistinctExplicitTopicCount": 3,
+        "currentDistinctTopicIds": [
+          "HA-014",
+          "HA-024",
+          "HA-025"
+        ],
+        "actionableCount": 3,
+        "actionableIds": [
+          "HA-014",
+          "HA-024",
+          "HA-025"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Rental Assistance",
+        "key": "rental-assistance",
+        "currentDistinctExplicitTopicCount": 4,
+        "currentDistinctTopicIds": [
+          "HA-008",
+          "HA-023",
+          "HA-026",
+          "HA-034"
+        ],
+        "actionableCount": 4,
+        "actionableIds": [
+          "HA-008",
+          "HA-023",
+          "HA-026",
+          "HA-034"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Public Housing",
+        "key": "public-housing",
+        "currentDistinctExplicitTopicCount": 1,
+        "currentDistinctTopicIds": [
+          "HA-035"
+        ],
+        "actionableCount": 1,
+        "actionableIds": [
+          "HA-035"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Homeownership",
+        "key": "homeownership",
+        "currentDistinctExplicitTopicCount": 4,
+        "currentDistinctTopicIds": [
+          "HA-011",
+          "HA-013",
+          "HA-021",
+          "HA-022"
+        ],
+        "actionableCount": 4,
+        "actionableIds": [
+          "HA-011",
+          "HA-013",
+          "HA-021",
+          "HA-022"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Senior Housing",
+        "key": "senior-housing",
+        "currentDistinctExplicitTopicCount": 2,
+        "currentDistinctTopicIds": [
+          "HA-027",
+          "HA-036"
+        ],
+        "actionableCount": 2,
+        "actionableIds": [
+          "HA-027",
+          "HA-036"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Youth Housing",
+        "key": "youth-housing",
+        "currentDistinctExplicitTopicCount": 2,
+        "currentDistinctTopicIds": [
+          "HA-007",
+          "HA-032"
+        ],
+        "actionableCount": 2,
+        "actionableIds": [
+          "HA-007",
+          "HA-032"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Eviction Prevention",
+        "key": "eviction-prevention",
+        "currentDistinctExplicitTopicCount": 1,
+        "currentDistinctTopicIds": [
+          "FL-002"
+        ],
+        "actionableCount": 0,
+        "actionableIds": [],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": [
+          "FL-002"
+        ]
+      }
+    ]
+  },
+  "housing/unscoped-existing-browse": {
+    "currentHelpTotal": 44,
+    "topics": [
+      {
+        "name": "Emergency Shelter",
+        "key": "emergency-shelter",
+        "currentDistinctExplicitTopicCount": 10,
+        "currentDistinctTopicIds": [
+          "HA-001",
+          "HA-006",
+          "HA-009",
+          "HA-016",
+          "HA-017",
+          "HA-018",
+          "HA-029",
+          "HA-031",
+          "HA-033",
+          "SD-049"
+        ],
+        "actionableCount": 10,
+        "actionableIds": [
+          "HA-001",
+          "HA-006",
+          "HA-009",
+          "HA-016",
+          "HA-017",
+          "HA-018",
+          "HA-029",
+          "HA-031",
+          "HA-033",
+          "SD-049"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Transitional Housing",
+        "key": "transitional-housing",
+        "currentDistinctExplicitTopicCount": 11,
+        "currentDistinctTopicIds": [
+          "HA-002",
+          "HA-003",
+          "HA-005",
+          "HA-010",
+          "HA-012",
+          "HA-015",
+          "HA-019",
+          "HA-020",
+          "HA-028",
+          "HA-030",
+          "HA-037"
+        ],
+        "actionableCount": 11,
+        "actionableIds": [
+          "HA-002",
+          "HA-003",
+          "HA-005",
+          "HA-010",
+          "HA-012",
+          "HA-015",
+          "HA-019",
+          "HA-020",
+          "HA-028",
+          "HA-030",
+          "HA-037"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Sober Living",
+        "key": "sober-living",
+        "currentDistinctExplicitTopicCount": 4,
+        "currentDistinctTopicIds": [
+          "HA-014",
+          "HA-024",
+          "HA-025",
+          "SD-048"
+        ],
+        "actionableCount": 4,
+        "actionableIds": [
+          "HA-014",
+          "HA-024",
+          "HA-025",
+          "SD-048"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Rental Assistance",
+        "key": "rental-assistance",
+        "currentDistinctExplicitTopicCount": 7,
+        "currentDistinctTopicIds": [
+          "HA-004",
+          "HA-008",
+          "HA-023",
+          "HA-026",
+          "HA-034",
+          "SD-047",
+          "SD-050"
+        ],
+        "actionableCount": 7,
+        "actionableIds": [
+          "HA-004",
+          "HA-008",
+          "HA-023",
+          "HA-026",
+          "HA-034",
+          "SD-047",
+          "SD-050"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Public Housing",
+        "key": "public-housing",
+        "currentDistinctExplicitTopicCount": 4,
+        "currentDistinctTopicIds": [
+          "HA-035",
+          "SD-051",
+          "SD-052",
+          "SD-053"
+        ],
+        "actionableCount": 4,
+        "actionableIds": [
+          "HA-035",
+          "SD-051",
+          "SD-052",
+          "SD-053"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Homeownership",
+        "key": "homeownership",
+        "currentDistinctExplicitTopicCount": 4,
+        "currentDistinctTopicIds": [
+          "HA-011",
+          "HA-013",
+          "HA-021",
+          "HA-022"
+        ],
+        "actionableCount": 4,
+        "actionableIds": [
+          "HA-011",
+          "HA-013",
+          "HA-021",
+          "HA-022"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Senior Housing",
+        "key": "senior-housing",
+        "currentDistinctExplicitTopicCount": 2,
+        "currentDistinctTopicIds": [
+          "HA-027",
+          "HA-036"
+        ],
+        "actionableCount": 2,
+        "actionableIds": [
+          "HA-027",
+          "HA-036"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Youth Housing",
+        "key": "youth-housing",
+        "currentDistinctExplicitTopicCount": 2,
+        "currentDistinctTopicIds": [
+          "HA-007",
+          "HA-032"
+        ],
+        "actionableCount": 2,
+        "actionableIds": [
+          "HA-007",
+          "HA-032"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Eviction Prevention",
+        "key": "eviction-prevention",
+        "currentDistinctExplicitTopicCount": 1,
+        "currentDistinctTopicIds": [
+          "FL-002"
+        ],
+        "actionableCount": 0,
+        "actionableIds": [],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": [
+          "FL-002"
+        ]
+      }
+    ]
+  },
+  "food/wilmington-de": {
+    "currentHelpTotal": 0,
+    "topics": [
+      {
+        "name": "Food Pantry",
+        "key": "food-pantry",
+        "currentDistinctExplicitTopicCount": 0,
+        "currentDistinctTopicIds": [],
+        "actionableCount": 0,
+        "actionableIds": [],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Prepared Meals",
+        "key": "prepared-meals",
+        "currentDistinctExplicitTopicCount": 0,
+        "currentDistinctTopicIds": [],
+        "actionableCount": 0,
+        "actionableIds": [],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Home-Delivered Meals",
+        "key": "home-delivered-meals",
+        "currentDistinctExplicitTopicCount": 0,
+        "currentDistinctTopicIds": [],
+        "actionableCount": 0,
+        "actionableIds": [],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Farmers Market",
+        "key": "farmers-market",
+        "currentDistinctExplicitTopicCount": 0,
+        "currentDistinctTopicIds": [],
+        "actionableCount": 0,
+        "actionableIds": [],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      }
+    ]
+  },
+  "food/unscoped-existing-browse": {
+    "currentHelpTotal": 12,
+    "topics": [
+      {
+        "name": "Food Pantry",
+        "key": "food-pantry",
+        "currentDistinctExplicitTopicCount": 9,
+        "currentDistinctTopicIds": [
+          "SD-032",
+          "SD-033",
+          "SD-034",
+          "SD-036",
+          "SD-038",
+          "SD-040",
+          "SD-041",
+          "SD-042",
+          "SD-043"
+        ],
+        "actionableCount": 9,
+        "actionableIds": [
+          "SD-032",
+          "SD-033",
+          "SD-034",
+          "SD-036",
+          "SD-038",
+          "SD-040",
+          "SD-041",
+          "SD-042",
+          "SD-043"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Prepared Meals",
+        "key": "prepared-meals",
+        "currentDistinctExplicitTopicCount": 1,
+        "currentDistinctTopicIds": [
+          "SD-035"
+        ],
+        "actionableCount": 1,
+        "actionableIds": [
+          "SD-035"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Home-Delivered Meals",
+        "key": "home-delivered-meals",
+        "currentDistinctExplicitTopicCount": 1,
+        "currentDistinctTopicIds": [
+          "SD-039"
+        ],
+        "actionableCount": 1,
+        "actionableIds": [
+          "SD-039"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      },
+      {
+        "name": "Farmers Market",
+        "key": "farmers-market",
+        "currentDistinctExplicitTopicCount": 1,
+        "currentDistinctTopicIds": [
+          "SD-037"
+        ],
+        "actionableCount": 1,
+        "actionableIds": [
+          "SD-037"
+        ],
+        "lawPolicyContextIds": [],
+        "visualFlyerIds": []
+      }
+    ]
+  }
+}

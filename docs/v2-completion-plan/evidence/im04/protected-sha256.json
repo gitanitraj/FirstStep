@@ -1,0 +1,22 @@
+{
+  "app/data/Service_Directory_cleaned.json": "b8f651902d02801cfd3281480cfa2f0e770aa4ea27b02f6d319552f1df8a9365",
+  "app/data/news.json": "a5583939dfe604951c9c0cdbed86a27b9510c5ed09821d6a5e72cc41b5003e2e",
+  "app/data/news_schema.json": "41d04c8c9f1103a600041886a0cf8601b7f948fa133e69bc115cee0f0a0a77b9",
+  "app/data/resources.json": "40cfa5481e033538aef3cefb71c9e569d65120a1d490788ccc65e24330d99a02",
+  "app/data/resources.normalized.json": "6de96043107def67be6c315008c4abc3c6905969e4a79991fd2cae86c55aa723",
+  "app/data/schema.md": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+  "app/data/articles.json": "0bec5d60ab274863e8d7a1c5435cdc30fa84f72165fafe4fe17f594e34c6b8cd",
+  "app/data/expert-answers.json": "7505231145e2218ab671b6b3ad209d33bf96edea38920770242ca8927e37ea53",
+  "app/data/resources.communities.json": "441fcd86afb74a2be334310f49d1f3418c085e25b7b1b2003adb088025756141",
+  "app/data/homepage.json": "79b527e945bcb6b69631062b9e027e8326c2503a1a3935a1f92d757b773b0633",
+  "app/data/source-mappings.json": "4899047d6b5a47983b3f7e9da80f7cb8307d82ca773aab855d7ad72cd2696621",
+  "app/data/taxonomy.json": "106ef5c6313e742c07dbfb5b74081483470309a7820df6c58b8a075c1a4ae748",
+  "app/data/faq.json": "8d4a7a134eed167998bd0b19a2fba7186f8cb2d24643389128e9b4ef6482d899",
+  "app/data/navigation.json": "2e263bb095da8ec74b01576bc5686a8876214e465fef83974e9d6954f7a83a29",
+  "app/data/content-sources.json": "225910405bf3f5e65d61152b0c368593c5369e2df9c99a3ba84fb0dbb272dfe1",
+  "app/data/organizations.json": "bf499db50cc57bba9af6f58d69fda9ce5ad8842dffdae3681e3996e5c47389ea",
+  "app/data/flyers.json": "5a9c17c1d64294cb5e0d144adfe5a7208763fa617654bb13b357fd6230cd24aa",
+  "frontend/package.json": "16b02b0243c739b5dff09fd767559a5fe9c564955a22f4d43f9e439a01a974b7",
+  "frontend/package-lock.json": "3e8467f2fa2a4004b2f99469cbfaa2f66264c51876a299f34eff180cfc30dbc7",
+  "backend/pom.xml": "5a3e09de052f468bae9d24c9a44352f360f4d401d7f63f4c5d5e62add9e1c0bb"
+}

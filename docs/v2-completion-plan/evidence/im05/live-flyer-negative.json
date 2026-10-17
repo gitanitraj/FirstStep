@@ -1,0 +1,26 @@
+{
+  "categoriesChecked": [
+    "housing",
+    "food",
+    "clothing",
+    "health",
+    "employment",
+    "utilities",
+    "legal",
+    "community-events",
+    "furniture-household",
+    "community-support"
+  ],
+  "liveFlyersInspected": [
+    "FL-001",
+    "FL-002",
+    "FL-003",
+    "FL-004",
+    "FL-005",
+    "FL-006",
+    "FL-007",
+    "FL-008"
+  ],
+  "activated": 0,
+  "flyersInHelp": []
+}

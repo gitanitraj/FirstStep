@@ -1,0 +1,126 @@
+{
+  "path": "/api/category/housing?communityId=other-community",
+  "response": {
+    "success": true,
+    "data": {
+      "metadata": {
+        "key": "housing",
+        "label": "Housing",
+        "icon": "\ud83c\udfe0",
+        "totalCount": 0,
+        "countsByType": {},
+        "lastUpdated": null
+      },
+      "updates": [],
+      "groups": [
+        {
+          "label": "Need Help Right Away",
+          "topics": [
+            {
+              "name": "Emergency Shelter",
+              "slug": "emergency-shelter",
+              "count": 0,
+              "countsByType": {}
+            }
+          ]
+        },
+        {
+          "label": "Find a Place to Live",
+          "topics": [
+            {
+              "name": "Transitional Housing",
+              "slug": "transitional-housing",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Sober Living",
+              "slug": "sober-living",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Public Housing",
+              "slug": "public-housing",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Senior Housing",
+              "slug": "senior-housing",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Youth Housing",
+              "slug": "youth-housing",
+              "count": 0,
+              "countsByType": {}
+            }
+          ]
+        },
+        {
+          "label": "Help Staying Housed",
+          "topics": [
+            {
+              "name": "Rental Assistance",
+              "slug": "rental-assistance",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Eviction Prevention",
+              "slug": "eviction-prevention",
+              "count": 0,
+              "countsByType": {}
+            },
+            {
+              "name": "Homeownership",
+              "slug": "homeownership",
+              "count": 0,
+              "countsByType": {}
+            }
+          ]
+        }
+      ],
+      "topics": [],
+      "organizations": [
+        {
+          "name": "American Red Cross",
+          "slug": "american-red-cross",
+          "resourceCount": 1
+        },
+        {
+          "name": "Be Ready CDC - Esther's Place",
+          "slug": "be-ready-cdc-esther-s-place",
+          "resourceCount": 1
+        },
+        {
+          "name": "Be Ready CDC - Lazarus House",
+          "slug": "be-ready-cdc-lazarus-house",
+          "resourceCount": 1
+        },
+        {
+          "name": "Belvedere State Service Center",
+          "slug": "belvedere-state-service-center",
+          "resourceCount": 1
+        },
+        {
+          "name": "Catholic Charities - Bayard House",
+          "slug": "catholic-charities-bayard-house",
+          "resourceCount": 1
+        },
+        {
+          "name": "Child Inc - Domestic Violence Shelters",
+          "slug": "child-inc-domestic-violence-shelters",
+          "resourceCount": 1
+        }
+      ],
+      "collections": [],
+      "grouped": true
+    },
+    "errorCode": null,
+    "errorMessage": null,
+    "timestamp": "2026-10-16T14:11:44.170417445Z"
+  }
+}

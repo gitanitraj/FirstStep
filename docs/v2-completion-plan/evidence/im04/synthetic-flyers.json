@@ -1,0 +1,258 @@
+{
+  "records": [
+    {
+      "id": "SYN-access",
+      "communityId": "synthetic-community",
+      "title": "access",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057",
+      "helpAccess": "ACTIONABLE_HELP_ACCESS"
+    },
+    {
+      "id": "SYN-near",
+      "communityId": "synthetic-community",
+      "title": "near",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057",
+      "helpAccess": "ACTIONABLE_HELP_ACCESS",
+      "expirationDate": "2026-10-17"
+    },
+    {
+      "id": "SYN-ordinary",
+      "communityId": "synthetic-community",
+      "title": "ordinary",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057"
+    },
+    {
+      "id": "SYN-invalid",
+      "communityId": "synthetic-community",
+      "title": "invalid",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057",
+      "helpAccess": "UNKNOWN"
+    },
+    {
+      "id": "SYN-expired",
+      "communityId": "synthetic-community",
+      "title": "expired",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057",
+      "helpAccess": "ACTIONABLE_HELP_ACCESS",
+      "expirationDate": "2000-01-01"
+    },
+    {
+      "id": "SYN-withdrawn",
+      "communityId": "synthetic-community",
+      "title": "withdrawn",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057",
+      "helpAccess": "ACTIONABLE_HELP_ACCESS",
+      "status": "withdrawn"
+    },
+    {
+      "id": "SYN-other-community",
+      "communityId": "different-synthetic-community",
+      "title": "other-community",
+      "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "verified": true,
+      "category_tags": [
+        "Housing",
+        "Legal"
+      ],
+      "subcategory": "Eviction Prevention",
+      "tags": [
+        "Housing Assistance",
+        "Rental Assistance",
+        "Eviction Prevention",
+        "meeting"
+      ],
+      "contentSource": {
+        "id": "community-legal-aid",
+        "type": "manual"
+      },
+      "createdDate": "2026-06-12",
+      "updatedDate": "2026-06-12",
+      "organization": "Synthetic host \u2014 no provider role asserted",
+      "event_date": "2026-08-30",
+      "location": {
+        "label": "Wilmington Public Library",
+        "address": "10 E. 10th Street",
+        "city": "Wilmington",
+        "state": "DE",
+        "zip": "19801"
+      },
+      "image": "Eviction Help.png",
+      "organization_id": "ORG-057",
+      "helpAccess": "ACTIONABLE_HELP_ACCESS"
+    }
+  ]
+}

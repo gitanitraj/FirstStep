@@ -1,0 +1,401 @@
+{
+  "storedRawResourceCount": 229,
+  "storedHousingRawSourceCategoryCount": 37,
+  "housing": {
+    "currentHelpCount": 36,
+    "ids": [
+      "HA-001",
+      "HA-002",
+      "HA-003",
+      "HA-005",
+      "HA-006",
+      "HA-007",
+      "HA-008",
+      "HA-009",
+      "HA-010",
+      "HA-011",
+      "HA-012",
+      "HA-013",
+      "HA-014",
+      "HA-015",
+      "HA-016",
+      "HA-017",
+      "HA-018",
+      "HA-019",
+      "HA-020",
+      "HA-021",
+      "HA-022",
+      "HA-023",
+      "HA-024",
+      "HA-025",
+      "HA-026",
+      "HA-027",
+      "HA-028",
+      "HA-030",
+      "HA-031",
+      "HA-029",
+      "HA-032",
+      "HA-033",
+      "HA-034",
+      "HA-035",
+      "HA-036",
+      "HA-037"
+    ],
+    "topics": [
+      {
+        "name": "Emergency Shelter",
+        "slug": "emergency-shelter",
+        "helpCount": 9,
+        "ids": [
+          "HA-001",
+          "HA-006",
+          "HA-009",
+          "HA-016",
+          "HA-017",
+          "HA-018",
+          "HA-031",
+          "HA-029",
+          "HA-033"
+        ]
+      },
+      {
+        "name": "Transitional Housing",
+        "slug": "transitional-housing",
+        "helpCount": 11,
+        "ids": [
+          "HA-002",
+          "HA-003",
+          "HA-005",
+          "HA-010",
+          "HA-012",
+          "HA-015",
+          "HA-019",
+          "HA-020",
+          "HA-028",
+          "HA-030",
+          "HA-037"
+        ]
+      },
+      {
+        "name": "Sober Living",
+        "slug": "sober-living",
+        "helpCount": 3,
+        "ids": [
+          "HA-014",
+          "HA-024",
+          "HA-025"
+        ]
+      },
+      {
+        "name": "Rental Assistance",
+        "slug": "rental-assistance",
+        "helpCount": 4,
+        "ids": [
+          "HA-008",
+          "HA-023",
+          "HA-026",
+          "HA-034"
+        ]
+      },
+      {
+        "name": "Public Housing",
+        "slug": "public-housing",
+        "helpCount": 1,
+        "ids": [
+          "HA-035"
+        ]
+      },
+      {
+        "name": "Homeownership",
+        "slug": "homeownership",
+        "helpCount": 4,
+        "ids": [
+          "HA-011",
+          "HA-013",
+          "HA-021",
+          "HA-022"
+        ]
+      },
+      {
+        "name": "Senior Housing",
+        "slug": "senior-housing",
+        "helpCount": 2,
+        "ids": [
+          "HA-027",
+          "HA-036"
+        ]
+      },
+      {
+        "name": "Youth Housing",
+        "slug": "youth-housing",
+        "helpCount": 2,
+        "ids": [
+          "HA-007",
+          "HA-032"
+        ]
+      },
+      {
+        "name": "Eviction Prevention",
+        "slug": "eviction-prevention",
+        "helpCount": 0,
+        "ids": []
+      }
+    ],
+    "destinations": {
+      "HA-001": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+      "HA-002": "https://www.bereadycdc.org/",
+      "HA-003": "https://www.bereadycdc.org/",
+      "HA-005": "https://www.ccwilm.org/bayard-house/",
+      "HA-006": "https://www.childinc.com/domestic-violence-services/shelters/",
+      "HA-007": "https://www.childinc.com/services/services-for-children/#24",
+      "HA-008": "http://www.destatehousing.com",
+      "HA-009": "https://www.familypromisede.org/",
+      "HA-010": "https://www.friendshiphousede.org/delaware-homeless/our-programs/transitional-housing/",
+      "HA-011": "https://www.habitatncc.org/our-programs/homeownership/",
+      "HA-012": "tel:3026587161",
+      "HA-013": "https://www.hond.org/home/",
+      "HA-014": "https://www.limende.org/",
+      "HA-015": "https://www.ministryofcaring.org",
+      "HA-016": "https://www.ministryofcaring.org/",
+      "HA-017": "https://www.ministryofcaring.org/services/emergency-shelters/",
+      "HA-018": "https://www.ministryofcaring.org/services/emergency-shelters/",
+      "HA-019": "https://www.ministryofcaring.org/services/housing-options/",
+      "HA-020": "https://www.ministryofcaring.org/services/housing-options/",
+      "HA-021": "https://www.neighborgoodpartners.org/",
+      "HA-022": "https://www.neighborhoodhse.org/post/what-we-do-housing-1",
+      "HA-023": "https://dhss.delaware.gov/main/maps/dsscmap/northeas.htm",
+      "HA-024": "https://www.oxfordvacancies.com/",
+      "HA-025": "https://oxfordhouse.org/",
+      "HA-026": "https://www.dhss.delaware.gov/dhss/main/maps/dsscmap/porter.htm",
+      "HA-027": "https://www.sacredheartvillage.org",
+      "HA-028": "https://www.ministryofcaring.org/services/housing-options/#",
+      "HA-030": "https://stehm.org/",
+      "HA-031": "https://stehm.org/newsite/2021/motel-ministry/",
+      "HA-029": "https://sundaybreakfastmission.org/programs-and-services",
+      "HA-032": "https://westendnh.org/programs/life-lines/",
+      "HA-033": "https://www.homelessshelterdirectory.org/cgi-bin/id/shelter.cgi?shelter=13820",
+      "HA-034": "https://whadelaware.org/",
+      "HA-035": "https://whadelaware.org/",
+      "HA-036": "https://wilmingtonseniorcenter.org/lafayette-court-apartments/",
+      "HA-037": "https://www.ywcade.org/what-we-do/housing/"
+    }
+  },
+  "food": {
+    "currentHelpCount": 0,
+    "ids": [],
+    "topics": [
+      {
+        "name": "Food Pantry",
+        "slug": "food-pantry",
+        "helpCount": 0,
+        "ids": []
+      },
+      {
+        "name": "Prepared Meals",
+        "slug": "prepared-meals",
+        "helpCount": 0,
+        "ids": []
+      },
+      {
+        "name": "Home-Delivered Meals",
+        "slug": "home-delivered-meals",
+        "helpCount": 0,
+        "ids": []
+      },
+      {
+        "name": "Farmers Market",
+        "slug": "farmers-market",
+        "helpCount": 0,
+        "ids": []
+      }
+    ],
+    "destinations": {}
+  },
+  "allUnscopedFoodHelpCount": 12,
+  "liveFlyerHelpCount": 0,
+  "syntheticHousing": {
+    "metadata": {
+      "categoryKey": "housing",
+      "categoryLabel": "Housing",
+      "categoryIcon": "\ud83c\udfe0",
+      "name": "Housing",
+      "slug": "help",
+      "totalCount": 4,
+      "countsByType": {
+        "RESOURCE": 3,
+        "FLYER": 1
+      }
+    },
+    "items": [
+      {
+        "contentType": "FLYER",
+        "id": "SYN-F-yes",
+        "title": "Acceso p\u00fablico yes",
+        "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+        "organization": "Community Legal Aid Society",
+        "location": null,
+        "cost": null,
+        "urgency": null,
+        "date": "2026-08-30",
+        "url": null,
+        "imageUrl": "/images/seasonal/Eviction%20Help.png"
+      },
+      {
+        "contentType": "RESOURCE",
+        "id": "SYN-R0",
+        "title": "Programa Jos\u00e9 0",
+        "summary": "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+        "organization": "Programa Jos\u00e9 0",
+        "location": "Synthetic Town",
+        "cost": "free",
+        "urgency": "emergency",
+        "date": null,
+        "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+        "imageUrl": null
+      },
+      {
+        "contentType": "RESOURCE",
+        "id": "SYN-R1",
+        "title": "Programa Jos\u00e9 1",
+        "summary": "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+        "organization": "Programa Jos\u00e9 1",
+        "location": "Synthetic Town",
+        "cost": "free",
+        "urgency": "emergency",
+        "date": null,
+        "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+        "imageUrl": null
+      },
+      {
+        "contentType": "RESOURCE",
+        "id": "SYN-R6",
+        "title": "Programa Jos\u00e9 6",
+        "summary": "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+        "organization": "Programa Jos\u00e9 6",
+        "location": "Synthetic Town",
+        "cost": "free",
+        "urgency": "emergency",
+        "date": null,
+        "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+        "imageUrl": null
+      }
+    ],
+    "topics": [
+      {
+        "name": "Emergency Shelter",
+        "slug": "emergency-shelter",
+        "count": 3,
+        "countsByType": {
+          "RESOURCE": 2,
+          "FLYER": 1
+        }
+      },
+      {
+        "name": "Transitional Housing",
+        "slug": "transitional-housing",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Sober Living",
+        "slug": "sober-living",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Rental Assistance",
+        "slug": "rental-assistance",
+        "count": 1,
+        "countsByType": {
+          "RESOURCE": 1
+        }
+      },
+      {
+        "name": "Public Housing",
+        "slug": "public-housing",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Homeownership",
+        "slug": "homeownership",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Senior Housing",
+        "slug": "senior-housing",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Youth Housing",
+        "slug": "youth-housing",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Eviction Prevention",
+        "slug": "eviction-prevention",
+        "count": 0,
+        "countsByType": {}
+      }
+    ]
+  },
+  "syntheticFood": {
+    "metadata": {
+      "categoryKey": "food",
+      "categoryLabel": "Food",
+      "categoryIcon": "\ud83c\udf4e",
+      "name": "Food",
+      "slug": "help",
+      "totalCount": 1,
+      "countsByType": {
+        "RESOURCE": 1
+      }
+    },
+    "items": [
+      {
+        "contentType": "RESOURCE",
+        "id": "SYN-R5",
+        "title": "Programa Jos\u00e9 5",
+        "summary": "Disaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.",
+        "organization": "Programa Jos\u00e9 5",
+        "location": "Synthetic Town",
+        "cost": "free",
+        "urgency": "emergency",
+        "date": null,
+        "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+        "imageUrl": null
+      }
+    ],
+    "topics": [
+      {
+        "name": "Food Pantry",
+        "slug": "food-pantry",
+        "count": 1,
+        "countsByType": {
+          "RESOURCE": 1
+        }
+      },
+      {
+        "name": "Prepared Meals",
+        "slug": "prepared-meals",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Home-Delivered Meals",
+        "slug": "home-delivered-meals",
+        "count": 0,
+        "countsByType": {}
+      },
+      {
+        "name": "Farmers Market",
+        "slug": "farmers-market",
+        "count": 0,
+        "countsByType": {}
+      }
+    ]
+  }
+}

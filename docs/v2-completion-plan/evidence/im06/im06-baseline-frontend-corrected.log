@@ -1,0 +1,807 @@
+
+> firststep-frontend@0.1.0 test
+> vitest run
+
+
+ RUN  v2.1.9 /workspace/FirstStep/frontend
+
+stderr | src/pages/ArticlePage/ArticlePage.test.tsx > ArticlePage > should request the article named in the URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/CommunityNoticesPage/CommunityNoticesPage.test.tsx > CommunityNoticesPage > should request the view named in the URL, not the landing route
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/CategoryPage/CategoryPage.test.tsx > CategoryPage > with a loaded category > orients the resident before offering anything to explore
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/ArticlePage/ArticlePage.test.tsx (14 tests) 617ms
+ ✓ src/pages/CommunityNoticesPage/CommunityNoticesPage.test.tsx (10 tests) 872ms
+ ✓ src/pages/CategoryPage/CategoryPage.test.tsx (12 tests) 1122ms
+   ✓ CategoryPage > with a loaded category > orients the resident before offering anything to explore 416ms
+stderr | src/pages/FindHelpPage/FindHelpPage.test.tsx > FindHelpPage > should send a category gateway to the category page, not filter in place
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/FindHelpPage/FindHelpPage.test.tsx (10 tests) 682ms
+stderr | src/pages/TopicPage/HelpBrowse.test.tsx > IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+stderr | src/pages/OrganizationPage/OrganizationPage.test.tsx > OrganizationPage > should request the organization named by the slug in the URL
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/OrganizationPage/OrganizationPage.test.tsx (9 tests) 457ms
+ ❯ src/pages/TopicPage/HelpBrowse.test.tsx (7 tests | 1 failed) 722ms
+   × IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result 266ms
+     → expect(element).toHaveFocus()
+
+Expected element with focus:
+  <h1
+  class="_title_b83e31"
+  tabindex="-1"
+>
+  All Housing Help
+</h1>
+Received element with focus:
+  <body>
+  <div>
+    <button>
+      History back
+    </button>
+    <header
+      class="_header_fbfd7d"
+    >
+      <div
+        class="_headerInner_fbfd7d"
+      >
+        <a
+          aria-label="First Step home"
+          class="_brand_fbfd7d"
+          href="/"
+        >
+          <img
+            alt=""
+            class="_logo_fbfd7d"
+            height="44"
+            src="/app-next/src/assets/logo-feet.png"
+            width="44"
+          />
+          <span
+            class="_brandText_fbfd7d"
+          >
+            <span
+              class="_appName_fbfd7d"
+            >
+              First Step
+            </span>
+            <span
+              class="_tagline_fbfd7d"
+            >
+              Your trusted guide to community resources, program updates and local information.
+            </span>
+          </span>
+        </a>
+        <div
+          class="_utilities_fbfd7d"
+        >
+          <button
+            aria-label="Switch language"
+            class="_utilityButton_fbfd7d"
+            title="Switch language"
+            type="button"
+          >
+            ES
+          </button>
+          <button
+            aria-label="Toggle high contrast"
+            aria-pressed="false"
+            class="_utilityButton_fbfd7d"
+            title="Toggle high contrast"
+            type="button"
+          >
+            ⊕
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      aria-label="Primary"
+      class="_nav_fbfd7d"
+    >
+      <div
+        class="_navInner_fbfd7d"
+      >
+        <a
+          class="_navItem_fbfd7d"
+          href="/about"
+        >
+          About
+        </a>
+        <a
+          aria-current="page"
+          class="_navItem_fbfd7d _active_fbfd7d"
+          href="/category/housing"
+        >
+          Housing
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/community"
+        >
+          Community
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/updates"
+        >
+          Updates
+        </a>
+      </div>
+    </nav>
+    <main
+      class="home-body"
+    >
+      <header
+        class="_header_b83e31"
+      >
+        <nav
+          aria-label="Breadcrumb"
+          class="_crumbs_b83e31"
+        >
+          <a
+            class="_crumb_b83e31"
+            href="/category/housing?communityId=second-community"
+          >
+            Housing
+          </a>
+        </nav>
+        <h1
+          class="_title_b83e31"
+          tabindex="-1"
+        >
+          All Housing Help
+        </h1>
+        <p
+          class="_count_b83e31"
+        >
+          55············
+          help listings
+        </p>
+      </header>
+      <nav
+        aria-label="Narrow by topic"
+        class="_topics_b83e31"
+      >
+        <details>
+          <summary>
+            Narrow by topic
+          </summary>
+          <ul>
+            <li>
+              <a
+                href="/category/housing/emergency-shelter?communityId=second-community"
+              >
+                Emergency Shelter
+                 (
+                55
+                )
+              </a>
+            </li>
+          </ul>
+        </details>
+      </nav>
+      <section
+        aria-labelledby="collection-help-browse"
+        class="_collection_a5c581"
+      >
+        <div
+          class="_head_a5c581"
+        >
+          <h2
+            class="_title_a5c581"
+            id="collection-help-browse"
+          >
+            Get help
+          </h2>
+          <span
+            class="_count_a5c581"
+          >
+            55
+          </span>
+        </div>
+        <ul
+          class="_list_a5c581"
+          id="collection-help-browse-list"
+        >
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/0"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 0
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/1"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 1
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/2"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 2
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/3"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 3
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+        </ul>
+        <button
+          aria-controls="collection-help-browse-list"
+          aria-expanded="false"
+          class="_more_a5c581"
+          type="button"
+        >
+          51 more
+        </button>
+      </section>
+    </main>
+  </div>
+</body>
+ ✓ src/components/ContentCollection/ContentCollection.test.tsx (12 tests) 305ms
+stderr | src/pages/TopicPage/TopicPage.test.tsx > TopicPage > lists the topic content from one request
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/pages/TopicPage/TopicPage.test.tsx (5 tests) 349ms
+stderr | src/App.test.tsx > The front door > renders the header, the AI question and every section in order
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Warning: An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at HomePage (/workspace/FirstStep/frontend/src/pages/HomePage.tsx:24:49)
+    at Router (/workspace/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1203:17)
+    at MemoryRouter (/workspace/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1097:7)
+
+stderr | src/pages/UpdatesPage/UpdatesPage.test.tsx > UpdatesPage > should render one section per group, in payload order
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/App.test.tsx (4 tests) 585ms
+   ✓ The front door > renders the header, the AI question and every section in order 340ms
+ ✓ src/pages/UpdatesPage/UpdatesPage.test.tsx (5 tests) 373ms
+ ✓ src/components/ContentCard/ContentCard.test.tsx (9 tests) 164ms
+ ✓ src/components/ImportantUpdates.test.tsx (2 tests) 225ms
+stderr | src/components/NewLaws/NewLaws.test.tsx > NewLaws > should use the renamed heading
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/NewLaws/NewLaws.test.tsx (6 tests) 243ms
+stderr | src/components/CategoryBrowse.test.tsx > CategoryBrowse > renders group labels for a grouped category
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/CategoryBrowse.test.tsx (5 tests) 152ms
+ ✓ src/components/CategoryUpdates.test.tsx (5 tests) 177ms
+stderr | src/components/SiteHeader/SiteHeader.test.tsx > SiteHeader > should render the brand and the accessibility controls
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/SiteHeader/SiteHeader.test.tsx (4 tests) 176ms
+stderr | src/components/CommunityResources/CommunityResources.test.tsx > CommunityResources > should render one card per authored pathway in file order
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/CommunityResources/CommunityResources.test.tsx (5 tests) 204ms
+ ✓ src/components/AiResultCard.test.tsx (3 tests) 102ms
+stderr | src/Accessibility.test.tsx > Accessibility controls > toggles the UI language between English and Spanish
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+Warning: An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at HomePage (/workspace/FirstStep/frontend/src/pages/HomePage.tsx:24:49)
+    at Router (/workspace/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1203:17)
+    at MemoryRouter (/workspace/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1097:7)
+    at I18nProvider (/workspace/FirstStep/frontend/src/i18n/I18nProvider.tsx:17:25)
+
+stderr | src/Accessibility.test.tsx > Accessibility controls > toggles the high-contrast body class
+Warning: An update to HomePage inside a test was not wrapped in act(...).
+
+When testing, code that causes React state updates should be wrapped into act(...):
+
+act(() => {
+  /* fire events that update state */
+});
+/* assert on the output */
+
+This ensures that you're testing the behavior the user would see in the browser. Learn more at https://reactjs.org/link/wrap-tests-with-act
+    at HomePage (/workspace/FirstStep/frontend/src/pages/HomePage.tsx:24:49)
+    at Router (/workspace/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1203:17)
+    at MemoryRouter (/workspace/FirstStep/frontend/node_modules/react-router/dist/umd/react-router.development.js:1097:7)
+    at I18nProvider (/workspace/FirstStep/frontend/src/i18n/I18nProvider.tsx:17:25)
+
+ ✓ src/Accessibility.test.tsx (2 tests) 179ms
+stderr | src/components/CommunityInformation/CommunityInformation.test.tsx > CommunityInformation > should cap the flyer preview at three even when more are available
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ✓ src/components/CommunityInformation/CommunityInformation.test.tsx (4 tests) 125ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/pages/TopicPage/HelpBrowse.test.tsx > IM-05 help browse journey > direct all-help preserves Community, focuses context and reaches every result
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <h1
+  class="_title_b83e31"
+  tabindex="-1"
+>
+  All Housing Help
+</h1>
+Received element with focus:
+  <body>
+  <div>
+    <button>
+      History back
+    </button>
+    <header
+      class="_header_fbfd7d"
+    >
+      <div
+        class="_headerInner_fbfd7d"
+      >
+        <a
+          aria-label="First Step home"
+          class="_brand_fbfd7d"
+          href="/"
+        >
+          <img
+            alt=""
+            class="_logo_fbfd7d"
+            height="44"
+            src="/app-next/src/assets/logo-feet.png"
+            width="44"
+          />
+          <span
+            class="_brandText_fbfd7d"
+          >
+            <span
+              class="_appName_fbfd7d"
+            >
+              First Step
+            </span>
+            <span
+              class="_tagline_fbfd7d"
+            >
+              Your trusted guide to community resources, program updates and local information.
+            </span>
+          </span>
+        </a>
+        <div
+          class="_utilities_fbfd7d"
+        >
+          <button
+            aria-label="Switch language"
+            class="_utilityButton_fbfd7d"
+            title="Switch language"
+            type="button"
+          >
+            ES
+          </button>
+          <button
+            aria-label="Toggle high contrast"
+            aria-pressed="false"
+            class="_utilityButton_fbfd7d"
+            title="Toggle high contrast"
+            type="button"
+          >
+            ⊕
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      aria-label="Primary"
+      class="_nav_fbfd7d"
+    >
+      <div
+        class="_navInner_fbfd7d"
+      >
+        <a
+          class="_navItem_fbfd7d"
+          href="/about"
+        >
+          About
+        </a>
+        <a
+          aria-current="page"
+          class="_navItem_fbfd7d _active_fbfd7d"
+          href="/category/housing"
+        >
+          Housing
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/community"
+        >
+          Community
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/updates"
+        >
+          Updates
+        </a>
+      </div>
+    </nav>
+    <main
+      class="home-body"
+    >
+      <header
+        class="_header_b83e31"
+      >
+        <nav
+          aria-label="Breadcrumb"
+          class="_crumbs_b83e31"
+        >
+          <a
+            class="_crumb_b83e31"
+            href="/category/housing?communityId=second-community"
+          >
+            Housing
+          </a>
+        </nav>
+        <h1
+          class="_title_b83e31"
+          tabindex="-1"
+        >
+          All Housing Help
+        </h1>
+        <p
+          class="_count_b83e31"
+        >
+          55············
+          help listings
+        </p>
+      </header>
+      <nav
+        aria-label="Narrow by topic"
+        class="_topics_b83e31"
+      >
+        <details>
+          <summary>
+            Narrow by topic
+          </summary>
+          <ul>
+            <li>
+              <a
+                href="/category/housing/emergency-shelter?communityId=second-community"
+              >
+                Emergency Shelter
+                 (
+                55
+                )
+              </a>
+            </li>
+          </ul>
+        </details>
+      </nav>
+      <section
+        aria-labelledby="collection-help-browse"
+        class="_collection_a5c581"
+      >
+        <div
+          class="_head_a5c581"
+        >
+          <h2
+            class="_title_a5c581"
+            id="collection-help-browse"
+          >
+            Get help
+          </h2>
+          <span
+            class="_count_a5c581"
+          >
+            55
+          </span>
+        </div>
+        <ul
+          class="_list_a5c581"
+          id="collection-help-browse-list"
+        >
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/0"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 0
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/1"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 1
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/2"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 2
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+          <li
+            class="_card_7d11b7"
+          >
+            <div
+              class="_head_7d11b7"
+            >
+              <span
+                class="_badge_7d11b7 _badgeRESOURCE_7d11b7"
+              >
+                Resource
+              </span>
+              <a
+                class="_title_7d11b7"
+                href="https://example.org/3"
+                rel="noopener noreferrer"
+                target="_blank"
+              >
+                Programa José 3
+              </a>
+            </div>
+            <p
+              class="_provider_7d11b7"
+            >
+              <span>
+                Provider
+              </span>
+            </p>
+            <p
+              class="_summary_7d11b7"
+            >
+              Información útil
+            </p>
+          </li>
+        </ul>
+        <button
+          aria-controls="collection-help-browse-list"
+          aria-expanded="false"
+          class="_more_a5c581"
+          type="button"
+        >
+          51 more
+        </button>
+      </section>
+    </main>
+  </div>
+</body>
+ ❯ src/pages/TopicPage/HelpBrowse.test.tsx:24:88
+     22|   it('direct all-help preserves Community, focuses context and reaches…
+     23|     stub(); renderAt('/category/housing/help?communityId=second-commun…
+     24|     expect(await screen.findByRole('heading', { name: 'All Housing Hel…
+       |                                                                                        ^
+     25|     expect(fetch).toHaveBeenCalledWith('/api/category/housing/help?com…
+     26|     expect(screen.getAllByRole('link', { name: /^Programa José/ })).to…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+ Test Files  1 failed | 19 passed (20)
+      Tests  1 failed | 132 passed (133)
+   Start at  20:14:00
+   Duration  11.81s (transform 1.19s, setup 1.56s, collect 4.63s, tests 7.83s, environment 12.59s, prepare 2.31s)
+
+npm notice
+npm notice New major version of npm available! 11.9.0 -> 12.2.0
+npm notice Changelog: https://github.com/npm/cli/releases/tag/v12.2.0
+npm notice To update run: npm install -g npm@12.2.0
+npm notice

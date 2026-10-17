@@ -1,0 +1,18 @@
+{
+  "backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java": "references/CategoryController_annotated.java",
+  "backend/src/main/java/org/firststep/backend/category/dto/TopicPage.java": "references/TopicPage_annotated.java",
+  "backend/src/main/java/org/firststep/backend/category/service/CategoryPageService.java": "references/CategoryPageService_annotated.java",
+  "backend/src/main/java/org/firststep/backend/category/service/TopicPageService.java": "references/TopicPageService_annotated.java",
+  "backend/src/test/java/org/firststep/backend/category/service/TopicPageServiceTest.java": "references/tests/TopicPageServiceTest_annotated.java",
+  "frontend/src/api/client.ts": "references/client_annotated.ts",
+  "frontend/src/components/CategoryBrowse.tsx": "references/CategoryBrowse_annotated.tsx",
+  "frontend/src/components/ContentCard/ContentCard.tsx": "references/ContentCard_annotated.tsx",
+  "frontend/src/i18n/dictionary.ts": "references/dictionary_annotated.ts",
+  "frontend/src/pages/CategoryPage/CategoryPage.tsx": "references/CategoryPage_annotated.tsx",
+  "frontend/src/pages/TopicPage/TopicPage.module.css": "references/TopicPage.module_annotated.css",
+  "frontend/src/pages/TopicPage/TopicPage.test.tsx": "references/tests/TopicPageTest_annotated.tsx",
+  "frontend/src/pages/TopicPage/TopicPage.tsx": "references/TopicPage_annotated.tsx",
+  "frontend/src/types/api.ts": "references/api_annotated.ts",
+  "backend/src/test/java/org/firststep/backend/category/controller/HelpBrowseApiTest.java": "references/tests/HelpBrowseApiTest_annotated.java",
+  "frontend/src/pages/TopicPage/HelpBrowse.test.tsx": "references/tests/HelpBrowseTest_annotated.tsx"
+}

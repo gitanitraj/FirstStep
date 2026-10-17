@@ -340,6 +340,8 @@ export interface TopicMetadata {
 export interface TopicPage {
   metadata: TopicMetadata;
   items: ContentItem[];
+  /** Controlled Topic narrowing, with help-only counts. */
+  topics?: TopicNavigation[];
 }
 
 /**
