@@ -1,10 +1,10 @@
 /*
- * IM-01 annotated test reference — full mirror of backend/src/test/java/org/firststep/backend/notices/controller/CommunityNoticesControllerTest.java
- * WHAT: Existing regression test with explicit fixed-clock service dependency.
- * WHY: prove behavior using deterministic time and preserve unrelated test expectations.
- * INTERACTION: see individual test names and fixtures; only lifecycle dependencies were
- * added to existing service construction. No assertion was weakened to hide expiry failures.
- * ALTERNATIVE: machine-clock fixtures would make future runs depend on the date of execution.
+ * WHAT: Complete annotated IM-10 mirror of backend/src/test/java/org/firststep/backend/notices/controller/CommunityNoticesControllerTest.java.
+ * WHY: Explicit occurrence eligibility must not expire Flyer media or alter canonical identity.
+ * INTERACTION: Events alone intersects the injected-clock assessment with current inventory,
+ * controlled notice kind, producer sector and optional exact Community scope; DTOs allowlist facts.
+ * ALTERNATIVES: Prose-derived end times, global Flyer cutoffs and a new Event entity/type were rejected.
+ * Tests separately prove nanosecond/end-of-day/DST boundaries, supporting visibility and privacy.
  */
 package org.firststep.backend.notices.controller;
 
@@ -61,7 +61,7 @@ class CommunityNoticesControllerTest {
             f.summary = "Free screenings";
             f.contentType = ContentType.FLYER;
             f.organization = "Westside Family Healthcare";
-            f.eventDate = "2026-09-12";
+            f.eventDate = "2026-11-12";
             f.tags = List.of("event");
             ContentSource cs = new ContentSource();
             cs.id = "westside-family-healthcare";
@@ -80,7 +80,7 @@ class CommunityNoticesControllerTest {
                 }
             };
             return new CommunityNoticesService(new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed()), new NewsService(List::of, LifecycleFixture.fixed()),
-                    new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
+                    new TaxonomyService("../app/data"), new ContentSourceService("../app/data"), new org.firststep.backend.notices.service.EventOccurrence(java.time.Clock.fixed(java.time.Instant.parse("2026-10-15T16:00:00Z"), java.time.ZoneOffset.UTC), new org.firststep.backend.shared.lifecycle.EditorialExpiryConfiguration()));
         }
     }
 

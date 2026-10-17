@@ -56,6 +56,24 @@ describe('CommunityNoticesPage', () => {
     vi.unstubAllGlobals();
   });
 
+  it('im10t11 preserves explicit Community in requests and all view links', async () => {
+    mockPage({ view: 'EVENTS', counts: counts(), items: [], previews: [] });
+    renderAt('/community-notices/events?communityId=synthetic-west');
+    const nav = await screen.findByRole('navigation', { name: 'Community Notices views' });
+    expect(fetch).toHaveBeenCalledWith('/api/community-notices/events?communityId=synthetic-west');
+    for (const link of within(nav).getAllByRole('link')) {
+      expect(link.getAttribute('href')).toContain('?communityId=synthetic-west');
+    }
+  });
+
+  it('im10t11 preserves explicit Community in overview preview destinations', async () => {
+    mockPage({ view: 'OVERVIEW', counts: counts({ EVENTS: 1 }), items: [],
+      previews: [{ view: 'EVENTS', count: 1, items: [item('FL-008', 'United Neighbors 2026')] }] });
+    renderAt('/community-notices?communityId=wilmington-de');
+    expect(await screen.findByRole('link', { name: /See all/ })).toHaveAttribute('href', '/community-notices/events?communityId=wilmington-de');
+    expect(fetch).toHaveBeenCalledWith('/api/community-notices?communityId=wilmington-de');
+  });
+
   it('should request the view named in the URL, not the landing route', async () => {
     mockPage({ view: 'MEETINGS', counts: counts(), items: [], previews: [] });
 

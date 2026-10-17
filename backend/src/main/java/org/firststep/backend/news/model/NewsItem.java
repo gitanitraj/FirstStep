@@ -46,4 +46,7 @@ public class NewsItem extends CivicContent {
 
     @JsonProperty("why_it_matters")
     public String whyItMatters;
+    /** Optional explicit occurrence instants (ISO offset timestamp); independent of editorial expiry. */
+    public String startsAt;
+    public String endsAt;
 }

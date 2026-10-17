@@ -1,0 +1,91 @@
+HEAD 67c006842a85fd0cde57bc0777802922c6925949
+BRANCH copyofdev
+
+ M backend/src/main/java/org/firststep/backend/flyer/controller/FlyerController.java
+ M backend/src/main/java/org/firststep/backend/flyer/model/Flyer.java
+ M backend/src/main/java/org/firststep/backend/news/model/NewsItem.java
+ M backend/src/main/java/org/firststep/backend/notices/controller/CommunityNoticesController.java
+ M backend/src/main/java/org/firststep/backend/notices/service/CommunityNoticesService.java
+ M backend/src/test/java/org/firststep/backend/notices/controller/CommunityNoticesControllerTest.java
+ M backend/src/test/java/org/firststep/backend/notices/service/CommunityNoticesServiceTest.java
+ M backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java
+ M frontend/src/pages/CommunityNoticesPage/CommunityNoticesPage.test.tsx
+ M frontend/src/pages/CommunityNoticesPage/CommunityNoticesPage.tsx
+ M references/CommunityNoticesController_annotated.java
+ M references/CommunityNoticesPage_annotated.tsx
+ M references/CommunityNoticesService_annotated.java
+ M references/FlyerController_annotated.java
+ M references/Flyer_annotated.java
+ M references/NewsItem_annotated.java
+ M references/tests/CommunityNoticesControllerTest_annotated.java
+ M references/tests/CommunityNoticesServiceTest_annotated.java
+ M references/tests/EditorialProjectionTest_annotated.java
+?? backend/src/main/java/org/firststep/backend/flyer/dto/FlyerSummary.java
+?? backend/src/main/java/org/firststep/backend/notices/service/EventOccurrence.java
+?? backend/src/test/java/org/firststep/backend/notices/service/EventOccurrenceCatalogTest.java
+?? backend/src/test/java/org/firststep/backend/notices/service/EventOccurrenceTest.java
+?? backend/src/test/java/org/firststep/backend/notices/service/EventProjectionTest.java
+?? "docs/v2-completion-plan/IM-10 Execution Report.md"
+?? docs/v2-completion-plan/evidence/im10/annotated-mirrors.json
+?? docs/v2-completion-plan/evidence/im10/baseline-backend.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-build.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-frontend.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-0.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-1.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-2.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-3.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-4.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-5.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python-6.txt
+?? docs/v2-completion-plan/evidence/im10/baseline-python.json
+?? docs/v2-completion-plan/evidence/im10/baseline-typecheck.txt
+?? docs/v2-completion-plan/evidence/im10/browser-check-approved.txt
+?? docs/v2-completion-plan/evidence/im10/browser-check.mjs
+?? docs/v2-completion-plan/evidence/im10/browser-check.txt
+?? docs/v2-completion-plan/evidence/im10/browser-result.json
+?? docs/v2-completion-plan/evidence/im10/built-server-approved.txt
+?? docs/v2-completion-plan/evidence/im10/built-server.txt
+?? docs/v2-completion-plan/evidence/im10/catalog-after.json
+?? docs/v2-completion-plan/evidence/im10/catalog-before.json
+?? docs/v2-completion-plan/evidence/im10/demonstrated-gap.txt
+?? docs/v2-completion-plan/evidence/im10/final-backend-accepted.txt
+?? docs/v2-completion-plan/evidence/im10/final-backend.txt
+?? docs/v2-completion-plan/evidence/im10/final-build.txt
+?? docs/v2-completion-plan/evidence/im10/final-frontend.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-0.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-1.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-2.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-3.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-4.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-5.txt
+?? docs/v2-completion-plan/evidence/im10/final-python-6.txt
+?? docs/v2-completion-plan/evidence/im10/final-python.json
+?? docs/v2-completion-plan/evidence/im10/final-typecheck.txt
+?? docs/v2-completion-plan/evidence/im10/fl008-stored.json
+?? docs/v2-completion-plan/evidence/im10/flyers-1280.png
+?? docs/v2-completion-plan/evidence/im10/flyers-375.png
+?? docs/v2-completion-plan/evidence/im10/flyers-spanish-contrast.png
+?? docs/v2-completion-plan/evidence/im10/focused-backend.txt
+?? docs/v2-completion-plan/evidence/im10/http-smoke-approved.txt
+?? docs/v2-completion-plan/evidence/im10/http-smoke-final.txt
+?? docs/v2-completion-plan/evidence/im10/http-smoke.py
+?? docs/v2-completion-plan/evidence/im10/http-smoke.txt
+?? docs/v2-completion-plan/evidence/im10/inspect-first.md
+?? docs/v2-completion-plan/evidence/im10/packaged-http.json
+?? docs/v2-completion-plan/evidence/im10/packaged-server.txt
+?? docs/v2-completion-plan/evidence/im10/preservation-after.json
+?? docs/v2-completion-plan/evidence/im10/preservation-before.json
+?? docs/v2-completion-plan/evidence/im10/preservation-result.json
+?? docs/v2-completion-plan/evidence/im10/reproduce.md
+?? docs/v2-completion-plan/evidence/im10/serve-built.py
+?? docs/v2-completion-plan/evidence/im10/starting-state.txt
+?? docs/v2-completion-plan/evidence/im10/synthetic-scheduled-end.json
+?? docs/v2-completion-plan/evidence/im10/verification-summary.json
+?? "docs/v2-completion-plan/v2 \342\200\224 IM-10 Coding-Agent Work Order.md"
+?? "docs/v2-completion-plan/v2.10 \342\200\224 Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+?? references/EventOccurrence_annotated.java
+?? references/FlyerSummary_annotated.java
+?? references/tests/CommunityNoticesPage.test_annotated.tsx
+?? references/tests/EventOccurrenceCatalogTest_annotated.java
+?? references/tests/EventOccurrenceTest_annotated.java
+?? references/tests/EventProjectionTest_annotated.java

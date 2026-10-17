@@ -1,0 +1,319 @@
+{
+  "occurrenceDiagnostics" : [ {
+    "id" : "FL-001",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-002",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-003",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-004",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-005",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-006",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-007",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  }, {
+    "id" : "FL-008",
+    "occurrence" : {
+      "state" : "CONCLUDED",
+      "diagnostic" : "event_local_date"
+    }
+  } ],
+  "newsEventDiagnostics" : [ {
+    "id" : "NP-003",
+    "occurrence" : {
+      "state" : "UNKNOWN",
+      "diagnostic" : "missing_occurrence"
+    }
+  } ],
+  "clock" : "2026-10-18T04:00:00Z",
+  "events" : {
+    "view" : "EVENTS",
+    "counts" : {
+      "EVENTS" : 0,
+      "MEETINGS" : 1,
+      "ANNOUNCEMENTS" : 3,
+      "FLYERS" : 6
+    },
+    "items" : [ ],
+    "previews" : [ ]
+  },
+  "flyers" : {
+    "view" : "FLYERS",
+    "counts" : {
+      "EVENTS" : 0,
+      "MEETINGS" : 1,
+      "ANNOUNCEMENTS" : 3,
+      "FLYERS" : 6
+    },
+    "items" : [ {
+      "contentType" : "FLYER",
+      "id" : "FL-004",
+      "title" : "Back-to-School Supply Drive Fundraiser",
+      "summary" : "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+      "organization" : "Ministry of Caring Inc",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-08-26",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Fundraiser.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-002",
+      "title" : "Know Your Rights: Eviction Prevention Info Session",
+      "summary" : "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+      "organization" : "Community Legal Aid Society",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-08-30",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Eviction%20Help.png"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-006",
+      "title" : "Free Community Health Fair",
+      "summary" : "Free health screenings, vaccinations, and dental checkups — no insurance or ID required.",
+      "organization" : "Westside Family Healthcare",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-09-02",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Health%20Fair.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-001",
+      "title" : "Summer Youth Enrichment Program — Registration Open",
+      "summary" : "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
+      "organization" : "West End Neighborhood House",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-09-07",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Youth.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-003",
+      "title" : "Community Volunteer Recruitment Drive",
+      "summary" : "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+      "organization" : "United Way of Delaware",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-09-15",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Volunteer.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-008",
+      "title" : "United Neighbors 2026",
+      "summary" : "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 — Saturday 1:00–4:00 pm on the 7th Street Bridge.",
+      "organization" : "West Side Grows Together",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-10-17",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/United%20Neighbors%202026.jpg"
+    } ],
+    "previews" : [ ]
+  },
+  "overview" : {
+    "view" : "OVERVIEW",
+    "counts" : {
+      "EVENTS" : 0,
+      "MEETINGS" : 1,
+      "ANNOUNCEMENTS" : 3,
+      "FLYERS" : 6
+    },
+    "items" : [ ],
+    "previews" : [ {
+      "view" : "EVENTS",
+      "count" : 0,
+      "items" : [ ]
+    }, {
+      "view" : "MEETINGS",
+      "count" : 1,
+      "items" : [ {
+        "contentType" : "FLYER",
+        "id" : "FL-002",
+        "title" : "Know Your Rights: Eviction Prevention Info Session",
+        "summary" : "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+        "organization" : "Community Legal Aid Society",
+        "location" : null,
+        "cost" : null,
+        "urgency" : null,
+        "date" : "2026-08-30",
+        "url" : null,
+        "imageUrl" : "/images/seasonal/Eviction%20Help.png"
+      } ]
+    }, {
+      "view" : "ANNOUNCEMENTS",
+      "count" : 3,
+      "items" : [ {
+        "contentType" : "FLYER",
+        "id" : "FL-003",
+        "title" : "Community Volunteer Recruitment Drive",
+        "summary" : "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+        "organization" : "United Way of Delaware",
+        "location" : null,
+        "cost" : null,
+        "urgency" : null,
+        "date" : "2026-09-15",
+        "url" : null,
+        "imageUrl" : "/images/seasonal/Volunteer.jpg"
+      }, {
+        "contentType" : "NEWS",
+        "id" : "NP-007",
+        "title" : "Ministry of Caring's Emmanuel Dining Room expands to seven days a week",
+        "summary" : "Emmanuel Dining Room at Ministry of Caring now serves hot meals seven days a week, adding Sunday service for the first time. No ID or registration required.",
+        "organization" : "Ministry of Caring Inc",
+        "location" : null,
+        "cost" : null,
+        "urgency" : "standard",
+        "date" : "2026-06-01",
+        "url" : "https://www.ministryofcaring.org/",
+        "imageUrl" : null
+      }, {
+        "contentType" : "NEWS",
+        "id" : "NP-005",
+        "title" : "West End Neighborhood House expands Life Lines to age 25",
+        "summary" : "West End Neighborhood House has raised the age cap for its Life Lines youth housing program from 23 to 25, effective immediately. The program serves foster care and unaccompanied youth, including LGBTQ+ youth.",
+        "organization" : "West End Neighborhood House",
+        "location" : null,
+        "cost" : null,
+        "urgency" : "standard",
+        "date" : "2026-05-30",
+        "url" : "https://westendnh.org/programs/life-lines/",
+        "imageUrl" : null
+      } ]
+    }, {
+      "view" : "FLYERS",
+      "count" : 6,
+      "items" : [ {
+        "contentType" : "FLYER",
+        "id" : "FL-004",
+        "title" : "Back-to-School Supply Drive Fundraiser",
+        "summary" : "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+        "organization" : "Ministry of Caring Inc",
+        "location" : null,
+        "cost" : null,
+        "urgency" : null,
+        "date" : "2026-08-26",
+        "url" : null,
+        "imageUrl" : "/images/seasonal/Fundraiser.jpg"
+      }, {
+        "contentType" : "FLYER",
+        "id" : "FL-002",
+        "title" : "Know Your Rights: Eviction Prevention Info Session",
+        "summary" : "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+        "organization" : "Community Legal Aid Society",
+        "location" : null,
+        "cost" : null,
+        "urgency" : null,
+        "date" : "2026-08-30",
+        "url" : null,
+        "imageUrl" : "/images/seasonal/Eviction%20Help.png"
+      }, {
+        "contentType" : "FLYER",
+        "id" : "FL-006",
+        "title" : "Free Community Health Fair",
+        "summary" : "Free health screenings, vaccinations, and dental checkups — no insurance or ID required.",
+        "organization" : "Westside Family Healthcare",
+        "location" : null,
+        "cost" : null,
+        "urgency" : null,
+        "date" : "2026-09-02",
+        "url" : null,
+        "imageUrl" : "/images/seasonal/Health%20Fair.jpg"
+      } ]
+    } ]
+  },
+  "communitySupport" : [ {
+    "key" : "flyers",
+    "labelKey" : "collection.flyers",
+    "layer" : "INFORMATION",
+    "count" : 4,
+    "items" : [ {
+      "contentType" : "FLYER",
+      "id" : "FL-008",
+      "title" : "United Neighbors 2026",
+      "summary" : "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 — Saturday 1:00–4:00 pm on the 7th Street Bridge.",
+      "organization" : "West Side Grows Together",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-10-17",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/United%20Neighbors%202026.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-003",
+      "title" : "Community Volunteer Recruitment Drive",
+      "summary" : "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+      "organization" : "United Way of Delaware",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-09-15",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Volunteer.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-004",
+      "title" : "Back-to-School Supply Drive Fundraiser",
+      "summary" : "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+      "organization" : "Ministry of Caring Inc",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-08-26",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Fundraiser.jpg"
+    }, {
+      "contentType" : "FLYER",
+      "id" : "FL-005",
+      "title" : "Disability Services & Benefits Info Fair",
+      "summary" : "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+      "organization" : "Delaware Division for the Visually Impaired",
+      "location" : null,
+      "cost" : null,
+      "urgency" : null,
+      "date" : "2026-07-30",
+      "url" : null,
+      "imageUrl" : "/images/seasonal/Disablility%20Info.jpg"
+    } ]
+  } ]
+}

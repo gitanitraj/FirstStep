@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Owns the {@code /api/community-notices*} URL family.
@@ -40,14 +41,14 @@ public class CommunityNoticesController {
     }
 
     @GetMapping("/community-notices")
-    public ResponseEntity<ApiResponse<CommunityNoticesPage>> getOverview() {
-        return ResponseEntity.ok(ApiResponse.success(service.getPage(NoticeView.OVERVIEW)));
+    public ResponseEntity<ApiResponse<CommunityNoticesPage>> getOverview(@RequestParam(required = false) String communityId) {
+        return ResponseEntity.ok(ApiResponse.success(service.getPage(NoticeView.OVERVIEW, communityId)));
     }
 
     @GetMapping("/community-notices/{view}")
-    public ResponseEntity<ApiResponse<CommunityNoticesPage>> getView(@PathVariable String view) {
+    public ResponseEntity<ApiResponse<CommunityNoticesPage>> getView(@PathVariable String view, @RequestParam(required = false) String communityId) {
         NoticeView resolved = NoticeView.fromKey(view)
                 .orElseThrow(() -> new NotFoundException("Unknown notices view: " + view));
-        return ResponseEntity.ok(ApiResponse.success(service.getPage(resolved)));
+        return ResponseEntity.ok(ApiResponse.success(service.getPage(resolved, communityId)));
     }
 }

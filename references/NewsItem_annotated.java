@@ -1,10 +1,10 @@
 /*
- * WHAT: Complete IM-09 annotated mirror of backend/src/main/java/org/firststep/backend/news/model/NewsItem.java.
- * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
- * INTERACTION: Current inventory and Article approval remain independent of exact editorial
- * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
- * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
- * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
+ * WHAT: Complete annotated IM-10 mirror of backend/src/main/java/org/firststep/backend/news/model/NewsItem.java.
+ * WHY: Explicit occurrence eligibility must not expire Flyer media or alter canonical identity.
+ * INTERACTION: Events alone intersects the injected-clock assessment with current inventory,
+ * controlled notice kind, producer sector and optional exact Community scope; DTOs allowlist facts.
+ * ALTERNATIVES: Prose-derived end times, global Flyer cutoffs and a new Event entity/type were rejected.
+ * Tests separately prove nanosecond/end-of-day/DST boundaries, supporting visibility and privacy.
  */
 package org.firststep.backend.news.model;
 
@@ -54,4 +54,7 @@ public class NewsItem extends CivicContent {
 
     @JsonProperty("why_it_matters")
     public String whyItMatters;
+    /** Optional explicit occurrence instants (ISO offset timestamp); independent of editorial expiry. */
+    public String startsAt;
+    public String endsAt;
 }

@@ -1,0 +1,1156 @@
+{
+  "status": "PASS",
+  "clock": "2026-10-17T18:21:04.366564+00:00",
+  "limitation": "Runtime real catalog; exact concluded boundaries are independently fixed-clock tested. No remote feed refresh.",
+  "imageBytes": 225821,
+  "eventIds": [
+    "FL-008"
+  ],
+  "flyerIds": [
+    "FL-004",
+    "FL-002",
+    "FL-006",
+    "FL-001",
+    "FL-003",
+    "FL-008"
+  ],
+  "responses": [
+    {
+      "path": "/api/community-notices/events?communityId=wilmington-de",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "view": "EVENTS",
+          "counts": {
+            "EVENTS": 1,
+            "MEETINGS": 1,
+            "ANNOUNCEMENTS": 3,
+            "FLYERS": 6
+          },
+          "items": [
+            {
+              "contentType": "FLYER",
+              "id": "FL-008",
+              "title": "United Neighbors 2026",
+              "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+              "organization": "West Side Grows Together",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-10-17",
+              "url": null,
+              "imageUrl": "/images/seasonal/United%20Neighbors%202026.jpg"
+            }
+          ],
+          "previews": []
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.312155Z"
+      }
+    },
+    {
+      "path": "/api/community-notices/flyers?communityId=wilmington-de",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "view": "FLYERS",
+          "counts": {
+            "EVENTS": 1,
+            "MEETINGS": 1,
+            "ANNOUNCEMENTS": 3,
+            "FLYERS": 6
+          },
+          "items": [
+            {
+              "contentType": "FLYER",
+              "id": "FL-004",
+              "title": "Back-to-School Supply Drive Fundraiser",
+              "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+              "organization": "Ministry of Caring Inc",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-08-26",
+              "url": null,
+              "imageUrl": "/images/seasonal/Fundraiser.jpg"
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-002",
+              "title": "Know Your Rights: Eviction Prevention Info Session",
+              "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+              "organization": "Community Legal Aid Society",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-08-30",
+              "url": null,
+              "imageUrl": "/images/seasonal/Eviction%20Help.png"
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-006",
+              "title": "Free Community Health Fair",
+              "summary": "Free health screenings, vaccinations, and dental checkups \u2014 no insurance or ID required.",
+              "organization": "Westside Family Healthcare",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-09-02",
+              "url": null,
+              "imageUrl": "/images/seasonal/Health%20Fair.jpg"
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-001",
+              "title": "Summer Youth Enrichment Program \u2014 Registration Open",
+              "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
+              "organization": "West End Neighborhood House",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-09-07",
+              "url": null,
+              "imageUrl": "/images/seasonal/Youth.jpg"
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-003",
+              "title": "Community Volunteer Recruitment Drive",
+              "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+              "organization": "United Way of Delaware",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-09-15",
+              "url": null,
+              "imageUrl": "/images/seasonal/Volunteer.jpg"
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-008",
+              "title": "United Neighbors 2026",
+              "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+              "organization": "West Side Grows Together",
+              "location": null,
+              "cost": null,
+              "urgency": null,
+              "date": "2026-10-17",
+              "url": null,
+              "imageUrl": "/images/seasonal/United%20Neighbors%202026.jpg"
+            }
+          ],
+          "previews": []
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.316394Z"
+      }
+    },
+    {
+      "path": "/api/community-notices?communityId=wilmington-de",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "view": "OVERVIEW",
+          "counts": {
+            "EVENTS": 1,
+            "MEETINGS": 1,
+            "ANNOUNCEMENTS": 3,
+            "FLYERS": 6
+          },
+          "items": [],
+          "previews": [
+            {
+              "view": "EVENTS",
+              "count": 1,
+              "items": [
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-008",
+                  "title": "United Neighbors 2026",
+                  "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+                  "organization": "West Side Grows Together",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-10-17",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/United%20Neighbors%202026.jpg"
+                }
+              ]
+            },
+            {
+              "view": "MEETINGS",
+              "count": 1,
+              "items": [
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-002",
+                  "title": "Know Your Rights: Eviction Prevention Info Session",
+                  "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+                  "organization": "Community Legal Aid Society",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-08-30",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Eviction%20Help.png"
+                }
+              ]
+            },
+            {
+              "view": "ANNOUNCEMENTS",
+              "count": 3,
+              "items": [
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-003",
+                  "title": "Community Volunteer Recruitment Drive",
+                  "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+                  "organization": "United Way of Delaware",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-09-15",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Volunteer.jpg"
+                },
+                {
+                  "contentType": "NEWS",
+                  "id": "NP-007",
+                  "title": "Ministry of Caring's Emmanuel Dining Room expands to seven days a week",
+                  "summary": "Emmanuel Dining Room at Ministry of Caring now serves hot meals seven days a week, adding Sunday service for the first time. No ID or registration required.",
+                  "organization": "Ministry of Caring Inc",
+                  "location": null,
+                  "cost": null,
+                  "urgency": "standard",
+                  "date": "2026-06-01",
+                  "url": "https://www.ministryofcaring.org/",
+                  "imageUrl": null
+                },
+                {
+                  "contentType": "NEWS",
+                  "id": "NP-005",
+                  "title": "West End Neighborhood House expands Life Lines to age 25",
+                  "summary": "West End Neighborhood House has raised the age cap for its Life Lines youth housing program from 23 to 25, effective immediately. The program serves foster care and unaccompanied youth, including LGBTQ+ youth.",
+                  "organization": "West End Neighborhood House",
+                  "location": null,
+                  "cost": null,
+                  "urgency": "standard",
+                  "date": "2026-05-30",
+                  "url": "https://westendnh.org/programs/life-lines/",
+                  "imageUrl": null
+                }
+              ]
+            },
+            {
+              "view": "FLYERS",
+              "count": 6,
+              "items": [
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-004",
+                  "title": "Back-to-School Supply Drive Fundraiser",
+                  "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+                  "organization": "Ministry of Caring Inc",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-08-26",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Fundraiser.jpg"
+                },
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-002",
+                  "title": "Know Your Rights: Eviction Prevention Info Session",
+                  "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+                  "organization": "Community Legal Aid Society",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-08-30",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Eviction%20Help.png"
+                },
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-006",
+                  "title": "Free Community Health Fair",
+                  "summary": "Free health screenings, vaccinations, and dental checkups \u2014 no insurance or ID required.",
+                  "organization": "Westside Family Healthcare",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-09-02",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Health%20Fair.jpg"
+                }
+              ]
+            }
+          ]
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.319588Z"
+      }
+    },
+    {
+      "path": "/api/community-notices/events?communityId=synthetic-west",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "view": "EVENTS",
+          "counts": {
+            "EVENTS": 0,
+            "MEETINGS": 0,
+            "ANNOUNCEMENTS": 0,
+            "FLYERS": 0
+          },
+          "items": [],
+          "previews": []
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.322452Z"
+      }
+    },
+    {
+      "path": "/api/flyers/FL-008",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "contentType": "FLYER",
+          "id": "FL-008",
+          "communityId": "wilmington-de",
+          "title": "United Neighbors 2026",
+          "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+          "category_tags": [
+            "Community Support"
+          ],
+          "subcategory": "Community Celebrations",
+          "tags": [
+            "Free",
+            "Arts & Music",
+            "Community Celebrations",
+            "event"
+          ],
+          "contentSource": {
+            "id": "westside-grows-together",
+            "name": null,
+            "type": "manual",
+            "url": null
+          },
+          "organization": "West Side Grows Together",
+          "event_date": "2026-10-17",
+          "startsAt": null,
+          "endsAt": null,
+          "location": {
+            "label": "7th Street Bridge",
+            "address": "7th Street between Adams St and Jackson St",
+            "city": "Wilmington",
+            "state": "DE",
+            "zip": null,
+            "confidential": null
+          },
+          "image": "United Neighbors 2026.jpg",
+          "imageUrl": "/images/seasonal/United%20Neighbors%202026.jpg"
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.324509Z"
+      }
+    },
+    {
+      "path": "/api/flyers",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": [
+          {
+            "contentType": "FLYER",
+            "id": "FL-001",
+            "communityId": "wilmington-de",
+            "title": "Summer Youth Enrichment Program \u2014 Registration Open",
+            "summary": "Free summer program for youth ages 8-14 with tutoring, sports, and field trips.",
+            "category_tags": [
+              "Community Events"
+            ],
+            "subcategory": "Youth Programs",
+            "tags": [
+              "Youth",
+              "Youth Programs",
+              "event"
+            ],
+            "contentSource": {
+              "id": "west-end-neighborhood-house",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "West End Neighborhood House",
+            "event_date": "2026-09-07",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "West End Neighborhood House",
+              "address": "710 N. Lincoln Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19805",
+              "confidential": null
+            },
+            "image": "Youth.jpg",
+            "imageUrl": "/images/seasonal/Youth.jpg"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-002",
+            "communityId": "wilmington-de",
+            "title": "Know Your Rights: Eviction Prevention Info Session",
+            "summary": "Free legal-aid info session covering tenant rights, eviction defenses, and emergency rental assistance.",
+            "category_tags": [
+              "Housing",
+              "Legal"
+            ],
+            "subcategory": "Eviction Prevention",
+            "tags": [
+              "Housing Assistance",
+              "Rental Assistance",
+              "Eviction Prevention",
+              "meeting"
+            ],
+            "contentSource": {
+              "id": "community-legal-aid",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "Community Legal Aid Society",
+            "event_date": "2026-08-30",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "Wilmington Public Library",
+              "address": "10 E. 10th Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19801",
+              "confidential": null
+            },
+            "image": "Eviction Help.png",
+            "imageUrl": "/images/seasonal/Eviction%20Help.png"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-003",
+            "communityId": "wilmington-de",
+            "title": "Community Volunteer Recruitment Drive",
+            "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+            "category_tags": [
+              "Community Support"
+            ],
+            "subcategory": "Volunteer Opportunities",
+            "tags": [
+              "Community",
+              "Volunteer Opportunities",
+              "announcement"
+            ],
+            "contentSource": {
+              "id": "united-way-delaware",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "United Way of Delaware",
+            "event_date": "2026-09-15",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "Rodney Square",
+              "address": "1000 N. King Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19801",
+              "confidential": null
+            },
+            "image": "Volunteer.jpg",
+            "imageUrl": "/images/seasonal/Volunteer.jpg"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-004",
+            "communityId": "wilmington-de",
+            "title": "Back-to-School Supply Drive Fundraiser",
+            "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+            "category_tags": [
+              "Community Support"
+            ],
+            "subcategory": "School Supplies",
+            "tags": [
+              "Community",
+              "Free",
+              "Student Support",
+              "event"
+            ],
+            "contentSource": {
+              "id": "ministry-of-caring",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "Ministry of Caring Inc",
+            "event_date": "2026-08-26",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "Ministry of Caring",
+              "address": "115 East 14th Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19801",
+              "confidential": null
+            },
+            "image": "Fundraiser.jpg",
+            "imageUrl": "/images/seasonal/Fundraiser.jpg"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-005",
+            "communityId": "wilmington-de",
+            "title": "Disability Services & Benefits Info Fair",
+            "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+            "category_tags": [
+              "Legal",
+              "Community Support"
+            ],
+            "subcategory": "Disability Advocacy",
+            "tags": [
+              "Disability Assistance",
+              "Disability Advocacy",
+              "Information & Referral",
+              "announcement"
+            ],
+            "contentSource": {
+              "id": "de-visually-impaired",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "Delaware Division for the Visually Impaired",
+            "event_date": "2026-07-30",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "Porter State Service Center",
+              "address": "509 W. 8th Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19801",
+              "confidential": null
+            },
+            "image": "Disablility Info.jpg",
+            "imageUrl": "/images/seasonal/Disablility%20Info.jpg"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-006",
+            "communityId": "wilmington-de",
+            "title": "Free Community Health Fair",
+            "summary": "Free health screenings, vaccinations, and dental checkups \u2014 no insurance or ID required.",
+            "category_tags": [
+              "Health"
+            ],
+            "subcategory": "Medical Care",
+            "tags": [
+              "Medical Assistance",
+              "Free",
+              "Medical Care",
+              "event"
+            ],
+            "contentSource": {
+              "id": "westside-family-healthcare",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "Westside Family Healthcare",
+            "event_date": "2026-09-02",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "Eden Park Recreation Center",
+              "address": "601 N. Van Buren Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19805",
+              "confidential": null
+            },
+            "image": "Health Fair.jpg",
+            "imageUrl": "/images/seasonal/Health%20Fair.jpg"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-007",
+            "communityId": "wilmington-de",
+            "title": "Free Furniture Giveaway",
+            "summary": "Free gently-used furniture available for families moving into new housing \u2014 first come, first served.",
+            "category_tags": [
+              "Furniture & Household"
+            ],
+            "subcategory": "Furniture & Household Goods",
+            "tags": [
+              "Free",
+              "Housing Assistance",
+              "Furniture/Household Goods",
+              "announcement"
+            ],
+            "contentSource": {
+              "id": "wilmington-housing-authority",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "Wilmington Housing Authority",
+            "event_date": "2026-08-15",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "WHA Community Room",
+              "address": "1500 Bowers Street",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": "19802",
+              "confidential": null
+            },
+            "image": "Furniture.jpg",
+            "imageUrl": "/images/seasonal/Furniture.jpg"
+          },
+          {
+            "contentType": "FLYER",
+            "id": "FL-008",
+            "communityId": "wilmington-de",
+            "title": "United Neighbors 2026",
+            "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+            "category_tags": [
+              "Community Support"
+            ],
+            "subcategory": "Community Celebrations",
+            "tags": [
+              "Free",
+              "Arts & Music",
+              "Community Celebrations",
+              "event"
+            ],
+            "contentSource": {
+              "id": "westside-grows-together",
+              "name": null,
+              "type": "manual",
+              "url": null
+            },
+            "organization": "West Side Grows Together",
+            "event_date": "2026-10-17",
+            "startsAt": null,
+            "endsAt": null,
+            "location": {
+              "label": "7th Street Bridge",
+              "address": "7th Street between Adams St and Jackson St",
+              "city": "Wilmington",
+              "state": "DE",
+              "zip": null,
+              "confidential": null
+            },
+            "image": "United Neighbors 2026.jpg",
+            "imageUrl": "/images/seasonal/United%20Neighbors%202026.jpg"
+          }
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.326436Z"
+      }
+    },
+    {
+      "path": "/api/category/community-support?communityId=wilmington-de",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "metadata": {
+            "key": "community-support",
+            "label": "Community Support",
+            "icon": "\ud83e\udd1d",
+            "totalCount": 4,
+            "countsByType": {
+              "FLYER": 4
+            },
+            "lastUpdated": "2026-10-17"
+          },
+          "updates": [
+            {
+              "contentType": "FLYER",
+              "id": "FL-008",
+              "title": "United Neighbors 2026",
+              "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+              "date": "2026-10-17",
+              "source": "West Side Grows Together",
+              "url": null,
+              "urgency": null,
+              "categoryTags": [
+                "Community Support"
+              ]
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-003",
+              "title": "Community Volunteer Recruitment Drive",
+              "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+              "date": "2026-09-15",
+              "source": "United Way of Delaware",
+              "url": null,
+              "urgency": null,
+              "categoryTags": [
+                "Community Support"
+              ]
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-004",
+              "title": "Back-to-School Supply Drive Fundraiser",
+              "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+              "date": "2026-08-26",
+              "source": "Ministry of Caring Inc",
+              "url": null,
+              "urgency": null,
+              "categoryTags": [
+                "Community Support"
+              ]
+            },
+            {
+              "contentType": "FLYER",
+              "id": "FL-005",
+              "title": "Disability Services & Benefits Info Fair",
+              "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+              "date": "2026-07-30",
+              "source": "Delaware Division for the Visually Impaired",
+              "url": null,
+              "urgency": null,
+              "categoryTags": [
+                "Legal",
+                "Community Support"
+              ]
+            }
+          ],
+          "groups": [
+            {
+              "label": "Get Help",
+              "topics": [
+                {
+                  "name": "Information & Referral",
+                  "slug": "information-referral",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Financial Assistance",
+                  "slug": "financial-assistance",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Transportation",
+                  "slug": "transportation",
+                  "count": 0,
+                  "countsByType": {}
+                }
+              ]
+            },
+            {
+              "label": "Family and Children",
+              "topics": [
+                {
+                  "name": "Child Care & Early Learning",
+                  "slug": "child-care-early-learning",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Parenting Support",
+                  "slug": "parenting-support",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Mentoring",
+                  "slug": "mentoring",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "School Supplies",
+                  "slug": "school-supplies",
+                  "count": 0,
+                  "countsByType": {}
+                }
+              ]
+            },
+            {
+              "label": "Learning and Skills",
+              "topics": [
+                {
+                  "name": "Education & Training",
+                  "slug": "education-training",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Life Skills",
+                  "slug": "life-skills",
+                  "count": 0,
+                  "countsByType": {}
+                }
+              ]
+            },
+            {
+              "label": "Connect with Others",
+              "topics": [
+                {
+                  "name": "Support Groups",
+                  "slug": "support-groups",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Volunteer Opportunities",
+                  "slug": "volunteer-opportunities",
+                  "count": 0,
+                  "countsByType": {}
+                },
+                {
+                  "name": "Community Celebrations",
+                  "slug": "community-celebrations",
+                  "count": 0,
+                  "countsByType": {}
+                }
+              ]
+            }
+          ],
+          "topics": [],
+          "organizations": [],
+          "collections": [
+            {
+              "key": "flyers",
+              "labelKey": "collection.flyers",
+              "layer": "INFORMATION",
+              "count": 4,
+              "items": [
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-008",
+                  "title": "United Neighbors 2026",
+                  "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+                  "organization": "West Side Grows Together",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-10-17",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/United%20Neighbors%202026.jpg"
+                },
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-003",
+                  "title": "Community Volunteer Recruitment Drive",
+                  "summary": "Sign up to volunteer with local food banks, shelters, and neighborhood cleanup crews.",
+                  "organization": "United Way of Delaware",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-09-15",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Volunteer.jpg"
+                },
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-004",
+                  "title": "Back-to-School Supply Drive Fundraiser",
+                  "summary": "Community fundraiser to purchase backpacks and school supplies for Wilmington students in need.",
+                  "organization": "Ministry of Caring Inc",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-08-26",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Fundraiser.jpg"
+                },
+                {
+                  "contentType": "FLYER",
+                  "id": "FL-005",
+                  "title": "Disability Services & Benefits Info Fair",
+                  "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+                  "organization": "Delaware Division for the Visually Impaired",
+                  "location": null,
+                  "cost": null,
+                  "urgency": null,
+                  "date": "2026-07-30",
+                  "url": null,
+                  "imageUrl": "/images/seasonal/Disablility%20Info.jpg"
+                }
+              ]
+            }
+          ],
+          "destination": {
+            "communityId": "wilmington-de",
+            "featuredTopics": [],
+            "headlines": [],
+            "expertLinks": [],
+            "laws": []
+          },
+          "grouped": true
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.333300Z"
+      }
+    },
+    {
+      "path": "/api/originals/OR-003",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": {
+          "id": "OR-003",
+          "title": "How to read a Delaware eviction notice",
+          "summary": "What the dates on an eviction notice mean, and how long a tenant actually has to respond at each stage.",
+          "whyItMatters": "Tenants routinely miss the response window because the deadline on the notice is not the deadline that matters.",
+          "body": "PLACEHOLDER \u2014 approved fixture.\n\nThis record exists so the boundary test has an article that IS publicly servable, proving the filter admits as well as excludes.",
+          "byline": "Admin",
+          "disclosure": null,
+          "publishDate": "2026-08-10",
+          "updatedDate": "2026-08-10",
+          "categoryTags": [
+            "Housing",
+            "Legal"
+          ],
+          "subcategory": "Eviction Prevention"
+        },
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.336023Z"
+      }
+    },
+    {
+      "path": "/api/originals/OR-001",
+      "status": 404,
+      "body": {
+        "success": false,
+        "data": null,
+        "errorCode": "NOT_FOUND",
+        "errorMessage": "Article not found: OR-001",
+        "timestamp": "2026-10-17T18:21:04.340926Z"
+      }
+    },
+    {
+      "path": "/api/originals/not-an-article",
+      "status": 404,
+      "body": {
+        "success": false,
+        "data": null,
+        "errorCode": "NOT_FOUND",
+        "errorMessage": "Article not found: not-an-article",
+        "timestamp": "2026-10-17T18:21:04.343889Z"
+      }
+    },
+    {
+      "path": "/api/news?communityId=wilmington-de",
+      "status": 200,
+      "body": {
+        "success": true,
+        "data": [
+          {
+            "contentType": "NEWS",
+            "id": "NP-003",
+            "communityId": "wilmington-de",
+            "title": "Rodney Square Farmers Market returns June 7 \u2014 SNAP/EBT accepted",
+            "summary": "The Rodney Square Farmers Market opens its 2026 season on June 7. The market accepts SNAP and EBT benefits and features 20+ local vendors through October.",
+            "body": "The Rodney Square Farmers Market returns for its 2026 season beginning Saturday, June 7. The market will run every Saturday from 9am to 1pm through October 31, 2026, in the heart of downtown Wilmington.\n\nThis season features more than 20 confirmed local vendors offering fresh produce, dairy, proteins, baked goods, and prepared foods. The market accepts SNAP/EBT benefits, and several vendors participate in the Double Up Food Bucks program, which matches SNAP spending dollar-for-dollar on fresh fruits and vegetables up to $20 per visit.\n\nRodney Square is located at 1000 N. King Street, Wilmington, DE 19801. Parking is available in nearby garages. The market is accessible via DART bus routes 2, 6, and 11.",
+            "contentSource": {
+              "id": "wilmington-farmers-market",
+              "name": "Wilmington Farmers Market",
+              "type": null,
+              "url": "https://www.wilmingtonfarmersmarket.org"
+            },
+            "publishDate": "2026-06-01",
+            "type": "program-change",
+            "urgency": "standard",
+            "tags": [
+              "food",
+              "SNAP",
+              "EBT",
+              "farmers-market",
+              "fresh-produce",
+              "Double-Up-Food-Bucks",
+              "event",
+              "grocery",
+              "farmers market",
+              "produce"
+            ],
+            "why_it_matters": "Rodney Square sits in a zip code with limited full-service grocery access. The market's SNAP acceptance and Double Up Food Bucks matching effectively doubles the purchasing power of food assistance benefits for fresh produce.",
+            "category_tags": [
+              "Food"
+            ],
+            "subcategory": null
+          },
+          {
+            "contentType": "NEWS",
+            "id": "NP-004",
+            "communityId": "wilmington-de",
+            "title": "Delaware raises income threshold for Emergency Assistance eligibility",
+            "summary": "Effective July 1, Delaware DHSS raised the income threshold for Emergency Assistance \u2014 which covers rent, utilities, and emergency shelter \u2014 from 100% to 125% of the Federal Poverty Level.",
+            "body": "The Delaware Department of Health and Social Services (DHSS) announced that the income eligibility threshold for the Emergency Assistance (EA) program will increase from 100% to 125% of the Federal Poverty Level (FPL), effective July 1, 2026.\n\nThis change expands eligibility for thousands of Delaware households currently just above the cutoff. For a family of four, 125% FPL equals approximately $39,000 per year in 2026.\n\nEmergency Assistance provides one-time funds for rent, utilities, and emergency shelter for households facing an unforeseen crisis. Eligible households must also receive, or be eligible for, Cash Assistance (TANF, GA, or SSI) or certain Medicaid programs.\n\nThe change affects applications processed on or after July 1. Households that were denied EA benefits in the past 90 days due to income may reapply after July 1 under the new threshold.\n\nIn Wilmington, Emergency Assistance is administered through the Porter State Service Center (509 W. 8th Street) and the Northeast State Service Center (1624 Jessup Street).",
+            "contentSource": {
+              "id": "de-dhss",
+              "name": "Delaware Health and Social Services",
+              "type": null,
+              "url": "https://dhss.delaware.gov"
+            },
+            "publishDate": "2026-06-02",
+            "type": "policy-update",
+            "urgency": "standard",
+            "tags": [
+              "emergency-assistance",
+              "rental-assistance",
+              "utilities",
+              "low-income",
+              "TANF",
+              "SSI",
+              "poverty-threshold",
+              "health",
+              "medicaid",
+              "rent",
+              "shelter"
+            ],
+            "why_it_matters": "This is a meaningful expansion. Many working families in Wilmington earn just above the old 100% FPL cutoff and have historically been ineligible for Emergency Assistance even during a genuine crisis. The new threshold brings more households into eligibility starting July 1.",
+            "category_tags": [
+              "Housing",
+              "Utilities",
+              "Rental Assistance"
+            ],
+            "subcategory": null
+          },
+          {
+            "contentType": "NEWS",
+            "id": "NP-005",
+            "communityId": "wilmington-de",
+            "title": "West End Neighborhood House expands Life Lines to age 25",
+            "summary": "West End Neighborhood House has raised the age cap for its Life Lines youth housing program from 23 to 25, effective immediately. The program serves foster care and unaccompanied youth, including LGBTQ+ youth.",
+            "body": "West End Neighborhood House announced this week that its Life Lines Program \u2014 which provides intensive case management, housing support, employment assistance, and life skills instruction to current and former foster care youth \u2014 will now serve participants up to age 25, up from the previous cap of 23.\n\nThe expansion was driven by data showing that many participants who aged out of the program at 23 were not yet fully housing-stable. The additional two years allows staff to continue working with young adults through a critical period of transition.\n\nThe program continues to serve unaccompanied youth and those who identify as LGBTQ+. Services include housing navigation, educational and training program enrollment, financial education, mental health services, medication management, and employment placement assistance.\n\nThe Life Lines program is located at 710 N. Lincoln Street, Wilmington, DE 19805. Contact: 302-658-4171.",
+            "contentSource": {
+              "id": "west-end-neighborhood-house",
+              "name": "West End Neighborhood House",
+              "type": null,
+              "url": "https://westendnh.org/programs/life-lines/"
+            },
+            "publishDate": "2026-05-30",
+            "type": "new-resource",
+            "urgency": "standard",
+            "tags": [
+              "youth",
+              "foster-care",
+              "LGBTQ",
+              "housing",
+              "age-expansion",
+              "announcement",
+              "life skills",
+              "case management",
+              "education",
+              "foster care"
+            ],
+            "why_it_matters": "Youth aging out of foster care face some of the highest rates of homelessness of any population. Extending the program by two years directly addresses the gap between structured support and true independence \u2014 a period when most young adults still need guidance.",
+            "category_tags": [
+              "Housing"
+            ],
+            "subcategory": null
+          },
+          {
+            "contentType": "NEWS",
+            "id": "NP-007",
+            "communityId": "wilmington-de",
+            "title": "Ministry of Caring's Emmanuel Dining Room expands to seven days a week",
+            "summary": "Emmanuel Dining Room at Ministry of Caring now serves hot meals seven days a week, adding Sunday service for the first time. No ID or registration required.",
+            "body": "Ministry of Caring announced this week that Emmanuel Dining Room \u2014 which has served hot meals to Wilmington's hungry for decades \u2014 is expanding to seven-day service, adding Sunday hours beginning June 8, 2026.\n\nThe dining room is located at 115 East 14th Street, Wilmington, DE 19801. Meals are served at no cost, with no identification or registration required. The expanded Sunday service runs from 11:30am to 1pm.\n\nMinistry of Caring's broader network of services in Wilmington includes multiple emergency shelters, transitional housing programs, dental care, mobile medical services, and early childhood education. The Emmanuel Dining Room expansion was made possible by an increase in volunteer capacity and a grant from a private foundation.",
+            "contentSource": {
+              "id": "ministry-of-caring",
+              "name": "Ministry of Caring Inc",
+              "type": null,
+              "url": "https://www.ministryofcaring.org/"
+            },
+            "publishDate": "2026-06-01",
+            "type": "general-news",
+            "urgency": "standard",
+            "tags": [
+              "food",
+              "meals",
+              "ministry-of-caring",
+              "no-cost",
+              "no-ID-required",
+              "announcement",
+              "volunteer",
+              "education",
+              "meal",
+              "medical",
+              "dental",
+              "housing",
+              "shelter"
+            ],
+            "why_it_matters": "Sunday is historically the hardest day to find a hot meal in Wilmington. Many other food programs are closed on weekends, making this expansion directly address a documented gap in the city's food access network.",
+            "category_tags": [
+              "Food"
+            ],
+            "subcategory": null
+          },
+          {
+            "contentType": "NEWS",
+            "id": "NP-008",
+            "communityId": "wilmington-de",
+            "title": "Delaware Medicaid expansion covers dental for adults starting October 1",
+            "summary": "Delaware will begin covering comprehensive dental care for adult Medicaid enrollees on October 1, 2026 \u2014 a first for the state. This affects an estimated 70,000 Delaware adults currently on Medicaid.",
+            "body": "Delaware Governor announced that the state's Medicaid program will begin covering comprehensive dental care for adult enrollees starting October 1, 2026. Previously, adult Medicaid coverage in Delaware was limited to emergency dental extractions only.\n\nThe expansion includes preventive care (cleanings, X-rays), restorative services (fillings, crowns), and oral surgery. Orthodontia and cosmetic procedures are not included.\n\nAn estimated 70,000 Delaware adults currently enrolled in Medicaid will benefit from the change. No action is required by existing enrollees \u2014 coverage activates automatically on October 1.\n\nFor Wilmington residents, Ministry of Caring currently operates a dental clinic that serves low-income patients regardless of insurance status. Starting October 1, Ministry of Caring will be able to bill Medicaid directly for covered services, reducing or eliminating out-of-pocket costs for eligible patients.\n\nResidents who are not currently enrolled in Medicaid but believe they may be eligible can apply through Delaware's ASSIST portal at assist.dhss.delaware.gov.",
+            "contentSource": {
+              "id": "de-dhss",
+              "name": "Delaware Health and Social Services",
+              "type": null,
+              "url": "https://dhss.delaware.gov"
+            },
+            "publishDate": "2026-05-28",
+            "type": "policy-update",
+            "urgency": "standard",
+            "tags": [
+              "Medicaid",
+              "dental",
+              "health",
+              "low-income",
+              "insurance",
+              "clinic",
+              "patient"
+            ],
+            "why_it_matters": "Dental care has been one of the most significant unmet health needs for low-income Delawareans. Untreated dental problems lead to missed work, school absences, and serious health complications. This expansion removes a major barrier \u2014 particularly for residents who've relied on Ministry of Caring's clinic for years.",
+            "category_tags": [
+              "Health"
+            ],
+            "subcategory": null
+          }
+        ],
+        "errorCode": null,
+        "errorMessage": null,
+        "timestamp": "2026-10-17T18:21:04.348088Z"
+      }
+    }
+  ]
+}

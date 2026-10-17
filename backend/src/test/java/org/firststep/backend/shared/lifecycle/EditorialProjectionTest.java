@@ -191,7 +191,7 @@ class EditorialProjectionTest {
         assertCurrentIds(updates.getForCategory("housing", "wilmington-de", 100).stream().map(i -> i.id()).toList());
         var page = updates.getPage(Sector.GOVERNMENT);
         assertEquals(2, page.totalCount());
-        var notices = new CommunityNoticesService(flyers, news, taxonomy, sources).getPage(NoticeView.FLYERS);
+        var notices = new CommunityNoticesService(flyers, news, taxonomy, sources, new org.firststep.backend.notices.service.EventOccurrence(java.time.Clock.fixed(java.time.Instant.parse("2026-10-15T16:00:00Z"), java.time.ZoneOffset.UTC), new org.firststep.backend.shared.lifecycle.EditorialExpiryConfiguration())).getPage(NoticeView.FLYERS);
         assertEquals(2, notices.items().size());
         assertEquals(2, notices.counts().get(NoticeView.FLYERS));
         assertCurrentIds(notices.items().stream().map(ContentItem::id).toList());

@@ -53,7 +53,7 @@ class CommunityNoticesControllerTest {
             f.summary = "Free screenings";
             f.contentType = ContentType.FLYER;
             f.organization = "Westside Family Healthcare";
-            f.eventDate = "2026-09-12";
+            f.eventDate = "2026-11-12";
             f.tags = List.of("event");
             ContentSource cs = new ContentSource();
             cs.id = "westside-family-healthcare";
@@ -72,7 +72,7 @@ class CommunityNoticesControllerTest {
                 }
             };
             return new CommunityNoticesService(new FlyerService(flyerRepo, new ContentSourceService("../app/data"), LifecycleFixture.fixed()), new NewsService(List::of, LifecycleFixture.fixed()),
-                    new TaxonomyService("../app/data"), new ContentSourceService("../app/data"));
+                    new TaxonomyService("../app/data"), new ContentSourceService("../app/data"), new org.firststep.backend.notices.service.EventOccurrence(java.time.Clock.fixed(java.time.Instant.parse("2026-10-15T16:00:00Z"), java.time.ZoneOffset.UTC), new org.firststep.backend.shared.lifecycle.EditorialExpiryConfiguration()));
         }
     }
 

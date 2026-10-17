@@ -1,0 +1,92 @@
+[
+  {
+    "source": "backend/src/main/java/org/firststep/backend/flyer/controller/FlyerController.java",
+    "mirror": "references/FlyerController_annotated.java",
+    "headerBytes": 631,
+    "sha256": "373b7bcb6da2a9d1f12f910d76c15c4b3792a8a2aaa00ef21aac82082c525b71"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/flyer/model/Flyer.java",
+    "mirror": "references/Flyer_annotated.java",
+    "headerBytes": 616,
+    "sha256": "7474a7e19ee6ac3b00020ca5013e761db12d65047e07ddd8c3a8eb506fedf37b"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/news/model/NewsItem.java",
+    "mirror": "references/NewsItem_annotated.java",
+    "headerBytes": 618,
+    "sha256": "50ef2fbef4c452eaf605e0daef1a68c1474bd2bf3a9c6a142d0213805c1594bf"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/notices/controller/CommunityNoticesController.java",
+    "mirror": "references/CommunityNoticesController_annotated.java",
+    "headerBytes": 644,
+    "sha256": "86479bdbc85a26e60d821c89934475ac151e9a83f8da7b674c9f01c40b0fbeeb"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/notices/service/CommunityNoticesService.java",
+    "mirror": "references/CommunityNoticesService_annotated.java",
+    "headerBytes": 638,
+    "sha256": "4bf236b5805ca2e7567a19f5ac780daffbf06275a9951fcfc20f6482dd977ce6"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/notices/controller/CommunityNoticesControllerTest.java",
+    "mirror": "references/tests/CommunityNoticesControllerTest_annotated.java",
+    "headerBytes": 648,
+    "sha256": "bfaf17f4183eef610e4acfbb6283fbb9262a8282e897e86d5c2e3ced0a16b951"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/notices/service/CommunityNoticesServiceTest.java",
+    "mirror": "references/tests/CommunityNoticesServiceTest_annotated.java",
+    "headerBytes": 642,
+    "sha256": "7bb46ab5e271b3db73b1be6338867cff834ec40dfc28a4bac95470c87cde1efb"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java",
+    "mirror": "references/tests/EditorialProjectionTest_annotated.java",
+    "headerBytes": 639,
+    "sha256": "b49ed0dbf29da23daa2183be6a9788c62809266e37d38d6498c7f876140b01d1"
+  },
+  {
+    "source": "frontend/src/pages/CommunityNoticesPage/CommunityNoticesPage.test.tsx",
+    "mirror": "references/tests/CommunityNoticesPage.test_annotated.tsx",
+    "headerBytes": 619,
+    "sha256": "5d4dce2931098cf4228d72ed4a78b06df54e9000efeb62a8a1afe771a55df9bb"
+  },
+  {
+    "source": "frontend/src/pages/CommunityNoticesPage/CommunityNoticesPage.tsx",
+    "mirror": "references/CommunityNoticesPage_annotated.tsx",
+    "headerBytes": 614,
+    "sha256": "c0fbaa2d56d23d6c60c02e2f29e7fdefedbe8d358a7fc78d868933d34d975bad"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/flyer/dto/FlyerSummary.java",
+    "mirror": "references/FlyerSummary_annotated.java",
+    "headerBytes": 621,
+    "sha256": "6801e0a5966b294985ea0449fcd3cfe305bb63b28097abcdfd47ee7b30991e30"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/notices/service/EventOccurrence.java",
+    "mirror": "references/EventOccurrence_annotated.java",
+    "headerBytes": 630,
+    "sha256": "a2bf36178cdde4837729b8c9dfd322d5766f708104a58e2b5fa7cd6fd05a5e24"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/notices/service/EventOccurrenceCatalogTest.java",
+    "mirror": "references/tests/EventOccurrenceCatalogTest_annotated.java",
+    "headerBytes": 641,
+    "sha256": "07c926dda29288a0562d6be10d07aa698ed7b31e5535eb2fcadca44c3acadc04"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/notices/service/EventOccurrenceTest.java",
+    "mirror": "references/tests/EventOccurrenceTest_annotated.java",
+    "headerBytes": 634,
+    "sha256": "4f6a5750bd6c2f38f1fd2c95f302759b66b009521217f30947352c27fb52ab55"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/notices/service/EventProjectionTest.java",
+    "mirror": "references/tests/EventProjectionTest_annotated.java",
+    "headerBytes": 634,
+    "sha256": "c18e8f399734d87c58fb767e6127d515eefb456dfd1ff589cd86485994bf0f7d"
+  }
+]

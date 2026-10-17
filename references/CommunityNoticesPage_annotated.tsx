@@ -1,76 +1,13 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — frontend/src/pages/CommunityNoticesPage/CommunityNoticesPage.tsx
- * Slice J. See references/decisions.md Decision 046.
- * =============================================================================
- *
- * WHAT IT IS
- * ----------
- * ONE component that renders five routes:
- *
- *     /community-notices                 overview — cards + a preview of each
- *     /community-notices/events          the same page, events view
- *     /community-notices/meetings        …
- *     /community-notices/announcements   …
- *     /community-notices/flyers          …
- *
- * WHY ONE COMPONENT AND NOT FOUR PAGES — the explicit instruction
- * ---------------------------------------------------------------
- * Four page components would have been four copies of the header, the nav, the
- * loading state, the empty state and the fetch, drifting apart the moment one of
- * them got a fix the others did not. What actually differs between the views is
- * (a) which endpoint is called, (b) which nav card is current, and (c) whether
- * flyers render as a gallery. All three are expressible as data.
- *
- * THE URL IS THE SOURCE OF TRUTH
- * ------------------------------
- * The active view comes from useParams() — NEVER from useState. This is the
- * single most important line in the file:
- *
- *     const { view: viewParam } = useParams<{ view?: string }>();
- *
- * State-driven tabs would work only for a visitor who arrived at the landing
- * route and clicked. Route-driven views work when the URL is typed, bookmarked,
- * shared, refreshed, or reached with the browser's back button — because the
- * route IS the state, and React Router re-renders when it changes. The useEffect
- * depends on [viewParam], so navigating between views refetches without any
- * manual coordination. Same pattern as CategoryPage and TopicPage.
- *
- * WHY THE NAV CARDS RENDER ON EVERY ROUTE
- * ---------------------------------------
- * They are the PAGE's navigation, not the landing page's content. A visitor deep
- * in Flyers can move to Meetings without going back. Counts ride on every
- * response (see the DTO's annotation), so the numbers are present on first paint
- * rather than filling in afterwards.
- *
- * `aria-current="page"` marks the active card. That is the accessible expression
- * of "you are here" — a color change alone does not reach a screen reader.
- *
- * WHY THE LANDING ROUTE RENDERS REAL CONTENT
- * ------------------------------------------
- * Instructed explicitly: /community-notices must not become a redirect to
- * Events. It answers a different question — "what kinds of community information
- * exist here?" — with counts and a genuine sample of each. A page that only
- * routed onward would be a menu wearing a destination's URL.
- *
- * Empty previews are skipped (`preview.items.length === 0` returns null), so the
- * landing page never shows a heading over nothing. Decision 041's rule holds
- * twice over: the server never builds an empty group either.
- *
- * THE ONE PRESENTATION BRANCH
- * ---------------------------
- * `activeKey === 'flyers' ? <NoticeGallery/> : <ul>{ContentCard}</ul>`
- *
- * This is the only place the views diverge visually, and it is justified by the
- * content rather than by variety — see NoticeGallery's annotation. Everything
- * else is the generic ContentCard already used by topic pages.
- *
- * ERROR VS EMPTY: two different renders, deliberately. A failed request gets
- * role="alert"; a view with nothing in it gets its own copy. Showing the empty
- * state for a broken request would tell a resident nothing went wrong.
- * ============================================================================= */
-
+/*
+ * WHAT: Complete annotated IM-10 mirror of frontend/src/pages/CommunityNoticesPage/CommunityNoticesPage.tsx.
+ * WHY: Explicit occurrence eligibility must not expire Flyer media or alter canonical identity.
+ * INTERACTION: Events alone intersects the injected-clock assessment with current inventory,
+ * controlled notice kind, producer sector and optional exact Community scope; DTOs allowlist facts.
+ * ALTERNATIVES: Prose-derived end times, global Flyer cutoffs and a new Event entity/type were rejected.
+ * Tests separately prove nanosecond/end-of-day/DST boundaries, supporting visibility and privacy.
+ */
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
 import { useI18n } from '../../i18n/I18nProvider';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
@@ -121,6 +58,9 @@ const VIEWS: { key: string; view: NoticeView; icon: string }[] = [
 export default function CommunityNoticesPage() {
   const { view: viewParam } = useParams<{ view?: string }>();
   const { t } = useI18n();
+  const [search] = useSearchParams();
+  const communityId = search.get('communityId');
+  const query = communityId === null ? '' : `?communityId=${encodeURIComponent(communityId)}`;
   const [page, setPage] = useState<PageData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -130,10 +70,10 @@ export default function CommunityNoticesPage() {
     setPage(null);
     setError(null);
     const path = viewParam ? `/api/community-notices/${viewParam}` : '/api/community-notices';
-    apiGet<PageData>(path)
+    apiGet<PageData>(path + query)
       .then(setPage)
       .catch((err: Error) => setError(err.message));
-  }, [viewParam]);
+  }, [viewParam, query]);
 
   const isOverview = activeKey === 'overview';
 
@@ -155,7 +95,7 @@ export default function CommunityNoticesPage() {
           {VIEWS.map((v) => (
             <Link
               key={v.key}
-              to={`/community-notices/${v.key}`}
+              to={`/community-notices/${v.key}${query}`}
               className={activeKey === v.key ? `${styles.viewCard} ${styles.active}` : styles.viewCard}
               aria-current={activeKey === v.key ? 'page' : undefined}
             >
@@ -190,7 +130,7 @@ export default function CommunityNoticesPage() {
                     <h2 id={`pv-${meta.key}`} className={styles.previewTitle}>
                       {t(`notices.${meta.key}.label`)}
                     </h2>
-                    <Link className={styles.previewMore} to={`/community-notices/${meta.key}`}>
+                    <Link className={styles.previewMore} to={`/community-notices/${meta.key}${query}`}>
                       {t('notices.seeAll')} ({preview.count})
                     </Link>
                   </div>

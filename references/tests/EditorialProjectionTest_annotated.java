@@ -1,10 +1,10 @@
 /*
- * WHAT: Complete IM-09 annotated mirror of backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java.
- * WHY: Preserve authored placement, canonical identity, truthful dates and private/public boundaries.
- * INTERACTION: Current inventory and Article approval remain independent of exact editorial
- * Expert/FAQ admissions; Category composition intersects Community, taxonomy and membership.
- * ALTERNATIVES: Source/session/verified inference and blanket Expert admission were rejected.
- * Tests cover approved admissions, denied sessions, preserved supporting views and safe links.
+ * WHAT: Complete annotated IM-10 mirror of backend/src/test/java/org/firststep/backend/shared/lifecycle/EditorialProjectionTest.java.
+ * WHY: Explicit occurrence eligibility must not expire Flyer media or alter canonical identity.
+ * INTERACTION: Events alone intersects the injected-clock assessment with current inventory,
+ * controlled notice kind, producer sector and optional exact Community scope; DTOs allowlist facts.
+ * ALTERNATIVES: Prose-derived end times, global Flyer cutoffs and a new Event entity/type were rejected.
+ * Tests separately prove nanosecond/end-of-day/DST boundaries, supporting visibility and privacy.
  */
 package org.firststep.backend.shared.lifecycle;
 
@@ -199,7 +199,7 @@ class EditorialProjectionTest {
         assertCurrentIds(updates.getForCategory("housing", "wilmington-de", 100).stream().map(i -> i.id()).toList());
         var page = updates.getPage(Sector.GOVERNMENT);
         assertEquals(2, page.totalCount());
-        var notices = new CommunityNoticesService(flyers, news, taxonomy, sources).getPage(NoticeView.FLYERS);
+        var notices = new CommunityNoticesService(flyers, news, taxonomy, sources, new org.firststep.backend.notices.service.EventOccurrence(java.time.Clock.fixed(java.time.Instant.parse("2026-10-15T16:00:00Z"), java.time.ZoneOffset.UTC), new org.firststep.backend.shared.lifecycle.EditorialExpiryConfiguration())).getPage(NoticeView.FLYERS);
         assertEquals(2, notices.items().size());
         assertEquals(2, notices.counts().get(NoticeView.FLYERS));
         assertCurrentIds(notices.items().stream().map(ContentItem::id).toList());

@@ -32,4 +32,7 @@ public class Flyer extends CivicContent {
     public String eventDate;
     public Location location;
     public String image;
+    /** Optional explicit occurrence instants (ISO offset timestamp); independent of editorial expiry. */
+    public String startsAt;
+    public String endsAt;
 }

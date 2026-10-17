@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
 import { useI18n } from '../../i18n/I18nProvider';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
@@ -50,6 +50,9 @@ const VIEWS: { key: string; view: NoticeView; icon: string }[] = [
 export default function CommunityNoticesPage() {
   const { view: viewParam } = useParams<{ view?: string }>();
   const { t } = useI18n();
+  const [search] = useSearchParams();
+  const communityId = search.get('communityId');
+  const query = communityId === null ? '' : `?communityId=${encodeURIComponent(communityId)}`;
   const [page, setPage] = useState<PageData | null>(null);
   const [error, setError] = useState<string | null>(null);
 
@@ -59,10 +62,10 @@ export default function CommunityNoticesPage() {
     setPage(null);
     setError(null);
     const path = viewParam ? `/api/community-notices/${viewParam}` : '/api/community-notices';
-    apiGet<PageData>(path)
+    apiGet<PageData>(path + query)
       .then(setPage)
       .catch((err: Error) => setError(err.message));
-  }, [viewParam]);
+  }, [viewParam, query]);
 
   const isOverview = activeKey === 'overview';
 
@@ -84,7 +87,7 @@ export default function CommunityNoticesPage() {
           {VIEWS.map((v) => (
             <Link
               key={v.key}
-              to={`/community-notices/${v.key}`}
+              to={`/community-notices/${v.key}${query}`}
               className={activeKey === v.key ? `${styles.viewCard} ${styles.active}` : styles.viewCard}
               aria-current={activeKey === v.key ? 'page' : undefined}
             >
@@ -119,7 +122,7 @@ export default function CommunityNoticesPage() {
                     <h2 id={`pv-${meta.key}`} className={styles.previewTitle}>
                       {t(`notices.${meta.key}.label`)}
                     </h2>
-                    <Link className={styles.previewMore} to={`/community-notices/${meta.key}`}>
+                    <Link className={styles.previewMore} to={`/community-notices/${meta.key}${query}`}>
                       {t('notices.seeAll')} ({preview.count})
                     </Link>
                   </div>

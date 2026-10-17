@@ -5,6 +5,8 @@ import java.util.Comparator;
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
+import java.util.LinkedHashMap;
+import java.time.Instant;
 
 import org.firststep.backend.category.service.TaxonomyService;
 import org.firststep.backend.flyer.model.Flyer;
@@ -50,74 +52,86 @@ public class CommunityNoticesService {
     private final NewsService newsService;
     private final TaxonomyService taxonomyService;
     private final ContentSourceService contentSources;
+    private final EventOccurrence occurrence;
 
     public CommunityNoticesService(FlyerService flyerService, NewsService newsService,
-            TaxonomyService taxonomyService, ContentSourceService contentSources) {
+            TaxonomyService taxonomyService, ContentSourceService contentSources, EventOccurrence occurrence) {
         this.flyerService = flyerService;
         this.newsService = newsService;
         this.taxonomyService = taxonomyService;
         this.contentSources = contentSources;
+        this.occurrence = occurrence;
     }
 
-    public CommunityNoticesPage getPage(NoticeView view) {
+    public CommunityNoticesPage getPage(NoticeView view) { return getPage(view, null); }
+
+    public CommunityNoticesPage getPage(NoticeView view, String communityId) {
+        Map<NoticeView, List<ContentItem>> snapshot = new EnumMap<>(NoticeView.class);
+        for (NoticeView v : NoticeView.discoveryViews()) snapshot.put(v, itemsFor(v, communityId));
         Map<NoticeView, Integer> counts = new EnumMap<>(NoticeView.class);
         for (NoticeView v : NoticeView.discoveryViews()) {
-            counts.put(v, itemsFor(v).size());
+            counts.put(v, snapshot.get(v).size());
         }
 
         if (view == NoticeView.OVERVIEW) {
             List<CommunityNoticesPage.NoticePreview> previews = new ArrayList<>();
             for (NoticeView v : NoticeView.discoveryViews()) {
-                List<ContentItem> all = itemsFor(v);
+                List<ContentItem> all = snapshot.get(v);
                 previews.add(new CommunityNoticesPage.NoticePreview(
                         v, all.size(), List.copyOf(all.subList(0, Math.min(PREVIEW_SIZE, all.size())))));
             }
             return new CommunityNoticesPage(view, counts, List.of(), List.copyOf(previews));
         }
-        return new CommunityNoticesPage(view, counts, itemsFor(view), List.of());
+        return new CommunityNoticesPage(view, counts, snapshot.get(view), List.of());
     }
 
     /**
      * One view's items, sorted the way that view is actually read.
      *
-     * <p>The sort is the only place the views genuinely differ, and each choice
+     * <p>Events additionally require explicit current/upcoming occurrence. Each sort choice
      * answers a resident question rather than a developer preference:
      *
      * <ul>
      *   <li><b>Events</b> — soonest first. "What is coming up?" A past event
      *       sorted to the top would be useless.</li>
-     *   <li><b>Meetings</b> — soonest first, for the same reason. A meeting you
-     *       can still attend beats one you missed.</li>
+     *   <li><b>Meetings</b> — retains the existing date order and independent membership.</li>
      *   <li><b>Announcements</b> — newest first. Nothing to attend; recency is
      *       the whole signal.</li>
      *   <li><b>Flyers</b> — soonest first, because a flyer is a poster FOR
      *       something and that something has a date.</li>
      * </ul>
      */
-    private List<ContentItem> itemsFor(NoticeView view) {
+    private List<ContentItem> itemsFor(NoticeView view, String communityId) {
+        Map<String, Instant> eventOrder = new LinkedHashMap<>();
         List<ContentItem> items = new ArrayList<>();
 
         for (Flyer f : flyerService.getAll()) {
-            if (belongs(f, view)) {
-                items.add(toContentItem(f));
+            if (belongs(f, view, communityId)) {
+                items.add(toContentItem(f, view));
+                if (view == NoticeView.EVENTS) eventOrder.putIfAbsent(f.id, occurrence.orderTime(f));
             }
         }
         for (NewsItem n : newsService.getAll()) {
-            if (belongs(n, view)) {
-                items.add(toContentItem(n));
+            if (belongs(n, view, communityId)) {
+                items.add(toContentItem(n, view));
+                if (view == NoticeView.EVENTS) eventOrder.putIfAbsent(n.id, occurrence.orderTime(n));
             }
         }
 
         Comparator<ContentItem> byDate = Comparator.comparing(
                 ContentItem::date, Comparator.nullsLast(Comparator.naturalOrder()));
-        items.sort(view == NoticeView.ANNOUNCEMENTS ? byDate.reversed() : byDate);
-        return List.copyOf(items);
+        items.sort(view == NoticeView.EVENTS
+                ? Comparator.comparing((ContentItem i) -> eventOrder.get(i.id())).thenComparing(ContentItem::id)
+                : view == NoticeView.ANNOUNCEMENTS ? byDate.reversed() : byDate);
+        Map<String, ContentItem> unique = new LinkedHashMap<>();
+        for (ContentItem item : items) if (item.id() != null) unique.putIfAbsent(item.id(), item);
+        return List.copyOf(unique.values());
     }
 
     /**
      * Does this content belong in this view?
      *
-     * <p>Sector first, always: a government flyer is not a community notice no
+     * <p>Sector remains mandatory: a government flyer is not a community notice no
      * matter what it is tagged. Then the view's own selector — a kind for three
      * of them, contentType for Flyers.
      *
@@ -125,7 +139,11 @@ public class CommunityNoticesService {
      * for every sector, which is the Slice I failure boundary doing its job here
      * unchanged: such an item stays valid CivicContent everywhere else.
      */
-    private boolean belongs(CivicContent content, NoticeView view) {
+    private boolean belongs(CivicContent content, NoticeView view, String communityId) {
+        if (communityId != null && !communityId.equals(content.communityId)) return false;
+        if (view == NoticeView.EVENTS && (!(content.contentType == org.firststep.backend.shared.model.ContentType.FLYER
+                || content.contentType == org.firststep.backend.shared.model.ContentType.NEWS)
+                || occurrence.assess(content).state() != EventOccurrence.State.CURRENT_OR_UPCOMING)) return false;
         if (!contentSources.isInSector(content.contentSource, Sector.COMMUNITY)) {
             return false;
         }
@@ -138,24 +156,24 @@ public class CommunityNoticesService {
                 .isPresent();
     }
 
-    private ContentItem toContentItem(Flyer f) {
+    private ContentItem toContentItem(Flyer f, NoticeView view) {
         return new ContentItem(
                 f.contentType, f.id, f.title, f.summary,
                 f.organization,
                 null, null, null,
-                f.eventDate,
+                view == NoticeView.EVENTS ? occurrence.displayDate(f) : f.eventDate,
                 f.contentSource != null ? f.contentSource.url : null,
                 // The gallery's whole reason to exist. Resolved by FlyerService,
                 // which owns the encoding rule.
                 flyerService.imageUrlFor(f));
     }
 
-    private ContentItem toContentItem(NewsItem n) {
+    private ContentItem toContentItem(NewsItem n, NoticeView view) {
         return new ContentItem(
                 n.contentType, n.id, n.title, n.summary,
                 n.contentSource != null ? n.contentSource.name : null,
                 null, null, n.urgency,
-                n.publishDate,
+                view == NoticeView.EVENTS ? occurrence.displayDate(n) : n.publishDate,
                 n.contentSource != null ? n.contentSource.url : null,
                 null);   // news carries no image
     }

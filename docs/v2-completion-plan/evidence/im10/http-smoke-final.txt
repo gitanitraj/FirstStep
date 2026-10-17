@@ -1,0 +1,1 @@
+PASS: 11 packaged API requests plus original JPEG; independent Flyers, Community/counts, Article guards and privacy

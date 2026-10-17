@@ -1,0 +1,40 @@
+{
+  "purpose": "Synthetic in-memory variant only; these timestamps are NOT production FL-008 metadata",
+  "record": {
+    "id": "FL-008",
+    "communityId": "wilmington-de",
+    "title": "United Neighbors 2026",
+    "summary": "Art, food, music, and celebration bridging neighborhoods on both sides of I-95 \u2014 Saturday 1:00\u20134:00 pm on the 7th Street Bridge.",
+    "verified": true,
+    "category_tags": [
+      "Community Support"
+    ],
+    "subcategory": "Community Celebrations",
+    "tags": [
+      "Free",
+      "Arts & Music",
+      "Community Celebrations",
+      "event"
+    ],
+    "contentSource": {
+      "id": "westside-grows-together",
+      "type": "manual"
+    },
+    "createdDate": "2026-10-15",
+    "updatedDate": "2026-10-15",
+    "organization": "West Side Grows Together",
+    "event_date": "2026-10-17",
+    "location": {
+      "label": "7th Street Bridge",
+      "address": "7th Street between Adams St and Jackson St",
+      "city": "Wilmington",
+      "state": "DE"
+    },
+    "image": "United Neighbors 2026.jpg",
+    "organization_id": "ORG-064",
+    "startsAt": "2026-10-17T13:00:00-04:00",
+    "endsAt": "2026-10-17T16:00:00-04:00"
+  },
+  "clockAtEnd": "2026-10-17T20:00:00Z",
+  "clockAfterEnd": "2026-10-17T20:00:00.000000001Z"
+}

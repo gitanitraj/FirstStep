@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "browser": "151.0.7922.34",
+  "checks": [
+    {
+      "width": 375,
+      "scroll": 375
+    },
+    {
+      "width": 1280,
+      "scroll": 1280
+    }
+  ],
+  "eventIds": [
+    "FL-008"
+  ],
+  "flyerMedia": "/images/seasonal/United%20Neighbors%202026.jpg",
+  "keyboardViewNavigation": true,
+  "communityPreserved": true,
+  "spanish": true,
+  "highContrast": true,
+  "errors": [],
+  "limitation": "Focused local built-app smoke; not exhaustive WCAG or physical-device verification."
+}
