@@ -1,0 +1,21 @@
+python3 data-cleaning/scripts/validate_news.py
+
+══════════════════════════════════════════════════════════════
+  WILMINGTON CIVIC APP — NEWS SCHEMA VALIDATOR
+══════════════════════════════════════════════════════════════
+  File      : app/data/news.json
+  Records   : 10
+  Mode      : normal
+  ✅  Passed      : 10
+  ❌  Failed      : 0
+  📰  Active      : 10
+  🗓   Expired     : 5
+  🔁  Dup IDs     : 0
+══════════════════════════════════════════════════════════════
+
+  All checks passed. ✅
+
+══════════════════════════════════════════════════════════════
+
+
+EXIT 0

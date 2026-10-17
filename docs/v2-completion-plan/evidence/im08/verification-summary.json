@@ -1,0 +1,254 @@
+{
+  "head": "63361667a179ee139d6f410dedc222f2c81ab7c9",
+  "branch": "copyofdev",
+  "startingFiles": 880,
+  "authorizedExistingFileChanges": 27,
+  "unchangedStartingFiles": 853,
+  "verifiedCompleteMirrors": 23,
+  "backend": {
+    "baselineTests": 529,
+    "finalTests": 537,
+    "verifyExit": 0,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "frontend": {
+    "baselineTests": 133,
+    "finalTests": 143,
+    "files": 21,
+    "exit": 0,
+    "typecheckExit": 0,
+    "buildExit": 0
+  },
+  "python": {
+    "tests": 14,
+    "exit": 0
+  },
+  "validators": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "browser": {
+    "status": "PASS",
+    "version": "151.0.7922.34",
+    "pageErrors": [],
+    "viewports": [
+      375,
+      1280,
+      1440
+    ]
+  },
+  "whitespaceChecks": [
+    {
+      "file": "backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryController_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/main/java/org/firststep/backend/category/dto/CategoryDestination.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryDestination_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/main/java/org/firststep/backend/category/dto/CategoryPage.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryPage_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/main/java/org/firststep/backend/category/service/CategoryDestinationService.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryDestinationService_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/main/java/org/firststep/backend/category/service/CategoryPageService.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryPageService_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/main/java/org/firststep/backend/organization/controller/OrganizationController.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/OrganizationController_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/OrganizationService_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/controller/CategoryControllerTest.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/CategoryControllerTest_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/service/CategoryDestinationCatalogTest.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/CategoryDestinationCatalogTest_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/service/CategoryDestinationServiceTest.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/CategoryDestinationServiceTest_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/category/service/CategoryPageServiceTest.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/CategoryPageServiceTest_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "backend/src/test/java/org/firststep/backend/organization/service/ScopedOrganizationPreviewTest.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/ScopedOrganizationPreviewTest_annotated.java",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/components/ContentCard/ContentCard.module.css",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/ContentCard.module_annotated.css",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/components/ContentCard/ContentCard.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/ContentCard_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/components/ContentCollection/ContentCollection.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/ContentCollection_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/components/SiteHeader/SiteHeader.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/SiteHeader_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/i18n/dictionary.ts",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/dictionary_annotated.ts",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/pages/CategoryPage/CategoryDestination.test.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/CategoryDestination.test_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/pages/CategoryPage/CategoryPage.module.css",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryPage.module_annotated.css",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/pages/CategoryPage/CategoryPage.test.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/tests/CategoryPage.test_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/pages/CategoryPage/CategoryPage.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/CategoryPage_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/pages/OrganizationPage/OrganizationPage.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/OrganizationPage_annotated.tsx",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "frontend/src/types/api.ts",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "references/api_annotated.ts",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/IM-08 Execution Report.md",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im08/reproduce.md",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im08/inspect-first-design.md",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im08/browser-check.mjs",
+      "whitespaceErrors": 0
+    },
+    {
+      "file": "docs/v2-completion-plan/evidence/im08/serve-built.py",
+      "whitespaceErrors": 0
+    }
+  ],
+  "localEvidenceServers": "stopped intentionally (130)",
+  "noCommitOrPush": true
+}

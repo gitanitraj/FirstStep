@@ -1,0 +1,50 @@
+ M backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java
+ M backend/src/main/java/org/firststep/backend/category/dto/CategoryPage.java
+ M backend/src/main/java/org/firststep/backend/category/service/CategoryPageService.java
+ M backend/src/main/java/org/firststep/backend/organization/controller/OrganizationController.java
+ M backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java
+ M backend/src/test/java/org/firststep/backend/category/controller/CategoryControllerTest.java
+ M backend/src/test/java/org/firststep/backend/category/service/CategoryPageServiceTest.java
+ M frontend/src/components/ContentCard/ContentCard.module.css
+ M frontend/src/components/ContentCard/ContentCard.tsx
+ M frontend/src/components/ContentCollection/ContentCollection.tsx
+ M frontend/src/components/SiteHeader/SiteHeader.tsx
+ M frontend/src/i18n/dictionary.ts
+ M frontend/src/pages/CategoryPage/CategoryPage.module.css
+ M frontend/src/pages/CategoryPage/CategoryPage.test.tsx
+ M frontend/src/pages/CategoryPage/CategoryPage.tsx
+ M frontend/src/pages/OrganizationPage/OrganizationPage.tsx
+ M frontend/src/types/api.ts
+ M references/CategoryController_annotated.java
+ M references/CategoryPageService_annotated.java
+ M references/CategoryPage_annotated.java
+ M references/CategoryPage_annotated.tsx
+ M references/ContentCard_annotated.tsx
+ M references/ContentCollection_annotated.tsx
+ M references/OrganizationService_annotated.java
+ M references/api_annotated.ts
+ M references/dictionary_annotated.ts
+ M references/tests/CategoryControllerTest_annotated.java
+?? backend/src/main/java/org/firststep/backend/category/dto/CategoryDestination.java
+?? backend/src/main/java/org/firststep/backend/category/service/CategoryDestinationService.java
+?? backend/src/test/java/org/firststep/backend/category/service/CategoryDestinationCatalogTest.java
+?? backend/src/test/java/org/firststep/backend/category/service/CategoryDestinationServiceTest.java
+?? backend/src/test/java/org/firststep/backend/organization/service/ScopedOrganizationPreviewTest.java
+?? "docs/v2-completion-plan/IM-08 Execution Report.md"
+?? docs/v2-completion-plan/evidence/im08/
+?? "docs/v2-completion-plan/v2 \342\200\224 IM-08 Coding-Agent Work Order.md"
+?? "docs/v2-completion-plan/v2.8 \342\200\224 Authoritative IM-01\342\200\223IM-14 Execution Matrix.md"
+?? frontend/src/pages/CategoryPage/CategoryDestination.test.tsx
+?? references/CategoryDestinationService_annotated.java
+?? references/CategoryDestination_annotated.java
+?? references/CategoryPage.module_annotated.css
+?? references/ContentCard.module_annotated.css
+?? references/OrganizationController_annotated.java
+?? references/OrganizationPage_annotated.tsx
+?? references/SiteHeader_annotated.tsx
+?? references/tests/CategoryDestination.test_annotated.tsx
+?? references/tests/CategoryDestinationCatalogTest_annotated.java
+?? references/tests/CategoryDestinationServiceTest_annotated.java
+?? references/tests/CategoryPage.test_annotated.tsx
+?? references/tests/CategoryPageServiceTest_annotated.java
+?? references/tests/ScopedOrganizationPreviewTest_annotated.java

@@ -168,12 +168,12 @@ class CategoryControllerTest {
                         CollectionLayer.ACTION, 1,
                         List.of(new ContentItem(ContentType.RESOURCE, "R1", "A shelter", "Summary",
                                 "Housing Alliance", "Wilmington", "free", "standard", null,
-                                "https://example.org/R1", null)))));
+                                "https://example.org/R1", null)))), null);
     }
 
     @Test
     void shouldReturnAllThreePillarsInOneResponse() throws Exception {
-        when(categoryPageService.getByKey("housing", null)).thenReturn(Optional.of(housingPage()));
+        when(categoryPageService.getByKey("housing", "wilmington-de")).thenReturn(Optional.of(housingPage()));
 
         mockMvc.perform(get("/api/category/housing"))
                 .andExpect(status().isOk())
@@ -224,7 +224,7 @@ class CategoryControllerTest {
 
     @Test
     void shouldReturnTheTopicPageWithItsBreadcrumbAndItems() throws Exception {
-        when(topicPageService.getByKey("housing", "emergency-shelter", null))
+        when(topicPageService.getByKey("housing", "emergency-shelter", "wilmington-de"))
                 .thenReturn(Optional.of(shelterPage()));
 
         mockMvc.perform(get("/api/category/housing/emergency-shelter"))

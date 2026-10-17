@@ -1,8 +1,10 @@
-/* IM-05 annotated mirror.
- * What: controlled help-only Category/Topic browsing and its resident contract.
- * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
- * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
- * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+/*
+ * WHAT: Complete annotated mirror of frontend/src/types/api.ts for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
  */
 export interface CivicContentSummary {
   id: string;
@@ -403,4 +405,18 @@ export interface CategoryPage {
   topics: TopicNavigation[];
   organizations: OrgSummary[];
   collections: CategoryCollection[];
+  /** Public presentation allowlist, separate from internal selection evidence. */
+  destination?: CategoryDestination | null;
 }
+
+export interface CategoryDestination {
+  communityId: string;
+  featuredTopics: { name: string; slug: string; items: {
+    role: 'TIMELY' | 'DURABLE' | 'VISUAL' | 'FALLBACK'; item: ContentItem; href: string;
+  }[] }[];
+  headlines: ContextLink[];
+  expertLinks: ContextLink[];
+  laws: ContextLink[];
+}
+
+export interface ContextLink { id: string; title: string; href: string; date: string | null; }

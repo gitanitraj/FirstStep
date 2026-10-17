@@ -1,0 +1,140 @@
+/*
+ * WHAT: Complete annotated mirror of frontend/src/pages/CategoryPage/CategoryPage.module.css for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ */
+/* IM-08 Category Destination. Scoped, token-driven, mobile-first composition. */
+
+.body {
+  max-width: var(--page-max);
+  margin: 0 auto;
+  padding: 32px var(--page-gutter) 64px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+/* ---- Orientation --------------------------------------------------------- */
+
+.header {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+}
+
+.crumbs {
+  margin-bottom: 10px;
+  font-size: 13px;
+}
+
+.crumb {
+  color: var(--text-secondary);
+  text-decoration: none;
+}
+
+.crumb:hover {
+  text-decoration: underline;
+}
+
+.title {
+  composes: displayPage from '../../styles/typography.module.css';
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 26px;
+  color: var(--primary-color);
+}
+
+.icon {
+  font-size: 28px;
+}
+
+.counts {
+  margin: 6px 0 0 0;
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+/* ---- Layer 2 — WHAT TO KNOW ---------------------------------------------- */
+
+.whatToKnow {
+  background: var(--surface);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.sectionTitle {
+  composes: displaySection from '../../styles/typography.module.css';
+  margin: 0;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+
+/* Supporting collections sit apart from the primary four — they support the
+   information layer rather than standing beside it as peers. */
+.supporting {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 24px;
+  align-items: start;
+  padding-top: 20px;
+  border-top: 1px solid var(--border-color);
+}
+
+@media (max-width: 700px) {
+  .body {
+    gap: 24px;
+  }
+
+  .whatToKnow,
+  .header {
+    padding: 16px;
+  }
+}
+
+/* --primary-color is deliberately NOT flipped by the high-contrast theme, so a
+   component using it as INK must state its own rule (docs/frontend/css-architecture.md,
+   ArticlePage.module.css is the canonical example). */
+:global(body.high-contrast) .title {
+  color: var(--text-primary);
+}
+
+/* IM-08: primary resident content retains width; optional context moves below on mobile. */
+.featured { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin-top: 18px; }
+.topic { min-width: 0; }
+.topicTitle { composes: contentTitle from '../../styles/typography.module.css'; margin: 0 0 12px; }
+.topic a, .organizations a, .headlines a { color: var(--text-primary); text-underline-offset: 3px; }
+.cards { display: grid; gap: 12px; padding: 0; margin: 0; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.primary { display: grid; gap: 28px; min-width: 0; }
+.note { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+.browse summary { cursor: pointer; font-weight: var(--weight-semibold); }
+.switcher { display: flex; flex-wrap: wrap; gap: 8px; }
+.switcher button { padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--border-color); background: var(--surface); color: var(--text-primary); cursor: pointer; font: inherit; }
+.switcher button[aria-pressed='true'] { border: 2px solid var(--text-primary); font-weight: var(--weight-bold); }
+.rail { min-width: 0; padding: 20px; background: var(--surface); border: 1px solid var(--border-color); border-radius: var(--radius); }
+.railTitle { composes: contentTitle from '../../styles/typography.module.css'; margin: 20px 0 8px; }
+.headlines, .organizations ul { padding-left: 20px; display: grid; gap: 12px; overflow-wrap: anywhere; }
+.organizations { border-top: 1px solid var(--border-color); padding-top: 24px; }
+@media (min-width: 720px) { .featured { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1200px) {
+  .featured { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .layout { grid-template-columns: minmax(0, 1fr) 300px; }
+}
+@media (max-width: 420px) { .supporting { grid-template-columns: minmax(0, 1fr); } }
+
+.body :is(a, button, summary):focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; }
+
+.quickHelp { display: inline-block; margin-top: 14px; padding: 8px 14px; background: var(--primary-color); color: var(--surface); border: 1px solid var(--border-color); border-radius: var(--radius); font-weight: var(--weight-semibold); }
+:global(body.high-contrast) .quickHelp { background: var(--surface); color: var(--text-primary); border-color: var(--text-primary); }

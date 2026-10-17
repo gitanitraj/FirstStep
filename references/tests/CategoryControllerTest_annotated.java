@@ -1,10 +1,10 @@
 /*
- * IM-01 annotated test reference — full mirror of backend/src/test/java/org/firststep/backend/category/controller/CategoryControllerTest.java
- * WHAT: Existing regression test with explicit fixed-clock service dependency.
- * WHY: prove behavior using deterministic time and preserve unrelated test expectations.
- * INTERACTION: see individual test names and fixtures; only lifecycle dependencies were
- * added to existing service construction. No assertion was weakened to hide expiry failures.
- * ALTERNATIVE: machine-clock fixtures would make future runs depend on the date of execution.
+ * WHAT: Complete annotated mirror of backend/src/test/java/org/firststep/backend/category/controller/CategoryControllerTest.java for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
  */
 package org.firststep.backend.category.controller;
 
@@ -176,12 +176,12 @@ class CategoryControllerTest {
                         CollectionLayer.ACTION, 1,
                         List.of(new ContentItem(ContentType.RESOURCE, "R1", "A shelter", "Summary",
                                 "Housing Alliance", "Wilmington", "free", "standard", null,
-                                "https://example.org/R1", null)))));
+                                "https://example.org/R1", null)))), null);
     }
 
     @Test
     void shouldReturnAllThreePillarsInOneResponse() throws Exception {
-        when(categoryPageService.getByKey("housing", null)).thenReturn(Optional.of(housingPage()));
+        when(categoryPageService.getByKey("housing", "wilmington-de")).thenReturn(Optional.of(housingPage()));
 
         mockMvc.perform(get("/api/category/housing"))
                 .andExpect(status().isOk())
@@ -232,7 +232,7 @@ class CategoryControllerTest {
 
     @Test
     void shouldReturnTheTopicPageWithItsBreadcrumbAndItems() throws Exception {
-        when(topicPageService.getByKey("housing", "emergency-shelter", null))
+        when(topicPageService.getByKey("housing", "emergency-shelter", "wilmington-de"))
                 .thenReturn(Optional.of(shelterPage()));
 
         mockMvc.perform(get("/api/category/housing/emergency-shelter"))

@@ -1,50 +1,12 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — frontend/src/components/ContentCollection/ContentCollection.tsx
- * Category destination. See references/decisions.md Decision 051.
- * Keep this mirror in sync whenever the production file changes.
- * =============================================================================
- *
- * WHAT THIS COMPONENT IS
- *   One purposeful collection on a category destination: heading, count, a
- *   preview of its items, and a control that reveals the rest in place.
- *
- * ONE GENERIC COMPONENT RENDERS EVERY COLLECTION
- *   Decision 045's amendment permits grouping by controlled metadata PROVIDED
- *   the grouping uses generic presentation components. A LawSection beside a
- *   FlyerSection would be the violation — not the grouping itself, but
- *   enumerating the metadata in code. Here the collection is DATA, so a seventh
- *   collection costs nothing. A test pins this by rendering a second collection
- *   key and asserting no code change was needed.
- *
- * WHAT THIS REPLACED
- *   An earlier draft proposed a universal "Content Explorer" — one collection
- *   viewed under switchable axes — as the ORGANIZING CONCEPT of the whole page.
- *   That was retired: a destination is a set of purposeful collections, not one
- *   collection under several axes. The switcher mechanism survives, but scoped
- *   to the supporting FAQ/Q&A destinations, which was its intended use all
- *   along.
- *
- * WHY EXPANSION IS LOCAL STATE AND NOT A URL PARAMETER
- *   The standing rule is that the URL is the source of truth WHEN VIEW STATE
- *   NEEDS TO BE SHAREABLE. "I scrolled a list open" is not a view another
- *   person needs to land in. An earlier draft made every "See more"
- *   URL-addressable and even specified the parameter naming scheme — an
- *   implementation detail promoted to architecture. Decision 051 declined it.
- *   If a collection later earns deep-linking, it becomes a search param without
- *   changing this component's contract.
- *
- * WHY THERE IS NO EMPTY BRANCH
- *   The backend refuses to build an empty collection, so this component never
- *   receives one. The rule lives at construction rather than in every consumer.
- *
- * ACCESSIBILITY
- *   The section is named by its own heading via aria-labelledby, so it appears
- *   as a named region. aria-expanded reports state; aria-controls points at the
- *   LIST it actually controls — an early version pointed it at the heading,
- *   which is the kind of error that tests asserting roles catch and tests
- *   asserting class names never do.
- * ============================================================================= */
-
+/*
+ * WHAT: Complete annotated mirror of frontend/src/components/ContentCollection/ContentCollection.tsx for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ */
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ContentCard from '../ContentCard/ContentCard';
 import { useI18n } from '../../i18n/I18nProvider';
@@ -92,12 +54,16 @@ interface Props {
    * caller's decision, and only `full` is built today.
    */
   layout?: 'full' | 'compact';
+  moreHref?: string;
+  moreLabel?: string;
+  previewCount?: number;
 }
 
 export default function ContentCollection({
   collection,
   headingLevel = 3,
   layout = 'full',
+  moreHref, moreLabel, previewCount = PREVIEW_COUNT,
 }: Props) {
   const { t } = useI18n();
   const [expanded, setExpanded] = useState(false);
@@ -105,8 +71,8 @@ export default function ContentCollection({
 
   // A collection is never sent empty, so there is no empty branch to render —
   // the backend refuses to build one rather than the client hiding it.
-  const shown = expanded ? collection.items : collection.items.slice(0, PREVIEW_COUNT);
-  const remaining = collection.count - PREVIEW_COUNT;
+  const shown = expanded ? collection.items : collection.items.slice(0, previewCount);
+  const remaining = collection.count - previewCount;
   const headingId = `collection-${collection.key}`;
   const listId = `${headingId}-list`;
 
@@ -128,7 +94,7 @@ export default function ContentCollection({
         ))}
       </ul>
 
-      {remaining > 0 && (
+      {moreHref ? <Link className={styles.more} to={moreHref}>{moreLabel}</Link> : remaining > 0 && (
         <button
           type="button"
           className={styles.more}
@@ -142,36 +108,3 @@ export default function ContentCollection({
     </section>
   );
 }
-
-
-// =============================================================================
-// THE HEADING-LEVEL PROP — A DEFECT THE UNIT TESTS COULD NOT SEE
-// =============================================================================
-// This component originally hardcoded <h3>. Every test passed; the page rendered
-// correctly; the outline was wrong:
-//
-//     H1  Housing
-//     H2  Where do you need help?
-//     H3    NEED HELP RIGHT AWAY ...
-//     H3  Get help            <- orphaned: no H2 parent
-//     H2  What to know
-//     H3    Policy info / Law / Flyers / First Rate News
-//     H3    FAQs / Expert Q&A <- read as PEERS of the primary four
-//
-// A screen-reader user navigating by heading would have found Get Help nested
-// inside topic discovery, and the supporting collections standing beside Policy
-// Info as equals. Both contradict the architecture the payload already encodes
-// in `layer`.
-//
-// THE FIX, AND THE ONE IT IS NOT. A heading level is a property of POSITION, and
-// only the caller knows the position. So the level became a prop. The tempting
-// alternative — a PrimaryCollection and a SupportingCollection component — is the
-// same violation as a component per metadata value, in a new costume: it
-// enumerates positions in code instead of enumerating types.
-//
-// HOW IT WAS FOUND: by dumping the rendered document outline, not by a unit
-// test. Assertions that ask "is this heading present" pass on a broken outline;
-// only reading the hierarchy as a whole exposes it. The tests now pin LEVELS as
-// well as names, which is what makes the fix a regression guard rather than a
-// one-off correction.
-// =============================================================================

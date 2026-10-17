@@ -146,16 +146,11 @@ describe('CategoryPage', () => {
       expect(screen.queryByRole('heading', { name: 'Current Updates' })).not.toBeInTheDocument();
     });
 
-    it('does not render an organizations section, whose presentation is deferred', async () => {
-      // Layer 3 remains an architectural destination; only its category-page
-      // presentation is deferred (Decision 051). The payload still carries
-      // `organizations` and OrganizationService is untouched — the capability is
-      // preserved, so this asserts absence from the PAGE, not absence of data.
+    it('renders the authorized secondary Organizations preview', async () => {
       renderAt('housing');
       await screen.findByRole('heading', { name: /Housing/, level: 1 });
-
-      expect(screen.queryByRole('heading', { name: 'Organizations' })).not.toBeInTheDocument();
-      expect(screen.queryByRole('link', { name: /Housing Alliance/ })).not.toBeInTheDocument();
+      expect(screen.getByRole('heading', { name: 'Organizations' })).toBeInTheDocument();
+      expect(screen.getByRole('link', { name: /Housing Alliance/ })).toHaveAttribute('href', '/organization/housing-alliance');
     });
 
     it('places Get Help as a peer of What to Know, not a child of topic discovery', async () => {
@@ -195,7 +190,7 @@ describe('CategoryPage', () => {
     });
   });
 
-  it('omits a layer entirely when the payload carries no collections for it', async () => {
+  it('shows truthful empty help while preserving available information', async () => {
     // Utilities is the real sparse case: no resources, no topics, laws only.
     stubFetch({
       success: true,
@@ -210,7 +205,8 @@ describe('CategoryPage', () => {
     renderAt('housing');
 
     expect(await screen.findByRole('heading', { name: 'Law' })).toBeInTheDocument();
-    expect(screen.queryByRole('heading', { name: 'Get help' })).not.toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: 'Get help' })).toBeInTheDocument();
+    expect(screen.getByText('No current help is listed here yet. Try all help or return to the category.')).toBeInTheDocument();
     expect(screen.queryByRole('heading', { name: 'Expert Q&A' })).not.toBeInTheDocument();
   });
 

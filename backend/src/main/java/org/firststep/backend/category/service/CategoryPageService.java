@@ -35,7 +35,8 @@ import org.springframework.stereotype.Service;
  *   ├── NavigationService.getByKey()          → metadata + groups/topics   (Discover)
  *   ├── UpdatesService.getForCategory()       → news + law + flyer + expert (Stay Informed)
  *   ├── OrganizationService.getForCategory()  → organizations              (Connect)
- *   └── CategoryContentService.collectionsFor() → the destination collections (Decision 051)
+ *   ├── CategoryContentService.collectionsFor() → existing controlled collections
+ *   └── CategoryDestinationService.build()      → public featured cards and context links (IM-08)
  * </pre>
  *
  * <p>The fourth collaborator arrived with the category destination. It supplies
@@ -64,13 +65,16 @@ public class CategoryPageService {
      */
     private static final int MAX_UPDATES = 6;
 
+    private final CategoryDestinationService destinationService;
     private final NavigationService navigationService;
     private final UpdatesService updatesService;
     private final OrganizationService organizationService;
     private final CategoryContentService categoryContentService;
 
     public CategoryPageService(NavigationService navigationService, UpdatesService updatesService,
-            OrganizationService organizationService, CategoryContentService categoryContentService) {
+            OrganizationService organizationService, CategoryContentService categoryContentService,
+            CategoryDestinationService destinationService) {
+        this.destinationService = destinationService;
         this.navigationService = navigationService;
         this.updatesService = updatesService;
         this.organizationService = organizationService;
@@ -96,14 +100,17 @@ public class CategoryPageService {
                 navigation.totalCount(), navigation.countsByType(),
                 mostRecentDate(updates));
 
+        var collections = categoryContentService.collectionsFor(categoryKey, communityId);
         return new CategoryPage(
                 metadata,
                 updates,
                 navigation.groups().stream().map(group -> new TopicGroup(
                         group.label(), helpTopics(categoryKey, group.topics(), communityId))).toList(),
                 helpTopics(categoryKey, navigation.topics(), communityId),
-                organizationService.getForCategory(categoryKey),
-                categoryContentService.collectionsFor(categoryKey, communityId));
+                communityId == null ? organizationService.getForCategory(categoryKey)
+                        : organizationService.getForCategory(categoryKey, communityId),
+                collections,
+                communityId == null ? null : destinationService.build(communityId, categoryKey, collections));
     }
 
     /** Navigation toward help pages reports help-only counts; generic navigation keeps its own semantics. */

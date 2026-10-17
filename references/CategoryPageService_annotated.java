@@ -1,8 +1,10 @@
-/* IM-05 annotated mirror.
- * What: controlled help-only Category/Topic browsing and its resident contract.
- * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
- * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
- * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+/*
+ * WHAT: Complete annotated mirror of backend/src/main/java/org/firststep/backend/category/service/CategoryPageService.java for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
  */
 package org.firststep.backend.category.service;
 
@@ -41,7 +43,8 @@ import org.springframework.stereotype.Service;
  *   ├── NavigationService.getByKey()          → metadata + groups/topics   (Discover)
  *   ├── UpdatesService.getForCategory()       → news + law + flyer + expert (Stay Informed)
  *   ├── OrganizationService.getForCategory()  → organizations              (Connect)
- *   └── CategoryContentService.collectionsFor() → the destination collections (Decision 051)
+ *   ├── CategoryContentService.collectionsFor() → existing controlled collections
+ *   └── CategoryDestinationService.build()      → public featured cards and context links (IM-08)
  * </pre>
  *
  * <p>The fourth collaborator arrived with the category destination. It supplies
@@ -70,13 +73,16 @@ public class CategoryPageService {
      */
     private static final int MAX_UPDATES = 6;
 
+    private final CategoryDestinationService destinationService;
     private final NavigationService navigationService;
     private final UpdatesService updatesService;
     private final OrganizationService organizationService;
     private final CategoryContentService categoryContentService;
 
     public CategoryPageService(NavigationService navigationService, UpdatesService updatesService,
-            OrganizationService organizationService, CategoryContentService categoryContentService) {
+            OrganizationService organizationService, CategoryContentService categoryContentService,
+            CategoryDestinationService destinationService) {
+        this.destinationService = destinationService;
         this.navigationService = navigationService;
         this.updatesService = updatesService;
         this.organizationService = organizationService;
@@ -102,14 +108,17 @@ public class CategoryPageService {
                 navigation.totalCount(), navigation.countsByType(),
                 mostRecentDate(updates));
 
+        var collections = categoryContentService.collectionsFor(categoryKey, communityId);
         return new CategoryPage(
                 metadata,
                 updates,
                 navigation.groups().stream().map(group -> new TopicGroup(
                         group.label(), helpTopics(categoryKey, group.topics(), communityId))).toList(),
                 helpTopics(categoryKey, navigation.topics(), communityId),
-                organizationService.getForCategory(categoryKey),
-                categoryContentService.collectionsFor(categoryKey, communityId));
+                communityId == null ? organizationService.getForCategory(categoryKey)
+                        : organizationService.getForCategory(categoryKey, communityId),
+                collections,
+                communityId == null ? null : destinationService.build(communityId, categoryKey, collections));
     }
 
     /** Navigation toward help pages reports help-only counts; generic navigation keeps its own semantics. */

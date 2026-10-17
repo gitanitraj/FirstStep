@@ -397,4 +397,18 @@ export interface CategoryPage {
   topics: TopicNavigation[];
   organizations: OrgSummary[];
   collections: CategoryCollection[];
+  /** Public presentation allowlist, separate from internal selection evidence. */
+  destination?: CategoryDestination | null;
 }
+
+export interface CategoryDestination {
+  communityId: string;
+  featuredTopics: { name: string; slug: string; items: {
+    role: 'TIMELY' | 'DURABLE' | 'VISUAL' | 'FALLBACK'; item: ContentItem; href: string;
+  }[] }[];
+  headlines: ContextLink[];
+  expertLinks: ContextLink[];
+  laws: ContextLink[];
+}
+
+export interface ContextLink { id: string; title: string; href: string; date: string | null; }

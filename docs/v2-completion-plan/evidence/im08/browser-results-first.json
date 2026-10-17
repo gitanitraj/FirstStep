@@ -1,0 +1,95 @@
+{
+  "browser": "151.0.7922.34",
+  "viewportChecks": [
+    {
+      "width": 375,
+      "scrollWidth": 375,
+      "rail": {
+        "x": 18,
+        "y": 6833.59375,
+        "width": 339,
+        "height": 384.390625,
+        "top": 6833.59375,
+        "right": 357,
+        "bottom": 7217.984375,
+        "left": 18
+      },
+      "primaryBottom": 6805.59375,
+      "featuredCardWidth": 339
+    },
+    {
+      "width": 1280,
+      "scrollWidth": 1280,
+      "rail": {
+        "x": 928.8125,
+        "y": 1288.234375,
+        "width": 300,
+        "height": 384.390625,
+        "top": 1288.234375,
+        "right": 1228.8125,
+        "bottom": 1672.625,
+        "left": 928.8125
+      },
+      "primaryBottom": 3539.9375,
+      "featuredCardWidth": 279.40625
+    },
+    {
+      "width": 1440,
+      "scrollWidth": 1440,
+      "rail": {
+        "x": 1082.40625,
+        "y": 1247.6875,
+        "width": 300,
+        "height": 384.390625,
+        "top": 1247.6875,
+        "right": 1382.40625,
+        "bottom": 1632.078125,
+        "left": 1082.40625
+      },
+      "primaryBottom": 3477,
+      "featuredCardWidth": 316.203125
+    }
+  ],
+  "journeys": [
+    {
+      "action": "keyboard featured source click",
+      "expected": "https://www.bereadycdc.org/",
+      "opened": "https://www.bereadycdc.org/"
+    },
+    {
+      "action": "featured Topic, refresh, browser back",
+      "final": "http://127.0.0.1:4178/app-next/category/housing?communityId=wilmington-de"
+    },
+    {
+      "action": "All Help full expansion",
+      "visible": 36,
+      "url": "http://127.0.0.1:4178/app-next/category/housing/help?communityId=wilmington-de"
+    },
+    {
+      "action": "contextual unactivated Flyer",
+      "src": "/images/seasonal/Eviction%20Help.png"
+    },
+    {
+      "action": "approved original article read",
+      "url": "http://127.0.0.1:4178/app-next/originals/OR-003?communityId=wilmington-de"
+    },
+    {
+      "action": "scoped organization",
+      "href": "/app-next/organization/american-red-cross?communityId=wilmington-de"
+    },
+    {
+      "action": "real alternate Category/Community",
+      "url": "http://127.0.0.1:4178/app-next/category/food?communityId=bear-de"
+    },
+    {
+      "action": "unknown Category accessible alert"
+    }
+  ],
+  "limitations": "Browser smoke and measured layout, not exhaustive WCAG or provider website audit.",
+  "keyboardFocus": {
+    "outline": "solid",
+    "width": "3px"
+  },
+  "pageErrors": [],
+  "status": "PASS"
+}

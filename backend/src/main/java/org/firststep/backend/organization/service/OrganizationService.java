@@ -72,6 +72,28 @@ public class OrganizationService {
                 org.id, org.name, org.slug, org.website, resourcesFor(org)));
     }
 
+    /** Explicit scoped destination path; historical directory overload remains unchanged. */
+    public Optional<OrganizationPage> getBySlug(String slug, String communityId) {
+        return repository.findBySlug(slug).map(org -> new OrganizationPage(org.id, org.name, org.slug, org.website,
+                resourceService.getAll().stream().filter(r -> communityId.equals(r.communityId))
+                        .filter(r -> org.id.equals(r.organizationId)).map(OrganizationService::toContentItem).toList()));
+    }
+
+    /** IM-08 preview uses actual registry IDs, never a source, host or display-name inference. */
+    public List<OrgSummary> getForCategory(String categoryKey, String communityId) {
+        var category = taxonomyService.findByKey(categoryKey).orElse(null);
+        if (category == null || communityId == null || communityId.isBlank()) return List.of();
+        Map<String, java.util.Set<String>> ids = new java.util.TreeMap<>();
+        resourceService.getAll().stream().filter(r -> communityId.equals(r.communityId))
+                .filter(r -> taxonomyService.matchesCategoryTags(category, r.categoryTags))
+                .filter(r -> r.organizationId != null && r.id != null)
+                .forEach(r -> ids.computeIfAbsent(r.organizationId, ignored -> new java.util.TreeSet<>()).add(r.id));
+        return repository.findAll().stream().filter(org -> ids.containsKey(org.id) && org.slug != null)
+                .sorted(Comparator.<Organization>comparingInt(org -> ids.get(org.id).size()).reversed()
+                        .thenComparing(org -> org.name).thenComparing(org -> org.id))
+                .limit(4).map(org -> new OrgSummary(org.name, org.slug, ids.get(org.id).size())).toList();
+    }
+
     private List<ContentItem> resourcesFor(Organization org) {
         return resourceService.getAll().stream()
                 .filter(r -> org.id.equals(r.organizationId))

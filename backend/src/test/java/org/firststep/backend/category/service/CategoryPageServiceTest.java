@@ -75,7 +75,7 @@ class CategoryPageServiceTest {
                 registryFor(resourceService.getAll()));
         CategoryContentService content = new CategoryContentService(taxonomy, resourceService,
                 newsService, rssFeedSource, flyerService, expertAnswerService, faqService, articleService);
-        service = new CategoryPageService(navigation, updates, organizations, content);
+        service = new CategoryPageService(navigation, updates, organizations, content, mock(CategoryDestinationService.class));
     }
 
     private static Resource resource(String id, String org, List<String> categoryTags, String subcategory) {

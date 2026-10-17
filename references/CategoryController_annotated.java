@@ -1,8 +1,10 @@
-/* IM-05 annotated mirror.
- * What: controlled help-only Category/Topic browsing and its resident contract.
- * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
- * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
- * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+/*
+ * WHAT: Complete annotated mirror of backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
  */
 package org.firststep.backend.category.controller;
 
@@ -55,7 +57,7 @@ public class CategoryController {
     @GetMapping("/category/{key}")
     public ResponseEntity<ApiResponse<CategoryPage>> getByKey(
             @PathVariable String key,
-            @RequestParam(required = false) String communityId) {
+            @RequestParam(defaultValue = "${app.default-community-id:wilmington-de}") String communityId) {
         CategoryPage page = categoryPageService.getByKey(key, communityId)
                 .orElseThrow(() -> new NotFoundException("Category not found: " + key));
         return ResponseEntity.ok(ApiResponse.success(page));
@@ -64,7 +66,7 @@ public class CategoryController {
     /** Static route takes precedence over the existing controlled Topic slug route. */
     @GetMapping("/category/{key}/help")
     public ResponseEntity<ApiResponse<TopicPage>> getAllHelp(
-            @PathVariable String key, @RequestParam(required = false) String communityId) {
+            @PathVariable String key, @RequestParam(defaultValue = "${app.default-community-id:wilmington-de}") String communityId) {
         TopicPage page = topicPageService.getAllHelp(key, communityId)
                 .orElseThrow(() -> new NotFoundException("Category not found: " + key));
         return ResponseEntity.ok(ApiResponse.success(page));
@@ -83,7 +85,7 @@ public class CategoryController {
     public ResponseEntity<ApiResponse<TopicPage>> getTopic(
             @PathVariable String key,
             @PathVariable String topic,
-            @RequestParam(required = false) String communityId) {
+            @RequestParam(defaultValue = "${app.default-community-id:wilmington-de}") String communityId) {
         TopicPage page = topicPageService.getByKey(key, topic, communityId)
                 .orElseThrow(() -> new NotFoundException("Topic not found: " + key + "/" + topic));
         return ResponseEntity.ok(ApiResponse.success(page));

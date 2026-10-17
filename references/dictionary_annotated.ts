@@ -1,8 +1,10 @@
-/* IM-05 annotated mirror.
- * What: controlled help-only Category/Topic browsing and its resident contract.
- * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
- * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
- * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+/*
+ * WHAT: Complete annotated mirror of frontend/src/i18n/dictionary.ts for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
  */
 export type Lang = 'en' | 'es';
 
@@ -13,6 +15,21 @@ export type Lang = 'en' | 'es';
  */
 export const dictionary: Record<Lang, Record<string, string>> = {
   en: {
+    'destination.quickHelp': 'Get help in',
+    'destination.featured': 'Featured topics',
+    'destination.noFeatured': 'No featured help topics are available in this community yet.',
+    'destination.browse': 'Browse all help topics',
+    'destination.emptyCollection': 'No current items in this collection.',
+    'destination.organizationsNote': 'Organizations linked to listed resources. Some catalog entries name individual programs; this is a limited preview.',
+    'destination.noOrganizations': 'No linked organizations are available for this category.',
+    'destination.rail': 'More context',
+    'destination.expertLinks': 'Expert and video links',
+    'destination.noLinks': 'No linked content is available here yet.',
+    'destination.collections': 'Choose a civic information collection',
+    'destination.intro': 'Find help, explore topics and read local civic information.',
+    'destination.lastPublished': 'Latest published update',
+    'destination.read': 'Read more',
+
     'brand.home': 'First Step home',
     'tagline': 'Your trusted guide to community resources, program updates and local information.',
     // Global nav: About · Housing · Community · Updates.
@@ -184,6 +201,21 @@ export const dictionary: Record<Lang, Record<string, string>> = {
     'contentType.expert.plural': 'expert answers',
   },
   es: {
+    'destination.quickHelp': 'Obtener ayuda en',
+    'destination.featured': 'Temas destacados',
+    'destination.noFeatured': 'Aún no hay temas de ayuda destacados en esta comunidad.',
+    'destination.browse': 'Explorar todos los temas de ayuda',
+    'destination.emptyCollection': 'No hay contenido actual en esta colección.',
+    'destination.organizationsNote': 'Organizaciones vinculadas a los recursos del catálogo. Algunas entradas nombran programas individuales; esta es una vista limitada.',
+    'destination.noOrganizations': 'No hay organizaciones vinculadas a esta categoría.',
+    'destination.rail': 'Más contexto',
+    'destination.expertLinks': 'Enlaces de expertos y videos',
+    'destination.noLinks': 'Aún no hay contenido enlazado disponible.',
+    'destination.collections': 'Elegir una colección de información cívica',
+    'destination.intro': 'Encuentre ayuda, explore temas y lea información cívica local.',
+    'destination.lastPublished': 'Última actualización publicada',
+    'destination.read': 'Leer más',
+
     'brand.home': 'Inicio de First Step',
     'tagline': 'Tu guía confiable de recursos comunitarios, actualizaciones de programas e información local.',
     'nav.about': 'Acerca de',

@@ -1,4 +1,4 @@
-import { Link, NavLink } from 'react-router-dom';
+import { Link, NavLink, useSearchParams } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nProvider';
 import { useHighContrast } from '../../hooks/useHighContrast';
 import logoFeet from '../../assets/logo-feet.png';
@@ -37,13 +37,16 @@ const NAV_ITEMS: { labelKey: string; to: string }[] = [
 export default function SiteHeader() {
   const { lang, setLang, t } = useI18n();
   const { highContrast, toggle } = useHighContrast();
+  const [search] = useSearchParams();
+  const community = search.get('communityId');
+  const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
   const otherLang = lang === 'en' ? 'es' : 'en';
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.headerInner}>
-          <Link to="/" className={styles.brand} aria-label={t('brand.home')}>
+          <Link to={`/${query}`} className={styles.brand} aria-label={t('brand.home')}>
             <img
               className={styles.logo}
               src={logoFeet}
@@ -91,7 +94,7 @@ export default function SiteHeader() {
           {NAV_ITEMS.map((item) => (
             <NavLink
               key={item.to}
-              to={item.to}
+              to={`${item.to}${query}`}
               className={({ isActive }) =>
                 isActive ? `${styles.navItem} ${styles.active}` : styles.navItem
               }

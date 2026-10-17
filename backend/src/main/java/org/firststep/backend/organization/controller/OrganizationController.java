@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * <pre>
@@ -37,8 +38,9 @@ public class OrganizationController {
     }
 
     @GetMapping("/organization/{slug}")
-    public ResponseEntity<ApiResponse<OrganizationPage>> getOrganization(@PathVariable String slug) {
-        OrganizationPage page = organizationService.getBySlug(slug)
+    public ResponseEntity<ApiResponse<OrganizationPage>> getOrganization(@PathVariable String slug, @RequestParam(required = false) String communityId) {
+        OrganizationPage page = (communityId == null ? organizationService.getBySlug(slug)
+                : organizationService.getBySlug(slug, communityId))
                 .orElseThrow(() -> new NotFoundException("Unknown organization: " + slug));
         return ResponseEntity.ok(ApiResponse.success(page));
     }

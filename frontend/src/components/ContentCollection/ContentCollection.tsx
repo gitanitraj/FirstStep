@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import ContentCard from '../ContentCard/ContentCard';
 import { useI18n } from '../../i18n/I18nProvider';
@@ -45,12 +46,16 @@ interface Props {
    * caller's decision, and only `full` is built today.
    */
   layout?: 'full' | 'compact';
+  moreHref?: string;
+  moreLabel?: string;
+  previewCount?: number;
 }
 
 export default function ContentCollection({
   collection,
   headingLevel = 3,
   layout = 'full',
+  moreHref, moreLabel, previewCount = PREVIEW_COUNT,
 }: Props) {
   const { t } = useI18n();
   const [expanded, setExpanded] = useState(false);
@@ -58,8 +63,8 @@ export default function ContentCollection({
 
   // A collection is never sent empty, so there is no empty branch to render —
   // the backend refuses to build one rather than the client hiding it.
-  const shown = expanded ? collection.items : collection.items.slice(0, PREVIEW_COUNT);
-  const remaining = collection.count - PREVIEW_COUNT;
+  const shown = expanded ? collection.items : collection.items.slice(0, previewCount);
+  const remaining = collection.count - previewCount;
   const headingId = `collection-${collection.key}`;
   const listId = `${headingId}-list`;
 
@@ -81,7 +86,7 @@ export default function ContentCollection({
         ))}
       </ul>
 
-      {remaining > 0 && (
+      {moreHref ? <Link className={styles.more} to={moreHref}>{moreLabel}</Link> : remaining > 0 && (
         <button
           type="button"
           className={styles.more}

@@ -1,0 +1,23 @@
+python3 data-cleaning/scripts/validate_navigation.py
+
+══════════════════════════════════════════════════════════════
+  FIRST STEP — NAVIGATION VALIDATOR
+══════════════════════════════════════════════════════════════
+  File       : app/data/navigation.json
+  Taxonomy   : app/data/taxonomy.json
+  Source     : hand-authored
+  Grouped    : 2
+  Mode       : normal
+  ✅  Passed      : 2
+  ❌  Failed      : 0
+══════════════════════════════════════════════════════════════
+
+── FLAT CATEGORIES (no groups — renders a flat topic list) ──
+  clothing, community-events, employment, food, furniture-household, health, legal, utilities
+
+  All checks passed. ✅
+
+══════════════════════════════════════════════════════════════
+
+
+EXIT 0

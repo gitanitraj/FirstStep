@@ -1,12 +1,4 @@
-/* CategoryPage — the category destination (Decision 051).
-   Locally scoped; class names are short and semantic because the filename
-   namespaces them (docs/frontend/css-architecture.md).
-
-   PASS 1 GIVES STRUCTURE, NOT VISUAL DESIGN. Whether the WHAT TO KNOW collections
-   ultimately sit in columns, stack, or reflow some other way is Pass 2. What is
-   here is the minimum that makes the composition legible and responsive: a single
-   reading column, collections that wrap rather than squeeze, and no fixed track
-   count that a redesign would have to fight. */
+/* IM-08 Category Destination. Scoped, token-driven, mobile-first composition. */
 
 .body {
   max-width: var(--page-max);
@@ -81,16 +73,6 @@
   color: var(--text-primary);
 }
 
-/* auto-fit rather than a fixed count: a category with one collection should not
-   render three empty tracks, and Utilities genuinely has one. The min track is
-   what stops a card list from being squeezed unreadable. */
-.collections {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 24px;
-  align-items: start;
-}
-
 /* Supporting collections sit apart from the primary four — they support the
    information layer rather than standing beside it as peers. */
 .supporting {
@@ -101,12 +83,6 @@
   padding-top: 20px;
   border-top: 1px solid var(--border-color);
 }
-
-/* No .orgs rules: Layer 3's category-page presentation is deferred for Housing
-   (Decision 051), so the section does not render and its styles were removed
-   rather than left as a corpse. Dead CSS outliving its component is exactly how
-   a later component silently inherits styles it never asked for — the bug class
-   that produced the index.css quarantine rule in the first place. */
 
 @media (max-width: 700px) {
   .body {
@@ -125,3 +101,32 @@
 :global(body.high-contrast) .title {
   color: var(--text-primary);
 }
+
+/* IM-08: primary resident content retains width; optional context moves below on mobile. */
+.featured { display: grid; grid-template-columns: minmax(0, 1fr); gap: 20px; margin-top: 18px; }
+.topic { min-width: 0; }
+.topicTitle { composes: contentTitle from '../../styles/typography.module.css'; margin: 0 0 12px; }
+.topic a, .organizations a, .headlines a { color: var(--text-primary); text-underline-offset: 3px; }
+.cards { display: grid; gap: 12px; padding: 0; margin: 0; }
+.layout { display: grid; grid-template-columns: minmax(0, 1fr); gap: 28px; align-items: start; }
+.primary { display: grid; gap: 28px; min-width: 0; }
+.note { color: var(--text-secondary); font-size: 14px; line-height: 1.6; }
+.browse summary { cursor: pointer; font-weight: var(--weight-semibold); }
+.switcher { display: flex; flex-wrap: wrap; gap: 8px; }
+.switcher button { padding: 8px 12px; border-radius: var(--radius); border: 1px solid var(--border-color); background: var(--surface); color: var(--text-primary); cursor: pointer; font: inherit; }
+.switcher button[aria-pressed='true'] { border: 2px solid var(--text-primary); font-weight: var(--weight-bold); }
+.rail { min-width: 0; padding: 20px; background: var(--surface); border: 1px solid var(--border-color); border-radius: var(--radius); }
+.railTitle { composes: contentTitle from '../../styles/typography.module.css'; margin: 20px 0 8px; }
+.headlines, .organizations ul { padding-left: 20px; display: grid; gap: 12px; overflow-wrap: anywhere; }
+.organizations { border-top: 1px solid var(--border-color); padding-top: 24px; }
+@media (min-width: 720px) { .featured { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (min-width: 1200px) {
+  .featured { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .layout { grid-template-columns: minmax(0, 1fr) 300px; }
+}
+@media (max-width: 420px) { .supporting { grid-template-columns: minmax(0, 1fr); } }
+
+.body :is(a, button, summary):focus-visible { outline: 3px solid var(--accent-ink); outline-offset: 3px; }
+
+.quickHelp { display: inline-block; margin-top: 14px; padding: 8px 14px; background: var(--primary-color); color: var(--surface); border: 1px solid var(--border-color); border-radius: var(--radius); font-weight: var(--weight-semibold); }
+:global(body.high-contrast) .quickHelp { background: var(--surface); color: var(--text-primary); border-color: var(--text-primary); }

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
 import { useI18n } from '../../i18n/I18nProvider';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
@@ -28,16 +28,19 @@ import styles from './OrganizationPage.module.css';
 export default function OrganizationPage() {
   const { slug } = useParams<{ slug: string }>();
   const { t } = useI18n();
+  const [search] = useSearchParams();
+  const community = search.get('communityId');
+  const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
   const [org, setOrg] = useState<OrgPage | null>(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     setOrg(null);
     setFailed(false);
-    apiGet<OrgPage>(`/api/organization/${slug}`)
+    apiGet<OrgPage>(`/api/organization/${slug}${query}`)
       .then(setOrg)
       .catch(() => setFailed(true));
-  }, [slug]);
+  }, [slug, query]);
 
   return (
     <>

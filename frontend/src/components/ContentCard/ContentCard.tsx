@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom';
 import { useI18n } from '../../i18n/I18nProvider';
 import { CONTENT_TYPE_LABEL } from '../../i18n/contentTypeLabel';
 import type { ContentItem } from '../../types/api';
@@ -21,7 +22,7 @@ import styles from './ContentCard.module.css';
  * Every colour is a token, so the high-contrast theme applies for free and this
  * file needs no `:global()` at all.
  */
-export default function ContentCard({ item }: { item: ContentItem }) {
+export default function ContentCard({ item, href }: { item: ContentItem; href?: string }) {
   const { t } = useI18n();
 
   // Many directory records name the resource after its provider ("American Red
@@ -34,10 +35,13 @@ export default function ContentCard({ item }: { item: ContentItem }) {
   // check ImportantUpdates already makes.
   const urgency = item.urgency && item.urgency.toLowerCase() !== 'standard' ? item.urgency : null;
 
-  const destination = item.url ?? (item.contentType === 'FLYER' ? item.imageUrl : null);
+  const proposed = href ?? item.url ?? (item.contentType === 'FLYER' ? item.imageUrl : null);
+  const internal = proposed?.startsWith('/originals/') || proposed?.startsWith('/category/');
+  const destination = proposed && (internal || /^(https?:|tel:)/i.test(proposed) || proposed.startsWith('/images/seasonal/')) ? proposed : null;
 
   return (
     <li className={styles.card}>
+      {item.imageUrl && <img className={styles.image} src={item.imageUrl} alt={item.title} loading="lazy" />}
       <div className={styles.head}>
         <span className={`${styles.badge} ${styles[`badge${item.contentType}`] ?? ''}`}>
           {t(CONTENT_TYPE_LABEL[item.contentType])}
@@ -45,7 +49,9 @@ export default function ContentCard({ item }: { item: ContentItem }) {
         {/* Link out when the provider gave us somewhere to go. Editorial
             standard: connect residents to the originating organization rather
             than replacing it. */}
-        {destination ? (
+        {destination && internal ? (
+          <Link className={styles.title} to={destination}>{item.title}</Link>
+        ) : destination ? (
           <a className={styles.title} href={destination} target={destination.startsWith('tel:') ? undefined : '_blank'} rel="noopener noreferrer">
             {item.title}
           </a>

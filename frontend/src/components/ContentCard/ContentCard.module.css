@@ -117,3 +117,6 @@ a.title:hover {
 .date {
   color: var(--text-light);
 }
+
+.image { width: 100%; height: auto; max-height: 320px; object-fit: contain; }
+.card { min-width: 0; overflow-wrap: anywhere; }

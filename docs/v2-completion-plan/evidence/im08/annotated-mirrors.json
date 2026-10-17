@@ -1,0 +1,140 @@
+[
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/controller/CategoryController.java",
+    "mirror": "references/CategoryController_annotated.java",
+    "headerBytes": 613,
+    "sha256": "025235a54e599e6cc9fd0326838088eb411526aad7c966ffcf1c297bc4d9cf07"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/dto/CategoryDestination.java",
+    "mirror": "references/CategoryDestination_annotated.java",
+    "headerBytes": 607,
+    "sha256": "232b25453f66e10c6ea480029abac0b9b14ceb97fb37749fad12285a40adf092"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/dto/CategoryPage.java",
+    "mirror": "references/CategoryPage_annotated.java",
+    "headerBytes": 600,
+    "sha256": "c00fdb8ced31d33cce3e53526c5720cd2b58209d1254837bb0102657646b5c46"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/service/CategoryDestinationService.java",
+    "mirror": "references/CategoryDestinationService_annotated.java",
+    "headerBytes": 618,
+    "sha256": "53825d00e198421c09c6a7964b4048857aa1924a781ca872c021f779ae54b589"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/category/service/CategoryPageService.java",
+    "mirror": "references/CategoryPageService_annotated.java",
+    "headerBytes": 611,
+    "sha256": "a11edd72dccff04cb86cf90903586a05e9904824d9159929cd80aeff8e95bd6a"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/organization/controller/OrganizationController.java",
+    "mirror": "references/OrganizationController_annotated.java",
+    "headerBytes": 621,
+    "sha256": "7690355e93f10aeade0cb86a72956408bc3f348044f38e3e33820fd33f5ce736"
+  },
+  {
+    "source": "backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java",
+    "mirror": "references/OrganizationService_annotated.java",
+    "headerBytes": 615,
+    "sha256": "83495271d0cd61ee5296fad696670d4328138c953e1251485e7c3de6c3915928"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/controller/CategoryControllerTest.java",
+    "mirror": "references/tests/CategoryControllerTest_annotated.java",
+    "headerBytes": 617,
+    "sha256": "a244a7cc431e4f7cd657124907ff64570252f92039edef2842d9ca877d8682db"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CategoryDestinationCatalogTest.java",
+    "mirror": "references/tests/CategoryDestinationCatalogTest_annotated.java",
+    "headerBytes": 622,
+    "sha256": "a3c5be4e1474783a4b405ddc360ff80de73a99b861af200bbbf2016f46ef85a6"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CategoryDestinationServiceTest.java",
+    "mirror": "references/tests/CategoryDestinationServiceTest_annotated.java",
+    "headerBytes": 622,
+    "sha256": "7ba32b76dd879ee59c4599f35a7be1bdec06f1657f36ff81f9040b8433343265"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/category/service/CategoryPageServiceTest.java",
+    "mirror": "references/tests/CategoryPageServiceTest_annotated.java",
+    "headerBytes": 615,
+    "sha256": "241686b032a01b61806f87f39ccf1adabc7f6e005a0d6621a857cb6dee06512f"
+  },
+  {
+    "source": "backend/src/test/java/org/firststep/backend/organization/service/ScopedOrganizationPreviewTest.java",
+    "mirror": "references/tests/ScopedOrganizationPreviewTest_annotated.java",
+    "headerBytes": 625,
+    "sha256": "8a05020a54929c163e49d94f1ab6260e70179b0266310bfd0e169a0037d351dd"
+  },
+  {
+    "source": "frontend/src/components/ContentCard/ContentCard.module.css",
+    "mirror": "references/ContentCard.module_annotated.css",
+    "headerBytes": 584,
+    "sha256": "16e68689c628a4bfa1f07b06fa94e4393e0ad77001c052b916c9d2972f6763ab"
+  },
+  {
+    "source": "frontend/src/components/ContentCard/ContentCard.tsx",
+    "mirror": "references/ContentCard_annotated.tsx",
+    "headerBytes": 577,
+    "sha256": "4128eda3acf3850b04b6a0da77a017b835ca2e37f6d4d2a053a2a30d9f3f6421"
+  },
+  {
+    "source": "frontend/src/components/ContentCollection/ContentCollection.tsx",
+    "mirror": "references/ContentCollection_annotated.tsx",
+    "headerBytes": 589,
+    "sha256": "7892b8d5bd2ac5cda4dd9c5e6b35f288b3d8a79d7732edc4549f03a950bcc810"
+  },
+  {
+    "source": "frontend/src/components/SiteHeader/SiteHeader.tsx",
+    "mirror": "references/SiteHeader_annotated.tsx",
+    "headerBytes": 575,
+    "sha256": "da6dc8014a9686ee4c8f18e3817e302fd9069cfc168ed056903cbaea17f6c822"
+  },
+  {
+    "source": "frontend/src/i18n/dictionary.ts",
+    "mirror": "references/dictionary_annotated.ts",
+    "headerBytes": 557,
+    "sha256": "a9bda4bd813f308acd02fce08f946d319eb546b2985b097475818f5e7604b368"
+  },
+  {
+    "source": "frontend/src/pages/CategoryPage/CategoryDestination.test.tsx",
+    "mirror": "references/tests/CategoryDestination.test_annotated.tsx",
+    "headerBytes": 586,
+    "sha256": "52c4ddebad6f957f7a76be14af8260fab447adb07b22865ea5d189be83d41088"
+  },
+  {
+    "source": "frontend/src/pages/CategoryPage/CategoryPage.module.css",
+    "mirror": "references/CategoryPage.module_annotated.css",
+    "headerBytes": 581,
+    "sha256": "903fc40de48b62b27f3a75df820323a7526809d88fb6a410751cf4165281a127"
+  },
+  {
+    "source": "frontend/src/pages/CategoryPage/CategoryPage.test.tsx",
+    "mirror": "references/tests/CategoryPage.test_annotated.tsx",
+    "headerBytes": 579,
+    "sha256": "7e14c28d0db94474d5e37622d4f7d47e2cad558c9c6759a9ba0b54db8bdff6de"
+  },
+  {
+    "source": "frontend/src/pages/CategoryPage/CategoryPage.tsx",
+    "mirror": "references/CategoryPage_annotated.tsx",
+    "headerBytes": 574,
+    "sha256": "cfb09255036c716c940ada2a2d161bcdc5f7828bc813045bbcfa8208fc0fcd9d"
+  },
+  {
+    "source": "frontend/src/pages/OrganizationPage/OrganizationPage.tsx",
+    "mirror": "references/OrganizationPage_annotated.tsx",
+    "headerBytes": 582,
+    "sha256": "0460c3583edfb3a41d313af09a6a18d26d99d4d868ce68b424062bd860606826"
+  },
+  {
+    "source": "frontend/src/types/api.ts",
+    "mirror": "references/api_annotated.ts",
+    "headerBytes": 551,
+    "sha256": "5e173b0a6abd860a319b9af615f90ac577cd45610023df7955c8c131f7ab74a9"
+  }
+]

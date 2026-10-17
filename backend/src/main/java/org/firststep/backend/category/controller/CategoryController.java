@@ -49,7 +49,7 @@ public class CategoryController {
     @GetMapping("/category/{key}")
     public ResponseEntity<ApiResponse<CategoryPage>> getByKey(
             @PathVariable String key,
-            @RequestParam(required = false) String communityId) {
+            @RequestParam(defaultValue = "${app.default-community-id:wilmington-de}") String communityId) {
         CategoryPage page = categoryPageService.getByKey(key, communityId)
                 .orElseThrow(() -> new NotFoundException("Category not found: " + key));
         return ResponseEntity.ok(ApiResponse.success(page));
@@ -58,7 +58,7 @@ public class CategoryController {
     /** Static route takes precedence over the existing controlled Topic slug route. */
     @GetMapping("/category/{key}/help")
     public ResponseEntity<ApiResponse<TopicPage>> getAllHelp(
-            @PathVariable String key, @RequestParam(required = false) String communityId) {
+            @PathVariable String key, @RequestParam(defaultValue = "${app.default-community-id:wilmington-de}") String communityId) {
         TopicPage page = topicPageService.getAllHelp(key, communityId)
                 .orElseThrow(() -> new NotFoundException("Category not found: " + key));
         return ResponseEntity.ok(ApiResponse.success(page));
@@ -77,7 +77,7 @@ public class CategoryController {
     public ResponseEntity<ApiResponse<TopicPage>> getTopic(
             @PathVariable String key,
             @PathVariable String topic,
-            @RequestParam(required = false) String communityId) {
+            @RequestParam(defaultValue = "${app.default-community-id:wilmington-de}") String communityId) {
         TopicPage page = topicPageService.getByKey(key, topic, communityId)
                 .orElseThrow(() -> new NotFoundException("Topic not found: " + key + "/" + topic));
         return ResponseEntity.ok(ApiResponse.success(page));

@@ -1,59 +1,11 @@
-/* =============================================================================
- * ANNOTATED REFERENCE — backend/.../organization/service/OrganizationService.java
- * Slice F5a originally; rewritten onto the registry in Slice G1a (Decision 049).
- * =============================================================================
- *
- * WHAT IT DOES: ranks organizations for category shortlists, and assembles one
- * organization page — the third step of the Front Door's Connect pathway
- * (directory -> organization -> that organization's resources).
- *
- * WHAT CHANGED, AND WHY IT MATTERS MORE THAN IT LOOKS
- * ---------------------------------------------------
- * This class used to DERIVE organizations by grouping the display name off each
- * resource and slugifying it. Identity was therefore a function of spelling, and
- * the class that produced links was also the class that invented the identity
- * those links pointed at.
- *
- * Now the registry owns identity and this class only composes. slugify() is
- * DELETED from production code — the grep that proves it is worth re-running if
- * anyone is tempted to add it back for convenience.
- *
- * SLUG IN, ID OUT
- * ---------------
- * getBySlug resolves the slug ONCE against the registry, then matches resources
- * on organizationId. Matching on the display name instead would work today and
- * silently reintroduce the exact fragility the registry removes — which is why
- * the resolution happens at the boundary and never again.
- *
- * slugFor() RETURNS NULL RATHER THAN COMPUTING A FALLBACK
- * ------------------------------------------------------
- * When a shortlist meets an organization the registry does not know, the
- * tempting fallback is slugify(name). That would produce a link that LOOKS live
- * and 404s — the worst of both, because nothing surfaces it.
- *
- * Returning null and filtering the entry out means an unregistered organization
- * is simply absent from the shortlist. Absence is visible; a broken link is not.
- * Same never-guess rule as ContentSourceService and ReviewStatus, applied to
- * links instead of sectors.
- *
- * WHY AN EMPTY ORGANIZATION STILL RETURNS A PAGE
- * ----------------------------------------------
- * getBySlug returns a page for a registered organization with zero resources,
- * rather than empty. "This organization exists and lists nothing right now" and
- * "there is no such organization" are different facts, and collapsing them into
- * one 404 would tell a resident the organization does not exist when it does.
- *
- * WHY RESOURCES RENDER AS ContentItem
- * -----------------------------------
- * An organization page asks a different QUESTION — "who provides this?" — but
- * the answer is still a list of resources. Same card shape as topic pages,
- * search and notices; a new DTO would have been a new shape for the same thing.
- *
- * Note the per-resource website IS carried through. That is not an oversight:
- * service-level contact belongs on the service, which is precisely why the
- * organization record withholds it.
- * ============================================================================= */
-
+/*
+ * WHAT: Complete annotated mirror of backend/src/main/java/org/firststep/backend/organization/service/OrganizationService.java for IM-08.
+ * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
+ * INTERACTION: Existing eligibility and collection services own admission; the destination
+ * projection allowlists cards/links, while React owns responsive presentation and route scope.
+ * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
+ * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+ */
 package org.firststep.backend.organization.service;
 
 import java.util.Comparator;
@@ -126,6 +78,28 @@ public class OrganizationService {
     public Optional<OrganizationPage> getBySlug(String slug) {
         return repository.findBySlug(slug).map(org -> new OrganizationPage(
                 org.id, org.name, org.slug, org.website, resourcesFor(org)));
+    }
+
+    /** Explicit scoped destination path; historical directory overload remains unchanged. */
+    public Optional<OrganizationPage> getBySlug(String slug, String communityId) {
+        return repository.findBySlug(slug).map(org -> new OrganizationPage(org.id, org.name, org.slug, org.website,
+                resourceService.getAll().stream().filter(r -> communityId.equals(r.communityId))
+                        .filter(r -> org.id.equals(r.organizationId)).map(OrganizationService::toContentItem).toList()));
+    }
+
+    /** IM-08 preview uses actual registry IDs, never a source, host or display-name inference. */
+    public List<OrgSummary> getForCategory(String categoryKey, String communityId) {
+        var category = taxonomyService.findByKey(categoryKey).orElse(null);
+        if (category == null || communityId == null || communityId.isBlank()) return List.of();
+        Map<String, java.util.Set<String>> ids = new java.util.TreeMap<>();
+        resourceService.getAll().stream().filter(r -> communityId.equals(r.communityId))
+                .filter(r -> taxonomyService.matchesCategoryTags(category, r.categoryTags))
+                .filter(r -> r.organizationId != null && r.id != null)
+                .forEach(r -> ids.computeIfAbsent(r.organizationId, ignored -> new java.util.TreeSet<>()).add(r.id));
+        return repository.findAll().stream().filter(org -> ids.containsKey(org.id) && org.slug != null)
+                .sorted(Comparator.<Organization>comparingInt(org -> ids.get(org.id).size()).reversed()
+                        .thenComparing(org -> org.name).thenComparing(org -> org.id))
+                .limit(4).map(org -> new OrgSummary(org.name, org.slug, ids.get(org.id).size())).toList();
     }
 
     private List<ContentItem> resourcesFor(Organization org) {
