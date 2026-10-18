@@ -1,0 +1,38 @@
+[
+  {
+    "source": "frontend/src/components/ContentCard/ContentCard.module.css",
+    "mirror": "references/ContentCard.module_annotated.css",
+    "sourceSha256": "3966526dd1d50ebb298be25f5ecada24c8fd74a0f3d24065aaca97cb865b2501",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "frontend/src/pages/ArticlePage/ArticlePage.tsx",
+    "mirror": "references/ArticlePage_annotated.tsx",
+    "sourceSha256": "4dffeafa681cbfccff2ddc8c3e7514ea7df45da6756d1a6d529a5962a083f4dc",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "frontend/src/pages/OrganizationPage/OrganizationPage.tsx",
+    "mirror": "references/OrganizationPage_annotated.tsx",
+    "sourceSha256": "cb478a7643b3954ddf651084b40294aaf7091bc14cb7b047e83ca9778d7623fe",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "frontend/src/pages/TopicPage/TopicPage.tsx",
+    "mirror": "references/TopicPage_annotated.tsx",
+    "sourceSha256": "19c458f9fc2828d5520782f118afa7f85f8069bb0e5d1fa4d0b4b5b8788bc12d",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "frontend/src/styles/themes.css",
+    "mirror": "references/themes_annotated.css",
+    "sourceSha256": "9976c5475f6f165a9829704f3fb8f6131139c2336a14e134b243eb35f2c92b9e",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "frontend/src/Im13ReleaseBoundary.test.tsx",
+    "mirror": "references/tests/Im13ReleaseBoundary.test_annotated.tsx",
+    "sourceSha256": "487b4e4e9e8eb783fbb2f76c58cfdbdebde5ded8839f323cfebcf289effd7ca0",
+    "completeSourceMatches": true
+  }
+]

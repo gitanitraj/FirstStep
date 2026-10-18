@@ -1,0 +1,168 @@
+[
+  {
+    "id": "article-explicit-community",
+    "status": "FAIL",
+    "error": "Wrong-community Article renders approved Wilmington body; frontend omitted scope"
+  },
+  {
+    "id": "article-route-entry-focus",
+    "status": "FAIL",
+    "error": "Article focus is BODY instead of its heading"
+  },
+  {
+    "id": "provider-route-entry-focus",
+    "status": "FAIL",
+    "error": "Provider focus is BODY instead of its heading"
+  },
+  {
+    "id": "topic-notfound-heading",
+    "status": "FAIL",
+    "error": "Topic not-found main has no h1"
+  },
+  {
+    "id": "normal-housing-flyer-text-contrast",
+    "status": "FAIL",
+    "facts": [
+      {
+        "text": "emergency",
+        "tag": "SPAN",
+        "color": "rgb(224, 123, 57)",
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.973778162902811,
+        "threshold": 4.5
+      },
+      {
+        "text": "emergency",
+        "tag": "SPAN",
+        "color": "rgb(224, 123, 57)",
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.973778162902811,
+        "threshold": 4.5
+      },
+      {
+        "text": "emergency",
+        "tag": "SPAN",
+        "color": "rgb(224, 123, 57)",
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.973778162902811,
+        "threshold": 4.5
+      },
+      {
+        "text": "emergency",
+        "tag": "SPAN",
+        "color": "rgb(224, 123, 57)",
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.973778162902811,
+        "threshold": 4.5
+      },
+      {
+        "text": "emergency",
+        "tag": "SPAN",
+        "color": "rgb(224, 123, 57)",
+        "background": [
+          255,
+          255,
+          255
+        ],
+        "ratio": 2.973778162902811,
+        "threshold": 4.5
+      },
+      {
+        "text": "Flyer",
+        "tag": "SPAN",
+        "color": "rgb(255, 255, 255)",
+        "background": [
+          217,
+          119,
+          6
+        ],
+        "ratio": 3.1858232404059073,
+        "threshold": 4.5
+      }
+    ]
+  },
+  {
+    "id": "normal-focus-style",
+    "status": "PASS",
+    "facts": {
+      "color": "rgb(143, 64, 9)",
+      "style": "solid",
+      "width": "3px",
+      "keyboardVisible": true
+    }
+  },
+  {
+    "id": "high-contrast-housing-flyer-text-contrast",
+    "status": "FAIL",
+    "facts": [
+      {
+        "text": "Flyer",
+        "tag": "SPAN",
+        "color": "rgb(255, 255, 255)",
+        "background": [
+          217,
+          119,
+          6
+        ],
+        "ratio": 3.1858232404059073,
+        "threshold": 4.5
+      }
+    ]
+  },
+  {
+    "id": "high-contrast-focus-style",
+    "status": "PASS",
+    "facts": {
+      "color": "rgb(143, 64, 9)",
+      "style": "solid",
+      "width": "3px",
+      "keyboardVisible": true
+    }
+  },
+  {
+    "id": "high-contrast-card-hover",
+    "status": "FAIL",
+    "facts": [
+      {
+        "text": "Be Ready CDC - Esther's Place",
+        "tag": "A",
+        "color": "rgb(26, 92, 56)",
+        "background": [
+          0,
+          0,
+          0
+        ],
+        "ratio": 2.6318856362627154,
+        "threshold": 4.5
+      },
+      {
+        "text": "Flyer",
+        "tag": "SPAN",
+        "color": "rgb(255, 255, 255)",
+        "background": [
+          217,
+          119,
+          6
+        ],
+        "ratio": 3.1858232404059073,
+        "threshold": 4.5
+      }
+    ]
+  }
+]

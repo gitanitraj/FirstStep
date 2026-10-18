@@ -1,0 +1,33 @@
+{
+  "capturedUtc": "2026-10-17T23:35:03.906682+00:00",
+  "localExecutableJar": "350edec56240f4bdbb9ed71bd7409a82351b5d3261eee112d6539ba238451122",
+  "dockerExecutableJar": "4f0565445bea879ff729a3422c9e005a1ab02a8d016dca2c8f63da9179ad8c45",
+  "frontendDist": {
+    "index.html": "aa839f5559bed4efc4ec416c0683a59a0195df4ccb6a4c0a0f6682b2c27818d4",
+    "assets/index-Dxad2sGw.js": "614c2a859ed5e77f111d5942c5aadb4ea671e07abc7149add6fbfa47f16f7b61",
+    "assets/open-sans-latin-400-normal-Bk63H6sG.woff2": "0e44026ad31376af1b56593cd4acb4f353f8e8789c51759e18f64578e4ef296a",
+    "assets/logo-feet-CFx0DpSv.png": "902547e0bd010cd38fda09501526fa5a7bc7001dc7ffbae643ea55482a7dcb22",
+    "assets/open-sans-latin-400-normal-DKniycaP.woff": "8b3c81a3240d7c8cc9877cf5233d97051aa07730947217db840e500470a4d44a",
+    "assets/open-sans-latin-600-normal-Cp4N6AwT.woff2": "a97a6ed7ef9f75c495e9224f5c59b2271d826e4a4345b738b390b0c76cc9f412",
+    "assets/index-BXvwt4MV.css": "4937faef77c89e287edffcdd85f5e9bea2c16a100578e31069ff87e73022a6d7",
+    "assets/montserrat-latin-700-normal-BdjcYUrC.woff2": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+    "assets/open-sans-latin-700-normal-CZCQA30i.woff": "397ccaf840827f6c84ebadf664b6494338d4ea39440ab22811829868014c43f5",
+    "assets/montserrat-latin-700-normal-BWkrl476.woff": "ff51c769e51acaa5ffbb8091441ff4e365e41ff21f7e4c05d1cd5650514d6fd3",
+    "assets/open-sans-latin-700-normal-CceUhp2e.woff2": "594a622208d1dad5d1dd58aef74f212ce7132d8f0aa5bacea6cfeb86d308c17a",
+    "assets/open-sans-latin-600-normal-C3dWW5mx.woff": "1f49967d11aed8d3e13669be72c171339dbadcafedbe99107f9f26dd4dab0bf9"
+  },
+  "packagedAssetsMatchLiveHttp": {
+    "BOOT-INF/classes/static/app-next/assets/montserrat-latin-700-normal-BWkrl476.woff": "ff51c769e51acaa5ffbb8091441ff4e365e41ff21f7e4c05d1cd5650514d6fd3",
+    "BOOT-INF/classes/static/app-next/assets/open-sans-latin-600-normal-C3dWW5mx.woff": "1f49967d11aed8d3e13669be72c171339dbadcafedbe99107f9f26dd4dab0bf9",
+    "BOOT-INF/classes/static/app-next/assets/index-BXvwt4MV.css": "4937faef77c89e287edffcdd85f5e9bea2c16a100578e31069ff87e73022a6d7",
+    "BOOT-INF/classes/static/app-next/assets/logo-feet-CFx0DpSv.png": "902547e0bd010cd38fda09501526fa5a7bc7001dc7ffbae643ea55482a7dcb22",
+    "BOOT-INF/classes/static/app-next/assets/open-sans-latin-700-normal-CZCQA30i.woff": "397ccaf840827f6c84ebadf664b6494338d4ea39440ab22811829868014c43f5",
+    "BOOT-INF/classes/static/app-next/assets/open-sans-latin-400-normal-DKniycaP.woff": "8b3c81a3240d7c8cc9877cf5233d97051aa07730947217db840e500470a4d44a",
+    "BOOT-INF/classes/static/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2": "594a622208d1dad5d1dd58aef74f212ce7132d8f0aa5bacea6cfeb86d308c17a",
+    "BOOT-INF/classes/static/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2": "0e44026ad31376af1b56593cd4acb4f353f8e8789c51759e18f64578e4ef296a",
+    "BOOT-INF/classes/static/app-next/assets/index-Dxad2sGw.js": "614c2a859ed5e77f111d5942c5aadb4ea671e07abc7149add6fbfa47f16f7b61",
+    "BOOT-INF/classes/static/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2": "f9d9e65b15372cebcafc3acd1e664a564c5c4b23278de4d5760de9a13c530371",
+    "BOOT-INF/classes/static/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2": "a97a6ed7ef9f75c495e9224f5c59b2271d826e4a4345b738b390b0c76cc9f412",
+    "BOOT-INF/classes/static/app-next/index.html": "aa839f5559bed4efc4ec416c0683a59a0195df4ccb6a4c0a0f6682b2c27818d4"
+  }
+}

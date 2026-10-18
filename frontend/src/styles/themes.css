@@ -29,6 +29,8 @@ body.high-contrast {
   --text-primary: #fff;
   --text-secondary: #fff;
   --text-light: #fff;
+  /* Keyboard outlines use accent ink; the normal brown is only 2.91:1 on black. */
+  --accent-ink: #ff0;
 
   background: #000;
   color: #fff;

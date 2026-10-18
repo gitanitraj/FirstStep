@@ -1,0 +1,39 @@
+{
+  "capturedUtc": "2026-10-17T23:16:47.021908+00:00",
+  "baselinePathCount": 1312,
+  "changedBaselinePaths": [
+    "frontend/src/components/ContentCard/ContentCard.module.css",
+    "frontend/src/pages/ArticlePage/ArticlePage.tsx",
+    "frontend/src/pages/OrganizationPage/OrganizationPage.tsx",
+    "frontend/src/pages/TopicPage/TopicPage.tsx",
+    "frontend/src/styles/themes.css",
+    "references/ArticlePage_annotated.tsx",
+    "references/ContentCard.module_annotated.css",
+    "references/OrganizationPage_annotated.tsx",
+    "references/TopicPage_annotated.tsx"
+  ],
+  "protectedPaths": [
+    "app/data/Service_Directory_cleaned.json",
+    "app/data/articles.json",
+    "app/data/content-sources.json",
+    "app/data/expert-answers.json",
+    "app/data/faq.json",
+    "app/data/first-rate-news-membership.json",
+    "app/data/flyers.json",
+    "app/data/homepage.json",
+    "app/data/navigation.json",
+    "app/data/news.json",
+    "app/data/news_schema.json",
+    "app/data/organizations.json",
+    "app/data/resources.communities.json",
+    "app/data/resources.json",
+    "app/data/resources.normalized.json",
+    "app/data/schema.md",
+    "app/data/source-mappings.json",
+    "app/data/taxonomy.json",
+    "docs/v2-completion-plan/v2 — IM-13 Coding-Agent Work Order.md",
+    "docs/v2-completion-plan/v2.13 — Authoritative IM-01–IM-14 Execution Matrix.md"
+  ],
+  "protectedPathsMatch": true,
+  "missingBaselinePaths": []
+}

@@ -1,0 +1,160 @@
+#0 building with "desktop-linux" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.77kB 0.0s done
+#1 DONE 0.0s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1
+#2 DONE 1.0s
+
+#3 docker-image://docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e
+#3 resolve docker.io/docker/dockerfile:1@sha256:4edf897a3ffa55b89f906fc8cc78afdb3f1834cc9c7083565e611a8a7d5fe99e 0.1s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/eclipse-temurin:25-jre
+#4 ...
+
+#5 [internal] load metadata for docker.io/library/node:24-alpine
+#5 DONE 0.3s
+
+#6 [internal] load metadata for docker.io/library/maven:3.9-eclipse-temurin-25
+#6 DONE 0.3s
+
+#4 [internal] load metadata for docker.io/library/eclipse-temurin:25-jre
+#4 DONE 0.8s
+
+#7 [internal] load .dockerignore
+#7 transferring context: 234B done
+#7 DONE 0.0s
+
+#8 [internal] load build context
+#8 ...
+
+#9 [frontend-build 1/6] FROM docker.io/library/node:24-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f
+#9 resolve docker.io/library/node:24-alpine@sha256:44fce696f38ba8c987c4db89954051000bbd05ffd8d8659ba15ed4a8602e937f 0.0s done
+#9 DONE 0.0s
+
+#10 [build 1/8] FROM docker.io/library/maven:3.9-eclipse-temurin-25@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976
+#10 resolve docker.io/library/maven:3.9-eclipse-temurin-25@sha256:93b8a14ea2f412782e4e842651273b4d903e35cc496284f178fbbe2d67d00976 0.0s done
+#10 DONE 0.0s
+
+#8 [internal] load build context
+#8 transferring context: 126.55MB 4.0s done
+#8 DONE 4.1s
+
+#11 [build 4/8] RUN mvn -q dependency:go-offline
+#11 CACHED
+
+#12 [build 2/8] WORKDIR /build
+#12 CACHED
+
+#13 [build 3/8] COPY backend/pom.xml pom.xml
+#13 CACHED
+
+#14 [build 5/8] RUN mkdir -p /root/.m2 && printf '%s\n'   '<?xml version="1.0" encoding="UTF-8"?>'   '<toolchains>'   '  <toolchain>'   '    <type>jdk</type>'   '    <provides><version>25</version></provides>'   '    <configuration><jdkHome>/opt/java/openjdk</jdkHome></configuration>'   '  </toolchain>'   '</toolchains>' > /root/.m2/toolchains.xml
+#14 CACHED
+
+#15 [frontend-build 2/6] WORKDIR /frontend
+#15 CACHED
+
+#16 [frontend-build 3/6] COPY frontend/package*.json ./
+#16 CACHED
+
+#17 [frontend-build 4/6] RUN npm ci
+#17 CACHED
+
+#18 [stage-2 1/5] FROM docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f
+#18 resolve docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f 0.0s done
+#18 sha256:2e60e4e3b521aebc38aa941d295e6e73315c6b6be8156fd0297756d3f006ad9b 2.46kB / 2.46kB 0.1s done
+#18 sha256:5787b8fa2914f071f8979c0b733a6af9b21a41a1aaf9054aa5a0592a72730149 63.08MB / 63.08MB 1.6s done
+#18 sha256:9abc7098f0edd8e5e0024ec883118ddbf67dce21e8cc87c12ce2f5b876311960 12.15MB / 12.15MB 1.6s done
+#18 sha256:d9d511d19a19ebdeda520e0752f184d457905c7a310df5b748d133a51274ecd4 391B / 391B 0.3s done
+#18 sha256:435bf5c20694c99dd5a9877e58e24b26a2207fcf8c692a3c3ce3c867770a5b41 42.15MB / 42.15MB 3.0s done
+#18 extracting sha256:435bf5c20694c99dd5a9877e58e24b26a2207fcf8c692a3c3ce3c867770a5b41
+#18 ...
+
+#19 [build 6/8] COPY backend/src src
+#19 DONE 0.6s
+
+#20 [frontend-build 5/6] COPY frontend/ ./
+#20 ...
+
+#18 [stage-2 1/5] FROM docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f
+#18 extracting sha256:435bf5c20694c99dd5a9877e58e24b26a2207fcf8c692a3c3ce3c867770a5b41 2.8s done
+#18 extracting sha256:d9d511d19a19ebdeda520e0752f184d457905c7a310df5b748d133a51274ecd4 0.0s done
+#18 extracting sha256:9abc7098f0edd8e5e0024ec883118ddbf67dce21e8cc87c12ce2f5b876311960 0.8s done
+#18 DONE 6.8s
+
+#18 [stage-2 1/5] FROM docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f
+#18 extracting sha256:5787b8fa2914f071f8979c0b733a6af9b21a41a1aaf9054aa5a0592a72730149
+#18 ...
+
+#20 [frontend-build 5/6] COPY frontend/ ./
+#20 DONE 3.2s
+
+#21 [frontend-build 6/6] RUN npm run build
+#21 0.729 
+#21 0.729 > firststep-frontend@0.1.0 build
+#21 0.729 > tsc && vite build
+#21 0.729 
+#21 ...
+
+#18 [stage-2 1/5] FROM docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f
+#18 extracting sha256:5787b8fa2914f071f8979c0b733a6af9b21a41a1aaf9054aa5a0592a72730149 1.7s done
+#18 DONE 8.5s
+
+#18 [stage-2 1/5] FROM docker.io/library/eclipse-temurin:25-jre@sha256:dbb43d81099eec91e0800226ed2296d03146ee7857165b95112372ad0d67e87f
+#18 extracting sha256:4f4fb700ef54461cfa02571ae0db9a0dc1e0cdb5577484a6d75e68dc38e8acc1 0.0s done
+#18 extracting sha256:2e60e4e3b521aebc38aa941d295e6e73315c6b6be8156fd0297756d3f006ad9b 0.0s done
+#18 DONE 8.5s
+
+#22 [stage-2 2/5] WORKDIR /app
+#22 DONE 0.2s
+
+#21 [frontend-build 6/6] RUN npm run build
+#21 6.552 vite v5.4.21 building for production...
+#21 6.619 transforming...
+#21 8.325 ✓ 84 modules transformed.
+#21 8.504 rendering chunks...
+#21 8.517 computing gzip size...
+#21 8.530 dist/index.html                                           0.41 kB │ gzip:  0.28 kB
+#21 8.530 dist/assets/open-sans-latin-700-normal-CZCQA30i.woff     16.68 kB
+#21 8.530 dist/assets/open-sans-latin-600-normal-C3dWW5mx.woff     17.19 kB
+#21 8.530 dist/assets/open-sans-latin-400-normal-DKniycaP.woff     17.25 kB
+#21 8.530 dist/assets/open-sans-latin-700-normal-CceUhp2e.woff2    18.20 kB
+#21 8.530 dist/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2    18.62 kB
+#21 8.530 dist/assets/open-sans-latin-400-normal-Bk63H6sG.woff2    18.64 kB
+#21 8.530 dist/assets/montserrat-latin-700-normal-BdjcYUrC.woff2   18.82 kB
+#21 8.530 dist/assets/montserrat-latin-700-normal-BWkrl476.woff    20.67 kB
+#21 8.530 dist/assets/logo-feet-CFx0DpSv.png                       92.30 kB
+#21 8.530 dist/assets/index-B9K62z1K.css                           40.01 kB │ gzip:  7.43 kB
+#21 8.530 dist/assets/index-1YENe893.js                           225.34 kB │ gzip: 70.65 kB
+#21 8.531 ✓ built in 1.95s
+#21 DONE 8.6s
+
+#23 [build 7/8] COPY --from=frontend-build /frontend/dist src/main/resources/static/app-next
+#23 DONE 0.0s
+
+#24 [build 8/8] RUN mvn -q -DskipTests package
+#24 DONE 18.2s
+
+#25 [stage-2 3/5] COPY --from=build /build/target/firststep-backend-0.1.0.jar app.jar
+#25 DONE 0.1s
+
+#26 [stage-2 4/5] COPY app/data/ /data/
+#26 DONE 0.0s
+
+#27 [stage-2 5/5] COPY backend/src/main/resources/static/images/seasonal/ /seasonal/
+#27 DONE 0.1s
+
+#28 exporting to image
+#28 exporting layers
+#28 exporting layers 2.1s done
+#28 exporting manifest sha256:c41621ec595008b2b31d11c0641fdac5a584fd43fb0c2f902d06bd0d72a32e3c done
+#28 exporting config sha256:d2e8962b5b29251a32997672ae601b7e9ebd76cf46f503f5db609828e2a2f98c done
+#28 exporting attestation manifest sha256:e33d8e0f982a3ba2ced81c13818611c21ddabf5f2d898e5d5d5cfec32e5ccf76 0.0s done
+#28 exporting manifest list sha256:4ad5e5005a324e1e48fa71f639fb6e701c7c3f8799b50cd511d7609ebc4c0557 done
+#28 naming to docker.io/library/firststep-im13:local done
+#28 unpacking to docker.io/library/firststep-im13:local
+#28 unpacking to docker.io/library/firststep-im13:local 0.6s done
+#28 DONE 2.8s

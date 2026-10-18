@@ -1,0 +1,38 @@
+[
+  {
+    "source": "docs/v2-completion-plan/evidence/im13/http-release.py",
+    "mirror": "references/tests/Im13Closure_http-release_annotated.py",
+    "sourceSha256": "81a7b6ce0a18edae004447290afd762a0142e6ee355571b9e9e05e7541fdfb7c",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im13/packaged-check.py",
+    "mirror": "references/tests/Im13Closure_packaged-check_annotated.py",
+    "sourceSha256": "6d62cd678d67f611a7f3d1f44036b6c6581365f6e68f34c6e9f0218d150db2da",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im13/editor-workflow.py",
+    "mirror": "references/tests/Im13Closure_editor-workflow_annotated.py",
+    "sourceSha256": "f6b5b769927bce1d6c7dd7b268feea5b3df7165cd6a8eae5e7aacd2d2b8b04f3",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im13/browser-check.mjs",
+    "mirror": "references/tests/Im13Closure_browser-check_annotated.mjs",
+    "sourceSha256": "0d2835ca98cc0448aaa797ec532e05256b5b570c1a4886715f3408f16ab9ce0f",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im13/browser-probe.mjs",
+    "mirror": "references/tests/Im13Closure_browser-probe_annotated.mjs",
+    "sourceSha256": "94ed1e68c1426e561ce4a7cfe47c7a16f3721c2f4b9240010a2d969abd10e01a",
+    "completeSourceMatches": true
+  },
+  {
+    "source": "docs/v2-completion-plan/evidence/im13/closure/run-verification.py",
+    "mirror": "references/tests/Im13Closure_run-verification_annotated.py",
+    "sourceSha256": "6539b8ace4c10d61a581e6bbf113d56737050938641963212e36be39342ea348",
+    "completeSourceMatches": true
+  }
+]

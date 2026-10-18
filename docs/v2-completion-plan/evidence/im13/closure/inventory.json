@@ -1,0 +1,43 @@
+{
+  "communities": {
+    "bear-de": {
+      "Resource": 10
+    },
+    "claymont-de": {
+      "Resource": 8
+    },
+    "hockessin-de": {
+      "Resource": 7
+    },
+    "middletown-de": {
+      "Resource": 29
+    },
+    "new-castle-de": {
+      "Resource": 41
+    },
+    "newark-de": {
+      "Resource": 79
+    },
+    "newport-de": {
+      "Resource": 2
+    },
+    "wilmington-de": {
+      "Article": 3,
+      "ExpertAnswer": 6,
+      "FAQ": 6,
+      "Flyer": 8,
+      "NewsItem": 10,
+      "Resource": 53
+    }
+  },
+  "clock": "2026-10-17T16:00:00Z",
+  "rows": 262,
+  "kindCounts": {
+    "Article": 3,
+    "ExpertAnswer": 6,
+    "FAQ": 6,
+    "Flyer": 8,
+    "NewsItem": 10,
+    "Resource": 229
+  }
+}

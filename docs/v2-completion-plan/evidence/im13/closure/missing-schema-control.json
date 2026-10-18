@@ -1,0 +1,5 @@
+{
+  "status": "PASS",
+  "control": "Removed /api/resources expected fieldPaths from an in-memory copy; executed actual harness guard",
+  "rejection": "('Missing expected schema', '/api/resources')"
+}

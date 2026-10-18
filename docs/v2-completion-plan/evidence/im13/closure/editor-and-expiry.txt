@@ -1,0 +1,1 @@
+PASS: synthetic create/validate/read/edit/reload; explicit owner/provider and Topic; optional provider omission; exact validator negatives; packaged all/Bear expiry CLI

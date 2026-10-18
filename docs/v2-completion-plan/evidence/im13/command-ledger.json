@@ -1,0 +1,224 @@
+{
+  "assembledUtc": "2026-10-17T23:16:47.021908+00:00",
+  "note": "Artifact mtimes are not asserted command start times. Original suite logs contain test start/end/duration. Unknown exact flags/exits are explicitly unknown. Earlier failed probes/logs remain preserved.",
+  "entries": [
+    {
+      "artifact": "baseline-backend.txt",
+      "command": "Maven baseline (exact launch arguments not retained)",
+      "artifactModifiedUtc": "2026-10-17T21:51:28.644314+00:00",
+      "result": "BUILD SUCCESS",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "final-backend.txt",
+      "command": "Maven verify/package (exact launch arguments not retained)",
+      "artifactModifiedUtc": "2026-10-17T22:14:52.215540+00:00",
+      "result": "631 tests; BUILD SUCCESS",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "baseline-frontend.txt",
+      "command": "npm test",
+      "artifactModifiedUtc": "2026-10-17T21:50:58.631051+00:00",
+      "result": "158 passed",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "final-frontend.txt",
+      "command": "npm test",
+      "artifactModifiedUtc": "2026-10-17T22:08:36.880283+00:00",
+      "result": "162 passed",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "final-typecheck.txt",
+      "command": "TypeScript check (exact launch arguments not retained)",
+      "artifactModifiedUtc": "2026-10-17T22:08:36.940364+00:00",
+      "result": "No diagnostics; corroborated by successful npm run build",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "final-build.txt",
+      "command": "npm run build",
+      "artifactModifiedUtc": "2026-10-17T22:08:42.909699+00:00",
+      "result": "built successfully",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "docker-build-final.txt",
+      "command": "docker build (image firststep-im13:local; exact launch flags not retained)",
+      "artifactModifiedUtc": "2026-10-17T22:12:59.456215+00:00",
+      "result": "image exported",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "docker-runtime-final.txt",
+      "command": "Docker runtime (exact launch flags not retained)",
+      "artifactModifiedUtc": "2026-10-17T22:15:50.655434+00:00",
+      "result": "application ready",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "browser-check.txt",
+      "command": "node docs/v2-completion-plan/evidence/im13/browser-check.mjs",
+      "artifactModifiedUtc": "2026-10-17T22:51:09.418493+00:00",
+      "result": "browser-result.json PASS",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "packaged-check.txt",
+      "command": "python3 docs/v2-completion-plan/evidence/im13/packaged-check.py",
+      "artifactModifiedUtc": "2026-10-17T22:51:18.256336+00:00",
+      "result": "three deployment scenarios verified",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "editor-workflow.txt",
+      "command": "python3 docs/v2-completion-plan/evidence/im13/editor-workflow.py",
+      "artifactModifiedUtc": "2026-10-17T22:12:31.926925+00:00",
+      "result": "create/update and negative validator cases verified",
+      "exitCode": null,
+      "exitNote": "Use original log result; historical shell exit not separately recorded"
+    },
+    {
+      "artifact": "http-release-final.txt",
+      "command": "python3 docs/v2-completion-plan/evidence/im13/http-release.py",
+      "artifactModifiedUtc": "2026-10-17T23:15:21.576953+00:00",
+      "result": "exit 0; 65 responses; four SPA/media paths",
+      "exitCode": 0,
+      "exitNote": "Explicit resumed exit"
+    },
+    {
+      "artifact": "baseline-python-0.txt",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "data-cleaning/tests",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "baseline-python-1.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_content_sources.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "baseline-python-2.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_homepage.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "baseline-python-3.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_navigation.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "baseline-python-4.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_news.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "baseline-python-5.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_organizations.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "baseline-python-6.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_schema.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-0.txt",
+      "command": [
+        "python3",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "data-cleaning/tests",
+        "-v"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-1.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_content_sources.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-2.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_homepage.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-3.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_navigation.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-4.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_news.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-5.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_organizations.py"
+      ],
+      "exitCode": 0
+    },
+    {
+      "artifact": "final-python-6.txt",
+      "command": [
+        "python3",
+        "data-cleaning/scripts/validate_schema.py"
+      ],
+      "exitCode": 0
+    }
+  ]
+}

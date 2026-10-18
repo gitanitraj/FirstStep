@@ -1,12 +1,10 @@
-/*
- * WHAT: Complete annotated mirror of frontend/src/pages/OrganizationPage/OrganizationPage.tsx for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+/* IM-13 annotated reference: frontend/src/pages/OrganizationPage/OrganizationPage.tsx
+ * What and why: Focus the provider heading after loading or failure; preserve requested Community on return. Existing explicit provider association remains the only identity source.
+ * Interaction: existing router, API and theme contracts; no new endpoint or model.
+ * Alternative: broad navigation/theme refactoring was unnecessary for these bounded defects.
+ * Complete source follows unchanged.
  */
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
 import { useI18n } from '../../i18n/I18nProvider';
@@ -41,6 +39,7 @@ export default function OrganizationPage() {
   const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
   const [org, setOrg] = useState<OrgPage | null>(null);
   const [failed, setFailed] = useState(false);
+  const heading = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
     setOrg(null);
@@ -50,15 +49,17 @@ export default function OrganizationPage() {
       .catch(() => setFailed(true));
   }, [slug, query]);
 
+  useEffect(() => { if (org || failed) heading.current?.focus(); }, [org, failed]);
+
   return (
     <>
       <SiteHeader />
       <main className={styles.main}>
         {failed && (
           <div className={styles.placeholder} role="alert">
-            <h1 className={styles.notFoundTitle}>{t('organization.notFound.title')}</h1>
+            <h1 ref={heading} tabIndex={-1} className={styles.notFoundTitle}>{t('organization.notFound.title')}</h1>
             <p>{t('organization.notFound.body')}</p>
-            <Link className={styles.back} to="/">
+            <Link className={styles.back} to={`/${query}`}>
               {t('organization.notFound.back')}
             </Link>
           </div>
@@ -74,7 +75,7 @@ export default function OrganizationPage() {
           <>
             <header className={styles.head}>
               <p className={styles.kicker}>{t('organization.kicker')}</p>
-              <h1 className={styles.title}>{org.name}</h1>
+              <h1 ref={heading} tabIndex={-1} className={styles.title}>{org.name}</h1>
               {org.website && (
                 <p className={styles.website}>
                   <a href={org.website} target="_blank" rel="noreferrer">

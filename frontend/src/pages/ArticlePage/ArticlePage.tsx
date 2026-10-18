@@ -1,5 +1,5 @@
-import { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useEffect, useRef, useState } from 'react';
+import { Link, useParams, useSearchParams } from 'react-router-dom';
 import { apiGet } from '../../api/client';
 import { useI18n } from '../../i18n/I18nProvider';
 import SiteHeader from '../../components/SiteHeader/SiteHeader';
@@ -45,19 +45,25 @@ function paragraphsOf(body: string | null): string[] {
 export default function ArticlePage() {
   const { id } = useParams<{ id: string }>();
   const { t } = useI18n();
+  const [search] = useSearchParams();
+  const community = search.get('communityId');
+  const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
+  const heading = useRef<HTMLHeadingElement>(null);
   const [article, setArticle] = useState<ArticleDetail | null>(null);
   const [failed, setFailed] = useState(false);
 
   useEffect(() => {
     setArticle(null);
     setFailed(false);
-    apiGet<ArticleDetail>(`/api/originals/${id}`)
+    apiGet<ArticleDetail>(`/api/originals/${id}${query}`)
       .then(setArticle)
       // One failure state, deliberately. The only error this endpoint produces
       // is a 404, and branching on the message would mean reading a distinction
       // the server exists to withhold.
       .catch(() => setFailed(true));
-  }, [id]);
+  }, [id, query]);
+
+  useEffect(() => { if (article || failed) heading.current?.focus(); }, [article, failed]);
 
   return (
     <>
@@ -65,9 +71,9 @@ export default function ArticlePage() {
       <main className={styles.main}>
         {failed && (
           <div className={styles.placeholder} role="alert">
-            <h1 className={styles.notFoundTitle}>{t('originals.notFound.title')}</h1>
+            <h1 ref={heading} tabIndex={-1} className={styles.notFoundTitle}>{t('originals.notFound.title')}</h1>
             <p>{t('originals.notFound.body')}</p>
-            <Link className={styles.back} to="/">
+            <Link className={styles.back} to={`/${query}`}>
               {t('originals.notFound.back')}
             </Link>
           </div>
@@ -92,7 +98,7 @@ export default function ArticlePage() {
                 </p>
               )}
 
-              <h1 id="article-title" className={styles.title}>
+              <h1 ref={heading} tabIndex={-1} id="article-title" className={styles.title}>
                 {article.title}
               </h1>
 

@@ -31,7 +31,7 @@ export default function TopicPage() {
     return () => { active = false; };
   }, [key, topic, query]);
 
-  useEffect(() => { if (page) heading.current?.focus(); }, [page]);
+  useEffect(() => { if (page || error) heading.current?.focus(); }, [page, error]);
 
   const allLabel = page ? `${t('help.all')} ${page.metadata.categoryLabel} ${t('help.help')}` : '';
   return (
@@ -40,7 +40,7 @@ export default function TopicPage() {
       <main className="home-body">
         {error && (
           <section className="stub-page" role="alert">
-            <h2>{t(error === 'missing' ? 'topic.notFound' : 'help.error')}</h2>
+            <h1 ref={heading} tabIndex={-1}>{t(error === 'missing' ? 'topic.notFound' : 'help.error')}</h1>
             <Link to={`/category/${key}${query}`} className="stub-back">{t('topic.backToCategory')}</Link>
           </section>
         )}

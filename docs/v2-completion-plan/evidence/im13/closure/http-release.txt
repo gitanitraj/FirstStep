@@ -1,0 +1,1 @@
+PASS:65 actual Docker resident HTTP responses match exact allowlists;4 SPA/media paths

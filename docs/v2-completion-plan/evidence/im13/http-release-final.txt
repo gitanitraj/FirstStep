@@ -1,0 +1,5 @@
+PASS:65 actual Docker resident HTTP responses match exact allowlists;4 SPA/media paths
+Command: python3 docs/v2-completion-plan/evidence/im13/http-release.py
+Exit: 0
+Final result: http-release.json
+Earlier http-release.txt failure is retained; its script now derives the envelope allowlist from the independently audited resource envelope, including timestamp.

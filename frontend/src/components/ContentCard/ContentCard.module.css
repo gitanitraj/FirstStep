@@ -53,6 +53,9 @@
 .badgeFLYER {
   background: var(--warning-color);
 }
+
+/* Small white labels fail contrast on these warm fills. */
+.badgeLAW, .badgeFLYER { color: var(--text-primary); }
 .badgeEXPERT {
   background: #4b5563;
 }
@@ -111,7 +114,7 @@ a.title:hover {
    hurry is on this page. */
 .urgency {
   border-color: var(--accent-color);
-  color: var(--accent-color);
+  color: var(--accent-ink);
 }
 
 .date {
@@ -120,3 +123,13 @@ a.title:hover {
 
 .image { width: 100%; height: auto; max-height: 320px; object-fit: contain; }
 .card { min-width: 0; overflow-wrap: anywhere; }
+
+/* High-contrast ink must not inherit the normal green hover or warm badge fill. */
+:global(body.high-contrast) .badge {
+  background: var(--text-primary);
+  color: var(--surface);
+}
+:global(body.high-contrast) a.title:hover,
+:global(body.high-contrast) .urgency {
+  color: var(--text-primary);
+}

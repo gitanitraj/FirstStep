@@ -1,0 +1,57 @@
+{
+  "id": "SD-913",
+  "category": "Food Program",
+  "subcategory": "Food Pantry",
+  "organization": "IM13 synthetic offering",
+  "parent_organization": null,
+  "summary": "Synthetic update; housing words cannot override authored Food.",
+  "description": "Within the shelter, multiple services are provided including food, emotional support/mental health services, health services related to disaster conditions, spiritual care and information about other disaster-related resources to individuals impacted by natural or man-made disasters.",
+  "population": "All",
+  "eligibility": "Individuals impacted by natural or man-made disasters",
+  "eligibility_age_min": null,
+  "eligibility_age_max": null,
+  "eligibility_gender": "any",
+  "locations": [
+    {
+      "label": "Primary",
+      "address": "100 W 10th Street Suite 401",
+      "city": "Wilmington",
+      "state": "DE",
+      "zip": "19801",
+      "confidential": false
+    }
+  ],
+  "phones": [
+    {
+      "number": "302-656-6620",
+      "label": "Main"
+    }
+  ],
+  "websites": [
+    {
+      "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+      "label": "Find a shelter"
+    }
+  ],
+  "county": "NCC",
+  "access_mode": [
+    "in-person"
+  ],
+  "cost": "free",
+  "urgency": "emergency",
+  "tags": [
+    "shelter",
+    "disaster-relief",
+    "food",
+    "mental-health",
+    "health-services"
+  ],
+  "source": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+  "retrieved": "2026-06-01",
+  "verified": false,
+  "notes": "",
+  "communityId": "bear-de",
+  "category_tags": [
+    "Food"
+  ]
+}

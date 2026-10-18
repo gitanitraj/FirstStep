@@ -1,0 +1,250 @@
+[
+  {
+    "id": "T02-J1-help",
+    "status": "PASS",
+    "facts": {
+      "preview": 4,
+      "fullHelp": 36,
+      "zeroHelpTopic": true,
+      "semantics": {
+        "main": 1,
+        "h1": 1,
+        "unnamedLinks": [],
+        "missingAlt": [],
+        "duplicates": [],
+        "overflow": false
+      }
+    }
+  },
+  {
+    "id": "T03-J2-topics",
+    "status": "PASS",
+    "facts": {
+      "ids": [
+        "HA-002",
+        "HA-003",
+        "HA-005",
+        "HA-016",
+        "HA-001",
+        "HA-006",
+        "HA-011",
+        "HA-013",
+        "HA-021",
+        "HA-008",
+        "HA-023",
+        "HA-026"
+      ],
+      "roles": [
+        "DURABLE",
+        "FALLBACK",
+        "FALLBACK"
+      ],
+      "keyboardRefreshBack": true
+    }
+  },
+  {
+    "id": "T04-J3-provider",
+    "status": "PASS",
+    "facts": {
+      "offering": "HA-001",
+      "provider": "ORG-001",
+      "path": "Existing offering inventory → Category Organizations association → provider offering card → browser back",
+      "inCardProviderLinkClaimed": false
+    }
+  },
+  {
+    "id": "T05-J4-collections",
+    "status": "PASS",
+    "facts": {
+      "policy": [
+        "NP-004",
+        "NP-005"
+      ],
+      "flyers": [
+        "FL-002"
+      ],
+      "firstRateNews": [
+        "OR-003",
+        "FAQ-002",
+        "EA-001",
+        "EA-005"
+      ],
+      "law": "empty local cache",
+      "media": "/images/seasonal/Eviction%20Help.png",
+      "scopedArticleNotFound": true
+    }
+  },
+  {
+    "id": "T10-bear-empty-invalid",
+    "status": "PASS",
+    "facts": {
+      "bearIds": [
+        "SD-032",
+        "SD-042"
+      ],
+      "noProviderInvented": true,
+      "unknownEmpty": true,
+      "invalidNotFound": true
+    }
+  },
+  {
+    "id": "T13-responsive",
+    "status": "PASS",
+    "facts": [
+      {
+        "width": 375,
+        "help": {
+          "x": 18,
+          "y": 3685.90625,
+          "width": 339,
+          "height": 991.953125
+        },
+        "org": {
+          "x": 18,
+          "y": 6523.40625,
+          "width": 339,
+          "height": 313.71875
+        },
+        "rail": {
+          "x": 18,
+          "y": 6865.125,
+          "width": 339,
+          "height": 384.390625
+        },
+        "main": 1,
+        "h1": 1,
+        "unnamedLinks": [],
+        "missingAlt": [],
+        "duplicates": [],
+        "overflow": false
+      },
+      {
+        "width": 1280,
+        "help": {
+          "x": 51.1875,
+          "y": 1361.25,
+          "width": 849.625,
+          "height": 762.828125
+        },
+        "org": {
+          "x": 51.1875,
+          "y": 3344.015625,
+          "width": 849.625,
+          "height": 268.9375
+        },
+        "rail": {
+          "x": 928.8125,
+          "y": 1361.25,
+          "width": 300,
+          "height": 384.390625
+        },
+        "main": 1,
+        "h1": 1,
+        "unnamedLinks": [],
+        "missingAlt": [],
+        "duplicates": [],
+        "overflow": false
+      },
+      {
+        "width": 1440,
+        "help": {
+          "x": 57.59375,
+          "y": 1306.875,
+          "width": 996.8125,
+          "height": 740.4375
+        },
+        "org": {
+          "x": 57.59375,
+          "y": 3267.25,
+          "width": 996.8125,
+          "height": 268.9375
+        },
+        "rail": {
+          "x": 1082.40625,
+          "y": 1306.875,
+          "width": 300,
+          "height": 384.390625
+        },
+        "main": 1,
+        "h1": 1,
+        "unnamedLinks": [],
+        "missingAlt": [],
+        "duplicates": [],
+        "overflow": false
+      }
+    ]
+  },
+  {
+    "id": "T14-loading-and-network",
+    "status": "PASS",
+    "facts": {
+      "delayedRealResponse": true,
+      "networkAbortAnnounced": true,
+      "topicErrorH1": true,
+      "syntheticFaultsOnly": true
+    }
+  },
+  {
+    "id": "T15-spanish-high-contrast-fonts",
+    "status": "PASS",
+    "facts": {
+      "documentLang": "es",
+      "diacritics": [
+        "Qué",
+        "Más"
+      ],
+      "outline": {
+        "style": "solid",
+        "width": "3px",
+        "color": "rgb(255, 255, 0)",
+        "focusVisible": true
+      },
+      "fonts": {
+        "body": true,
+        "heading": true,
+        "faces": [
+          {
+            "family": "Montserrat",
+            "weight": "700",
+            "status": "loaded"
+          },
+          {
+            "family": "Open Sans",
+            "weight": "400",
+            "status": "loaded"
+          },
+          {
+            "family": "Open Sans",
+            "weight": "600",
+            "status": "loaded"
+          },
+          {
+            "family": "Open Sans",
+            "weight": "700",
+            "status": "loaded"
+          }
+        ]
+      },
+      "persistence": true,
+      "tool": "Chromium AX tree + DOM checks; axe/pa11y unavailable"
+    }
+  },
+  {
+    "id": "T13-synthetic-law-layout",
+    "status": "PASS",
+    "facts": {
+      "synthetic": true,
+      "notLiveLawCoverage": true,
+      "measurements": [
+        {
+          "width": 375,
+          "columnWidth": 305
+        },
+        {
+          "width": 1280,
+          "columnWidth": 799.625
+        }
+      ]
+    }
+  }
+]

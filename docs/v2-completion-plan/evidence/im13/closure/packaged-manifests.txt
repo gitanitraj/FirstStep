@@ -1,0 +1,1 @@
+PASS: packaged positive/missing/malformed manifests, privacy, eight Community partitions, guarded details, API source/privacy and scoped navigation contracts

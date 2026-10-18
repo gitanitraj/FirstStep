@@ -1,0 +1,63 @@
+2026-10-17T18:12:31.049-04:00 DEBUG 65706 --- [           main] o.s.boot.SpringApplication               : Loading source class org.firststep.maintenance.EditorialExpiryReportCommand$ReportConfiguration
+Loaded taxonomy (10 categories, 45 distinct subcategories, 3 notice kinds)
+Loaded source mappings (1 source(s), 24 category mappings)
+Loaded content sources (15 producers, 1 with feeds)
+2026-10-17T18:12:31.646-04:00 DEBUG 65706 --- [           main] .s.b.a.l.ConditionEvaluationReportLogger : 
+
+
+============================
+CONDITIONS EVALUATION REPORT
+============================
+
+
+Positive matches:
+-----------------
+
+   EditorialExpiryConfiguration#editorialClock matched:
+      - @ConditionalOnMissingBean (types: java.time.Clock; SearchStrategy: all) did not find any beans (OnBeanCondition)
+
+
+Negative matches:
+-----------------
+
+    None
+
+
+Exclusions:
+-----------
+
+    None
+
+
+Unconditional classes:
+----------------------
+
+    None
+
+
+
+Loaded resources from /Users/composedmedia/Documents/Projects/FirstStep/app/data/resources.json (58 records)
+Loaded resources from /Users/composedmedia/Documents/Projects/FirstStep/app/data/resources.communities.json (171 records)
+Loaded 229 total resources (58 from resources.json, 171 from resources.communities.json)
+Loaded news items (10 records)
+Loaded flyers from /Users/composedmedia/Documents/Projects/FirstStep/app/data/flyers.json (8 records)
+Loaded FAQs from /Users/composedmedia/Documents/Projects/FirstStep/app/data/faq.json (6 records)
+Loaded expert answers from /Users/composedmedia/Documents/Projects/FirstStep/app/data/expert-answers.json (6 records)
+Loaded articles from /Users/composedmedia/Documents/Projects/FirstStep/app/data/articles.json (3 records, 1 approved for public serving)
+content-sources: 15 producers, all references resolved
+EDITORIAL EXPIRY — HUMAN STEWARDSHIP REPORT
+As of: 2026-10-17T16:00:00Z
+Community scope: bear-de
+Stored records inspected: 10
+Retained relevance-admitted RSS records included: 0
+RSS scope: retained cache only; no live fetch or complete remote-law coverage is implied.
+Days: signed Community-calendar distance to the inclusive expiry date (0=today).
+Expiry eligibility alone does not establish resident visibility; classification and other projection gates still apply.
+
+EXPIRY ATTENTION FINDINGS (negative days = past expiry)
+No approaching-expiry or expired records in this scope.
+
+METADATA PROBLEMS (not a lifecycle state)
+No invalid editorial-expiry metadata found.
+
+Human follow-up only: verify, investigate, or use the authorized catalog-editing process. No records were changed; no tasks or notifications were created.

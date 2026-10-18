@@ -1,0 +1,200 @@
+{
+  "phase": "before",
+  "browser": "151.0.7922.34",
+  "observations": [
+    {
+      "id": "article-explicit-community",
+      "status": "FAIL",
+      "error": "Wrong-community Article renders approved Wilmington body; frontend omitted scope"
+    },
+    {
+      "id": "article-route-entry-focus",
+      "status": "FAIL",
+      "error": "Article focus is BODY instead of its heading"
+    },
+    {
+      "id": "provider-route-entry-focus",
+      "status": "FAIL",
+      "error": "Provider focus is BODY instead of its heading"
+    },
+    {
+      "id": "topic-notfound-heading",
+      "status": "FAIL",
+      "error": "Topic not-found main has no h1"
+    },
+    {
+      "id": "normal-housing-flyer-text-contrast",
+      "status": "FAIL",
+      "facts": [
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 2.973778162902811,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 2.973778162902811,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 2.973778162902811,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 2.973778162902811,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            255,
+            255,
+            255
+          ],
+          "ratio": 2.973778162902811,
+          "threshold": 4.5
+        },
+        {
+          "text": "Flyer",
+          "tag": "SPAN",
+          "color": "rgb(255, 255, 255)",
+          "background": [
+            217,
+            119,
+            6
+          ],
+          "ratio": 3.1858232404059073,
+          "threshold": 4.5
+        }
+      ]
+    },
+    {
+      "id": "normal-focus-style",
+      "status": "FAIL",
+      "facts": {
+        "color": "rgb(28, 25, 23)",
+        "style": "none",
+        "width": "3px"
+      }
+    },
+    {
+      "id": "high-contrast-housing-flyer-text-contrast",
+      "status": "FAIL",
+      "facts": [
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            108,
+            108,
+            108
+          ],
+          "ratio": 1.765785960510667,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            108,
+            108,
+            108
+          ],
+          "ratio": 1.765785960510667,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            108,
+            108,
+            108
+          ],
+          "ratio": 1.765785960510667,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            108,
+            108,
+            108
+          ],
+          "ratio": 1.765785960510667,
+          "threshold": 4.5
+        },
+        {
+          "text": "emergency",
+          "tag": "SPAN",
+          "color": "rgb(224, 123, 57)",
+          "background": [
+            108,
+            108,
+            108
+          ],
+          "ratio": 1.765785960510667,
+          "threshold": 4.5
+        },
+        {
+          "text": "Flyer",
+          "tag": "SPAN",
+          "color": "rgb(255, 255, 255)",
+          "background": [
+            217,
+            119,
+            6
+          ],
+          "ratio": 3.1858232404059073,
+          "threshold": 4.5
+        }
+      ]
+    },
+    {
+      "id": "high-contrast-focus-style",
+      "status": "FAIL",
+      "facts": {
+        "color": "rgb(255, 255, 255)",
+        "style": "none",
+        "width": "3px"
+      }
+    }
+  ]
+}

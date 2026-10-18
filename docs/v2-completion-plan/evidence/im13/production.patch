@@ -1,0 +1,180 @@
+diff --git a/frontend/src/components/ContentCard/ContentCard.module.css b/frontend/src/components/ContentCard/ContentCard.module.css
+index ff6d650..65cd6a4 100644
+--- a/frontend/src/components/ContentCard/ContentCard.module.css
++++ b/frontend/src/components/ContentCard/ContentCard.module.css
+@@ -53,6 +53,9 @@
+ .badgeFLYER {
+   background: var(--warning-color);
+ }
++
++/* Small white labels fail contrast on these warm fills. */
++.badgeLAW, .badgeFLYER { color: var(--text-primary); }
+ .badgeEXPERT {
+   background: #4b5563;
+ }
+@@ -111,7 +114,7 @@ a.title:hover {
+    hurry is on this page. */
+ .urgency {
+   border-color: var(--accent-color);
+-  color: var(--accent-color);
++  color: var(--accent-ink);
+ }
+ 
+ .date {
+@@ -120,3 +123,13 @@ a.title:hover {
+ 
+ .image { width: 100%; height: auto; max-height: 320px; object-fit: contain; }
+ .card { min-width: 0; overflow-wrap: anywhere; }
++
++/* High-contrast ink must not inherit the normal green hover or warm badge fill. */
++:global(body.high-contrast) .badge {
++  background: var(--text-primary);
++  color: var(--surface);
++}
++:global(body.high-contrast) a.title:hover,
++:global(body.high-contrast) .urgency {
++  color: var(--text-primary);
++}
+diff --git a/frontend/src/pages/ArticlePage/ArticlePage.tsx b/frontend/src/pages/ArticlePage/ArticlePage.tsx
+index 0212a26..dee20fc 100644
+--- a/frontend/src/pages/ArticlePage/ArticlePage.tsx
++++ b/frontend/src/pages/ArticlePage/ArticlePage.tsx
+@@ -1,5 +1,5 @@
+-import { useEffect, useState } from 'react';
+-import { Link, useParams } from 'react-router-dom';
++import { useEffect, useRef, useState } from 'react';
++import { Link, useParams, useSearchParams } from 'react-router-dom';
+ import { apiGet } from '../../api/client';
+ import { useI18n } from '../../i18n/I18nProvider';
+ import SiteHeader from '../../components/SiteHeader/SiteHeader';
+@@ -45,19 +45,25 @@ function paragraphsOf(body: string | null): string[] {
+ export default function ArticlePage() {
+   const { id } = useParams<{ id: string }>();
+   const { t } = useI18n();
++  const [search] = useSearchParams();
++  const community = search.get('communityId');
++  const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
++  const heading = useRef<HTMLHeadingElement>(null);
+   const [article, setArticle] = useState<ArticleDetail | null>(null);
+   const [failed, setFailed] = useState(false);
+ 
+   useEffect(() => {
+     setArticle(null);
+     setFailed(false);
+-    apiGet<ArticleDetail>(`/api/originals/${id}`)
++    apiGet<ArticleDetail>(`/api/originals/${id}${query}`)
+       .then(setArticle)
+       // One failure state, deliberately. The only error this endpoint produces
+       // is a 404, and branching on the message would mean reading a distinction
+       // the server exists to withhold.
+       .catch(() => setFailed(true));
+-  }, [id]);
++  }, [id, query]);
++
++  useEffect(() => { if (article || failed) heading.current?.focus(); }, [article, failed]);
+ 
+   return (
+     <>
+@@ -65,9 +71,9 @@ export default function ArticlePage() {
+       <main className={styles.main}>
+         {failed && (
+           <div className={styles.placeholder} role="alert">
+-            <h1 className={styles.notFoundTitle}>{t('originals.notFound.title')}</h1>
++            <h1 ref={heading} tabIndex={-1} className={styles.notFoundTitle}>{t('originals.notFound.title')}</h1>
+             <p>{t('originals.notFound.body')}</p>
+-            <Link className={styles.back} to="/">
++            <Link className={styles.back} to={`/${query}`}>
+               {t('originals.notFound.back')}
+             </Link>
+           </div>
+@@ -92,7 +98,7 @@ export default function ArticlePage() {
+                 </p>
+               )}
+ 
+-              <h1 id="article-title" className={styles.title}>
++              <h1 ref={heading} tabIndex={-1} id="article-title" className={styles.title}>
+                 {article.title}
+               </h1>
+ 
+diff --git a/frontend/src/pages/OrganizationPage/OrganizationPage.tsx b/frontend/src/pages/OrganizationPage/OrganizationPage.tsx
+index 9e3ba54..9542b83 100644
+--- a/frontend/src/pages/OrganizationPage/OrganizationPage.tsx
++++ b/frontend/src/pages/OrganizationPage/OrganizationPage.tsx
+@@ -1,4 +1,4 @@
+-import { useEffect, useState } from 'react';
++import { useEffect, useRef, useState } from 'react';
+ import { Link, useParams, useSearchParams } from 'react-router-dom';
+ import { apiGet } from '../../api/client';
+ import { useI18n } from '../../i18n/I18nProvider';
+@@ -33,6 +33,7 @@ export default function OrganizationPage() {
+   const query = community ? `?${new URLSearchParams({ communityId: community })}` : '';
+   const [org, setOrg] = useState<OrgPage | null>(null);
+   const [failed, setFailed] = useState(false);
++  const heading = useRef<HTMLHeadingElement>(null);
+ 
+   useEffect(() => {
+     setOrg(null);
+@@ -42,15 +43,17 @@ export default function OrganizationPage() {
+       .catch(() => setFailed(true));
+   }, [slug, query]);
+ 
++  useEffect(() => { if (org || failed) heading.current?.focus(); }, [org, failed]);
++
+   return (
+     <>
+       <SiteHeader />
+       <main className={styles.main}>
+         {failed && (
+           <div className={styles.placeholder} role="alert">
+-            <h1 className={styles.notFoundTitle}>{t('organization.notFound.title')}</h1>
++            <h1 ref={heading} tabIndex={-1} className={styles.notFoundTitle}>{t('organization.notFound.title')}</h1>
+             <p>{t('organization.notFound.body')}</p>
+-            <Link className={styles.back} to="/">
++            <Link className={styles.back} to={`/${query}`}>
+               {t('organization.notFound.back')}
+             </Link>
+           </div>
+@@ -66,7 +69,7 @@ export default function OrganizationPage() {
+           <>
+             <header className={styles.head}>
+               <p className={styles.kicker}>{t('organization.kicker')}</p>
+-              <h1 className={styles.title}>{org.name}</h1>
++              <h1 ref={heading} tabIndex={-1} className={styles.title}>{org.name}</h1>
+               {org.website && (
+                 <p className={styles.website}>
+                   <a href={org.website} target="_blank" rel="noreferrer">
+diff --git a/frontend/src/pages/TopicPage/TopicPage.tsx b/frontend/src/pages/TopicPage/TopicPage.tsx
+index 9f78fb6..bb71ec7 100644
+--- a/frontend/src/pages/TopicPage/TopicPage.tsx
++++ b/frontend/src/pages/TopicPage/TopicPage.tsx
+@@ -31,7 +31,7 @@ export default function TopicPage() {
+     return () => { active = false; };
+   }, [key, topic, query]);
+ 
+-  useEffect(() => { if (page) heading.current?.focus(); }, [page]);
++  useEffect(() => { if (page || error) heading.current?.focus(); }, [page, error]);
+ 
+   const allLabel = page ? `${t('help.all')} ${page.metadata.categoryLabel} ${t('help.help')}` : '';
+   return (
+@@ -40,7 +40,7 @@ export default function TopicPage() {
+       <main className="home-body">
+         {error && (
+           <section className="stub-page" role="alert">
+-            <h2>{t(error === 'missing' ? 'topic.notFound' : 'help.error')}</h2>
++            <h1 ref={heading} tabIndex={-1}>{t(error === 'missing' ? 'topic.notFound' : 'help.error')}</h1>
+             <Link to={`/category/${key}${query}`} className="stub-back">{t('topic.backToCategory')}</Link>
+           </section>
+         )}
+diff --git a/frontend/src/styles/themes.css b/frontend/src/styles/themes.css
+index 1678bb1..09417ac 100644
+--- a/frontend/src/styles/themes.css
++++ b/frontend/src/styles/themes.css
+@@ -29,6 +29,8 @@ body.high-contrast {
+   --text-primary: #fff;
+   --text-secondary: #fff;
+   --text-light: #fff;
++  /* Keyboard outlines use accent ink; the normal brown is only 2.91:1 on black. */
++  --accent-ink: #ff0;
+ 
+   background: #000;
+   color: #fff;

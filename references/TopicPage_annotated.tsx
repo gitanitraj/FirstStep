@@ -1,8 +1,8 @@
-/* IM-05 annotated mirror.
- * What: controlled help-only Category/Topic browsing and its resident contract.
- * Why: consume IM-01/03/04 eligibility without duplicating classification or identity.
- * Interaction: shared helpFor, lifecycle-filtered services, HTTP DTOs and React navigation.
- * Alternatives: rejected all-content Topic counts, capped inventory and inferred Flyer activation.
+/* IM-13 annotated reference: frontend/src/pages/TopicPage/TopicPage.tsx
+ * What and why: Use and focus a level-one heading for missing/network-error Topics, matching the existing successful route focus behavior.
+ * Interaction: existing router, API and theme contracts; no new endpoint or model.
+ * Alternative: broad navigation/theme refactoring was unnecessary for these bounded defects.
+ * Complete source follows unchanged.
  */
 import { useEffect, useRef, useState } from 'react';
 import { Link, useParams, useSearchParams } from 'react-router-dom';
@@ -37,7 +37,7 @@ export default function TopicPage() {
     return () => { active = false; };
   }, [key, topic, query]);
 
-  useEffect(() => { if (page) heading.current?.focus(); }, [page]);
+  useEffect(() => { if (page || error) heading.current?.focus(); }, [page, error]);
 
   const allLabel = page ? `${t('help.all')} ${page.metadata.categoryLabel} ${t('help.help')}` : '';
   return (
@@ -46,7 +46,7 @@ export default function TopicPage() {
       <main className="home-body">
         {error && (
           <section className="stub-page" role="alert">
-            <h2>{t(error === 'missing' ? 'topic.notFound' : 'help.error')}</h2>
+            <h1 ref={heading} tabIndex={-1}>{t(error === 'missing' ? 'topic.notFound' : 'help.error')}</h1>
             <Link to={`/category/${key}${query}`} className="stub-back">{t('topic.backToCategory')}</Link>
           </section>
         )}

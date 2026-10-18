@@ -1,0 +1,1738 @@
+
+> firststep-frontend@0.1.0 test
+> vitest run src/Im13ReleaseBoundary.test.tsx
+
+
+ RUN  v2.1.9 /Users/composedmedia/Documents/Projects/FirstStep/frontend
+
+stderr | src/Im13ReleaseBoundary.test.tsx > IM13 release scope and keyboard destination boundary > T10 forwards the explicit Article owning Community to the approved detail gate
+⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition.
+⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath.
+
+ ❯ src/Im13ReleaseBoundary.test.tsx (4 tests | 4 failed) 2187ms
+   × IM13 release scope and keyboard destination boundary > T10 forwards the explicit Article owning Community to the approved detail gate 123ms
+     → expected "spy" to be called with arguments: [ Array(1) ]
+
+Received: 
+
+  1st spy call:
+
+  Array [
+-   "/api/originals/OR-003?communityId=bear-de",
++   "/api/originals/OR-003",
+  ]
+
+
+Number of calls: 1
+
+   × IM13 release scope and keyboard destination boundary > T14 places keyboard focus at the loaded Article heading 1023ms
+     → expect(element).toHaveFocus()
+
+Expected element with focus:
+  <h1
+  class="_title_b01525"
+  id="article-title"
+>
+  Approved synthetic reading
+</h1>
+Received element with focus:
+  <body>
+  <div>
+    <header
+      class="_header_fbfd7d"
+    >
+      <div
+        class="_headerInner_fbfd7d"
+      >
+        <a
+          aria-label="First Step home"
+          class="_brand_fbfd7d"
+          href="/?communityId=wilmington-de"
+        >
+          <img
+            alt=""
+            class="_logo_fbfd7d"
+            height="44"
+            src="/app-next/src/assets/logo-feet.png"
+            width="44"
+          />
+          <span
+            class="_brandText_fbfd7d"
+          >
+            <span
+              class="_appName_fbfd7d"
+            >
+              First Step
+            </span>
+            <span
+              class="_tagline_fbfd7d"
+            >
+              Your trusted guide to community resources, program updates and local information.
+            </span>
+          </span>
+        </a>
+        <div
+          class="_utilities_fbfd7d"
+        >
+          <button
+            aria-label="Switch language"
+            class="_utilityButton_fbfd7d"
+            title="Switch language"
+            type="button"
+          >
+            ES
+          </button>
+          <button
+            aria-label="Toggle high contrast"
+            aria-pressed="false"
+            class="_utilityButton_fbfd7d"
+            title="Toggle high contrast"
+            type="button"
+          >
+            ⊕
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      aria-label="Primary"
+      class="_nav_fbfd7d"
+    >
+      <div
+        class="_navInner_fbfd7d"
+      >
+        <a
+          class="_navItem_fbfd7d"
+          href="/about?communityId=wilmington-de"
+        >
+          About
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/category/housing?communityId=wilmington-de"
+        >
+          Housing
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/community?communityId=wilmington-de"
+        >
+          Community
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/updates?communityId=wilmington-de"
+        >
+          Updates
+        </a>
+      </div>
+    </nav>
+    <main
+      class="_main_b01525"
+    >
+      <article
+        aria-labelledby="article-title"
+        class="_article_b01525"
+      >
+        <header
+          class="_head_b01525"
+        >
+          <p
+            class="_kicker_b01525"
+          >
+            Housing
+          </p>
+          <h1
+            class="_title_b01525"
+            id="article-title"
+          >
+            Approved synthetic reading
+          </h1>
+          <p
+            class="_meta_b01525"
+          >
+            <span>
+              Published by················
+              Editor
+            </span>
+          </p>
+        </header>
+        <div
+          class="_body_b01525"
+        >
+          <p>
+            Public body
+          </p>
+        </div>
+      </article>
+    </main>
+    <footer
+      class="_footer_90cfa2"
+    >
+      <div
+        class="_inner_90cfa2"
+      >
+        <div
+          class="_brandBlock_90cfa2"
+        >
+          <span
+            class="_brand_90cfa2"
+          >
+            First Step
+          </span>
+          <span
+            class="_tagline_90cfa2"
+          >
+            Your trusted guide to community resources, program updates and local information.
+          </span>
+        </div>
+        <nav
+          aria-label="Footer links"
+          class="_links_90cfa2"
+        >
+          <a
+            class="_link_90cfa2"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/community"
+          >
+            Community
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/updates"
+          >
+            Updates
+          </a>
+        </nav>
+        <div
+          class="_contact_90cfa2"
+        >
+          <span
+            class="_mock_90cfa2"
+          >
+            Placeholder contact
+          </span>
+          <span>
+            hello@example.org
+          </span>
+        </div>
+      </div>
+      <p
+        class="_verify_90cfa2"
+      >
+        Always confirm details with the organization providing the service. First Step points you to them; it does not replace them.
+      </p>
+      <p
+        class="_attribution_90cfa2"
+      >
+        First Step — community information for Delaware residents.
+      </p>
+    </footer>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"_header_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"First Step home"[39m
+            [33mclass[39m=[32m"_brand_fbfd7d"[39m
+            [33mhref[39m=[32m"/?communityId=wilmington-de"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mclass[39m=[32m"_logo_fbfd7d"[39m
+              [33mheight[39m=[32m"44"[39m
+              [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+              [33mwidth[39m=[32m"44"[39m
+            [36m/>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_appName_fbfd7d"[39m
+              [36m>[39m
+                [0mFirst Step[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+              [36m>[39m
+                [0mYour trusted guide to community resources, program updates and local information.[0m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</a>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Switch language"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Switch language"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mES[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Toggle high contrast"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Toggle high contrast"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0m⊕[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</header>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Primary"[39m
+        [33mclass[39m=[32m"_nav_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/about?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mAbout[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/category/housing?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mHousing[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/community?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mCommunity[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/updates?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mUpdates[0m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</nav>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"_main_b01525"[39m
+      [36m>[39m
+        [36m<article[39m
+          [33maria-labelledby[39m=[32m"article-title"[39m
+          [33mclass[39m=[32m"_article_b01525"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"_head_b01525"[39m
+          [36m>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"_kicker_b01525"[39m
+            [36m>[39m
+              [0mHousing[0m
+            [36m</p>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"_title_b01525"[39m
+              [33mid[39m=[32m"article-title"[39m
+            [36m>[39m
+              [0mApproved synthetic reading[0m
+            [36m</h1>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"_meta_b01525"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mPublished by[0m
+                [0m [0m
+                [0mEditor[0m
+              [36m</span>[39m
+            [36m</p>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_body_b01525"[39m
+          [36m>[39m
+            [36m<p>[39m
+              [0mPublic body[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</article>[39m
+      [36m</main>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"_footer_90cfa2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_inner_90cfa2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_brandBlock_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brand_90cfa2"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_90cfa2"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Footer links"[39m
+            [33mclass[39m=[32m"_links_90cfa2"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/about"[39m
+            [36m>[39m
+              [0mAbout[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/community"[39m
+            [36m>[39m
+              [0mCommunity[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/updates"[39m
+            [36m>[39m
+              [0mUpdates[0m
+            [36m</a>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_contact_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_mock_90cfa2"[39m
+            [36m>[39m
+              [0mPlaceholder contact[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mhello@example.org[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_verify_90cfa2"[39m
+        [36m>[39m
+          [0mAlways confirm details with the organization providing the service. First Step points you to them; it does not replace them.[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_attribution_90cfa2"[39m
+        [36m>[39m
+          [0mFirst Step — community information for Delaware residents.[0m
+        [36m</p>[39m
+      [36m</footer>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   × IM13 release scope and keyboard destination boundary > T14 places keyboard focus at the loaded explicit provider heading 1024ms
+     → expect(element).toHaveFocus()
+
+Expected element with focus:
+  <h1
+  class="_title_2a1553"
+>
+  Provider
+</h1>
+Received element with focus:
+  <body>
+  <div>
+    <header
+      class="_header_fbfd7d"
+    >
+      <div
+        class="_headerInner_fbfd7d"
+      >
+        <a
+          aria-label="First Step home"
+          class="_brand_fbfd7d"
+          href="/?communityId=bear-de"
+        >
+          <img
+            alt=""
+            class="_logo_fbfd7d"
+            height="44"
+            src="/app-next/src/assets/logo-feet.png"
+            width="44"
+          />
+          <span
+            class="_brandText_fbfd7d"
+          >
+            <span
+              class="_appName_fbfd7d"
+            >
+              First Step
+            </span>
+            <span
+              class="_tagline_fbfd7d"
+            >
+              Your trusted guide to community resources, program updates and local information.
+            </span>
+          </span>
+        </a>
+        <div
+          class="_utilities_fbfd7d"
+        >
+          <button
+            aria-label="Switch language"
+            class="_utilityButton_fbfd7d"
+            title="Switch language"
+            type="button"
+          >
+            ES
+          </button>
+          <button
+            aria-label="Toggle high contrast"
+            aria-pressed="false"
+            class="_utilityButton_fbfd7d"
+            title="Toggle high contrast"
+            type="button"
+          >
+            ⊕
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      aria-label="Primary"
+      class="_nav_fbfd7d"
+    >
+      <div
+        class="_navInner_fbfd7d"
+      >
+        <a
+          class="_navItem_fbfd7d"
+          href="/about?communityId=bear-de"
+        >
+          About
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/category/housing?communityId=bear-de"
+        >
+          Housing
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/community?communityId=bear-de"
+        >
+          Community
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/updates?communityId=bear-de"
+        >
+          Updates
+        </a>
+      </div>
+    </nav>
+    <main
+      class="_main_2a1553"
+    >
+      <header
+        class="_head_2a1553"
+      >
+        <p
+          class="_kicker_2a1553"
+        >
+          Organization
+        </p>
+        <h1
+          class="_title_2a1553"
+        >
+          Provider
+        </h1>
+      </header>
+      <section
+        aria-labelledby="org-resources"
+      >
+        <h2
+          class="_sectionTitle_2a1553"
+          id="org-resources"
+        >
+          What they offer
+        </h2>
+        <p
+          class="_placeholder_2a1553"
+        >
+          First Step does not list any services for this organization right now.
+        </p>
+      </section>
+    </main>
+    <footer
+      class="_footer_90cfa2"
+    >
+      <div
+        class="_inner_90cfa2"
+      >
+        <div
+          class="_brandBlock_90cfa2"
+        >
+          <span
+            class="_brand_90cfa2"
+          >
+            First Step
+          </span>
+          <span
+            class="_tagline_90cfa2"
+          >
+            Your trusted guide to community resources, program updates and local information.
+          </span>
+        </div>
+        <nav
+          aria-label="Footer links"
+          class="_links_90cfa2"
+        >
+          <a
+            class="_link_90cfa2"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/community"
+          >
+            Community
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/updates"
+          >
+            Updates
+          </a>
+        </nav>
+        <div
+          class="_contact_90cfa2"
+        >
+          <span
+            class="_mock_90cfa2"
+          >
+            Placeholder contact
+          </span>
+          <span>
+            hello@example.org
+          </span>
+        </div>
+      </div>
+      <p
+        class="_verify_90cfa2"
+      >
+        Always confirm details with the organization providing the service. First Step points you to them; it does not replace them.
+      </p>
+      <p
+        class="_attribution_90cfa2"
+      >
+        First Step — community information for Delaware residents.
+      </p>
+    </footer>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"_header_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"First Step home"[39m
+            [33mclass[39m=[32m"_brand_fbfd7d"[39m
+            [33mhref[39m=[32m"/?communityId=bear-de"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mclass[39m=[32m"_logo_fbfd7d"[39m
+              [33mheight[39m=[32m"44"[39m
+              [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+              [33mwidth[39m=[32m"44"[39m
+            [36m/>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_appName_fbfd7d"[39m
+              [36m>[39m
+                [0mFirst Step[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+              [36m>[39m
+                [0mYour trusted guide to community resources, program updates and local information.[0m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</a>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Switch language"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Switch language"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mES[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Toggle high contrast"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Toggle high contrast"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0m⊕[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</header>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Primary"[39m
+        [33mclass[39m=[32m"_nav_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/about?communityId=bear-de"[39m
+          [36m>[39m
+            [0mAbout[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/category/housing?communityId=bear-de"[39m
+          [36m>[39m
+            [0mHousing[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/community?communityId=bear-de"[39m
+          [36m>[39m
+            [0mCommunity[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/updates?communityId=bear-de"[39m
+          [36m>[39m
+            [0mUpdates[0m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</nav>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"_main_2a1553"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"_head_2a1553"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"_kicker_2a1553"[39m
+          [36m>[39m
+            [0mOrganization[0m
+          [36m</p>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"_title_2a1553"[39m
+          [36m>[39m
+            [0mProvider[0m
+          [36m</h1>[39m
+        [36m</header>[39m
+        [36m<section[39m
+          [33maria-labelledby[39m=[32m"org-resources"[39m
+        [36m>[39m
+          [36m<h2[39m
+            [33mclass[39m=[32m"_sectionTitle_2a1553"[39m
+            [33mid[39m=[32m"org-resources"[39m
+          [36m>[39m
+            [0mWhat they offer[0m
+          [36m</h2>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"_placeholder_2a1553"[39m
+          [36m>[39m
+            [0mFirst Step does not list any services for this organization right now.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"_footer_90cfa2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_inner_90cfa2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_brandBlock_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brand_90cfa2"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_90cfa2"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Footer links"[39m
+            [33mclass[39m=[32m"_links_90cfa2"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/about"[39m
+            [36m>[39m
+              [0mAbout[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/community"[39m
+            [36m>[39m
+              [0mCommunity[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/updates"[39m
+            [36m>[39m
+              [0mUpdates[0m
+            [36m</a>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_contact_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_mock_90cfa2"[39m
+            [36m>[39m
+              [0mPlaceholder contact[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mhello@example.org[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_verify_90cfa2"[39m
+        [36m>[39m
+          [0mAlways confirm details with the organization providing the service. First Step points you to them; it does not replace them.[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_attribution_90cfa2"[39m
+        [36m>[39m
+          [0mFirst Step — community information for Delaware residents.[0m
+        [36m</p>[39m
+      [36m</footer>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+   × IM13 release scope and keyboard destination boundary > T14 gives a missing Topic a main level-one heading in its announced error 16ms
+     → expect(received).toHaveTextContent()
+
+received value must be a Node.
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 4 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/Im13ReleaseBoundary.test.tsx > IM13 release scope and keyboard destination boundary > T10 forwards the explicit Article owning Community to the approved detail gate
+AssertionError: expected "spy" to be called with arguments: [ Array(1) ]
+
+Received: 
+
+  1st spy call:
+
+  Array [
+-   "/api/originals/OR-003?communityId=bear-de",
++   "/api/originals/OR-003",
+  ]
+
+
+Number of calls: 1
+
+ ❯ src/Im13ReleaseBoundary.test.tsx:26:19
+     24|     ok(article); open('/originals/OR-003?communityId=bear-de');
+     25|     await screen.findByRole('heading', { name: article.title });
+     26|     expect(fetch).toHaveBeenCalledWith('/api/originals/OR-003?communit…
+       |                   ^
+     27|   });
+     28|   it('T14 places keyboard focus at the loaded Article heading', async …
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/4]⎯
+
+ FAIL  src/Im13ReleaseBoundary.test.tsx > IM13 release scope and keyboard destination boundary > T14 places keyboard focus at the loaded Article heading
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <h1
+  class="_title_b01525"
+  id="article-title"
+>
+  Approved synthetic reading
+</h1>
+Received element with focus:
+  <body>
+  <div>
+    <header
+      class="_header_fbfd7d"
+    >
+      <div
+        class="_headerInner_fbfd7d"
+      >
+        <a
+          aria-label="First Step home"
+          class="_brand_fbfd7d"
+          href="/?communityId=wilmington-de"
+        >
+          <img
+            alt=""
+            class="_logo_fbfd7d"
+            height="44"
+            src="/app-next/src/assets/logo-feet.png"
+            width="44"
+          />
+          <span
+            class="_brandText_fbfd7d"
+          >
+            <span
+              class="_appName_fbfd7d"
+            >
+              First Step
+            </span>
+            <span
+              class="_tagline_fbfd7d"
+            >
+              Your trusted guide to community resources, program updates and local information.
+            </span>
+          </span>
+        </a>
+        <div
+          class="_utilities_fbfd7d"
+        >
+          <button
+            aria-label="Switch language"
+            class="_utilityButton_fbfd7d"
+            title="Switch language"
+            type="button"
+          >
+            ES
+          </button>
+          <button
+            aria-label="Toggle high contrast"
+            aria-pressed="false"
+            class="_utilityButton_fbfd7d"
+            title="Toggle high contrast"
+            type="button"
+          >
+            ⊕
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      aria-label="Primary"
+      class="_nav_fbfd7d"
+    >
+      <div
+        class="_navInner_fbfd7d"
+      >
+        <a
+          class="_navItem_fbfd7d"
+          href="/about?communityId=wilmington-de"
+        >
+          About
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/category/housing?communityId=wilmington-de"
+        >
+          Housing
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/community?communityId=wilmington-de"
+        >
+          Community
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/updates?communityId=wilmington-de"
+        >
+          Updates
+        </a>
+      </div>
+    </nav>
+    <main
+      class="_main_b01525"
+    >
+      <article
+        aria-labelledby="article-title"
+        class="_article_b01525"
+      >
+        <header
+          class="_head_b01525"
+        >
+          <p
+            class="_kicker_b01525"
+          >
+            Housing
+          </p>
+          <h1
+            class="_title_b01525"
+            id="article-title"
+          >
+            Approved synthetic reading
+          </h1>
+          <p
+            class="_meta_b01525"
+          >
+            <span>
+              Published by················
+              Editor
+            </span>
+          </p>
+        </header>
+        <div
+          class="_body_b01525"
+        >
+          <p>
+            Public body
+          </p>
+        </div>
+      </article>
+    </main>
+    <footer
+      class="_footer_90cfa2"
+    >
+      <div
+        class="_inner_90cfa2"
+      >
+        <div
+          class="_brandBlock_90cfa2"
+        >
+          <span
+            class="_brand_90cfa2"
+          >
+            First Step
+          </span>
+          <span
+            class="_tagline_90cfa2"
+          >
+            Your trusted guide to community resources, program updates and local information.
+          </span>
+        </div>
+        <nav
+          aria-label="Footer links"
+          class="_links_90cfa2"
+        >
+          <a
+            class="_link_90cfa2"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/community"
+          >
+            Community
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/updates"
+          >
+            Updates
+          </a>
+        </nav>
+        <div
+          class="_contact_90cfa2"
+        >
+          <span
+            class="_mock_90cfa2"
+          >
+            Placeholder contact
+          </span>
+          <span>
+            hello@example.org
+          </span>
+        </div>
+      </div>
+      <p
+        class="_verify_90cfa2"
+      >
+        Always confirm details with the organization providing the service. First Step points you to them; it does not replace them.
+      </p>
+      <p
+        class="_attribution_90cfa2"
+      >
+        First Step — community information for Delaware residents.
+      </p>
+    </footer>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"_header_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"First Step home"[39m
+            [33mclass[39m=[32m"_brand_fbfd7d"[39m
+            [33mhref[39m=[32m"/?communityId=wilmington-de"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mclass[39m=[32m"_logo_fbfd7d"[39m
+              [33mheight[39m=[32m"44"[39m
+              [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+              [33mwidth[39m=[32m"44"[39m
+            [36m/>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_appName_fbfd7d"[39m
+              [36m>[39m
+                [0mFirst Step[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+              [36m>[39m
+                [0mYour trusted guide to community resources, program updates and local information.[0m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</a>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Switch language"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Switch language"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mES[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Toggle high contrast"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Toggle high contrast"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0m⊕[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</header>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Primary"[39m
+        [33mclass[39m=[32m"_nav_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/about?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mAbout[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/category/housing?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mHousing[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/community?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mCommunity[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/updates?communityId=wilmington-de"[39m
+          [36m>[39m
+            [0mUpdates[0m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</nav>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"_main_b01525"[39m
+      [36m>[39m
+        [36m<article[39m
+          [33maria-labelledby[39m=[32m"article-title"[39m
+          [33mclass[39m=[32m"_article_b01525"[39m
+        [36m>[39m
+          [36m<header[39m
+            [33mclass[39m=[32m"_head_b01525"[39m
+          [36m>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"_kicker_b01525"[39m
+            [36m>[39m
+              [0mHousing[0m
+            [36m</p>[39m
+            [36m<h1[39m
+              [33mclass[39m=[32m"_title_b01525"[39m
+              [33mid[39m=[32m"article-title"[39m
+            [36m>[39m
+              [0mApproved synthetic reading[0m
+            [36m</h1>[39m
+            [36m<p[39m
+              [33mclass[39m=[32m"_meta_b01525"[39m
+            [36m>[39m
+              [36m<span>[39m
+                [0mPublished by[0m
+                [0m [0m
+                [0mEditor[0m
+              [36m</span>[39m
+            [36m</p>[39m
+          [36m</header>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_body_b01525"[39m
+          [36m>[39m
+            [36m<p>[39m
+              [0mPublic body[0m
+            [36m</p>[39m
+          [36m</div>[39m
+        [36m</article>[39m
+      [36m</main>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"_footer_90cfa2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_inner_90cfa2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_brandBlock_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brand_90cfa2"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_90cfa2"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Footer links"[39m
+            [33mclass[39m=[32m"_links_90cfa2"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/about"[39m
+            [36m>[39m
+              [0mAbout[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/community"[39m
+            [36m>[39m
+              [0mCommunity[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/updates"[39m
+            [36m>[39m
+              [0mUpdates[0m
+            [36m</a>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_contact_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_mock_90cfa2"[39m
+            [36m>[39m
+              [0mPlaceholder contact[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mhello@example.org[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_verify_90cfa2"[39m
+        [36m>[39m
+          [0mAlways confirm details with the organization providing the service. First Step points you to them; it does not replace them.[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_attribution_90cfa2"[39m
+        [36m>[39m
+          [0mFirst Step — community information for Delaware residents.[0m
+        [36m</p>[39m
+      [36m</footer>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ src/Im13ReleaseBoundary.test.tsx:31:41
+     29|     ok(article); open('/originals/OR-003?communityId=wilmington-de');
+     30|     const heading = await screen.findByRole('heading', { name: article…
+     31|     await waitFor(() => expect(heading).toHaveFocus());
+       |                                         ^
+     32|   });
+     33|   it('T14 places keyboard focus at the loaded explicit provider headin…
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/4]⎯
+
+ FAIL  src/Im13ReleaseBoundary.test.tsx > IM13 release scope and keyboard destination boundary > T14 places keyboard focus at the loaded explicit provider heading
+Error: expect(element).toHaveFocus()
+
+Expected element with focus:
+  <h1
+  class="_title_2a1553"
+>
+  Provider
+</h1>
+Received element with focus:
+  <body>
+  <div>
+    <header
+      class="_header_fbfd7d"
+    >
+      <div
+        class="_headerInner_fbfd7d"
+      >
+        <a
+          aria-label="First Step home"
+          class="_brand_fbfd7d"
+          href="/?communityId=bear-de"
+        >
+          <img
+            alt=""
+            class="_logo_fbfd7d"
+            height="44"
+            src="/app-next/src/assets/logo-feet.png"
+            width="44"
+          />
+          <span
+            class="_brandText_fbfd7d"
+          >
+            <span
+              class="_appName_fbfd7d"
+            >
+              First Step
+            </span>
+            <span
+              class="_tagline_fbfd7d"
+            >
+              Your trusted guide to community resources, program updates and local information.
+            </span>
+          </span>
+        </a>
+        <div
+          class="_utilities_fbfd7d"
+        >
+          <button
+            aria-label="Switch language"
+            class="_utilityButton_fbfd7d"
+            title="Switch language"
+            type="button"
+          >
+            ES
+          </button>
+          <button
+            aria-label="Toggle high contrast"
+            aria-pressed="false"
+            class="_utilityButton_fbfd7d"
+            title="Toggle high contrast"
+            type="button"
+          >
+            ⊕
+          </button>
+        </div>
+      </div>
+    </header>
+    <nav
+      aria-label="Primary"
+      class="_nav_fbfd7d"
+    >
+      <div
+        class="_navInner_fbfd7d"
+      >
+        <a
+          class="_navItem_fbfd7d"
+          href="/about?communityId=bear-de"
+        >
+          About
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/category/housing?communityId=bear-de"
+        >
+          Housing
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/community?communityId=bear-de"
+        >
+          Community
+        </a>
+        <a
+          class="_navItem_fbfd7d"
+          href="/updates?communityId=bear-de"
+        >
+          Updates
+        </a>
+      </div>
+    </nav>
+    <main
+      class="_main_2a1553"
+    >
+      <header
+        class="_head_2a1553"
+      >
+        <p
+          class="_kicker_2a1553"
+        >
+          Organization
+        </p>
+        <h1
+          class="_title_2a1553"
+        >
+          Provider
+        </h1>
+      </header>
+      <section
+        aria-labelledby="org-resources"
+      >
+        <h2
+          class="_sectionTitle_2a1553"
+          id="org-resources"
+        >
+          What they offer
+        </h2>
+        <p
+          class="_placeholder_2a1553"
+        >
+          First Step does not list any services for this organization right now.
+        </p>
+      </section>
+    </main>
+    <footer
+      class="_footer_90cfa2"
+    >
+      <div
+        class="_inner_90cfa2"
+      >
+        <div
+          class="_brandBlock_90cfa2"
+        >
+          <span
+            class="_brand_90cfa2"
+          >
+            First Step
+          </span>
+          <span
+            class="_tagline_90cfa2"
+          >
+            Your trusted guide to community resources, program updates and local information.
+          </span>
+        </div>
+        <nav
+          aria-label="Footer links"
+          class="_links_90cfa2"
+        >
+          <a
+            class="_link_90cfa2"
+            href="/about"
+          >
+            About
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/community"
+          >
+            Community
+          </a>
+          <a
+            class="_link_90cfa2"
+            href="/updates"
+          >
+            Updates
+          </a>
+        </nav>
+        <div
+          class="_contact_90cfa2"
+        >
+          <span
+            class="_mock_90cfa2"
+          >
+            Placeholder contact
+          </span>
+          <span>
+            hello@example.org
+          </span>
+        </div>
+      </div>
+      <p
+        class="_verify_90cfa2"
+      >
+        Always confirm details with the organization providing the service. First Step points you to them; it does not replace them.
+      </p>
+      <p
+        class="_attribution_90cfa2"
+      >
+        First Step — community information for Delaware residents.
+      </p>
+    </footer>
+  </div>
+</body>
+
+Ignored nodes: comments, script, style
+[36m<html>[39m
+  [36m<head />[39m
+  [36m<body>[39m
+    [36m<div>[39m
+      [36m<header[39m
+        [33mclass[39m=[32m"_header_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_headerInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33maria-label[39m=[32m"First Step home"[39m
+            [33mclass[39m=[32m"_brand_fbfd7d"[39m
+            [33mhref[39m=[32m"/?communityId=bear-de"[39m
+          [36m>[39m
+            [36m<img[39m
+              [33malt[39m=[32m""[39m
+              [33mclass[39m=[32m"_logo_fbfd7d"[39m
+              [33mheight[39m=[32m"44"[39m
+              [33msrc[39m=[32m"/app-next/src/assets/logo-feet.png"[39m
+              [33mwidth[39m=[32m"44"[39m
+            [36m/>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brandText_fbfd7d"[39m
+            [36m>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_appName_fbfd7d"[39m
+              [36m>[39m
+                [0mFirst Step[0m
+              [36m</span>[39m
+              [36m<span[39m
+                [33mclass[39m=[32m"_tagline_fbfd7d"[39m
+              [36m>[39m
+                [0mYour trusted guide to community resources, program updates and local information.[0m
+              [36m</span>[39m
+            [36m</span>[39m
+          [36m</a>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_utilities_fbfd7d"[39m
+          [36m>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Switch language"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Switch language"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0mES[0m
+            [36m</button>[39m
+            [36m<button[39m
+              [33maria-label[39m=[32m"Toggle high contrast"[39m
+              [33maria-pressed[39m=[32m"false"[39m
+              [33mclass[39m=[32m"_utilityButton_fbfd7d"[39m
+              [33mtitle[39m=[32m"Toggle high contrast"[39m
+              [33mtype[39m=[32m"button"[39m
+            [36m>[39m
+              [0m⊕[0m
+            [36m</button>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+      [36m</header>[39m
+      [36m<nav[39m
+        [33maria-label[39m=[32m"Primary"[39m
+        [33mclass[39m=[32m"_nav_fbfd7d"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_navInner_fbfd7d"[39m
+        [36m>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/about?communityId=bear-de"[39m
+          [36m>[39m
+            [0mAbout[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/category/housing?communityId=bear-de"[39m
+          [36m>[39m
+            [0mHousing[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/community?communityId=bear-de"[39m
+          [36m>[39m
+            [0mCommunity[0m
+          [36m</a>[39m
+          [36m<a[39m
+            [33mclass[39m=[32m"_navItem_fbfd7d"[39m
+            [33mhref[39m=[32m"/updates?communityId=bear-de"[39m
+          [36m>[39m
+            [0mUpdates[0m
+          [36m</a>[39m
+        [36m</div>[39m
+      [36m</nav>[39m
+      [36m<main[39m
+        [33mclass[39m=[32m"_main_2a1553"[39m
+      [36m>[39m
+        [36m<header[39m
+          [33mclass[39m=[32m"_head_2a1553"[39m
+        [36m>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"_kicker_2a1553"[39m
+          [36m>[39m
+            [0mOrganization[0m
+          [36m</p>[39m
+          [36m<h1[39m
+            [33mclass[39m=[32m"_title_2a1553"[39m
+          [36m>[39m
+            [0mProvider[0m
+          [36m</h1>[39m
+        [36m</header>[39m
+        [36m<section[39m
+          [33maria-labelledby[39m=[32m"org-resources"[39m
+        [36m>[39m
+          [36m<h2[39m
+            [33mclass[39m=[32m"_sectionTitle_2a1553"[39m
+            [33mid[39m=[32m"org-resources"[39m
+          [36m>[39m
+            [0mWhat they offer[0m
+          [36m</h2>[39m
+          [36m<p[39m
+            [33mclass[39m=[32m"_placeholder_2a1553"[39m
+          [36m>[39m
+            [0mFirst Step does not list any services for this organization right now.[0m
+          [36m</p>[39m
+        [36m</section>[39m
+      [36m</main>[39m
+      [36m<footer[39m
+        [33mclass[39m=[32m"_footer_90cfa2"[39m
+      [36m>[39m
+        [36m<div[39m
+          [33mclass[39m=[32m"_inner_90cfa2"[39m
+        [36m>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_brandBlock_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_brand_90cfa2"[39m
+            [36m>[39m
+              [0mFirst Step[0m
+            [36m</span>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_tagline_90cfa2"[39m
+            [36m>[39m
+              [0mYour trusted guide to community resources, program updates and local information.[0m
+            [36m</span>[39m
+          [36m</div>[39m
+          [36m<nav[39m
+            [33maria-label[39m=[32m"Footer links"[39m
+            [33mclass[39m=[32m"_links_90cfa2"[39m
+          [36m>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/about"[39m
+            [36m>[39m
+              [0mAbout[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/community"[39m
+            [36m>[39m
+              [0mCommunity[0m
+            [36m</a>[39m
+            [36m<a[39m
+              [33mclass[39m=[32m"_link_90cfa2"[39m
+              [33mhref[39m=[32m"/updates"[39m
+            [36m>[39m
+              [0mUpdates[0m
+            [36m</a>[39m
+          [36m</nav>[39m
+          [36m<div[39m
+            [33mclass[39m=[32m"_contact_90cfa2"[39m
+          [36m>[39m
+            [36m<span[39m
+              [33mclass[39m=[32m"_mock_90cfa2"[39m
+            [36m>[39m
+              [0mPlaceholder contact[0m
+            [36m</span>[39m
+            [36m<span>[39m
+              [0mhello@example.org[0m
+            [36m</span>[39m
+          [36m</div>[39m
+        [36m</div>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_verify_90cfa2"[39m
+        [36m>[39m
+          [0mAlways confirm details with the organization providing the service. First Step points you to them; it does not replace them.[0m
+        [36m</p>[39m
+        [36m<p[39m
+          [33mclass[39m=[32m"_attribution_90cfa2"[39m
+        [36m>[39m
+          [0mFirst Step — community information for Delaware residents.[0m
+        [36m</p>[39m
+      [36m</footer>[39m
+    [36m</div>[39m
+  [36m</body>[39m
+[36m</html>[39m
+ ❯ src/Im13ReleaseBoundary.test.tsx:37:41
+     35|     open('/organization/provider?communityId=bear-de');
+     36|     const heading = await screen.findByRole('heading', { name: 'Provid…
+     37|     await waitFor(() => expect(heading).toHaveFocus());
+       |                                         ^
+     38|   });
+     39|   it('T14 gives a missing Topic a main level-one heading in its announ…
+ ❯ runWithExpensiveErrorDiagnosticsDisabled node_modules/@testing-library/dom/dist/config.js:47:12
+ ❯ checkCallback node_modules/@testing-library/dom/dist/wait-for.js:124:77
+ ❯ Timeout.checkRealTimersCallback node_modules/@testing-library/dom/dist/wait-for.js:118:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/4]⎯
+
+ FAIL  src/Im13ReleaseBoundary.test.tsx > IM13 release scope and keyboard destination boundary > T14 gives a missing Topic a main level-one heading in its announced error
+Error: expect(received).toHaveTextContent()
+
+received value must be a Node.
+
+ ❯ src/Im13ReleaseBoundary.test.tsx:44:39
+     42|     open('/category/housing/not-a-topic?communityId=bear-de');
+     43|     const alert = await screen.findByRole('alert');
+     44|     expect(alert.querySelector('h1')).toHaveTextContent("We couldn't f…
+       |                                       ^
+     45|   });
+     46| });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/4]⎯
+
+ Test Files  1 failed (1)
+      Tests  4 failed (4)
+   Start at  18:05:08
+   Duration  3.84s (transform 211ms, setup 116ms, collect 356ms, tests 2.19s, environment 693ms, prepare 140ms)
+

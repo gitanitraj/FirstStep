@@ -1,0 +1,778 @@
+
+════════════════════════════════════════════════════════════
+  WILMINGTON CIVIC APP — SCHEMA VALIDATOR
+════════════════════════════════════════════════════════════
+  File:    app/data/resources.communities.json
+  Records: 172
+  ✅ Passed:    172
+  ❌ Failed:    0
+  ⚠️  Warnings:  172
+════════════════════════════════════════════════════════════
+
+── MULTI-PROGRAM SITES ───────────────────────────────
+    ! Same site and topic, different service: Saint Anne's Episcopal Church @ 15 East Green Street (Youth Programs) — SD-136 and SD-137
+    ! Same site and topic, different service: Brandywine Valley SPCA @ 290 Churchmans Rd (Volunteer Opportunities) — SD-168 and SD-169
+    ! Same site and topic, different service: Brandywine Valley SPCA @ 290 Churchmans Rd (Volunteer Opportunities) — SD-168 and SD-170
+
+── WARNINGS ──────────────────────────────────────────
+
+  [SD-001] Easter Seals
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-002] Epilepsy Foundation
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-003] Mosaic Delaware
+    ! summary is 394 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-004] Learning Tree Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-005] Learning Tree Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-006] Delaware School for the Deaf - Early Learning Program
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-007] Harvest Child and Youth Development Center (Harvest Christian Academy)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-008] Learning Tree Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-009] New Directions Early Head Start-Early Learning Center Newark
+    ! summary is 425 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-010] Claymont Community Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-011] Delaware School for the Deaf
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-012] Delaware Skills Center (DSC)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-013] Hair Academy School of Barbering and Beauty
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-014] Right Coast Pro Wrestling
+    ! parent_organization is null — confirm this is intentional.
+    ! No phone numbers listed.
+    ! notes field is empty.
+
+  [SD-015] The Everett Inc / Gilbert Perry Jr Center for the Arts
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-016] The Tutoring Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-017] The Tutoring Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-018] Delaware JobLink American Job Center - Newark
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-019] Easter Seals
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-020] Habitat for Humanity - ReEmployeAbility
+    ! parent_organization is null — confirm this is intentional.
+    ! No phone numbers listed.
+    ! notes field is empty.
+
+  [SD-021] NCC Youth Workforce Development Program
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-022] Re-wire to be Re-hired
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-023] ServiceSource
+    ! summary is 388 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-024] Art on the Green
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-025] William Penn Day
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-026] Appoquinimink State Service Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-027] DeLaWarr State Service Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-028] Division of Medicaid & Medical Assistance (DMMA) - Children Community Alternative Disability Program
+    ! summary is 387 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-029] Hudson State Service Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-030] New Castle County Department of Community Services
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-031] YWCA - Foreclosure Prevention
+    ! summary is 1148 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-032] Alpha Worship Center - Pantry of Hope
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-033] Claymont Community Center
+    ! summary is 426 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-034] DeLaWarr State Service Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-035] Emmanuel Dining Room South (Ministry of Caring)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-036] Food Bank of Delaware
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-037] Glasgow Park Farmers Market
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-038] Lutheran Community Services - Hope Lutheran Church
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-039] Meals on Wheels of Delaware - Newark Senior Center
+    ! summary is 380 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-040] New Covenant Christian Fellowship Church
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-041] Our Daily Bread
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-042] Red Lion United Methodist Church
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-043] Saint Anne's Episcopal Church
+    ! summary is 558 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-044] Newark 24/7 Urgent Care Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-045] Planned Parenthood
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-046] The Birth Center Holistic Women's Healthcare, LLC
+    ! summary is 376 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-047] Appoquinimink State Service Center
+    ! summary is 801 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-048] Aquila Behavioral Health of Delaware
+    ! summary is 999 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-049] DeLaWarr State Service Center
+    ! summary is 507 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-050] Hudson State Service Center
+    ! summary is 801 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-051] New Castle County Department of Community Services - Housing Authority - Housing Choice Vouchers
+    ! summary is 1284 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-052] Newark Housing Authority - Housing Choice Vouchers
+    ! summary is 1261 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-053] Newark Housing Authority - Public Housing Units
+    ! summary is 616 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-054] Claymont Community Center - Empowered Youth
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-055] Duffy's H.O.P.E., Inc.
+    ! summary is 341 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-056] Appoquinimink Counseling Services, LLC
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-057] Brandywine Counseling & Community Services, Inc. (BCCS) - Newark Treatment Center
+    ! summary is 453 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-058] Center for Child Development / Delaware Center for Counseling and Wellness
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-059] Center for Mental Wellness
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-060] CORAS Wellness & Behavioral Health - MAT and Outpatient clinics, Opioid Treatment Programs
+    ! summary is 313 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-061] Crisis Intervention Services
+    ! summary is 370 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-062] Delaware Guidance Services for Children & Youth
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-063] LifeStance Health
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-064] LifeStance Health
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-065] LifeStance Health
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-066] LifeStance Health
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-067] Meadowwood Behavioral Health Hospital
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-068] Middletown Counseling Services
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-069] RI International - Recovery Response Center
+    ! summary is 456 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-070] Rockford Center
+    ! summary is 445 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-071] Safe Harbor Christian Counseling
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-072] Safe Harbor Christian Counseling
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-073] Safe Harbor Christian Counseling
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-074] Shaping Minds Therapeutic Services
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-075] Silver Lake Day Treatment Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-076] SOAR (Survivors of Abuse in Recovery, Inc.)
+    ! summary is 344 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-077] Supporting Kidds: The Center for Grieving Children and their Families
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-078] Terry Children's Center
+    ! summary is 843 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-079] Viamonte Counseling and Consulting Services
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-080] YWCA Delaware - Sexual Assault Response Center (SARC)
+    ! summary is 1779 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-081] Aspira
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-082] Progressive Life Center Parent Partners Program
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-083] Unique Butterflies
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-084] Children's Choice - Family Intervention Program
+    ! summary is 894 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-085] Delaware Adolescent Program, Inc. (DAPI)
+    ! summary is 380 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-086] Delaware School for the Deaf - FACES program
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-087] New Directions Early Head Start
+    ! summary is 744 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-088] New Directions Early Head Start-Early Learning Center Newark
+    ! summary is 424 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-089] The Birth Center Holistic Women's Healthcare, LLC
+    ! summary is 302 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-090] American Dance Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-091] American Martial Arts Institute
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-092] Bear Library
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-093] Brandywine Valley SPCA
+    ! summary is 315 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-094] Claymont Boys and Girls Club of Delaware
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-095] Claymont Community Center - Brandywine Senior Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-096] Claymont Public Library
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-097] Creative Kids Changing Communities - ART Studio 4:10 Academy
+    ! summary is 339 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-098] Debbie Loftis Guitar LLC
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-099] DelArts
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-100] Delaware 4-H: Eisbenberg Elementary and Castle Hills
+    ! summary is 413 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-101] Delaware 4-H: Kirk Middle School
+    ! summary is 370 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-102] Delaware 4-H: Knollwood Community Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-103] Delaware Dance Company
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-104] Encore Dance Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-105] Encore Dance Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-106] Evolution Karate Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-107] Garfield Park - Police Athletic League of Delaware (PAL)
+    ! summary is 485 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-108] Glasgow Park
+    ! summary is 313 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-109] Greater Newark Boys and Girls Club of Delaware
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-110] Hockessin - Police Athletic League of Delaware (PAL)
+    ! summary is 543 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-111] i9 Sports League
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-112] i9 Sports League
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-113] i9 Sports League
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-114] i9 Sports League
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-115] i9 Sports League
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-116] i9 Sports League
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-117] Iron Hill Park
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-118] KidStrong
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-119] Kirkwood Soccer League
+    ! parent_organization is null — confirm this is intentional.
+    ! No phone numbers listed.
+    ! notes field is empty.
+
+  [SD-120] Knockout Boxing
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-121] Knockout Boxing
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-122] Learning Tree Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-123] Lums Pond State Park
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-124] Melodic Movements
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-125] Mid County Lanes
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-126] Middle Run Valley Natural Area Park
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-127] MOT (Middletown, Odessa, Townsend) Jean Birch Senior Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-128] New Castle Boys and Girls Club of Delaware
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-129] New Castle Dance and Music Academy
+    ! summary is 388 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-130] New Castle Dance and Music Academy
+    ! summary is 388 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-131] New Castle Hundred Archers Club
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-132] New Castle Sports and Recreation
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-133] Newark Art Alliance
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-134] Right Coast Pro Wrestling
+    ! parent_organization is null — confirm this is intentional.
+    ! No phone numbers listed.
+    ! notes field is empty.
+
+  [SD-135] Route 9 Library and Innovation Center
+    ! summary is 369 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-136] Saint Anne's Episcopal Church
+    ! summary is 408 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-137] Saint Anne's Episcopal Church
+    ! summary is 604 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-138] Summer at Independence
+    ! summary is 422 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-139] Swim School Inc.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-140] Titus Sports Academy
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-141] Western YMCA
+    ! summary is 533 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-142] Woodcraft of Wilmington
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-143] Appoquinimink State Service Center
+    ! summary is 371 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-144] Delaware School for the Deaf
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-145] DeLaWarr State Service Center
+    ! summary is 308 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-146] Easter Seals
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-147] Epilepsy Foundation
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-148] Friendship House - MOT Empowerment Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-149] Friendship House - Newark Empowerment Center
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-150] Hudson State Service Center
+    ! summary is 308 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-151] New Directions Early Head Start-Early Learning Center Newark
+    ! summary is 424 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-152] PAWS for People
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-153] ServiceSource
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-154] SOAR (Survivors of Abuse in Recovery, Inc.)
+    ! summary is 344 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-155] Supporting Kidds: The Center for Grieving Children and their Families
+    ! summary is 332 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-156] The Birth Center Holistic Women's Healthcare, LLC
+    ! summary is 802 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-157] Wellbeing On Main
+    ! parent_organization is null — confirm this is intentional.
+    ! No phone numbers listed.
+    ! notes field is empty.
+
+  [SD-158] Brandywine Counseling & Community Services, Inc. (BCCS) - Newark Treatment Center
+    ! summary is 453 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-159] Brandywine Counseling & Community Services, Inc. (BCCS) - University Plaza Office
+    ! parent_organization is null — confirm this is intentional.
+    ! No phone numbers listed.
+    ! notes field is empty.
+
+  [SD-160] CORAS Wellness & Behavioral Health - MAT and Outpatient clinics, Opioid Treatment Programs
+    ! summary is 313 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-161] RI International - Recovery Response Center
+    ! summary is 456 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-162] Champions for Children's Mental Health
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-163] Christiana Hospital (Helen F. Graham Cancer Center)
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-164] Delaware Center for Justice - Safe Spaces
+    ! summary is 472 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-165] Supporting Kidds: The Center for Grieving Children and their Families
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-166] The Birth Center Holistic Women's Healthcare, LLC
+    ! summary is 484 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-167] ServiceSource
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-168] Brandywine Valley SPCA
+    ! summary is 302 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-169] Brandywine Valley SPCA
+    ! summary is 483 chars — consider shortening to under 300.
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-170] Brandywine Valley SPCA
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-171] ChristianaCare VolunTeen Program
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  [SD-913] IM13 synthetic offering
+    ! parent_organization is null — confirm this is intentional.
+    ! notes field is empty.
+
+  All records passed schema validation. ✅
+
+════════════════════════════════════════════════════════════
+
+
+EXPERT / FAQ EXPLICIT CLASSIFICATION (all stored Communities and statuses)
+Expert/FAQ records inspected: 12; classification failures: 0
+Flyer helpAccess records inspected: 8; failures: 0

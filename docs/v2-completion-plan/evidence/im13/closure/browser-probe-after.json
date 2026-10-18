@@ -1,0 +1,69 @@
+{
+  "phase": "after",
+  "browser": "151.0.7922.34",
+  "observations": [
+    {
+      "id": "article-explicit-community",
+      "status": "PASS",
+      "facts": {
+        "wrongOwnerNotFound": true
+      }
+    },
+    {
+      "id": "article-route-entry-focus",
+      "status": "PASS",
+      "facts": {
+        "tag": "H1"
+      }
+    },
+    {
+      "id": "provider-route-entry-focus",
+      "status": "PASS",
+      "facts": {
+        "tag": "H1"
+      }
+    },
+    {
+      "id": "topic-notfound-heading",
+      "status": "PASS",
+      "facts": {
+        "alert": true
+      }
+    },
+    {
+      "id": "normal-housing-flyer-text-contrast",
+      "status": "PASS",
+      "facts": []
+    },
+    {
+      "id": "normal-focus-style",
+      "status": "PASS",
+      "facts": {
+        "color": "rgb(143, 64, 9)",
+        "style": "solid",
+        "width": "3px",
+        "keyboardVisible": true
+      }
+    },
+    {
+      "id": "high-contrast-housing-flyer-text-contrast",
+      "status": "PASS",
+      "facts": []
+    },
+    {
+      "id": "high-contrast-focus-style",
+      "status": "PASS",
+      "facts": {
+        "color": "rgb(255, 255, 0)",
+        "style": "solid",
+        "width": "3px",
+        "keyboardVisible": true
+      }
+    },
+    {
+      "id": "high-contrast-card-hover",
+      "status": "PASS",
+      "facts": []
+    }
+  ]
+}

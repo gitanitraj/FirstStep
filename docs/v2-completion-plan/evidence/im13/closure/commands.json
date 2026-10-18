@@ -1,0 +1,355 @@
+[
+  {
+    "name": "backend-verify",
+    "command": [
+      "/Users/composedmedia/tools/apache-maven-3.9.16/bin/mvn",
+      "-B",
+      "-Dim12.evidence.dir=/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "-Dim12.phase=closure",
+      "verify"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep/backend",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:12.381565+00:00",
+    "log": "backend-verify.txt",
+    "endedUtc": "2026-10-17T23:33:33.265011+00:00",
+    "exitCode": 0,
+    "outputSha256": "fcd3697effd02452bf371f3b84812d081d0665e6d251247101df83a5cd9b1fa1"
+  },
+  {
+    "name": "frontend-tests",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep/frontend",
+    "environmentOverrides": {
+      "NODE_OPTIONS": "--no-experimental-webstorage"
+    },
+    "startedUtc": "2026-10-17T23:33:33.279303+00:00",
+    "log": "frontend-tests.txt",
+    "endedUtc": "2026-10-17T23:33:40.002087+00:00",
+    "exitCode": 0,
+    "outputSha256": "cf700ca9c6ddde284dd3cef2a346877d929e177f9af2e3b96fa01bfe546ec25c"
+  },
+  {
+    "name": "frontend-typecheck",
+    "command": [
+      "./node_modules/.bin/tsc",
+      "--noEmit"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep/frontend",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:40.003968+00:00",
+    "log": "frontend-typecheck.txt",
+    "endedUtc": "2026-10-17T23:33:42.302772+00:00",
+    "exitCode": 0,
+    "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "frontend-build",
+    "command": [
+      "npm",
+      "run",
+      "build"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep/frontend",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:42.303854+00:00",
+    "log": "frontend-build.txt",
+    "endedUtc": "2026-10-17T23:33:46.229105+00:00",
+    "exitCode": 0,
+    "outputSha256": "f06cb14c8f59d678cd88a09cae8ac5140cb4730ad054eda43afd76205973de1e"
+  },
+  {
+    "name": "python-tests",
+    "command": [
+      "python3",
+      "-m",
+      "unittest",
+      "discover",
+      "-s",
+      "data-cleaning/tests",
+      "-v"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:46.230283+00:00",
+    "log": "python-tests.txt",
+    "endedUtc": "2026-10-17T23:33:47.758074+00:00",
+    "exitCode": 0,
+    "outputSha256": "c73b735e7a32aa4391df18b8f1d6ca23bf3921185cdc50c1d652600476fbbbf1"
+  },
+  {
+    "name": "validator-content_sources",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_content_sources.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:47.758968+00:00",
+    "log": "validator-content_sources.txt",
+    "endedUtc": "2026-10-17T23:33:47.854365+00:00",
+    "exitCode": 0,
+    "outputSha256": "64ad72e8ac179026a0995f078b3e972ae3c062f2afbb512900d4cd9302b8a503"
+  },
+  {
+    "name": "validator-homepage",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_homepage.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:47.855233+00:00",
+    "log": "validator-homepage.txt",
+    "endedUtc": "2026-10-17T23:33:47.955710+00:00",
+    "exitCode": 0,
+    "outputSha256": "0d2ba6a2f9c996d726c052f9fffde0f648e6d6bc30151a66aa65bdfbba267adf"
+  },
+  {
+    "name": "validator-navigation",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_navigation.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:47.956698+00:00",
+    "log": "validator-navigation.txt",
+    "endedUtc": "2026-10-17T23:33:48.054075+00:00",
+    "exitCode": 0,
+    "outputSha256": "87aa407249e9757d4e006f3e60cd4c14bf260e5389cf66befc93cacd5c094168"
+  },
+  {
+    "name": "validator-news",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_news.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:48.054921+00:00",
+    "log": "validator-news.txt",
+    "endedUtc": "2026-10-17T23:33:48.165035+00:00",
+    "exitCode": 0,
+    "outputSha256": "143bc83035a9b08c1108a06d520aa65278fd9e3e852c73042b7038e706ed8da9"
+  },
+  {
+    "name": "validator-organizations",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_organizations.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:48.165992+00:00",
+    "log": "validator-organizations.txt",
+    "endedUtc": "2026-10-17T23:33:48.232518+00:00",
+    "exitCode": 0,
+    "outputSha256": "f4acb3ece0c60f33f71248f492770bf101af2e10b25043d90de8692624eea1a4"
+  },
+  {
+    "name": "validator-schema",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_schema.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:48.233368+00:00",
+    "log": "validator-schema.txt",
+    "endedUtc": "2026-10-17T23:33:48.326362+00:00",
+    "exitCode": 0,
+    "outputSha256": "3cc90b6b0a6d2d83800db31d380ad6937d3c2c407c4411b3a378bdc8b3a7399a"
+  },
+  {
+    "name": "docker-build",
+    "command": [
+      "docker",
+      "build",
+      "-f",
+      "backend/Dockerfile",
+      "-t",
+      "firststep-im13:closure",
+      "."
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:33:48.327433+00:00",
+    "log": "docker-build.txt",
+    "endedUtc": "2026-10-17T23:34:28.922248+00:00",
+    "exitCode": 0,
+    "outputSha256": "8202bd63ef869074956ae6ea4908188728948ce97c0993fb8a04f1f3b241ff5b"
+  },
+  {
+    "name": "docker-image",
+    "command": [
+      "docker",
+      "image",
+      "inspect",
+      "firststep-im13:closure"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:34:28.923253+00:00",
+    "log": "docker-image.txt",
+    "endedUtc": "2026-10-17T23:34:28.994804+00:00",
+    "exitCode": 0,
+    "outputSha256": "4608af23a94ca33ed51d91b2e2c9ab90913909fe6f69f1261ab6e5dc7da83655"
+  },
+  {
+    "name": "docker-start",
+    "command": [
+      "docker",
+      "run",
+      "--detach",
+      "--name",
+      "firststep-im13-closure-8504",
+      "--publish",
+      "127.0.0.1:8133:8080",
+      "firststep-im13:closure",
+      "--news.rss.initial-delay=86400000"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:34:28.995794+00:00",
+    "log": "docker-start.txt",
+    "endedUtc": "2026-10-17T23:34:29.285901+00:00",
+    "exitCode": 0,
+    "outputSha256": "423c2ba561079a062d02d1300e6ddd810ef7ab5a5ae5ae2b70ad3ebb3c603902"
+  },
+  {
+    "name": "docker-copy-distribution",
+    "command": [
+      "docker",
+      "cp",
+      "firststep-im13-closure-8504:/app/app.jar",
+      "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure/distribution.jar"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:34:33.599248+00:00",
+    "log": "docker-copy-distribution.txt",
+    "endedUtc": "2026-10-17T23:34:34.359825+00:00",
+    "exitCode": 0,
+    "outputSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "name": "http-release",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/http-release.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {
+      "IM13_OUTPUT_DIR": "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "IM13_ORIGIN": "http://127.0.0.1:8133"
+    },
+    "startedUtc": "2026-10-17T23:34:34.360804+00:00",
+    "log": "http-release.txt",
+    "endedUtc": "2026-10-17T23:34:35.244332+00:00",
+    "exitCode": 0,
+    "outputSha256": "5d6dc140287820b6544c6564c9bd04212250e1df10a77beaf5ddd5d7b7013032"
+  },
+  {
+    "name": "packaged-manifests",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/packaged-check.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {
+      "IM13_OUTPUT_DIR": "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "IM13_ORIGIN": "http://127.0.0.1:8133"
+    },
+    "startedUtc": "2026-10-17T23:34:35.245454+00:00",
+    "log": "packaged-manifests.txt",
+    "endedUtc": "2026-10-17T23:34:44.852345+00:00",
+    "exitCode": 0,
+    "outputSha256": "6abaf7e8811e247680bb79e9341a337f24e81cad1f2a93396fdaf2d088432ed4"
+  },
+  {
+    "name": "editor-and-expiry",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/editor-workflow.py"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {
+      "IM13_OUTPUT_DIR": "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "IM13_ORIGIN": "http://127.0.0.1:8133"
+    },
+    "startedUtc": "2026-10-17T23:34:44.854079+00:00",
+    "log": "editor-and-expiry.txt",
+    "endedUtc": "2026-10-17T23:34:54.950840+00:00",
+    "exitCode": 0,
+    "outputSha256": "10e2db3d9f58ac127b53d62599756b2c0c394876cb676a204f41911fb626163f"
+  },
+  {
+    "name": "browser-release",
+    "command": [
+      "node",
+      "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/browser-check.mjs"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {
+      "IM13_OUTPUT_DIR": "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "IM13_ORIGIN": "http://127.0.0.1:8133"
+    },
+    "startedUtc": "2026-10-17T23:34:54.952063+00:00",
+    "log": "browser-release.txt",
+    "endedUtc": "2026-10-17T23:35:00.401747+00:00",
+    "exitCode": 0,
+    "outputSha256": "c06047ff1bc8f39e016a371daa9d040abb109ef429c75132b993d97e286367a8"
+  },
+  {
+    "name": "browser-probe",
+    "command": [
+      "node",
+      "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/browser-probe.mjs",
+      "after"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {
+      "IM13_OUTPUT_DIR": "/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "IM13_ORIGIN": "http://127.0.0.1:8133"
+    },
+    "startedUtc": "2026-10-17T23:35:00.403041+00:00",
+    "log": "browser-probe.txt",
+    "endedUtc": "2026-10-17T23:35:03.732058+00:00",
+    "exitCode": 0,
+    "outputSha256": "4502f0deb4e1a8f89bbf8d91a294d5e5c870c17da10a28ffacf8d9ab0518c1a0"
+  },
+  {
+    "name": "docker-runtime",
+    "command": [
+      "docker",
+      "logs",
+      "firststep-im13-closure-8504"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:35:03.733303+00:00",
+    "log": "docker-runtime.txt",
+    "endedUtc": "2026-10-17T23:35:03.782773+00:00",
+    "exitCode": 0,
+    "outputSha256": "9c7ed8d70175550c42f22f12fbce8a6ce07550fac4146197cc12e8d31bed1c60"
+  },
+  {
+    "name": "docker-stop",
+    "command": [
+      "docker",
+      "stop",
+      "firststep-im13-closure-8504"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:35:04.252864+00:00",
+    "log": "docker-stop.txt",
+    "endedUtc": "2026-10-17T23:35:04.558662+00:00",
+    "exitCode": 0,
+    "outputSha256": "14a526ae6f1fcb277fc50a532a4c4e3c585e10995dac5e97fddb809aa67b3bf8"
+  }
+]

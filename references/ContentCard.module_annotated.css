@@ -1,10 +1,8 @@
-/*
- * WHAT: Complete annotated mirror of frontend/src/components/ContentCard/ContentCard.module.css for IM-08.
- * WHY: Integrate approved selector outcomes with scoped, accessible resident navigation.
- * INTERACTION: Existing eligibility and collection services own admission; the destination
- * projection allowlists cards/links, while React owns responsive presentation and route scope.
- * ALTERNATIVES: Reimplementing selectors or deriving providers from source names would violate
- * predecessor contracts. Tests cover pass-through, actual catalog HTTP, and browser journeys.
+/* IM-13 annotated reference: frontend/src/components/ContentCard/ContentCard.module.css
+ * What and why: Readable LAW/FLYER badge ink, urgency ink and high-contrast hover colors. Existing tokens retain the card contract; no content classification changes.
+ * Interaction: existing router, API and theme contracts; no new endpoint or model.
+ * Alternative: broad navigation/theme refactoring was unnecessary for these bounded defects.
+ * Complete source follows unchanged.
  */
 /* ContentCard — locally scoped. Class names are short and semantic because the
    filename already namespaces them (docs/frontend/css-architecture.md).
@@ -61,6 +59,9 @@
 .badgeFLYER {
   background: var(--warning-color);
 }
+
+/* Small white labels fail contrast on these warm fills. */
+.badgeLAW, .badgeFLYER { color: var(--text-primary); }
 .badgeEXPERT {
   background: #4b5563;
 }
@@ -119,7 +120,7 @@ a.title:hover {
    hurry is on this page. */
 .urgency {
   border-color: var(--accent-color);
-  color: var(--accent-color);
+  color: var(--accent-ink);
 }
 
 .date {
@@ -128,3 +129,13 @@ a.title:hover {
 
 .image { width: 100%; height: auto; max-height: 320px; object-fit: contain; }
 .card { min-width: 0; overflow-wrap: anywhere; }
+
+/* High-contrast ink must not inherit the normal green hover or warm badge fill. */
+:global(body.high-contrast) .badge {
+  background: var(--text-primary);
+  color: var(--surface);
+}
+:global(body.high-contrast) a.title:hover,
+:global(body.high-contrast) .urgency {
+  color: var(--text-primary);
+}

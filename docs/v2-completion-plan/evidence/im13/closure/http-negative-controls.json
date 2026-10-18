@@ -1,0 +1,26 @@
+[
+  {
+    "case": "envelope",
+    "status": "PASS: rejected"
+  },
+  {
+    "case": "summary",
+    "status": "PASS: rejected"
+  },
+  {
+    "case": "step",
+    "status": "PASS: rejected"
+  },
+  {
+    "case": "citation",
+    "status": "PASS: rejected"
+  },
+  {
+    "case": "source",
+    "status": "PASS: rejected"
+  },
+  {
+    "case": "nested-private",
+    "status": "PASS: rejected"
+  }
+]

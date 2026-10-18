@@ -1,0 +1,650 @@
+{
+  "status": "FAIL",
+  "browser": "151.0.7922.34",
+  "origin": "http://127.0.0.1:8113",
+  "checks": [
+    {
+      "id": "T02-J1-help",
+      "status": "FAIL",
+      "error": "Expected values to be strictly equal:\n\n0 !== 4\n"
+    },
+    {
+      "id": "T03-J2-topics",
+      "status": "PASS",
+      "facts": {
+        "ids": [
+          "HA-002",
+          "HA-003",
+          "HA-005",
+          "HA-016",
+          "HA-001",
+          "HA-006",
+          "HA-011",
+          "HA-013",
+          "HA-021",
+          "HA-008",
+          "HA-023",
+          "HA-026"
+        ],
+        "roles": [
+          "DURABLE",
+          "FALLBACK",
+          "FALLBACK"
+        ],
+        "keyboardRefreshBack": true
+      }
+    },
+    {
+      "id": "T04-J3-provider",
+      "status": "PASS",
+      "facts": {
+        "offering": "HA-001",
+        "provider": "ORG-001",
+        "path": "Existing offering inventory → Category Organizations association → provider offering card → browser back",
+        "inCardProviderLinkClaimed": false
+      }
+    },
+    {
+      "id": "T05-J4-collections",
+      "status": "PASS",
+      "facts": {
+        "policy": [
+          "NP-004",
+          "NP-005"
+        ],
+        "flyers": [
+          "FL-002"
+        ],
+        "firstRateNews": [
+          "OR-003",
+          "FAQ-002",
+          "EA-001",
+          "EA-005"
+        ],
+        "law": "empty local cache",
+        "media": "/images/seasonal/Eviction%20Help.png",
+        "scopedArticleNotFound": true
+      }
+    },
+    {
+      "id": "T10-bear-empty-invalid",
+      "status": "PASS",
+      "facts": {
+        "bearIds": [
+          "SD-032",
+          "SD-042"
+        ],
+        "noProviderInvented": true,
+        "unknownEmpty": true,
+        "invalidNotFound": true
+      }
+    },
+    {
+      "id": "T13-responsive",
+      "status": "FAIL",
+      "error": "locator.boundingBox: Timeout 30000ms exceeded.\nCall log:\n\u001b[2m  - waiting for getByRole('region', { name: 'Get Help', exact: true })\u001b[22m\n"
+    },
+    {
+      "id": "T14-loading-and-network",
+      "status": "PASS",
+      "facts": {
+        "delayedRealResponse": true,
+        "networkAbortAnnounced": true,
+        "topicErrorH1": true,
+        "syntheticFaultsOnly": true
+      }
+    },
+    {
+      "id": "T15-spanish-high-contrast-fonts",
+      "status": "PASS",
+      "facts": {
+        "documentLang": "es",
+        "diacritics": [
+          "Qué",
+          "Más"
+        ],
+        "outline": {
+          "style": "solid",
+          "width": "3px",
+          "color": "rgb(255, 255, 0)",
+          "focusVisible": true
+        },
+        "fonts": {
+          "body": true,
+          "heading": true,
+          "faces": [
+            {
+              "family": "Montserrat",
+              "weight": "700",
+              "status": "loaded"
+            },
+            {
+              "family": "Open Sans",
+              "weight": "400",
+              "status": "loaded"
+            },
+            {
+              "family": "Open Sans",
+              "weight": "600",
+              "status": "loaded"
+            },
+            {
+              "family": "Open Sans",
+              "weight": "700",
+              "status": "loaded"
+            }
+          ]
+        },
+        "persistence": true,
+        "tool": "Chromium AX tree + DOM checks; axe/pa11y unavailable"
+      }
+    },
+    {
+      "id": "T13-synthetic-law-layout",
+      "status": "PASS",
+      "facts": {
+        "synthetic": true,
+        "notLiveLawCoverage": true,
+        "measurements": [
+          {
+            "width": 375,
+            "columnWidth": 305
+          },
+          {
+            "width": 1280,
+            "columnWidth": 799.625
+          }
+        ]
+      }
+    }
+  ],
+  "errors": [],
+  "assets": [
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/images/seasonal/Eviction%20Help.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-BXvwt4MV.css",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/index-Dxad2sGw.js",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/logo-feet-CFx0DpSv.png",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-400-normal-Bk63H6sG.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-700-normal-CceUhp2e.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/montserrat-latin-700-normal-BdjcYUrC.woff2",
+      "status": 200
+    },
+    {
+      "url": "http://127.0.0.1:8113/app-next/assets/open-sans-latin-600-normal-Cp4N6AwT.woff2",
+      "status": 200
+    }
+  ],
+  "limitations": [
+    "Not a full WCAG audit",
+    "No physical device or assistive screen reader execution",
+    "External provider reachability/factual accuracy not certified",
+    "Synthetic loading/network and Law layout cases explicitly labeled"
+  ]
+}

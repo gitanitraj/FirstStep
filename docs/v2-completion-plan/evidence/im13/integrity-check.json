@@ -1,0 +1,36 @@
+{
+  "checkedUtc": "2026-10-17T23:21:28.834726+00:00",
+  "mode": "Offline revalidation of existing artifacts; no runtime quality-gate rerun",
+  "preservedHashMismatches": [],
+  "productionPatchMatches": true,
+  "sixSourceHashesAndFullMirrorsMatch": true,
+  "endingHeadIndexTrackedDiffMatch": true,
+  "httpSavedResponsesRevalidated": 64,
+  "httpHarnessMissingExactAllowlist": [
+    "POST /api/decide"
+  ],
+  "nestedPrivateKeysRejectedBySavedFunction": [
+    "authoredCategoryTags",
+    "authoredSubcategory",
+    "createdDate",
+    "diagnostics",
+    "editorialReview",
+    "expirationDate",
+    "generatedBy",
+    "helpAccess",
+    "retrieved",
+    "status",
+    "tieStage",
+    "verified"
+  ],
+  "savedDecideEnvelopeAndSummaryKeysMatch": true,
+  "verificationTimeSourceHashManifestPresent": false,
+  "sourceMtimesUtc": {
+    "frontend/src/components/ContentCard/ContentCard.module.css": "2026-10-17T22:08:30.404915+00:00",
+    "frontend/src/pages/ArticlePage/ArticlePage.tsx": "2026-10-17T22:08:30.401923+00:00",
+    "frontend/src/pages/OrganizationPage/OrganizationPage.tsx": "2026-10-17T22:08:30.402948+00:00",
+    "frontend/src/pages/TopicPage/TopicPage.tsx": "2026-10-17T22:08:30.403984+00:00",
+    "frontend/src/styles/themes.css": "2026-10-17T22:08:30.406791+00:00",
+    "frontend/src/Im13ReleaseBoundary.test.tsx": "2026-10-17T22:05:08.079715+00:00"
+  }
+}

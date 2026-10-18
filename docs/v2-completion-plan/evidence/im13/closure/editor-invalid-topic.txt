@@ -1,0 +1,28 @@
+
+════════════════════════════════════════════════════════════
+  WILMINGTON CIVIC APP — SCHEMA VALIDATOR
+════════════════════════════════════════════════════════════
+  File:    app/data/resources.communities.json
+  Records: 172
+  ✅ Passed:    171
+  ❌ Failed:    1
+  ⚠️  Warnings:  172
+════════════════════════════════════════════════════════════
+
+── FAILURES ──────────────────────────────────────────
+
+  [SD-913] IM13 synthetic offering
+    ✗ Invalid subcategory: 'Not a controlled Topic'
+    ✗ Subcategory 'Not a controlled Topic' does not belong to category 'Food Program'.
+
+── MULTI-PROGRAM SITES ───────────────────────────────
+    ! Same site and topic, different service: Saint Anne's Episcopal Church @ 15 East Green Street (Youth Programs) — SD-136 and SD-137
+    ! Same site and topic, different service: Brandywine Valley SPCA @ 290 Churchmans Rd (Volunteer Opportunities) — SD-168 and SD-169
+    ! Same site and topic, different service: Brandywine Valley SPCA @ 290 Churchmans Rd (Volunteer Opportunities) — SD-168 and SD-170
+
+════════════════════════════════════════════════════════════
+
+
+EXPERT / FAQ EXPLICIT CLASSIFICATION (all stored Communities and statuses)
+Expert/FAQ records inspected: 12; classification failures: 0
+Flyer helpAccess records inspected: 8; failures: 0

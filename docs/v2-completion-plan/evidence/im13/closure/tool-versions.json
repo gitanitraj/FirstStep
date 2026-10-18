@@ -1,0 +1,34 @@
+{
+  "node": {
+    "command": [
+      "node",
+      "--version"
+    ],
+    "exitCode": 0,
+    "output": "v26.7.0\n"
+  },
+  "npm": {
+    "command": [
+      "npm",
+      "--version"
+    ],
+    "exitCode": 0,
+    "output": "11.19.0\n"
+  },
+  "maven": {
+    "command": [
+      "/Users/composedmedia/tools/apache-maven-3.9.16/bin/mvn",
+      "--version"
+    ],
+    "exitCode": 0,
+    "output": "Apache Maven 3.9.16 (2bdd9fddda4b155ebf8000e807eb73fd829a51d5)\nMaven home: /Users/composedmedia/tools/apache-maven-3.9.16\nJava version: 25.0.2, vendor: Oracle Corporation, runtime: /Library/Java/JavaVirtualMachines/jdk-25.jdk/Contents/Home\nDefault locale: en_US, platform encoding: UTF-8\nOS name: \"mac os x\", version: \"26.6.2\", arch: \"x86_64\", family: \"mac\"\n"
+  },
+  "python": {
+    "command": [
+      "python3",
+      "--version"
+    ],
+    "exitCode": 0,
+    "output": "Python 3.14.6\n"
+  }
+}

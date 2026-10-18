@@ -1,0 +1,131 @@
+[ {
+  "paths" : [ "/api/categories" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.category.controller.CategoryController#getAll(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<org.firststep.backend.category.dto.PublicCategorySummary>>>"
+}, {
+  "paths" : [ "/api/category/{key}/help" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.category.controller.CategoryController#getAllHelp(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.category.dto.TopicPage>>"
+}, {
+  "paths" : [ "/api/category/{key}/{topic}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.category.controller.CategoryController#getTopic(String, String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.category.dto.TopicPage>>"
+}, {
+  "paths" : [ "/api/category/{key}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.category.controller.CategoryController#getByKey(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.category.dto.CategoryPage>>"
+}, {
+  "paths" : [ "/api/community-notices/{view}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.notices.controller.CommunityNoticesController#getView(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.notices.dto.CommunityNoticesPage>>"
+}, {
+  "paths" : [ "/api/community-notices" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.notices.controller.CommunityNoticesController#getOverview(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.notices.dto.CommunityNoticesPage>>"
+}, {
+  "paths" : [ "/api/decide" ],
+  "verbs" : [ "POST" ],
+  "handler" : "org.firststep.backend.ai.controller.DecisionController#decide(DecisionRequest, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.ai.dto.DecisionSummary>>"
+}, {
+  "paths" : [ "/api/expert-answers/{id}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.expert.controller.ExpertAnswerController#getById(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.lang.Object>>"
+}, {
+  "paths" : [ "/api/expert-answers" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.expert.controller.ExpertAnswerController#getAll(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<java.lang.Object>>>"
+}, {
+  "paths" : [ "/api/faqs/{id}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.expert.controller.FaqController#getById(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.lang.Object>>"
+}, {
+  "paths" : [ "/api/faqs" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.expert.controller.FaqController#getAll(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<java.lang.Object>>>"
+}, {
+  "paths" : [ "/api/find-help" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.findhelp.controller.FindHelpController#getFindHelp()",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.findhelp.dto.FindHelpPage>>"
+}, {
+  "paths" : [ "/api/flyers/{id}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.flyer.controller.FlyerController#getById(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.flyer.dto.FlyerSummary>>"
+}, {
+  "paths" : [ "/api/flyers" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.flyer.controller.FlyerController#getAll(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<org.firststep.backend.flyer.dto.FlyerSummary>>>"
+}, {
+  "paths" : [ "/api/health" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.resource.controller.ResourceController#health()",
+  "returnType" : "org.springframework.http.ResponseEntity<java.lang.String>"
+}, {
+  "paths" : [ "/api/home" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.home.controller.HomeController#getHome()",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.home.dto.HomePayload>>"
+}, {
+  "paths" : [ "/api/news/rss" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.news.controller.NewsController#getRssNews(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<org.firststep.backend.news.dto.NewsSummary>>>"
+}, {
+  "paths" : [ "/api/news" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.news.controller.NewsController#getAll(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<org.firststep.backend.news.dto.NewsSummary>>>"
+}, {
+  "paths" : [ "/api/organization/{slug}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.organization.controller.OrganizationController#getOrganization(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.organization.dto.OrganizationPage>>"
+}, {
+  "paths" : [ "/api/originals/{id}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.originals.controller.OriginalsController#getArticle(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.originals.dto.ArticleDetail>>"
+}, {
+  "paths" : [ "/api/resources/{id}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.resource.controller.ResourceController#getById(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.lang.Object>>"
+}, {
+  "paths" : [ "/api/resources" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.resource.controller.ResourceController#getAll(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<java.lang.Object>>>"
+}, {
+  "paths" : [ "/api/search" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.search.controller.SearchController#search(String, String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<org.firststep.backend.search.dto.PublicSearchResult>>>"
+}, {
+  "paths" : [ "/api/seasonal-images" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.resource.controller.ResourceController#getSeasonalImages()",
+  "returnType" : "org.springframework.http.ResponseEntity<java.util.List<java.lang.String>>"
+}, {
+  "paths" : [ "/api/updates/{sector}" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.updates.controller.UpdatesController#getSectorPage(String)",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<org.firststep.backend.updates.dto.UpdatesPage>>"
+}, {
+  "paths" : [ "/api/updates" ],
+  "verbs" : [ "GET" ],
+  "handler" : "org.firststep.backend.updates.controller.UpdatesController#getUpdates()",
+  "returnType" : "org.springframework.http.ResponseEntity<org.firststep.backend.shared.dto.ApiResponse<java.util.List<org.firststep.backend.updates.dto.UpdateItem>>>"
+} ]

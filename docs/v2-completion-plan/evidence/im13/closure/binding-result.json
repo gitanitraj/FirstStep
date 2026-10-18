@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "changedInputs": [],
+  "inputCount": 402,
+  "note": "Overall gate success also requires all commands exit 0 and completed distribution hashes."
+}

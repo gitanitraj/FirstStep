@@ -1,0 +1,33 @@
+[
+  {
+    "name": "backend-verify",
+    "command": [
+      "/Users/composedmedia/tools/apache-maven-3.9.16/bin/mvn",
+      "-B",
+      "-Dim12.evidence.dir=/Users/composedmedia/Documents/Projects/FirstStep/docs/v2-completion-plan/evidence/im13/closure",
+      "-Dim12.phase=closure",
+      "verify"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep/backend",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:29:28.059410+00:00",
+    "log": "backend-verify.txt",
+    "endedUtc": "2026-10-17T23:29:52.807152+00:00",
+    "exitCode": 0,
+    "outputSha256": "b7e2e53430490f391d9044294699a4dc189ed73dd5208094accff8586fcc6326"
+  },
+  {
+    "name": "frontend-tests",
+    "command": [
+      "npm",
+      "test"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep/frontend",
+    "environmentOverrides": {},
+    "startedUtc": "2026-10-17T23:29:52.821104+00:00",
+    "log": "frontend-tests.txt",
+    "endedUtc": "2026-10-17T23:30:04.773265+00:00",
+    "exitCode": 1,
+    "outputSha256": "8aa18bfab6fc2a0295b9cb70caea11e84e50b7bd043b033f906f79852b57aa59"
+  }
+]

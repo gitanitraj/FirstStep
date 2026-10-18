@@ -1,0 +1,232 @@
+{
+  "synthetic": true,
+  "canonicalId": "SD-913",
+  "authoringBoundary": "Manual authorized JSON edit plus validator and process reload; no Admin UI or hot reload is claimed",
+  "steps": [
+    {
+      "command": [
+        "python3",
+        "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_organizations.py"
+      ],
+      "cwd": "isolated temporary root/app/data",
+      "exitCode": 0,
+      "exactDiagnostic": null
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_schema.py",
+        "--input",
+        "app/data/resources.communities.json"
+      ],
+      "cwd": "isolated temporary root/app/data",
+      "exitCode": 0,
+      "exactDiagnostic": null
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_organizations.py"
+      ],
+      "cwd": "isolated temporary root/app/data",
+      "exitCode": 0,
+      "exactDiagnostic": null
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_schema.py",
+        "--input",
+        "app/data/resources.communities.json"
+      ],
+      "cwd": "isolated temporary root/app/data",
+      "exitCode": 0,
+      "exactDiagnostic": null
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_organizations.py"
+      ],
+      "cwd": "isolated temporary root/app/data",
+      "exitCode": 1,
+      "exactDiagnostic": "resources.communities SD-913 references unknown organization_id 'ORG-999'."
+    },
+    {
+      "command": [
+        "python3",
+        "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_schema.py",
+        "--input",
+        "app/data/resources.communities.json"
+      ],
+      "cwd": "isolated temporary root/app/data",
+      "exitCode": 1,
+      "exactDiagnostic": "Invalid subcategory: 'Not a controlled Topic'"
+    }
+  ],
+  "createdRead": {
+    "resource": {
+      "id": "SD-913",
+      "title": "IM13 synthetic offering",
+      "summary": "Synthetic creation for manual authoring verification.",
+      "contentType": "RESOURCE",
+      "communityId": "bear-de",
+      "category_tags": [
+        "Housing"
+      ],
+      "subcategory": "Emergency Shelter",
+      "tags": [
+        "shelter",
+        "disaster-relief",
+        "food",
+        "mental-health",
+        "health-services"
+      ],
+      "publishDate": null,
+      "contentSource": {
+        "id": "dscyf-directory",
+        "name": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+        "type": null,
+        "url": null
+      },
+      "category": "Housing Assistance",
+      "organization": "IM13 synthetic offering",
+      "organization_id": "ORG-001",
+      "parent_organization": null,
+      "description": "Within the shelter, multiple services are provided including food, emotional support/mental health services, health services related to disaster conditions, spiritual care and information about other disaster-related resources to individuals impacted by natural or man-made disasters.",
+      "population": "All",
+      "eligibility": "Individuals impacted by natural or man-made disasters",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "100 W 10th Street Suite 401",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-656-6620",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+          "label": "Find a shelter"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "notes": ""
+    },
+    "provider": {
+      "id": "ORG-001",
+      "name": "American Red Cross",
+      "slug": "american-red-cross",
+      "website": null,
+      "resources": [
+        {
+          "contentType": "RESOURCE",
+          "id": "SD-913",
+          "title": "IM13 synthetic offering",
+          "summary": "Synthetic creation for manual authoring verification.",
+          "organization": "IM13 synthetic offering",
+          "location": "Wilmington",
+          "cost": "free",
+          "urgency": "emergency",
+          "date": null,
+          "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+          "imageUrl": null
+        }
+      ]
+    },
+    "topicIds": [
+      "SD-913"
+    ]
+  },
+  "updatedRead": {
+    "resource": {
+      "id": "SD-913",
+      "title": "IM13 synthetic offering",
+      "summary": "Synthetic update; housing words cannot override authored Food.",
+      "contentType": "RESOURCE",
+      "communityId": "bear-de",
+      "category_tags": [
+        "Food"
+      ],
+      "subcategory": "Food Pantry",
+      "tags": [
+        "shelter",
+        "disaster-relief",
+        "food",
+        "mental-health",
+        "health-services"
+      ],
+      "publishDate": null,
+      "contentSource": {
+        "id": "dscyf-directory",
+        "name": "FIRST Community Services Directory \u2014 Delaware DSCYF",
+        "type": null,
+        "url": null
+      },
+      "category": "Food Program",
+      "organization": "IM13 synthetic offering",
+      "organization_id": null,
+      "parent_organization": null,
+      "description": "Within the shelter, multiple services are provided including food, emotional support/mental health services, health services related to disaster conditions, spiritual care and information about other disaster-related resources to individuals impacted by natural or man-made disasters.",
+      "population": "All",
+      "eligibility": "Individuals impacted by natural or man-made disasters",
+      "eligibility_age_min": null,
+      "eligibility_age_max": null,
+      "eligibility_gender": "any",
+      "locations": [
+        {
+          "label": "Primary",
+          "address": "100 W 10th Street Suite 401",
+          "city": "Wilmington",
+          "state": "DE",
+          "zip": "19801",
+          "confidential": false
+        }
+      ],
+      "phones": [
+        {
+          "number": "302-656-6620",
+          "label": "Main"
+        }
+      ],
+      "websites": [
+        {
+          "url": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+          "label": "Find a shelter"
+        }
+      ],
+      "county": "NCC",
+      "access_mode": [
+        "in-person"
+      ],
+      "cost": "free",
+      "urgency": "emergency",
+      "notes": ""
+    },
+    "foodIds": [
+      "SD-032",
+      "SD-913",
+      "SD-042"
+    ],
+    "previousTopicIds": [],
+    "providerIds": []
+  },
+  "status": "PASS",
+  "productionCatalogsUnchanged": true
+}
