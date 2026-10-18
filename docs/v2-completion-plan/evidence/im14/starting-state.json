@@ -1,0 +1,10 @@
+{
+  "capturedUtc": "2026-10-18T16:04:14.589135+00:00",
+  "HEAD": "ceb5d790995e200405aa91e9656d2fe506e96e68",
+  "branch": "copyofdev",
+  "status": "?? \"docs/v2-completion-plan/v2 \\342\\200\\224 IM-14 Coding-Agent Work Order.md\"\n?? \"docs/v2-completion-plan/v2.14 \\342\\200\\224 Authoritative IM-01\\342\\200\\223IM-14 Execution Matrix.md\"\n",
+  "staged": "",
+  "unstaged": "",
+  "deleted": "",
+  "ignored": "?? \"docs/v2-completion-plan/v2 \\342\\200\\224 IM-14 Coding-Agent Work Order.md\"\n?? \"docs/v2-completion-plan/v2.14 \\342\\200\\224 Authoritative IM-01\\342\\200\\223IM-14 Execution Matrix.md\"\n!! .DS_Store\n!! .claude/settings.local.json\n!! .claude/skills/run-firststep-app/node_modules/\n!! .vscode/\n!! backend/src/main/resources/static/images/.DS_Store\n!! backend/target/\n!! data-cleaning/scripts/__pycache__/\n!! data-cleaning/tests/__pycache__/\n!! docs/.DS_Store\n!! docs/v2-completion-plan/evidence/im12/built-server.log\n!! docs/v2-completion-plan/evidence/im12/packaged-bind-denied.log\n!! docs/v2-completion-plan/evidence/im12/packaged-malformed.log\n!! docs/v2-completion-plan/evidence/im12/packaged-missing.log\n!! docs/v2-completion-plan/evidence/im12/packaged-positive.log\n!! docs/v2-completion-plan/evidence/im13/__pycache__/\n!! docs/v2-completion-plan/evidence/im13/closure/__pycache__/\n!! docs/v2-completion-plan/evidence/im13/closure/distribution.jar\n!! docs/v2-completion-plan/evidence/im13/closure/editor-created-runtime.log\n!! docs/v2-completion-plan/evidence/im13/closure/editor-updated-runtime.log\n!! docs/v2-completion-plan/evidence/im13/closure/packaged-malformed.log\n!! docs/v2-completion-plan/evidence/im13/closure/packaged-missing.log\n!! docs/v2-completion-plan/evidence/im13/closure/packaged-positive.log\n!! docs/v2-completion-plan/evidence/im13/editor-created-runtime.log\n!! docs/v2-completion-plan/evidence/im13/editor-updated-runtime.log\n!! docs/v2-completion-plan/evidence/im13/packaged-malformed.log\n!! docs/v2-completion-plan/evidence/im13/packaged-missing.log\n!! docs/v2-completion-plan/evidence/im13/packaged-positive.log\n!! frontend/dist/\n!! frontend/node_modules/\n"
+}

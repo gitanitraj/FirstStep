@@ -1,0 +1,184 @@
+{
+  "status": "FAIL",
+  "checkedUtc": "2026-10-18T16:21:18.307968+00:00",
+  "markdownFilesChecked": 10,
+  "markdownLinksChecked": 64,
+  "errors": [
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im05/browser-check.cjs",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im05/browser-result.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im07/real-item-audit.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im07/stored-catalog-audit.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im07/baseline/real-selector-audit.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im07/annotated-mirrors.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im08/annotated-mirrors.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im08/preservation-result.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im09/annotated-mirrors.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im09/ending-state.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/final-backend-accepted.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/final-frontend.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/final-typecheck.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/final-build.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/final-python.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/focused-backend.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/packaged-http.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/browser-result.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/flyers-375.png",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/flyers-1280.png",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/flyers-spanish-contrast.png",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/preservation-result.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/annotated-mirrors.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im10/verification-summary.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/inventory.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/catalog-before.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/catalog-after.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/audit-summary.txt",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/preservation-check.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/preservation-before.json",
+      "missing file"
+    ],
+    [
+      "docs/v2-completion-plan/evidence/im14/report-reconciliation-extracts.md",
+      "evidence/im12/preservation-after.json",
+      "missing file"
+    ]
+  ],
+  "ledgerEntries": 451,
+  "stewardshipRuleCount": 99,
+  "p4RequirementCount": 37,
+  "p5InvariantCount": 28,
+  "backlogCount": 14,
+  "historicalQuestionCount": 5,
+  "allLedgerReferencesExist": false,
+  "namedTestFilesObservedInAcceptedBackendLog": 25,
+  "protectedBaselineCount": 1526,
+  "changedBaselineFiles": [],
+  "commandLedgerEntries": 13,
+  "sourceBoundIm13Revalidated": {
+    "im13Inputs": 402,
+    "currentInputMismatches": [],
+    "commandCount": 22,
+    "allExitsZero": true,
+    "logHashMismatches": [],
+    "originalAdminHistorySearch": "",
+    "originalAdminWorkingTreeMatches": []
+  },
+  "note": "No full runtime suite rerun. Original source availability limitations and NOT TESTED certification limits remain as documented."
+}

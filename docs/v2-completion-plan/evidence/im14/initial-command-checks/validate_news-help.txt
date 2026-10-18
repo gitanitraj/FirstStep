@@ -1,0 +1,8 @@
+usage: validate_news.py [-h] [--strict] [--show-expired]
+
+Validate news.json against the Wilmington Civic App news schema.
+
+options:
+  -h, --help      show this help message and exit
+  --strict        Fail on warnings in addition to errors.
+  --show-expired  Print a list of all expired records.

@@ -1,0 +1,1 @@
+Initial documentation checker wrongly expected supplementary schema exit 1; the actual process exited 0, 171 passed/0 failed, summary warnings171. Its outer assertion failed on that incorrect expectation. Existing validators were unchanged. Current documentation and final checker use the observed supported behavior. All initial command outputs are retained here.

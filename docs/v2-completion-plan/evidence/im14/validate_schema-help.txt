@@ -1,0 +1,23 @@
+usage: validate_schema.py [-h] [--flyer-help-only] [--flyer-input FLYER_INPUT]
+                          [--expert-only] [--expert-input EXPERT_INPUT]
+                          [--input INPUT] [--strict] [--check-urls]
+                          [--export-schema]
+
+Validate resources.json against the v2 schema.
+
+options:
+  -h, --help            show this help message and exit
+  --flyer-help-only     Run only IM-04 controlled Flyer helpAccess validation.
+  --flyer-input FLYER_INPUT
+                        Flyer catalog path for IM-04 validation.
+  --expert-only         Run only the stored Expert/FAQ classification gate.
+  --expert-input EXPERT_INPUT
+                        Expert/FAQ JSON path; repeat for multiple files
+                        (default: both live catalog files).
+  --input INPUT         Resource JSON file to validate (default:
+                        app/data/resources.json).
+  --strict              Treat warnings as failures.
+  --check-urls          Send HEAD requests to website URLs (slow, needs
+                        network).
+  --export-schema       Write data-cleaning/schema.json and exit (does not
+                        validate).

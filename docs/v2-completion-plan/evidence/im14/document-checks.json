@@ -1,0 +1,28 @@
+{
+  "status": "PASS",
+  "checkedUtc": "2026-10-18T16:22:32.256312+00:00",
+  "markdownFilesChecked": 10,
+  "markdownLinksChecked": 64,
+  "errors": [],
+  "ledgerEntries": 451,
+  "stewardshipRuleCount": 99,
+  "p4RequirementCount": 37,
+  "p5InvariantCount": 28,
+  "backlogCount": 14,
+  "historicalQuestionCount": 5,
+  "allLedgerReferencesExist": true,
+  "namedTestFilesObservedInAcceptedBackendLog": 25,
+  "protectedBaselineCount": 1526,
+  "changedBaselineFiles": [],
+  "commandLedgerEntries": 13,
+  "sourceBoundIm13Revalidated": {
+    "im13Inputs": 402,
+    "currentInputMismatches": [],
+    "commandCount": 22,
+    "allExitsZero": true,
+    "logHashMismatches": [],
+    "originalAdminHistorySearch": "",
+    "originalAdminWorkingTreeMatches": []
+  },
+  "note": "No full runtime suite rerun. Original source availability limitations and NOT TESTED certification limits remain as documented."
+}

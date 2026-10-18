@@ -1,0 +1,7 @@
+usage: validate_content_sources.py [-h] [--strict]
+
+Validate the producer registry and every reference to it.
+
+options:
+  -h, --help  show this help message and exit
+  --strict    Fail on warnings too.

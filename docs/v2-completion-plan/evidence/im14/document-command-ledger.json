@@ -1,0 +1,195 @@
+[
+  {
+    "id": "validate_schema-help",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_schema.py",
+      "--help"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "startedUtc": "2026-10-18T16:18:10.843219+00:00",
+    "endedUtc": "2026-10-18T16:18:10.940815+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "eef2d28f1cd837d324cd045e8e62d771f3c918e509cc3d8e19883bf64d21eaf3",
+    "log": "docs/v2-completion-plan/evidence/im14/validate_schema-help.txt"
+  },
+  {
+    "id": "validate_news-help",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_news.py",
+      "--help"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "startedUtc": "2026-10-18T16:18:10.941354+00:00",
+    "endedUtc": "2026-10-18T16:18:11.061222+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "92436e4db629b44bc1a262bef9ad2ef6c2b544273ec8e1387bde5da3a27cd655",
+    "log": "docs/v2-completion-plan/evidence/im14/validate_news-help.txt"
+  },
+  {
+    "id": "validate_content_sources-help",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_content_sources.py",
+      "--help"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "startedUtc": "2026-10-18T16:18:11.062368+00:00",
+    "endedUtc": "2026-10-18T16:18:11.183152+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "76f2e4262189de9765b0241518ed590c826e2ac3826beecb5a44a700f8e91f84",
+    "log": "docs/v2-completion-plan/evidence/im14/validate_content_sources-help.txt"
+  },
+  {
+    "id": "validate_homepage-help",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_homepage.py",
+      "--help"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "startedUtc": "2026-10-18T16:18:11.183726+00:00",
+    "endedUtc": "2026-10-18T16:18:11.294590+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "a9b288c1472c72a7256b91c4a7e6903226ed253d93c3c5dd839c2f0dc3458a53",
+    "log": "docs/v2-completion-plan/evidence/im14/validate_homepage-help.txt"
+  },
+  {
+    "id": "validate_navigation-help",
+    "command": [
+      "python3",
+      "data-cleaning/scripts/validate_navigation.py",
+      "--help"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "startedUtc": "2026-10-18T16:18:11.295127+00:00",
+    "endedUtc": "2026-10-18T16:18:11.390639+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "7a93b6682c0fc84b384ea801fc9380630ae96c71875f63e72710caee130d25ac",
+    "log": "docs/v2-completion-plan/evidence/im14/validate_navigation-help.txt"
+  },
+  {
+    "id": "expiry-help",
+    "command": [
+      "java",
+      "-Dloader.main=org.firststep.maintenance.EditorialExpiryReportCommand",
+      "-cp",
+      "backend/target/firststep-backend-0.1.0.jar",
+      "org.springframework.boot.loader.launch.PropertiesLauncher",
+      "--help"
+    ],
+    "cwd": "/Users/composedmedia/Documents/Projects/FirstStep",
+    "startedUtc": "2026-10-18T16:18:11.391151+00:00",
+    "endedUtc": "2026-10-18T16:18:12.055474+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "d890822a4f081b71839cd7d42e0f0eda87f870eb378371db39d00ca360d6c61e",
+    "log": "docs/v2-completion-plan/evidence/im14/expiry-help.txt"
+  },
+  {
+    "id": "restored-content_sources",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_content_sources.py"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.091818+00:00",
+    "endedUtc": "2026-10-18T16:18:12.200799+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "64ad72e8ac179026a0995f078b3e972ae3c062f2afbb512900d4cd9302b8a503",
+    "log": "docs/v2-completion-plan/evidence/im14/restored-content_sources.txt"
+  },
+  {
+    "id": "restored-homepage",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_homepage.py"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.201402+00:00",
+    "endedUtc": "2026-10-18T16:18:12.292712+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "0d2ba6a2f9c996d726c052f9fffde0f648e6d6bc30151a66aa65bdfbba267adf",
+    "log": "docs/v2-completion-plan/evidence/im14/restored-homepage.txt"
+  },
+  {
+    "id": "restored-navigation",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_navigation.py"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.293409+00:00",
+    "endedUtc": "2026-10-18T16:18:12.390104+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "87aa407249e9757d4e006f3e60cd4c14bf260e5389cf66befc93cacd5c094168",
+    "log": "docs/v2-completion-plan/evidence/im14/restored-navigation.txt"
+  },
+  {
+    "id": "restored-news",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_news.py"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.390738+00:00",
+    "endedUtc": "2026-10-18T16:18:12.482218+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "143bc83035a9b08c1108a06d520aa65278fd9e3e852c73042b7038e706ed8da9",
+    "log": "docs/v2-completion-plan/evidence/im14/restored-news.txt"
+  },
+  {
+    "id": "restored-organizations",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_organizations.py"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.482840+00:00",
+    "endedUtc": "2026-10-18T16:18:12.556771+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "f4acb3ece0c60f33f71248f492770bf101af2e10b25043d90de8692624eea1a4",
+    "log": "docs/v2-completion-plan/evidence/im14/restored-organizations.txt"
+  },
+  {
+    "id": "restored-schema",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_schema.py"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.557413+00:00",
+    "endedUtc": "2026-10-18T16:18:12.655960+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "3cc90b6b0a6d2d83800db31d380ad6937d3c2c407c4411b3a378bdc8b3a7399a",
+    "log": "docs/v2-completion-plan/evidence/im14/restored-schema.txt"
+  },
+  {
+    "id": "supplementary-schema-coverage",
+    "command": [
+      "python3",
+      "/Users/composedmedia/Documents/Projects/FirstStep/data-cleaning/scripts/validate_schema.py",
+      "--input",
+      "app/data/resources.communities.json"
+    ],
+    "cwd": "/var/folders/fz/1871vz1j78b5k9h4h4yjdy3c0000gn/T/firststep-im14-restore-e4c415w6",
+    "startedUtc": "2026-10-18T16:18:12.656607+00:00",
+    "endedUtc": "2026-10-18T16:18:12.769313+00:00",
+    "exitCode": 0,
+    "expectedExitCode": 0,
+    "outputSha256": "36cac2db9234106ba304731cbb68e36b0fd58908cdbc4e1fe449a5d6b82ed0fd",
+    "log": "docs/v2-completion-plan/evidence/im14/supplementary-schema-coverage.txt"
+  }
+]

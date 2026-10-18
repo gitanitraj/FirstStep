@@ -1,0 +1,159 @@
+First Step v2 — Approved Architecture Resolutions
+Community Cardinality & Featured-Topic P5 Alignment
+Status: APPROVED — FINAL Date: October 15, 2026 Applies to: First Step v2 Completion Implementation Decision authority: Approved 2B-P5 Logical ER + Classification Schema and subsequent architectural reconciliation Affected execution packages: IM-06, IM-07, IM-11, IM-12, IM-13, IM-14
+
+1. Purpose
+This document formally records two approved architectural resolutions:
+Community Cardinality: The relationship between Community and CivicContent, including its interpretation for multi-community capability.
+Featured-Topic P5 Alignment: The complete deterministic selection hierarchy governing featured Topics and related featured-item collision behavior.
+These resolutions clarify the authoritative implementation baseline and eliminate conflicting or incomplete interpretations in earlier architecture and execution-planning documents.
+Both resolutions are approved. Neither is an open design question.
+They do not amend the v2 Completion Contract, reopen the approved P5 logical model, introduce new domain entities, or authorize V3 capabilities.
+2. Resolution A — Community Cardinality
+Decision status: APPROVED AND RESOLVED
+2.1 Authoritative cardinality
+The approved relationship is:
+Community 1 → many CivicContent records
+Each CivicContent record belongs to exactly one Community.
+Community represents the First Step catalog and delivery partition in which content is managed and presented.
+Community does not represent the complete geographic reach, service area, jurisdiction, or resident eligibility of the underlying program, law, organization, or event.
+Consequently, Community ownership must not be used to infer whether a resident is eligible for a particular program or service.
+2.2 Multi-community capability
+First Step v2 must be architecturally capable of maintaining Community A's catalog and Community B's catalog simultaneously.
+Resident-facing operations must establish the relevant Community before querying or selecting content from its catalog.
+This is a requirement for community-scoped catalog operations, not for multiple Community memberships on the same CivicContent record.
+2.3 Required v2 implementation behavior
+Preserve singular communityId / Community ownership.
+Maintain Community as a first-class domain concept.
+Validate Community references and catalog partition integrity.
+Require Community-scoped resident retrieval.
+Prevent implicit Wilmington-only assumptions in shared services and selection logic.
+Keep Community ownership distinct from physical location, service area, and provider-published eligibility information.
+2.4 Not required in v2
+The following are explicitly outside the approved v2 requirement:
+CivicContent–Community many-to-many associations.
+Cross-community publication and syndication.
+Community CRUD or onboarding infrastructure.
+A Community administration system.
+Production launch of a second community.
+Global content identity shared across multiple Community catalogs.
+2.5 Future escalation condition
+The cardinality model may be reconsidered only when an approved requirement demonstrates that one canonical CivicContent identity must be published into multiple Community partitions.
+Possible future approaches, such as a global content identity with Community-specific publication associations, remain future architectural considerations and are not authorized v2 work.
+2.6 Execution matrix consequences
+IM-12: Audit and verify singular Community ownership, community-scoped queries, valid references, and the absence of implicit Wilmington-only assumptions. Multiple independent Community partitions must be architecturally supportable.
+IM-13: Include community-scoping and partition-isolation regression evidence without requiring a second-community production launch.
+IM-14: Record Community cardinality as resolved. Do not retain GEO-01-C as an open cardinality decision.
+The existing IM package dependencies and acceptance-evidence requirements remain unchanged.
+
+3. Resolution B — Featured-Topic P5 Alignment
+Decision status: APPROVED AND RESOLVED
+3.1 Governing principle
+Help first, context second.
+Featured Topics must reflect the strength of relevant, resident-actionable information and opportunities, rather than simply the total number of classified content records.
+Relevant law and policy information may help distinguish Topics when appropriate, but contextual information must not displace stronger resident-actionable inventory solely because it is more numerous or more recent.
+3.2 Authoritative selection hierarchy
+IM-06 must preserve the complete approved P5 ordering:
+Resident-actionable inventory: Strength/count of current qualifying programs, services, resources, and access opportunities.
+Featured-role completeness: Availability of qualifying TIMELY, DURABLE, and VISUAL content.
+Direct resident-action opportunities: Strength of meaningful opportunities for residents to take a next step.
+Relevant law or policy context: Explicitly classified and meaningfully related legal or policy information, used as a later discriminator.
+Catalog/approval newness: Newer qualifying content only after stronger criteria are equal.
+Stable Topic key: Immutable deterministic fallback independent of collection iteration order.
+Admin diagnostic: Report cases where selection reaches a technical rather than meaningful fallback, without interrupting resident delivery.
+This hierarchy is deterministic and based on approved, explicit metadata.
+It does not create an AI ranking system, engagement score, personalized recommendation model, or permanent featured property.
+3.3 IM-06 — Deterministic Featured-Topic Selector
+Execution class: Implementation Required Dependencies: IM-01, IM-03, IM-05 Authority: Approved 2B-P5 §§18–19, core invariants, Decision 051 Pass 2A, J2, E2/E5
+Required deliverables
+Implement a reusable selector choosing up to four featured Topics for a Category Destination.
+The selector must:
+Establish Community and Category scope before evaluating candidates.
+Use only controlled Topics belonging to that Category.
+Evaluate current, resident-eligible inventory.
+Exclude expired items while preserving otherwise eligible approaching-expiry items.
+Apply the complete approved hierarchy in §3.2.
+Avoid duplicate CivicContent counting caused by multiple projection memberships.
+Return up to four Topics without manufacturing classifications or persisting permanent featured flags.
+Support multiple Categories and Community partitions without Housing-specific hard-coding.
+Acceptance tests
+Identical catalog state and scope yield identical Topic selections and ordering.
+Different input iteration orders cannot change results.
+Expired content does not contribute to current inventory.
+Approaching-expiry content remains eligible.
+Context-heavy Topics cannot outrank stronger help-oriented Topics solely through law/news volume.
+Role completeness resolves applicable actionable-inventory ties.
+Law/policy context is considered only when explicitly classified and relevant to the Topic.
+Newness follows stronger resident-relevant discriminators.
+Stable Topic-key fallback produces the appropriate diagnostic.
+Uncontrolled metadata cannot create new Topics.
+Selection works with Housing and at least one additional Category fixture.
+Selection remains Community-scoped.
+Required evidence
+Repository files inspected, selector implementation, named unit/integration tests, current Housing inventory comparison, collision fixtures, executed commands, test results, and final IM-06 disposition.
+3.4 IM-07 — Featured-Item Selector Alignment
+IM-07 must preserve approved P5-R6a through P5-R6d.
+The three presentation roles remain:
+TIMELY — meaningful near-term significance.
+DURABLE — stable, currently useful information.
+VISUAL — preference for an eligible relevant Flyer.
+The implementation must maximize distinct role coverage before ordinary within-role tie-breaking.
+A CivicContent record may qualify for multiple roles, but may not occupy two positions within the same featured Topic column.
+If a Flyer qualifies for both TIMELY and VISUAL and another appropriate TIMELY candidate is available, the Flyer should ordinarily occupy VISUAL to preserve distinct-role coverage.
+The selector must retain deterministic missing-role fallback and same-role collision resolution, including the approved distinction among direct-help, contextual, and stewardship temporal signals.
+No new ContentType or persistent featured-content entity is authorized.
+3.5 IM-11 — Real-Catalog Validation
+IM-11 must verify both IM-06 and IM-07 against the then-current Housing catalog.
+Required validation includes:
+Actual selected featured Topics.
+Featured role coverage.
+Duplicate projection counting.
+Same-role collisions.
+Multi-role candidate handling.
+Stable fallback behavior.
+Relevant, explicitly classified law/policy context.
+Regression tests for real catalog collisions.
+Ordinary data collisions do not reopen P5. A genuine missing domain concept requires explicit architectural escalation supported by evidence.
+
+4. Reconciliation with Existing Architecture
+These approved resolutions govern the identified conflicts or ambiguities in:
+Earlier Community cardinality discussions.
+GEO-01-C cardinality interpretation.
+Civic Catalog Stewardship & Security Model.
+Integrated Architecture Reconciliation.
+The abbreviated featured-topic selection language in earlier IM-06 drafts.
+Earlier documents remain valid for their other approved provisions.
+This document supersedes only the conflicting or incomplete interpretations specifically addressed here.
+In particular, the CAT-02 clarification remains valid: Community ownership must not be confused with a program's geographic reach, service area, or individual eligibility.
+5. Execution Matrix Change Control
+These resolutions affect IM-06, IM-07, IM-11, IM-12, IM-13, and IM-14.
+Unchanged:
+IM-01–IM-14 package identifiers.
+Existing package dependency graph.
+Approved package execution boundaries.
+Acceptance-evidence reporting contract.
+Seven resident/editor journeys J1–J7.
+Five approved epics E1–E5.
+V2 Completion Contract.
+V3/Later exclusions.
+No separate implementation package is added.
+6. Coding-Agent Instruction
+Treat both resolutions as approved, binding implementation clarifications.
+Do not reopen Community cardinality or the featured-topic ranking hierarchy during implementation.
+During IM-00, inspect the repository and report existing behavior and relevant evidence without modifying code.
+During the appropriate IM packages, implement or verify the approved behavior using the existing inspect-first, evidence-gated execution procedure.
+Do not use repository convenience or legacy code structure to override these approved decisions.
+Any genuine architectural contradiction must be documented and escalated rather than silently resolved through unapproved model changes.
+7. Final Decision Record
+Resolution
+Status
+Primary implementation impact
+Community Cardinality
+APPROVED — RESOLVED
+IM-12, IM-13, IM-14
+Featured-Topic P5 Alignment
+APPROVED — RESOLVED
+IM-06, IM-07, IM-11, IM-14
+Final disposition: APPROVED.
+These resolutions form part of the authoritative First Step v2 implementation baseline and are ready for inclusion in the coding-agent reference materials.
+No further design approval is required for either resolution.

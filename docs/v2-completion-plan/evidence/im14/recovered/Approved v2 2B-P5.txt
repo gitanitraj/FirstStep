@@ -1,0 +1,986 @@
+# First Step v2 — 2B-P5 Logical ER + Classification Schema
+
+**Status:** APPROVED AND COMPLETE
+**Phase:** 2B-P5
+**Purpose:** Define the minimum logical entity/relationship and classification model required by the approved P4 scope, then validate that model against the seven resident/editor journeys, the v2 closure backlog, and the Featured Selection Collision Test.
+
+---
+
+## 1. P5 Scope
+
+P5 is a constrained logical-model pass.
+
+It may add or reshape only concepts necessary for the approved v2 scope, especially:
+
+- expiry and current-availability eligibility;
+- Category and Topic integrity;
+- controlled resident projections;
+- deterministic featured-topic selection;
+- deterministic featured-item selection;
+- Offering ↔ Provider integrity;
+- Community Events as a generalization test;
+- provenance and Community partition integrity;
+- narrowly required validators and supporting model changes.
+
+P5 does not pull V3/Later capabilities back into v2.
+
+Specifically excluded are:
+
+- recommendation engines;
+- personalization;
+- engagement or popularity ranking;
+- AI ranking;
+- generalized relationship graphs;
+- sophisticated organization profiles;
+- generalized event platforms;
+- Admin dashboards;
+- automated editorial queues;
+- workflow assignment;
+- email notifications;
+- presentation-history tracking;
+- generalized demographic eligibility engines.
+
+---
+
+# 2. Core Modeling Principle
+
+First Step must keep three concepts separate:
+
+| Concern            | Question                                     | Examples                                                                    |
+| ------------------ | -------------------------------------------- | --------------------------------------------------------------------------- |
+| **Identity**       | What thing is this?                          | CivicContent, Organization, ContentSource, Community                        |
+| **Classification** | What kind of thing is it / what is it about? | ContentType, Category, Topic, notice kind, explicit audience metadata       |
+| **Projection**     | Where should a resident encounter it?        | Get Help, Policy Info, Law, Flyers, First Rate News, featured-topic columns |
+
+Therefore:
+
+- Get Help is not a ContentType.
+- First Rate News is not a ContentType.
+- Featured is not a permanent Topic or CivicContent property.
+- Organizations and ContentSources are not interchangeable.
+- Resident-facing collections must not create false domain identities merely to satisfy presentation requirements.
+
+This distinction should also appear in the human-oriented Admin guidance.
+
+---
+
+# 3. Logical Entity Model
+
+## 3.1 Community
+
+Community remains a first-class partition.
+
+```text
+Community 1 ─────── * CivicContent
+```
+
+Each normalized CivicContent record belongs to exactly one Community.
+
+Resident delivery must establish Community scope before content selection.
+
+---
+
+## 3.2 CivicContent
+
+CivicContent remains the common logical identity for information First Step collects, classifies, enriches, and delivers.
+
+Logical properties may include:
+
+```text
+CivicContent
+    id
+    community
+    contentType
+    contentSource
+    category membership
+    topic membership
+    optional controlled audience metadata
+    optional notice kind
+    optional temporal metadata
+    optional expiry metadata
+    content-type-specific metadata
+```
+
+Subtype-specific information remains subtype-specific where appropriate.
+
+P5 does not require collapsing all data into the CivicContent base model.
+
+---
+
+## 3.3 ContentSource
+
+ContentSource identifies the producer or source from which CivicContent originates.
+
+```text
+ContentSource 1 ─────── * CivicContent
+```
+
+ContentSource remains the basis for provenance and producer-level sector behavior.
+
+### Invariant
+
+```text
+ContentSource ≠ Organization
+```
+
+The same real-world institution may occupy both roles, but First Step must not infer that the identities are interchangeable.
+
+---
+
+## 3.4 Organization
+
+Organization represents an organization associated with a program, service, resource, or access opportunity.
+
+Organization is neither the CivicContent record nor automatically its ContentSource.
+
+P5 approves a narrow associative relationship:
+
+```text
+CivicContent
+      *
+      |
+      | ContentOrganizationAssociation
+      |
+      *
+Organization
+```
+
+### Approved v2 relationship semantics
+
+```text
+PROVIDER
+HOST
+```
+
+**PROVIDER** means the organization provides or is responsible for the offering represented by the content.
+
+**HOST** means the organization hosts or organizes an access opportunity such as a Community Event.
+
+A HOST relationship must not imply that the organization permanently provides the underlying service.
+
+This is deliberately narrow and does not create a generalized relationship graph.
+
+---
+
+# 4. Offering Is a Semantic Role, Not a New Entity
+
+P5 does not require a separate Offering entity.
+
+For v2, CivicContent can represent the resident-facing program, service, resource, or access opportunity.
+
+Conceptually:
+
+```text
+RESOURCE CivicContent
++
+PROVIDER association
++
+service/access metadata
+=
+resident-understandable offering
+```
+
+A separate Offering identity should be introduced only if a later requirement demonstrates that an offering must exist independently of the CivicContent record.
+
+No approved P4 requirement currently demonstrates that need.
+
+---
+
+# 5. Category and Topic
+
+## Category
+
+Category establishes the high-level civic scope.
+
+Examples include Housing and Health.
+
+## Topic / Subcategory
+
+Topic remains the controlled resident-meaningful classification layer beneath Category.
+
+```text
+Category 1 ─────── * Topic
+```
+
+A Topic belongs to exactly one Category in the v2 taxonomy.
+
+CivicContent may carry multiple Category classifications where appropriate.
+
+### Category/Topic integrity
+
+If CivicContent is classified to a Topic:
+
+```text
+Topic.category
+MUST also exist in
+CivicContent.category membership
+```
+
+Topic placement must not silently manufacture Category membership.
+
+---
+
+# 6. ContentType Remains Fixed
+
+The approved five ContentTypes remain:
+
+```text
+RESOURCE
+NEWS
+FLYER
+LAW
+EXPERT
+```
+
+P5 does not add:
+
+```text
+EVENT
+ARTICLE
+FAQ
+PROGRAM
+SERVICE
+ORGANIZATION
+```
+
+as additional ContentTypes.
+
+Presentation or editorial distinctions must not expand ContentType unnecessarily.
+
+---
+
+# 7. Notice Kind and Community Events
+
+Where applicable, a controlled notice classification may distinguish:
+
+```text
+EVENT
+MEETING
+ANNOUNCEMENT
+```
+
+EVENT is not a sixth ContentType.
+
+Community Events are represented through existing CivicContent identity plus controlled notice and temporal metadata.
+
+---
+
+# 8. Intended Audience
+
+P5 does not add a standalone Audience entity or a new generalized `intendedAudience` schema concept.
+
+Existing controlled or structured discovery/eligibility metadata should be reused when it explicitly establishes who is served.
+
+Audience information:
+
+- must be explicit;
+- must not be inferred from prose;
+- may support discovery and presentation;
+- must not automatically be treated as legal or program eligibility;
+- must not become a parallel Category/Topic taxonomy.
+
+If future implementation proves that existing controlled metadata cannot represent a required explicit audience distinction, that may be revisited narrowly.
+
+---
+
+# 9. Temporal Metadata
+
+P5 distinguishes facts about when something occurs from editorial lifecycle/expiry.
+
+Applicable temporal facts may include:
+
+```text
+startsAt
+endsAt
+eventDate
+applicationDeadline
+availabilityStart
+availabilityEnd
+```
+
+These are resident-facing facts.
+
+They are logically separate from First Step's editorial expiry metadata.
+
+---
+
+# 10. Expiry and Lifecycle
+
+Expiry follows the full P4-20 through P4-23 contract rather than a single `residentEligible` Boolean.
+
+Lifecycle states are:
+
+```text
+ACTIVE
+APPROACHING_EXPIRY
+EXPIRED
+```
+
+The system must be capable of answering separately:
+
+```text
+What is this item's expiry state?
+
+Is the item eligible for the applicable
+current-availability projection?
+
+Does the item require editorial review
+because expiry is approaching?
+```
+
+### Approved behavior
+
+**ACTIVE**
+
+- remains eligible where otherwise qualified.
+
+**APPROACHING_EXPIRY**
+
+- remains current and resident-eligible where otherwise qualified;
+- remains eligible for featured selection;
+- becomes reportable for editorial/Admin attention.
+
+**EXPIRED**
+
+- is excluded from applicable current-availability resident surfaces;
+- remains retained as a catalog/historical record.
+
+P5 does not require an Admin dashboard, workflow queue, assignment engine, or automated notification system.
+
+---
+
+# 11. Event Current-Availability Rule
+
+P5-R5b is approved.
+
+If `endsAt` exists:
+
+```text
+current through endsAt
+```
+
+For a date-only event:
+
+```text
+current through the end of that local calendar date
+```
+
+For an event with a start time but no stated end time:
+
+```text
+current through the event's local calendar date
+```
+
+First Step must not invent an arbitrary duration.
+
+Event occurrence remains separate from editorial expiry.
+
+---
+
+# 12. Controlled Resident Projections
+
+Resident-facing collections are derived projections over classified CivicContent.
+
+Examples:
+
+```text
+Get Help
+Policy Info
+Law
+Flyers
+First Rate News
+Organizations
+Featured Topic columns
+```
+
+One CivicContent item may legally participate in multiple projections.
+
+Projection membership does not create duplicate content identity.
+
+---
+
+# 13. Get Help
+
+Get Help represents currently available ways for residents to act.
+
+A normal offering may qualify through:
+
+```text
+current content
++
+valid Category/Topic scope
++
+PROVIDER relationship
++
+help/service semantics
+```
+
+An access event may qualify through:
+
+```text
+current content
++
+valid Category/Topic scope
++
+EVENT notice kind
++
+current/future occurrence
++
+HOST relationship
++
+actual access-to-help purpose
+```
+
+### P5-R2 — Approved
+
+FLYER alone is sufficient for the Flyers projection but is not sufficient for Get Help.
+
+A non-RESOURCE item may enter Get Help only when it has an explicit controlled semantic indicating that it represents an actionable help/access opportunity.
+
+First Step must not infer this merely from:
+
+- ContentType;
+- Topic;
+- headline text;
+- body text.
+
+---
+
+# 14. Organizations Projection
+
+The Category Destination's Organizations collection answers:
+
+> Who is connected to these resources?
+
+It derives primarily from relevant PROVIDER relationships.
+
+It must not be generated merely from:
+
+- ContentSource identity;
+- HOST relationships;
+- arbitrary organizational mentions.
+
+This protects against false provider attribution.
+
+---
+
+# 15. Flyer/Get Help Overlap
+
+Projection membership is non-exclusive.
+
+A Housing flyer may simultaneously qualify for:
+
+```text
+Flyers = yes
+Get Help = yes
+```
+
+when it represents a currently available actionable help opportunity.
+
+No duplicate CivicContent record or additional ContentType is required.
+
+---
+
+# 16. Expert / FAQ Category Integrity
+
+Expert/FAQ material may enter a Category-scoped surface only through explicit valid Category classification.
+
+Topic classification is required only for Topic-scoped delivery.
+
+The system must not infer Category membership from:
+
+- title;
+- body;
+- frontend placement;
+- source identity.
+
+Missing Category classification is a data-integrity failure.
+
+---
+
+# 17. First Rate News
+
+First Rate News remains a controlled projection.
+
+Its approved inclusive definition may combine eligible First Step editorial material and Expert content without changing underlying identities.
+
+Conceptually:
+
+```text
+First Rate News =
+eligible First Step NEWS / Originals
++
+eligible EXPERT content
+```
+
+Each item retains its original CivicContent identity and provenance.
+
+---
+
+# 18. Featured Topic Selection
+
+Featured Topics are derived.
+
+They are not stored through:
+
+```text
+topic.featured = true
+```
+
+Selection begins by establishing:
+
+1. Community;
+2. Category;
+3. applicable current-availability eligibility.
+
+Featured-topic inventory must then distinguish **resident-actionable content from contextual civic information**.
+
+## Governing principle
+
+> **Help first, context second.**
+
+Residents primarily come to First Step to find resources, services, access opportunities, deadlines, and other information that helps them take a next step.
+
+Law and policy provide valuable context but should not displace direct help merely because a Topic happens to contain more NEWS or LAW records.
+
+Therefore:
+
+> **Resident-actionable inventory carries more weight than contextual inventory when determining featured Topics.**
+
+A Topic with numerous laws or news updates should not automatically outrank a Topic containing fewer but more useful current resources and access opportunities.
+
+---
+
+# 19. Featured Topic Tie Resolution — Final Rule
+
+The approved logical ordering is:
+
+```text
+1. Strength/count of qualifying resident-actionable inventory
+
+2. Featured-role completeness
+   TIMELY / DURABLE / VISUAL
+
+3. Strength of direct resident-action opportunities
+
+4. Relevant recent law or policy context
+
+5. Catalog/approval newness
+
+6. Stable Topic key
+
+7. Admin diagnostic if selection reaches
+   a technical rather than meaningful fallback
+```
+
+### Law and policy rule
+
+Relevant law or policy can be used as contextual evidence only when explicitly classified to the Topic and meaningfully related to that Topic.
+
+A law entering the Delaware RSS feed does not automatically affect Housing or any Housing Topic.
+
+No relationship should be inferred solely from RSS headline text.
+
+Law/policy context is a **later discriminator**, not a substitute for direct resident help.
+
+---
+
+# 20. Featured Item Roles
+
+Each featured Topic supports three semantic positions:
+
+```text
+TIMELY
+DURABLE
+VISUAL
+```
+
+## TIMELY
+
+Represents useful content with meaningful near-term significance.
+
+## DURABLE
+
+Represents stable, currently useful content without a near-term availability boundary.
+
+## VISUAL
+
+Prefers an eligible FLYER when one exists.
+
+These are selection roles, not new ContentTypes or permanent CivicContent classifications.
+
+---
+
+# 21. Featured Selection Principle
+
+Featured selection is not a recommendation engine.
+
+P5 does not introduce:
+
+```text
+popularity score
+engagement score
+personalized ranking
+AI relevance score
+recommendation score
+```
+
+Selection uses explicit, deterministic metadata.
+
+---
+
+# 22. P5-R6a — Missing-Role Fallback
+
+Approved.
+
+Selection first attempts to fill three distinct roles:
+
+```text
+TIMELY
+DURABLE
+VISUAL
+```
+
+If one role has no qualifying candidate:
+
+- fill the vacant presentation position from remaining eligible Topic inventory;
+- use deterministic ordering;
+- do not duplicate a CivicContent item already selected;
+- do not pretend that the fallback item acquired the missing semantic role.
+
+---
+
+# 23. P5-R6b — Same-Role Collision Rule
+
+Approved.
+
+When multiple items qualify for the same role:
+
+```text
+1. Role relevance
+
+2. Meaningful temporal distinction
+
+3. Catalog/approval newness
+
+4. Stable immutable technical fallback
+
+5. Admin diagnostic where candidates remain
+   materially indistinguishable
+```
+
+Newness is deliberately late in the sequence.
+
+It means **catalog/approval newness in v2**, not historical exposure rotation.
+
+First Step does not track how often a provider or item has previously occupied a featured position in v2.
+
+That richer presentation-history capability remains later work unless real data demonstrates a need.
+
+---
+
+# 24. P5-R6c — Timely Collision Refinement
+
+Featured Selection Collision Testing showed that not all temporal signals mean the same thing.
+
+The final hierarchy is:
+
+```text
+DIRECT-HELP TIMELY
+    >
+CONTEXTUAL TIMELY
+    >
+STEWARDSHIP TIMELY
+```
+
+## Direct-help timely signals
+
+Examples:
+
+- upcoming access event;
+- application deadline;
+- enrollment period;
+- program availability window;
+- resident-facing service cutoff.
+
+## Contextual timely signals
+
+Examples:
+
+- recent law;
+- policy change;
+- government update affecting the Topic.
+
+## Stewardship timely signals
+
+Examples:
+
+- approaching First Step editorial expiry/review date.
+
+### Governing rule
+
+A resident-actionable event or deadline normally outranks law/policy context for featured-help selection because it gives the resident something they can directly do.
+
+Law and policy remain important for understanding context but are secondary to help.
+
+---
+
+# 25. P5-R6d — Multi-Role Candidate
+
+Approved.
+
+One CivicContent item may qualify for more than one role.
+
+Example:
+
+```text
+FLYER
++
+EVENT
+```
+
+may qualify as both TIMELY and VISUAL.
+
+The selector must:
+
+> maximize distinct TIMELY / DURABLE / VISUAL coverage before applying ordinary within-role tie-breaking.
+
+No CivicContent item may appear twice in the same featured Topic column.
+
+If a flyer qualifies as both TIMELY and VISUAL and another valid TIMELY candidate exists, the flyer should normally be reserved for VISUAL so all three roles can be represented.
+
+---
+
+# 26. Featured Selection Collision Test — Findings
+
+The collision test evaluated these cases:
+
+| Collision                                          | Result                                                                    |
+| -------------------------------------------------- | ------------------------------------------------------------------------- |
+| Event vs approaching expiry                        | PASS — direct resident temporal fact outranks stewardship expiry          |
+| Multiple TIMELY items                              | PASS — meaningful dates, then newness, then stable fallback               |
+| Multiple DURABLE items                             | PASS — newness available as late tie-break                                |
+| Multiple VISUAL flyers                             | PASS — same-role rule applies                                             |
+| Fully equal candidates                             | PASS — stable technical fallback + Admin diagnostic                       |
+| Missing VISUAL/DURABLE/TIMELY role                 | PASS — R6a fallback                                                       |
+| One item qualifies for two roles                   | PASS — R6d maximizes distinct role coverage                               |
+| Featured Topic inventory tie                       | PASS — actionable inventory and role completeness resolve meaningful ties |
+| Topic with rich law/news but weaker help inventory | PASS — Help first, context second                                         |
+| Fully tied Topics                                  | PASS — newness, stable Topic key, diagnostic                              |
+
+The collision test did not reveal a need for an additional entity, relationship, or classification dimension.
+
+---
+
+# 27. Newness Rule
+
+Catalog/approval newness is approved as a late deterministic tie-break criterion.
+
+Example:
+
+```text
+WHA flyer
+and
+New Life Church flyer
+
+Both equally qualify for VISUAL.
+```
+
+If the New Life Church flyer is newly approved/cataloged while the WHA item is older, the newer qualifying item may be selected.
+
+This provides useful inventory variety without adding provider quotas or presentation-history tracking.
+
+P5 does not claim:
+
+```text
+newer = better
+```
+
+It applies newness only after stronger resident-relevant criteria are equal.
+
+---
+
+# 28. Admin Diagnostic Refinement
+
+An Admin diagnostic should not replace deterministic resident behavior.
+
+The correct model is:
+
+```text
+meaningful metadata resolves collision
+    → normal deterministic selection
+
+meaningful metadata cannot distinguish candidates
+    → stable technical selection
+      +
+      Admin diagnostic
+```
+
+The resident-facing page must continue to render.
+
+The diagnostic exists to help an Admin inspect cases where the final selection depended on technical rather than editorially meaningful metadata.
+
+No V3 queue, dashboard, assignment, or override system is required by P5.
+
+---
+
+# 29. Core Invariants
+
+P5 establishes the following minimum invariants:
+
+1. Every normalized CivicContent item belongs to exactly one Community.
+2. Resident delivery must establish Community scope.
+3. ContentType remains one of the fixed five values.
+4. Every Topic belongs to exactly one Category.
+5. Topic classification requires matching parent Category classification.
+6. Category-scoped Expert/FAQ content requires explicit valid Category classification.
+7. ContentSource identity must not imply Organization/provider identity.
+8. PROVIDER and HOST must remain semantically distinct.
+9. Offering-scoped contact/service information must not automatically become Organization-wide information.
+10. Audience metadata must be explicit rather than inferred from prose.
+11. Audience classification must not automatically become program eligibility.
+12. EVENT remains a notice/temporal classification rather than a sixth ContentType.
+13. Event occurrence and editorial expiry remain distinct.
+14. Expiry behavior follows P4-20 through P4-23 rather than a generic `residentEligible` flag.
+15. APPROACHING_EXPIRY content remains current while becoming editorially reportable.
+16. EXPIRED content is removed from applicable current-availability projections while remaining in the catalog.
+17. One CivicContent item may participate in multiple controlled projections.
+18. Flyer/Get Help overlap requires no duplicate identity.
+19. Organizations projections derive from provider relationships rather than merely source identity.
+20. Featured Topics are derived rather than persisted as `featured`.
+21. Resident-actionable inventory must carry greater featured-topic weight than contextual law/news inventory.
+22. Featured-item positions use TIMELY / DURABLE / VISUAL roles rather than generalized scoring.
+23. Same-role collisions must resolve deterministically.
+24. One CivicContent item cannot occupy multiple positions in the same featured Topic column.
+25. Controlled projections may not manufacture missing classification.
+26. Community Events may enter Get Help only when they represent actual access-to-help opportunities.
+27. Relevant law/policy context must be explicitly classified to the Topic rather than inferred from RSS text.
+28. Technical tie resolution may trigger an Admin diagnostic but must not block resident delivery.
+
+---
+
+# 30. Seven-Journey Validation
+
+The approved P5 model supports all seven required journey classes:
+
+### J1 — Find Help
+
+Supported through CivicContent offering semantics, Category/Topic classification, current availability, and PROVIDER associations.
+
+### J2 — Featured Topic
+
+Supported through deterministic actionable-inventory ranking plus TIMELY/DURABLE/VISUAL selection.
+
+### J3 — Offering ↔ Provider
+
+Supported through the explicit distinction among CivicContent, Organization, ContentSource, PROVIDER, and HOST.
+
+### J4 — Civic Information
+
+Supported through controlled projections such as Policy Info, Law, Flyers, and First Rate News without expanding the taxonomy.
+
+### J5 — Editor Add/Update Offering
+
+Supported logically through explicit source, organization, Category, Topic, and relationship invariants.
+
+### J6 — Expiry Stewardship
+
+Supported through ACTIVE / APPROACHING_EXPIRY / EXPIRED lifecycle behavior plus Admin-facing diagnostic/report requirements.
+
+### J7 — Catalog Integrity
+
+Supported through explicit invariants suitable for validator and automated-test enforcement.
+
+No journey demonstrates the need for another major P5 entity.
+
+---
+
+# 31. Closure Backlog Validation
+
+P5 logically addresses:
+
+- expiry eligibility;
+- approaching-expiry attention;
+- Admin expiry guidance;
+- Flyer/Get Help overlap;
+- Expert/FAQ Category integrity;
+- Category and Topic integrity;
+- Offering ↔ Provider distinctions;
+- Community Events generalization;
+- deterministic featured-topic selection;
+- deterministic featured-item selection;
+- same-role candidate collisions;
+- multi-role candidate collisions;
+- provenance;
+- multi-community partition integrity;
+- law/policy contextual integration;
+- controlled resident projections;
+- validator targets.
+
+Accessibility, responsive behavior, complete implementation tests, and documentation reconciliation remain downstream release/implementation obligations rather than additional ER concepts.
+
+---
+
+# 32. Concepts Deliberately Not Added
+
+P5 does not require:
+
+```text
+Event entity
+Audience entity
+Offering entity
+FeaturedTopic entity
+FeaturedContent entity
+Projection persistence table
+Recommendation score
+Generalized relationship graph
+Presentation-history model
+Provider exposure quota
+Admin workflow entity
+Editorial queue entity
+Assignment entity
+Notification entity
+Sophisticated Organization profile system
+```
+
+Their absence is deliberate.
+
+---
+
+# 33. P5 Completion Decision
+
+The approved logical model is:
+
+> **First Step v2 maintains a small civic catalog of identifiable CivicContent, Communities, ContentSources, Organizations, Categories, and Topics. Organizations relate to content through narrowly defined PROVIDER and HOST semantics. Resident experiences are controlled projections over that catalog, constrained by explicit classification, lifecycle/current-availability rules, actionable-help priority, and deterministic selection. Presentation requirements must not create false identities, arbitrary taxonomy, or V3 recommendation/workflow architecture.**
+
+The Featured Selection Collision Test did not reveal a missing domain entity.
+
+The guiding featured-selection principle is:
+
+> **Help first, context second.**
+
+Resident-actionable resources and opportunities must carry greater weight than contextual law/news inventory when choosing featured Topics and items.
+
+Law and policy remain valuable context and may help resolve otherwise meaningful ties, but they must not displace direct resident help.
+
+---
+
+# 34. Implementation Note
+
+When the selector is implemented:
+
+> **Run the approved rules against the then-current Housing inventory and capture any real collisions as automated tests. Real data may refine thresholds or fallback details, but should not reopen the ER model unless it exposes a genuine missing domain concept.**
+
+Record-level Housing metadata is therefore desirable for implementation validation but is **not a blocker to logical P5 completion**.
+
+---
+
+# 35. Final Status
+
+**2B-P5 — APPROVED AND COMPLETE**
+
+P5 is closed at the logical-design level.
+
+Subsequent work should move into implementation planning, implementation-package definition, validator/test design, and evidence capture.
+
+The P5 ER model should not be reopened merely because implementation data produces a new tie or edge case. It should be reopened only if implementation evidence demonstrates that an approved v2 requirement cannot be represented without a genuinely missing domain concept.

@@ -1,0 +1,110 @@
+{
+  "unresolvedRequiredV2": [],
+  "issues": [
+    {
+      "id": "ISS-01",
+      "category": "Documentation corrections",
+      "status": "Addressed",
+      "detail": "D01\u2013D14 resolved by new architecture/authoring/runbook/ledger; historical originals preserved.",
+      "owner": "Reviewer",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-02",
+      "category": "Unavailable original source",
+      "status": "Documented authorized substitute",
+      "detail": "Original Admin Guide not recovered/inspected; IM-14\u00a73C/T10 permits necessary supplemental handbook based on approved PC/IM-02 rules.",
+      "owner": "Project document owner if source later recovered",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-03",
+      "category": "Historical identity uncertainty",
+      "status": "Satisfied by approved interpretation",
+      "detail": "Actual repository eight task bullets mapped; no proof they are the lost archival original. Completion Contract remains sole release DoD.",
+      "owner": "Reviewer",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-04",
+      "category": "Unavailable prior external audit",
+      "status": "Documented substitute",
+      "detail": "Current accepted IM-12/13 actual catalog audit supplies facts; no claim to have read FindHelp.org historical source.",
+      "owner": "Project document owner",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-05",
+      "category": "Partial physical model",
+      "status": "Accepted bounded limitation",
+      "detail": "No typed HOST association/general graph. Explicit optional Resource provider IDs support accepted J3/J5; never inferred from source/name/location.",
+      "owner": "Future identity workstream",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-06",
+      "category": "Supplementary schema command",
+      "status": "Verified correction",
+      "detail": "Default six gate scope excludes supplementary Resource schema; targeted --input passes171/171 exit0 with summary warnings171. Initial documentary failure expectation corrected, original outputs retained.",
+      "owner": "Catalog operator",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-07",
+      "category": "Demo and semantics",
+      "status": "Explicit future input",
+      "detail": "171 demo-origin omissions are not automatically defects;262 unique IDs do not prove semantic nonduplication. No duplicate pairs established or records altered.",
+      "owner": "Future library/catalog workstream",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-08",
+      "category": "Accessibility certification",
+      "status": "NOT TESTED",
+      "detail": "Comprehensive WCAG certification, physical-device and screen-reader execution not claimed.",
+      "owner": "Reviewer/release policy owner",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-09",
+      "category": "External truth",
+      "status": "NOT TESTED",
+      "detail": "Exhaustive source/provider/RSS correctness and successful remote AI-provider response not tested; empty local Law cache is not absence of law.",
+      "owner": "Editorial/source operator",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-10",
+      "category": "Production environment",
+      "status": "Not certified by local proof",
+      "detail": "Actual hosting TLS/security/backup disaster recovery was not inspected; runbook states environment-owner checks without certifying a production deployment.",
+      "owner": "Deployment owner",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-11",
+      "category": "Ongoing editorial stewardship",
+      "status": "Manual v2 process",
+      "detail": "Freshness, uncertainty, verification/review, authorized correction/withdrawal/retention and validated recovery remain human procedures.",
+      "owner": "Catalog/editorial operator",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-12",
+      "category": "Product blockers",
+      "status": "None demonstrated",
+      "detail": "No demonstrated contracted product defect; no product code changes authorized or performed.",
+      "owner": "Reviewer for any new change control",
+      "v2Blocking": false
+    },
+    {
+      "id": "ISS-13",
+      "category": "Final closure decision",
+      "status": "Pending reviewer acceptance",
+      "detail": "IM-14 proposed Satisfied only; no matrix edit or agent v2 declaration.",
+      "owner": "Reviewer",
+      "v2Blocking": false
+    }
+  ],
+  "note": "Reviewer acceptance is still pending, not self-granted; source-gap substitutes are explicitly authorized by work order."
+}

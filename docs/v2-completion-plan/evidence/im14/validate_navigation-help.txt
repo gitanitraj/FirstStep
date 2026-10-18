@@ -1,0 +1,7 @@
+usage: validate_navigation.py [-h] [--strict]
+
+Validate navigation.json against the canonical taxonomy.
+
+options:
+  -h, --help  show this help message and exit
+  --strict    Fail on warnings in addition to errors.

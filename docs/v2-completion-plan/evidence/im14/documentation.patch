@@ -1,0 +1,757 @@
+diff --git a/docs/architecture/v2-implemented-reconciliation.md b/docs/architecture/v2-implemented-reconciliation.md
+new file mode 100644
+index 0000000..cb129fd
+--- /dev/null
++++ b/docs/architecture/v2-implemented-reconciliation.md
+@@ -0,0 +1,92 @@
++# v2 implemented architecture and original-promise reconciliation
++
++October 18, 2026 — IM-14 proposed reconciliation, pending reviewer acceptance. The [Completion Contract](../v2-completion-plan/v2%20Completion%20Contract.txt) controls the release boundary; v2.14 matrix §14E accepts IM-01–13. This supplement resolves stale present-tense statements in the earlier architecture/README/authoring documents while preserving them as history. The [closure ledger](../v2-completion-plan/evidence/im14/closure-ledger.json) is the single requirement-level disposition record; the [execution report](../v2-completion-plan/IM-14%20Execution%20Report.md) controls this package's proposed outcome. It does not self-accept IM-14.
++
++## Original thesis and three layers
++
++The philosophy remains: bring trusted public information together for residents without changing underlying facts. Wilmington-first does not mean source-code-only Wilmington: each normalized content record has one owning Community, and eight partitions were exercised without requiring a second production launch. Ownership, physical location, service area and resident eligibility are different facts.
++
++| Original layer | Actual implementation | Boundary |
++|---|---|---|
++| Shared Domain | `shared/model/CivicContent`, Community, ContentSource, fixed ContentType; Resource, NewsItem, Flyer, FAQ, ExpertAnswer, Article; taxonomy and Organization registry | Small shared model, not a generalized knowledge graph or complete persisted P5 ER schema |
++| Business Capabilities | Category/Topic/Help services and deterministic selectors, controlled collections, explicit provider detail, Search, Updates, Notices, Article publication, lifecycle and maintenance CLI | Separate ownership/classification/eligibility/projection/selection; no Admin CRUD/workflow platform |
++| Information Pipeline | JSON loaders, scheduled RSS/ROME ingestion, source adaptation/classification, DTO mapping and React delivery | Stages are responsibilities, not five complete orchestration services |
++
++Class names in the tables are under `backend/src/main/java/org/firststep/backend/` unless otherwise qualified. Exact source/test paths are in the ledger.
++
++## Five-stage spine: retained responsibilities, not invented automation
++
++| Stage | Implemented responsibility | What is not claimed |
++|---|---|---|
++| Collect | External JSON repositories and RSS feed registry/`RssFeedService`; preserved original Flyer media | General website scraping, submissions moderation or provider API connectors |
++| Generate metadata | Human-authored Flyer/News/Expert/FAQ/Article metadata; existing data-cleaning scripts and loader normalization | Automatic OCR/Exiftool/AI extraction or scheduled unstructured processing; historical Milestone2 remains deferred |
++| Normalize | Canonical CivicContent/concrete models; legacy Resource adapter/source mappings; controlled taxonomy and source identity | A wholesale rewrite of171 demo records, database migration or universal schema for every catalog |
++| Enrich | Conservative shared classification/tagging at ingestion, authored-field precedence, explicit associations, citation-source resolution and editorial content/review metadata | Generalized relationship graph, automatic translation, generalized summaries/interviews or semantic ranking |
++| Deliver | Same-origin REST DTOs and React SPA at `/app-next/`; current Help/Category/Topic/Notices/Updates/Originals/provider surfaces; bounded Search and graceful AI fallback | Native mobile, SMS, newsletters/social publication, complete remote AI-provider success or every-kind Search union |
++
++Sources: `00-philosophy.md` pipeline/layers, `02-information-flow.md` stages, Contract§6.3, P4§9. Architecture diagrams do not prove proposed automation exists. Source provenance is retained appropriately to each kind; the semantic Citation obligation survives without requiring a universal citation-management platform. Known-source identity does not prove every claim was verified.
++
++## The eight recoverable task-DoD bullets
++
++`00-philosophy.md` Definition of Done contains eight actual bullets. Historical-question resolution§5 says the original historical eight-point artifact was not recovered. These facts coexist: the repository text is recoverable now, but is not proof that it is the identical lost original. Each recoverable obligation is reconciled below under Contract§6.5; the approved Contract remains the **only release Definition of Done**. No reconstructed checklist is promoted to a second gate, and none of the eight creates new product work.
++
++| Recoverable bullet, in source order | Disposition and evidence |
++|---|---|
++| Follow architecture specification | Approved interpretation: Contract/P4/P5+Architecture Resolutions, current logical/physical distinctions below, accepted package reports |
++| Preserve traceability to original source | Implemented + verified: ContentSource, Article byline/review boundary, public citation-source DTOs; IM-12 identity/provenance and IM-13 HTTP evidence |
++| Include tests | Implemented + verified: final source-bound631/162/16 suites and six validators |
++| Update documentation if domain changes | Documented IM-14 reconciliation/handbook/runbook/ledger; historical decisions preserved |
++| Remain deployable | Implemented + verified: fresh Docker, external manifest scenarios, packaged SPA/media asset hashes |
++| Keep demo functional | Approved interpretation: preserved legacy root/demo assets and functional current SPA; no requirement to redesign the retired root UI; IM-13 SPA/runtime evidence |
++| No Wilmington-specific assumptions unless intentionally scoped | Implemented + verified: explicit scope/default ownership, eight-partition regression, named Housing editorial admissions are deliberately scoped |
++| Support future multi-community expansion where applicable | Approved interpretation: exactly-one ownership and scoped reusable services; no launch/onboarding/CRUD requirement |
++
++## Roadmap and decisions: supersession, not unfinished parallel releases
++
++| Historical commitment | Current terminal interpretation |
++|---|---|
++| Milestone1 Community/ContentSource/JSON migration | Implemented foundation; source/partition identity is tested, JSON remains accepted storage |
++| Milestone2 Flyer metadata extraction | Explicit V3/Later deferral under Contract§9/P4§9; hand-authored Flyer metadata and original images already satisfy required journeys |
++| Search MVP | Implemented narrow union; expansion to Article/FAQ/Expert/complete Law is separate future work, not inferred from Decision052 |
++| First non-Wilmington communities | Loaded distinct owner partitions prove capability; quality-controlled second-community production launch is explicitly deferred by historical resolution§1 |
++| Redesign steps1–3 taxonomy/Expert/scaffold | Implemented, followed by actual explicit Expert classification and current React SPA |
++| Steps4–5 shell/hero/updates composition | Backend BFF capabilities survive; earlier shell/hero replaced by Decision021, not rebuilt as another acceptance target |
++| Steps6–8 | Explicitly replaced by Decision021 A–I and later front-door/Category decisions |
++| A/B/C/D/E | Frame/routing, degraded AI interaction, Laws delivery seam, resource discovery and original-media carousel implemented; no claim of live nonempty Law/remote AI success |
++| D0 blanket enrichment of171 supplementary rows | All 171 already have stored Topics and the targeted schema invocation passes with warnings. A blanket future completeness/provider-backfill prerequisite is superseded by finite Contract/P4 and matrix§14D/E; no full substantive curation or fabricated provider/Topic data is claimed |
++| F | Actual Category/Topic/All-Help navigation; Decision051 purposeful collections replace three-pillars/universal Explorer navigation; taxonomy groups remain presentation, not a fourth domain taxonomy |
++| G | Existing explicit-provider page/navigation, not speculative organization grouping from names or a general graph |
++| H | Current `/updates` and `/community-notices` controlled views; historical “Important Notices” label is not a second required page |
++| I | Tested keyboard/responsive/Spanish/high-contrast behavior; complete accessibility certification and real devices are not claimed |
++| G1c per-collection routes, UpdateItem convergence, CSS quarantine exception | Explicit later work; current in-place expansion and accepted generic collection behavior satisfy Contract; no invisible requirement to refactor payload/style debt |
++| SliceK / Decision048/052 | Article review/public detail and navigation admission built; older adding-content “hold article, no home” is superseded. Generation/review remain distinct and human publication decisions remain manual |
++
++Decision051's earlier narrow First Rate News/source-only rejection and deferred Organizations block are historical design steps. P4/P5, IM-08/09 record-level editorial admission and accepted matrix§14D/E now authorize the current four-item controlled collection and bounded explicit-provider Organizations preview. They do not authorize blanket Expert admission or generalized HOST/provider graph implementation. Older numerical totals and topic names in examples are not current fixed-catalog evidence.
++
++## P4/P5 logical model versus physical representation
++
++| Concept/invariant | Actual representation and evidence | Interpretation/limitation |
++|---|---|---|
++| CivicContent/type identity | Six stored concrete kinds; NewsItem represents NEWS/LAW, Article=NEWS, FAQ/Expert=EXPERT | Five ContentTypes only; no new Offering/Event/Audience/Featured entity |
++| Community cardinality | `CivicContent.communityId`; explicit Resource owner wins, otherwise existing primary-city/default adapter | Exactly one normalized owner; geographic/eligibility separation. No many-to-many publication or global shared content identity required. Architecture Resolutions§2 closes GEO-01-C |
++| Category/Topic | Controlled taxonomy, explicit Expert/FAQ membership, `AuthoredTopicEvidence` for relevant Topic/Law evidence | A Topic is scoped by parent Category, not a globally unique display string; shared labels are disambiguated by requested Category. Never synthesize parent membership from a Topic |
++| Source vs provider/host | `ContentSource`; `Organization`; optional Resource JSON `organization_id`→Java `organizationId` | Narrow PROVIDER-like links implemented. P5 `ContentOrganizationAssociation` and typed HOST persistence **not implemented**; accepted bounded J3/J5 need no fabricated relation. No completed physical P5 claim |
++| Offering service/contact facts | Resource retains offering contacts/location/eligibility; independent Organization registry | Do not elevate a service phone/address to provider-wide facts; no eligibility decision engine |
++| Audience | Existing explicit population/eligibility fields | Discovery may reuse reliable facts; no Seniors taxonomy/destination, inferred audience or legal qualification |
++| Lifecycle | `EditorialLifecycle`, shared Clock/config, current vs retained repository views; CLI diagnostics | Active/approaching/expired, missing/invalid date handling; manual attention, no queues |
++| Occurrence | `notices/service/EventOccurrence`, date-only/offset ends/UNKNOWN | Separate Events boundary; retained contextual Flyer and editorial expiry independent |
++| Controlled collections | `CategoryDestinationService`, `CategoryContentService`, `FirstRateNewsMembership`, generic frontend ContentCollection | Four What-to-Know collections, supporting Expert/FAQ, explicit admissions; not arbitrary ContentType enumeration |
++| Topic selector | `FeaturedTopicSelector`: help count→role completeness→direct actions→authored context→catalog/approval newness→stable key+diagnostic | Full approved hierarchy; Help first/context second. No manually persisted featured flag |
++| Item selector | `FeaturedItemSelector`: distinct role coverage, role relevance/meaningful time/newness/stable fallback+diagnostic; R6a–d | No duplicate item in one column; missing role yields honest FALLBACK. Retrieval timestamp is not authentic catalog newness |
++| Public boundaries | ResidentContent/NewsSummary/FlyerSummary/ArticleDetail/DecisionSummary; approved visibility/404 parity and safe URLs | Review, generation, lifecycle/selection/ingestion fields stay internal; Community is scope, not authorization |
++| Persistence and stewardship | JSON startup loading, in-memory RSS, manual validation/reload and protected history | No DB migration, universal audit/change-history/backup system, automated editorial workflow or source truth certification |
++
++No model redesign is required by ordinary ties, optional metadata or a sparse authentic visual role. Fixed Housing outcomes:36 eligible Wilmington Help records; Transitional Housing, Emergency Shelter, Homeownership and Rental Assistance featured; durable winners HA-002/016/011/008 with two distinct truthful fallbacks each. All 8 production Flyers retain original identity/media and0 Help approval. These are accepted catalog evidence, not promises of permanent live counts as dates or authorized records change.
++
++## Historical questions and remaining scope
++
++All five questions are explicitly mapped in the ledger: Community capability required/launch deferred; provenance required/universal Citation abstraction not independently required; Seniors illustrative; no established standalone numerical performance gate; historical DoD superseded by Contract. No historical “Verify” is silently relabeled as future work.
++
++The [Admin handbook](../authoring/v2-admin-editor-handbook.md) documents supported human authoring/review/expiry operations and original-guide unavailability. The [runbook](../authoring/v2-release-operations.md) documents actual build/deployment, three-state manifest truth, validator limits and isolated recovery. The [V3 register](../v2-completion-plan/V3-Later%20Deferral%20Register.md) lists explicit future work with authority and owner.
++
++Final IM-13 evidence is source-bound and accepted on submitted evidence, not an independent reviewer rerun. IM-14 statically checked that all 402 inputs still match and all 22 command-log hashes/exits remain valid. Original interrupted/failed integrity evidence remains intact. Comprehensive WCAG certification, physical-device/screen-reader execution, exhaustive remote provider/source/feed correctness and successful remote AI-provider response remain NOT TESTED. Empty admitted local Law cache is not evidence of no relevant Delaware law. Release evidence never replaces ongoing human editorial verification.
+diff --git a/docs/authoring/v2-admin-editor-handbook.md b/docs/authoring/v2-admin-editor-handbook.md
+new file mode 100644
+index 0000000..fa5f545
+--- /dev/null
++++ b/docs/authoring/v2-admin-editor-handbook.md
+@@ -0,0 +1,87 @@
++# v2 Admin/editor handbook — reconciled IM-14 supplement
++
++October 18, 2026. Current operating guidance within the approved Completion Contract, PC-01–PC-04, Decision 048/051/052 and v2.14 matrix §14E. This supplements [adding-content](adding-content.md), the [IM-02 expiry policy](editorial-expiry-supplement.md) and [runtime-input note](im12-runtime-inputs.md). Where their old examples conflict with this supplement, use the verified instructions here. Historical files remain evidence, not silently rewritten instructions.
++
++## Original Admin Guide: source unavailable
++
++The original *First Step Admin Guide — Expiry Eligibility and Editorial Stewardship* was not found in the working tree or locally reachable Git history searched for Admin/admin/Guide. IM-01/02 reported an inaccessible supplied Library source; no retrievable Library URI or original text is available in this checkout. This handbook is the necessary supplemental reconciliation explicitly authorized by IM-14 §3C/T10, **not** a claim that the missing guide was inspected or reconciled line by line. Approved PC-01–04 and the implemented IM-02 policy supply the expiry rules. If the original is later recovered, compare it through Contract change control rather than automatically expanding v2.
++
++## Supported manual authoring workflow
++
++1. Work in an authorized separate candidate copy of the complete catalog directory, with a recorded baseline/version. Preserve source records and original media. There is no v2 Admin CRUD UI, save endpoint, hot reload or automated publishing workflow.
++2. Identify the concrete record kind and exact source file. Keep the stable canonical ID for a correction to the same offering. Use a new unused ID only for a distinct item; do not copy the historical FL-008 example as a new record. Cross-projection appearance is not a duplicate record.
++3. Verify material facts, producer attribution and proposed classification against the actual source. Record genuine verification dates only; collection/retrieval/approval time is not a substitute. Do not turn uncertain provider, geography, eligibility, deadline or source-sector facts into inferred data.
++4. Author the correct stored shape. Existing files use different vocabularies: Resource `organization_id` maps to Java `organizationId`; News uses `headline`, `source_id`, `source_url`, `expires`, `active`, `resource_tags`; other kinds generally carry nested `contentSource`. Inspect the existing model/loader and a same-kind record rather than renaming fields globally.
++5. Run the applicable validation and loader/publication checks in the [runbook](v2-release-operations.md#validation-coverage). Inspect exact diagnostics, including supplementary-catalog coverage limits. A validator success does not prove source accuracy or editorial approval.
++6. Review the change, preserve before/after metadata and rationale, publish only through the authorized catalog/deployment procedure, then reload/restart and verify the real scoped response. Do not renew expiry or set Article approval merely to make a test pass. No source-control commit/push is implicitly authorized by this handbook.
++
++Fresh evidence: IM-13 `closure/editor-workflow.json` exercises create/read/update/reload, explicit owner/provider precedence, optional provider removal and exact negative provider/Topic diagnostics on temporary full catalog copies, leaving production catalogs unchanged.
++
++## Kinds, types and maintained files
++
++| Concrete kind | Stored input | Canonical ContentType | Important boundary |
++|---|---|---|---|
++| Resource | `app/data/resources.json`, `resources.communities.json` | RESOURCE | Offering-level contact/access facts; optional explicit provider ID |
++| NewsItem | `app/data/news.json`; admitted RSS in memory | NEWS or LAW | Curated news vs selectively admitted Law; not every fetched bill enters Category discovery |
++| Flyer | `app/data/flyers.json` | FLYER | Original image/media; occurrence and Help admission independent |
++| FAQ | `app/data/faq.json` | EXPERT | Separate identity, explicit Category; no automatic Article review requirement |
++| ExpertAnswer | `app/data/expert-answers.json` | EXPERT | Explicit Category; source/expert attribution preserved |
++| Article | `app/data/articles.json` | NEWS | Separate Article approval and safe public reading DTO |
++
++EVENT, FAQ, ARTICLE, PROGRAM, SERVICE and Get Help are not additional ContentTypes. A Flyer is not an Organization/provider. One content item may appear in multiple controlled collections while retaining its original identity.
++
++## Ownership, placement and unknown relationships
++
++Every normalized item has one owning Community. Write explicit `communityId` for newly authorized authoring based on the intended catalog partition. It takes precedence over the Resource loader's legacy primary-city/default normalization. All 229 original Resource rows currently omit stored `communityId`; do not rewrite them en masse. Owning Community does not establish service area, physical location or individual eligibility. Report provider-published requirements honestly; First Step does not decide whether a resident qualifies.
++
++`category_tags` uses controlled Category labels from `app/data/taxonomy.json`. `subcategory` is an optional controlled Topic; its parent must be among the explicitly authored Categories. Shared Topic labels such as Eviction Prevention must be validated in the requested parent context. Expert/FAQ entries require nonempty explicit Category metadata even when raw historical/inactive records are retained. No title/body/producer/Topic inference manufactures missing Category membership. Descriptive tags are not navigation or proof of an authored Topic. LAW category/topic context also requires authored classification proof; RSS headline relevance alone is not that proof.
++
++`ContentSource` is the producer/provenance role; `Organization` is the provider registry identity. For a Resource, `organization_id` must resolve if supplied; omission remains omission. Never derive it from equal names, parent display text, a source ID or office address. Resource phones/websites are offering-level facts and must not automatically become organization-wide facts. Safely scoped provider links use existing explicit associations and preserve Community; absence is displayed honestly. There is no typed persisted HOST relation or general relationship graph in v2. Do not create a provider record to stand in for a host, producer or unverified mention.
++
++The 171 supplementary Resources are demo-origin material, retained unchanged and potentially useful for future library design. They are not all defective production providers because they lack IDs. The 262 unique canonical content IDs prove ID uniqueness, **not** semantic nonduplication. No duplicate pairs have been established by that count. Suspected overlap needs later record-level human analysis, not automated deletion or provider backfill.
++
++The directory adapter retains `dscyf-directory` provenance with unknown governed producer sector. Do not assign a sector from its name. Governed notice feeds need verified registry identities/sectors. Missing source information must remain explicit; it must not become a global publication prerequisite that breaks unrelated valid content.
++
++## Editorial expiry and human stewardship
++
++The [original IM-02 supplement](editorial-expiry-supplement.md#interpret-editorial-lifecycle) supplies the detailed calendar and CLI policy; IM-10 now separately supplies occurrence behavior.
++
++| Lifecycle | Current-inventory effect | Editorial action |
++|---|---|---|
++| ACTIVE | Eligible if other scope/status/classification/approval rules permit | Maintain normal verification; ACTIVE is not proof of source freshness |
++| APPROACHING_EXPIRY | Still current and eligible; attention required | Verify accuracy/usefulness, contact source/provider as needed, qualify/update/replace or allow expiry |
++| EXPIRED | Excluded from applicable current availability; retained in stored catalog | Review deliberately; do not delete history to clear the report |
++
++Default approaching window: 30 **Community-local calendar days**, including the expiry date. An item expires at the next local midnight after its inclusive `expirationDate`, not after 30×24 hours. Wilmington zone is `America/New_York`; unlisted owners use `app.editorial-expiry.default-zone`, not the host machine's implicit zone. Overrides are documented in the runbook.
++
++Missing/blank expiry does not automatically expire any kind or create an attention finding. Malformed nonblank dates are metadata problems, not a fourth lifecycle state or a fabricated ACTIVE value. The CLI isolates/identifies such records; resident assessment retains the implemented error behavior. Missing publication, verification or occurrence dates must not be converted into expiry. Stored inactive/withdrawn state and Article approval are independent gates. Retained historical detail where already supported does not imply current actionability.
++
++Run the [read-only packaged report](v2-release-operations.md#expiry-diagnostics) at a recorded clock/scope. Exit 0 means a complete valid report (attention findings are normal); 1 means isolated invalid expiry metadata; 2 means invocation/config/catalog-load failure. The operator records a decision per finding: verify, correct, renew on evidence, replace deliberately, qualify, withdraw using existing controls, or retain history. No email, queue, ownership assignment, article generation or task routing is performed. Approaching expiry does not automatically improve featured selection.
++
++## Event occurrence is a different clock
++
++`EventOccurrence` uses structured `event_date`, offset-bearing `startsAt` and `endsAt` on News/Flyer records. A valid explicit end remains current **through** that instant; after it, the event is concluded. Date-only events remain current through their owning Community's local date. Start-only events use that local date; no duration is invented. Missing/malformed/contradictory structured facts yield UNKNOWN with internal diagnostics, not prose-derived times. Valid structured offsets/DST boundaries matter.
++
++FL-008 (United Neighbors 2026) is date-only `2026-10-17`; it has no structured startsAt/endsAt. Narrative 1–4 p.m. was not backfilled. It becomes concluded for current Events at `2026-10-18T04:00:00Z` (midnight October 18 in New York). Synthetic exact-end fixtures are separate evidence. NP-003 has UNKNOWN occurrence although its editorial expiry approaches. On October 18 FL-008 may still be a contextual Flyer; event conclusion does not editorially expire it. Events and Flyers are independent projections. Do not treat the taxonomy Category “Community Events” as the notice kind `event`.
++
++## Flyers and Get Help
++
++A Flyer may appear in Flyers and Get Help from the same canonical identity only with the controlled `helpAccess=ACTIONABLE_HELP_ACCESS` signal and other applicable scope/currentness rules. The token needs an actual approved access-to-help purpose; neither the title, Category, event tag nor image authorizes it. **0/8 production Flyers currently have approved Help admission.** Synthetic overlap tests prove the infrastructure, not editorial approval of FL-002 or FL-008. Original media lives at `backend/src/main/resources/static/images/seasonal/`; store its exact filename and let the server encode its safe media URL.
++
++## First Rate News and Article publishing
++
++`app/data/first-rate-news-membership.json` independently admits ExpertAnswer EA-001, ExpertAnswer EA-005 and FAQ FAQ-002 for `wilmington-de`/`housing`. Retain exact kind/ID/Community/Category keys and editorial decision provenance. An interview/session, FAQ derivation, `verified` Boolean or `first-step` producer alone is not admission. Other valid Experts/FAQs remain supporting collections. Admissions never override classification, scope, lifecycle or review.
++
++Approved Article OR-003 enters separately through Article review/category gates; the present four-item Housing projection is OR-003, FAQ-002, EA-001, EA-005. The manifest [three-state operational check](v2-release-operations.md#manifest-deployment) is mandatory when this four-item experience is intended. Do not broaden admission just to make a total partition cleanly.
++
++The old adding-content Step 2c “no article surface yet” instruction is superseded: approved Articles now have `/app-next/originals/:id?communityId=...` and `/api/originals/:id?communityId=...`. Draft/in-review/flagged or nonpublic Articles cannot bypass the gate and receive not-found parity. Article approval is not a publication schedule; `publishDate` is descriptive under Decision 048. Public ArticleDetail intentionally excludes review state, flags, generator identity and internal lifecycle data.
++
++Decision 048 requires generation and evaluation to be separate, including when AI assists both. The reviewer must evaluate the actual text/evidence, not inherit the generation rationale as proof. Distinguish verified fact, attributed claim, faithful AI summary and supported/qualified editorial inference. Check that wording is no more certain, positive, consequential or complete than the evidence. Check claim-to-source support, attribution, jurisdiction/dateline/scope, neutrality and unsupported guarantees; reachable URL is not substantive verification.
++
++Record reviewer/date, exact flagged passages, issue, reason and recommended action. Disposition open flags as resolved/withdrawn/overridden with actor/date/reason, preserving immutable history; withdrawal means reviewer error, override means an objection knowingly remains. Re-review material revisions. An authorized human makes the publish decision. Structured validation can establish a well-formed review, not that the judgment was correct. No automatic article-writing/review/approval service is promised. FAQ/Expert material is not retroactively subjected to Article workflow merely because it is First Step-created.
++
++## Corrections, recovery and editorial evidence
++
++Keep source originals, internal review evidence, change rationale and authorized before/after records separately from public DTOs. Do not include secrets or private review details in resident captures. Suspected source contradictions need a recorded human disposition; do not silently infer the most convenient fact. A corrected source identity does not authorize rewriting unrelated records. Do not call a re-fetch a verification of every claim.
++
++Use the [runbook recovery procedure](v2-release-operations.md#recovery-and-retention) for an isolated restore, validation and scoped publication check. Git supplies practical version history, not a complete backup or actor-level audit system. Permanent disposal is distinct from expiry/withdrawal/retention and needs an explicit authorized retention decision. V3 owns structured record-level change history and Admin reporting. Ongoing contact freshness, editorial accuracy, source reachability and real deployment security remain operator responsibilities; release tests do not certify them forever.
+diff --git a/docs/authoring/v2-release-operations.md b/docs/authoring/v2-release-operations.md
+new file mode 100644
+index 0000000..9a79c9b
+--- /dev/null
++++ b/docs/authoring/v2-release-operations.md
+@@ -0,0 +1,146 @@
++# v2 release operations — IM-14 reconciled runbook
++
++October 18, 2026. Use with the [Admin/editor handbook](v2-admin-editor-handbook.md) and [current architecture reconciliation](../architecture/v2-implemented-reconciliation.md). Commands are from the repository root unless a subshell explicitly changes directory. They describe operator actions; this document does not authorize remote publication, catalog changes, Git commits or destructive recovery.
++
++## Build and environment
++
++Inspected sources: `backend/pom.xml`, `backend/Dockerfile`, `docker-compose.yml`, `backend/src/main/resources/application.properties`, `frontend/package.json`, `frontend/vite.config.ts`, current validators and IM-13 `closure/commands.json`.
++
++Backend compiles Java 17 bytecode using the required **JDK 25 Maven toolchain**. Configure your own `~/.m2/toolchains.xml` as documented in the repository README, with the real JDK25 home. `mvn` must be installed/on PATH; IM-13's exact machine executable was `/Users/composedmedia/tools/apache-maven-3.9.16/bin/mvn`, recorded as evidence, not a portable install location. No build wrapper is included. Frontend is React18/TypeScript/Vite; Docker builds with Node24. The accepted local Node26/jsdom test invocation disables experimental web storage so jsdom supplies storage. This is a test environment setting, not a production shim.
++
++```sh
++(cd backend && mvn -B verify)
++(cd frontend && NODE_OPTIONS=--no-experimental-webstorage npm test)
++(cd frontend && ./node_modules/.bin/tsc --noEmit)
++(cd frontend && npm run build)
++python3 -m unittest discover -s data-cleaning/tests -v
++```
++
++Use `npm ci` only when dependencies need installing, retaining the lockfile. Do not assume a local Maven package includes the separately built frontend: `frontend/dist` is a separate output. The existing Dockerfile explicitly copies that Vite output into `src/main/resources/static/app-next` **before** Maven packaging, then bakes the executable jar plus full catalogs/media into its runtime image. That combined distribution is what passed IM-13 browser verification. The root legacy static demo is retained; the current SPA is `/app-next/`.
++
++## Combined packaged startup and reload
++
++```sh
++docker compose up --build -d app
++docker compose logs app
++curl --fail --silent http://127.0.0.1:8080/api/categories
++curl --fail --silent http://127.0.0.1:8080/app-next/
++```
++
++`app` has no `depends_on` Ollama requirement. The optional old `ollama` service remains in Compose; its presence does not wire a Spring AI provider. No model-provider starter is currently configured. `/api/decide` returns the sanitized unavailable-provider result; do not promise a successful remote AI response. Startup alone is not an editorial completeness check.
++
++For an API-only local jar process, use the repository root as working directory and inspect startup logs:
++
++```sh
++java -jar backend/target/firststep-backend-0.1.0.jar \
++  --app.data.dir=app/data \
++  --app.seasonal.images.dir=backend/src/main/resources/static/images/seasonal
++```
++
++Vite's `server.proxy` forwards `/api` to local backend 8080 in development; production is same-origin, not a development-proxy assumption. Built SPA base and Router basename are `/app-next/`; production JS/CSS/fonts must load below `/app-next/assets/`. `SpaWebConfig` handles deep-route refresh. Preserve original seasonal media and server-encoded `/images/seasonal/...` URLs. `APP_SEASONAL_IMAGES_DIR` selects the media directory; Docker uses `/seasonal`.
++
++JSON repositories load at process startup. For baked data, an authorized change requires rebuild/recreate (`docker compose up --build -d app`). For external mounted data, deploy a complete validated snapshot and recreate/restart the process; there is no hot reload guarantee. Readiness logs plus scoped payload/asset checks must confirm the new snapshot rather than assuming restart implies correct data.
++
++## External catalog configuration
++
++`app.data.dir` / `APP_DATA_DIR` defaults to `app/data` relative to working directory. Docker sets `APP_DATA_DIR=/data` and copies **all** `app/data/`, including `resources.communities.json`, taxonomy, navigation, source mappings, producer registry, homepage configuration and the editorial manifest. A volume replacing `/data` must supply the complete directory; it hides the image's baked files. Ordinary resource loaders can tolerate missing files, so a healthy process does not prove the full catalog was loaded.
++
++For an isolated read-only local catalog mount (using the existing build target):
++
++```sh
++docker build -f backend/Dockerfile -t firststep-v2-candidate .
++docker run --rm --publish 127.0.0.1:8080:8080 \
++  --mount "type=bind,src=$PWD/app/data,dst=/data,readonly" \
++  firststep-v2-candidate
++```
++
++Use a nonconflicting port if another instance runs. The mount command is an operational recipe grounded in the Dockerfile; IM-13 actually tested baked external `/data` plus separate explicit absolute `app.data.dir` catalog copies, not this exact operator invocation. Do not infer TLS, backups or production-host configuration from a local test fixture.
++
++| Configuration | Meaning |
++|---|---|
++| `server.port` | Default 8080 |
++| `app.default-community-id` | Loader/feed fallback, default Wilmington; not a resident-eligibility decision |
++| `app.data.dir` / `APP_DATA_DIR` | External complete catalog directory |
++| `app.seasonal.images.dir` / `APP_SEASONAL_IMAGES_DIR` | Preserved original Flyer media |
++| `app.editorial-expiry.approaching-days` | Default 30 calendar days |
++| `app.editorial-expiry.default-zone` | Default America/New_York; explicit deployment fallback |
++| `app.editorial-expiry.community-zones.<id>` | Owning-Community zone override; Wilmington explicitly configured |
++| `news.rss.initial-delay` / `news.rss.refresh-interval` | Milliseconds; defaults 500/3600000. Offline acceptance used 86400000 initial delay, not a claim that feeds were exercised |
++| `ai.enabled` / `AI_ENABLED` | Existing feature flag; does not install/configure a provider |
++
++## Manifest deployment
++
++The current `app/data/first-rate-news-membership.json` has exactly three admissions: ExpertAnswer EA-001, ExpertAnswer EA-005 and independently FAQ FAQ-002, all `wilmington-de`/`housing`. Article OR-003 enters separately through approval/category rules. Record any authorized manifest decision separately from generation/session dates; copying a record or changing producer does not authorize admission.
++
++| Input state | Actual packaged behavior | Operator consequence |
++|---|---|---|
++| Valid present manifest | Four Housing First Rate News IDs: OR-003, FAQ-002, EA-001, EA-005 | Verify all four if this is the intended distribution |
++| Missing manifest | **Application starts**; no FAQ/Expert admissions, only OR-003 | Operational completeness failure for the intended four-item experience; restore the authorized manifest through deployment procedure |
++| Malformed/invalid admission manifest | Startup fails before resident readiness | Inspect startup failure and authorized candidate; do not bypass the loader or broaden admissions |
++
++After startup fetch `/api/category/housing?communityId=wilmington-de`, inspect its `destination` First Rate News collection and compare the ID set, not just a200 response. `CategoryDestinationService` owns the controlled projection. The three-state proof is retained in `docs/v2-completion-plan/evidence/im13/closure/packaged-http.json`; malformed startup evidence is separately logged. There is no standalone Python manifest validator: backend `FirstRateNewsMembership` validates it and its eligibility references at runtime, with unit/packaged tests. Do not describe missing manifest as startup-fatal.
++
++## Validation coverage
++
++These are the **six** existing entry points; each must exit zero for its intended coverage:
++
++```sh
++python3 data-cleaning/scripts/validate_content_sources.py
++python3 data-cleaning/scripts/validate_homepage.py
++python3 data-cleaning/scripts/validate_navigation.py
++python3 data-cleaning/scripts/validate_news.py
++python3 data-cleaning/scripts/validate_organizations.py
++python3 data-cleaning/scripts/validate_schema.py
++```
++
++| Gate | Actual coverage and limits |
++|---|---|
++| content_sources | Registry/sectors, producer references in News/Flyer/Expert/FAQ, governed notice kinds; not proof of substantive claim support or a registered directory producer sector |
++| homepage | Authored homepage pathway/config references; not all runtime catalogs |
++| navigation | Authored grouped taxonomy/navigation and both Resource inputs/Flyers; not complete schema validation of every supplementary Resource field |
++| news | Curated News shape/vocabulary/date/source constraints; not actual remote feed truth |
++| organizations | Registry uniqueness/shape, relevant references including supplementary explicit provider IDs, display-only attribution warnings; not inferred producer/provider equality |
++| schema | Curated `resources.json` by default, explicit Expert/FAQ classification and Flyer helpAccess; does not assert all 171 supplementary Resources meet the curated shape |
++
++For a candidate supplementary Resource file, the **existing** targeted command is:
++
++```sh
++python3 data-cleaning/scripts/validate_schema.py --input app/data/resources.communities.json
++```
++
++This targeted invocation was executed in IM-14: **171 passed, 0 failed, exit 0**, with the summary reporting warnings for171 records. The default six-gate invocation does not itself run the Resource schema over this supplementary file; this explicit option closes that command-coverage question without claiming every optional fact is complete or substantively verified. Preserve and review warnings instead of globally filling unknowns. All 171 supplementary records already carry stored Topics; missing provider IDs/owners and optional cost/other fields must not be fabricated. Default warnings are not failures; `--strict` is a different policy, not the accepted baseline. New authorized records should be complete and validated in isolation or as a reviewed candidate.
++
++There is no general standalone Article/editorial correctness validator and no universal Community/service-area/semantic-duplicate validator. Article approval/DTO/404 rules are exercised by backend tests; manifest loading validates its own structure/refs; source/organization/classification tests and IM-12/13 audits cover relevant gaps. Validation does not create truthful provider IDs, verify URLs substantively or establish semantic nonduplication. Default warnings and `--strict` behavior differ; do not silently make a warning-failing strict invocation the claimed accepted baseline.
++
++## Expiry diagnostics
++
++Build the jar with the configured JDK25 toolchain, then invoke the existing non-web maintenance entry point:
++
++```sh
++java -Dloader.main=org.firststep.maintenance.EditorialExpiryReportCommand \
++  -cp backend/target/firststep-backend-0.1.0.jar \
++  org.springframework.boot.loader.launch.PropertiesLauncher \
++  --community=wilmington-de --at=2026-10-17T16:00:00Z --app.data.dir=app/data
++```
++
++Omit `--at` for a frozen live instant per run; use an offset/UTC ISO instant for reproduction. Omit `--community` for all stored owners; use exact IDs. `--help` gives usage. The 17 October example is an historical fixed clock, not a claim of today's source freshness. NP-003 was approaching and five expired News were retained at that clock. Community-local inclusive date and independent occurrence rules are in the handbook. The CLI does not run a web server/scheduler, fetch feeds, mutate records or warm the RSS cache. It states its cache limitation and returns0/1/2 as documented. Diagnostic output is internal and may contain review context.
++
++## Release checks and evidence
++
++Before any authorized release, compare candidate source/config/catalog hashes, retain exact commands/exits, and verify required scope, counts, sanitized errors, public field shapes, original media/fonts, and direct/deep navigation. Required compiled/runtime behavior is the finite IM-13 scope, not every speculative pipeline feature. At the accepted fixed catalog, Housing Help is36, four featured topics have honest DURABLE/FALLBACK positions, and0/8 Flyers have Help approval. Event counts are time-sensitive; FL-008 is concluded after New York midnight October 18, without editorial expiry or media deletion.
++
++Final accepted verification is `docs/v2-completion-plan/evidence/im13/closure/`:402 unchanged inputs,631 backend tests,162 frontend tests,16 Python tests, six validators,22 zero-exit commands,65 corrected public HTTP requests, four SPA/media paths, combined Docker assets and real browser/editor journeys. The original interrupted history and failed intermediate integrity supplement remain historical, superseded only for their two corrected evidence gaps. No full release suite is rerun by IM-14.
++
++The retained browser scripts use an explicitly machine-local cached Playwright import; the packaged scripts name a machine-local JDK25 path. Inspect those paths before reuse elsewhere; they are reproducible evidence for that machine, not a portable installer. `closure/run-verification.py` records its exact executable paths and outputs. Browser checks use local synthetic fault injection and synthetic Law layout where live Law cache was empty. Comprehensive WCAG certification, physical devices, screen readers, exhaustive external source/provider/RSS correctness and successful remote AI-provider responses remain **NOT TESTED**.
++
++## Recovery and retention
++
++Repeat this isolated recovery validation periodically under the deployment owner’s backup cadence and after relevant catalog/configuration changes; v2 does not schedule it automatically.
++
++1. Identify the intended source revision/catalog snapshot and authorized actor/change rationale. Keep original records/media, internal editorial evidence, logs and deployment backups as separate retention classes. Git is practical source history, not a complete backup/audit service.
++2. Restore into an **isolated candidate directory** first. Copy the entire catalog/config set, including manifest and supplementary Resources, plus the associated media version. Do not partially restore one relationship file into an incompatible registry snapshot.
++3. Compare hashes/IDs, run applicable six validators with paths/working directory directed to the candidate, document supplementary coverage limits, and check Article approval/manifest/lifecycle/Community relationships. Renewed visibility is a new decision; a historical valid snapshot cannot bypass current gates.
++4. Verify scoped packaged output using the intended clock/configuration before an authorized distribution swap. Retained expired/unpublished/withdrawn content does not automatically regain public currentness. Do not use `git reset`, blanket deletion or a direct production overwrite as a recovery recipe.
++5. Record results, source revision and any unresolved metadata. Permanent disposal requires a separate authorized retention decision; automatic RSS collection need not create permanent catalog records. V3 owns structured change-history APIs, Admin reports, automated assignment and notifications.
++
++IM-14's narrow recovery smoke copies the complete current catalog into a temporary directory, compares hashes, and reruns the six validators against that copy. It demonstrates candidate reconstruction/validation only, not production backup restore, disaster recovery or production security certification. Host TLS/CORS/access restrictions, secrets, backups, resource limits and operational incident response must be checked by the deployment owner for the actual environment; local acceptance does not certify a remote deployment that was not inspected.
+diff --git a/docs/v2-completion-plan/IM-14 Execution Report.md b/docs/v2-completion-plan/IM-14 Execution Report.md
+new file mode 100644
+index 0000000..02b838b
+--- /dev/null
++++ b/docs/v2-completion-plan/IM-14 Execution Report.md	
+@@ -0,0 +1,91 @@
++# IM-14 Execution Report — documentation reconciliation and closure proposal
++
++**Executed October 18, 2026. Proposed disposition: Satisfied / First Step v2 eligible for reviewer closure, pending explicit reviewer acceptance.** This is an agent-prepared evidence submission, not self-approval or a v2 completion declaration. No demonstrated unresolved required-v2 implementation or documentation obligation remains within the approved substitute/manual boundaries below.
++
++## Authority and actual starting state
++
++Controlling authority: supplied v2.14 matrix §14E (IM-13 accepted October 18), IM-14 work order, Completion Contract/P4/P5, approved Architecture Resolutions and Decisions048/051/052. Inspected philosophy, application/domain/information-flow/editorial/front-door architecture, historical questions, all 14 closure-backlog items, stewardship model99 rules, IM-01–13 reports and final IM-13 supplements/evidence, actual models/services/loaders, authoring docs, validators/build/runtime configuration. `evidence/im14/report-inspection-index.md` and reconciliation extracts retain report section references. Original RTF design/resolutions were read through textutil conversions in `evidence/im14/recovered/`; original bytes were preserved.
++
++Branch `copyofdev`, full starting HEAD `ceb5d790995e200405aa91e9656d2fe506e96e68`. Tracked tree/index clean; only the supplied IM-14 order and v2.14 matrix were initially untracked. The old matrix deletion was already historical, not an unstaged deletion; nothing was restored. `starting-state.json` records actual dirty/staged/deleted/untracked/ignored state; `protected-before.json` captures 1526 baseline files including every tracked source/catalog/authority path and both supplied documents. No branch switch, reset, stash, staging, commit or push occurred.
++
++## Inspect-first discrepancies and authorized documentary changes
++
++`evidence/im14/document-discrepancy-register.md` was written before operational/reconciliation edits. D01–D14 identify stale status/layout/Article/provider/pipeline claims, missing original sources, validation gaps and the failed-to-successful IM-13 history. Existing historical documents, decisions and supplied matrices were preserved; new clearly scoped supplements provide current instructions and interpretations.
++
++| Deliverable | Purpose |
++|---|---|
++| [Implemented architecture reconciliation](../architecture/v2-implemented-reconciliation.md) | Original thesis/layers/stages, eight repository DoD bullets, roadmap replacements, P4/P5 logical-versus-physical truth |
++| [Admin/editor handbook](../authoring/v2-admin-editor-handbook.md) | Manual authoring/review/reload, identity/classification, expiry/occurrence, explicit Flyer/admission policies and unavailable original-guide treatment |
++| [Release operations](../authoring/v2-release-operations.md) | Actual build/config/media/manifest/validator/CLI paths and clean-start/recovery procedure with coverage caveats |
++| [Single closure ledger](evidence/im14/closure-ledger.json) |451 requirement-level entries; equivalent CSV and readable index; full source-section text preserves subordinate clauses |
++| [V3/Later deferral register](V3-Later%20Deferral%20Register.md) |16 explicit future groups with authority, owner/resident consequence; no silent migration of required defects |
++| [Final evidence index](evidence/im14/evidence-index.md) | Current proof, original source gaps, acceptance chronology and final reviewer conditions |
++
++No production code was touched; no annotated production mirrors needed regeneration. Source-of-truth updates are supplemental, rather than overwriting original/user-managed evidence. All known original promises have a visible disposition, not a claim that every earlier implementation idea was built.
++
++## Original and unavailable sources
++
++The original *First Step Admin Guide — Expiry Eligibility and Editorial Stewardship* is unavailable: no working-tree or locally reachable Git filename match, prior IM-01/02 reports record an inaccessible Library source, and no retrievable URI/text is supplied. It was **not inspected**. IM-14§3C/T10 explicitly permits necessary supplemental reconciliation: the new handbook uses approved PC-01–04, actual IM-02 policy and accepted later behavior. This authorized substitute closes the documentation requirement, not the absent source's historical identity. If recovered later, apply Contract change control.
++
++`docs/architecture/00-philosophy.md` actually contains eight task-DoD bullets. These were mapped individually, despite historical-question resolution5 stating earlier wording was unrecovered. Their identity with an unavailable older archival checklist is not asserted. The historical statement remains true about its source recovery at that time; the Completion Contract remains the only release DoD. No reconstructed parallel checklist remains in the current reconciliation.
++
++The original FindHelp.org/prior record-level audit was not recovered. Accepted current IM-12/13 actual catalog evidence supplies the factual substitute; no claim of reading the earlier external audit, proving semantic nonduplication, or cloning a future library design is made. Missing standalone historical numerical performance criteria are treated exactly as historical resolution4 directs, not invented as a release gate.
++
++## Reconciled coverage and acceptance chronology
++
++The single ledger covers every Completion Contract section plus independently locatable quality/document/release bullets, all 37 numbered P4 requirements, complete P5 source sections and28 explicit invariants, all five historical questions, every line within the14 backlog sections,99 stewardship rules, eight recoverable task bullets, original architectural/roadmap promises, J1–J7/E1–E5, IM-01–14 and grouped deferrals. Exact source path/section/line or `source unavailable`, disposition, implementation, named tests/evidence/report, acceptance authority/date if explicit, owner, resident impact and scope rationale are retained per entry. Null individual acceptance dates mean no explicit date was recovered; execution dates were not invented as acceptance dates.
++
++IM-01–12 are accepted by the current matrix and dated package/addenda references. IM-13 is accepted October 18 on submitted evidence; the original interrupted report and FAIL integrity supplement remain historical. Only final fresh verification and corrected decide allowlists supersede their two evidence deficiencies. IM-14 has **no terminal reviewer acceptance yet**: its ledger package entry is a pending proposal. The matrix was not updated by the agent.
++
++J1/J2 are real Category/Topic/complete Help paths and deterministic truthful roles; J3 is existing explicit association navigation; J4 is controlled civic information and original media, with honest empty local Law; J5 is isolated **manual JSON** authoring/read/reload; J6 is scoped **read-only CLI/manual** attention; J7 is actual identity/classification/Community/public-boundary protection. These actual outcomes support E1 identity, E2 Help/discovery, E3 civic information, E4 lifecycle/editorial stewardship and E5 integrity. No Admin UI or complete physical P5/HOST graph is implied.
++
++P5 PROVIDER/HOST remains a semantic distinction: actual optional `Resource.organizationId` supports explicit provider journeys, while no typed persisted HOST association or generalized graph exists. Exactly-one normalized Community ownership is settled by Architecture Resolutions, independent of service geography/eligibility. All229 raw Resources retain legacy owner normalization;171 demo-origin optional-provider omissions remain future library input.262 canonical IDs establish no semantic duplicate findings. None was backfilled/reclassified/deduplicated.
++
++## Narrow executed verification
++
++IM-14 does not rerun IM-13's entire release suite. `inspection-checks.json` confirms **all 402 current executable/config/catalog/tooling inputs still match** final accepted IM-13 hashes, all 22 command exits remain zero, and their output log hashes match. The accepted gates remain631 backend,162 frontend/23 files,16 Python, six validators, real Docker,65 corrected public HTTP requests/four SPA-media paths, three manifest states and built/editor journeys. No certification is inferred from those counts.
++
++The new documentation checks execute the actual packaged CLI `--help`, validator `--help` options, a temporary full-catalog reconstruction with hash equality and the six existing validators against that copy, and a targeted supplementary Resource schema diagnostic. The targeted supplementary check exits0:171 passed/0 failed, summary warnings 171. The first documentation checker incorrectly expected a failure; that assertion and original logs remain in `initial-command-checks/`. Only this documentary expectation was corrected; the validator was unchanged. Default command coverage is narrower than this explicitly targeted check, and passing structure does not verify all optional facts. New documentation links, required source/evidence paths and ledger ID/coverage integrity are checked. Exact commands/exits/timestamps and logs are in `evidence/im14/document-command-ledger.json`; final results are in `document-checks.json`. This is a candidate restore/validation exercise, not a production disaster-recovery test.
++
++## IM14-T01–T20 final mapping
++
++| ID | Result | Evidence |
++|---|---|---|
++| T01 | PASS | starting-state/protected-before; controlling §14E; protected-after comparison |
++| T02 | PASS | CC section/clause rows in closure-ledger.json, exact approved text and code/test/docs |
++| T03 | PASS with historical-source qualification | architecture original thesis/layers/five stages, DOD-REPO-1–8/ROAD ledger entries; no fabricated automation |
++| T04 | PASS | HQ1–5 ledger, accepted current scope/provenance audit, historical resolution authority |
++| T05 | PASS | BACKLOG-01–14 ledger sections retain every subordinate requirement; current terminal evidence |
++| T06 | PASS | J1–7 ledger and accepted IM-13 source-bound resident/manual-editor outcomes |
++| T07 | PASS | E1–5 ledger crosswalk and current architecture/report mapping |
++| T08 | PASS | IM01–13 package records, exact reports/current matrix acceptance; IM-13 failed-intermediate/final chronology preserved |
++| T09 | PASS | P5 source/invariants and actual physical boundary table, no typed HOST claim |
++| T10 | PASS for explicitly permitted substitute; original NOT AVAILABLE | source search/disclosure, handbook, approved IM-02/PC policy; original text not inspected |
++| T11 | PASS | handbook/IM-02 policy; actual CLI help check and accepted fixed-clock diagnostics |
++| T12 | PASS | occurrence handbook, EventOccurrence inspection/tests; FL-008 date-only midnight/NP-003 UNKNOWN,0/8 Flyer Help approvals |
++| T13 | PASS | exact three-entry manifest, independent OR-003 approval; valid/missing-starts/malformed-not-ready runbook and accepted packaged proof |
++| T14 | PASS with inherited coverage limits | handbook/loader/validator inspection, explicit owner precedence, Category/Topic/authored proof, producer/provider separation |
++| T15 | PASS for documented commands and disclosed limits | runtime/validator runbook, document-command-ledger, isolated candidate checks; no blanket supplementary schema claim |
++| T16 | PASS for honest release truth | all 402 inputs/logs statically matched; accepted final runtime/HTTP/browser evidence; NOT TESTED limits retained |
++| T17 | PASS | DEMO-171/SEMANTIC-DUP ledger, accepted matrix§14D/E, explicit future library input/no invented pairs |
++| T18 | PASS |16-group deferral register + Contract/P4/P5 authorities; no unresolved required item silently deferred |
++| T19 | PASS | evidence index, exact change/patch/hashes, document-checks and issue register |
++| T20 | PASS as a conditional proposal only | no unresolved v2-required/evidence-needed ledger rows; IM-14/final v2 decision reserved to reviewer |
++
++## Final issues, limitations and decision conditions
++
++| Class | Disposition / owner |
++|---|---|
++| Required v2 implementation defect | None demonstrated; new application work was not introduced |
++| Required documentation inconsistency | Addressed by the new linked supplements and exhaustive crosswalk; original sources preserved |
++| Original Admin/archival DoD/prior external audit unavailable | Explicitly disclosed with approved substitute/interpretation; no false source inspection or new independent release gate |
++| Partial logical-model physical implementation | Typed HOST/general graph absent; accepted narrow explicit-provider behavior and no-inference policy retained |
++| Inherited supplementary catalog validation coverage | Explicitly documented/manual candidate policy, exact diagnostics retained; no speculative dataset rewrite |
++| NOT TESTED | Comprehensive WCAG certification, physical devices, screen readers, exhaustive external source/provider/RSS correctness and successful remote AI-provider responses |
++| Actual production hosting/security/backup restore | Deployment-owner checks remain required for that environment; local package/recovery smoke does not certify an uninspected deployment |
++| Future stewardship | Source accuracy/contact freshness and authorized corrections remain ongoing human duties; future UI/workflow/library/platform items remain explicitly scoped V3/Later |
++| Reviewer decision | Accept IM-14, record final package disposition, and separately decide any final v2/public release declaration; no agent self-certification |
++
++Exact new-file hashes, baseline preservation and ending Git state are in `evidence/im14/protection-result.json`, `ending-state.json`, `artifact-manifest.json` and `documentation.patch`. No existing production/catalog/authority/decision file changed. No code mirrors were required because no code was touched. No full release rerun, external app write, staging, commit, push or public deployment was performed.
++
++**Recommendation:** IM-14 Satisfied / First Step v2 eligible for reviewer closure **only on reviewer acceptance** of this evidence and the explicitly approved manual/source-gap interpretations. First Step v2 is not declared complete here.
+diff --git a/docs/v2-completion-plan/V3-Later Deferral Register.md b/docs/v2-completion-plan/V3-Later Deferral Register.md
+new file mode 100644
+index 0000000..a6063a3
+--- /dev/null
++++ b/docs/v2-completion-plan/V3-Later Deferral Register.md	
+@@ -0,0 +1,32 @@
++# V3/Later deferral register — IM-14 reconciliation
++
++October 18, 2026. The Completion Contract §§2/9/10, P4 §§3–9 and P5§§1/21/32 authorize these exclusions. They do not excuse a demonstrated J1–J7 defect. New work enters v2 only through an existing necessary requirement or explicit amendment; no desirable capability becomes required merely because it was once a TODO. This grouped view is indexed by the single [closure ledger](evidence/im14/closure-ledger.json), not a competing requirements system. Owners below are future workstream responsibilities, not invented assignments to people.
++
++| ID / group | Explicit future items | Deferral authority | Owner / resident consequence and retained v2 seam |
++|---|---|---|---|
++| V3-01 Administration | Full Admin UI/catalog CRUD, dashboards, authenticated editing and approval/configuration permissions, Community onboarding/API | Contract§9, P4§§3/6/9; stewardship CAT-16/SEC-13–16 S1–S3 | Future Admin/security owner; v2 has manual authorized JSON/reload and no anonymous catalog-write surface |
++| V3-02 Editorial operations | Queues, assignments, task routing, follow-up status, email/notifications, automated article creation, generalized editorial workflows | Contract J6/E4/§9; P4§6/P5§10 | Future editorial-operations owner; read-only scoped expiry CLI requests human action without workflow automation |
++| V3-03 Structured history/reporting | Attributable record action/time/actor/before-after/rationale store; correction/stewardship reports and reviewer analytics | Stewardship V3 recording obligation/AR-04/AR-16/SEC-16; Decision048 analytics non-goal | Future audit owner; practical Git/change rationale/retained reviews in v2 are not a complete audit or backup system |
++| V3-04 Relationship/identity platform | General graph, sophisticated Organization profiles, Institution/Party cross-role identity, alias/history/hierarchy, typed HOST persistence, generalized associations | Contract E1/§9; P4§3; P5§32; accepted matrix§14D/E | Future identity owner; v2 uses optional explicit Resource provider ID. Host/source/provider never inferred as one identity |
++| V3-05 Community expansion | Quality-controlled second-community launch, syndication/cross-community publication, many-to-many ownership/global shared identity, multi-tenant administration | Historical question1; Architecture Resolutions§2.4; Contract§6.2 | Future community-content owner; exactly-one normalized owner and scoped reusable architecture retained; no launch claimed from Bear smoke |
++| V3-06 Recommendations/discovery | Personalization, demographic recommendations, engagement/popularity/AI scores, eligibility decision engine, exposure rotation/provider quotas, featured override UI | P4§§4/9; P5§§8/21/23/32 | Future discovery owner; explicit metadata and deterministic selectors satisfy v2. No independent Seniors destination/taxonomy or eighth journey |
++| V3-07 Data platform | SQLite/PostgreSQL migration, generic persistence framework, CI modernization, formal numerical performance/optimization program | Contract§§6.4/9; P4§9; historical question4 | Future platform owner; JSON is accepted. Functional regressions still block journeys; no invented Lighthouse/latency target |
++| V3-08 Extraction/pipeline | General OCR/Exiftool/AI metadata extraction, generalized orchestration, scraping/connectors, automated transcription/import/syndication, broader source processing | Contract§§6.3/9; P4§§5/9; historical Milestone2/Decisions011/014 | Future pipeline owner; authored metadata/original images, JSON/RSS and conservative classification retained; pipeline diagram is not automation proof |
++| V3-09 Channels/content model | Speculative Video/Newsletter modeling, native-mobile/voice/SMS/social/newsletter delivery, saved interests/personal alerts | Contract§9/P4§9; application-architecture future-capabilities list | Future channels owner; existing web links/chrome do not imply modeled Video/Newsletter or outbound publishing |
++| V3-10 Editorial intake/translation | General resident/partner submission moderation, automatic multilingual content translation, standardized generated-context/translation workflow | Editorial-principles TODOs; Contract§9/P4 pipeline boundary | Future editorial/i18n owner; Spanish/English interface is tested, source bodies are not universally translated or certified |
++| V3-11 Event platform | Event entity, CRUD/calendar, registration/ticketing, series/recurrence infrastructure, subscriptions | P4-17/P5§§7/11/32; closure-backlog8 | Future events owner; existing CivicContent/date/offset occurrence and original media satisfy generalization without a new ContentType |
++| V3-12 Library-management evolution | Full curation of171 original-demo Resources, provider identity investigations, service names, richer geography/access/eligibility fields, semantic duplicate audit and optional backfill | Contract§§2/6/10; matrix§14D/E and IM-14 order§3E | Future catalog/library owner; known metadata retained.262 canonical IDs do not prove semantic nonduplication. No pairs were established; no deletions/backfill/design are authorized |
++| V3-13 Deeper provenance | Universal citation graph/database/UI, field-level/event-sourced lineage, generalized source verification infrastructure | Historical question2; Contract§9; P5§3.3 | Future provenance owner; existing ContentSource/byline/review/citations provide bounded traceability. Ongoing substantive verification remains human duty |
++| V3-14 Presentation refactoring | UpdateItem/ContentItem convergence, extra collection routes/G1c, shared-discovery CSS extraction/quarantine exception, historical unused-component cleanup | Decision051 addendum recorded debt; Contract change control | Future UI owner; current generic purposeful collections/in-place expansion and tested layouts satisfy v2. No failed required behavior is hidden as style debt |
++| V3-15 Broader search/AI | Full every-kind Search union, CivicAssistant/live search/provider selection and integration, Article Search admission | Decision052 Scope; P4§9; Contract§9; architecture AI seam | Future search/AI owner; scoped existing Search and sanitized unavailable-provider path tested. Remote provider success is NOT TESTED |
++| V3-16 Governance/retention automation | Automated disposal/retention engines, universal withdrawal state, source-subscription management, generalized schema governance, source-recheck/maintenance scheduling | Stewardship lifecycle/source OptionA; P4 enabling-foundation limits; P5§32 | Future stewardship owner; manual controlled correction/retention/restore with validation is v2. Collection, admission, withdrawal and permanent disposal remain distinct |
++
++## Coverage limits are not completed capabilities
++
++Comprehensive WCAG certification, physical devices, assistive screen-reader execution, exhaustive remote information/provider/RSS verification and remote AI-provider success remain NOT TESTED under accepted matrix§14E. This is disclosure of the tested release scope, not evidence that these checks occurred or a permanent waiver of the deployment owner's real policy. A separate public-release/certification decision may require more evidence. No current local Law entries is not proof of no relevant laws.
++
++## Authorized historical reinterpretations
++
++Historical question5 makes the Completion Contract the only release DoD. The actual eight repository task bullets now found in `docs/architecture/00-philosophy.md` are mapped individually in the architecture supplement; their identity with a missing earlier archival checklist is not asserted. Historical question3 treats Seniors as illustrative. The original D0 blanket migration prerequisite is superseded by the finite Contract and accepted preservation of demo catalogs, not silently counted as complete.
++
++No `Open — v2 required` item is assigned a future owner merely for convenience. The closure ledger must retain every such actual defect as open if discovered; none was demonstrated by this documentation-only reconciliation.
+diff --git a/docs/v2-completion-plan/evidence/im14/closure-ledger.md b/docs/v2-completion-plan/evidence/im14/closure-ledger.md
+new file mode 100644
+index 0000000..e113c1e
+--- /dev/null
++++ b/docs/v2-completion-plan/evidence/im14/closure-ledger.md
+@@ -0,0 +1,12 @@
++# IM-14 closure ledger index
++
++The JSON is the complete record; CSV is an equivalent flat export. Source section bodies preserve all subordinate paragraphs/list items, not just abbreviated labels. Entries distinguish actual enforcement from approved interpretation, supported manual process and explicit future exclusion. No unresolved required item is classified as a deferral. IM-14 and final v2 closure remain reviewer decisions.
++
++451 entries;99 stewardship rules;37 numbered P4 requirements;28 explicit P5 invariants;14 backlog items;all Contract sections, five historical questions, actual eight repository DoD bullets, J1–J7/E1–E5 and IM-01–14.
++
++- Documented operational/manual v2 process: 104
++- Implemented + verified: 206
++- Satisfied by approved interpretation: 90
++- Explicit V3/Later deferral: 51
++
++Read `document-discrepancy-register.md` for supersession/source-gap rationale, and `../../IM-14 Execution Report.md` for final T01–T20/reviewer proposal.
+diff --git a/docs/v2-completion-plan/evidence/im14/document-discrepancy-register.md b/docs/v2-completion-plan/evidence/im14/document-discrepancy-register.md
+new file mode 100644
+index 0000000..fd822a4
+--- /dev/null
++++ b/docs/v2-completion-plan/evidence/im14/document-discrepancy-register.md
+@@ -0,0 +1,26 @@
++# IM-14 inspect-first discrepancy register
++
++Recorded October 18, 2026 before operational/reconciliation documentation edits. Starting branch/HEAD/index/hashes: `starting-state.json`, `protected-before.json`. Controlling disposition: supplied v2.14 matrix §14E; historical rows below it do not override §14E. No existing authority or catalog will be overwritten. New supplements provide current interpretation while preserving historical sources.
++
++| ID | Exact source/section and observed discrepancy | Authorized correction/disposition |
++|---|---|---|
++| D01 | `v2.14 — Authoritative IM-01–IM-14 Execution Matrix.md` §14E accepts IM-13; older header/main historical rows in the same file and predecessor matrices describe pending packages | Preserve supplied authority verbatim; use §14E and dated acceptance crosswalk in the new ledger; IM-14 remains a proposal |
++| D02 | `Resolution of Five Open Historical Questions.txt` §5 says original eight-point wording was not recovered; `docs/architecture/00-philosophy.md` Definition of Done actually contains eight task bullets | Reconcile these eight recoverable repository bullets individually. Do not claim they prove identity with the lost historical document or reinstate a parallel release DoD. Contract §6.5/change control and resolution §5 remain controlling |
++| D03 | Original *First Step Admin Guide — Expiry Eligibility and Editorial Stewardship*: absent in working tree and all locally reachable Git history matching Admin/admin/Guide; IM-01/02 reports record an inaccessible Library source, but no retrievable URI/text is supplied | Source unavailable, not inspected. Work order §3C/T10 explicitly permits a necessary supplemental reconciliation: new v2 handbook with an explicit source-gap notice and approved PC-01–04/IM-02 policy citations; no invented claim of line-by-line reconciliation |
++| D04 | `docs/authoring/adding-content.md` Step 2c says Articles have no reading surface; Steps 2a/4 reuse live FL-008 as a hypothetical example, say event_date merely sorts and all five validators pass | Preserve historical document; new handbook/runbook explicitly supersede these instructions: approved ArticleDetail route/review, six validators, occurrence rule, reserve unused IDs and never copy FL-008 as a new record |
++| D05 | `README.md` Technical Architecture and `docs/architecture/README.md` Tech Stack describe local Ollama support/three endpoints or demo-only frontend; `docker-compose.yml` and `SpringAiAssistant` show no provider starter wired | New runtime runbook and implemented-architecture reconciliation identify actual SPA/API/provider-unavailable behavior, existing optional sidecar, JDK25/Java17 and exact paths |
++| D06 | `docs/architecture/03-application-architecture.md` category aggregate section and `05-front-door.md` describe earlier navigation/unfinished slices; Decision 051 retires three pillars as navigation, later P4/P5/IM-08 admit bounded explicitly associated Organizations; Decision 052 admits approved Articles | Current supplement maps milestones/slices to actual capabilities, labels earlier counts/layout/deferred Layer 3 historical, and preserves accepted narrow Organizations workflow rather than a generalized graph |
++| D07 | `v2_Integrated_Architecture_Reconciliation.md` §§2/5/6 and stewardship model document control leave GEO-01-C/cardinality open | Approved Architecture Resolutions §2 settles exactly-one normalized Community; §3 settles full topic hierarchy. Current supplement records no inferred service eligibility and no new cardinality investigation |
++| D08 | P5 §§3.4/13/14 logical PROVIDER/HOST proposal versus actual `Resource.organizationId` and absence of typed HOST persistence | Candid partial physical implementation; accepted matrix §14D/E and IM-12/13 approve bounded explicit-provider journeys; future typed graph requires change control |
++| D09 | Old runtime/expiry docs defer IM-14 and do not combine Article, manifest, supplemental catalog coverage, event and authoring/recovery instructions | Add one handbook plus one runbook; retain original IM-02 supplement as policy provenance and link exact accepted evidence |
++| D10 | Earlier IM-13 HTTP audit claims 65 exact schemas without checking decide, and integrity supplement records FAIL | Preserve all history. Only final `evidence/im13/closure/` corrected allowlists + fresh 402-input binding/22 commands supersede those two deficiencies; static recheck now finds no input/log mismatches |
++| D11 | `references/decisions.md` Decision 021 D0 calls wholesale enrichment of 171 demo rows a required data task; later Contract §§2/6/9, P4§9 and matrix §14D/E prohibit speculative migration/backfill | Explicitly superseded as a blanket v2 launch prerequisite; preserve actual normalized owners and all metadata. Future full curation/library work is deferred, not claimed performed |
++| D12 | `validate_schema.py` defaults to curated Resources plus Expert/FAQ/Flyer-help checks; supplementary 171 are not a full schema-gate success, and there is no standalone Article/admission validator | Coverage matrix in runbook: targeted supplementary inspection/negative tests, backend loader/publication tests and manifest three-state evidence; never describe all files as fully structurally validated by six scripts |
++| D13 | Numerical performance target and original eight-point archival artifact unavailable; original FindHelp.org record-level audit not recovered | Five-question resolution §§4/5 removes independent invented numeric/lost-checklist gates; current accepted IM-12/13 catalog audits substitute factual inventory proof, not proof of having inspected the old FindHelp source |
++| D14 | Future TODOs in architecture/editorial docs (OCR, translation, relationship graph, CRUD, workflow, AI, DB) could appear to be unfinished v2 promises | Requirement-level ledger and grouped deferrals cite Contract/P4/resolutions; Spanish chrome exists but authored content translation and remote AI success are not certified |
++
++Proposed edits: new current architecture reconciliation, v2 Admin/editor handbook, deployment/recovery runbook, closure ledger, grouped deferral register, evidence index and execution report. No production, existing user-managed authority, historical decision or catalog changes are planned. Remaining documentary items will be closed against those deliverables, not converted into product work.
++
++## Executed command clarification — D12
++
++The targeted `validate_schema.py --input app/data/resources.communities.json` actually exits0 with171 passed/0 failed and warning summary171. All171 already carry stored Topics. An initial documentation-check expectation of failure was incorrect; original outputs/ledger are preserved under `initial-command-checks/`. The final runbook distinguishes default gate coverage from targeted success and optional-fact completeness. No validator or catalog was changed.
+diff --git a/docs/v2-completion-plan/evidence/im14/evidence-index.md b/docs/v2-completion-plan/evidence/im14/evidence-index.md
+new file mode 100644
+index 0000000..26b2ce3
+--- /dev/null
++++ b/docs/v2-completion-plan/evidence/im14/evidence-index.md
+@@ -0,0 +1,42 @@
++# IM-14 evidence index and terminal-state proposal
++
++October 18, 2026. This index directs reviewers to actual sources and limits; the JSON closure ledger is the single requirement-level disposition record. Neither this index nor the ledger self-accepts IM-14 or closes First Step v2.
++
++## Current documentary outputs
++
++- [Execution report](../../IM-14%20Execution%20Report.md): T01–T20 and conditional reviewer proposal.
++- [Closure ledger](closure-ledger.json), [CSV export](closure-ledger.csv), [readable index](closure-ledger.md): full exact source sections/clauses,37 P4 requirements, complete P5 concepts/28 invariants, five historical questions,14 backlog items,99 stewardship rules/AP/GEO amendments, J/E/IM crosswalks, eight actual repository task bullets and explicit future dispositions.
++- [Discrepancy register](document-discrepancy-register.md): inspect-first D01–D14 and executed supplementary-schema clarification.
++- [Current architecture](../../../architecture/v2-implemented-reconciliation.md), [handbook](../../../authoring/v2-admin-editor-handbook.md), [runbook](../../../authoring/v2-release-operations.md): exact existing representation, supported manual process and deployment truth.
++- [V3/Later groups](../../V3-Later%20Deferral%20Register.md): explicit authorities, owner/resident impact and retained v2 seam.
++- [Issue register](issue-register.json): corrected documentation, unavailable sources, partial physical model, NOT TESTED and future-stewardship limits.
++
++## Authority and provenance
++
++Controlling matrix: `docs/v2-completion-plan/v2.14 — Authoritative IM-01–IM-14 Execution Matrix.md` §14E, October 18 reviewer acceptance of IM-13. Supplied IM-14 work order authorizes documentation reconciliation but forbids self-approval, product/catalog changes or final v2 declaration. Completion Contract, P4, approved P5, Architecture Resolutions, five historical questions, closure backlog and Decisions048/051/052 remain source authorities. `protected-before.json` records their bytes at the actual starting checkout.
++
++Original RTF authority is retained; `recovered/Approved v2 2B-P5.txt`, `recovered/v2 Architectural Resolutions.txt` and `recovered/V2 Execution Matrix.txt` are plain-text inspection extracts, not replacement approvals. Original Admin Guide and prior external record-level audit were not found; no inaccessible source is claimed inspected. The actual eight repository philosophy task bullets are mapped without claiming identity with a lost archival original. See SOURCE-* ledger entries and authorized substitute rationale.
++
++`report-inspection-index.md` provides exact report section/line references; `report-reconciliation-extracts.md` preserves the relevant acceptance/limits crosswalk from each complete report. Individual package acceptance authority is the current matrix plus each dated closure entry/report; a date is not fabricated when only execution date is known.
++
++## Final accepted runtime proof — IM-13, not an IM-14 full rerun
++
++Use `../im13/closure/inputs-before.json`, `inputs-after.json`, `binding-result.json`, `commands.json`, `distribution-hashes.json`, `http-release.json`, `http-negative-controls.json`, `missing-schema-control.json`, `browser-result.json`, `browser-probe-after.json`, `packaged-http.json`, `editor-workflow.json` and `final-consistency.json` under that same directory.
++
++The original interrupted report, intermediate integrity FAIL, original incomplete65-response HTTP claim and first closure Node26/jsdom failure are retained. Only the final corrected decide schema and fresh 402-input binding supersede those two verification gaps. Final22 commands exited 0, with 631 backend tests,162 frontend tests/23 files,16 Python, six validators, real Docker,65 exact HTTP checks/four SPA-media paths and scoped seven-journey browser/manual evidence. Remote AI success was not exercised.
++
++IM-14 `inspection-checks.json` independently matches all 402 current inputs and all 22 log hashes/exits to those accepted artifacts. There is no excuse to treat a historical failed run as PASS, and no need to rerun the complete release suite for documentation-only additions.
++
++## Narrow IM-14 checks and change protection
++
++`document-command-ledger.json` records exact command argument arrays, actual temporary candidate working directories, exits, UTC timestamps and output hashes. It covers real validator help, packaged expiry help, six validators against an isolated reconstructed full catalog and a targeted supplementary schema invocation. `recovery-check.json` records copied/source catalog hash equality and limited scope; this is not a production restore test.
++
++The targeted schema actually passes 171/171 with warnings. `initial-command-checks/` retains the first outer checker assertion that incorrectly expected failure; the validator itself exited 0. The draft interpretation and expected exit were corrected without changing source/catalog/validator code. Passing optional-fact structure is not proof of provider truth or complete authoring.
++
++`document-checks.json` covers final Markdown links, ledger references/IDs/statuses and source/evidence completeness. `starting-state.json`, `ending-state.json`, `protection-result.json` and `artifact-manifest.json` identify actual HEAD, original 1526 protected paths, exact new files and hashes. `documentation.patch` records the new core-document content; the manifest covers generated ledger/logs/extracts separately. Production code is untouched, so no code mirror synchronization was necessary.
++
++## Reviewer gate and continuing limits
++
++Proposed IM-14 outcome: Satisfied / v2 eligible for reviewer closure, conditioned on reviewer acceptance of the complete evidence and approved manual/substitute boundaries. No required-v2/evidence-needed row is unresolved in the ledger. IM-14 itself remains pending reviewer decision; authority/matrix status was not changed.
++
++NOT TESTED: comprehensive WCAG certification, physical devices, screen-reader execution, exhaustive external source/provider/RSS correctness and successful remote AI responses. Actual production-host security/TLS/backup recovery is not certified by local evidence. Source freshness and substantive accuracy remain ongoing human duties. Empty admitted local Law cache is not absence of relevant Delaware laws. Future HOST graphs, Admin workflows, second launch and library design remain explicit later scope, not done capabilities.
+diff --git a/docs/v2-completion-plan/evidence/im14/report-inspection-index.md b/docs/v2-completion-plan/evidence/im14/report-inspection-index.md
+new file mode 100644
+index 0000000..842b90e
+--- /dev/null
++++ b/docs/v2-completion-plan/evidence/im14/report-inspection-index.md
+@@ -0,0 +1,175 @@
++
++## docs/v2-completion-plan/IM-01 Execution Report.md
++1: # IM-01 execution report
++3: **Disposition: Satisfied for the authorized editorial-expiry scope.**
++4: **Execution date:** October 15, 2026 (America/New_York).
++8: ## Authority and protected starting state
++26: ## Inspection and baseline repair (before expiry implementation)
++68: ## Implementation and integration
++112: ## Acceptance evidence
++135: ## Other verification
++155: ## Deferred integration and limits (not reopened scope)
++
++## docs/v2-completion-plan/IM-02 Execution Report.md
++1: # IM-02 execution report
++4: **Disposition: SATISFIED within the issued package boundary.**
++5: **Execution date:** October 15, 2026 (America/New_York).
++7: ## Starting state and authority
++22: ## Inspection, existing capability and bounded design
++47: ## Exact production changes
++65: ## Tests and acceptance mapping
++102: ## Reproducible commands and actual results
++151: ## Real and controlled diagnostic evidence
++174: ## Admin guidance, boundaries and downstream impact
++197: **Final disposition: SATISFIED.** All applicable IM-02 acceptance gates have executed
++
++## docs/v2-completion-plan/IM-03 Execution Report.md
++1: # IM-03 execution report
++6: **Execution date:** October 16, 2026 (America/New_York).
++10: ## 1. Actual repository baseline and predecessor preservation
++35: ## 2. Inspection and demonstrated gap
++65: ### Pre-change executable evidence
++79: ## 3. Editorial decision and full real-record audit
++127: | Unresolved editorial assignments | 12 awaiting decision | **0** |
++142: ## 4. Bounded changes
++144: ### Production / projection code
++161: ### Data / validator / tests / documentation
++188: ## 5. Acceptance mapping (all final evidence passed)
++214: ## 6. Executed commands, results and intermediate failures
++257: ## 7. Actual packaged runtime checks
++284: ## 8. Architecture, limits and downstream ownership
++308: **Unresolved editorial records: none.** All twelve conditional assignments were
++309: supported and stored only after content verification. **Final disposition: Satisfied**
++313: ## Acceptance record — October 16, 2026
++
++## docs/v2-completion-plan/IM-04 Execution Report.md
++1: # IM-04 Execution Report
++3: **Disposition: Satisfied — authorized synthetic-only infrastructure requirement.**
++7: ## Baseline, authority and preservation
++17: ## Approved correction and precise contract
++29: ## Complete real-record audit
++51: ## Exact changes
++63: ## Named acceptance evidence
++88: ## Reproducible verification and actual results
++105: ### Packaged API proof
++120: ## Final preservation and boundaries
++
++## docs/v2-completion-plan/IM-05 Execution Report.md
++1: # IM-05 Execution Report
++9: ## Repository, authority and predecessor protection
++17: ## Inspection, baseline and demonstrated gaps
++25: ## Actual real-catalog audit
++49: ## Implemented contract and exact changes
++62: ## Acceptance evidence IM05-T01–T18
++87: ## Verification outcomes and reproducibility
++107: ## Handoff and final disposition
++
++## docs/v2-completion-plan/IM-06 Execution Report.md
++1: # IM-06 Execution Report
++9: ## 1. Accepted predecessor commit/push and actual baseline
++19: ## 2. Inspect-first findings and smallest design
++27: ## 3. Approved qualification decision
++37: ## 4. Implemented callable contract and hierarchy
++57: ### Eligibility, authored proof and nonmutation
++65: ### Distinct role feasibility and diagnostics
++71: ## 5. Then-current real catalog and actual selection
++97: ## 6. Exact changed files
++118: ## 7. Acceptance mapping IM06-T01–T18
++141: ## 8. Actual quality gates and reproducibility
++158: ## 9. Limits, preservation and downstream handoff
++
++## docs/v2-completion-plan/IM-07 Execution Report.md
++1: # IM-07 execution report — deterministic featured-item selector
++5: ## Starting state and authority
++15: ## Implementation and boundaries
++23: ### Affirmative roles and metadata gaps
++32: ### Deterministic assignment and fallback
++42: ## Actual fixed-clock catalog acceptance
++72: ## Changed files and acceptance mapping
++106: ## Quality gates and reproducibility
++124: ## Ending disposition and handoff
++
++## docs/v2-completion-plan/IM-08 Execution Report.md
++1: # IM-08 execution report — Category Destination integration
++5: ## Repository baseline, authority and protection
++15: ## Implemented public integration contract
++52: ### Page hierarchy and accessibility
++66: ## Actual catalog integration evidence
++91: ## Tests and acceptance mapping IM08-T01–T20
++118: ## Executed gates and browser evidence
++139: ## Exact change inventory, preservation and handoff
++
++## docs/v2-completion-plan/IM-09 Execution Report.md
++1: # IM-09 execution report — controlled civic-information collections
++3: **Executed:** October 17, 2026. **Disposition: Satisfied — IM-09 implementation and acceptance complete.** The initially unresolved editorial membership question was resolved by the user's explicit record-level decision during execution. Housing First Rate News now contains OR-003, FAQ-002, EA-001 and EA-005 under independent eligibility gates. Four collection audits, named acceptance tests and regression evidence are below. No commit or push; no later IM package started.
++5: ## Baseline and protection
++15: ## Authority reconciliation: First Rate News remains inclusive
++23: ### Record-level decision table — final outcome
++41: ## Four collection audits: approved versus observed and corrected
++62: ## Demonstrated gaps and bounded corrections
++78: ## Named acceptance evidence IM09-T01–T20
++107: ## Actual commands, results and runtime/privacy proof
++128: ## Changed files, preservation and final handoff
++
++## docs/v2-completion-plan/IM-10 Execution Report.md
++1: # IM-10 execution report — event occurrence and independent Flyer visibility
++3: Executed October 17, 2026. **Disposition: Satisfied**, within the IM-10 scope. Explicit occurrence facts now control current/upcoming Events independently of editorial expiry and Flyer visibility. All production catalogs and media are unchanged. No staging, commit or push; IM-11–14 remain outside this execution.
++5: ## Protected baseline and inspected authority
++15: ## Actual FL-008 metadata — no assumed scheduled end
++38: ## Demonstrated gap and before/after audit
++55: ## Occurrence truth table and precise time policy
++78: ## Bounded implementation and public presentation
++89: ## Named acceptance mapping IM10-T01–T20
++116: ## Regression results, HTTP/browser evidence and limitations
++135: ## Preservation, architecture proof and handoff
++
++## docs/v2-completion-plan/IM-11 Execution Report.md
++1: # IM-11 execution report — real catalog, collisions and selector regression
++5: ## Starting state and authorities
++11: ## Untouched baseline and gap finding
++21: ## Exact real catalog/Community/Topic inventory
++47: ## Selector evidence and collisions
++76: ## IM-09/IM-10 interaction regression
++86: ## Changed files or verified-no-change
++92: ## Acceptance mapping T01–T20
++119: ## Actual test/build/validator/HTTP/browser gates
++138: ## Preservation and provenance
++144: ## Limitations and IM-12/13/14 handoff
++152: ## Proposed final disposition
++
++## docs/v2-completion-plan/IM-12 Execution Report.md
++1: # IM-12 Execution Report
++5: ## Starting state and authority
++11: ## Untouched baseline and audit design
++19: ## Canonical CivicContent/content-kind inventory
++38: ## Organization/PROVIDER/HOST association findings
++57: ## ContentSource and authored provenance
++67: ## Community partition/physical-place distinctions
++77: ## Public endpoint DTO/privacy audit
++85: ## Membership manifest/deployment
++99: ## Lifecycle/occurrence/stewardship findings
++107: ## Exact changed files and bounded corrections
++115: ## Acceptance T01–T20
++142: ## Backend/frontend/validators/packaged HTTP/browser evidence
++150: ## Preserved hashes and limitations
++156: ## IM-13/14 handoff
++160: ## Proposed final disposition
++
++## docs/v2-completion-plan/IM-13 Execution Report.md
++1: # IM-13 Execution Report
++5: **Disposition: execution complete; proposed Satisfied on the bounded v2 evidence below, pending reviewer acceptance.** No unresolved demonstrated v2 release blocker remains in the executed checks. This report does not amend the authoritative matrix, accept itself, or declare v2 complete. IM-14 remains the final documentation/closure gate.
++7: ## Starting state and authority
++15: ## Untouched baseline and final quality gates
++32: ## Seven journeys and five epics
++52: ## Catalog, identity, Community and public boundaries
++60: ## Packaged runtime and configuration
++66: ## Accessibility, responsive and failure evidence
++72: **NOT TESTED:** full WCAG conformance, physical mobile devices, assistive screen-reader execution and exhaustive external provider/RSS coverage. These limits remain explicit release-review information; no conformance or physical-device certification is asserted.
++74: ## Defects and bounded corrections
++85: ## Named T01–T20 acceptance mapping
++103: | T15 | PASS for executed checks; broader accessibility NOT TESTED | Spanish/high-contrast/font/browser/AX artifacts and limitations above |
++110: ## Preservation and exact change manifest
++116: ## Final issue register and handoff
++122: | FAIL | Unresolved demonstrated required-v2 release failure | None found in executed evidence |
++123: | NOT TESTED | Full WCAG, screen reader and physical-device testing | No certification claimed; reviewer may require further testing for a separate release policy |
++124: | NOT TESTED | Exhaustive external provider/feed coverage | Local empty Law cache is a data limitation, not evidence of no Delaware laws |
