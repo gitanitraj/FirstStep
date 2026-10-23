@@ -1,0 +1,199 @@
+# First Step Admin Guide  
+## Expiry Eligibility and Editorial Stewardship
+
+### Purpose
+
+This guide explains how First Step should treat content that has an expiration date or another time-sensitive eligibility window.
+
+The goal is to keep resident-facing information useful without automatically removing material before an editor has had a reasonable opportunity to review it.
+
+---
+
+# 1. The Three Expiry States
+
+## Active
+
+Content is **Active** when it has not expired and is not yet within the defined approaching-expiry window.
+
+### Resident behavior
+
+Active content remains eligible for normal publication and discovery.
+
+It may appear in:
+
+- Category Destinations;
+- Get Help;
+- topic collections;
+- search;
+- Community Notices;
+- Latest Updates;
+- other appropriate resident-facing collections.
+
+### Admin action
+
+No expiry-specific action is required.
+
+Routine editorial review may still apply.
+
+---
+
+## Approaching Expiry
+
+Content is **Approaching Expiry** when it remains valid but is close enough to its expiration date that an editor should review it.
+
+### Resident behavior
+
+Approaching-expiry content **remains eligible for publication**.
+
+It should not disappear merely because its expiry date is near.
+
+Where appropriate, approaching-expiry material may be a strong candidate for a **Timely / Actionable** featured position because the opportunity may require resident action soon.
+
+Approaching expiry does not automatically guarantee featured placement. The item must still be relevant and useful.
+
+### Admin action
+
+The item should be surfaced for editorial review.
+
+Possible actions include:
+
+- verify that the information remains accurate;
+- contact the originating organization;
+- confirm whether the opportunity will be renewed;
+- update dates or details when authoritative information is available;
+- replace the item with newer information;
+- prepare an “If You Go” article;
+- arrange an interview;
+- allow the item to expire without replacement.
+
+The system identifies the condition. The editor decides what action is appropriate.
+
+---
+
+## Expired
+
+Content is **Expired** when its defined expiration date or eligibility period has passed.
+
+### Resident behavior
+
+Expired content is no longer eligible for ordinary resident presentation where its usefulness depends on the expired opportunity.
+
+It should be excluded from applicable:
+
+- featured-topic selections;
+- Get Help collections;
+- topic collections;
+- current opportunity surfaces;
+- other resident-facing projections that imply the opportunity remains available.
+
+### Admin action
+
+Expired content may still be retained internally for:
+
+- editorial reference;
+- historical context;
+- verification;
+- future renewal;
+- reporting;
+- source tracking.
+
+Expiration does not necessarily mean deletion.
+
+It means the record should no longer be presented to residents as a currently available opportunity.
+
+---
+
+# 2. Missing Expiry Information
+
+Not every First Step content item requires an expiry date.
+
+Evergreen resources, laws, explanatory articles, interviews, and similar material may remain valid without one.
+
+An absent expiry date should therefore **not automatically make an item invalid**.
+
+Expiry rules should apply only to content for which expiration is meaningful.
+
+---
+
+# 3. Expiry and Featured Content
+
+Expiry is one input into editorial presentation, not a universal ranking score.
+
+For featured topic columns, First Step uses role-based positions:
+
+### Position 1 — Timely / Actionable
+
+Prefer useful content where timing matters.
+
+Approaching-expiry content may qualify strongly for this position.
+
+### Position 2 — Durable Help
+
+Prefer an evergreen or stable resource, program, or service that gives the topic lasting usefulness.
+
+### Position 3 — Visual / Additional Discovery
+
+Prefer an eligible flyer when the topic contains one.
+
+If no suitable flyer exists, use the strongest remaining eligible item.
+
+These roles should be reviewed over time to determine whether they continue to serve residents effectively.
+
+---
+
+# 4. Editorial Responsibility
+
+Expiry metadata should support editorial judgment, not replace it.
+
+First Step should avoid automatically making substantive editorial decisions solely from dates.
+
+For example, an item approaching expiry may warrant:
+
+- verification;
+- follow-up reporting;
+- replacement;
+- an interview;
+- a new First Step article.
+
+The Admin remains responsible for determining the appropriate editorial response.
+
+---
+
+# 5. v2 Admin Support
+
+For v2, First Step only needs a reliable mechanism that allows an Admin or editor to identify:
+
+- approaching-expiry items;
+- expired items;
+- relevant item identifiers;
+- expiry dates;
+- enough metadata to determine what requires attention.
+
+A validator, report, or diagnostic output is sufficient for v2.
+
+---
+
+# 6. v3 Editorial Operations
+
+The following capabilities are intentionally deferred to v3 and should be designed as part of a richer editorial stewardship system:
+
+- Admin dashboard;
+- automated editorial queues;
+- workflow assignment;
+- email notifications;
+- automatic article creation;
+- structured editorial follow-up workflows.
+
+These capabilities should build on the v2 expiry and eligibility semantics rather than redefine them.
+
+---
+
+# 7. Guiding Principle
+
+First Step should behave more like a **well-maintained library** than an endless feed.
+
+The catalog may retain older material for institutional and editorial purposes, while resident-facing shelves contain information that is current, relevant, and appropriate to present.
+
+Expiry determines whether an item belongs on the current shelf.
+
+Editorial judgment determines what First Step does next.
