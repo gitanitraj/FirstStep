@@ -1,0 +1,42 @@
+[
+  {
+    "command": "python3 -m unittest discover -s data-cleaning/tests -v",
+    "exit": 0,
+    "log": "python-0.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_content_sources.py",
+    "exit": 0,
+    "log": "python-1.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_homepage.py",
+    "exit": 0,
+    "log": "python-2.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_navigation.py",
+    "exit": 0,
+    "log": "python-3.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_news.py",
+    "exit": 0,
+    "log": "python-4.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_organizations.py",
+    "exit": 0,
+    "log": "python-5.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_schema.py",
+    "exit": 0,
+    "log": "python-6.log"
+  },
+  {
+    "command": "python3 data-cleaning/scripts/validate_schema.py --input app/data/resources.communities.json",
+    "exit": 0,
+    "log": "python-7.log"
+  }
+]

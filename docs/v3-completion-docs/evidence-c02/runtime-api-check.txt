@@ -1,0 +1,20 @@
+Runtime API check, live catalog, real clock (2026-10-23), jar from C-02 mvn verify
+/api/flyers                                HTTP 200  FL ids: ['FL-008']  withdrawn present: []
+/api/community-notices                     HTTP 200  FL ids: ['FL-008']  withdrawn present: []
+/api/community-notices/events              HTTP 200  FL ids: []  withdrawn present: []
+/api/community-notices/meetings            HTTP 200  FL ids: []  withdrawn present: []
+/api/community-notices/announcements       HTTP 200  FL ids: []  withdrawn present: []
+/api/community-notices/flyers              HTTP 200  FL ids: ['FL-008']  withdrawn present: []
+/api/updates/government                    HTTP 200  FL ids: []  withdrawn present: []
+/api/updates/community                     HTTP 200  FL ids: ['FL-008']  withdrawn present: []
+/api/category/housing                      HTTP 200  FL ids: []  withdrawn present: []
+/api/category/housing/help                 HTTP 200  FL ids: []  withdrawn present: []
+/api/home communityFlyers                  HTTP 200  titles: ['United Neighbors 2026']
+/api/flyers/FL-001  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-002  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-003  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-004  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-005  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-006  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-007  HTTP 404  errorCode=NOT_FOUND
+/api/flyers/FL-008  HTTP 200  errorCode=None

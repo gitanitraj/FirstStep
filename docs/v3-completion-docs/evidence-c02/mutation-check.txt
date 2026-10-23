@@ -1,0 +1,11 @@
+Mutation check — FlyerWithdrawalRegressionTest run against pre-C-02 app/data/flyers.json (HEAD a4ed4ae), then approved file restored (cmp identical).
+[ERROR]   FlyerWithdrawalRegressionTest.shouldExcludeWithdrawnFlyersFromEveryCategoryProjection:169->assertNoWithdrawnIds:99 housing exposes FL-002 ==> expected: <false> but was: <true>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldExcludeWithdrawnFlyersFromEveryCommunityNoticesView:146->assertNoWithdrawnIds:99 /api/community-notices exposes FL-002 ==> expected: <false> but was: <true>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldExcludeWithdrawnFlyersFromProgramUpdates:160->assertNoWithdrawnIds:99 /api/updates/government exposes FL-005 ==> expected: <false> but was: <true>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldExcludeWithdrawnFlyersFromResidentFlyerInventory:135 expected: <[FL-008]> but was: <[FL-001, FL-002, FL-003, FL-004, FL-005, FL-006, FL-007, FL-008]>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldLeaveWithdrawalAsTheOnlyGateExcludingTheSevenRecords:127 FL-001 ==> expected: <false> but was: <true>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldRetainAllSevenWithdrawnRecordsWithTheirOriginalMetadata:111->lambda$1:112 FL-001 ==> expected: <withdrawn> but was: <null>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldReturnTheEstablishedNotFoundResponseForWithdrawnDetailLinks:177 Status expected:<404> but was:<200>
+[ERROR]   FlyerWithdrawalRegressionTest.shouldShowOnlyTheVerifiedFlyerInTheHomepageFlyerRow:154 expected: <[United Neighbors 2026]> but was: <[Back-to-School Supply Drive Fundraiser, Know Your Rights: Eviction Prevention Info Session, Free 
+[ERROR] Tests run: 12, Failures: 8, Errors: 0, Skipped: 0
+[ERROR] Tests run: 12, Failures: 8, Errors: 0, Skipped: 0, Time elapsed: 4.042 s <<< FAILURE! -- in org.firststep.backend.audit.FlyerWithdrawalRegressionTest

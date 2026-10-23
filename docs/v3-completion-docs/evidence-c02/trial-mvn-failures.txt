@@ -1,0 +1,6 @@
+[ERROR]   FeaturedItemCatalogTest.t19ActualAllNineHousingTopicsAndFourFeaturedWinnersRemainTruthfulAndNonmutating:66 expected: <true> but was: <false>
+[ERROR]   CivicCollectionCatalogTest.t01t08t11t12RealFourCollectionAndInclusiveMembershipAudit:62 expected: <[FL-002]> but was: <[]>
+[ERROR]   EditorialExpiryApiTest.shouldExcludeExpiredCommunityMeetingsAndUpdateTheirCurrentCounts:86 expected: <[FL-002]> but was: <[]>
+[ERROR]   EditorialExpiryApiTest.shouldPreservePastEventFlyersAndTheirHistoricalDetailLinks:113 FL-001 ==> expected: <true> but was: <false>
+[ERROR]   CategoryDestinationCatalogTest.t04RealHousingHttpHasExactTwelveWinnersAndNoPrivateFields:64 » NoSuchElement No value present
+[ERROR] Tests run: 631, Failures: 4, Errors: 1, Skipped: 0

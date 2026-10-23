@@ -67,7 +67,22 @@ class CivicCollectionCatalogTest {
         assertEquals(List.of("OR-003", "FAQ-002", "EA-001", "EA-005"), ids(housing, "first-rate-news"), "explicit record admissions retain independent identities");
         assertEquals(List.of("FAQ-002"), ids(housing, "faqs"));
         assertEquals(List.of("EA-001", "EA-005"), ids(housing, "expert-qa"));
-        assertEquals(List.of("FL-002"), ids(housing, "flyers")); assertEquals(8, flyers.findAll().size());
+        // C-02: FL-002 is withdrawn (poster/record mismatch), so the real Housing flyers
+        // collection is empty while the record stays stored. Positive placement of an
+        // eligible Housing flyer is proven by the CategoryContentServiceTest fixture.
+        /*
+         * C-02 ANNOTATION
+         * WHAT: The real-catalog audit now expects no Housing flyer.
+         * WHY: FL-002's poster is an ongoing legal-help referral, not the info session the
+         *   record describes, so it is withdrawn rather than shown with false details.
+         * INTERACTION: Withdrawal acts in FlyerService.getAll() via EditorialLifecycle
+         *   .isPublicStatus; the repository still returns all 8 records (asserted here).
+         * ALTERNATIVE: A synthetic Housing flyer injected into this real-catalog audit was
+         *   rejected — it would stop the audit describing the real catalog. The positive
+         *   case lives in CategoryContentServiceTest
+         *   .shouldPlaceFlyersInTheirOwnCollectionRatherThanFoldingThemIntoPolicyInfo.
+         */
+        assertEquals(List.of(), ids(housing, "flyers")); assertEquals(8, flyers.findAll().size());
         assertTrue(flyers.findAll().stream().noneMatch(f -> "ACTIONABLE_HELP_ACCESS".equals(f.helpAccess)));
         audit.put("storedNews", rawNews.findAll().stream().map(n -> Map.of("id", n.id,
                 "current", lifecycle.isCurrent(n), "lifecycle", lifecycle.assess(n).state().name())).toList());

@@ -1,0 +1,753 @@
+{
+  "findHelp": {
+    "375": {
+      "homeConnect": {
+        "label": "Home Connect card → Find Help",
+        "from": "http://127.0.0.1:5173/app-next/",
+        "to": "http://127.0.0.1:5173/app-next/find-help",
+        "back": "http://127.0.0.1:5173/app-next/",
+        "forward": "http://127.0.0.1:5173/app-next/find-help",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "direct": {
+        "url": "/app-next/find-help",
+        "h1": [
+          "Find Help"
+        ],
+        "main": "Find Help\n\nIf you are trying to work out where to go for assistance, you are in the right place. Start with the kind of help you need, or look up an organization directly.\n\nWhat kind of help are you looking for?\n🏠\nHousing\n💼\nEmployment\n🏥\nHealth\n⚖️\nLegal\n🛋️\nFurniture & Household\n🧓\nSeniors\nCOMING SOON\n🍎\nFood\nOpen to everyone\n\nServices with no age or gender requirement, so you will not be turned away for not qualifying.\n\nRESOURCE\nAlpha Worship Center - Pantry of Hope\n\nBear\n\nWeekly food distribution and emergency food closet.\n\nRESOURCE\nAmerican Dance Academy\n\nHockessin\n\nThe studio offers a va",
+        "overflow": false,
+        "status": [
+          "64 organizations"
+        ],
+        "alerts": []
+      },
+      "gateways": [
+        {
+          "text": "🏠\nHousing",
+          "href": "/app-next/category/housing",
+          "disabled": false
+        },
+        {
+          "text": "💼\nEmployment",
+          "href": "/app-next/category/employment",
+          "disabled": false
+        },
+        {
+          "text": "🏥\nHealth",
+          "href": "/app-next/category/health",
+          "disabled": false
+        },
+        {
+          "text": "⚖️\nLegal",
+          "href": "/app-next/category/legal",
+          "disabled": false
+        },
+        {
+          "text": "🛋️\nFurniture & Household",
+          "href": "/app-next/category/furniture-household",
+          "disabled": false
+        },
+        {
+          "text": "🧓\nSeniors\nCOMING SOON",
+          "href": null,
+          "disabled": true
+        },
+        {
+          "text": "🍎\nFood",
+          "href": "/app-next/category/food",
+          "disabled": false
+        }
+      ],
+      "openToEveryone": 6,
+      "directoryCount": 64,
+      "searchLabelled": 1,
+      "searchRedCross": {
+        "status": "1 organizations",
+        "names": [
+          "American Red Cross"
+        ]
+      },
+      "searchNoMatch": {
+        "status": "0 organizations",
+        "entries": 0,
+        "sectionText": "Looking for a specific organization or service?\n\nEvery organization First Step lists. Choose one to see what they offer and how to reach them.\n\nSearch by organization or service name\n\n0 organizations"
+      },
+      "orgLink": {
+        "label": "Directory → Organization",
+        "from": "http://127.0.0.1:5173/app-next/find-help",
+        "to": "http://127.0.0.1:5173/app-next/organization/american-red-cross",
+        "back": "http://127.0.0.1:5173/app-next/find-help",
+        "forward": "http://127.0.0.1:5173/app-next/organization/american-red-cross",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "searchAfterBack": {
+        "url": "http://127.0.0.1:5173/app-next/find-help",
+        "value": "",
+        "status": "64 organizations"
+      },
+      "gatewayLink": {
+        "label": "Gateway → Category",
+        "from": "http://127.0.0.1:5173/app-next/find-help",
+        "to": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+        "back": "http://127.0.0.1:5173/app-next/find-help",
+        "forward": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "categoryRendered": {
+        "url": "/app-next/category/housing?communityId=wilmington-de",
+        "h1": [
+          "🏠Housing"
+        ],
+        "main": "← Back to home\n🏠\nHousing\n\nFind help, explore topics and read local civic information.\n\n36 resources · 3 news items · 3 expert answers · 1 flyer\n\nGet help in Housing\nFeatured topics\nTransitional Housing\nRESOURCE\nBe Ready CDC - Esther's Place\n\nWilmington\n\nLong-term transitional housing for women and their children on Wilmington's west side to support recovery and stability.\n\nFree\n\nRESOURCE\nBe Ready CDC - Lazarus House\n\nWilmington\n\nLong-term transitional housing for men recently released from prison on Wilmington's west side.\n\nFree\n\nRESOURCE\nCatholic Charities - Bayard House\n\nWilmington\n\nResiden",
+        "overflow": false,
+        "status": [],
+        "alerts": []
+      }
+    },
+    "1280": {
+      "homeConnect": {
+        "label": "Home Connect card → Find Help",
+        "from": "http://127.0.0.1:5173/app-next/",
+        "to": "http://127.0.0.1:5173/app-next/find-help",
+        "back": "http://127.0.0.1:5173/app-next/",
+        "forward": "http://127.0.0.1:5173/app-next/find-help",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "direct": {
+        "url": "/app-next/find-help",
+        "h1": [
+          "Find Help"
+        ],
+        "main": "Find Help\n\nIf you are trying to work out where to go for assistance, you are in the right place. Start with the kind of help you need, or look up an organization directly.\n\nWhat kind of help are you looking for?\n🏠\nHousing\n💼\nEmployment\n🏥\nHealth\n⚖️\nLegal\n🛋️\nFurniture & Household\n🧓\nSeniors\nCOMING SOON\n🍎\nFood\nOpen to everyone\n\nServices with no age or gender requirement, so you will not be turned away for not qualifying.\n\nRESOURCE\nAlpha Worship Center - Pantry of Hope\n\nBear\n\nWeekly food distribution and emergency food closet.\n\nRESOURCE\nAmerican Dance Academy\n\nHockessin\n\nThe studio offers a va",
+        "overflow": false,
+        "status": [
+          "64 organizations"
+        ],
+        "alerts": []
+      },
+      "gateways": [
+        {
+          "text": "🏠\nHousing",
+          "href": "/app-next/category/housing",
+          "disabled": false
+        },
+        {
+          "text": "💼\nEmployment",
+          "href": "/app-next/category/employment",
+          "disabled": false
+        },
+        {
+          "text": "🏥\nHealth",
+          "href": "/app-next/category/health",
+          "disabled": false
+        },
+        {
+          "text": "⚖️\nLegal",
+          "href": "/app-next/category/legal",
+          "disabled": false
+        },
+        {
+          "text": "🛋️\nFurniture & Household",
+          "href": "/app-next/category/furniture-household",
+          "disabled": false
+        },
+        {
+          "text": "🧓\nSeniors\nCOMING SOON",
+          "href": null,
+          "disabled": true
+        },
+        {
+          "text": "🍎\nFood",
+          "href": "/app-next/category/food",
+          "disabled": false
+        }
+      ],
+      "openToEveryone": 6,
+      "directoryCount": 64,
+      "searchLabelled": 1,
+      "searchRedCross": {
+        "status": "1 organizations",
+        "names": [
+          "American Red Cross"
+        ]
+      },
+      "searchNoMatch": {
+        "status": "0 organizations",
+        "entries": 0,
+        "sectionText": "Looking for a specific organization or service?\n\nEvery organization First Step lists. Choose one to see what they offer and how to reach them.\n\nSearch by organization or service name\n\n0 organizations"
+      },
+      "orgLink": {
+        "label": "Directory → Organization",
+        "from": "http://127.0.0.1:5173/app-next/find-help",
+        "to": "http://127.0.0.1:5173/app-next/organization/american-red-cross",
+        "back": "http://127.0.0.1:5173/app-next/find-help",
+        "forward": "http://127.0.0.1:5173/app-next/organization/american-red-cross",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "searchAfterBack": {
+        "url": "http://127.0.0.1:5173/app-next/find-help",
+        "value": "",
+        "status": "64 organizations"
+      },
+      "gatewayLink": {
+        "label": "Gateway → Category",
+        "from": "http://127.0.0.1:5173/app-next/find-help",
+        "to": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+        "back": "http://127.0.0.1:5173/app-next/find-help",
+        "forward": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "categoryRendered": {
+        "url": "/app-next/category/housing?communityId=wilmington-de",
+        "h1": [
+          "🏠Housing"
+        ],
+        "main": "← Back to home\n🏠\nHousing\n\nFind help, explore topics and read local civic information.\n\n36 resources · 3 news items · 3 expert answers · 1 flyer\n\nGet help in Housing\nFeatured topics\nTransitional Housing\nRESOURCE\nBe Ready CDC - Esther's Place\n\nWilmington\n\nLong-term transitional housing for women and their children on Wilmington's west side to support recovery and stability.\n\nFree\n\nRESOURCE\nBe Ready CDC - Lazarus House\n\nWilmington\n\nLong-term transitional housing for men recently released from prison on Wilmington's west side.\n\nFree\n\nRESOURCE\nCatholic Charities - Bayard House\n\nWilmington\n\nResiden",
+        "overflow": false,
+        "status": [],
+        "alerts": []
+      }
+    },
+    "loading": {
+      "url": "/app-next/find-help",
+      "h1": [
+        "Find Help"
+      ],
+      "main": "Find Help\n\nIf you are trying to work out where to go for assistance, you are in the right place. Start with the kind of help you need, or look up an organization directly.\n\nLoading…",
+      "overflow": false,
+      "status": [
+        "Loading…"
+      ],
+      "alerts": []
+    },
+    "empty": {
+      "url": "/app-next/find-help",
+      "h1": [
+        "Find Help"
+      ],
+      "main": "Find Help\n\nIf you are trying to work out where to go for assistance, you are in the right place. Start with the kind of help you need, or look up an organization directly.\n\nWhat kind of help are you looking for?\nLooking for a specific organization or service?\n\nEvery organization First Step lists. Choose one to see what they offer and how to reach them.\n\nSearch by organization or service name\n\n0 organizations",
+      "overflow": false,
+      "status": [
+        "0 organizations"
+      ],
+      "alerts": []
+    },
+    "error": {
+      "url": "/app-next/find-help",
+      "h1": [
+        "Find Help"
+      ],
+      "main": "Find Help\n\nIf you are trying to work out where to go for assistance, you are in the right place. Start with the kind of help you need, or look up an organization directly.\n\nAudit unavailable fixture",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Audit unavailable fixture"
+      ]
+    }
+  },
+  "routes": [
+    {
+      "url": "/app-next/discover/seniors",
+      "h1": [],
+      "main": "Discovery pathway\n\nComing soon.\n\n← Back to home",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/discover/seniors",
+      "width": 1280,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/discover/not-a-facet",
+      "h1": [],
+      "main": "Discovery pathway\n\nComing soon.\n\n← Back to home",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/discover/not-a-facet",
+      "width": 1280,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/no-such-route",
+      "h1": [],
+      "main": "Page not found\n\nComing soon.\n\n← Back to home",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/no-such-route",
+      "width": 1280,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/originals/OR-999",
+      "h1": [
+        "Article not found"
+      ],
+      "main": "Article not found\n\nThis article is not available. It may have been moved, or it may never have been published.\n\nBack to First Step",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Article not foundThis article is not available. It may have been moved, or it may never have been published.Back to First Step"
+      ],
+      "route": "/originals/OR-999",
+      "width": 1280,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/organization/not-an-org",
+      "h1": [
+        "Organization not found"
+      ],
+      "main": "Organization not found\n\nWe could not find that organization. Its name may have changed, or it may not be listed.\n\nBack to First Step",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Organization not foundWe could not find that organization. Its name may have changed, or it may not be listed.Back to First Step"
+      ],
+      "route": "/organization/not-an-org",
+      "width": 1280,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/community-notices/not-a-view",
+      "h1": [
+        "Community Notices"
+      ],
+      "main": "Community Notices\n\nnotices.not-a-view.intro\n\n📅\nEvents\n—\n🏛️\nMeetings\n—\n📢\nAnnouncements\n—\n🖼️\nFlyers\n—\n\nUnknown notices view: not-a-view",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Unknown notices view: not-a-view"
+      ],
+      "route": "/community-notices/not-a-view",
+      "width": 1280,
+      "mainLinks": [
+        "/app-next/community-notices/events",
+        "/app-next/community-notices/meetings",
+        "/app-next/community-notices/announcements",
+        "/app-next/community-notices/flyers"
+      ]
+    },
+    {
+      "url": "/app-next/discover/seniors",
+      "h1": [],
+      "main": "Discovery pathway\n\nComing soon.\n\n← Back to home",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/discover/seniors",
+      "width": 375,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/discover/not-a-facet",
+      "h1": [],
+      "main": "Discovery pathway\n\nComing soon.\n\n← Back to home",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/discover/not-a-facet",
+      "width": 375,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/no-such-route",
+      "h1": [],
+      "main": "Page not found\n\nComing soon.\n\n← Back to home",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/no-such-route",
+      "width": 375,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/originals/OR-999",
+      "h1": [
+        "Article not found"
+      ],
+      "main": "Article not found\n\nThis article is not available. It may have been moved, or it may never have been published.\n\nBack to First Step",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Article not foundThis article is not available. It may have been moved, or it may never have been published.Back to First Step"
+      ],
+      "route": "/originals/OR-999",
+      "width": 375,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/organization/not-an-org",
+      "h1": [
+        "Organization not found"
+      ],
+      "main": "Organization not found\n\nWe could not find that organization. Its name may have changed, or it may not be listed.\n\nBack to First Step",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Organization not foundWe could not find that organization. Its name may have changed, or it may not be listed.Back to First Step"
+      ],
+      "route": "/organization/not-an-org",
+      "width": 375,
+      "mainLinks": [
+        "/app-next"
+      ]
+    },
+    {
+      "url": "/app-next/community-notices/not-a-view",
+      "h1": [
+        "Community Notices"
+      ],
+      "main": "Community Notices\n\nnotices.not-a-view.intro\n\n📅\nEvents\n—\n🏛️\nMeetings\n—\n📢\nAnnouncements\n—\n🖼️\nFlyers\n—\n\nUnknown notices view: not-a-view",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Unknown notices view: not-a-view"
+      ],
+      "route": "/community-notices/not-a-view",
+      "width": 375,
+      "mainLinks": [
+        "/app-next/community-notices/events",
+        "/app-next/community-notices/meetings",
+        "/app-next/community-notices/announcements",
+        "/app-next/community-notices/flyers"
+      ]
+    }
+  ],
+  "history": {
+    "homeToArticle": {
+      "label": "Home Original → Article",
+      "from": "http://127.0.0.1:5173/app-next/",
+      "to": "http://127.0.0.1:5173/app-next/originals/OR-003",
+      "back": "http://127.0.0.1:5173/app-next/",
+      "forward": "http://127.0.0.1:5173/app-next/originals/OR-003",
+      "backRestored": true,
+      "forwardRestored": true
+    },
+    "articleMainInternalLinks": 0,
+    "articleToUpdates": {
+      "label": "Article → Primary nav Updates",
+      "from": "http://127.0.0.1:5173/app-next/originals/OR-003",
+      "to": "http://127.0.0.1:5173/app-next/updates",
+      "back": "http://127.0.0.1:5173/app-next/originals/OR-003",
+      "forward": "http://127.0.0.1:5173/app-next/updates",
+      "backRestored": true,
+      "forwardRestored": true
+    },
+    "homeToUpdates": {
+      "label": "Home → Primary nav Updates",
+      "from": "http://127.0.0.1:5173/app-next/",
+      "to": "http://127.0.0.1:5173/app-next/updates",
+      "back": "http://127.0.0.1:5173/app-next/",
+      "forward": "http://127.0.0.1:5173/app-next/updates",
+      "backRestored": true,
+      "forwardRestored": true
+    },
+    "updatesLinks": [
+      {
+        "text": "Delaware raises income threshold for Emergency Assistance el",
+        "href": "https://dhss.delaware.gov",
+        "target": "_blank"
+      },
+      {
+        "text": "Delaware Medicaid expansion covers dental for adults startin",
+        "href": "https://dhss.delaware.gov",
+        "target": "_blank"
+      }
+    ],
+    "updatesToHousing": {
+      "label": "Updates → Primary nav Housing",
+      "from": "http://127.0.0.1:5173/app-next/updates",
+      "to": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+      "back": "http://127.0.0.1:5173/app-next/updates",
+      "forward": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+      "backRestored": true,
+      "forwardRestored": true
+    },
+    "categoryToOrg": {
+      "label": "Category Organizations → Organization",
+      "from": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+      "to": "http://127.0.0.1:5173/app-next/organization/american-red-cross?communityId=wilmington-de",
+      "back": "http://127.0.0.1:5173/app-next/category/housing?communityId=wilmington-de",
+      "forward": "http://127.0.0.1:5173/app-next/organization/american-red-cross?communityId=wilmington-de",
+      "backRestored": true,
+      "forwardRestored": true
+    },
+    "orgLinks": [
+      {
+        "text": "American Red Cross",
+        "href": "https://www.redcross.org/get-help/disaster-relief-and-recovery-services/find-an-open-shelter.html",
+        "target": "_blank"
+      }
+    ],
+    "orgToUpdates": {
+      "label": "Organization → Primary nav Updates",
+      "from": "http://127.0.0.1:5173/app-next/organization/american-red-cross?communityId=wilmington-de",
+      "to": "http://127.0.0.1:5173/app-next/updates?communityId=wilmington-de",
+      "back": "http://127.0.0.1:5173/app-next/organization/american-red-cross?communityId=wilmington-de",
+      "forward": "http://127.0.0.1:5173/app-next/updates?communityId=wilmington-de",
+      "backRestored": true,
+      "forwardRestored": true
+    },
+    "orgQueryOnNav": "/app-next/updates?communityId=wilmington-de"
+  },
+  "events": {
+    "375": {
+      "url": "/app-next/community-notices/events",
+      "h1": [
+        "Community Notices"
+      ],
+      "main": "Community Notices\n\nWhat is happening in the community, soonest first.\n\n📅\nEvents\n4\n🏛️\nMeetings\n1\n📢\nAnnouncements\n3\n🖼️\nFlyers\n6\nFLYER\nBack-to-School Supply Drive Fundraiser\n\nMinistry of Caring Inc\n\nCommunity fundraiser to purchase backpacks and school supplies for Wilmington students in need.\n\n2026-11-24\n\nFLYER\nFree Community Health Fair\n\nWestside Family Healthcare\n\nFree health screenings, vaccinations, and dental checkups — no insurance or ID required.\n\n2026-12-01\n\nFLYER\nSummer Youth Enrichment Program — Registration Open\n\nWest End Neighborhood House\n\nFree summer program for youth ages 8-14",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "cards": [
+        "FLYER Back-to-School Supply Drive Fundraiser Ministry of Caring Inc Community fundraiser to purchase backpacks and school supplies for Wilmington students in ne",
+        "FLYER Free Community Health Fair Westside Family Healthcare Free health screenings, vaccinations, and dental checkups — no insurance or ID required. 2026-12-01",
+        "FLYER Summer Youth Enrichment Program — Registration Open West End Neighborhood House Free summer program for youth ages 8-14 with tutoring, sports, and field t",
+        "FLYER United Neighbors 2026 West Side Grows Together Art, food, music, and celebration bridging neighborhoods on both sides of I-95 — Saturday 1:00–4:00 pm on t"
+      ],
+      "images": [
+        {
+          "loaded": true,
+          "alt": "Back-to-School Supply Drive Fundraiser"
+        },
+        {
+          "loaded": true,
+          "alt": "Free Community Health Fair"
+        },
+        {
+          "loaded": true,
+          "alt": "Summer Youth Enrichment Program — Registration Open"
+        },
+        {
+          "loaded": true,
+          "alt": "United Neighbors 2026"
+        }
+      ],
+      "toFlyers": {
+        "label": "Events → Flyers view",
+        "from": "http://127.0.0.1:5173/app-next/community-notices/events",
+        "to": "http://127.0.0.1:5173/app-next/community-notices/flyers",
+        "back": "http://127.0.0.1:5173/app-next/community-notices/events",
+        "forward": "http://127.0.0.1:5173/app-next/community-notices/flyers",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "overview": {
+        "url": "/app-next/community-notices",
+        "h1": [
+          "Community Notices"
+        ],
+        "main": "Community Notices\n\nTimely information shared by community organizations, nonprofits, churches and neighborhood groups — events, meetings, announcements and flyers.\n\n📅\nEvents\n4\n🏛️\nMeetings\n1\n📢\nAnnouncements\n3\n🖼️\nFlyers\n6\nEvents\nSee all (4)\nFLYER\nBack-to-School Supply Drive Fundraiser\n\nMinistry of Caring Inc\n\nCommunity fundraiser to purchase backpacks and school supplies for Wilmington students in need.\n\n2026-11-24\n\nFLYER\nFree Community Health Fair\n\nWestside Family Healthcare\n\nFree health screenings, vaccinations, and dental checkups — no insurance or ID required.\n\n2026-12-01\n\nFLYER\nSummer Y",
+        "overflow": false,
+        "status": [],
+        "alerts": []
+      }
+    },
+    "1280": {
+      "url": "/app-next/community-notices/events",
+      "h1": [
+        "Community Notices"
+      ],
+      "main": "Community Notices\n\nWhat is happening in the community, soonest first.\n\n📅\nEvents\n4\n🏛️\nMeetings\n1\n📢\nAnnouncements\n3\n🖼️\nFlyers\n6\nFLYER\nBack-to-School Supply Drive Fundraiser\n\nMinistry of Caring Inc\n\nCommunity fundraiser to purchase backpacks and school supplies for Wilmington students in need.\n\n2026-11-24\n\nFLYER\nFree Community Health Fair\n\nWestside Family Healthcare\n\nFree health screenings, vaccinations, and dental checkups — no insurance or ID required.\n\n2026-12-01\n\nFLYER\nSummer Youth Enrichment Program — Registration Open\n\nWest End Neighborhood House\n\nFree summer program for youth ages 8-14",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "cards": [
+        "FLYER Back-to-School Supply Drive Fundraiser Ministry of Caring Inc Community fundraiser to purchase backpacks and school supplies for Wilmington students in ne",
+        "FLYER Free Community Health Fair Westside Family Healthcare Free health screenings, vaccinations, and dental checkups — no insurance or ID required. 2026-12-01",
+        "FLYER Summer Youth Enrichment Program — Registration Open West End Neighborhood House Free summer program for youth ages 8-14 with tutoring, sports, and field t",
+        "FLYER United Neighbors 2026 West Side Grows Together Art, food, music, and celebration bridging neighborhoods on both sides of I-95 — Saturday 1:00–4:00 pm on t"
+      ],
+      "images": [
+        {
+          "loaded": true,
+          "alt": "Back-to-School Supply Drive Fundraiser"
+        },
+        {
+          "loaded": true,
+          "alt": "Free Community Health Fair"
+        },
+        {
+          "loaded": true,
+          "alt": "Summer Youth Enrichment Program — Registration Open"
+        },
+        {
+          "loaded": true,
+          "alt": "United Neighbors 2026"
+        }
+      ],
+      "toFlyers": {
+        "label": "Events → Flyers view",
+        "from": "http://127.0.0.1:5173/app-next/community-notices/events",
+        "to": "http://127.0.0.1:5173/app-next/community-notices/flyers",
+        "back": "http://127.0.0.1:5173/app-next/community-notices/events",
+        "forward": "http://127.0.0.1:5173/app-next/community-notices/flyers",
+        "backRestored": true,
+        "forwardRestored": true
+      },
+      "overview": {
+        "url": "/app-next/community-notices",
+        "h1": [
+          "Community Notices"
+        ],
+        "main": "Community Notices\n\nTimely information shared by community organizations, nonprofits, churches and neighborhood groups — events, meetings, announcements and flyers.\n\n📅\nEvents\n4\n🏛️\nMeetings\n1\n📢\nAnnouncements\n3\n🖼️\nFlyers\n6\nEvents\nSee all (4)\nFLYER\nBack-to-School Supply Drive Fundraiser\n\nMinistry of Caring Inc\n\nCommunity fundraiser to purchase backpacks and school supplies for Wilmington students in need.\n\n2026-11-24\n\nFLYER\nFree Community Health Fair\n\nWestside Family Healthcare\n\nFree health screenings, vaccinations, and dental checkups — no insurance or ID required.\n\n2026-12-01\n\nFLYER\nSummer Y",
+        "overflow": false,
+        "status": [],
+        "alerts": []
+      }
+    }
+  },
+  "faults": [
+    {
+      "case": "Article genuine 404 (OR-999)",
+      "url": "/app-next/originals/OR-999",
+      "h1": [
+        "Article not found"
+      ],
+      "main": "Article not found\n\nThis article is not available. It may have been moved, or it may never have been published.\n\nBack to First Step",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Article not foundThis article is not available. It may have been moved, or it may never have been published.Back to First Step"
+      ]
+    },
+    {
+      "case": "Article synthetic 503 (OR-003)",
+      "url": "/app-next/originals/OR-003",
+      "h1": [
+        "Article not found"
+      ],
+      "main": "Article not found\n\nThis article is not available. It may have been moved, or it may never have been published.\n\nBack to First Step",
+      "overflow": false,
+      "status": [],
+      "alerts": [
+        "Article not foundThis article is not available. It may have been moved, or it may never have been published.Back to First Step"
+      ]
+    }
+  ],
+  "loading": [
+    {
+      "url": "/app-next/community-notices",
+      "h1": [
+        "Community Notices"
+      ],
+      "main": "Community Notices\n\nTimely information shared by community organizations, nonprofits, churches and neighborhood groups — events, meetings, announcements and flyers.\n\n📅\nEvents\n—\n🏛️\nMeetings\n—\n📢\nAnnouncements\n—\n🖼️\nFlyers\n—\n\nLoading…",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/community-notices",
+      "loadingNodes": [
+        {
+          "text": "Timely information shared by community organizations, nonprofits, churches and neighborhood groups — events, meetings, announcements and flyers.",
+          "role": null,
+          "live": null
+        },
+        {
+          "text": "Loading…",
+          "role": null,
+          "live": null
+        }
+      ]
+    },
+    {
+      "url": "/app-next/updates",
+      "h1": [
+        "Latest Updates"
+      ],
+      "main": "Latest Updates\n\nNews, policy updates, notices and announcements from Delaware agencies, officials and public programs.\n\nLoading…",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/updates",
+      "loadingNodes": [
+        {
+          "text": "News, policy updates, notices and announcements from Delaware agencies, officials and public programs.",
+          "role": null,
+          "live": null
+        },
+        {
+          "text": "Loading…",
+          "role": null,
+          "live": null
+        }
+      ]
+    },
+    {
+      "url": "/app-next/category/housing",
+      "h1": [],
+      "main": "Loading…",
+      "overflow": false,
+      "status": [
+        "Loading…"
+      ],
+      "alerts": [],
+      "route": "/category/housing",
+      "loadingNodes": [
+        {
+          "text": "Loading…",
+          "role": "status",
+          "live": null
+        }
+      ]
+    },
+    {
+      "url": "/app-next/",
+      "h1": [],
+      "main": "Ways to get started\nDiscover\n\nSearch trusted housing, food, health, employment and community resources.\n\nExplore Resources\nConnect\n\nFind the right organization or service for your needs.\n\nFind Help\nStay Informed\n\nRead local news, community announcements and important program updates.\n\nView Updates\nNew Laws in Delaware\nView Updates\n\nComing soon.\n\nLegislation\nPolicy changes\nBenefit and program changes\nDeadlines\nGovernment announcements\nCommunity Resources\n\nLoading…\n\nFIRST STEP ORIGINALS\n\nGuides, answers and briefings written by First Step.\n\nLoading…\n\nCommunity Notices\nSee all community notices\n\n",
+      "overflow": false,
+      "status": [],
+      "alerts": [],
+      "route": "/",
+      "loadingNodes": [
+        {
+          "text": "Search trusted housing, food, health, employment and community resources.",
+          "role": null,
+          "live": null
+        },
+        {
+          "text": "Find the right organization or service for your needs.",
+          "role": null,
+          "live": null
+        },
+        {
+          "text": "Read local news, community announcements and important program updates.",
+          "role": null,
+          "live": null
+        },
+        {
+          "text": "Coming soon.",
+          "role": null,
+          "live": null
+        }
+      ]
+    }
+  ],
+  "errors": []
+}

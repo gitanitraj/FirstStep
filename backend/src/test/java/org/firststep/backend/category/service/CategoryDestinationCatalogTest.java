@@ -61,8 +61,10 @@ class CategoryDestinationCatalogTest {
         assertNoPrivate(mapper.readTree(response));
         assertTrue(flyers.findAll().stream().noneMatch(f -> "ACTIONABLE_HELP_ACCESS".equals(f.helpAccess)));
         assertEquals(8, flyers.findAll().size());
-        var flyerCollection = page.collections().stream().filter(c -> c.key().equals("flyers")).findFirst().orElseThrow();
-        assertTrue(flyerCollection.items().stream().anyMatch(c -> c.id().equals("FL-002")));
+        // C-02: FL-002 is withdrawn, so the real Housing page has no flyers collection.
+        // Flyer placement and the never-featured rule are proven with fixtures in
+        // CategoryContentServiceTest and FeaturedItemSelectorTest.
+        assertTrue(page.collections().stream().noneMatch(c -> c.key().equals("flyers")));
         assertTrue(featured.stream().flatMap(t -> t.items().stream()).noneMatch(p -> p.item().id().startsWith("FL-")));
         String directory = System.getProperty("im08.evidence.dir");
         if (directory != null) { Files.createDirectories(Path.of(directory)); Files.writeString(Path.of(directory, "real-category-api.json"), mapper.writerWithDefaultPrettyPrinter().writeValueAsString(mapper.readTree(response)) + "\n"); }

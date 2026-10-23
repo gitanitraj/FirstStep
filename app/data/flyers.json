@@ -31,7 +31,8 @@
         "zip": "19805"
       },
       "image": "Youth.jpg",
-      "organization_id": "ORG-056"
+      "organization_id": "ORG-056",
+      "status": "withdrawn"
     },
     {
       "id": "FL-002",
@@ -66,7 +67,8 @@
         "zip": "19801"
       },
       "image": "Eviction Help.png",
-      "organization_id": "ORG-057"
+      "organization_id": "ORG-057",
+      "status": "withdrawn"
     },
     {
       "id": "FL-003",
@@ -99,7 +101,8 @@
         "zip": "19801"
       },
       "image": "Volunteer.jpg",
-      "organization_id": "ORG-058"
+      "organization_id": "ORG-058",
+      "status": "withdrawn"
     },
     {
       "id": "FL-004",
@@ -133,7 +136,8 @@
         "zip": "19801"
       },
       "image": "Fundraiser.jpg",
-      "organization_id": "ORG-026"
+      "organization_id": "ORG-026",
+      "status": "withdrawn"
     },
     {
       "id": "FL-005",
@@ -168,7 +172,8 @@
         "zip": "19801"
       },
       "image": "Disablility Info.jpg",
-      "organization_id": "ORG-059"
+      "organization_id": "ORG-059",
+      "status": "withdrawn"
     },
     {
       "id": "FL-006",
@@ -202,7 +207,8 @@
         "zip": "19805"
       },
       "image": "Health Fair.jpg",
-      "organization_id": "ORG-060"
+      "organization_id": "ORG-060",
+      "status": "withdrawn"
     },
     {
       "id": "FL-007",
@@ -236,7 +242,8 @@
         "zip": "19802"
       },
       "image": "Furniture.jpg",
-      "organization_id": "ORG-061"
+      "organization_id": "ORG-061",
+      "status": "withdrawn"
     },
     {
       "id": "FL-008",

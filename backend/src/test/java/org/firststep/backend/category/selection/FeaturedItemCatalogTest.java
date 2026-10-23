@@ -63,8 +63,11 @@ class FeaturedItemCatalogTest {
         assertEquals(FeaturedItemSelector.PositionType.FALLBACK, eviction.positions().get(0).type());
         assertFalse(eviction.positions().get(0).item().actionable());
         assertTrue(content.helpFor("housing", "Eviction Prevention", "wilmington-de").isEmpty());
-        assertTrue(housing.get("Eviction Prevention").diagnostics().stream().anyMatch(d ->
-                d.code().equals("FLYER_HELP_ACCESS_REQUIRED") && d.itemIds().contains("FL-002")));
+        // C-02: withdrawn FL-002 is outside the current inventory, so it is never
+        // diagnosed. FLYER_HELP_ACCESS_REQUIRED is proven with a fixture flyer in
+        // FeaturedItemSelectorTest.
+        assertTrue(housing.get("Eviction Prevention").diagnostics().stream().noneMatch(d ->
+                d.itemIds().contains("FL-002")));
         assertEquals(8, flyers.findAll().size());
         assertTrue(flyers.findAll().stream().noneMatch(f -> "ACTIONABLE_HELP_ACCESS".equals(f.helpAccess)));
         assertEquals(before, mapper.writeValueAsString(resources.findAll()) + mapper.writeValueAsString(flyers.findAll()));

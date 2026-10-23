@@ -1,0 +1,300 @@
+{
+  "help": {
+    "url": "http://127.0.0.1:5173/app-next/category/housing/help?communityId=wilmington-de",
+    "before": 13,
+    "after": 45,
+    "topicLink": "/app-next/category/housing/emergency-shelter?communityId=wilmington-de",
+    "back": "http://127.0.0.1:5173/app-next/category/housing/help?communityId=wilmington-de"
+  },
+  "topic": {
+    "url": "http://127.0.0.1:5173/app-next/category/housing/emergency-shelter?communityId=wilmington-de",
+    "text": "Housing / All Housing Help\nEmergency Shelter\n\n9 help listings\n\nGet help\n9\nRESOURCE\nAmerican Red Cross\n\nWilmington\n\nDisaster shelter providing food, mental health support, health services, and referrals for individuals impacted by natural or man-made disasters.\n\nFree\nEmergency\n\nRESOURCE\nChild Inc - Domestic Violence Shelters\n\nWilmington\n\nConfidential emergency shelter for domestic violence survivors. Includes safety planning, advocacy, and case management. Emergency hotel placement may be available.\n\nFree\nEmergency\n\nRESOURCE\nFamily Promise of Northern New Castle County\n\nWilmington\n\nComprehensive homeless family support including temporary shelter, rapid rehousing, and intensive case management across multiple programs to help families achieve housing independence.\n\nFree\nEmergency\n\nRESOURCE\nMinistry of Caring Inc\n\nWilmington\n\nComprehensive nonprofit serving Wilmington's most vulnerable through meals, shelter, transitional housing, job assistance, dental care, early childhood education, and senior housing.\n\nFree\n\n5 more"
+  },
+  "editorial": "First Rate News\n4\nNEWS\nHow to read a Delaware eviction notice\n\nAdmin\n\nWhat the dates on an eviction notice mean, and how long a tenant actually has to respond at each stage.\n\n2026-08-10\n\nEXPERT\nWhat is the eviction notice period in Delaware?\n\nFirst Step\n\n5 days for nonpayment of rent, 7 days for lease violations, 60 days for no-cause termination.\n\n2026-07-11\n\n2 more",
+  "/api/originals/OR-003": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "id": "OR-003",
+        "title": "How to read a Delaware eviction notice",
+        "summary": "What the dates on an eviction notice mean, and how long a tenant actually has to respond at each stage.",
+        "whyItMatters": "Tenants routinely miss the response window because the deadline on the notice is not the deadline that matters.",
+        "body": "PLACEHOLDER — approved fixture.\n\nThis record exists so the boundary test has an article that IS publicly servable, proving the filter admits as well as excludes.",
+        "byline": "Admin",
+        "disclosure": null,
+        "publishDate": "2026-08-10",
+        "updatedDate": "2026-08-10",
+        "categoryTags": [
+          "Housing",
+          "Legal"
+        ],
+        "subcategory": "Eviction Prevention"
+      },
+      "errorCode": null,
+      "errorMessage": null,
+      "timestamp": "2026-10-23T17:34:17.645320Z"
+    }
+  },
+  "/api/category/housing/help?communityId=bear-de": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "metadata": {
+          "categoryKey": "housing",
+          "categoryLabel": "Housing",
+          "categoryIcon": "🏠",
+          "name": "Housing",
+          "slug": "help",
+          "totalCount": 1,
+          "countsByType": {
+            "RESOURCE": 1
+          }
+        },
+        "items": [
+          {
+            "contentType": "RESOURCE",
+            "id": "SD-048",
+            "title": "Aquila Behavioral Health of Delaware",
+            "summary": "The Refuge, a long-term, integrated sober-living facility located in Bear, Delaware. The Refuge provides separate housing units for men and women as well as women with children. These housing environments are supervised around the clock and provide residents support to achieve their sobriety and develop necessary skills to live safely and independently in the community. Structured clinical programs provide varying intensities of treatment to meet each resident's individual needs. Clinical staff include licensed master's level therapists, certified addiction counselors, peer support specialists, and a licensed practicing psychologist. While living at The Refuge, residents are afforded comprehensive medical and nursing care as well as psychiatric and medication-assisted treatment. As residents progress through the treatment continuum and their needs evolve, they are afforded opportunities for job placement, job skills training and ultimately, transition to sober-living homes, if needed.",
+            "organization": "Aquila Behavioral Health of Delaware",
+            "location": "Bear",
+            "cost": null,
+            "urgency": "standard",
+            "date": null,
+            "url": "https://www.aquilaofde.com/the-refuge/",
+            "imageUrl": null
+          }
+        ],
+        "topics": [
+          {
+            "name": "Emergency Shelter",
+            "slug": "emergency-shelter",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Transitional Housing",
+            "slug": "transitional-housing",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Sober Living",
+            "slug": "sober-living",
+            "count": 1,
+            "countsByType": {
+              "RESOURCE": 1
+            }
+          },
+          {
+            "name": "Rental Assistance",
+            "slug": "rental-assistance",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Public Housing",
+            "slug": "public-housing",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Homeownership",
+            "slug": "homeownership",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Senior Housing",
+            "slug": "senior-housing",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Youth Housing",
+            "slug": "youth-housing",
+            "count": 0,
+            "countsByType": {}
+          },
+          {
+            "name": "Eviction Prevention",
+            "slug": "eviction-prevention",
+            "count": 0,
+            "countsByType": {}
+          }
+        ]
+      },
+      "errorCode": null,
+      "errorMessage": null,
+      "timestamp": "2026-10-23T17:34:17.649306Z"
+    }
+  },
+  "/api/category/housing/not-a-topic": {
+    "status": 404,
+    "body": {
+      "success": false,
+      "data": null,
+      "errorCode": "NOT_FOUND",
+      "errorMessage": "Topic not found: housing/not-a-topic",
+      "timestamp": "2026-10-23T17:34:17.653080Z"
+    }
+  },
+  "/api/organization/not-an-org": {
+    "status": 404,
+    "body": {
+      "success": false,
+      "data": null,
+      "errorCode": "NOT_FOUND",
+      "errorMessage": "Unknown organization: not-an-org",
+      "timestamp": "2026-10-23T17:34:17.656036Z"
+    }
+  },
+  "/api/updates/government?communityId=bear-de": {
+    "status": 200,
+    "body": {
+      "success": true,
+      "data": {
+        "sector": "GOVERNMENT",
+        "totalCount": 6,
+        "groups": [
+          {
+            "contentType": "NEWS",
+            "count": 2,
+            "items": [
+              {
+                "contentType": "NEWS",
+                "id": "NP-004",
+                "title": "Delaware raises income threshold for Emergency Assistance eligibility",
+                "summary": "Effective July 1, Delaware DHSS raised the income threshold for Emergency Assistance — which covers rent, utilities, and emergency shelter — from 100% to 125% of the Federal Poverty Level.",
+                "date": "2026-06-02",
+                "source": "Delaware Health and Social Services",
+                "url": "https://dhss.delaware.gov",
+                "urgency": "standard",
+                "categoryTags": [
+                  "Housing",
+                  "Utilities",
+                  "Rental Assistance"
+                ]
+              },
+              {
+                "contentType": "NEWS",
+                "id": "NP-008",
+                "title": "Delaware Medicaid expansion covers dental for adults starting October 1",
+                "summary": "Delaware will begin covering comprehensive dental care for adult Medicaid enrollees on October 1, 2026 — a first for the state. This affects an estimated 70,000 Delaware adults currently on Medicaid.",
+                "date": "2026-05-28",
+                "source": "Delaware Health and Social Services",
+                "url": "https://dhss.delaware.gov",
+                "urgency": "standard",
+                "categoryTags": [
+                  "Health"
+                ]
+              }
+            ]
+          },
+          {
+            "contentType": "FLYER",
+            "count": 2,
+            "items": [
+              {
+                "contentType": "FLYER",
+                "id": "FL-007",
+                "title": "Free Furniture Giveaway",
+                "summary": "Free gently-used furniture available for families moving into new housing — first come, first served.",
+                "date": "2026-08-15",
+                "source": "Wilmington Housing Authority",
+                "url": null,
+                "urgency": null,
+                "categoryTags": [
+                  "Furniture & Household"
+                ]
+              },
+              {
+                "contentType": "FLYER",
+                "id": "FL-005",
+                "title": "Disability Services & Benefits Info Fair",
+                "summary": "Learn about SSDI/SSI applications, accessible housing, and assistive technology resources.",
+                "date": "2026-07-30",
+                "source": "Delaware Division for the Visually Impaired",
+                "url": null,
+                "urgency": null,
+                "categoryTags": [
+                  "Legal",
+                  "Community Support"
+                ]
+              }
+            ]
+          },
+          {
+            "contentType": "EXPERT",
+            "count": 2,
+            "items": [
+              {
+                "contentType": "EXPERT",
+                "id": "EA-002",
+                "title": "How do I apply for SNAP benefits in Delaware?",
+                "summary": "You can apply online through Delaware ASSIST, by mail, or in person at a State Service Center.",
+                "date": "2026-06-15",
+                "source": "Delaware Health and Social Services",
+                "url": null,
+                "urgency": null,
+                "categoryTags": [
+                  "Food"
+                ]
+              },
+              {
+                "contentType": "EXPERT",
+                "id": "EA-006",
+                "title": "Is there help paying my winter heating bill?",
+                "summary": "LIHEAP provides one-time heating assistance grants to income-eligible Delaware households.",
+                "date": "2026-06-15",
+                "source": "Delaware Health and Social Services",
+                "url": null,
+                "urgency": null,
+                "categoryTags": [
+                  "Utilities"
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      "errorCode": null,
+      "errorMessage": null,
+      "timestamp": "2026-10-23T17:34:17.659015Z"
+    }
+  },
+  "states": [
+    {
+      "path": "/",
+      "text": "Ways to get started\nDiscover\n\nSearch trusted housing, food, health, employment and community resources.\n\nExplore Resources\nConnect\n\nFind the right organization or service for your needs.\n\nFind Help\nStay Informed\n\nRead local news, community announcements and important program updates.\n\nView Updates\nNew Laws in Delaware\nView Updates\n\nComing soon.\n\nLegislation\nPolicy changes\nBenefit and program changes\nDeadlines\nGovernment announcements\nCommunity Resources\n\nLoading…\n\nFIRST STEP ORIGINALS\n\nGuides, answers and briefings written by First Step.\n\nLoading…\n\nCommunity Notices\nSee all community notices\n\nEvents, meetings, announcements and flyers shared by organizations and neighbors across the community.\n\nAudit unavailable fixture",
+      "alerts": 1
+    },
+    {
+      "path": "/category/housing",
+      "text": "We could not load help right now. Please try again.\n← Back to home",
+      "alerts": 1
+    },
+    {
+      "path": "/category/housing/help",
+      "text": "We could not load help right now. Please try again.\n← Back to the category",
+      "alerts": 1
+    },
+    {
+      "path": "/community-notices",
+      "text": "Community Notices\n\nTimely information shared by community organizations, nonprofits, churches and neighborhood groups — events, meetings, announcements and flyers.\n\n📅\nEvents\n—\n🏛️\nMeetings\n—\n📢\nAnnouncements\n—\n🖼️\nFlyers\n—\n\nAudit unavailable fixture",
+      "alerts": 1
+    },
+    {
+      "path": "/updates",
+      "text": "Latest Updates\n\nNews, policy updates, notices and announcements from Delaware agencies, officials and public programs.\n\nAudit unavailable fixture",
+      "alerts": 1
+    },
+    {
+      "path": "/originals/OR-003",
+      "text": "Article not found\n\nThis article is not available. It may have been moved, or it may never have been published.\n\nBack to First Step",
+      "alerts": 1
+    }
+  ]
+}

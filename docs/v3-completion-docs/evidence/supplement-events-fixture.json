@@ -1,0 +1,15 @@
+{
+  "purpose": "Controlled, nonpersistent Events fixture for V3A-00 R1. Exercises the real server occurrence filter and the real React page with current/upcoming dates, because every live catalog event date precedes the audit date (2026-10-23).",
+  "location": "Session scratchpad copy of app/data (deleted with the session); never written to the repository.",
+  "served_by": "Same verified jar (sha256 e890d43a62c8ddc50732c4bb41b83719630b245a18e9b081c08cf77e9d9311a8) on port 18081 with --app.data.dir=<scratch copy>; log supplement-runtime-18081-fixture.log",
+  "only_change": "flyers.json event_date + 90 days on every record; no other field in any file differs (verified by sorted-key diff).",
+  "shifts": [
+    ["FL-001","2026-09-07","2026-12-06"],["FL-002","2026-08-30","2026-11-28"],
+    ["FL-003","2026-09-15","2026-12-14"],["FL-004","2026-08-26","2026-11-24"],
+    ["FL-005","2026-07-30","2026-10-28"],["FL-006","2026-09-02","2026-12-01"],
+    ["FL-007","2026-08-15","2026-11-13"],["FL-008","2026-10-17","2027-01-15"]
+  ],
+  "result": "Fixture EVENTS=4 (FL-004, FL-006, FL-001, FL-008, soonest first); live 8080 EVENTS=0 at the same time.",
+  "routing": "Only /api/community-notices* requests were redirected to 18081 inside the browser (Playwright route); all other API traffic used the Vite proxy to the live 8080 instance.",
+  "production_catalog": "git status app/data: clean before and after."
+}

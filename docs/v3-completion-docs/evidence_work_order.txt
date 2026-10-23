@@ -1,0 +1,432 @@
+# First Step V3A-00 — Evidence Completion Work Order
+
+**Status:** APPROVED FOR EXECUTION  
+**Workstream:** V3A — Resident Experience & Frontend  
+**Package:** V3A-00 — Repository & Resident Page Implementation Audit  
+**Mode:** READ-ONLY / VERIFICATION ONLY  
+**Repository:** `gitanitraj/FirstStep`  
+**Baseline branch:** `copyofdev`  
+**Previously inspected commit:** `bb4d55ee0074452223e517ede48a1ed30f5e4e1a`
+
+## 1. Objective
+
+Complete the V3A-00 implementation audit by executing and inspecting the existing application.
+
+Determine which resident pages and behaviors:
+
+- Already satisfy their V3A requirements.
+- Exist and function but require visual restructuring.
+- Are partially implemented and require functional completion.
+- Are placeholders or missing.
+- Cannot yet be verified because of a runtime, data, or environment limitation.
+
+Do not assume that working components imply completed resident journeys.
+
+Do not implement V3A design changes during this work order.
+
+## 2. Governing authority
+
+Use these approved references:
+
+1. First Step v2 Completion Contract.
+2. Approved 2B-P5 Logical ER + Classification Schema.
+3. Authoritative IM-01–IM-14 Execution Matrix and subsequent architectural resolutions.
+4. Approved V3A Homepage and Housing design decisions.
+5. V3A Page Requirements & Acceptance Contract, P01–P09.
+6. Approved V3A-00 through V3A-09 implementation framework.
+
+Preserve the following architectural boundaries:
+
+- `CivicContent`, `ContentType`, Category, Topic, Organization, ContentSource, and Community retain their approved meanings.
+- V3A frontend changes must not silently alter backend classification or editorial lifecycle rules.
+- The removal of the visible Get Help section must not remove the underlying All Category Help capability.
+- Community Notices remains primarily nongovernment-produced information.
+- Program Updates primarily represents government program and policy changes.
+- First Rate News retains its approved inclusive editorial definition.
+- V3B administration and stewardship capabilities remain outside V3A.
+
+## 3. Repository and environment verification
+
+Before executing tests:
+
+1. Confirm repository location and active branch.
+2. Record the current commit SHA.
+3. Verify the working tree status.
+4. Inspect the frontend and backend build configuration.
+5. Identify required Java, Maven, Node.js, and package-manager versions.
+6. Identify the documented commands for running the application.
+7. Record any environment requirements affecting local execution.
+
+Use `copyofdev` as the baseline.
+
+Do not switch to `main`, merge branches, create commits, or modify dependencies as part of this audit.
+
+### Required output
+
+A short environment record containing:
+
+- Repository location
+- Branch
+- Commit SHA
+- Working tree state
+- Java/Maven versions
+- Node/npm versions
+- Application startup commands
+- Any configuration or environment blockers
+
+If the current branch has advanced beyond the previously inspected commit, audit the current `copyofdev` HEAD and explicitly identify that SHA. Do not silently substitute another branch.
+
+## 4. Automated baseline verification
+
+Run the existing project verification commands as supported by the repository.
+
+At minimum, attempt:
+
+**Frontend**
+
+```bash
+cd frontend
+npm test -- --run
+npm run build
+```
+
+**Backend**
+
+```bash
+cd backend
+./mvnw test
+```
+
+If the repository uses a different Maven invocation, use the documented command instead.
+
+Also run the repository's established data validators and other existing verification scripts where available.
+
+### Evidence requirements
+
+For each suite record:
+
+| Field | Required evidence |
+|---|---|
+| Command | Exact command executed |
+| Result | PASS / FAIL / BLOCKED |
+| Test count | Actual tests executed, passed, failed and skipped |
+| Relevant failures | Test names and failure messages |
+| Build result | Successful or failed compilation/build |
+| Environment issues | Missing prerequisites or configuration |
+| Evidence | Reproducible log reference |
+
+Do not reuse historical test counts as current results.
+
+Do not modify tests or production code to obtain a passing baseline.
+
+## 5. Resident page verification
+
+Inspect the application at desktop and mobile widths.
+
+Use **1280px and 375px** as baseline viewports, with additional widths where needed to identify layout defects.
+
+Verify each surface against its existing implemented behavior and the approved V3A acceptance contract.
+
+### A. Homepage — P01
+
+Route: `/`
+
+Inspect:
+
+- Current global navigation.
+- Current homepage composition.
+- Existing homepage API payload.
+- Flyer preview behavior.
+- Category navigation.
+- Editorial preview behavior.
+- Existing updates/notices navigation.
+- Responsive behavior and loading/error states.
+
+Compare the current implementation against the approved V3A homepage:
+
+- Compact Wilmington cityscape hero with fade.
+- First Step introduction and separately maintained What's New note.
+- Community Events flyer column.
+- Browse by Category on the left, two columns by four rows.
+- First Rate News on the right.
+- Community Notices on the left below.
+- Program Updates on the right below.
+- Original mixed horizontal/vertical editorial presentation.
+
+Record gaps. Do not redesign the homepage during this audit.
+
+### B. Category Destination — P02
+
+Primary fixture: Housing.
+
+Inspect:
+
+- Current Category header.
+- Featured-topic selection and presentation.
+- Individual featured-item navigation.
+- Topic destination navigation.
+- Existing Get Help presentation.
+- All Housing Help entry point.
+- What to Know collections.
+- Context rail.
+- Organizations.
+- Community scope and URL behavior.
+
+Compare against the approved V3A Housing arrangement.
+
+Specifically verify that removing the future visible Get Help block will not eliminate any contracted access to the eligible help inventory.
+
+### C. Topic Destination — P03
+
+Verify:
+
+- A real Housing Topic opens successfully.
+- Category context is preserved.
+- Topic content is properly scoped.
+- Item links reach intended destinations.
+- Breadcrumb and browser-back behavior.
+- Loading, empty, and error states.
+- Mobile result presentation.
+
+### D. All Category Help — P04
+
+Verify:
+
+- Direct access to `/category/housing/help`.
+- Access from the Category Destination.
+- Current eligible resources are returned.
+- Topic narrowing works.
+- Large result sets remain navigable.
+- Community scope is preserved.
+- Empty and invalid route behavior is understandable.
+
+### E. Community Notices & Flyers — P05
+
+Verify:
+
+- Community Notices overview.
+- Events, Meetings, Announcements, and Flyers views.
+- Shareable and directly accessible URLs.
+- Existing gallery or carousel behavior.
+- Flyer image sizing and cropping.
+- Ability to enlarge a flyer.
+- Source attribution and content details.
+- Availability and event-date behavior.
+
+Record whether the previously developed flyer-carousel experience is present in the current application or exists only in an older implementation.
+
+Do not rebuild a carousel merely because an earlier demo had one.
+
+### F. Program Updates — P06
+
+Verify:
+
+- `/updates` loads.
+- Government producer classification.
+- Existing grouping and filtering.
+- Source attribution and dates.
+- Update links.
+- Loading, empty, and error states.
+
+Identify what presentation work is needed to support the new homepage Program Updates preview.
+
+### G. First Rate News & Editorial Detail — P07
+
+Verify:
+
+- Existing homepage editorial previews.
+- Approved Originals inclusion.
+- Expert/FAQ inclusion where supported.
+- Article detail routes.
+- Publication-date display.
+- Summary/lede presentation.
+- Image/fallback behavior.
+- Internal editorial fields remain outside public DTOs.
+
+Record any missing functionality separately from requested visual enhancements.
+
+### H. Resource and Organization Navigation — P08
+
+Verify:
+
+- Resource result cards.
+- Provider/source distinctions.
+- External resource links.
+- Organization-detail routes.
+- Organization-to-offering relationships.
+- Internal navigation and browser history.
+- Missing-data handling.
+
+Do not expand organization identity or profile modeling.
+
+### I. Shared Visual System — P09
+
+Inspect:
+
+- Existing CSS tokens.
+- Typography configuration.
+- High-contrast behavior.
+- Shared header/footer.
+- Color use and icon consistency.
+- Focus indicators.
+- Responsive layout.
+- Loading/error announcements.
+- Reusable components.
+
+Record which existing tokens and components can support the approved V3A visual system without unnecessary replacement.
+
+## 6. Runtime acceptance method
+
+For every page:
+
+1. Open the route directly.
+2. Confirm that it renders without an unexpected failure.
+3. Exercise its principal resident action.
+4. Follow at least one internal navigation pathway.
+5. Use browser back/forward where applicable.
+6. Inspect desktop and mobile presentation.
+7. Check the relevant accessibility behavior.
+8. Record whether the journey is functional.
+9. Compare it with V3A requirements.
+10. Assign a supported implementation classification.
+
+Distinguish **current implementation failures** from **features intentionally deferred to V3A construction**.
+
+Do not label a page broken simply because it does not yet match the new V3A visual design.
+
+## 7. Implementation classification
+
+Assign each page one classification:
+
+| Classification | Meaning |
+|---|---|
+| Established | Core resident journey is functional |
+| Partially Implemented | Some functionality exists but the intended journey is incomplete |
+| Placeholder | Route or shell exists without meaningful resident functionality |
+| Not Implemented | Required page or behavior does not exist |
+| Unverified | Insufficient executable evidence to classify confidently |
+
+Additionally assign a V3A treatment:
+
+- Visual refinement
+- Structural redesign
+- Functional completion
+- New implementation
+- Verification only
+
+A page may be established under v2 and still require structural redesign for V3A.
+
+## 8. Required Resident Page Implementation Inventory
+
+Return this table with one row per resident surface:
+
+| Page | Route | Existing components | Backend/API | Classification | Functional gaps | V3A gaps | Test evidence | Treatment |
+|---|---|---|---|---|---|---|---|---|
+
+Cover all P01–P09 surfaces, including relevant shared components.
+
+Do not summarize several unfinished pages under a generic label without individual findings.
+
+## 9. Acceptance-evidence crosswalk
+
+For each page, report the status of its approved acceptance clauses.
+
+Use:
+
+- PASS — demonstrated by executable evidence.
+- FAIL — tested and not satisfied.
+- NOT IMPLEMENTED — required behavior is absent.
+- NOT TESTED — verification was not performed.
+- BLOCKED — verification could not proceed, with reason.
+
+Reference the specific V3A acceptance IDs, such as H-01, C-02, T-04, N-02, R-05 and S-06.
+
+Do not mark visual acceptance criteria PASS solely because equivalent JSX or CSS appears in the repository.
+
+## 10. Risk and dependency findings
+
+Identify:
+
+- Missing data or DTO properties needed by an approved V3A page.
+- Navigation links targeting placeholders.
+- Shared components whose modification could affect unrelated pages.
+- Existing API capabilities sufficient for the new presentation.
+- Any backend changes that appear necessary.
+- Accessibility or responsive risks.
+- Differences between the working branch and earlier project documentation.
+
+Do not solve these issues in V3A-00.
+
+Where a backend change appears necessary, report the exact requirement and demonstrated limitation instead of implementing it automatically.
+
+## 11. Prohibited work
+
+Do not:
+
+- Modify production code.
+- Modify tests.
+- Modify catalog JSON.
+- Change dependencies.
+- Create or rename domain entities.
+- Introduce a new ContentType.
+- Redesign the ER model.
+- Implement V3A-01 or later packages.
+- Introduce V3B workflow or Admin capabilities.
+- Create commits, branches, or pull requests.
+- Treat a screenshot or mockup as evidence of running application behavior.
+
+The work order is an audit, not a coding pass.
+
+## 12. Required final report
+
+Return the following sections in order:
+
+1. **Executive Summary**
+   - Current repository status.
+   - Overall implementation readiness.
+   - Major findings.
+
+2. **Environment & Baseline Verification**
+   - Branch, SHA, toolchain and executed commands.
+
+3. **Automated Test Results**
+   - Actual passing/failing test counts.
+   - Build and validator results.
+
+4. **Resident Page Implementation Inventory**
+   - All P01–P09 surfaces.
+
+5. **V3A Acceptance Crosswalk**
+   - Each acceptance clause with evidence status.
+
+6. **Functional Gaps**
+   - Missing or defective current behavior.
+
+7. **V3A Design Gaps**
+   - Existing behavior that works but does not match approved V3A presentation.
+
+8. **Dependencies and Risks**
+   - Frontend/backend and shared-component considerations.
+
+9. **Recommended Package Refinements**
+   - Updates to V3A-01 through V3A-09 execution scope, without changing their approved identifiers.
+
+10. **Final V3A-00 Disposition**
+    - `Satisfied`
+    - `Verification Incomplete`
+    - `Blocked`
+    - or `Escalation Required`
+
+## 13. Exit criterion
+
+V3A-00 can be marked **Satisfied** only when:
+
+- The correct `copyofdev` baseline is confirmed.
+- Existing automated test/build results are recorded.
+- Every contracted resident surface has an evidence-supported implementation classification.
+- Major resident journeys have been exercised where an executable environment permits.
+- Missing or blocked verification is explicitly recorded.
+- Functional gaps are distinguished from design changes.
+- V3A-01 through V3A-09 can be planned without assuming that unfinished pages are complete.
+
+**The final output is an evidence report—not modified application code.**
