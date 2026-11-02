@@ -20,6 +20,9 @@ yarn-debug.log*
 yarn-error.log*
 expo-debug.log
 *.log
+# V3A-00 / C-02 audit evidence: historical logs are hash-manifested records, not build noise.
+!docs/v3-completion-docs/evidence/*.log
+!docs/v3-completion-docs/evidence-c02/*.log
 
 # Environment variables
 .env
